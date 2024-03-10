@@ -1,0 +1,49 @@
+
+; with cte as (
+select ROW_NUMBER() over (partition by SNAAccountLimitUsed_ProjectWotk_Id, SNAAccountLimitUsed_UsageType, SNAAccountLimitUsed_Usage_Id, SNAAccountLimitUsed_UsedLimit order by SNAAccountLimitUsed_Id desc) rr, * from tbl_SNAAccountLimitUsed where SNAAccountLimitUsed_Status = 1)
+update cte set cte.SNAAccountLimitUsed_Status = 0 
+where cte.rr > 1
+
+
+
+set dateformat dmy; update tbl_PackageInvoiceItem set Total_Amount = Total_Amount_CF from tbl_PackageInvoiceItem join tbl_PackageInvoice on PackageInvoice_Id = PackageInvoiceItem_Invoice_Id where Total_Amount_CF != Total_Amount and isnull(PackageInvoice_Type, '') != 'N'  and PackageInvoice_Id=28993 
+
+set dateformat dmy; update tbl_PackageInvoiceItem set AmountWOTax = AmountWOTax_CF from tbl_PackageInvoiceItem join tbl_PackageInvoice on PackageInvoice_Id = PackageInvoiceItem_Invoice_Id where AmountWOTax_CF != AmountWOTax and isnull(PackageInvoice_Type, '') != 'N' and PackageInvoice_Id=28993 
+
+set dateformat dmy; update tbl_PackageInvoiceItem set Total_Tax = Total_Tax_CF from tbl_PackageInvoiceItem join tbl_PackageInvoice on PackageInvoice_Id = PackageInvoiceItem_Invoice_Id where Total_Tax_CF != Total_Tax and isnull(PackageInvoice_Type, '') != 'N'  and PackageInvoice_Id=28993 
+
+set dateformat dmy; update tbl_PackageInvoiceItem set Total_Rate = Total_Rate_CF from tbl_PackageInvoiceItem join tbl_PackageInvoice on PackageInvoice_Id = PackageInvoiceItem_Invoice_Id where Total_Rate_CF != Total_Rate and isnull(PackageInvoice_Type, '') != 'N'  and PackageInvoice_Id=28993 
+
+set dateformat dmy; update tbl_PackageInvoice set InvoiceAmount = InvoiceAmount_CF where InvoiceAmount_CF != InvoiceAmount and isnull(PackageInvoice_Type, '') != 'N'  and PackageInvoice_Id=28993 
+
+set dateformat dmy; update tbl_PackageInvoice set DeducctionAmount = DeducctionAmount_CF where DeducctionAmount_CF != DeducctionAmount and isnull(PackageInvoice_Type, '') != 'N'  and PackageInvoice_Id=28993 
+
+
+update tbl_PackageInvoiceItem set PackageInvoiceItem_GST = 18 where PackageInvoiceItem_Invoice_Id = 37877
+update tbl_PackageInvoiceItem_Tax set PackageInvoiceItem_Tax_Value = 9 where PackageInvoiceItem_Tax_InvoiceId = 37877
+
+
+
+select * from tbl_Package_MobilizationAdvance where Package_MobilizationAdvance_Id = 1092
+
+select * from tbl_Package_MobilizationAdvanceDocs where Package_MobilizationAdvanceDocs_Package_MobilizationAdvance_Id = 1092
+
+select * from tbl_Package_MobilizationAdvanceApproval where Package_MobilizationAdvanceApproval_Package_MobilizationAdvance_Id = 1092
+
+select * from tbl_SNAAccountLimitUsed where SNAAccountLimitUsed_ProjectWotk_Id = 2850
+
+select * from tbl_ProjectWork where ProjectWork_ProjectCode = 'UTT-MOR-014'
+
+select * from tbl_PackageInvoice where PackageInvoice_Id = 37877
+
+select * from tbl_PackageInvoiceItem where PackageInvoiceItem_Invoice_Id = 37877
+
+select * from tbl_PackageInvoiceItem_Tax where PackageInvoiceItem_Tax_InvoiceId = 37877
+
+select * from tbl_PackageInvoiceAdditional where PackageInvoiceAdditional_Invoice_Id = 37877
+
+select * from tbl_Deduction
+
+
+
+

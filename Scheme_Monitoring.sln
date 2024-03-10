@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Scheme_Monitoring", "Scheme_Monitoring\", "{64894128-D236-4850-B05F-0F0F7D2FEEFA}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_61346"
+		Debug.AspNetCompiler.PhysicalPath = "Scheme_Monitoring\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61346\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_61346"
+		Release.AspNetCompiler.PhysicalPath = "Scheme_Monitoring\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61346\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "61346"
+		SlnRelativePath = "Scheme_Monitoring\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMS_External_API", "SMS_External_API\SMS_External_API.csproj", "{BAD2ED90-77DF-49F3-8001-F4F8E9656AF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64894128-D236-4850-B05F-0F0F7D2FEEFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64894128-D236-4850-B05F-0F0F7D2FEEFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64894128-D236-4850-B05F-0F0F7D2FEEFA}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{64894128-D236-4850-B05F-0F0F7D2FEEFA}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{BAD2ED90-77DF-49F3-8001-F4F8E9656AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAD2ED90-77DF-49F3-8001-F4F8E9656AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAD2ED90-77DF-49F3-8001-F4F8E9656AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAD2ED90-77DF-49F3-8001-F4F8E9656AF2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6D7486E-8D9A-4251-A56E-A0FD65D83AD8}
+	EndGlobalSection
+EndGlobal

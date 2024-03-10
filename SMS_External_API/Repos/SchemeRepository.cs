@@ -1,0 +1,57 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Threading.Tasks;
+using SMS_External_API.Models;
+using SMS_External_API.App_Code;
+
+namespace SMS_External_API.Repos
+{
+    public class SchemeRepository : RepositoryAsyn
+    {
+        public SchemeRepository(string connectionString) : base(connectionString) { }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="deviceTokens">List of all devices assigned to a user</param>
+        /// <param name="title">Title of notification</param>
+        /// <param name="body">Description of notification</param>
+        /// <param name="data">Object with all extra information you want to send hidden in the notification</param>
+        /// <returns></returns>
+        public async Task<List<tbl_Scheme>> get_Scheme()
+        {
+            List<tbl_Scheme> obj_tbl_Project_Li = get_tbl_Project();
+            return obj_tbl_Project_Li;
+        }
+        private List<tbl_Scheme> get_tbl_Project()
+        {
+            List<tbl_Scheme> obj_tbl_Project_Li = new List<tbl_Scheme>();
+            try
+            {
+                DataSet ds = new DataLayer().get_tbl_Scheme();
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        tbl_Scheme obj_tbl_Project = new tbl_Scheme();
+                        obj_tbl_Project.Scheme_Budget = ds.Tables[0].Rows[i]["Project_Budget"].ToString();
+                        obj_tbl_Project.Scheme_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Project_Id"].ToString());
+                        obj_tbl_Project.Scheme_Name = ds.Tables[0].Rows[i]["Project_Name"].ToString();
+                        obj_tbl_Project.Scheme_Status = 1;
+
+                        obj_tbl_Project_Li.Add(obj_tbl_Project);
+                    }                    
+                }
+                else
+                {
+                    obj_tbl_Project_Li = null;
+                }
+            }
+            catch (Exception)
+            {
+                obj_tbl_Project_Li = null;
+            }
+            return obj_tbl_Project_Li;
+        }
+    }
+}
