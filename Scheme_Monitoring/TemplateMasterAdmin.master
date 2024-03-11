@@ -222,6 +222,20 @@
                                     </ul>
                                 </div>
                             </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarDPR" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDPR"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">DPR</span> </a>
+                                <div class="collapse menu-dropdown" id="sidebarDPR">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item"><a href="MasterDPRConfiguration.aspx" class="nav-link" data-key="t-basic-tables">DPR Points for Clarification</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectDPR.aspx" class="nav-link" data-key="t-grid-js">Create Project DPR</a> </li>
+                                        <li class="nav-item"><a href="MasterDPR_Upload.aspx" class="nav-link" data-key="t-list-js">Upload DPR Document</a> </li>
+                                        <li class="nav-item"><a href="Report_DPR_Status_Report.aspx" class="nav-link" data-key="t-list-js">DPR Status Report</a> </li>
+                                    </ul>
+                                </div>
+                            </li>
+
                         </ul>
                     </div>
                     <!-- Sidebar -->
@@ -234,7 +248,16 @@
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">© 2024-25 Schemes Monitoring System, Urban Development Department, GoUP | All Rights Reserved </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">Powered by <a href="https://www.margsoft.com/" target="_blank">MARGSOFT Technologies (P) Ltd.</a></div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
         <!-- END layout-wrapper -->
         <!--start back-to-top-->
@@ -282,6 +305,9 @@
 
     <!-- Dashboard init -->
     <script src="assets/js/pages/dashboard-analytics.init.js"></script>
+
+    <!-- prismjs plugin -->
+    <script src="assets/libs/prismjs/prism.js"></script>
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>

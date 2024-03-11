@@ -5,7 +5,8 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <title>Sign In | Velzon - Admin & Dashboard Template</title>
+    <title>Sign In | Schemes Monitoring System |
+    Urban Development Department, Government of Uttar Pradesh</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -57,7 +58,7 @@
                                     &copy;
                            
                                     <script>document.write(new Date().getFullYear())</script>
-                                    Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i>by Themesbrand
+                                    . Designed, Developed and Mainiained <i class="mdi mdi-heart text-danger"></i>by MARGSOFT
                        
                                 </p>
                             </div>
