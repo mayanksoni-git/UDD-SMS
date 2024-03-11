@@ -55,7 +55,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -153,7 +153,7 @@
                                 <div class="col-md-12">
                                     <div class="col-md-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdEMB" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdEMB_PreRender" OnRowDataBound="grdEMB_RowDataBound" OnPageIndexChanging="GrdEMB_PageIndexChanging">
+                                            <asp:GridView ID="grdEMB" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdEMB_PreRender" OnRowDataBound="grdEMB_RowDataBound" OnPageIndexChanging="GrdEMB_PageIndexChanging">
                                                 <Columns>
                                                     <asp:BoundField DataField="PackageEMB_Id" HeaderText="PackageEMB_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

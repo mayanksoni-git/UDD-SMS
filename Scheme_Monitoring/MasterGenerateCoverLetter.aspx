@@ -23,7 +23,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdInvoice" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdInvoice_PreRender">
+                                        <asp:GridView ID="grdInvoice" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdInvoice_PreRender">
                                             <Columns>
                                                 <asp:BoundField DataField="PackageInvoice_Id" HeaderText="PackageInvoice_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -84,7 +84,7 @@
                                 <div class="col-md-12">
                                     <div class="col-md-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPackageDetails" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPackageDetails_PreRender" OnRowDataBound="grdPackageDetails_RowDataBound">
+                                            <asp:GridView ID="grdPackageDetails" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPackageDetails_PreRender" OnRowDataBound="grdPackageDetails_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -288,7 +288,7 @@ diversion:</label>
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdCallProductDtls" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true">
+                                                <asp:GridView ID="grdCallProductDtls" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkGO_Id" HeaderText="ProjectWorkGO_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -355,7 +355,7 @@ diversion:</label>
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdULBShare" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdULBShare_PreRender" OnRowDataBound="grdULBShare_RowDataBound">
+                                                <asp:GridView ID="grdULBShare" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdULBShare_PreRender" OnRowDataBound="grdULBShare_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkGO_Id" HeaderText="ProjectWorkGO_Id">
                                                             <HeaderStyle CssClass="displayStyle" />

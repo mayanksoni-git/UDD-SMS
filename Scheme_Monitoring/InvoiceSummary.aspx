@@ -72,7 +72,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -160,7 +160,7 @@
                                 <div class="col-md-12">
                                     <div class="col-md-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdInvoice" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdInvoice_PreRender" OnRowDataBound="grdInvoice_RowDataBound">
+                                            <asp:GridView ID="grdInvoice" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdInvoice_PreRender" OnRowDataBound="grdInvoice_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="PackageInvoice_Id" HeaderText="PackageInvoice_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

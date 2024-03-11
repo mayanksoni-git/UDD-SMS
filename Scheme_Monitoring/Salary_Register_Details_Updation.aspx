@@ -57,7 +57,7 @@
 
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered"
                                                 AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="HRMSEmployee_Id" HeaderText="HRMSEmployee_Id">
@@ -84,7 +84,7 @@
 
                                                     <asp:TemplateField HeaderText="Dates">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Date Of Birth</td>
@@ -110,7 +110,7 @@
 
                                                     <asp:TemplateField HeaderText="Other Details">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>PAN</td>
@@ -141,7 +141,7 @@
 
                                                     <asp:TemplateField HeaderText="Bank Details">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Account No</td>
@@ -166,7 +166,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>

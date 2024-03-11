@@ -71,7 +71,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -188,7 +188,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdADPItems" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdADPItems_RowDataBound" ShowFooter="true">
+                                        <asp:GridView ID="grdADPItems" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdADPItems_RowDataBound" ShowFooter="true">
                                             <Columns>
                                                 <asp:BoundField DataField="Package_ADP_Item_Id" HeaderText="Package_ADP_Item_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -232,7 +232,7 @@
                                                     <HeaderStyle Width="250px" />
                                                     <ItemStyle Width="250px" />
                                                     <ItemTemplate>
-                                                        <asp:GridView ID="grdTaxes" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" OnPreRender="grdTaxes_PreRender" ShowHeader="false" OnRowDataBound="grdTaxes_RowDataBound" Width="250px">
+                                                        <asp:GridView ID="grdTaxes" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" OnPreRender="grdTaxes_PreRender" ShowHeader="false" OnRowDataBound="grdTaxes_RowDataBound" Width="250px">
                                                             <Columns>
                                                                 <asp:BoundField DataField="Deduction_Id" HeaderText="Deduction_Id">
                                                                     <HeaderStyle CssClass="displayStyle" />

@@ -16,7 +16,7 @@
                                     </div>
 
                                     <div style="overflow: scroll;" onscroll="OnScrollDiv(this)" id="DivMainContent">
-                                        <asp:GridView ID="grdPost" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" ShowFooter="true" PageSize="50" OnPageIndexChanging="grdPost_PageIndexChanging" AllowPaging="True">
+                                        <asp:GridView ID="grdPost" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" ShowFooter="true" PageSize="50" OnPageIndexChanging="grdPost_PageIndexChanging" AllowPaging="True">
                                             <Columns>
                                                 <asp:BoundField DataField="SNAAccountMaster_Id" HeaderText="SNAAccountMaster_Id">
                                                     <HeaderStyle CssClass="displayStyle" />

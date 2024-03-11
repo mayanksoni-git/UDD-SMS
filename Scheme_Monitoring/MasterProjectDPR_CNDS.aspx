@@ -519,7 +519,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-md-12">
-                                    <asp:GridView ID="grdNGTDtls" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdNGTDtls_PreRender" ShowFooter="true" OnRowDataBound="grdNGTDtls_RowDataBound">
+                                    <asp:GridView ID="grdNGTDtls" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdNGTDtls_PreRender" ShowFooter="true" OnRowDataBound="grdNGTDtls_RowDataBound">
                                         <columns>
                                             <asp:BoundField DataField="ProjectDPRBidder_Id" HeaderText="ProjectDPRBidder_Id">
                                                 <headerstyle cssclass="displayStyle" />
@@ -576,7 +576,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Bidder Details">
                                                 <itemtemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td>Lead Bidder<asp:CheckBox runat="server" ID="chkGSTNA" ToolTip="GST Not Available" AutoPostBack="true" OnCheckedChanged="chkGSTNA_CheckedChanged" /></td>
@@ -619,7 +619,7 @@
                                                     </table>
                                                 </itemtemplate>
                                                 <footertemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td>

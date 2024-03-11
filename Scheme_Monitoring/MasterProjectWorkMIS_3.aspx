@@ -81,7 +81,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdProjectInvoiceDetails" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdProjectInvoiceDetails_PreRender" OnRowDataBound="grdProjectInvoiceDetails_RowDataBound">
+                                        <asp:GridView ID="grdProjectInvoiceDetails" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdProjectInvoiceDetails_PreRender" OnRowDataBound="grdProjectInvoiceDetails_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -90,7 +90,7 @@
                                                 </asp:BoundField>
                                                 <asp:TemplateField HeaderText="">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td colspan="2"><%# Eval("ProjectWork_ProjectCode") %></td>
@@ -113,7 +113,7 @@
 
                                                 <asp:TemplateField HeaderText="" ControlStyle-Width="100px">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
@@ -139,7 +139,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Financial Achivment Till May 2021 (Bills Raised)">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
@@ -167,7 +167,7 @@
 
                                                 <asp:TemplateField HeaderText="Financial Achivment Till May 2021 (Bills Approved)">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
@@ -195,7 +195,7 @@
 
                                                 <asp:TemplateField HeaderText="Financial Achivment June 2021 (Bills Raised)">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
@@ -223,7 +223,7 @@
 
                                                 <asp:TemplateField HeaderText="Financial Achivment June 2021 (Bills Approved)">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
@@ -250,7 +250,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Financial Achivment July 2021 (Bills Raised)">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
@@ -278,7 +278,7 @@
 
                                                 <asp:TemplateField HeaderText="Financial Achivment July 2021 (Bills Approved)">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
@@ -306,7 +306,7 @@
 
                                                 <asp:TemplateField HeaderText="Achivment Till Date (%)" ControlStyle-Width="80px">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>Physical</td>
@@ -354,7 +354,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Action">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
@@ -389,7 +389,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdCentageDetails" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdCentageDetails_PreRender" OnRowDataBound="grdCentageDetails_RowDataBound" ShowFooter="true">
+                                                <asp:GridView ID="grdCentageDetails" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdCentageDetails_PreRender" OnRowDataBound="grdCentageDetails_RowDataBound" ShowFooter="true">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectCentageReceived_Id" HeaderText="ProjectCentageReceived_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -867,7 +867,7 @@
                                     <div class="row">
                                         <div class="col-xs-12" style="overflow-x: auto">
                                             <div>
-                                                <asp:GridView ID="grdFinancialDoc" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdFinancialDoc_PreRender" OnRowDataBound="grdFinancialDoc_RowDataBound" ShowFooter="true">
+                                                <asp:GridView ID="grdFinancialDoc" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdFinancialDoc_PreRender" OnRowDataBound="grdFinancialDoc_RowDataBound" ShowFooter="true">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -948,7 +948,7 @@
                                     <div class="row">
                                         <div class="col-xs-12" style="overflow-x: auto">
 
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover table-responsive" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true" ShowHeader="false" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered table-responsive" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true" ShowHeader="false" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -965,7 +965,7 @@
                                                         <ItemTemplate>
                                                             <div class="row alert-info">
                                                                 <div class="col-md-12">
-                                                                    <table class="table table-striped table-bordered table-hover">
+                                                                    <table class="display table table-bordered">
                                                                         <thead class="thin-border-bottom">
                                                                             <tr>
                                                                                 <th></th>
@@ -1072,7 +1072,7 @@
                                                                                 <div class="row">
                                                                                     <div class="col-sm-12">
                                                                                         <div style="overflow: auto">
-                                                                                            <asp:GridView ID="grdPostBeat" runat="server" CssClass="table table-striped table-bordered table-hover table-responsive" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPostBeat_PreRender">
+                                                                                            <asp:GridView ID="grdPostBeat" runat="server" CssClass="display table table-bordered table-responsive" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPostBeat_PreRender">
                                                                                                 <Columns>
                                                                                                     <asp:BoundField DataField="PackageInvoice_Id" HeaderText="PackageInvoice_Id">
                                                                                                         <HeaderStyle CssClass="displayStyle" />
@@ -1133,7 +1133,7 @@
                                                                                 <div class="row">
                                                                                     <div class="col-sm-12">
                                                                                         <div style="overflow: auto">
-                                                                                            <asp:GridView ID="grdADP" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdADP_PreRender" OnRowDataBound="grdADP_RowDataBound">
+                                                                                            <asp:GridView ID="grdADP" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdADP_PreRender" OnRowDataBound="grdADP_RowDataBound">
                                                                                                 <Columns>
                                                                                                     <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                                                                         <HeaderStyle CssClass="displayStyle" />
@@ -1204,7 +1204,7 @@
                                                                                 <div class="row">
                                                                                     <div class="col-sm-12">
                                                                                         <div style="overflow: auto">
-                                                                                            <asp:GridView ID="grdMA" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdMA_PreRender" OnRowDataBound="grdMA_RowDataBound">
+                                                                                            <asp:GridView ID="grdMA" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdMA_PreRender" OnRowDataBound="grdMA_RowDataBound">
                                                                                                 <Columns>
                                                                                                     <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                                                                         <HeaderStyle CssClass="displayStyle" />
@@ -1275,7 +1275,7 @@
                                                                                 <div class="row">
                                                                                     <div class="col-sm-12">
                                                                                         <div style="overflow: auto">
-                                                                                            <asp:GridView ID="grdDeductionRelease" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdDeductionRelease_PreRender" OnRowDataBound="grdDeductionRelease_RowDataBound">
+                                                                                            <asp:GridView ID="grdDeductionRelease" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdDeductionRelease_PreRender" OnRowDataBound="grdDeductionRelease_RowDataBound">
                                                                                                 <Columns>
                                                                                                     <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                                                                         <HeaderStyle CssClass="displayStyle" />
@@ -1371,7 +1371,7 @@
                                 <div class="col-sm-12">
                                     <div class="col-sm-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdInvoice" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true">
+                                            <asp:GridView ID="grdInvoice" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true">
                                                 <Columns>
                                                     <asp:BoundField DataField="PackageInvoice_Id" HeaderText="PackageInvoice_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -1415,7 +1415,7 @@
                                 <div class="col-sm-12">
                                     <div class="col-sm-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdInvoiceADP" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true">
+                                            <asp:GridView ID="grdInvoiceADP" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true">
                                                 <Columns>
                                                     <asp:BoundField DataField="Package_ADP_Id" HeaderText="Package_ADP_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -1461,7 +1461,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdDeductionHistory" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                                        <asp:GridView ID="grdDeductionHistory" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="S No.">
                                                     <ItemTemplate>
@@ -1492,7 +1492,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdChangeLog" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                                        <asp:GridView ID="grdChangeLog" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectWorkFinancialTarget_Id" HeaderText="ProjectWorkFinancialTarget_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -1540,7 +1540,7 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdMultipleFiles" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdMultipleFiles_RowDataBound">
+                                            <asp:GridView ID="grdMultipleFiles" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdMultipleFiles_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="PackageInvoiceDocs_FileName" HeaderText="PackageInvoiceDocs_FileName">
                                                         <HeaderStyle CssClass="displayStyle" />

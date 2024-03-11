@@ -75,7 +75,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdADP" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdADP_PreRender" OnRowDataBound="grdADP_RowDataBound">
+                                        <asp:GridView ID="grdADP" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdADP_PreRender" OnRowDataBound="grdADP_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -181,7 +181,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="col-md-12">
-                                                                <asp:GridView ID="grdDocumentMaster" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Documents Configured To Upload" OnPreRender="grdDocumentMaster_PreRender" OnRowDataBound="grdDocumentMaster_RowDataBound">
+                                                                <asp:GridView ID="grdDocumentMaster" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Documents Configured To Upload" OnPreRender="grdDocumentMaster_PreRender" OnRowDataBound="grdDocumentMaster_RowDataBound">
                                                                     <Columns>
                                                                         <asp:BoundField DataField="TradeDocument_Id" HeaderText="TradeDocument_Id">
                                                                             <HeaderStyle CssClass="displayStyle" />

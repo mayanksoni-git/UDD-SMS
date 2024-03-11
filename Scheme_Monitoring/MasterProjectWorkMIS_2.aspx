@@ -61,7 +61,7 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdCallProductDtls" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdCallProductDtls_PreRender" OnRowDataBound="grdCallProductDtls_RowDataBound">
+                                            <asp:GridView ID="grdCallProductDtls" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdCallProductDtls_PreRender" OnRowDataBound="grdCallProductDtls_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectWorkGO_Id" HeaderText="ProjectWorkGO_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -150,7 +150,7 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdULBShare" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdULBShare_PreRender" OnRowDataBound="grdULBShare_RowDataBound">
+                                            <asp:GridView ID="grdULBShare" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdULBShare_PreRender" OnRowDataBound="grdULBShare_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectWorkGO_Id" HeaderText="ProjectWorkGO_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

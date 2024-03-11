@@ -338,7 +338,7 @@
                                                 <div class="table-header">
                                                     Additive Component
                                                 </div>
-                                                <asp:GridView ID="grdPostAddition" Enabled="false" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPostAddition_PreRender" OnRowDataBound="grdPostAddition_RowDataBound">
+                                                <asp:GridView ID="grdPostAddition" Enabled="false" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPostAddition_PreRender" OnRowDataBound="grdPostAddition_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="PayComponent_Id" HeaderText="PayComponent_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -393,7 +393,7 @@
                                                 <div class="table-header">
                                                     Substractive Component
                                                 </div>
-                                                <asp:GridView ID="grdPostSubstractive" Enabled="false" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPostSubstractive_PreRender" OnRowDataBound="grdPostSubstractive_RowDataBound">
+                                                <asp:GridView ID="grdPostSubstractive" Enabled="false" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPostSubstractive_PreRender" OnRowDataBound="grdPostSubstractive_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="PayComponent_Id" HeaderText="PayComponent_Id">
                                                             <HeaderStyle CssClass="displayStyle" />

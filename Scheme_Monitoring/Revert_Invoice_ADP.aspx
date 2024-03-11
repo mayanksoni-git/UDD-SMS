@@ -86,7 +86,7 @@
                                             <div class="pull-right tableTools-container"></div>
                                         </div>
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdInvoice" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdInvoice_PreRender" OnRowDataBound="grdInvoice_RowDataBound">
+                                            <asp:GridView ID="grdInvoice" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdInvoice_PreRender" OnRowDataBound="grdInvoice_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

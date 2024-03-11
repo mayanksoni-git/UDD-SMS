@@ -195,7 +195,7 @@
                                         </div>
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -250,7 +250,7 @@
                     <div id="divUpload" runat="server" visible="false">
                         <div class="row">
                             <div style="overflow: auto">
-                                <asp:GridView ID="grdPost1" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost1_PreRender" OnRowDataBound="grdPost1_RowDataBound">
+                                <asp:GridView ID="grdPost1" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost1_PreRender" OnRowDataBound="grdPost1_RowDataBound">
                                     <Columns>
                                         <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                             <HeaderStyle CssClass="displayStyle" />
@@ -346,7 +346,7 @@
                                     <div class="tab-content">
                                         <div id="doc11" class="tab-pane fade active in">
                                             <div class="row">
-                                                <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                <table class="display table table-bordered no-margin-bottom no-border-top">
                                                     <thead>
                                                         <tr>
                                                             <th>Description</th>
@@ -731,7 +731,7 @@
                                                 <div class="col-md-12">
                                                     <div class="col-md-12">
                                                         <div style="overflow: auto">
-                                                            <asp:GridView ID="grdVisitDetails" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdVisitDetails_PreRender">
+                                                            <asp:GridView ID="grdVisitDetails" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdVisitDetails_PreRender">
                                                                 <Columns>
                                                                     <asp:BoundField DataField="ProjectUC_Concent_Id" HeaderText="ProjectUC_Concent_Id">
                                                                         <HeaderStyle CssClass="displayStyle" />
@@ -756,7 +756,7 @@
                                                 <div class="col-md-12">
                                                     <div class="col-md-12">
                                                         <div style="overflow: auto">
-                                                            <asp:GridView ID="grdSitePics" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdSitePics_PreRender">
+                                                            <asp:GridView ID="grdSitePics" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdSitePics_PreRender">
                                                                 <Columns>
                                                                     <asp:BoundField DataField="ProjectPkgSitePics_Id" HeaderText="ProjectPkgSitePics_Id">
                                                                         <HeaderStyle CssClass="displayStyle" />
@@ -850,7 +850,7 @@
 
 
                         <div class="row">
-                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                 <thead>
                                     <tr>
                                         <th>Criteria for evaluation</th>

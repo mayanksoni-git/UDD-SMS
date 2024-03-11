@@ -229,7 +229,7 @@
                         </div>
                         <div class="row" id="divNGT" runat="server" visible="false">
                             <div class="col-xs-12">
-                                <asp:GridView ID="grdNGTDtls" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdNGTDtls_PreRender" ShowFooter="true">
+                                <asp:GridView ID="grdNGTDtls" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdNGTDtls_PreRender" ShowFooter="true">
                                     <Columns>
                                         <asp:BoundField DataField="ProjectWorkNGT_Id" HeaderText="ProjectWorkNGT_Id">
                                             <HeaderStyle CssClass="displayStyle" />
@@ -272,7 +272,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="col-md-6">
-                                    <asp:GridView ID="grdFundingPattern" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                    <asp:GridView ID="grdFundingPattern" runat="server" CssClass="display table table-bordered"
                                         AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdFundingPattern_PreRender"
                                         ShowFooter="true" OnRowDataBound="grdFundingPattern_RowDataBound">
                                         <Columns>
@@ -357,7 +357,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdPackageDetails" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                        <asp:GridView ID="grdPackageDetails" runat="server" CssClass="display table table-bordered"
                                             AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPackageDetails_PreRender"
                                             ShowFooter="true" OnRowDataBound="grdPackageDetails_RowDataBound">
                                             <Columns>

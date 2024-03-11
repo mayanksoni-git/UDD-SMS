@@ -30,7 +30,7 @@
                                             <div class="pull-right tableTools-container"></div>
                                         </div>
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdCircle" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" OnRowDataBound="grdCircle_RowDataBound" EmptyDataText="No Records Found" OnPreRender="grdCircle_PreRender">
+                                            <asp:GridView ID="grdCircle" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" OnRowDataBound="grdCircle_RowDataBound" EmptyDataText="No Records Found" OnPreRender="grdCircle_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="Circle_Id" HeaderText="Circle_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

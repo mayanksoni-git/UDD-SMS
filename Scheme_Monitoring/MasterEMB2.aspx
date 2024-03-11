@@ -41,7 +41,7 @@
                     <div class="col-md-12">
                         <div class="col-md-12">
                             <div style="overflow: auto">
-                                <asp:GridView ID="grdEMB" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdEMB_PreRender" OnRowDataBound="grdEMB_RowDataBound" OnPageIndexChanging="GrdEMB_PageIndexChanging" AllowPaging="true" PageSize="50">
+                                <asp:GridView ID="grdEMB" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdEMB_PreRender" OnRowDataBound="grdEMB_RowDataBound" OnPageIndexChanging="GrdEMB_PageIndexChanging" AllowPaging="true" PageSize="50">
                                     <Columns>
                                         <asp:BoundField DataField="PackageEMB_Id" HeaderText="PackageEMB_Id">
                                             <HeaderStyle CssClass="displayStyle" />
@@ -228,7 +228,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div style="overflow: auto">
-                            <asp:GridView ID="grdDeductions" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                            <asp:GridView ID="grdDeductions" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
                                 <Columns>
                                     <asp:BoundField DataField="Deduction_Id" HeaderText="Deduction_Id">
                                         <HeaderStyle CssClass="displayStyle" />

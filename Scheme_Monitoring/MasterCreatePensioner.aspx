@@ -321,7 +321,7 @@
                                             <br />
                                             <div class="row">
                                                 <div class="col-sm-12">
-                                                    <asp:GridView ID="grdFamilyMember" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                    <asp:GridView ID="grdFamilyMember" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                         EmptyDataText="No Records Found" OnPreRender="grdFamilyMember_PreRender" OnRowDataBound="grdFamilyMember_RowDataBound">
                                                         <Columns>
                                                             <asp:BoundField DataField="PersonFamilyDtls_Id" HeaderText="PersonFamilyDtls_Id">
@@ -1116,7 +1116,7 @@
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdNatureOfArrear" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdNatureOfArrear" runat="server" CssClass="display table table-bordered"
                                                             AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdNatureOfArrear_PreRender">
                                                             <Columns>
                                                                 <asp:BoundField DataField="PensionMasterArrear_Id" HeaderText="PensionMasterArrear_Id">

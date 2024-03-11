@@ -25,7 +25,7 @@
                         <br />
                         <div class="row">
                             <div class="col-md-12">
-                                <asp:GridView ID="grdView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" OnPreRender="grdView_PreRender">
+                                <asp:GridView ID="grdView" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" OnPreRender="grdView_PreRender">
                                     <Columns>
                                         <asp:BoundField DataField="HRMSEmployee_Name" HeaderText="Employee Name" />
                                         <asp:BoundField DataField="HRMSEmployeeSalaryInfo_BasicSalary" HeaderText="Employee Salary" />
@@ -156,7 +156,7 @@
                                 </div>
                             </div>
                         </div>
-                                <asp:GridView ID="grdIncome" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" OnPreRender="grdView_PreRender">
+                                <asp:GridView ID="grdIncome" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" OnPreRender="grdView_PreRender">
                                     <Columns>
                                         <asp:BoundField DataField="GPF_Income_Month" HeaderText="Month" />
                                         <asp:BoundField DataField="GPF_Income_Year" HeaderText="Year" />
@@ -180,7 +180,7 @@
                                     <div class="pull-right tableTools-container"></div>
                                 </div>
                                 <div style="overflow: auto">
-                                    <asp:GridView ID="grdGPFDetails" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                    <asp:GridView ID="grdGPFDetails" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                         EmptyDataText="No Records Found" OnPreRender="grdGPFDetails_PreRender" OnRowDataBound="grdGPFDetails_RowDataBound">
                                         <Columns>
                                             <asp:BoundField DataField="Month_Id" HeaderText="Month_Id">

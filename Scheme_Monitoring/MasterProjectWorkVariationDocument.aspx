@@ -21,7 +21,7 @@
                                         </div>
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdVariationDocuments" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdVariationDocuments_PreRender" OnRowDataBound="grdVariationDocuments_RowDataBound">
+                                            <asp:GridView ID="grdVariationDocuments" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdVariationDocuments_PreRender" OnRowDataBound="grdVariationDocuments_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="Package_ExtraItem_Id" HeaderText="Package_ExtraItem_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

@@ -75,7 +75,7 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPhysicalProgress" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdPhysicalProgress_RowDataBound">
+                                            <asp:GridView ID="grdPhysicalProgress" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdPhysicalProgress_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="PhysicalProgressComponent_Id" HeaderText="PhysicalProgressComponent_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -237,7 +237,7 @@
                                                 View Beneficiary Details
                                             </div>
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkComponentBenfDtls_Id" HeaderText="ProjectWorkComponentBenfDtls_Id">
                                                             <HeaderStyle CssClass="displayStyle" />

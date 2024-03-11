@@ -36,7 +36,7 @@
 
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="TradeDocument_Id" HeaderText="TradeDocument_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

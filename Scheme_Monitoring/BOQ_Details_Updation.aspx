@@ -42,7 +42,7 @@
                     <div class="col-md-12">
                         <div class="col-md-12">
                             <div style="overflow: auto">
-                                <asp:GridView ID="grdpackage" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdpackage_PreRender" OnRowDataBound="grdpackage_RowDataBound">
+                                <asp:GridView ID="grdpackage" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdpackage_PreRender" OnRowDataBound="grdpackage_RowDataBound">
                                     <Columns>
                                         <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                             <HeaderStyle CssClass="displayStyle" />
@@ -174,7 +174,7 @@
                     <div class="col-md-12">
                         <div class="col-md-12">
                             <div style="overflow: auto">
-                                <asp:GridView ID="grdBOQ" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBOQ_PreRender" OnRowDataBound="grdBOQ_RowDataBound" ShowHeader="false">
+                                <asp:GridView ID="grdBOQ" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBOQ_PreRender" OnRowDataBound="grdBOQ_RowDataBound" ShowHeader="false">
                                     <Columns>
                                         <asp:BoundField DataField="PackageBOQ_Id" HeaderText="PackageBOQ_Id">
                                             <HeaderStyle CssClass="displayStyle" />
@@ -217,7 +217,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="col-md-12">
-                                                            <table class="table table-striped table-bordered table-hover">
+                                                            <table class="display table table-bordered">
                                                                 <tbody>
                                                                     <tr style="font-weight: bold">
                                                                         <td class="alert alert-info" colspan="9">
@@ -353,7 +353,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="col-md-12">
-                                                            <table class="table table-striped table-bordered table-hover">
+                                                            <table class="display table table-bordered">
                                                                 <thead class="thin-border-bottom">
                                                                     <tr>
                                                                         <th class="">Unit</th>

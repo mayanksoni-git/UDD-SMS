@@ -271,7 +271,7 @@
                                                 <ul class="list-unstyled spaced2">
                                                     <li>
                                                         <div class="infobox-data">
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Total Project</td>
@@ -304,7 +304,7 @@
                                                 <ul class="list-unstyled spaced2">
                                                     <li>
                                                         <div class="infobox-data">
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Total Project</td>
@@ -344,7 +344,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <asp:GridView ID="grdPhysicalComponent" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdPhysicalComponent_PreRender">
+                                    <asp:GridView ID="grdPhysicalComponent" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdPhysicalComponent_PreRender">
                                         <Columns>
                                             <asp:BoundField DataField="Component_Id" HeaderText="Component_Id">
                                                 <HeaderStyle CssClass="displayStyle" />

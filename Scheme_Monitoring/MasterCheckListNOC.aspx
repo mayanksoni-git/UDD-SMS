@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div style="overflow: auto">
-                                    <asp:GridView ID="dgvQuestionnaire" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true" OnRowDataBound="dgvQuestionnaire_RowDataBound">
+                                    <asp:GridView ID="dgvQuestionnaire" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true" OnRowDataBound="dgvQuestionnaire_RowDataBound">
                                         <Columns>
                                             <asp:BoundField DataField="NOCQuestionnaire_Id" HeaderText="NOCQuestionnaire_Id">
                                                 <HeaderStyle CssClass="displayStyle" />

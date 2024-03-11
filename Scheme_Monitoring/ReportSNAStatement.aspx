@@ -64,7 +64,7 @@
                                 </div>
                                 <!-- div.dataTables_borderWrap -->
                                 <div style="overflow: auto">
-                                    <asp:GridView ID="grdPost" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" ShowFooter="true" OnRowDataBound="grdPost_RowDataBound">
+                                    <asp:GridView ID="grdPost" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" ShowFooter="true" OnRowDataBound="grdPost_RowDataBound">
                                         <Columns>
                                             <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                                 <HeaderStyle CssClass="displayStyle" />
@@ -85,7 +85,7 @@
                                             <asp:BoundField DataField="ProjectWork_Name" HeaderText="Work" />
                                             <asp:TemplateField HeaderText="Limit For Month Before January 2022 (In Lakhs)">
                                                 <ItemTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td>Assigned: </td>
@@ -101,7 +101,7 @@
                                                     </table>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td><b><span style="color:black;">Assigned:</span></b></td>
@@ -119,7 +119,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Limit For Month Of January 2022 (In Lakhs)">
                                                 <ItemTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td>Assigned: </td>
@@ -135,7 +135,7 @@
                                                     </table>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td><b><span style="color:black;">Assigned:</span></b></td>
@@ -153,7 +153,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Limit For Month Of Feburary 2022 (In Lakhs)">
                                                 <ItemTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td>Assigned: </td>
@@ -169,7 +169,7 @@
                                                     </table>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td><b><span style="color:black;">Assigned:</span></b></td>
@@ -187,7 +187,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Limit For Month Of March 2022 (In Lakhs)">
                                                 <ItemTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td>Assigned: </td>
@@ -203,7 +203,7 @@
                                                     </table>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td><b><span style="color:black;">Assigned:</span></b></td>
@@ -221,7 +221,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Limit For Month Of April 2022 (In Lakhs)">
                                                 <ItemTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td>Assigned: </td>
@@ -237,7 +237,7 @@
                                                     </table>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td><b><span style="color:black;">Assigned:</span></b></td>
@@ -255,7 +255,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Limit For Month Of May 2022 (In Lakhs)">
                                                 <ItemTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td>Assigned: </td>
@@ -271,7 +271,7 @@
                                                     </table>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <tbody>
                                                             <tr>
                                                                 <td><b><span style="color:black;">Assigned:</span></b></td>

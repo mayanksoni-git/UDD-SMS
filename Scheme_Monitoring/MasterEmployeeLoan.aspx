@@ -123,7 +123,7 @@
                                     Your Bill 
                                 </div>
                                 <br />
-                                <asp:GridView ID="grdLoanDetails" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdLoanDetails_PreRender">
+                                <asp:GridView ID="grdLoanDetails" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdLoanDetails_PreRender">
                                     <Columns>
                                         <asp:TemplateField HeaderText="S_No.">
                                             <ItemTemplate>
@@ -176,7 +176,7 @@
                                         <!-- div.table-responsive -->
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="EmployeeLoan_Id" HeaderText="EmployeeLoan_ID">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -229,7 +229,7 @@
                                             Display Employee Records
                                         </div>
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost1" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost1_PreRender">
+                                            <asp:GridView ID="grdPost1" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost1_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="HRMSEmployee_Id" HeaderText="HRMSEmployee Id">
                                                         <HeaderStyle CssClass="displayStyle" />

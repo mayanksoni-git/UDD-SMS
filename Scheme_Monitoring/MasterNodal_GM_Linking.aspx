@@ -50,7 +50,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <asp:GridView ID="grdDocument" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdDocument_PreRender" OnRowDataBound="grdDocument_RowDataBound">
+                                        <asp:GridView ID="grdDocument" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdDocument_PreRender" OnRowDataBound="grdDocument_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="Person_Id" HeaderText="Person_Id">
                                                     <HeaderStyle CssClass="displayStyle" />

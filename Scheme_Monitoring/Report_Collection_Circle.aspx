@@ -31,7 +31,7 @@
 
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost1" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost1_PreRender" ShowFooter="true" OnRowDataBound="grdPost1_RowDataBound">
+                                            <asp:GridView ID="grdPost1" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost1_PreRender" ShowFooter="true" OnRowDataBound="grdPost1_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="Circle_Id" HeaderText="Circle_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

@@ -29,7 +29,7 @@
                                             <div class="pull-right tableTools-container"></div>
                                         </div>
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="HRMSEmployee_Id" HeaderText="HRMSEmployee Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -72,7 +72,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <asp:GridView ID="grdNPSPassbook" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                <asp:GridView ID="grdNPSPassbook" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                     EmptyDataText="No Records Found" OnPreRender="grdNPSPassbook_PreRender" OnRowDataBound="grdNPSPassbook_RowDataBound">
                                     <Columns>
                                         <asp:BoundField DataField="Month_Id" HeaderText="Month_Id">

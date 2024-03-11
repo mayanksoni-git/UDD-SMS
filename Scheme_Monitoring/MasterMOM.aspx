@@ -95,7 +95,7 @@
 
                                         </h3>
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdRoutePlanView" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdRoutePlanView_PreRender" OnRowDataBound="grdRoutePlanView_RowDataBound">
+                                            <asp:GridView ID="grdRoutePlanView" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdRoutePlanView_PreRender" OnRowDataBound="grdRoutePlanView_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="MOMDetails_Id" HeaderText="MOMDetails_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

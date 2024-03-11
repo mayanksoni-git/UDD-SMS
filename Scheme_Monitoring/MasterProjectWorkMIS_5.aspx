@@ -52,7 +52,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdPackageDetails" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPackageDetails_PreRender" OnRowDataBound="grdPackageDetails_RowDataBound">
+                                        <asp:GridView ID="grdPackageDetails" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPackageDetails_PreRender" OnRowDataBound="grdPackageDetails_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -115,7 +115,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdContractBond" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdContractBond_PreRender" OnRowDataBound="grdContractBond_RowDataBound">
+                                                <asp:GridView ID="grdContractBond" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdContractBond_PreRender" OnRowDataBound="grdContractBond_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkPkgDoc_Id" HeaderText="ProjectWorkPkgDoc_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -206,7 +206,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdBG" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdBG_PreRender" OnRowDataBound="grdBG_RowDataBound" ShowFooter="true">
+                                                <asp:GridView ID="grdBG" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdBG_PreRender" OnRowDataBound="grdBG_RowDataBound" ShowFooter="true">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkPkgDoc_Id" HeaderText="ProjectWorkPkgDoc_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -318,7 +318,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdLD" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdLD_PreRender" OnRowDataBound="grdLD_RowDataBound" ShowFooter="true">
+                                                <asp:GridView ID="grdLD" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdLD_PreRender" OnRowDataBound="grdLD_RowDataBound" ShowFooter="true">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkPkgDoc_Id" HeaderText="ProjectWorkPkgDoc_Id">
                                                             <HeaderStyle CssClass="displayStyle" />

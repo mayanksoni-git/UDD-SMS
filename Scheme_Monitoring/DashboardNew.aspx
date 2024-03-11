@@ -56,7 +56,7 @@
 
                         <div class="row">
                             <div class="col-xs-6 col-sm-4 col-md-3">
-                                <asp:GridView ID="grdScheme_1" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdScheme_1_PreRender" ShowFooter="false" ShowHeader="false">
+                                <asp:GridView ID="grdScheme_1" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdScheme_1_PreRender" ShowFooter="false" ShowHeader="false">
                                     <Columns>
                                         <asp:BoundField DataField="Project_Id" HeaderText="Project_Id">
                                             <HeaderStyle CssClass="displayStyle" />
@@ -94,7 +94,7 @@
                                 </asp:GridView>
                             </div>
                             <div class="col-xs-6 col-sm-4 col-md-3">
-                                <asp:GridView ID="grdScheme_2" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdScheme_2_PreRender" ShowFooter="false" ShowHeader="false">
+                                <asp:GridView ID="grdScheme_2" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdScheme_2_PreRender" ShowFooter="false" ShowHeader="false">
                                     <Columns>
                                         <asp:BoundField DataField="Project_Id" HeaderText="Project_Id">
                                             <HeaderStyle CssClass="displayStyle" />
@@ -135,7 +135,7 @@
                                 </asp:GridView>
                             </div>
                             <div class="col-xs-6 col-sm-4 col-md-3">
-                                <asp:GridView ID="grdScheme_3" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdScheme_3_PreRender" ShowFooter="false" ShowHeader="false">
+                                <asp:GridView ID="grdScheme_3" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdScheme_3_PreRender" ShowFooter="false" ShowHeader="false">
                                     <Columns>
                                         <asp:BoundField DataField="Project_Id" HeaderText="Project_Id">
                                             <HeaderStyle CssClass="displayStyle" />
@@ -176,7 +176,7 @@
                                 </asp:GridView>
                             </div>
                             <div class="col-xs-6 col-sm-4 col-md-3">
-                                <asp:GridView ID="grdScheme_4" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdScheme_4_PreRender" ShowFooter="false" ShowHeader="false">
+                                <asp:GridView ID="grdScheme_4" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdScheme_4_PreRender" ShowFooter="false" ShowHeader="false">
                                     <Columns>
                                         <asp:BoundField DataField="Project_Id" HeaderText="Project_Id">
                                             <HeaderStyle CssClass="displayStyle" />

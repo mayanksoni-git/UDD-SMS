@@ -60,7 +60,7 @@
                                             <div class="col-sm-12">
                                                 <div class="col-md-12">
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                        <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                             <Columns>
                                                                 <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                                                     <HeaderStyle CssClass="displayStyle" />
@@ -131,7 +131,7 @@
                                                 <div class="col-sm-12">
                                                     <div class="col-md-12">
                                                         <div style="overflow: auto">
-                                                            <asp:GridView ID="grdProjectTargets" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdProjectTargets_PreRender">
+                                                            <asp:GridView ID="grdProjectTargets" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdProjectTargets_PreRender">
                                                                 <Columns>
                                                                     <asp:BoundField DataField="ProjectTarget_ProjectWork_Id" HeaderText="ProjectTarget_ProjectWork_Id">
                                                                         <HeaderStyle CssClass="displayStyle" />

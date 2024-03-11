@@ -77,7 +77,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -167,7 +167,7 @@
                                 <div class="col-md-12">
                                     <div class="col-md-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdEMB" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdEMB_PreRender" OnRowDataBound="grdEMB_RowDataBound" ShowFooter="true">
+                                            <asp:GridView ID="grdEMB" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdEMB_PreRender" OnRowDataBound="grdEMB_RowDataBound" ShowFooter="true">
                                                 <Columns>
                                                     <asp:BoundField DataField="PackageEMB_Id" HeaderText="PackageEMB_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -280,7 +280,7 @@
                                                     <asp:BoundField DataField="PackageEMB_Amount" HeaderText="Payment (As Per Current MB)" />
                                                     <asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover">
+                                                            <table class="display table table-bordered">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td class="">
@@ -298,7 +298,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Billing Status">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover">
+                                                            <table class="display table table-bordered">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td class="">
@@ -384,7 +384,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdDeductionsM" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true" OnRowDataBound="grdDeductionsM_RowDataBound">
+                                        <asp:GridView ID="grdDeductionsM" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true" OnRowDataBound="grdDeductionsM_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="Deduction_Id" HeaderText="Deduction_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -438,7 +438,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdDeductions" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                                            <asp:GridView ID="grdDeductions" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
                                                 <Columns>
                                                     <asp:BoundField DataField="Deduction_Id" HeaderText="Deduction_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -479,7 +479,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdProjectStatus" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdProjectStatus_PreRender">
+                                        <asp:GridView ID="grdProjectStatus" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdProjectStatus_PreRender">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectWorkPkg_Work_Id" HeaderText="ProjectWorkPkg_Work_Id">
                                                     <HeaderStyle CssClass="displayStyle" />

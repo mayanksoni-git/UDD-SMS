@@ -208,7 +208,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="JalPrahariBidder_Order_Id" HeaderText="JalPrahariBidder_Order_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -294,7 +294,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdNetWorth" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdNetWorth_PreRender">
+                                                <asp:GridView ID="grdNetWorth" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdNetWorth_PreRender">
                                                     <Columns>
                                                         <asp:BoundField DataField="JalPrahariBidderDoc_Id" HeaderText="JalPrahariBidderDoc_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -341,7 +341,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <asp:GridView ID="grdProjectsParticipated" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdProjectsParticipated_PreRender">
+                                        <asp:GridView ID="grdProjectsParticipated" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdProjectsParticipated_PreRender">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectDPR_Id" HeaderText="ProjectDPR_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -410,7 +410,7 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="col-md-12">
-                                        <asp:GridView ID="grdBidderOrder" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBidderOrder_PreRender" ShowFooter="true" OnRowDataBound="grdBidderOrder_RowDataBound">
+                                        <asp:GridView ID="grdBidderOrder" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBidderOrder_PreRender" ShowFooter="true" OnRowDataBound="grdBidderOrder_RowDataBound">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="S No.">
                                                     <ItemTemplate>
@@ -427,7 +427,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Date(s)">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
@@ -464,7 +464,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Values In Lakh">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
@@ -508,7 +508,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Upload Documents">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top">
                                                             <tbody>
                                                                 <tr>
                                                                     <td>

@@ -89,7 +89,7 @@
                                         <div class="pull-right grdEMBtableTools-container"></div>
                                     </div>
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdEMB" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdEMB_PreRender" OnRowDataBound="grdEMB_RowDataBound">
+                                        <asp:GridView ID="grdEMB" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdEMB_PreRender" OnRowDataBound="grdEMB_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="PackageEMB_Master_Id" HeaderText="PackageEMB_Master_Id">
                                                     <HeaderStyle CssClass="displayStyle" />

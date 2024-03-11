@@ -30,7 +30,7 @@
                                             <div class="pull-right tableTools-container"></div>
                                         </div>
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdDivision" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" OnRowDataBound="grdDivision_RowDataBound" EmptyDataText="No Records Found" OnPreRender="grdDivision_PreRender">
+                                            <asp:GridView ID="grdDivision" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" OnRowDataBound="grdDivision_RowDataBound" EmptyDataText="No Records Found" OnPreRender="grdDivision_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="Division_Id" HeaderText="Division_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

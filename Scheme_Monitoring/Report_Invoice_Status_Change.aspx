@@ -123,7 +123,7 @@
                                             <div class="pull-right tableTools-container"></div>
                                         </div>
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdInvoice" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdInvoice_PreRender" OnRowDataBound="grdInvoice_RowDataBound">
+                                            <asp:GridView ID="grdInvoice" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdInvoice_PreRender" OnRowDataBound="grdInvoice_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="PackageInvoice_Id" HeaderText="PackageInvoice_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -229,7 +229,7 @@
                                 <div class="col-md-12">
                                     <div class="col-md-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdEMBHistory" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdEMBHistory_PreRender">
+                                            <asp:GridView ID="grdEMBHistory" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdEMBHistory_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="PackageEMBApproval_Id" HeaderText="PackageEMBApproval_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -282,7 +282,7 @@
                                 <div class="col-md-12">
                                     <div class="col-md-12">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdInvoiceHistory" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdInvoiceHistory_PreRender">
+                                            <asp:GridView ID="grdInvoiceHistory" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdInvoiceHistory_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="PackageInvoiceApproval_Id" HeaderText="PackageInvoiceApproval_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

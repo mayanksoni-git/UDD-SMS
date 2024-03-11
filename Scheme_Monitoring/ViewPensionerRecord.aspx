@@ -300,7 +300,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <asp:GridView ID="grdFamilyMember" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                <asp:GridView ID="grdFamilyMember" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                     EmptyDataText="No Records Found">
                                                     <Columns>
                                                         <asp:BoundField DataField="PersonFamilyDtls_Id" HeaderText="PersonFamilyDtls Id">
@@ -921,7 +921,7 @@
                                     <div class="col-xs-12 boxcontent">
                                         <div class="row">
                                             <div class="col-xs-12">
-                                                <asp:GridView ID="grdNatureOfArrear" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                                <asp:GridView ID="grdNatureOfArrear" runat="server" CssClass="display table table-bordered"
                                                     AutoGenerateColumns="False" EmptyDataText="No Records Found">
                                                     <Columns>
                                                         <asp:BoundField DataField="PensionMasterArrear_Id" HeaderText="PensionMasterArrear_Id">

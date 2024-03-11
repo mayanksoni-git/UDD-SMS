@@ -434,7 +434,7 @@
                                                     Salary Component Wise Details: 
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                         <thead>
                                                             <tr>
                                                                 <th>Sr No</th>

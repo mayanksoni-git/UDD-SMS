@@ -188,7 +188,7 @@
                                         <!-- div.table-responsive -->
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound" ShowFooter="true">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound" ShowFooter="true">
                                                 <Columns>
                                                     <asp:BoundField DataField="DivisionFinancialTarget_Id" HeaderText="DivisionFinancialTarget_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -254,7 +254,7 @@
                                         <!-- div.table-responsive -->
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPhysical" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPhysical_PreRender" OnRowDataBound="grdPhysical_RowDataBound" ShowFooter="true">
+                                            <asp:GridView ID="grdPhysical" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPhysical_PreRender" OnRowDataBound="grdPhysical_RowDataBound" ShowFooter="true">
                                                 <Columns>
                                                     <asp:BoundField DataField="DivisionPhysicalTarget_Id" HeaderText="DivisionPhysicalTarget_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

@@ -291,7 +291,7 @@
                             <div class="row" id="divExpert5" runat="server" visible="false">
                                 <div class="col-sm-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdExpertDist" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                                        <asp:GridView ID="grdExpertDist" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
                                             <Columns>
                                                 <asp:BoundField DataField="PersonAdditionalCharge_PersonId" HeaderText="PersonAdditionalCharge_PersonId">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -376,7 +376,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="dgvAdditionalDivision" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="dgvAdditionalDivision_RowDataBound">
+                                        <asp:GridView ID="dgvAdditionalDivision" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="dgvAdditionalDivision_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="PersonAdditionalArea_Designation_Id" HeaderText="PersonAdditionalArea_Designation_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -479,7 +479,7 @@
                                         <!-- div.table-responsive -->
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" HorizontalAlign="Left" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" HorizontalAlign="Left" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="Person_Id" HeaderText="Person_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

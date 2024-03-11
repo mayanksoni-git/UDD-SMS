@@ -100,7 +100,7 @@
                                                             <div class="col-xs-12">
                                                                 <div class="row">
                                                                     <div style="overflow: auto">
-                                                                        <asp:GridView ID="grdAddNewStock" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdAddNewStock_PreRender" OnRowDataBound="grdAddNewStock_RowDataBound">
+                                                                        <asp:GridView ID="grdAddNewStock" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdAddNewStock_PreRender" OnRowDataBound="grdAddNewStock_RowDataBound">
                                                                             <Columns>
                                                                                 <asp:TemplateField HeaderText="S No.">
                                                                                     <ItemTemplate>
@@ -167,7 +167,7 @@
                                                             <div class="pull-right grdFinancialFulltableTools-container"></div>
                                                         </div>
                                                         <div style="overflow: auto">
-                                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                                 <Columns>
                                                                     <asp:BoundField DataField="InventoryItemStockDetails_Id" HeaderText="InventoryItemStockDetails_Id">
                                                                         <HeaderStyle CssClass="displayStyle" />

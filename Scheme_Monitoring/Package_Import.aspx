@@ -82,7 +82,7 @@
                                     <div class="tab-content">
 
                                         <div id="dropdown18" class="tab-pane active">
-                                            <asp:GridView ID="grdRawData" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" OnPreRender="grdRawData_PreRender" EmptyDataText="No Records Found" ShowFooter="true">
+                                            <asp:GridView ID="grdRawData" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" OnPreRender="grdRawData_PreRender" EmptyDataText="No Records Found" ShowFooter="true">
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="S No.">
                                                         <ItemTemplate>
@@ -96,7 +96,7 @@
                                         </div>
 
                                         <div id="dropdown20" class="tab-pane">
-                                            <asp:GridView ID="grdProcessedData" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" OnPreRender="grdProcessedData_PreRender" EmptyDataText="No Records Found" ShowFooter="true">
+                                            <asp:GridView ID="grdProcessedData" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" OnPreRender="grdProcessedData_PreRender" EmptyDataText="No Records Found" ShowFooter="true">
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="S No.">
                                                         <ItemTemplate>
@@ -110,7 +110,7 @@
                                         </div>
 
                                         <div id="dropdown30" class="tab-pane">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" OnPreRender="grdPost_PreRender" EmptyDataText="No Records Found" ShowFooter="true">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" OnPreRender="grdPost_PreRender" EmptyDataText="No Records Found" ShowFooter="true">
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="S No.">
                                                         <ItemTemplate>

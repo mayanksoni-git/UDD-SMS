@@ -44,7 +44,7 @@
                             <div class="col-sm-12">
                                 <div class="col-sm-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdSMSHistory" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdSMSHistory_PreRender">
+                                        <asp:GridView ID="grdSMSHistory" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdSMSHistory_PreRender">
                                             <Columns>
                                                 <asp:BoundField DataField="SMS_Id" HeaderText="SMS_Id">
                                                     <HeaderStyle CssClass="displayStyle" />

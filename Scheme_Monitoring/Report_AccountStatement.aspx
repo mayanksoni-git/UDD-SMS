@@ -136,7 +136,7 @@
                                         <!-- div.table-responsive -->
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" ShowFooter="true" OnRowDataBound="grdPost_RowDataBound">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" ShowFooter="true" OnRowDataBound="grdPost_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="SNAAccountLimit_Id" HeaderText="SNAAccountLimit_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -223,7 +223,7 @@
                                         <!-- div.table-responsive -->
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPPANotLinked" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPPANotLinked_PreRender" ShowFooter="true" OnRowDataBound="grdPPANotLinked_RowDataBound">
+                                            <asp:GridView ID="grdPPANotLinked" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPPANotLinked_PreRender" ShowFooter="true" OnRowDataBound="grdPPANotLinked_RowDataBound">
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="S No.">
                                                         <ItemTemplate>
@@ -268,7 +268,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdMultipleFiles" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdMultipleFiles_RowDataBound">
+                                                <asp:GridView ID="grdMultipleFiles" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdMultipleFiles_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="PackageInvoiceDocs_FileName" HeaderText="PackageInvoiceDocs_FileName">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -321,7 +321,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPPABatchDetails" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                                                <asp:GridView ID="grdPPABatchDetails" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
                                                     <Columns>
                                                         <asp:BoundField HeaderText="PFMS Batch Number" DataField="PFMS_Batch_Number" />
                                                         <asp:BoundField HeaderText="Amount" DataField="Batch_Amount" />
@@ -355,7 +355,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPPATransactionDetails" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                                                <asp:GridView ID="grdPPATransactionDetails" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
                                                     <Columns>
                                                         <asp:BoundField HeaderText="PFMS Batch Number" DataField="PFMS_Batch_Number" />
                                                         <asp:BoundField HeaderText="PFMS Tran ID" DataField="PFMS_Tran_ID" />

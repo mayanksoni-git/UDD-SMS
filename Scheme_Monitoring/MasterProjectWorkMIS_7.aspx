@@ -149,7 +149,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdBOQ" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBOQ_PreRender" OnRowDataBound="grdBOQ_RowDataBound">
+                                        <asp:GridView ID="grdBOQ" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBOQ_PreRender" OnRowDataBound="grdBOQ_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="PackageBOQ_Id" HeaderText="PackageBOQ_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -272,7 +272,7 @@
                                     </div>
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                            <asp:GridView ID="grdMultipleFiles" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdMultipleFiles_RowDataBound">
+                                            <asp:GridView ID="grdMultipleFiles" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdMultipleFiles_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ExtraItemDocs_FileName" HeaderText="ExtraItemDocs_FileName">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -323,7 +323,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdExtraItem" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdExtraItem_PreRender" ShowFooter="true" OnRowDataBound="grdExtraItem_RowDataBound">
+                                        <asp:GridView ID="grdExtraItem" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdExtraItem_PreRender" ShowFooter="true" OnRowDataBound="grdExtraItem_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="PackageBOQ_Package_Id" HeaderText="PackageBOQ_Package_Id">
                                                     <HeaderStyle CssClass="displayStyle" />

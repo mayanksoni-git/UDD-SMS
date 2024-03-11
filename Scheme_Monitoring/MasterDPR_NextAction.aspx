@@ -99,7 +99,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectDPR_Id" HeaderText="ProjectDPR_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -175,7 +175,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <asp:GridView ID="grdDPRTimeline" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdDPRTimeline_PreRender" OnRowDataBound="grdDPRTimeline_RowDataBound">
+                                        <asp:GridView ID="grdDPRTimeline" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdDPRTimeline_PreRender" OnRowDataBound="grdDPRTimeline_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectDPRTender_Id" HeaderText="ProjectDPRTender_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -463,7 +463,7 @@
                                     <div class="col-md-12">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <asp:GridView ID="grdPQC" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPQC_PreRender" ShowFooter="true" OnRowDataBound="grdPQC_RowDataBound">
+                                                <asp:GridView ID="grdPQC" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPQC_PreRender" ShowFooter="true" OnRowDataBound="grdPQC_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectDPRPQC_Id" HeaderText="ProjectDPRPQC_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -608,7 +608,7 @@
                                     <div class="col-md-12">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <asp:GridView ID="grdPreBidResponseDocs" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPreBidResponseDocs_PreRender" ShowFooter="true" OnRowDataBound="grdPreBidResponseDocs_RowDataBound">
+                                                <asp:GridView ID="grdPreBidResponseDocs" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPreBidResponseDocs_PreRender" ShowFooter="true" OnRowDataBound="grdPreBidResponseDocs_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectDPRBidResponse_Id" HeaderText="ProjectDPRBidResponse_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -657,7 +657,7 @@
                                     <div class="col-md-12">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <asp:GridView ID="grdQualificationCriteriaR" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdQualificationCriteriaR_PreRender" ShowFooter="true" OnRowDataBound="grdQualificationCriteriaR_RowDataBound">
+                                                <asp:GridView ID="grdQualificationCriteriaR" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdQualificationCriteriaR_PreRender" ShowFooter="true" OnRowDataBound="grdQualificationCriteriaR_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectDPRPQC_Id" HeaderText="ProjectDPRPQC_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -808,7 +808,7 @@
                                         </div>
                                         <div class="col-md-9">
                                             <div class="form-group">
-                                                <asp:GridView ID="grdNGTDtls" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdNGTDtls_PreRender" ShowFooter="true" OnRowDataBound="grdNGTDtls_RowDataBound">
+                                                <asp:GridView ID="grdNGTDtls" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdNGTDtls_PreRender" ShowFooter="true" OnRowDataBound="grdNGTDtls_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectDPRBidder_Id" HeaderText="ProjectDPRBidder_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -860,7 +860,7 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Bidder Details">
                                                             <ItemTemplate>
-                                                                <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                                <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>Lead Bidder<asp:CheckBox runat="server" ID="chkGSTNA" ToolTip="GST Not Available" AutoPostBack="true" OnCheckedChanged="chkGSTNA_CheckedChanged" /></td>
@@ -893,7 +893,7 @@
                                                                 </table>
                                                             </ItemTemplate>
                                                             <FooterTemplate>
-                                                                <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                                <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>
@@ -961,7 +961,7 @@
                                     </div>
                                     <div class="col-md-9">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdBidderDetails" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBidderDetails_PreRender" OnRowDataBound="grdBidderDetails_RowDataBound">
+                                            <asp:GridView ID="grdBidderDetails" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBidderDetails_PreRender" OnRowDataBound="grdBidderDetails_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectDPRBidder_Id" HeaderText="ProjectDPRBidder_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -1001,7 +1001,7 @@
                                                     <asp:BoundField DataField="ProjectDPRBidder_Is_JV" HeaderText="Is JV?" />
                                                     <asp:TemplateField HeaderText="Bidder Details">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Lead Bidder</td>
@@ -1101,7 +1101,7 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <div class="col-md-12">
-                                                    <asp:GridView ID="grdBidderOrder" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBidderOrder_PreRender" ShowFooter="true" OnRowDataBound="grdBidderOrder_RowDataBound">
+                                                    <asp:GridView ID="grdBidderOrder" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBidderOrder_PreRender" ShowFooter="true" OnRowDataBound="grdBidderOrder_RowDataBound">
                                                         <Columns>
                                                             <asp:BoundField DataField="ProjectDPR_Bidder_Order_Id" HeaderText="ProjectDPR_Bidder_Order_Id">
                                                                 <HeaderStyle CssClass="displayStyle" />
@@ -1181,7 +1181,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Date(s)">
                                                                 <ItemTemplate>
-                                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td>
@@ -1218,7 +1218,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Values In Lakh">
                                                                 <ItemTemplate>
-                                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td>
@@ -1257,7 +1257,7 @@
 
                                                             <asp:TemplateField HeaderText="Upload Documents">
                                                                 <ItemTemplate>
-                                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                                    <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td>
@@ -1322,7 +1322,7 @@
                                         <div class="col-xs-12">
                                             <div class="col-md-12">
                                                 <div style="overflow: auto">
-                                                    <asp:GridView ID="grdPQCAnswer" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPQCAnswer_PreRender" OnRowDataBound="grdPQCAnswer_RowDataBound">
+                                                    <asp:GridView ID="grdPQCAnswer" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPQCAnswer_PreRender" OnRowDataBound="grdPQCAnswer_RowDataBound">
                                                         <Columns>
                                                             <asp:BoundField DataField="ProjectDPRPQC_Id" HeaderText="ProjectDPRPQC_Id">
                                                                 <HeaderStyle CssClass="displayStyle" />
@@ -1437,7 +1437,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Response">
                                                                 <ItemTemplate>
-                                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top" runat="server" id="tbl_Response">
+                                                                    <table class="display table table-bordered no-margin-bottom no-border-top" runat="server" id="tbl_Response">
                                                                         <thead>
                                                                             <tr>
                                                                                 <th>Upload Relavent Doc</th>
@@ -1473,7 +1473,7 @@
                                                                         </tbody>
                                                                     </table>
 
-                                                                    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top" runat="server" id="tblAdditionalData">
+                                                                    <table class="display table table-bordered no-margin-bottom no-border-top" runat="server" id="tblAdditionalData">
                                                                         <thead>
                                                                             <tr>
                                                                                 <th>Mode</th>
@@ -1572,7 +1572,7 @@
                                     </div>
                                     <div class="col-md-9">
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdBiddersFinancial" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBidderDetails_PreRender" OnRowDataBound="grdBiddersFinancial_RowDataBound">
+                                            <asp:GridView ID="grdBiddersFinancial" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdBidderDetails_PreRender" OnRowDataBound="grdBiddersFinancial_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectDPRBidder_Id" HeaderText="ProjectDPRBidder_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -1602,7 +1602,7 @@
                                                     <asp:BoundField DataField="ProjectDPRBidder_Is_JV" HeaderText="Is JV?" />
                                                     <asp:TemplateField HeaderText="Bidder Details">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Lead Bidder</td>
@@ -1766,7 +1766,7 @@
                             <div class="row" runat="server" id="div_Report_Step1">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <asp:GridView ID="grdEFC_PFAD" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdEFC_PFAD_PreRender">
+                                        <asp:GridView ID="grdEFC_PFAD" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdEFC_PFAD_PreRender">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectDPRTender_Id" HeaderText="ProjectDPRTender_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -1802,7 +1802,7 @@
                             <div class="row" runat="server" id="div_Report_Step2">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <asp:GridView ID="grdGODetails" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdGODetails_PreRender">
+                                        <asp:GridView ID="grdGODetails" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdGODetails_PreRender">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectDPRTender_Id" HeaderText="ProjectDPRTender_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -1838,7 +1838,7 @@
                             <div class="row" runat="server" id="div_Report_Step_Common">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <asp:GridView ID="grdCommonStep" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdCommonStep_PreRender">
+                                        <asp:GridView ID="grdCommonStep" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdCommonStep_PreRender">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectDPRTender_Id" HeaderText="ProjectDPRTender_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -1871,7 +1871,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-12">
-                                            <asp:GridView ID="grdTenderPublished" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdTenderPublished_PreRender">
+                                            <asp:GridView ID="grdTenderPublished" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdTenderPublished_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectDPRTender_Id" HeaderText="ProjectDPRTender_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -1919,7 +1919,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-12">
-                                            <asp:GridView ID="grdQualificationCriteria" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdQualificationCriteria_PreRender">
+                                            <asp:GridView ID="grdQualificationCriteria" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdQualificationCriteria_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectDPRPQC_Id" HeaderText="ProjectDPRPQC_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -1951,7 +1951,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-12">
-                                            <asp:GridView ID="grdPBMResponseDoc" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPBMResponseDoc_PreRender">
+                                            <asp:GridView ID="grdPBMResponseDoc" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPBMResponseDoc_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectDPRBidResponse_Id" HeaderText="ProjectDPRBidResponse_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -1989,7 +1989,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-12">
-                                            <asp:GridView ID="grdBidder" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdBidder_PreRender" OnRowDataBound="grdBidder_RowDataBound">
+                                            <asp:GridView ID="grdBidder" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdBidder_PreRender" OnRowDataBound="grdBidder_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectDPRBidder_Id" HeaderText="ProjectDPRBidder_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -2004,7 +2004,7 @@
                                                     <asp:BoundField DataField="ProjectDPRBidder_Is_JV" HeaderText="Is JV?" />
                                                     <asp:TemplateField HeaderText="Bidder Details">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Lead Bidder</td>
@@ -2057,7 +2057,7 @@
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="col-md-12">
-                                            <asp:GridView ID="grdQualificationWorkOrder" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdQualificationWorkOrder_PreRender">
+                                            <asp:GridView ID="grdQualificationWorkOrder" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdQualificationWorkOrder_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectDPR_Bidder_Order_Id" HeaderText="ProjectDPR_Bidder_Order_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -2116,7 +2116,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-12">
-                                            <asp:GridView ID="grdQualificationResponse" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdQualificationResponse_PreRender" OnRowDataBound="grdQualificationResponse_RowDataBound">
+                                            <asp:GridView ID="grdQualificationResponse" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdQualificationResponse_PreRender" OnRowDataBound="grdQualificationResponse_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectDPRPQC_Id" HeaderText="ProjectDPRPQC_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -2200,7 +2200,7 @@
                                                     <asp:BoundField DataField="ProjectDPRPQCResponse_Response" HeaderText="Bidder Value" />
                                                     <asp:TemplateField HeaderText="Response">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top" runat="server" id="tbl_Response">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top" runat="server" id="tbl_Response">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>View Relavent Document</th>
@@ -2235,7 +2235,7 @@
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top" runat="server" id="tblAdditionalData">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top" runat="server" id="tblAdditionalData">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Mode</th>
@@ -2282,7 +2282,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <asp:GridView ID="grdTimeLine" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdTimeLine_PreRender">
+                                        <asp:GridView ID="grdTimeLine" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdTimeLine_PreRender">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectDPRApproval_Id" HeaderText="ProjectDPRApproval_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -2325,7 +2325,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <asp:GridView ID="grdPQCAnswerView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdPQCAnswerView_PreRender" OnRowDataBound="grdPQCAnswerView_RowDataBound">
+                                        <asp:GridView ID="grdPQCAnswerView" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdPQCAnswerView_PreRender" OnRowDataBound="grdPQCAnswerView_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectDPRPQC_Id" HeaderText="ProjectDPRPQC_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -2409,7 +2409,7 @@
                                                 <asp:BoundField DataField="ProjectDPRPQCResponse_Response" HeaderText="Bidder Value" />
                                                 <asp:TemplateField HeaderText="Response">
                                                     <ItemTemplate>
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top" runat="server" id="tbl_Response">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top" runat="server" id="tbl_Response">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Uploaded Doc</th>
@@ -2445,7 +2445,7 @@
                                                             </tbody>
                                                         </table>
 
-                                                        <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top" runat="server" id="tblAdditionalData">
+                                                        <table class="display table table-bordered no-margin-bottom no-border-top" runat="server" id="tblAdditionalData">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Mode</th>

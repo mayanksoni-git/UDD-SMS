@@ -184,7 +184,7 @@
                                     </div>
                                     <div class="col-md-8" id="divNGT" runat="server" visible="false">
                                         <div class="form-group">
-                                            <asp:GridView ID="grdNGTDtls" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdNGTDtls_PreRender" ShowFooter="true">
+                                            <asp:GridView ID="grdNGTDtls" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdNGTDtls_PreRender" ShowFooter="true">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectWorkNGT_Id" HeaderText="ProjectWorkNGT_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -238,7 +238,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <asp:GridView ID="grdFundingPattern" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdFundingPattern_RowDataBound">
+                                        <asp:GridView ID="grdFundingPattern" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdFundingPattern_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="FundingPattern_Id" HeaderText="FundingPattern_Id">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -281,7 +281,7 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <div style="overflow: auto">
-                                                    <asp:GridView ID="grdDPR" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdDPR_PreRender">
+                                                    <asp:GridView ID="grdDPR" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdDPR_PreRender">
                                                         <Columns>
                                                             <asp:BoundField DataField="ProjectDPR_Id" HeaderText="ProjectDPR_Id">
                                                                 <HeaderStyle CssClass="displayStyle" />
@@ -376,7 +376,7 @@
                                         </div>
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                                         <HeaderStyle CssClass="displayStyle" />

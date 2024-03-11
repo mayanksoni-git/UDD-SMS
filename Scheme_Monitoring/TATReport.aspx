@@ -99,7 +99,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="S No.">
                                                             <ItemTemplate>
@@ -131,7 +131,7 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="row">
-                                        <asp:GridView ID="grdTATConfig" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdTATConfig_PreRender">
+                                        <asp:GridView ID="grdTATConfig" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdTATConfig_PreRender">
                                             <Columns>
                                                 <asp:BoundField DataField="Designation" HeaderText="Designation">
                                                     <HeaderStyle CssClass="displayStyle" />

@@ -22,7 +22,7 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <asp:RadioButtonList ID="rbtDate" runat="server" RepeatDirection="Horizontal" RepeatColumns="8" AutoPostBack="true" CssClass="table table-striped table-bordered table-hover" OnSelectedIndexChanged="rbtDate_SelectedIndexChanged"></asp:RadioButtonList>
+                                <asp:RadioButtonList ID="rbtDate" runat="server" RepeatDirection="Horizontal" RepeatColumns="8" AutoPostBack="true" CssClass="display table table-bordered" OnSelectedIndexChanged="rbtDate_SelectedIndexChanged"></asp:RadioButtonList>
                             </div>
                         </div>
 
@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdGalleryList" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdGalleryList_PreRender" OnRowDataBound="grdGalleryList_RowDataBound">
+                                        <asp:GridView ID="grdGalleryList" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdGalleryList_PreRender" OnRowDataBound="grdGalleryList_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectWorkGallery_Id" HeaderText="ProjectWorkGallery_Id">
                                                     <HeaderStyle CssClass="displayStyle" />

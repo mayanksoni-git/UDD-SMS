@@ -110,7 +110,7 @@
                                                                 <div class="pull-right grdFinancialFulltableTools-container"></div>
                                                             </div>
                                                             <div style="overflow: auto">
-                                                                <asp:GridView ID="grdFinancialFull" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdFinancialFull_PreRender" OnRowDataBound="grdFinancialFull_RowDataBound">
+                                                                <asp:GridView ID="grdFinancialFull" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdFinancialFull_PreRender" OnRowDataBound="grdFinancialFull_RowDataBound">
                                                                     <Columns>
                                                                         <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                                                             <HeaderStyle CssClass="displayStyle" />
@@ -158,7 +158,7 @@
                                                                 <div class="pull-right grdSiteVisit1tableTools-container"></div>
                                                             </div>
                                                             <div style="overflow: auto">
-                                                                <asp:GridView ID="grdSiteVisit1" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdSiteVisit1_PreRender" OnRowDataBound="grdSiteVisit1_RowDataBound">
+                                                                <asp:GridView ID="grdSiteVisit1" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdSiteVisit1_PreRender" OnRowDataBound="grdSiteVisit1_RowDataBound">
                                                                     <Columns>
                                                                         <asp:BoundField DataField="Zone_Id" HeaderText="Zone_Id">
                                                                             <HeaderStyle CssClass="displayStyle" />
@@ -198,7 +198,7 @@
                                                                 <div class="pull-right grdSiteVisit2tableTools-container"></div>
                                                             </div>
                                                             <div style="overflow: auto">
-                                                                <asp:GridView ID="grdSiteVisit2" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdSiteVisit2_PreRender">
+                                                                <asp:GridView ID="grdSiteVisit2" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdSiteVisit2_PreRender">
                                                                     <Columns>
                                                                         <asp:BoundField DataField="ProjectVisit_AddedBy" HeaderText="ProjectVisit_AddedBy">
                                                                             <HeaderStyle CssClass="displayStyle" />

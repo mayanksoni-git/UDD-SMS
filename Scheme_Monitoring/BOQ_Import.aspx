@@ -81,7 +81,7 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <asp:GridView ID="grdRawData" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" OnPreRender="grdRawData_PreRender" EmptyDataText="No Records Found" ShowFooter="true">
+                                <asp:GridView ID="grdRawData" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" OnPreRender="grdRawData_PreRender" EmptyDataText="No Records Found" ShowFooter="true">
                                     <Columns>
                                         <asp:TemplateField HeaderText="S No.">
                                             <ItemTemplate>

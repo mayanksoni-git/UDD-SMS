@@ -87,7 +87,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                     <Columns>
                                                         <asp:BoundField DataField="JalPrahariBidderInfo_Id" HeaderText="JalPrahariBidderInfo_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -190,7 +190,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdDPR" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdDPR_PreRender">
+                                        <asp:GridView ID="grdDPR" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdDPR_PreRender">
                                             <Columns>
                                                 <asp:BoundField DataField="JalPrahariBidderDPR_BidderInfo_Id" HeaderText="JalPrahariBidderDPR_BidderInfo_Id">
                                                     <HeaderStyle CssClass="displayStyle" />

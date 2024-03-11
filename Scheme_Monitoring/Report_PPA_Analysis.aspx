@@ -207,7 +207,7 @@
                                                                 <div class="pull-right tableTools-container"></div>
                                                             </div>
                                                             <div style="overflow: auto">
-                                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound" ShowFooter="true">
+                                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound" ShowFooter="true">
                                                                     <Columns>
                                                                         <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                                                             <HeaderStyle CssClass="displayStyle" />
@@ -241,7 +241,7 @@
                                                                 <div class="pull-right grdFinancialFulltableTools-container"></div>
                                                             </div>
                                                             <div style="overflow: auto">
-                                                                <asp:GridView ID="grdFinancialFull" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdFinancialFull_PreRender" OnRowDataBound="grdFinancialFull_RowDataBound" ShowFooter="true">
+                                                                <asp:GridView ID="grdFinancialFull" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdFinancialFull_PreRender" OnRowDataBound="grdFinancialFull_RowDataBound" ShowFooter="true">
                                                                     <Columns>
                                                                         <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                                                             <HeaderStyle CssClass="displayStyle" />
@@ -275,7 +275,7 @@
                                                                 <div class="pull-right grdPPAPendingtableTools-container"></div>
                                                             </div>
                                                             <div style="overflow: auto">
-                                                                <asp:GridView ID="grdPPAPending" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPPAPending_PreRender" OnRowDataBound="grdPPAPending_RowDataBound" ShowFooter="true">
+                                                                <asp:GridView ID="grdPPAPending" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPPAPending_PreRender" OnRowDataBound="grdPPAPending_RowDataBound" ShowFooter="true">
                                                                     <Columns>
                                                                         <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                                                             <HeaderStyle CssClass="displayStyle" />
@@ -309,7 +309,7 @@
                                                                 <div class="pull-right grdPPAInvalidtableTools-container"></div>
                                                             </div>
                                                             <div style="overflow: auto">
-                                                                <asp:GridView ID="grdPPAInvalid" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPPAInvalid_PreRender" OnRowDataBound="grdPPAInvalid_RowDataBound" ShowFooter="true">
+                                                                <asp:GridView ID="grdPPAInvalid" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPPAInvalid_PreRender" OnRowDataBound="grdPPAInvalid_RowDataBound" ShowFooter="true">
                                                                     <Columns>
                                                                         <asp:BoundField DataField="PackageInvoice_Id" HeaderText="PackageInvoice_Id">
                                                                             <HeaderStyle CssClass="displayStyle" />

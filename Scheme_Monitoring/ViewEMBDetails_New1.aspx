@@ -27,7 +27,7 @@
                                                 <div class="pull-right tableTools-container"></div>
                                             </div>
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdEMB" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdEMB_RowDataBound" OnPreRender="grdEMB_PreRender">
+                                            <asp:GridView ID="grdEMB" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdEMB_RowDataBound" OnPreRender="grdEMB_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="PackageEMB_Master_Id" HeaderText="PackageEMB_Master_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -50,7 +50,7 @@
                                                     
                                                     <asp:TemplateField HeaderText="EMB Items">
                                                         <ItemTemplate>
-                                                            <asp:GridView ID="grdEMBItems" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" ShowHeader="true" OnPreRender="grdEMBItems_PreRender" >
+                                                            <asp:GridView ID="grdEMBItems" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" ShowHeader="true" OnPreRender="grdEMBItems_PreRender" >
                                                                 <Columns>
                                                                     <asp:TemplateField HeaderText="S No.">
                                                                         <ItemTemplate>
@@ -78,7 +78,7 @@
                                                                     <asp:BoundField DataField="PackageBOQ_AmountPaid" HeaderText="Payment on the basis of actual measurements (Since Previous)" />
                                                                     <asp:TemplateField HeaderText="Quantity executed up to date as per MB">
                                                                         <ItemTemplate>
-                                                                            <table class="table table-striped table-bordered table-hover">
+                                                                            <table class="display table table-bordered">
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td class="">
@@ -96,7 +96,7 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Percentage Amount To Be Released">
                                                                         <ItemTemplate>
-                                                                            <table class="table table-striped table-bordered table-hover">
+                                                                            <table class="display table table-bordered">
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td class="">
@@ -110,7 +110,7 @@
                                                                     <asp:BoundField DataField="PackageEMB_Amount_UpToDate" HeaderText="Payment on the basis of actual measurements (Up To Date)" />
                                                                     <asp:TemplateField HeaderText="Quantity executed (As Per Current MB)">
                                                                         <ItemTemplate>
-                                                                            <table class="table table-striped table-bordered table-hover">
+                                                                            <table class="display table table-bordered">
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td class="">

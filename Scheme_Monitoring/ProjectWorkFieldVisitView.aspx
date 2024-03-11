@@ -12,7 +12,7 @@
 
                         <div class="row">
                             <div style="overflow: auto">
-                                <asp:GridView ID="grdPost1" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost1_PreRender" OnRowDataBound="grdPost1_RowDataBound">
+                                <asp:GridView ID="grdPost1" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost1_PreRender" OnRowDataBound="grdPost1_RowDataBound">
                                     <Columns>
                                         <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                             <HeaderStyle CssClass="displayStyle" />
@@ -72,7 +72,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div style="overflow: auto">
-                                    <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                    <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                         <Columns>
                                             <asp:BoundField DataField="ProjectVisit_Id" HeaderText="ProjectVisit_Id">
                                                 <HeaderStyle CssClass="displayStyle" />

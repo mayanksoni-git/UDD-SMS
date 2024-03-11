@@ -192,7 +192,7 @@
                                             <div class="col-md-12">
                                                 <div class="col-md-6">
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdEMBDash" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdEMBDash" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                             EmptyDataText="No Records Found" OnPreRender="grdEMBDash_PreRender" ShowFooter="true"
                                                             OnRowDataBound="grdEMBDash_RowDataBound">
                                                             <Columns>
@@ -284,7 +284,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdInvoiceDash" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdInvoiceDash" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                             EmptyDataText="No Records Found" OnPreRender="grdInvoiceDash_PreRender" ShowFooter="True"
                                                             OnRowDataBound="grdInvoiceDash_RowDataBound">
                                                             <Columns>
@@ -391,7 +391,7 @@
                                                     </div>
 
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdEMB" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdEMB" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                             OnPreRender="grdEMB_PreRender" OnRowDataBound="grdEMB_RowDataBound">
                                                             <Columns>
                                                                 <asp:BoundField DataField="PackageEMB_Master_Id" HeaderText="PackageEMB_Master_Id">
@@ -467,7 +467,7 @@
                                                     </div>
 
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdInvoiceDashV" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdInvoiceDashV" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                             OnPreRender="grdInvoiceDashV_PreRender" OnRowDataBound="grdInvoiceDashV_RowDataBound">
                                                             <Columns>
                                                                 <asp:BoundField DataField="PackageInvoice_Id" HeaderText="PackageInvoice_Id">
@@ -578,7 +578,7 @@
                                             <div class="col-md-12">
                                                 <div class="col-md-6">
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdADPInvDash" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdADPInvDash" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                             EmptyDataText="No Records Found" OnPreRender="grdADPInvDash_PreRender" ShowFooter="true"
                                                             OnRowDataBound="grdADPInvDash_RowDataBound">
                                                             <Columns>
@@ -662,7 +662,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdADP_Category" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdADP_Category" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                             EmptyDataText="No Records Found" OnPreRender="grdADP_Category_PreRender" ShowFooter="true"
                                                             OnRowDataBound="grdADP_Category_RowDataBound">
                                                             <Columns>
@@ -697,7 +697,7 @@
                                                     </div>
 
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdADPV" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdADPV" runat="server" CssClass="display table table-bordered"
                                                             AutoGenerateColumns="False" OnPreRender="grdADPV_PreRender" OnRowDataBound="grdADPV_RowDataBound">
                                                             <Columns>
                                                                 <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
@@ -773,7 +773,7 @@
                                             <div class="col-md-12">
                                                 <div class="col-md-6">
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdMAInvDash" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdMAInvDash" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                             EmptyDataText="No Records Found" OnPreRender="grdMAInvDash_PreRender" ShowFooter="true"
                                                             OnRowDataBound="grdMAInvDash_RowDataBound">
                                                             <Columns>
@@ -859,7 +859,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdDRInvDash" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdDRInvDash" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                             EmptyDataText="No Records Found" OnPreRender="grdDRInvDash_PreRender" ShowFooter="true"
                                                             OnRowDataBound="grdDRInvDash_RowDataBound">
                                                             <Columns>
@@ -952,7 +952,7 @@
                                                         <div class="pull-right grdMAVtableTools-container"></div>
                                                     </div>
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdMAV" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdMAV" runat="server" CssClass="display table table-bordered"
                                                             AutoGenerateColumns="False" OnPreRender="grdMAV_PreRender" OnRowDataBound="grdMAV_RowDataBound">
                                                             <Columns>
                                                                 <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
@@ -1013,7 +1013,7 @@
                                                         <div class="pull-right grdDRVtableTools-container"></div>
                                                     </div>
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="grdDRV" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                                        <asp:GridView ID="grdDRV" runat="server" CssClass="display table table-bordered"
                                                             AutoGenerateColumns="False" OnPreRender="grdDRV_PreRender" OnRowDataBound="grdDRV_RowDataBound">
                                                             <Columns>
                                                                 <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
@@ -1100,7 +1100,7 @@
                                                     </div>
                                                     <div style="overflow: auto">
                                                         <asp:GridView ID="grdEMBAndInvStatus" runat="server" AutoGenerateColumns="False"
-                                                            CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found"
+                                                            CssClass="display table table-bordered" EmptyDataText="No Records Found"
                                                             OnPreRender="grdEMBAndInvStatus_PreRender" ShowFooter="true" OnRowDataBound="grdEMBAndInvStatus_RowDataBound">
                                                             <Columns>
                                                                 <asp:BoundField DataField="Zone_Id" HeaderText="Zone_Id">
@@ -1191,7 +1191,7 @@
                                                     </div>
                                                     <div style="overflow: auto">
                                                         <asp:GridView ID="grdDataUpdationStatusReport" runat="server" AutoGenerateColumns="False"
-                                                            CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found"
+                                                            CssClass="display table table-bordered" EmptyDataText="No Records Found"
                                                             OnPreRender="grdDataUpdationStatusReport_PreRender" ShowFooter="true" OnRowDataBound="grdDataUpdationStatusReport_RowDataBound">
                                                             <Columns>
                                                                 <asp:BoundField DataField="Zone_Id" HeaderText="Zone_Id">
@@ -1392,7 +1392,7 @@
                                                 <div class="pull-right grdInvoicetableTools-container"></div>
                                             </div>
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdInvoice" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                <asp:GridView ID="grdInvoice" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                     EmptyDataText="No Records Found" OnPreRender="grdInvoice_PreRender" OnRowDataBound="grdInvoice_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="PackageInvoice_Id" HeaderText="PackageInvoice_Id">
@@ -1510,7 +1510,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdADP" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                                <asp:GridView ID="grdADP" runat="server" CssClass="display table table-bordered"
                                                     AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdADP_PreRender"
                                                     OnRowDataBound="grdADP_RowDataBound">
                                                     <Columns>
@@ -1603,7 +1603,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdMA" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                                <asp:GridView ID="grdMA" runat="server" CssClass="display table table-bordered"
                                                     AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdMA_PreRender"
                                                     OnRowDataBound="grdMA_RowDataBound">
                                                     <Columns>
@@ -1695,7 +1695,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdDeductionRelease" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                                <asp:GridView ID="grdDeductionRelease" runat="server" CssClass="display table table-bordered"
                                                     AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdDeductionRelease_PreRender"
                                                     OnRowDataBound="grdDeductionRelease_RowDataBound">
                                                     <Columns>
@@ -1796,7 +1796,7 @@
                                         <div class="clearfix">
                                             <div class="pull-right grdPkgViewtableTools-container"></div>
                                         </div>
-                                        <asp:GridView ID="grdPkgView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                        <asp:GridView ID="grdPkgView" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                             EmptyDataText="No Records Found" OnPreRender="grdPkgView_PreRender" OnRowDataBound="grdPkgView_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
@@ -1874,7 +1874,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <asp:GridView ID="grdExpertWiseDtls" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                        <asp:GridView ID="grdExpertWiseDtls" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                             EmptyDataText="No Records Found" OnPreRender="grdExpertWiseDtls_PreRender" OnRowDataBound="grdExpertWiseDtls_RowDataBound"
                                             ShowFooter="true">
                                             <Columns>
@@ -1920,7 +1920,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <asp:GridView ID="grdTimeLine" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                        <asp:GridView ID="grdTimeLine" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                             EmptyDataText="No Records Found" OnPreRender="grdTimeLine_PreRender">
                                             <Columns>
                                                 <asp:BoundField DataField="PackageEMBApproval_Id" HeaderText="PackageEMBApproval_Id">
@@ -1969,7 +1969,7 @@
                                         <div class="clearfix">
                                             <div class="pull-right grdProjectstableTools-container"></div>
                                         </div>
-                                        <asp:GridView ID="grdProjects" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                        <asp:GridView ID="grdProjects" runat="server" CssClass="display table table-bordered"
                                             AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdProjects_PreRender" OnRowDataBound="grdProjects_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
@@ -2038,7 +2038,7 @@
                                         <div class="clearfix">
                                             <div class="pull-right grdPkgViewtableTools-container"></div>
                                         </div>
-                                        <asp:GridView ID="GridproView" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                        <asp:GridView ID="GridproView" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                             EmptyDataText="No Records Found" OnPreRender="grdProView_PreRender" OnRowDataBound="GridproView_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">

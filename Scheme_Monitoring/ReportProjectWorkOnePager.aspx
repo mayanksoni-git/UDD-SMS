@@ -534,7 +534,7 @@
                                         </div>
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                            <asp:GridView ID="grdPost" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -590,7 +590,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Jurisdiction">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Jurisdiction</th>
@@ -633,7 +633,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Critical Dates">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>GO Date</td>
@@ -657,7 +657,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Funding Pattern">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Funding Pattern</th>
@@ -704,7 +704,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Installment Wise Received Without Centage">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Sanctioned Cost</td>
@@ -777,7 +777,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Project Cost">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
 
                                                                     <tr>
@@ -810,7 +810,7 @@
 
                                                     <asp:TemplateField HeaderText="Financial Progress">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Invoice</th>
@@ -842,7 +842,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Progress">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Physical %</td>
@@ -872,7 +872,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Pipeline">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>Package Invoice (<%# Eval("Total_Invoice_Count_INV") %>)</td>
@@ -896,7 +896,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="SNA Limit Assigned">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>Limit</th>
@@ -929,7 +929,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Physical Component Details">
                                                         <ItemTemplate>
-                                                            <asp:GridView ID="grdPhysicalComponent" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover"
+                                                            <asp:GridView ID="grdPhysicalComponent" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered"
                                                                 EmptyDataText="No Records Found" OnPreRender="grdPhysicalComponent_PreRender">
                                                                 <Columns>
                                                                     <asp:BoundField HeaderText="Component" DataField="Component_Unit" />
@@ -944,7 +944,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Issues (If Any)">
                                                         <ItemTemplate>
-                                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+                                                            <table class="display table table-bordered no-margin-bottom no-border-top">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td><%# Eval("Issue") %></td>
@@ -976,7 +976,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdCallProductDtls" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdCallProductDtls_PreRender" OnRowDataBound="grdCallProductDtls_RowDataBound">
+                                                <asp:GridView ID="grdCallProductDtls" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdCallProductDtls_PreRender" OnRowDataBound="grdCallProductDtls_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkGO_Id" HeaderText="ProjectWorkGO_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -1024,7 +1024,7 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdULBShare" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdULBShare_PreRender" OnRowDataBound="grdULBShare_RowDataBound">
+                                                <asp:GridView ID="grdULBShare" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdULBShare_PreRender" OnRowDataBound="grdULBShare_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkGO_Id" HeaderText="ProjectWorkGO_Id">
                                                             <HeaderStyle CssClass="displayStyle" />

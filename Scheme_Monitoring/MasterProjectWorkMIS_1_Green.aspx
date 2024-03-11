@@ -191,7 +191,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="grdPackageDetails" runat="server" CssClass="table table-striped table-bordered table-hover"
+                                        <asp:GridView ID="grdPackageDetails" runat="server" CssClass="display table table-bordered"
                                             AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPackageDetails_PreRender"
                                             ShowFooter="true" OnRowDataBound="grdPackageDetails_RowDataBound">
                                             <Columns>

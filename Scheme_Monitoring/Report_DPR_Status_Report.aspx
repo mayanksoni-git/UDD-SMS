@@ -123,7 +123,7 @@
                                                             </div>
                                                             <!-- div.dataTables_borderWrap -->
                                                             <div style="overflow: auto">
-                                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound" ShowFooter="true">
+                                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound" ShowFooter="true">
                                                                     <columns>
                                                                         <asp:BoundField DataField="Zone_Id" HeaderText="Zone_Id">
                                                                             <headerstyle cssclass="displayStyle" />
@@ -257,7 +257,7 @@
                                                                 <div class="pull-right grdFinancialFulltableTools-container"></div>
                                                             </div>
                                                             <div style="overflow: auto">
-                                                                <asp:GridView ID="grdFinancialFull" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdFinancialFull_PreRender" OnRowDataBound="grdFinancialFull_RowDataBound">
+                                                                <asp:GridView ID="grdFinancialFull" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdFinancialFull_PreRender" OnRowDataBound="grdFinancialFull_RowDataBound">
                                                                     <columns>
                                                                         <asp:BoundField DataField="ProjectDPR_Id" HeaderText="ProjectDPR_Id">
                                                                             <headerstyle cssclass="displayStyle" />
@@ -342,7 +342,7 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <div style="overflow: auto">
-                                                    <asp:GridView ID="grdMultipleFiles" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdMultipleFiles_RowDataBound">
+                                                    <asp:GridView ID="grdMultipleFiles" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdMultipleFiles_RowDataBound">
                                                         <columns>
                                                             <asp:BoundField DataField="ProjectDPRDocs_FileName" HeaderText="ProjectDPRDocs_FileName">
                                                                 <headerstyle cssclass="displayStyle" />
@@ -387,7 +387,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-12">
-                                            <asp:GridView ID="grdTimeLine" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdTimeLine_PreRender" OnRowDataBound="grdTimeLine_RowDataBound">
+                                            <asp:GridView ID="grdTimeLine" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdTimeLine_PreRender" OnRowDataBound="grdTimeLine_RowDataBound">
                                                 <columns>
                                                     <asp:BoundField DataField="ProjectDPRApproval_Id" HeaderText="ProjectDPRApproval_Id">
                                                         <headerstyle cssclass="displayStyle" />

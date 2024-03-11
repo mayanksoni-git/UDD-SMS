@@ -290,7 +290,7 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <asp:GridView ID="grdScheme_Wise_Details" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered table-hover" EmptyDataText="No Records Found" OnPreRender="grdScheme_Wise_Details_PreRender" OnRowDataBound="grdScheme_Wise_Details_RowDataBound" ShowFooter="false" ShowHeader="false">
+                                <asp:GridView ID="grdScheme_Wise_Details" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdScheme_Wise_Details_PreRender" OnRowDataBound="grdScheme_Wise_Details_RowDataBound" ShowFooter="false" ShowHeader="false">
                                     <Columns>
                                         <asp:BoundField DataField="Project_Id" HeaderText="Project_Id">
                                             <HeaderStyle CssClass="displayStyle" />

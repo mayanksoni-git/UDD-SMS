@@ -26,7 +26,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div style="overflow: auto">
-                                        <asp:GridView ID="dgvQuestionnaire" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true" OnRowDataBound="dgvQuestionnaire_RowDataBound">
+                                        <asp:GridView ID="dgvQuestionnaire" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true" OnRowDataBound="dgvQuestionnaire_RowDataBound">
                                             <Columns>
                                                 <asp:BoundField DataField="ProjectQuestionnaire_ProjectId" HeaderText="ProjectQuestionnaire_ProjectId">
                                                     <HeaderStyle CssClass="displayStyle" />
@@ -95,7 +95,7 @@
                                         </div>
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="Project_Id" HeaderText="Project_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -136,7 +136,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div style="overflow: auto">
-                                    <asp:GridView ID="gdvAnswer" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true">
+                                    <asp:GridView ID="gdvAnswer" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" ShowFooter="true">
                                         <Columns>
                                             <asp:BoundField DataField="ProjectAnswer_ProjectQuestionnaireId" HeaderText="ProjectAnswer_ProjectQuestionnaireId">
                                                 <HeaderStyle CssClass="displayStyle" />

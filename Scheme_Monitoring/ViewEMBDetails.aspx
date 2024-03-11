@@ -25,7 +25,7 @@
                                                 <div class="pull-right tableTools-container"></div>
                                             </div>
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdEMB" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdEMB_RowDataBound" OnPreRender="grdEMB_PreRender">
+                                            <asp:GridView ID="grdEMB" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdEMB_RowDataBound" OnPreRender="grdEMB_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="PackageEMB_Master_Id" HeaderText="PackageEMB_Master_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -42,7 +42,7 @@
                                                     <asp:BoundField DataField="PackageEMB_Master_Date" HeaderText="MB Date"></asp:BoundField>
                                                     <asp:TemplateField HeaderText="EMB Items">
                                                         <ItemTemplate>
-                                                            <asp:GridView ID="grdEMBItems" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" ShowHeader="true" OnPreRender="grdEMBItems_PreRender" >
+                                                            <asp:GridView ID="grdEMBItems" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" ShowHeader="true" OnPreRender="grdEMBItems_PreRender" >
                                                                 <Columns>
                                                                     <asp:TemplateField HeaderText="S No.">
                                                                         <ItemTemplate>
@@ -53,7 +53,7 @@
                                                                     <asp:BoundField DataField="Unit_Name" HeaderText="Unit" />
                                                                     <asp:TemplateField HeaderText="Current Quantity">
                                                                         <ItemTemplate>
-                                                                            <table class="table table-striped table-bordered table-hover">
+                                                                            <table class="display table table-bordered">
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td class="">

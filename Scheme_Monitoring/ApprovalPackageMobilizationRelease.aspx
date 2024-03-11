@@ -89,7 +89,7 @@
                                             </div>
                                             <!-- div.dataTables_borderWrap -->
                                             <div style="overflow: auto">
-                                                <asp:GridView ID="grdPost" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="ProjectWorkPkg_Id" HeaderText="ProjectWorkPkg_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -240,7 +240,7 @@
                                         </ul>
                                         <div class="tab-content">
                                             <div id="doc1" class="tab-pane fade active in">
-                                                <asp:GridView ID="grdDocumentMaster" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Documents Configured To Upload" OnPreRender="grdDocumentMaster_PreRender" OnRowDataBound="grdDocumentMaster_RowDataBound">
+                                                <asp:GridView ID="grdDocumentMaster" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Documents Configured To Upload" OnPreRender="grdDocumentMaster_PreRender" OnRowDataBound="grdDocumentMaster_RowDataBound">
                                                     <Columns>
                                                         <asp:BoundField DataField="TradeDocument_Id" HeaderText="TradeDocument_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
@@ -279,7 +279,7 @@
 
                                             <div id="doc2" class="tab-pane fade">
                                                 <div style="overflow: auto">
-                                                    <asp:GridView ID="grdMultipleFiles" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdMultipleFiles_RowDataBound">
+                                                    <asp:GridView ID="grdMultipleFiles" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdMultipleFiles_RowDataBound">
                                                         <Columns>
                                                             <asp:BoundField DataField="Package_MobilizationAdvanceDocs_FileName" HeaderText="Package_MobilizationAdvanceDocs_FileName">
                                                                 <HeaderStyle CssClass="displayStyle" />
@@ -344,7 +344,7 @@
                             </div>
                             <div class="row" id="divPPAVerification" runat="server" visible="false">
                                 <div class="col-md-12">
-                                    <asp:GridView ID="grdPPAVerification" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="False" EmptyDataText="No Documents Configured To Upload" OnPreRender="grdPPAVerification_PreRender">
+                                    <asp:GridView ID="grdPPAVerification" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Documents Configured To Upload" OnPreRender="grdPPAVerification_PreRender">
                                         <Columns>
                                             <asp:BoundField HeaderText="PFMS Batch Number" DataField="PFMS_Batch_Number" />
                                             <asp:BoundField HeaderText="Amount" DataField="Batch_Amount" />
