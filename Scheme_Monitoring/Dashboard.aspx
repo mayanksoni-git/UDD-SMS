@@ -368,10 +368,12 @@
                                                         <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>16.24 % </span>vs. previous month</p>
                                                     </div>
                                                     <div>
-                                                        <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users text-primary">
-                                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                                        </span></div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-primary-subtle rounded-circle fs-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users text-primary">
+                                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -391,10 +393,12 @@
                                                         <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"><i class="ri-arrow-down-line align-middle"></i>3.96 % </span>vs. previous month</p>
                                                     </div>
                                                     <div>
-                                                        <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity text-primary">
-                                                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                                                        </span></div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-primary-subtle rounded-circle fs-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity text-primary">
+                                                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -412,10 +416,12 @@
                                                         <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"><i class="ri-arrow-down-line align-middle"></i>3.96 % </span>vs. previous month</p>
                                                     </div>
                                                     <div>
-                                                        <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity text-primary">
-                                                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                                                        </span></div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-primary-subtle rounded-circle fs-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity text-primary">
+                                                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -433,10 +439,12 @@
                                                         <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"><i class="ri-arrow-down-line align-middle"></i>3.96 % </span>vs. previous month</p>
                                                     </div>
                                                     <div>
-                                                        <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity text-primary">
-                                                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                                                        </span></div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-primary-subtle rounded-circle fs-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity text-primary">
+                                                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -459,10 +467,12 @@
                                                         <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"><i class="ri-arrow-down-line align-middle"></i>0.24 % </span>vs. previous month</p>
                                                     </div>
                                                     <div>
-                                                        <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock text-primary">
-                                                                <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                                        </span></div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-primary-subtle rounded-circle fs-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock text-primary">
+                                                                    <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -482,10 +492,12 @@
                                                         <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>7.05 % </span>vs. previous month</p>
                                                     </div>
                                                     <div>
-                                                        <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link text-primary">
-                                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                                        </span></div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-primary-subtle rounded-circle fs-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link text-primary">
+                                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -503,10 +515,12 @@
                                                         <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>7.05 % </span>vs. previous month</p>
                                                     </div>
                                                     <div>
-                                                        <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link text-primary">
-                                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                                        </span></div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-primary-subtle rounded-circle fs-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link text-primary">
+                                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -524,10 +538,12 @@
                                                         <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i>7.05 % </span>vs. previous month</p>
                                                     </div>
                                                     <div>
-                                                        <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link text-primary">
-                                                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                                        </span></div>
+                                                        <div class="avatar-sm flex-shrink-0">
+                                                            <span class="avatar-title bg-primary-subtle rounded-circle fs-2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link text-primary">
+                                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -592,7 +608,8 @@
                                                 <svg id="SvgjsSvg1145" width="597" height="309" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" style="background: transparent;">
                                                     <foreignObject x="0" y="0" width="597" height="309">
                                                         <div class="apexcharts-legend apexcharts-align-center apx-legend-position-bottom" xmlns="http://www.w3.org/1999/xhtml" style="inset: auto 0px 5px 20px; position: absolute; max-height: 154.5px;">
-                                                            <div class="apexcharts-legend-series" rel="1" seriesname="LastxYear" data:collapsed="false" style="margin: 2px 5px;"><span class="apexcharts-legend-marker" rel="1" data:collapsed="false" style="background: rgb(37, 160, 226) !important; color: rgb(37, 160, 226); height: 9px; width: 9px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 4px;"></span><span class="apexcharts-legend-text" rel="1" i="0" data:default-text="Last%20Year" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 8px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">Last Year</span></div><div class="apexcharts-legend-series" rel="2" seriesname="CurrentxYear" data:collapsed="false" style="margin: 2px 5px;"><span class="apexcharts-legend-marker" rel="2" data:collapsed="false" style="background: rgb(243, 246, 249) !important; color: rgb(243, 246, 249); height: 9px; width: 9px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 4px;"></span><span class="apexcharts-legend-text" rel="2" i="1" data:default-text="Current%20Year" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 8px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">Current Year</span></div></div>
+                                                            <div class="apexcharts-legend-series" rel="1" seriesname="LastxYear" data:collapsed="false" style="margin: 2px 5px;"><span class="apexcharts-legend-marker" rel="1" data:collapsed="false" style="background: rgb(37, 160, 226) !important; color: rgb(37, 160, 226); height: 9px; width: 9px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 4px;"></span><span class="apexcharts-legend-text" rel="1" i="0" data:default-text="Last%20Year" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 8px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">Last Year</span></div><div class="apexcharts-legend-series" rel="2" seriesname="CurrentxYear" data:collapsed="false" style="margin: 2px 5px;"><span class="apexcharts-legend-marker" rel="2" data:collapsed="false" style="background: rgb(243, 246, 249) !important; color: rgb(243, 246, 249); height: 9px; width: 9px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 4px;"></span><span class="apexcharts-legend-text" rel="2" i="1" data:default-text="Current%20Year" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 8px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">Current Year</span></div>
+                                                        </div>
                                                         <style type="text/css">
                                                             .apexcharts-legend {
                                                                 display: flex;
@@ -757,40 +774,52 @@
                                                             <g id="SvgjsG1225" class="apexcharts-xaxis-texts-g" transform="translate(0, -4)">
                                                                 <text id="SvgjsText1227" font-family="Helvetica, Arial, sans-serif" x="23.958333333333332" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1228">Jan</tspan>
-                                                                    <title>Jan</title></text>
+                                                                    <title>Jan</title>
+                                                                </text>
                                                                 <text id="SvgjsText1230" font-family="Helvetica, Arial, sans-serif" x="71.875" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1231">Feb</tspan>
-                                                                    <title>Feb</title></text>
+                                                                    <title>Feb</title>
+                                                                </text>
                                                                 <text id="SvgjsText1233" font-family="Helvetica, Arial, sans-serif" x="119.79166666666667" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1234">Mar</tspan>
-                                                                    <title>Mar</title></text>
+                                                                    <title>Mar</title>
+                                                                </text>
                                                                 <text id="SvgjsText1236" font-family="Helvetica, Arial, sans-serif" x="167.70833333333331" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1237">Apr</tspan>
-                                                                    <title>Apr</title></text>
+                                                                    <title>Apr</title>
+                                                                </text>
                                                                 <text id="SvgjsText1239" font-family="Helvetica, Arial, sans-serif" x="215.62499999999997" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1240">May</tspan>
-                                                                    <title>May</title></text>
+                                                                    <title>May</title>
+                                                                </text>
                                                                 <text id="SvgjsText1242" font-family="Helvetica, Arial, sans-serif" x="263.5416666666667" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1243">Jun</tspan>
-                                                                    <title>Jun</title></text>
+                                                                    <title>Jun</title>
+                                                                </text>
                                                                 <text id="SvgjsText1245" font-family="Helvetica, Arial, sans-serif" x="311.45833333333337" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1246">Jul</tspan>
-                                                                    <title>Jul</title></text>
+                                                                    <title>Jul</title>
+                                                                </text>
                                                                 <text id="SvgjsText1248" font-family="Helvetica, Arial, sans-serif" x="359.37500000000006" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1249">Aug</tspan>
-                                                                    <title>Aug</title></text>
+                                                                    <title>Aug</title>
+                                                                </text>
                                                                 <text id="SvgjsText1251" font-family="Helvetica, Arial, sans-serif" x="407.29166666666674" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1252">Sep</tspan>
-                                                                    <title>Sep</title></text>
+                                                                    <title>Sep</title>
+                                                                </text>
                                                                 <text id="SvgjsText1254" font-family="Helvetica, Arial, sans-serif" x="455.2083333333334" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1255">Oct</tspan>
-                                                                    <title>Oct</title></text>
+                                                                    <title>Oct</title>
+                                                                </text>
                                                                 <text id="SvgjsText1257" font-family="Helvetica, Arial, sans-serif" x="503.12500000000006" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1258">Nov</tspan>
-                                                                    <title>Nov</title></text>
+                                                                    <title>Nov</title>
+                                                                </text>
                                                                 <text id="SvgjsText1260" font-family="Helvetica, Arial, sans-serif" x="551.0416666666666" y="245.112" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="400" fill="#373d3f" class="apexcharts-text apexcharts-xaxis-label " style="font-family: Helvetica, Arial, sans-serif;">
                                                                     <tspan id="SvgjsTspan1261">Dec</tspan>
-                                                                    <title>Dec</title></text>
+                                                                    <title>Dec</title>
+                                                                </text>
                                                             </g>
                                                             <line id="SvgjsLine1262" x1="0" y1="217.112" x2="575" y2="217.112" stroke="#e0e0e0" stroke-dasharray="0" stroke-width="1" stroke-linecap="butt"></line>
                                                         </g>
@@ -799,14 +828,16 @@
                                                         <g id="SvgjsG1266" class="apexcharts-point-annotations"></g>
                                                     </g></svg><div class="apexcharts-tooltip apexcharts-theme-light">
                                                         <div class="apexcharts-tooltip-title" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;"></div>
-                                                        <div class="apexcharts-tooltip-series-group" style="order: 1;"><span class="apexcharts-tooltip-marker" style="background-color: rgb(37, 160, 226);"></span>
+                                                        <div class="apexcharts-tooltip-series-group" style="order: 1;">
+                                                            <span class="apexcharts-tooltip-marker" style="background-color: rgb(37, 160, 226);"></span>
                                                             <div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;">
                                                                 <div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-y-label"></span><span class="apexcharts-tooltip-text-y-value"></span></div>
                                                                 <div class="apexcharts-tooltip-goals-group"><span class="apexcharts-tooltip-text-goals-label"></span><span class="apexcharts-tooltip-text-goals-value"></span></div>
                                                                 <div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div>
                                                             </div>
                                                         </div>
-                                                        <div class="apexcharts-tooltip-series-group" style="order: 2;"><span class="apexcharts-tooltip-marker" style="background-color: rgb(243, 246, 249);"></span>
+                                                        <div class="apexcharts-tooltip-series-group" style="order: 2;">
+                                                            <span class="apexcharts-tooltip-marker" style="background-color: rgb(243, 246, 249);"></span>
                                                             <div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;">
                                                                 <div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-y-label"></span><span class="apexcharts-tooltip-text-y-value"></span></div>
                                                                 <div class="apexcharts-tooltip-goals-group"><span class="apexcharts-tooltip-text-goals-label"></span><span class="apexcharts-tooltip-text-goals-value"></span></div>
@@ -871,21 +902,24 @@
                                                     <line id="SvgjsLine1282" x1="0" y1="0" x2="195" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1" stroke-linecap="butt" class="apexcharts-ycrosshairs"></line>
                                                     <line id="SvgjsLine1283" x1="0" y1="0" x2="195" y2="0" stroke-dasharray="0" stroke-width="0" stroke-linecap="butt" class="apexcharts-ycrosshairs-hidden"></line>
                                                 </g></svg><div class="apexcharts-tooltip apexcharts-theme-dark">
-                                                    <div class="apexcharts-tooltip-series-group" style="order: 1;"><span class="apexcharts-tooltip-marker" style="background-color: rgb(37, 160, 226);"></span>
+                                                    <div class="apexcharts-tooltip-series-group" style="order: 1;">
+                                                        <span class="apexcharts-tooltip-marker" style="background-color: rgb(37, 160, 226);"></span>
                                                         <div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;">
                                                             <div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-y-label"></span><span class="apexcharts-tooltip-text-y-value"></span></div>
                                                             <div class="apexcharts-tooltip-goals-group"><span class="apexcharts-tooltip-text-goals-label"></span><span class="apexcharts-tooltip-text-goals-value"></span></div>
                                                             <div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div>
                                                         </div>
                                                     </div>
-                                                    <div class="apexcharts-tooltip-series-group" style="order: 2;"><span class="apexcharts-tooltip-marker" style="background-color: rgba(37, 160, 226, 0.6);"></span>
+                                                    <div class="apexcharts-tooltip-series-group" style="order: 2;">
+                                                        <span class="apexcharts-tooltip-marker" style="background-color: rgba(37, 160, 226, 0.6);"></span>
                                                         <div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;">
                                                             <div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-y-label"></span><span class="apexcharts-tooltip-text-y-value"></span></div>
                                                             <div class="apexcharts-tooltip-goals-group"><span class="apexcharts-tooltip-text-goals-label"></span><span class="apexcharts-tooltip-text-goals-value"></span></div>
                                                             <div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div>
                                                         </div>
                                                     </div>
-                                                    <div class="apexcharts-tooltip-series-group" style="order: 3;"><span class="apexcharts-tooltip-marker" style="background-color: rgba(37, 160, 226, 0.75);"></span>
+                                                    <div class="apexcharts-tooltip-series-group" style="order: 3;">
+                                                        <span class="apexcharts-tooltip-marker" style="background-color: rgba(37, 160, 226, 0.75);"></span>
                                                         <div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;">
                                                             <div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-y-label"></span><span class="apexcharts-tooltip-text-y-value"></span></div>
                                                             <div class="apexcharts-tooltip-goals-group"><span class="apexcharts-tooltip-text-goals-label"></span><span class="apexcharts-tooltip-text-goals-value"></span></div>
@@ -906,7 +940,8 @@
                                                     <td>
                                                         <p class="text-muted mb-0">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users me-2 icon-sm">
-                                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>78.56k</p>
+                                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>78.56k
+                                                        </p>
                                                     </td>
                                                     <td class="text-end">
                                                         <p class="text-success fw-medium fs-12 mb-0"><i class="ri-arrow-up-s-fill fs-5 align-middle"></i>2.08% </p>
@@ -920,7 +955,8 @@
                                                     <td>
                                                         <p class="text-muted mb-0">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users me-2 icon-sm">
-                                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>105.02k</p>
+                                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>105.02k
+                                                        </p>
                                                     </td>
                                                     <td class="text-end">
                                                         <p class="text-danger fw-medium fs-12 mb-0"><i class="ri-arrow-down-s-fill fs-5 align-middle"></i>10.52% </p>
@@ -934,7 +970,8 @@
                                                     <td>
                                                         <p class="text-muted mb-0">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users me-2 icon-sm">
-                                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>42.89k</p>
+                                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>42.89k
+                                                        </p>
                                                     </td>
                                                     <td class="text-end">
                                                         <p class="text-danger fw-medium fs-12 mb-0"><i class="ri-arrow-down-s-fill fs-5 align-middle"></i>7.36% </p>

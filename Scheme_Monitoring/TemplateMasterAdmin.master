@@ -166,140 +166,62 @@
                         <div id="two-column-menu"></div>
                         <ul class="navbar-nav" id="navbar-nav">
                             <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-                            <li class="nav-item"><a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards"><i data-feather="home" class="icon-dual"></i><span data-key="t-dashboards">Dashboards</span> </a></li>
+                            <li class="nav-item"><a class="nav-link menu-link" href="Dashboard.aspx" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards"><i data-feather="home" class="icon-dual"></i><span data-key="t-dashboards">Dashboards</span> </a></li>
                             <!-- end Dashboard Menu -->
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps"><i data-feather="grid" class="icon-dual"></i><span data-key="t-apps">Apps</span> </a>
-
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts"><i data-feather="layout" class="icon-dual"></i><span data-key="t-layouts">Layouts</span>  </a>
+                                <a class="nav-link menu-link" href="Menu_Analysis.aspx" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps"><i data-feather="grid" class="icon-dual"></i><span data-key="t-apps">Analysis</span> </a>
 
                             </li>
                             <!-- end Dashboard Menu -->
 
-
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarAuth" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth"><i data-feather="users" class="icon-dual"></i><span data-key="t-authentication">Authentication</span> </a>
-                                <div class="collapse menu-dropdown" id="sidebarAuth">
+                                <a class="nav-link menu-link" href="#sidebarFormsj" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFormsj"><i data-feather="file-text" class="icon-dual"></i><span data-key="t-forms">Jurisdiction Masters</span> </a>
+                                <div class="collapse menu-dropdown" id="sidebarFormsj">
                                     <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="#sidebarSignIn" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSignIn" data-key="t-signin">Sign In </a>
-                                            <div class="collapse menu-dropdown" id="sidebarSignIn">
-                                                <ul class="nav nav-sm flex-column">
-
-                                                    <li class="nav-item"><a href="auth-signin-cover.html" class="nav-link" data-key="t-cover">Cover </a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#sidebarSignUp" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSignUp" data-key="t-signup">Sign Up </a>
-                                            <div class="collapse menu-dropdown" id="sidebarSignUp">
-                                                <ul class="nav nav-sm flex-column">
-
-                                                    <li class="nav-item"><a href="auth-signup-cover.html" class="nav-link" data-key="t-cover">Cover </a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#sidebarResetPass" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarResetPass" data-key="t-password-reset">Password Reset </a>
-                                            <div class="collapse menu-dropdown" id="sidebarResetPass">
-                                                <ul class="nav nav-sm flex-column">
-
-                                                    <li class="nav-item"><a href="auth-pass-reset-cover.html" class="nav-link" data-key="t-cover">Cover </a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#sidebarchangePass" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarchangePass" data-key="t-password-create">Password Create </a>
-                                            <div class="collapse menu-dropdown" id="sidebarchangePass">
-                                                <ul class="nav nav-sm flex-column">
-
-                                                    <li class="nav-item"><a href="auth-pass-change-cover.html" class="nav-link" data-key="t-cover">Cover </a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#sidebarLockScreen" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLockScreen" data-key="t-lock-screen">Lock Screen </a>
-                                            <div class="collapse menu-dropdown" id="sidebarLockScreen">
-                                                <ul class="nav nav-sm flex-column">
-
-                                                    <li class="nav-item"><a href="auth-lockscreen-cover.html" class="nav-link" data-key="t-cover">Cover </a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#sidebarLogout" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLogout" data-key="t-logout">Logout </a>
-                                            <div class="collapse menu-dropdown" id="sidebarLogout">
-                                                <ul class="nav nav-sm flex-column">
-
-                                                    <li class="nav-item"><a href="auth-logout-cover.html" class="nav-link" data-key="t-cover">Cover </a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#sidebarSuccessMsg" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSuccessMsg" data-key="t-success-message">Success Message </a>
-                                            <div class="collapse menu-dropdown" id="sidebarSuccessMsg">
-                                                <ul class="nav nav-sm flex-column">
-
-                                                    <li class="nav-item"><a href="auth-success-msg-cover.html" class="nav-link" data-key="t-cover">Cover </a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#sidebarTwoStep" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTwoStep" data-key="t-two-step-verification">Two Step Verification </a>
-                                            <div class="collapse menu-dropdown" id="sidebarTwoStep">
-                                                <ul class="nav nav-sm flex-column">
-
-                                                    <li class="nav-item"><a href="auth-twostep-cover.html" class="nav-link" data-key="t-cover">Cover </a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-
+                                        <li class="nav-item"><a href="OfficeRegistration.aspx" class="nav-link" data-key="t-basic-elements">Organization</a> </li>
+                                        <li class="nav-item"><a href="MasterJurisdiction.aspx?LevelId=2" class="nav-link" data-key="t-form-select">Mandal</a></li>
+                                        <li class="nav-item"><a href="MasterCircles.aspx" class="nav-link" data-key="t-checkboxs-radios">District</a> </li>
+                                        <li class="nav-item"><a href="MasterDivision.aspx" class="nav-link" data-key="t-pickers">ULB</a></li>
                                     </ul>
                                 </div>
                             </li>
 
 
-
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarUI" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarUI"><i data-feather="package" class="icon-dual"></i><span data-key="t-base-ui">Base UI</span> </a>
-
-                            </li>
-
-                            <li class="nav-item"><a class="nav-link menu-link" href="widgets.html"><i data-feather="copy" class="icon-dual"></i><span data-key="t-widgets">Widgets</span> </a></li>
-                            <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarForms" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarForms"><i data-feather="file-text" class="icon-dual"></i><span data-key="t-forms">Forms</span> </a>
+                                <a class="nav-link menu-link" href="#sidebarForms" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarForms"><i data-feather="file-text" class="icon-dual"></i><span data-key="t-forms">Employee Masters</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarForms">
                                     <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item"><a href="forms-elements.html" class="nav-link" data-key="t-basic-elements">Basic Elements</a> </li>
-                                        <li class="nav-item"><a href="forms-select.html" class="nav-link" data-key="t-form-select">Form Select </a></li>
-                                        <li class="nav-item"><a href="forms-checkboxs-radios.html" class="nav-link" data-key="t-checkboxs-radios">Checkboxs & Radios</a> </li>
-                                        <li class="nav-item"><a href="forms-pickers.html" class="nav-link" data-key="t-pickers">Pickers </a></li>
-                                        <li class="nav-item"><a href="forms-masks.html" class="nav-link" data-key="t-input-masks">Input Masks</a> </li>
-                                        <li class="nav-item"><a href="forms-advanced.html" class="nav-link" data-key="t-advanced">Advanced</a> </li>
-                                        <li class="nav-item"><a href="forms-range-sliders.html" class="nav-link" data-key="t-range-slider">Range Slider </a></li>
-                                        <li class="nav-item"><a href="forms-validation.html" class="nav-link" data-key="t-validation">Validation</a> </li>
-                                        <li class="nav-item"><a href="forms-wizard.html" class="nav-link" data-key="t-wizard">Wizard</a> </li>
-                                        <li class="nav-item"><a href="forms-editors.html" class="nav-link" data-key="t-editors">Editors</a> </li>
-                                        <li class="nav-item"><a href="forms-file-uploads.html" class="nav-link" data-key="t-file-uploads">File Uploads</a> </li>
-                                        <li class="nav-item"><a href="forms-layouts.html" class="nav-link" data-key="t-form-layouts">Form Layouts</a> </li>
-                                        <li class="nav-item"><a href="forms-select2.html" class="nav-link" data-key="t-select2">Select2</a> </li>
+                                        <li class="nav-item"><a href="MasterDesignation.aspx" class="nav-link" data-key="t-basic-elements">Designation</a> </li>
+                                        <li class="nav-item"><a href="MasterDepartment.aspx" class="nav-link" data-key="t-form-select">Department</a></li>
+                                        <li class="nav-item"><a href="MasterPerson.aspx" class="nav-link" data-key="t-checkboxs-radios">Create Admin Officers / Staff</a> </li>
+                                        <li class="nav-item"><a href="MasterPersonVendor.aspx" class="nav-link" data-key="t-pickers">Create Executing Agency / Vendors</a></li>
                                     </ul>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarTables" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTables"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Tables</span> </a>
+                                <a class="nav-link menu-link" href="#sidebarTables" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTables"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Basic Masters</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarTables">
                                     <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item"><a href="tables-basic.html" class="nav-link" data-key="t-basic-tables">Basic Tables</a> </li>
-                                        <li class="nav-item"><a href="tables-gridjs.html" class="nav-link" data-key="t-grid-js">Grid Js</a> </li>
-                                        <li class="nav-item"><a href="tables-listjs.html" class="nav-link" data-key="t-list-js">List Js</a> </li>
-                                        <li class="nav-item"><a href="tables-datatables.html" class="nav-link" data-key="t-datatables">Datatables</a> </li>
+                                        <li class="nav-item"><a href="MasterDPRStatus.aspx" class="nav-link" data-key="t-basic-tables">DPR Status Master</a> </li>
+                                        <li class="nav-item"><a href="PhysicalProgressComponent.aspx" class="nav-link" data-key="t-grid-js">Physical Component</a> </li>
+                                        <li class="nav-item"><a href="MasterFundingPattern.aspx" class="nav-link" data-key="t-list-js">Funding Pattern</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectType.aspx" class="nav-link" data-key="t-datatables">Project Type</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectIssues.aspx" class="nav-link" data-key="t-datatables">Project Issues</a> </li>
+                                        <li class="nav-item"><a href="MasterDependency.aspx" class="nav-link" data-key="t-datatables">Project Sub-Issues</a> </li>
                                     </ul>
                                 </div>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarProject" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProject"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Project Master</span> </a>
+                                <div class="collapse menu-dropdown" id="sidebarProject">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item"><a href="MasterProject.aspx" class="nav-link" data-key="t-basic-tables">Create Scheme</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx" class="nav-link" data-key="t-grid-js">Create Project (Admin Data Entry Mode)</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWork_DataEntry2.aspx" class="nav-link" data-key="t-list-js">Create / Update Project (ULB)</a> </li>
+                                    </ul>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     <!-- Sidebar -->
