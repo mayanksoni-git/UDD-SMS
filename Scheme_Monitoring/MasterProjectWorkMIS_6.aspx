@@ -1,0 +1,374 @@
+﻿<%@ page language="C#" masterpagefile="~/TemplateMasterAdmin.master" autoeventwireup="true"
+    codefile="MasterProjectWorkMIS_6.aspx.cs" inherits="MasterProjectWorkMIS_6" maintainscrollpositiononpostback="true" enableeventvalidation="false" validaterequest="false" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div class="main-content">
+        <div class="main-content-inner">
+            <cc1:toolkitscriptmanager id="ToolkitScriptManager1" runat="server" enablepartialrendering="true" enablepagemethods="true" asyncpostbacktimeout="6000">
+            </cc1:toolkitscriptmanager>
+            <asp:UpdatePanel ID="up" runat="server">
+                <ContentTemplate>
+
+                    <div class="page-content">
+                        <div>
+                            <ul class="steps" style="margin-left: 0">
+                                <li data-step="1" class="active">
+                                    <span class="step">1</span>
+                                    <span class="title">Basic Details</span>
+                                </li>
+
+                                <li data-step="2" class="active">
+                                    <span class="step">2</span>
+                                    <span class="title">GO Release Details</span>
+                                </li>
+
+                                <li data-step="3" class="active">
+                                    <span class="step">3</span>
+                                    <span class="title">Target & Achivments</span>
+                                </li>
+
+                                <li data-step="4" class="active">
+                                    <span class="step">4</span>
+                                    <span class="title">Physical Components</span>
+                                </li>
+
+                                <li data-step="5" class="active">
+                                    <span class="step">5</span>
+                                    <span class="title">Document Vault</span>
+                                </li>
+
+                                <li data-step="6" class="active">
+                                    <span class="step">6</span>
+                                    <span class="title">UC Details and Issues</span>
+                                </li>
+
+                                <li data-step="7">
+                                    <span class="step">7</span>
+                                    <span class="title">Variation Details</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="table-header">
+                                    Upload Utilization Certificate                                
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div style="overflow: auto">
+                                            <asp:GridView ID="grdCallProductDtls" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdCallProductDtls_PreRender" OnRowDataBound="grdCallProductDtls_RowDataBound">
+                                                <Columns>
+                                                    <asp:BoundField DataField="ProjectUC_Id" HeaderText="ProjectUC_Id">
+                                                        <HeaderStyle CssClass="displayStyle" />
+                                                        <ItemStyle CssClass="displayStyle" />
+                                                        <FooterStyle CssClass="displayStyle" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="ProjectUC_Document" HeaderText="ProjectUC_Document">
+                                                        <HeaderStyle CssClass="displayStyle" />
+                                                        <ItemStyle CssClass="displayStyle" />
+                                                        <FooterStyle CssClass="displayStyle" />
+                                                    </asp:BoundField>
+                                                    <asp:TemplateField HeaderText="S No.">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1 %>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="UC Date">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtUCDate" runat="server" CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy" Text='<%# Eval("ProjectUC_SubmitionDate") %>'></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="UC Number">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtUC_Number" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_Comments") %>'></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="UC Filled %">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtUCP" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" Text='<%# Eval("ProjectUC_Achivment") %>'></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Upload UC Document">
+                                                        <ItemTemplate>
+                                                            <asp:FileUpload ID="flUploadUC" runat="server" />
+                                                        </ItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:ImageButton ID="btnQuestionnaire" OnClick="btnQuestionnaire_Click" runat="server" ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
+                                                            <asp:ImageButton ID="imgdeleteQuestionnaire" CssClass="pull-right" runat="server" ImageUrl="~/assets/images/minus-icon.png" OnClick="imgdelete_Click" Width="30px" Height="30px" />
+                                                        </FooterTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Upload UC Document">
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton ID="lnkUCDoc" runat="server" Text="Download" GO_FilePath='<%#Eval("ProjectUC_Document") %>' OnClientClick="return downloadGO(this);"></asp:LinkButton>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Delete">
+                                                        <ItemTemplate>
+                                                            <asp:ImageButton ID="btnDeleteUC" OnClick="btnDeleteUC_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="30px" Height="30px" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="table-header">
+                                    Specific Issues (If Any)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div style="overflow: auto">
+                                            <asp:GridView ID="grdIssue" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdIssue_PreRender" OnRowDataBound="grdIssue_RowDataBound">
+                                                <Columns>
+                                                    <asp:BoundField DataField="ProjectWorkIssueDetails_Id" HeaderText="ProjectWorkIssueDetails_Id">
+                                                        <HeaderStyle CssClass="displayStyle" />
+                                                        <ItemStyle CssClass="displayStyle" />
+                                                        <FooterStyle CssClass="displayStyle" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="ProjectWorkIssueDetails_Path" HeaderText="ProjectWorkIssueDetails_Path">
+                                                        <HeaderStyle CssClass="displayStyle" />
+                                                        <ItemStyle CssClass="displayStyle" />
+                                                        <FooterStyle CssClass="displayStyle" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="ProjectWorkIssueDetails_Issue_Id" HeaderText="ProjectWorkIssueDetails_Issue_Id">
+                                                        <HeaderStyle CssClass="displayStyle" />
+                                                        <ItemStyle CssClass="displayStyle" />
+                                                        <FooterStyle CssClass="displayStyle" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="ProjectWorkIssueDetails_Dependency_Id" HeaderText="ProjectWorkIssueDetails_Dependency_Id">
+                                                        <HeaderStyle CssClass="displayStyle" />
+                                                        <ItemStyle CssClass="displayStyle" />
+                                                        <FooterStyle CssClass="displayStyle" />
+                                                    </asp:BoundField>
+                                                    <asp:TemplateField HeaderText="S No.">
+                                                        <ItemTemplate>
+                                                            <asp:Label runat="server" ID="lblRowNumber" Text='<%#Container.DataItemIndex + 1 %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Issuing Type">
+                                                        <ItemTemplate>
+                                                            <asp:DropDownList ID="ddlIssueType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlIssueType_SelectedIndexChanged">
+                                                            </asp:DropDownList>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Dependency">
+                                                        <ItemTemplate>
+                                                            <asp:DropDownList ID="ddlDependency" runat="server" CssClass="form-control">
+                                                            </asp:DropDownList>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Discription" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtIssuingCategory" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkIssueDetails_Category") %>'></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Issuing Effective Date">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtIssuingDate" runat="server" CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy" Text='<%# Eval("ProjectWorkIssueDetails_Date") %>'></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Comments">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtComments" runat="server" TextMode="MultiLine" Text='<%# Eval("ProjectWorkIssueDetails_Comments") %>' />
+                                                        </ItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:ImageButton ID="btnQuestionnaireU" OnClick="btnQuestionnaireU_Click" runat="server" ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
+                                                            <asp:ImageButton ID="btnDeleteQuestionnaireU" CssClass="pull-right" runat="server" ImageUrl="~/assets/images/minus-icon.png" OnClick="btnDeleteQuestionnaireU_Click" Width="30px" Height="30px" />
+                                                        </FooterTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Upload Issue Document">
+                                                        <ItemTemplate>
+                                                            <asp:FileUpload ID="flUploadIssue" runat="server" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Download Document">
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton ID="lnkIssueDoc" runat="server" Text="Download" GO_FilePath='<%#Eval("ProjectWorkIssueDetails_Path") %>' OnClientClick="return downloadGO(this);"></asp:LinkButton>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Add Conversation Log">
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton ID="lnkConLog" runat="server" Text="Add Conversation" OnClick="lnkConLog_Click"></asp:LinkButton>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Resolved Date">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtResolvedDate" runat="server" CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy" Text='<%# Eval("ProjectWorkIssueDetails_DateResolved") %>'></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Resolved">
+                                                        <ItemTemplate>
+                                                            <asp:ImageButton ID="btnDeleteIssue" OnClick="btnDeleteIssue_Click" runat="server" ImageUrl="~/assets/images/resolved.jpg" Width="50px" Height="50px" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="divLog" runat="server" visible="false" >  <%--visible="false"--%>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="table-header">
+                                        Conversation Log Against Specific Issue
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div style="overflow: auto">
+                                                <asp:GridView ID="grdLog" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdLog_PreRender">
+                                                    <Columns>
+                                                    <asp:BoundField DataField="PMIS_ProjectWorkIssueHistory_Id" HeaderText="PMIS_ProjectWorkIssueHistory_Id">
+                                                        <HeaderStyle CssClass="displayStyle" />
+                                                        <ItemStyle CssClass="displayStyle" />
+                                                        <FooterStyle CssClass="displayStyle" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="PMIS_ProjectWorkIssueHistory_IssueDetails_Id" HeaderText="PMIS_ProjectWorkIssueHistory_IssueDetails_Id">
+                                                        <HeaderStyle CssClass="displayStyle" />
+                                                        <ItemStyle CssClass="displayStyle" />
+                                                        <FooterStyle CssClass="displayStyle" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="PMIS_ProjectWorkIssueHistory_Path" HeaderText="PMIS_ProjectWorkIssueHistory_Path">
+                                                        <HeaderStyle CssClass="displayStyle" />
+                                                        <ItemStyle CssClass="displayStyle" />
+                                                        <FooterStyle CssClass="displayStyle" />
+                                                    </asp:BoundField>
+                                                        <asp:TemplateField HeaderText="S No.">
+                                                            <ItemTemplate>
+                                                                <%# Container.DataItemIndex + 1 %>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Date">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="txtLogDate" runat="server" Text='<%# Eval("PMIS_ProjectWorkIssueHistory_Date") %>'                              CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Subject">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="txtSubject" runat="server" Text='<%# Eval("PMIS_ProjectWorkIssueHistory_Subject") %>' CssClass="form-control"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Letter Written By Authority / Designation">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="txtFrom" Text='<%# Eval("PMIS_ProjectWorkIssueHistory_LetterWrittenBy") %>' runat="server" CssClass="form-control"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Letter Written To Authority / Designation">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="txtTo" Text='<%# Eval("PMIS_ProjectWorkIssueHistory_LetterWrittenTo") %>' runat="server" CssClass="form-control"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Comments">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox ID="txtLogComments"  runat="server" TextMode="MultiLine" Text='<%# Eval("PMIS_ProjectWorkIssueHistory_Comments") %>'/>
+                                                            </ItemTemplate>
+                                                            <FooterTemplate>
+                                                                <asp:ImageButton ID="btnAddLog" OnClick="btnAddLog_Click" runat="server" ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
+                                                                <asp:ImageButton ID="btnRemoveLog" CssClass="pull-right" runat="server" ImageUrl="~/assets/images/minus-icon.png" OnClick="btnRemoveLog_Click" Width="30px" Height="30px" />
+                                                            </FooterTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Upload Issued Letter Document">
+                                                            <ItemTemplate>
+                                                                <asp:FileUpload ID="flUploadLog" runat="server" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Download Document">
+                                                            <ItemTemplate>
+                                                            <asp:LinkButton ID="lnkIssueLogDoc" runat="server" Text="Download" GO_FilePath='<%#Eval("PMIS_ProjectWorkIssueHistory_Path") %>' OnClientClick="return downloadGO(this);"></asp:LinkButton>
+                                                            </ItemTemplate>
+                                                            <FooterTemplate>
+                                                            <asp:Button ID="btnSaveLog" Text="Save All" OnClick="btnSaveLog_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                                                <asp:HiddenField ID="hf_Issue_Indx" runat="server" Value="0"></asp:HiddenField>
+                                                            </FooterTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Delete">
+                                                            <ItemTemplate>
+                                                                <asp:ImageButton ID="btnDeleteLog" OnClick="btnDeleteLog_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="30px" Height="30px" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <asp:Button ID="btnSave" Text="Save and Next >>" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <asp:Button ID="btnSkip" Text="Skip and Next >>" OnClick="btnSkip_Click" runat="server" CssClass="btn btn-warning"></asp:Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <asp:HiddenField ID="hf_ProjectWork_Id" runat="server" Value="0" />
+                    <asp:HiddenField ID="hf_Scheme_Id" runat="server" Value="0" />
+                    <asp:HiddenField ID="hf_Sr_No" runat="server" Value="0" />
+                </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="btnSave" />
+                </Triggers>
+            </asp:UpdatePanel>
+            <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
+                <ProgressTemplate>
+                    <div style="position: fixed; z-index: 999; height: 100%; width: 100%; top: 0; background-color: Black; filter: alpha(opacity=60); opacity: 0.6; -moz-opacity: 0.8; cursor: not-allowed;">
+                        <div style="z-index: 1000; margin: 300px auto; padding: 10px; width: 130px; background-color: transparent; border-radius: 1px; filter: alpha(opacity=100); opacity: 1; -moz-opacity: 1;">
+                            <img src="assets/images/mb/mbloader.gif" style="height: 150px; width: 150px;" />
+                        </div>
+                    </div>
+                </ProgressTemplate>
+            </asp:UpdateProgress>
+        </div>
+        <!-- /.main-content -->
+    </div>
+    <script>
+        function downloadGO(obj) {
+            var GO_FilePath;
+            GO_FilePath = obj.attributes.GO_FilePath.nodeValue;
+            if (GO_FilePath.trim() == "") {
+                alert('File Not Found');
+                return false;
+            }
+            else {
+                window.open(location.origin + GO_FilePath, "_blank", "", false);
+                //location.href = window.location.origin + GO_FilePath;
+                return false;
+            }
+        } 
+    </script>
+</asp:Content>
+
+
+
+
+

@@ -1,0 +1,961 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="TemplateMasterAdmin2.master.cs"
+    Inherits="TemplateMasterAdmin2" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>ERP System</title>
+    <link rel="icon" href="assets/images/mb/icon.png" type="image/x-icon">
+    <% if (Session["Client"].ToString() == "CNDS")
+        {
+    %>
+    <meta name="description" content="ERP System | Construction & Design Services, Uttar Pradesh" />
+    <% }
+        else if (Session["Client"].ToString() == "ULB")
+        {
+    %>
+    <meta name="description" content="ERP System | Department Of Urban Development, Uttar Pradesh" />
+    <% }
+        else
+        {
+    %>
+    <meta name="description" content="ERP System | Uttar Pradesh Jal Nigam" />
+    <%
+        }
+    %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="assets/css/colorbox.min.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
+    <link rel="stylesheet" href="assets/css/chosen.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-timepicker.min.css" />
+    <link rel="stylesheet" href="assets/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-colorpicker.min.css" />
+    <link rel="stylesheet" href="assets/css/chosen.min.css" />
+    <!-- text fonts -->
+    <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+
+    <!-- ace styles -->
+    <%--<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />--%>
+    <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" />
+
+    <!--[if lte IE 9]>
+			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="assets/css/myStyle.css" />
+
+    <%--    <link rel="stylesheet" type="text/css" href="DataTables/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="DataTables/jquery.dataTables.js"></script>--%>
+
+    <!--[if lte IE 9]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+    <script src="assets/js/ace-extra.min.js"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <link href="assets/css/fixedHeader.dataTables.min.css" rel="stylesheet" />
+    <link href="assets/css/datatables.mark.min.css" rel="stylesheet" />
+    <link href="assets/css/colReorder.dataTables.min.css" rel="stylesheet" />
+    <!--[if lte IE 8]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+    <%--<script src="Scripts/languageTool.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi">
+    </script>--%>
+    <style>
+        .menuScale {
+            transition: 0.5s;
+        }
+
+            .menuScale:hover {
+                letter-spacing: 0.5px;
+            }
+    </style>
+</head>
+<body class="no-skin">
+    <form id="form1" runat="server">
+        <div id="navbar" class="navbar navbar-default ace-save-state">
+            <div class="navbar-container ace-save-state" id="navbar-container">
+                <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+                    <span class="sr-only">Toggle sidebar</span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+                </button>
+
+                <div class="navbar-header pull-left">
+                    <a href="Dashboard.aspx" class="navbar-brand">
+                        <small>
+                            <% if (Session["Client"].ToString() == "CNDS")
+                                {
+                            %>
+                            <i>
+                                <img src="assets/images/cnds.png" width="30" height="30" />
+                                <b>ERP System</b>
+                            </i>
+                            <% }
+                                else if (Session["Client"].ToString() == "ULB")
+                                {
+                            %>
+                            <i>
+                                <img src="assets/images/pms_logo.png" width="30" height="30" />
+                                <b>ERP System</b>
+                            </i>
+                            <% }
+                                else
+                                {
+                            %>
+                            <i>
+                                <img src="assets/images/mb/icon.png" width="30" height="30" />
+                                <b>ERP System</b>
+                            </i>
+                            <%
+                                }
+                            %>
+
+                        </small>
+                    </a>
+                </div>
+                <div class="navbar-header" style="margin-top: 10px; margin-left: 80px;">
+                    <span class="bigger white">Welcome Back
+                        <asp:Label runat="server" ID="lblUserHeader" Text="" CssClass="bigger white"></asp:Label></span>
+                </div>
+                <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                    <ul class="nav ace-nav">
+                        <li class="light-blue dropdown-modal">
+                            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                                <img class="nav-user-photo" src="assets/images/mb/icon.png" alt="Jason's Photo" />
+                                <span class="user-info">
+                                    <small>Welcome,</small>
+                                    <asp:Label runat="server" ID="lblUser" Text=""></asp:Label>
+                                </span>
+
+                                <i class="ace-icon fa fa-caret-down"></i>
+                            </a>
+
+                            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" style="width: 320px; left: 599px; right: auto; top: 32px;">
+                                <li>
+                                    <asp:Label runat="server" ID="lblUserNameDesig" Text="" CssClass="ace-icon fa fa-angle-double-right" Font-Bold="true" ForeColor="Black"></asp:Label>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <asp:LinkButton CssClass="ace-icon fa fa-cog" ID="lnkSettings" runat="server" Text="Settings"
+                                        CausesValidation="false"></asp:LinkButton>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <asp:LinkButton CssClass="ace-icon fa fa-user" ID="lnkChangePassword" runat="server" OnClick="lnkChangePassword_Click" Text="Change Password"
+                                        CausesValidation="false"></asp:LinkButton>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <asp:LinkButton CssClass="ace-icon fa fa-sign-out" ID="lnkLogOut1" runat="server" OnClick="lnkLogOut_Click" Text="Log Out"
+                                        CausesValidation="false"></asp:LinkButton>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-container -->
+        </div>
+
+        <div class="main-container ace-save-state" id="main-container">
+            <script type="text/javascript">
+                try { ace.settings.loadState('main-container') } catch (e) { }
+            </script>
+
+            <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+                <script type="text/javascript">
+                    try { ace.settings.loadState('sidebar') } catch (e) { }
+                </script>
+
+                <!-- /.sidebar-shortcuts -->
+
+                <ul class="nav nav-list">
+                    <li id="Dashboard" class="menuScale" onclick="setTabActive('Dashboard', 'Dashboard');">
+                        <a href="DashboardFinance.aspx">
+                            <i class="menu-icon fa fa-table"></i>
+                            <span class="menu-text">Dashboard</span>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+
+                    <li class="menuScale" id="HRMaster">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-slack"></i>
+                            <span class="menu-text">HRMS Master</span>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+
+                        <ul class="submenu">
+                            <li class="menuScale" id="HRMaster_1" onclick="setTabActive('HRMaster', 'HRMaster_1');">
+                                <a href="MasterPayband.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Pay Band
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="HRMaster_2" onclick="setTabActive('HRMaster', 'HRMaster_2');">
+                                <a href="MasterPayScale.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Pay Scale
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="HRMaster_3" onclick="setTabActive('HRMaster', 'HRMaster_3');">
+                                <a href="MaterGradePay.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Grade Pay
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="HRMaster_4" onclick="setTabActive('HRMaster', 'HRMaster_4');">
+                                <a href="MasterPayComponent.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Pay Components
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="HRMaster_5" onclick="setTabActive('HRMaster', 'HRMaster_5');">
+                                <a href="MasterCadre.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Cadre
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="HRMaster_6" onclick="setTabActive('HRMaster', 'HRMaster_6');">
+                                <a href="MasterSpecialCategory.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Special Category
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="HRMaster_7" onclick="setTabActive('HRMaster', 'HRMaster_7');">
+                                <a href="MasterEmployeeType.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Employee Type
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="HRMaster_8" onclick="setTabActive('HRMaster', 'HRMaster_8');">
+                                <a href="MasterLeaveType.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Leave Type
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="HRMaster_9" onclick="setTabActive('HRMaster', 'HRMaster_9');">
+                                <a href="MasterReligion.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Religion
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="HRMaster_10" onclick="setTabActive('HRMaster', 'HRMaster_10');">
+                                <a href="MasterCaste.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Caste
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="HRMaster_12" onclick="setTabActive('HRMaster', 'HRMaster_12');">
+                                <a href="MasterCheckListNOC.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    NOC Checklist Configuration
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li class="menuScale" id="Basic">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-dashcube"></i>
+                            <span class="menu-text">Pension Master</span>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="menuScale" id="Basic_1" onclick="setTabActive('Basic', 'Basic_1');">
+                                <a href="MasterPensionReason.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Pension Not Applicable
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="Basic_2" onclick="setTabActive('Basic', 'Basic_2');">
+                                <a href="MasterArreareNature.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Nature Of Arrear
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="Basic_3" onclick="setTabActive('Basic', 'Basic_3');">
+                                <a href="MasterBasic_Pension_Rate.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Basic Pension Rate
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="menuScale" id="Basic_4" onclick="setTabActive('Basic', 'Basic_4');">
+                                <a href="MasterGIS.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    GIS Not Applicable Reason
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menuScale" id="GPFMaster">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-rupee"></i>
+                            <span class="menu-text">GPF Master</span>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="menuScale" id="GPFMaster_1" onclick="setTabActive('GPFMaster', 'GPFMaster_1');">
+                                <a href="MasterBasicGPFRate.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Basic GPF Rate 
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="GPFMaster_2" onclick="setTabActive('GPFMaster', 'GPFMaster_2');">
+                                <a href="MasterEmployeeLoan.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Employee Loan
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menuScale" id="Pension">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-wrench"></i>
+                            <span class="menu-text">Pension Module</span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+
+                        <ul class="submenu">
+                            <li class="" id="Pension_1" onclick="setTabActive('Pension', 'Pension_1');">
+                                <a href="MasterCreatePensioner.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Pensioner Registration
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="" id="Pension_2" onclick="setTabActive('Pension', 'Pension_2');">
+                                <a href="MasterUpdatePensioner.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Update Pensioner
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="" id="Pension_3" onclick="setTabActive('Pension', 'Pension_3');">
+                                <a href="Report_Pension_Data_Entry.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Pensioner Data Entry Status
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="Pension_6" onclick="setTabActive('Pension', 'Pension_6');">
+                                <a href="Pension_Basic_Details_Updation.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Update Pensioner Basic Info
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="Pension_7" onclick="setTabActive('Pension', 'Pension_7');">
+                                <a href="Report_Pensioner_Data_Verification.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Pensioner Basic Info Verification Status
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="Pension_4" onclick="setTabActive('Pension', 'Pension_4');">
+                                <a href="Report_Pension_Register.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Pensioner Register
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="Pension_5" onclick="setTabActive('Pension', 'Pension_5');">
+                                <a href="Pension_Register_Import.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Pension Register Import
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menuScale" id="HRMSInfo">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-user"></i>
+                            <span class="menu-text">HRMS Module</span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+
+                        <ul class="submenu">
+                            <li class="" id="HRMSInfo_1" onclick="setTabActive('HRMSInfo', 'HRMSInfo_1');">
+                                <a href="MasterHRMS.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Employee Registration
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="" id="HRMSInfo_2" onclick="setTabActive('HRMSInfo', 'HRMSInfo_2');">
+                                <a href="MasterUpdateEmployee.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Update Employee
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="HRMSInfo_8" onclick="setTabActive('HRMSInfo', 'HRMSInfo_8');">
+                                <a href="GenerateEmployeeNOC.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Generate NOC
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="HRMSInfo_6" onclick="setTabActive('HRMSInfo', 'HRMSInfo_6');">
+                                <a href="Salary_Register_Details_Updation.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Update Employee Basic Info
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="HRMSInfo_7" onclick="setTabActive('HRMSInfo', 'HRMSInfo_7');">
+                                <a href="Report_HRMS_Data_Verification.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Employee Basic Info Verification Status
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="HRMSInfo_3" onclick="setTabActive('HRMSInfo', 'HRMSInfo_3');">
+                                <a href="Report_Salary_Register.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Salary Register
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="HRMSInfo_4" onclick="setTabActive('HRMSInfo', 'HRMSInfo_4');">
+                                <a href="HRMS_Salary_Import.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Salary Register Import
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="HRMSInfo_5" onclick="setTabActive('HRMSInfo', 'HRMSInfo_5');">
+                                <a href="Report_Salary_Register_Zone.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Salary Register Summery
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menuScale" id="InvMaster">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-houzz"></i>
+                            <span class="menu-text">Inventory Master</span>
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="menuScale" id="InvMaster_1" onclick="setTabActive('InvMaster', 'InvMaster_1');">
+                                <a href="MasterInventoryUnit.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Unit
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="InvMaster_2" onclick="setTabActive('InvMaster', 'InvMaster_2');">
+                                <a href="Master_Inventory_Category.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Category
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="InvMaster_3" onclick="setTabActive('InvMaster', 'InvMaster_3');">
+                                <a href="Master_Inventory_Type.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Type
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="InvMaster_4" onclick="setTabActive('InvMaster', 'InvMaster_4');">
+                                <a href="Master_Inventory_Company.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Company
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="InvMaster_5" onclick="setTabActive('InvMaster', 'InvMaster_5');">
+                                <a href="Master_HSN_Code.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    SAC/HSN Code
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="menuScale" id="InvMaster_6" onclick="setTabActive('InvMaster', 'InvMaster_6');">
+                                <a href="Master_Class.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Item Class
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menuScale" id="Inventory">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-pencil"></i>
+                            <span class="menu-text">Inventory Transaction</span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+
+                        <ul class="submenu">
+                            <li class="" id="Inventory_1" onclick="setTabActive('Inventory', 'Inventory_1');">
+                                <a href="Iventory_Item_Master.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Item Master
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="Inventory_2" onclick="setTabActive('Inventory', 'Inventory_2');">
+                                <a href="Iventory_Item_Stock_Master.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Item Stock Master
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="Inventory_3" onclick="setTabActive('Inventory', 'Inventory_3');">
+                                <a href="Iventory_Stock_Transfer.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Inter Office Stock Transfer
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="Inventory_5" onclick="setTabActive('Inventory', 'Inventory_5');">
+                                <a href="Iventory_Stock_Purchase.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Add Stock In (Purchase)
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="" id="Inventory_4" onclick="setTabActive('Inventory', 'Inventory_4');">
+                                <a href="Iventory_Stock_Sale.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Add Stock Out
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menuScale" id="GPF">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-bars"></i>
+                            <span class="menu-text">GPF Module</span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+
+                        <b class="arrow"></b>
+
+                        <ul class="submenu">
+                            <li class="" id="GPF_1" onclick="setTabActive('GPF', 'GPF_1');">
+                                <a href="GPFEmployeeDetails.aspx">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    GPF Passbook Entry 
+                                </a>
+                                <b class="arrow"></b>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="#" id="lnkLogOut" runat="server" onserverclick="lnkLogOut_Click">
+                            <i class="menu-icon fa fa-power-off"></i>
+                            <span class="menu-text">Log Out</span>
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                </ul>
+
+                <!-- /.nav-list -->
+
+                <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                    <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+                </div>
+            </div>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <div class="footer">
+                <div class="footer-inner">
+                    <div class="footer-content">
+                        <span class="bigger-120">
+                            <% if (Session["Client"].ToString() == "CNDS")
+                                {
+                            %>
+                            <i>
+                                <img src="assets/images/cnds.png" width="50" height="50" />
+                            </i>
+                            <span class="blue bolder">ERP System</span>&copy; 2023-2024
+                            <% }
+                                else if (Session["Client"].ToString() == "ULB")
+                                {
+                            %>
+                            <i>
+                                <img src="assets/images/pms_logo.png" width="50" height="50" />
+                            </i>
+                            <span class="blue bolder">ERP System</span>&copy; 2023-2024
+                            <% }
+                                else
+                                {
+                            %>
+                            <i>
+                                <img src="assets/images/ePayMentimg.png" width="50" height="50" />
+                            </i>
+                            <span class="blue bolder">ERP System</span>&copy; 2023-2024
+                            <%
+                                }
+                            %>
+                            <%--  <i>
+                                <img src="assets/images/mb/icon.png" width="30px" height="30px" />
+                            </i>
+                            &nbsp;
+                            &nbsp;
+                            <span class="blue bolder">ERP System</span>
+                            &copy; 2023-2024
+                            <input id="txtDummy" class="displayStyle" type="text" />--%>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+            </a>
+        </div>
+        <!-- /.main-container -->
+
+        <!-- basic scripts -->
+
+        <!--[if !IE]> -->
+
+
+        <!-- <![endif]-->
+
+        <!--[if IE]>
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<![endif]-->
+        <script type="text/javascript">
+            if ('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+        </script>
+        <script src="assets/js/bootstrap.min.js"></script>
+
+        <!-- page specific plugin scripts -->
+
+        <!--[if lte IE 8]>
+		  <script src="assets/js/excanvas.min.js"></script>
+		<![endif]-->
+        <script src="assets/js/jquery-ui.custom.min.js"></script>
+        <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+        <script src="assets/js/chosen.jquery.min.js"></script>
+        <script src="assets/js/spinbox.min.js"></script>
+
+        <script src="assets/js/bootstrap-timepicker.min.js"></script>
+        <script src="assets/js/moment.min.js"></script>
+        <script src="assets/js/daterangepicker.min.js"></script>
+        <script src="assets/js/bootstrap-datepicker.min.js"></script>
+        <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="assets/js/bootstrap-colorpicker.min.js"></script>
+        <script src="assets/js/jquery.knob.min.js"></script>
+        <script src="assets/js/autosize.min.js"></script>
+        <script src="assets/js/jquery.inputlimiter.min.js"></script>
+        <script src="assets/js/jquery.maskedinput.min.js"></script>
+        <script src="assets/js/bootstrap-tag.min.js"></script>
+        <script src="assets/js/jquery.easypiechart.min.js"></script>
+        <script src="assets/js/jquery.sparkline.index.min.js"></script>
+        <!-- ace scripts -->
+        <script src="assets/js/jquery.colorbox.min.js"></script>
+        <script src="assets/js/myJSFunc.js"></script>
+        <script src="Scripts/clientValidation.js"></script>
+        <!-- inline scripts related to this page -->
+
+        <script src="assets/js/jquery.flot.min.js"></script>
+        <script src="assets/js/jquery.flot.pie.min.js"></script>
+        <script src="assets/js/jquery.flot.resize.min.js"></script>
+        <script src="assets/js/chosen.jquery.min.js"></script>
+
+        <!-- DataTable specific plugin scripts -->
+        <script src="assets/js/jquery.dataTables.min.js"></script>
+        <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
+        <script src="assets/js/dataTables.buttons.min.js"></script>
+        <script src="assets/js/buttons.flash.min.js"></script>
+        <script src="assets/js/buttons.html5.min.js"></script>
+        <script src="assets/js/buttons.print.min.js"></script>
+        <script src="assets/js/buttons.colVis.min.js"></script>
+        <script src="assets/js/dataTables.select.min.js"></script>
+        <script src="assets/js/ace-elements.min.js"></script>
+        <script src="assets/js/ace.min.js"></script>
+        <script src="assets/js/dataTables.fixedHeader.min.js"></script>
+        <script src="assets/js/jquery.mark.min.js"></script>
+        <script src="assets/js/datatables.mark.js"></script>
+        <script src="assets/js/dataTables.colReorder.min.js"></script>
+        <%-- <script src="assets/DataTablegrdPost.js"></script>--%>
+
+        <script type="text/javascript">
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
+                jQuery(function ($) {
+                    if (!ace.vars['touch']) {
+                        $('.chosen-select').chosen({ allow_single_deselect: true });
+                        //resize the chosen on window resize
+
+                        $(window)
+                            .off('resize.chosen')
+                            .on('resize.chosen', function () {
+                                $('.chosen-select').each(function () {
+                                    var $this = $(this);
+                                    $this.next().css({ 'width': $this.parent().width() });
+                                })
+                            }).trigger('resize.chosen');
+                        //resize chosen on sidebar collapse/expand
+                        $(document).on('settings.ace.chosen', function (e, event_name, event_val) {
+                            if (event_name != 'sidebar_collapsed') return;
+                            $('.chosen-select').each(function () {
+                                var $this = $(this);
+                                $this.next().css({ 'width': $this.parent().width() });
+                            })
+                        });
+                    };
+                    //datepicker plugin
+                    //link
+                    $('.date-picker').datepicker({
+                        autoclose: true,
+                        todayHighlight: true
+                    })
+                        //show datepicker when clicking on the icon
+                        .next().on(ace.click_event, function () {
+                            $(this).prev().focus();
+                        });
+                    $(".datepicker").datepicker({
+                        format: "yyyy",
+                        viewMode: "years",
+                        minViewMode: "years",
+                        autoclose: true,
+                        changeYear: true,
+                        yearRange: 'c-10:c+20'
+                    });
+
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
+                jQuery(function ($) {
+                    $('.easy-pie-chart.percentage').each(function () {
+                        var $box = $(this).closest('.infobox');
+                        var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
+                        var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
+                        var size = parseInt($(this).data('size')) || 50;
+                        $(this).easyPieChart({
+                            barColor: barColor,
+                            trackColor: trackColor,
+                            scaleColor: false,
+                            lineCap: 'butt',
+                            lineWidth: parseInt(size / 10),
+                            animate: ace.vars['old_ie'] ? false : 1000,
+                            size: size
+                        });
+                    })
+
+                    $('.sparkline').each(function () {
+                        var $box = $(this).closest('.infobox');
+                        var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
+                        $(this).sparkline('html',
+                            {
+                                tagValuesAttribute: 'data-values',
+                                type: 'bar',
+                                barColor: barColor,
+                                chartRangeMin: $(this).data('min') || 0
+                            });
+                    });
+
+                    /////////////////////////////////////
+                    $(document).one('ajaxloadstart.page', function (e) {
+                        $tooltip.remove();
+                    });
+
+                    var d1 = [];
+                    for (var i = 0; i < Math.PI * 2; i += 0.5) {
+                        d1.push([i, Math.sin(i)]);
+                    }
+
+                    var d2 = [];
+                    for (var i = 0; i < Math.PI * 2; i += 0.5) {
+                        d2.push([i, Math.cos(i)]);
+                    }
+
+                    var d3 = [];
+                    for (var i = 0; i < Math.PI * 2; i += 0.2) {
+                        d3.push([i, Math.tan(i)]);
+                    }
+
+
+
+                    $('#recent-box [data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
+                    function tooltip_placement(context, source) {
+                        var $source = $(source);
+                        var $parent = $source.closest('.tab-content')
+                        var off1 = $parent.offset();
+                        var w1 = $parent.width();
+
+                        var off2 = $source.offset();
+                        //var w2 = $source.width();
+
+                        if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                        return 'left';
+                    }
+
+
+                    $('.dialogs,.comments').ace_scroll({
+                        size: 300
+                    });
+
+
+                    //Android's default browser somehow is confused when tapping on label which will lead to dragging the task
+                    //so disable dragging when clicking on label
+                    var agent = navigator.userAgent.toLowerCase();
+                    if (ace.vars['touch'] && ace.vars['android']) {
+                        $('#tasks').on('touchstart', function (e) {
+                            var li = $(e.target).closest('#tasks li');
+                            if (li.length == 0) return;
+                            var label = li.find('label.inline').get(0);
+                            if (label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation();
+                        });
+                    }
+
+                    $('#tasks').sortable({
+                        opacity: 0.8,
+                        revert: true,
+                        forceHelperSize: true,
+                        placeholder: 'draggable-placeholder',
+                        forcePlaceholderSize: true,
+                        tolerance: 'pointer',
+                        stop: function (event, ui) {
+                            //just for Chrome!!!! so that dropdowns on items don't appear below other items after being moved
+                            $(ui.item).css('z-index', 'auto');
+                        }
+                    }
+                    );
+                    $('#tasks').disableSelection();
+                    $('#tasks input:checkbox').removeAttr('checked').on('click', function () {
+                        if (this.checked) $(this).closest('li').addClass('selected');
+                        else $(this).closest('li').removeClass('selected');
+                    });
+
+
+                    //show the dropdowns on top or bottom depending on window height and menu position
+                    $('#task-tab .dropdown-hover').on('mouseenter', function (e) {
+                        var offset = $(this).offset();
+
+                        var $w = $(window)
+                        if (offset.top > $w.scrollTop() + $w.innerHeight() - 100)
+                            $(this).addClass('dropup');
+                        else $(this).removeClass('dropup');
+                    });
+                })
+            });
+        </script>
+
+
+        <script type="text/javascript">
+            function setTabActive(mainMenuId, subMenuId) {
+                $('#nav nav-list').find('li[class^="active open"]').removeClass('active open');
+                $('#nav nav-list').find('li[class^="active"]').removeClass('active');
+                $('#submenu').find('li[class^="active"]').removeClass('active');
+
+                if (mainMenuId == subMenuId) {
+                    $("#" + mainMenuId + "").addClass('active');
+                }
+                else {
+                    $("#" + mainMenuId + "").addClass('active open');
+                    $("#" + subMenuId + "").addClass('active');
+                }
+                sessionStorage["_activeMainMenu"] = mainMenuId;
+                sessionStorage["_activeSubMenu"] = subMenuId;
+            }
+
+            $(document).ready(function () {
+                if (sessionStorage["_activeMainMenu"] == "" || sessionStorage["_activeMainMenu"] == undefined) { }
+                else {
+                    $('#nav nav-list').find('li').removeAttr('class');
+                    if (sessionStorage["_activeMainMenu"] == sessionStorage["_activeSubMenu"]) {
+                        $("#" + sessionStorage["_activeMainMenu"] + "").addClass('active');
+                    }
+                    else {
+                        $("#" + sessionStorage["_activeMainMenu"] + "").addClass('active open');
+                        $("#" + sessionStorage["_activeSubMenu"] + "").addClass('active');
+                    }
+                }
+            });
+        </script>
+        <script type="text/javascript">
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
+                jQuery(function ($) {
+                    $('.date-picker').datepicker({ dateFormat: 'dd/mm/yy' });
+                    $(".chosen-select").chosen();
+
+                })
+            })
+        </script>
+    </form>
+</body>
+</html>

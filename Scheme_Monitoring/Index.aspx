@@ -19,7 +19,7 @@
                         <img src="assets/images/logo-light.png" alt="" height="20">
                     </a>
                 </div>
-                <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
+                <p class="mt-3 fs-15 fw-medium">Urban Development Department, Government of Uttar Pradesh</p>
             </div>
         </div>
     </div>
