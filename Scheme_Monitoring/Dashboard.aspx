@@ -49,7 +49,6 @@
                 <div class="row">
                     <div class="col-xxl-12">
                         <div class="d-flex flex-column h-100">
-
                             <!-- end row-->
                             <div class="row">
                                 <div class="col-md-3">
@@ -62,19 +61,33 @@
                                             </asp:BoundField>
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <div class="card card-animate">
+                                                    <div class="card card-animate" style="border-color: #25a0e2; height: 290px;">
                                                         <div class="card-body">
                                                             <div class="d-flex justify-content-between">
                                                                 <div>
-                                                                    <a href="Dashboard_Master.aspx?Scheme_Id=<%# Eval("Project_Id") %>">
+                                                                    <a href="Dashboard_PMIS.aspx?Scheme_Id=<%# Eval("Project_Id") %>">
                                                                         <p class="fw-medium text-muted mb-0"><%# Eval("Project_Name") %></p>
+
+                                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                     </a>
-                                                                    <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
-                                                                    <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i><%# Eval("Completed_Count") %> </span>Completed Projects</p>
-                                                                    <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"><i class="ri-arrow-down-line align-middle"></i><%# Eval("Total_Count") %></span>Total Projects</p>
                                                                 </div>
                                                                 <div>
                                                                     <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2"><i data-feather="activity" class="text-primary"></i></span></div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="px-2 py-2 mt-1">
+                                                                <p class="mb-1">Ongoing Projects<span class="float-end"><%# Eval("OnGoing_Count") %> - (<%# Eval("Ongoing_Per") %>%)</span></p>
+                                                                <div class="progress mt-2" style="height: 6px;">
+                                                                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: <%# Eval("Ongoing_Per") %>%" aria-valuenow="<%# Eval("Ongoing_Per") %>" aria-valuemin="0" aria-valuemax="<%# Eval("Ongoing_Per") %>">
+                                                                    </div>
+                                                                </div>
+
+                                                                <p class="mt-3 mb-1">Completed Projects<span class="float-end"><%# Eval("Completed_Count") %> - (<%# Eval("Completed_Per") %>%)</span></p>
+                                                                <div class="progress mt-2" style="height: 6px;">
+                                                                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: <%# Eval("Completed_Per") %>%" aria-valuenow="<%# Eval("Completed_Per") %>" aria-valuemin="0" aria-valuemax="<%# Eval("Completed_Per") %>">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -96,19 +109,33 @@
                                             </asp:BoundField>
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <div class="card card-animate">
+                                                    <div class="card card-animate" style="border-color: #ff4100; height: 290px;">
                                                         <div class="card-body">
                                                             <div class="d-flex justify-content-between">
                                                                 <div>
-                                                                    <a href="Dashboard_Master.aspx?Scheme_Id=<%# Eval("Project_Id") %>">
+                                                                    <a href="Dashboard_PMIS.aspx?Scheme_Id=<%# Eval("Project_Id") %>">
                                                                         <p class="fw-medium text-muted mb-0"><%# Eval("Project_Name") %></p>
+
+                                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
                                                                     </a>
-                                                                    <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
                                                                     <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i><%# Eval("Completed_Count") %> </span>Completed Projects</p>
                                                                     <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"><i class="ri-arrow-down-line align-middle"></i><%# Eval("Total_Count") %></span>Total Projects</p>
                                                                 </div>
                                                                 <div>
                                                                     <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2"><i data-feather="activity" class="text-primary"></i></span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="px-2 py-2 mt-1">
+                                                                <p class="mb-1">Ongoing Projects<span class="float-end"><%# Eval("OnGoing_Count") %> - (<%# Eval("Ongoing_Per") %>%)</span></p>
+                                                                <div class="progress mt-2" style="height: 6px;">
+                                                                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: <%# Eval("Ongoing_Per") %>%" aria-valuenow="<%# Eval("Ongoing_Per") %>" aria-valuemin="0" aria-valuemax="<%# Eval("Ongoing_Per") %>">
+                                                                    </div>
+                                                                </div>
+
+                                                                <p class="mt-3 mb-1">Completed Projects<span class="float-end"><%# Eval("Completed_Count") %> - (<%# Eval("Completed_Per") %>%)</span></p>
+                                                                <div class="progress mt-2" style="height: 6px;">
+                                                                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: <%# Eval("Completed_Per") %>%" aria-valuenow="<%# Eval("Completed_Per") %>" aria-valuemin="0" aria-valuemax="<%# Eval("Completed_Per") %>">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -129,19 +156,33 @@
                                             </asp:BoundField>
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <div class="card card-animate">
+                                                    <div class="card card-animate" style="border-color: #0b41f9; height: 290px;">
                                                         <div class="card-body">
                                                             <div class="d-flex justify-content-between">
                                                                 <div>
-                                                                    <a href="Dashboard_Master.aspx?Scheme_Id=<%# Eval("Project_Id") %>">
+                                                                    <a href="Dashboard_PMIS.aspx?Scheme_Id=<%# Eval("Project_Id") %>">
                                                                         <p class="fw-medium text-muted mb-0"><%# Eval("Project_Name") %></p>
+
+                                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
                                                                     </a>
-                                                                    <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
                                                                     <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i><%# Eval("Completed_Count") %> </span>Completed Projects</p>
                                                                     <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"><i class="ri-arrow-down-line align-middle"></i><%# Eval("Total_Count") %></span>Total Projects</p>
                                                                 </div>
                                                                 <div>
                                                                     <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2"><i data-feather="activity" class="text-primary"></i></span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="px-2 py-2 mt-1">
+                                                                <p class="mb-1">Ongoing Projects<span class="float-end"><%# Eval("OnGoing_Count") %> - (<%# Eval("Ongoing_Per") %>%)</span></p>
+                                                                <div class="progress mt-2" style="height: 6px;">
+                                                                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: <%# Eval("Ongoing_Per") %>%" aria-valuenow="<%# Eval("Ongoing_Per") %>" aria-valuemin="0" aria-valuemax="<%# Eval("Ongoing_Per") %>">
+                                                                    </div>
+                                                                </div>
+
+                                                                <p class="mt-3 mb-1">Completed Projects<span class="float-end"><%# Eval("Completed_Count") %> - (<%# Eval("Completed_Per") %>%)</span></p>
+                                                                <div class="progress mt-2" style="height: 6px;">
+                                                                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: <%# Eval("Completed_Per") %>%" aria-valuenow="<%# Eval("Completed_Per") %>" aria-valuemin="0" aria-valuemax="<%# Eval("Completed_Per") %>">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -162,19 +203,33 @@
                                             </asp:BoundField>
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <div class="card card-animate">
+                                                    <div class="card card-animate" style="border-color: #000000; height: 290px;">
                                                         <div class="card-body">
                                                             <div class="d-flex justify-content-between">
                                                                 <div>
-                                                                    <a href="Dashboard_Master.aspx?Scheme_Id=<%# Eval("Project_Id") %>">
+                                                                    <a href="Dashboard_PMIS.aspx?Scheme_Id=<%# Eval("Project_Id") %>">
                                                                         <p class="fw-medium text-muted mb-0"><%# Eval("Project_Name") %></p>
+
+                                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
                                                                     </a>
-                                                                    <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
                                                                     <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i><%# Eval("Completed_Count") %> </span>Completed Projects</p>
                                                                     <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"><i class="ri-arrow-down-line align-middle"></i><%# Eval("Total_Count") %></span>Total Projects</p>
                                                                 </div>
                                                                 <div>
                                                                     <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2"><i data-feather="activity" class="text-primary"></i></span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="px-2 py-2 mt-1">
+                                                                <p class="mb-1">Ongoing Projects<span class="float-end"><%# Eval("OnGoing_Count") %> - (<%# Eval("Ongoing_Per") %>%)</span></p>
+                                                                <div class="progress mt-2" style="height: 6px;">
+                                                                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: <%# Eval("Ongoing_Per") %>%" aria-valuenow="<%# Eval("Ongoing_Per") %>" aria-valuemin="0" aria-valuemax="<%# Eval("Ongoing_Per") %>">
+                                                                    </div>
+                                                                </div>
+
+                                                                <p class="mt-3 mb-1">Completed Projects<span class="float-end"><%# Eval("Completed_Count") %> - (<%# Eval("Completed_Per") %>%)</span></p>
+                                                                <div class="progress mt-2" style="height: 6px;">
+                                                                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: <%# Eval("Completed_Per") %>%" aria-valuenow="<%# Eval("Completed_Per") %>" aria-valuemin="0" aria-valuemax="<%# Eval("Completed_Per") %>">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -195,7 +250,6 @@
                     <!-- end col -->
                 </div>
                 <!-- end row-->
-
             </div>
             <!-- container-fluid -->
         </div>

@@ -27,40 +27,28 @@
 
 <body>
     <form id="form1" runat="server">
-        <div class="auth-page-wrapper pt-5">
-            <!-- auth page bg -->
-            <div class="auth-one-bg-position auth-one-bg" id="auth-particles">
-                <div class="bg-overlay"></div>
-
-                <div class="shape">
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1440 120">
-                        <path d="M 0,36 C 144,53.6 432,123.2 720,124 C 1008,124.8 1296,56.8 1440,40L1440 140L0 140z"></path>
-                    </svg>
-                </div>
-            </div>
-
-            <!-- auth page content -->
-            <div class="auth-page-content">
-                <div class="container">
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
-                </div>
-                <!-- end container -->
-            </div>
-            <!-- end auth page content -->
+        <!-- auth-page wrapper -->
+        <div class="auth-page-wrapper auth-bg-cover py-5 d-flex justify-content-center align-items-center min-vh-100">
+            <div class="bg-overlay"></div>
+            <!-- auth-page content -->
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
             <!-- footer -->
             <footer class="footer">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="text-center">
-                                <p class="mb-0 text-muted">
-                                    &copy;
-                           
-                                    <script>document.write(new Date().getFullYear())</script>
-                                    . Designed, Developed and Mainiained <i class="mdi mdi-heart text-danger"></i>by MARGSOFT
-                       
+                        <div class="col-lg-6">
+                            <div class="text-sm-center text-md-start">
+                                <p class="mb-0">
+                                    ©
+                            <script>document.write(new Date().getFullYear())</script>
+                                    SMS | MARGSOFT Technologies (P) Ltd
                                 </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="text-sm-center text-md-end">
+                                <p class="mb-0">Powered by <a href="Javascript:void(0)">MARGSOFT Technologies (P) Ltd.</a> </p>
                             </div>
                         </div>
                     </div>

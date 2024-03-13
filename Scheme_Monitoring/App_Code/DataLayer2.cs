@@ -18238,6 +18238,10 @@ public partial class DataLayer : Page, IRequiresSessionState
 	                    Completed_Count = sum(case when convert(decimal(18, 2), isnull(tTarget.ProjectWorkPhysicalTarget_Target, 0)) >= 100 then 1 else 0 end),
 	                    OnGoing_Count = sum(case when convert(decimal(18, 2), isnull(tTarget.ProjectWorkPhysicalTarget_Target, 0)) < 100 then 1 else 0 end), 
 
+                        Completed_Per = convert(decimal(18, 0), (sum(case when convert(decimal(18, 2), isnull(tTarget.ProjectWorkPhysicalTarget_Target, 0)) >= 100 then 1 else 0 end)) * 100 / count(*)),
+
+                        Ongoing_Per = convert(decimal(18, 0), (sum(case when convert(decimal(18, 2), isnull(tTarget.ProjectWorkPhysicalTarget_Target, 0)) < 100 then 1 else 0 end)) * 100 / count(*)),
+
 						Total_Sanction = sum(isnull(ProjectWork_Budget, 0)),
 	                    Completed_Sanction = sum(case when convert(decimal(18, 2), isnull(tTarget.ProjectWorkPhysicalTarget_Target, 0)) >= 100 then isnull(ProjectWork_Budget, 0) else 0 end),
 	                    OnGoing_Sanction = sum(case when convert(decimal(18, 2), isnull(tTarget.ProjectWorkPhysicalTarget_Target, 0)) < 100 then isnull(ProjectWork_Budget, 0) else 0 end), 

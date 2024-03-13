@@ -25,22 +25,6 @@ public partial class DashboardNew : System.Web.UI.Page
             lblCircleH.Text = Session["Default_Circle"].ToString();
             lblDivisionH.Text = Session["Default_Division"].ToString();
             get_tbl_Zone();
-            if (Session["PersonJuridiction_DesignationId"].ToString() == "9" || Session["PersonJuridiction_DesignationId"].ToString() == "4" || Session["PersonJuridiction_DesignationId"].ToString() == "33" || Session["PersonJuridiction_DesignationId"].ToString() == "1056")
-            {
-                divMIS.Visible = true;
-            }
-            else if (Session["UserType"].ToString() == "1")
-            {
-                divMIS.Visible = false;
-            }
-            else if (Session["UserType"].ToString() == "3")
-            {
-                divMIS.Visible = true;
-            }
-            else
-            {
-                divMIS.Visible = false;
-            }
             if (Session["SearchStorage"] != null)
             {
                 SearchStorage obj_SearchStorage = (SearchStorage)Session["SearchStorage"];
@@ -554,67 +538,68 @@ public partial class DashboardNew : System.Web.UI.Page
             gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
     }
-    protected void btnAnalysisReport1_Click(object sender, EventArgs e)
-    {
-        GridViewRow gr = (sender as Button).Parent.Parent as GridViewRow;
-        int Scheme_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        Response.Redirect("Menu_Analysis.aspx?Scheme_Id=" + Scheme_Id.ToString());
-    }
-
-    protected void btnEMBDashbaord1_Click(object sender, EventArgs e)
-    {
-        GridViewRow gr = (sender as Button).Parent.Parent as GridViewRow;
-        int Scheme_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        Response.Redirect("DashboardDept.aspx?Scheme_Id=" + Scheme_Id.ToString());
-    }
-
-    protected void btnAnalysisReport2_Click(object sender, EventArgs e)
-    {
-        GridViewRow gr = (sender as Button).Parent.Parent as GridViewRow;
-        int Scheme_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        Response.Redirect("Menu_Analysis.aspx?Scheme_Id=" + Scheme_Id.ToString());
-    }
-
-    protected void btnEMBDashbaord2_Click(object sender, EventArgs e)
-    {
-        GridViewRow gr = (sender as Button).Parent.Parent as GridViewRow;
-        int Scheme_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        Response.Redirect("DashboardDept.aspx?Scheme_Id=" + Scheme_Id.ToString());
-    }
-
-    protected void btnAnalysisReport3_Click(object sender, EventArgs e)
-    {
-        GridViewRow gr = (sender as Button).Parent.Parent as GridViewRow;
-        int Scheme_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        Response.Redirect("Menu_Analysis.aspx?Scheme_Id=" + Scheme_Id.ToString());
-    }
-
-    protected void btnEMBDashbaord3_Click(object sender, EventArgs e)
-    {
-        GridViewRow gr = (sender as Button).Parent.Parent as GridViewRow;
-        int Scheme_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        Response.Redirect("DashboardDept.aspx?Scheme_Id=" + Scheme_Id.ToString());
-    }
-
-    protected void btnAnalysisReport4_Click(object sender, EventArgs e)
-    {
-        GridViewRow gr = (sender as Button).Parent.Parent as GridViewRow;
-        int Scheme_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        Response.Redirect("Menu_Analysis.aspx?Scheme_Id=" + Scheme_Id.ToString());
-    }
-
-    protected void btnEMBDashbaord4_Click(object sender, EventArgs e)
-    {
-        GridViewRow gr = (sender as Button).Parent.Parent as GridViewRow;
-        int Scheme_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        Response.Redirect("DashboardDept.aspx?Scheme_Id=" + Scheme_Id.ToString());
-    }
-    protected void btnMIS_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("MasterProjectWorkMIS.aspx");
-    }
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         Load_dashboard();
+    }
+
+    protected void btnDistWise_Click(object sender, EventArgs e)
+    {
+        int Zone_Id = 0;
+        int Circle_Id = 0;
+        int Division_Id = 0;
+        int District_Id = 0;
+        int ULB_Id = 0;
+
+        try
+        {
+            Zone_Id = Convert.ToInt32(ddlZone.SelectedValue);
+        }
+        catch
+        {
+            Zone_Id = 0;
+        }
+        try
+        {
+            Circle_Id = Convert.ToInt32(ddlCircle.SelectedValue);
+        }
+        catch
+        {
+            Circle_Id = 0;
+        }
+        try
+        {
+            Division_Id = Convert.ToInt32(ddlDivision.SelectedValue);
+        }
+        catch
+        {
+            Division_Id = 0;
+        }
+        GridViewRow gr = (sender as Button).Parent.Parent as GridViewRow;
+        int Scheme_Id = 0;
+        try
+        {
+            Scheme_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
+        }
+        catch
+        {
+            Scheme_Id = 0;
+        }
+        if (Zone_Id == 0)
+        {
+            Response.Redirect("Report_Collection.aspx?Scheme_Id=" + Scheme_Id.ToString());
+        }
+        else if (Zone_Id > 0 && Circle_Id == 0)
+        {
+            Response.Redirect("Report_Collection_District.aspx?Scheme_Id=" + Scheme_Id.ToString() + "&Zone_Id=" + Zone_Id.ToString() + "&Zone_Name=");
+        }
+        else if (Zone_Id > 0 && Circle_Id > 0 && Division_Id == 0)
+        {
+            Response.Redirect("Report_Collection_Circle.aspx?Scheme_Id=" + Scheme_Id.ToString() + "&Zone_Id=" + Zone_Id.ToString() + "&Circle_Id=" + Circle_Id.ToString());
+        }
+        else
+        {
+            Response.Redirect("Report_Collection_Division.aspx?Scheme_Id=" + Scheme_Id.ToString() + "&Zone_Id=" + Zone_Id.ToString() + "&Circle_Id=" + Circle_Id.ToString() + "&Division_Id=" + Division_Id.ToString());
+        }
     }
 }
