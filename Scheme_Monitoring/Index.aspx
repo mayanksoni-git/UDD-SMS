@@ -10,99 +10,93 @@
     </cc1:ModalPopupExtender>
     <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
 
+    <!-- auth-page content -->
+    <div class="auth-page-content overflow-hidden pt-lg-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card overflow-hidden border-0">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="p-lg-5 p-4 auth-one-bg h-100">
+                                    <div class="bg-overlay"></div>
+                                    <div class="position-relative h-100 d-flex flex-column">
+                                        <div class="mb-4">
+                                            <a href="Index.aspx" class="d-block">
+                                                <img src="assets/images/logo-light.png" alt="" class="img-fluid">
+                                            </a>
+                                        </div>
+                                        <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+                                        <p class="text-white">It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="text-center mt-sm-5 mb-4 text-white-50">
-                <div>
-                    <a href="index.html" class="d-inline-block auth-logo">
-                        <img src="assets/images/logo-light.png" alt="" height="20">
-                    </a>
-                </div>
-                <p class="mt-3 fs-15 fw-medium">Urban Development Department, Government of Uttar Pradesh</p>
-            </div>
-        </div>
-    </div>
-    <!-- end row -->
+                            <div class="col-lg-6">
+                                <div class="p-lg-5 p-4">
+                                    <div>
+                                        <h5 class="text-login">Signin</h5>
+                                    </div>
+                                    <div class="mt-4">
+                                        <div class="mb-3">
+                                            <label for="username" class="form-label">Username</label>
+                                            <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" placeholder="User Name" autocomplete="off">
+                                            </asp:TextBox>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="float-end"><a href="auth-pass-reset-cover.html" class="text-muted">Forgot password?</a> </div>
+                                            <label class="form-label" for="password-input">Password</label>
+                                            <div class="position-relative auth-pass-inputgroup mb-3">
+                                                <asp:TextBox ID="txtPassowrd" runat="server" CssClass="form-control pe-5 password-input" placeholder="Password" autocomplete="off" TextMode="Password">
+                                                </asp:TextBox>
+                                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
+                                            <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                                        </div>
+                                        <div class="mt-4">
+                                            <asp:TextBox ID="txtCaptcha" runat="server" CssClass="form-control" placeholder="Captcha">
+                                            </asp:TextBox>
+                                        </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6 col-xl-5">
-            <div class="card mt-4">
-
-                <div class="card-body p-4">
-                    <div class="text-center mt-2">
-                        <h5 class="text-primary">Welcome Back !</h5>
-                        <p class="text-muted">Sign in to continue to SMS.</p>
+                                        <div class="mt-4">
+                                            <div class="float-end">
+                                                <asp:ImageButton ImageUrl="~/refresh.png" runat="server" CausesValidation="false" />
+                                            </div>
+                                            <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="5"
+                                                CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
+                                                FontColor="#D20B0C" NoiseColor="#B1B1B1" />
+                                        </div>
+                                        <div class="mt-4">
+                                            <asp:CustomValidator ErrorMessage="Invalid. Please try again." OnServerValidate="ValidateCaptcha"
+                                                runat="server" />
+                                        </div>
+                                        <div class="mt-4">
+                                            <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success w-100" OnClick="btnLogin_Click" />
+                                        </div>
+                                    </div>
+                                    <div class="mt-5 text-center">
+                                        <p class="mb-0">Don't have an account ? <a href="auth-signup-cover.html" class="fw-semibold text-primary text-decoration-underline">Signup</a> </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
                     </div>
-                    <div class="p-2 mt-4">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" placeholder="User Name" autocomplete="off">
-                            </asp:TextBox>
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="float-end">
-                                <a href="auth-pass-reset-basic.html" class="text-muted">Forgot password?</a>
-                            </div>
-                            <label class="form-label" for="password-input">Password</label>
-                            <div class="position-relative auth-pass-inputgroup mb-3">
-                                <asp:TextBox ID="txtPassowrd" runat="server" CssClass="form-control pe-5 password-input" placeholder="Password" autocomplete="off" TextMode="Password">
-                                </asp:TextBox>
-                                <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <asp:TextBox ID="txtCaptcha" runat="server" CssClass="form-control" placeholder="Captcha">
-                            </asp:TextBox>
-                        </div>
-
-                        <div class="mt-4">
-                            <div class="float-end">
-                                <asp:ImageButton ImageUrl="~/refresh.png" runat="server" CausesValidation="false" />
-                            </div>
-                            <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="5"
-                                CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
-                                FontColor="#D20B0C" NoiseColor="#B1B1B1" />
-                        </div>
-                        <div class="mt-4">
-                            <asp:CustomValidator ErrorMessage="Invalid. Please try again." OnServerValidate="ValidateCaptcha"
-                                runat="server" />
-                        </div>
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
-                            <label class="form-check-label" for="auth-remember-check">Remember me</label>
-                        </div>
-
-                        <div class="mt-4">
-                            <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success w-100" OnClick="btnLogin_Click" />
-                        </div>
-
-                        <div class="mt-4 text-center">
-                            <div class="signin-other-title">
-                                <h5 class="fs-13 mb-4 title">Sign In with</h5>
-                            </div>
-                            <div>
-                                <button type="button" class="btn btn-primary btn-icon waves-effect waves-light"><i class="ri-facebook-fill fs-16"></i></button>
-                                <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>
-                                <button type="button" class="btn btn-dark btn-icon waves-effect waves-light"><i class="ri-github-fill fs-16"></i></button>
-                                <button type="button" class="btn btn-info btn-icon waves-effect waves-light"><i class="ri-twitter-fill fs-16"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- end card -->
                 </div>
-                <!-- end card body -->
-            </div>
-            <!-- end card -->
+                <!-- end col -->
 
-            <div class="mt-4 text-center">
-                <p class="mb-0">Don't have an account ? <a href="auth-signup-basic.html" class="fw-semibold text-primary text-decoration-underline">Signup </a></p>
             </div>
-
+            <!-- end row -->
         </div>
+        <!-- end container -->
     </div>
-    <!-- end row -->
+    <!-- end auth page content -->
 
     <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; position: center; width: 700px; height: 500px; margin-top: 90px;">
         <div class="row">
