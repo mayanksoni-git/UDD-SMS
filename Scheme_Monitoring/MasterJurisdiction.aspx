@@ -13,78 +13,170 @@
                         CancelControlID="btnclose" BackgroundCssClass="modalBackground1">
                     </cc1:ModalPopupExtender>
                     <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
-                    <div class="page-content">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+
+                <div class="navbar-header">
+                            <div class="d-flex">
+                                <!-- LOGO -->
+                                <div class="navbar-brand-box horizontal-logo">
+                                    <a href="index.html" class="logo logo-dark">
+                                        <span class="logo-sm">
+                                            <img src="assets/images/logo-dark.png" alt="" height="22">
+                                        </span>
+                                        <span class="logo-lg">
+                                            <img src="assets/images/logo-dark.png" alt="" height="17">
+                                        </span>
+                                    </a>
+
+                                    <a href="index.html" class="logo logo-light">
+                                        <span class="logo-sm">
+                                            <img src="assets/images/logo-dark.png" alt="" height="22">
+                                        </span>
+                                        <span class="logo-lg">
+                                            <img src="assets/images/logo.png" alt="" height="17">
+                                        </span>
+                                    </a>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row" style="display: none;">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <asp:Label ID="lblLevel" runat="server" Text="Level" CssClass="control-label no-padding-right"></asp:Label>
-                                    <asp:DropDownList ID="ddlLevel" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLevel_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
+
+                                <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
+                                    <span class="hamburger-icon">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </span>
+                                </button>
+                                <div class="logo">
+                                    <h2>Schemes Monitoring System <span>Urban Development Department, Government of Uttar Pradesh</span> </h2>
                                 </div>
+
+
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
+                            <div class="d-flex align-items-center">
+                                <div class="ms-1 header-item d-none d-sm-flex">
+                                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-toggle="fullscreen">
+                                        <i class="bx bx-fullscreen fs-22"></i>
+                                    </button>
+                                </div>
 
-                                <div class="row">
-                                    <div class="col-xs-12">
 
-                                        <div class="clearfix" id="dtOptions" runat="server">
-                                            <div class="pull-right tableTools-container"></div>
-                                        </div>
-                                        <div class="table-header">
-                                            <asp:Label ID="lblMainHeader" runat="server" Text="Master Jurisdiction"></asp:Label></h3>
-                                        </div>
-                                        <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
-                                                <Columns>
-                                                    <asp:BoundField DataField="M_Jurisdiction_Id" HeaderText="M_Jurisdiction_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="Parent_Jurisdiction_Id" HeaderText="Parent_Jurisdiction_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:TemplateField HeaderText="S No.">
-                                                        <ItemTemplate>
-                                                            <%# Container.DataItemIndex + 1 %>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
 
-                                                    <asp:BoundField DataField="Parent_Jurisdiction_Name_Eng" HeaderText="Parent Jurisdiction" />
-                                                    <asp:BoundField DataField="Jurisdiction_Name_Eng" HeaderText="Jurisdiction Name" />
+                                <div class="dropdown ms-sm-3 header-item topbar-user">
+                                    <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="d-flex align-items-center">
+                                            <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
+                                            <span class="text-start ms-xl-2">
+                                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Anna Adame</span>
+                                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span>
+                                            </span>
+                                        </span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end">
 
-                                                    <asp:BoundField DataField="Jurisdiction_Code" HeaderText="Jurisdiction Code" />
-                                                    <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
-                                                    <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
-                                                    <asp:BoundField DataField="ModifyBy" HeaderText="Modified By" />
-                                                    <asp:BoundField DataField="M_Jurisdiction_ModifiedOn" HeaderText="Modified Date" />
+                                        <h6 class="dropdown-header">Welcome Anna!</h6>
+                                        <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i><span class="align-middle">Profile</span></a>
 
-                                                    <asp:TemplateField HeaderText="View">
-                                                        <ItemTemplate>
-                                                            <asp:ImageButton ID="btnDelete" Width="20px" Height="20px" OnClientClick="validateSave(this);" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                            </asp:GridView>
 
-                                        </div>
+                                        <a class="dropdown-item" href="pages-profile-settings.html"><span class="badge bg-success-subtle text-success mt-1 float-end">New</span><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Settings</span></a>
+                                        <a class="dropdown-item" href="auth-lockscreen-basic.html"><i class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i><span class="align-middle">Lock screen</span></a>
+                                        <a class="dropdown-item" href="auth-logout-basic.html"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i><span class="align-middle" data-key="t-logout">Logout</span></a>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.col -->
+                        </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header align-items-center d-flex">
+                                    <h4 class="card-title mb-0 flex-grow-1">Create / Update Project</h4>
+                                </div>
+
+
+                                <div class="card-body">
+                                    <div class="live-preview">
+                                        <div class="row gy-4">
+                                            <div class="col-xxl-3 col-md-6">
+                                                <div class="clearfix">
+                                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="display: none;">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <asp:Label ID="lblLevel" runat="server" Text="Level" CssClass="control-label no-padding-right"></asp:Label>
+                                                <asp:DropDownList ID="ddlLevel" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLevel_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+
+                                            <div class="row">
+                                                <div class="col-xs-12">
+
+                                                    <div class="clearfix" id="dtOptions" runat="server">
+                                                        <div class="pull-right tableTools-container"></div>
+                                                    </div>
+                                                    <div class="card-header align-items-center d-flex">
+                                                        <h4 class="card-title mb-0 flex-grow-1">
+                                                            <div class="table-header">
+                                                                <asp:Label ID="lblMainHeader" runat="server" Text="Master Jurisdiction"></asp:Label></h3>
+                                                            </div>
+                                                        </h4>
+                                                    </div>
+
+
+
+                                                    <div style="overflow: auto">
+                                                        <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                            <Columns>
+                                                                <asp:BoundField DataField="M_Jurisdiction_Id" HeaderText="M_Jurisdiction_Id">
+                                                                    <HeaderStyle CssClass="displayStyle" />
+                                                                    <ItemStyle CssClass="displayStyle" />
+                                                                    <FooterStyle CssClass="displayStyle" />
+                                                                </asp:BoundField>
+                                                                <asp:BoundField DataField="Parent_Jurisdiction_Id" HeaderText="Parent_Jurisdiction_Id">
+                                                                    <HeaderStyle CssClass="displayStyle" />
+                                                                    <ItemStyle CssClass="displayStyle" />
+                                                                    <FooterStyle CssClass="displayStyle" />
+                                                                </asp:BoundField>
+                                                                <asp:TemplateField HeaderText="S No.">
+                                                                    <ItemTemplate>
+                                                                        <%# Container.DataItemIndex + 1 %>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+
+                                                                <asp:BoundField DataField="Parent_Jurisdiction_Name_Eng" HeaderText="Parent Jurisdiction" />
+                                                                <asp:BoundField DataField="Jurisdiction_Name_Eng" HeaderText="Jurisdiction Name" />
+
+                                                                <asp:BoundField DataField="Jurisdiction_Code" HeaderText="Jurisdiction Code" />
+                                                                <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
+                                                                <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
+                                                                <asp:BoundField DataField="ModifyBy" HeaderText="Modified By" />
+                                                                <asp:BoundField DataField="M_Jurisdiction_ModifiedOn" HeaderText="Modified Date" />
+
+                                                                <asp:TemplateField HeaderText="View">
+                                                                    <ItemTemplate>
+                                                                        <asp:ImageButton ID="btnDelete" Width="20px" Height="20px" OnClientClick="validateSave(this);" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                            </Columns>
+                                                        </asp:GridView>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+
                     <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
                         <div class="row">
                             <div class="col-xs-12">

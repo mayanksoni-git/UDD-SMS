@@ -9,14 +9,21 @@
             </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
-                    <div class="page-content">
-
-                        <div id="divhide" runat="server" visible="false">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="table-header">
-                                        Scheme Wise DPR Configuration
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="live-preview">
+                                <div class="row gy-4">
+                                    <div class="col-xxl-3 col-md-6">
+                                        <div id="divhide" runat="server" visible="false">
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div class="table-header">
+                                                        Scheme Wise DPR Configuration
                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

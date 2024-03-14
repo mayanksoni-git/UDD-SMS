@@ -76,7 +76,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label1" runat="server" Text="GO Date*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtGODate1" runat="server" CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy"></asp:TextBox>
+                                                            <asp:TextBox TextMode="Date" ID="txtGODate1" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="dd/mm/yyyy"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
