@@ -184,6 +184,8 @@
                                         <li class="nav-item"><a href="OfficeRegistration.aspx" class="nav-link" data-key="t-basic-elements">Organization</a> </li>
                                         <li class="nav-item"><a href="MasterJurisdiction.aspx?LevelId=2" class="nav-link" data-key="t-form-select">Mandal</a></li>
                                         <li class="nav-item"><a href="MasterCircles.aspx" class="nav-link" data-key="t-checkboxs-radios">District</a> </li>
+                                        <li class="nav-item"><a href="MasterLokSabha.aspx" class="nav-link" data-key="t-checkboxs-radios">Lok Sabha</a> </li>
+                                        <li class="nav-item"><a href="MasterVidhanSabha.aspx" class="nav-link" data-key="t-checkboxs-radios">Vidhan Sabha</a> </li>
                                         <li class="nav-item"><a href="MasterDivision.aspx" class="nav-link" data-key="t-pickers">ULB</a></li>
                                     </ul>
                                 </div>

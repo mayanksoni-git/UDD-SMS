@@ -27,6 +27,7 @@ public partial class MasterULB : System.Web.UI.Page
         if (!IsPostBack)
         {
             get_tbl_Jurisdiction(3, 0);
+            get_tbl_LokSabha();
             get_tbl_ULB();
         }
     }
@@ -67,21 +68,12 @@ public partial class MasterULB : System.Web.UI.Page
     }
     protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddlDistrict.SelectedValue == "0")
-        {
-            ddlLokSabha.Items.Clear();
-            ddlVidhanSabha.Items.Clear();
-        }
-        else
-        {
-            get_tbl_LokSabha(Convert.ToInt32(ddlDistrict.SelectedValue));
-        }
         mp1.Show();
     }
-    private void get_tbl_LokSabha(int District_Id)
+    private void get_tbl_LokSabha()
     {
         DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_LokSabha(District_Id);
+        ds = (new DataLayer()).get_tbl_LokSabha();
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             AllClasses.FillDropDown(ds.Tables[0], ddlLokSabha, "LokSabha_Name", "LokSabha_Id");

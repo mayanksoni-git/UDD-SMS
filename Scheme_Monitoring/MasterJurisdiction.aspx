@@ -53,8 +53,6 @@
                                                         </h4>
                                                     </div>
 
-
-
                                                     <div style="overflow: auto">
                                                         <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                             <Columns>

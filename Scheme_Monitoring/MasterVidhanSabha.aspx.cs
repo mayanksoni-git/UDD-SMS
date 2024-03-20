@@ -28,7 +28,7 @@ public partial class MasterVidhanSabha : System.Web.UI.Page
     private void get_tbl_LokSabha()
     {
         DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_LokSabha(0);
+        ds = (new DataLayer()).get_tbl_LokSabha();
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             AllClasses.FillDropDown(ds.Tables[0], ddlLokSabhaMaster, "LokSabha_Name", "LokSabha_Id");

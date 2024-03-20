@@ -33,7 +33,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <asp:Label ID="lblProject" runat="server" Text="District*" CssClass="control-label no-padding-right"></asp:Label>
-                                             <asp:DropDownList ID="ddlDistrict" runat="server" class="chosen-select form-control" data-placeholder="Choose a District..."></asp:DropDownList>
+                                             <asp:ListBox ID="ddlDistrict" runat="server" SelectionMode="Multiple" class="chosen-select form-control" data-placeholder="Choose a District..."></asp:ListBox>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
