@@ -166,13 +166,16 @@
                         <div id="two-column-menu"></div>
                         <ul class="navbar-nav" id="navbar-nav">
                             <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-                            <li class="nav-item"><a class="nav-link menu-link" href="Dashboard.aspx" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards"><i data-feather="home" class="icon-dual"></i><span data-key="t-dashboards">Dashboards</span> </a></li>
-                            <!-- end Dashboard Menu -->
-                            <li class="nav-item">
-                                <a class="nav-link menu-link" href="Menu_Analysis.aspx" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps"><i data-feather="grid" class="icon-dual"></i><span data-key="t-apps">Analysis</span> </a>
 
-                            </li>
-                            <!-- end Dashboard Menu -->
+                            <li class="nav-item"><a class="nav-link menu-link" href="Dashboard.aspx">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy icon-dual">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                <span data-key="t-widgets">Dashboard</span> </a></li>
+
+                            <li class="nav-item"><a class="nav-link menu-link" href="Menu_Analysis.aspx">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy icon-dual">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                <span data-key="t-widgets">Analysis</span> </a></li>
 
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="#sidebarFormsj" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFormsj"><i data-feather="file-text" class="icon-dual"></i><span data-key="t-forms">Jurisdiction Masters</span> </a>
@@ -235,7 +238,6 @@
                                     </ul>
                                 </div>
                             </li>
-
                         </ul>
                     </div>
                     <!-- Sidebar -->

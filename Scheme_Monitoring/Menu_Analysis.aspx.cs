@@ -24,14 +24,6 @@ public partial class Menu_Analysis : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
-        if (Session["UserType"].ToString() == "3" || Session["UserType"].ToString() == "5" || Session["UserType"].ToString() == "7" || Session["UserType"].ToString() == "10")
-        {
-            divTargetAchivment.Visible = false;
-        }
-        else
-        {
-            divTargetAchivment.Visible = true;
-        }
         if (!IsPostBack)
         {
 
