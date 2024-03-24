@@ -72,58 +72,6 @@
                                     <div class="card-body">
                                         <div class="row gy-4">
                                             <div class="col-md-6">
-                                                <img src="assets/Analysis/Stagnant_Financial_Progress.png" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_Project_With_No_Invoice.aspx" class="blue">Stagnant Financial Progress</a>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-light-subtle shadow-none bg-opacity-40">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
-                                                <img src="assets/Analysis/Handover.png" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_ProjectWork_Financial_Closure.aspx" class="blue">Physical Handover & Financial Closure</a>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-dark-subtle shadow-none bg-opacity-10">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
-                                                <img src="assets/Analysis/Short_Closed.png" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_ProjectWork_Pre_Closure.aspx" class="blue">Physical / Financial Short Closed</a>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-primary-subtle shadow-none bg-opacity-10">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
                                                 <img src="assets/Analysis/Financial_Progress.png" width="60px" height="60px" />
                                             </div>
                                             <div class="col-md-6">
@@ -135,24 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-info-subtle shadow-none bg-opacity-10">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
-                                                <img src="assets/Analysis/liquidated_damages.jpg" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_ProjectWorkPkg_LD_Imposed.aspx" class="blue">Liquidated Damages Imposed</a>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-
 
                         <div class="row">
                             <div class="col-12">
@@ -174,54 +105,6 @@
                                             <div class="col-md-6">
                                                 <h4 class="fs-4 mb-3">
                                                     <a href="Report_ProjectWork_Gallery_Pic.aspx" class="blue">Project Wise Photo & Videos</a>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-dark-subtle shadow-none bg-opacity-10">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
-                                                <img src="assets/Analysis/Physical_components.png" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_Component_Details.aspx" class="blue">Component Wise Progress</a>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-primary-subtle shadow-none bg-opacity-10">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
-                                                <img src="assets/Analysis/Issue_Analysis.png" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_Issue_Details.aspx" class="blue">Project Wise Issue Analysis</a>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-info-subtle shadow-none bg-opacity-10">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
-                                                <img src="assets/Analysis/PMIS_Download.jpg" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_PMIS_Dump.aspx" class="blue">Data Download In Excel</a>
                                                 </h4>
                                             </div>
                                         </div>

@@ -1,11 +1,6 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class Report_Project_Financial_Progress : System.Web.UI.Page
@@ -368,122 +363,6 @@ public partial class Report_Project_Financial_Progress : System.Web.UI.Page
         if (e.Row.RowType == DataControlRowType.Header)
         {
             
-        }
-    }
-
-    protected void btnExport_Click(object sender, EventArgs e)
-    {
-        if (ddlSearchScheme.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select A Scheme");
-            ddlSearchScheme.Focus();
-            return;
-        }
-        int Project_Id = 0;
-        int Zone_Id = 0;
-        int Circle_Id = 0;
-        int Division_Id = 0;
-
-        try
-        {
-            Project_Id = Convert.ToInt32(ddlSearchScheme.SelectedValue);
-        }
-        catch
-        {
-            Project_Id = 0;
-        }
-        try
-        {
-            Zone_Id = Convert.ToInt32(ddlZone.SelectedValue);
-        }
-        catch
-        {
-            Zone_Id = 0;
-        }
-        try
-        {
-            Circle_Id = Convert.ToInt32(ddlCircle.SelectedValue);
-        }
-        catch
-        {
-            Circle_Id = 0;
-        }
-        try
-        {
-            Division_Id = Convert.ToInt32(ddlDivision.SelectedValue);
-        }
-        catch
-        {
-            Division_Id = 0;
-        }
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_Project_Work_Financial_Progress_Monthly(Project_Id, Zone_Id, Circle_Id, Division_Id, txtDateFrom.Text.Trim());
-        if (AllClasses.CheckDataSet(ds))
-        {
-            string filePath = "\\Downloads\\";
-            if (!Directory.Exists(Server.MapPath(".") + filePath))
-            {
-                Directory.CreateDirectory(Server.MapPath(".") + filePath);
-            }
-
-            string fileName = "Financial_Progress_Monthly_" + txtDateFrom.Text.Replace("/", "_") + ".pdf";
-
-            List<tbl_Financial_Progress_Monthly> obj_tbl_Financial_Progress_Monthly_Li = new List<tbl_Financial_Progress_Monthly>();
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                tbl_Financial_Progress_Monthly obj_tbl_Financial_Progress_Monthly = new tbl_Financial_Progress_Monthly();
-                obj_tbl_Financial_Progress_Monthly.Achivment_Value = Convert.ToDecimal(ds.Tables[0].Rows[i]["Total_Achivment_In_Current_Month"].ToString());
-                obj_tbl_Financial_Progress_Monthly.ADP_Value = Convert.ToDecimal(ds.Tables[0].Rows[i]["Other_Dept_Current_Month"].ToString());
-                obj_tbl_Financial_Progress_Monthly.Circle_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Circle_Id"].ToString());
-                obj_tbl_Financial_Progress_Monthly.Zone_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Zone_Id"].ToString());
-                obj_tbl_Financial_Progress_Monthly.Circle_Name = ds.Tables[0].Rows[i]["Circle_Name"].ToString();
-                obj_tbl_Financial_Progress_Monthly.Zone_Name = ds.Tables[0].Rows[i]["Zone_Name"].ToString();
-                obj_tbl_Financial_Progress_Monthly.ProjectWork_Code = ds.Tables[0].Rows[i]["ProjectWork_ProjectCode"].ToString();
-                obj_tbl_Financial_Progress_Monthly.ProjectWork_Name = ds.Tables[0].Rows[i]["ProjectWork_Name"].ToString();
-                obj_tbl_Financial_Progress_Monthly.Division_Name = ds.Tables[0].Rows[i]["Circle_Name"].ToString() + " : " + ds.Tables[0].Rows[i]["Division_Name"].ToString();
-                obj_tbl_Financial_Progress_Monthly.Deduction_Release_Value = Convert.ToDecimal(ds.Tables[0].Rows[i]["Deduction_Release_Current_Month"].ToString());
-                obj_tbl_Financial_Progress_Monthly.EMB_Value = Convert.ToDecimal(ds.Tables[0].Rows[i]["EMB_Current_Month"].ToString());
-                obj_tbl_Financial_Progress_Monthly.Invoice_Value = Convert.ToDecimal(ds.Tables[0].Rows[i]["Total_Invoice_Value_Current_Month"].ToString());
-                obj_tbl_Financial_Progress_Monthly.MA_Value = Convert.ToDecimal(ds.Tables[0].Rows[i]["Moblization_Adv_Current_Month"].ToString());
-                obj_tbl_Financial_Progress_Monthly.Division_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Division_Id"].ToString());
-                obj_tbl_Financial_Progress_Monthly.Header_Text = "Project Wise Financial Progress (" + txtDateFrom.Text + "): " + ddlSearchScheme.SelectedItem.Text;
-                obj_tbl_Financial_Progress_Monthly_Li.Add(obj_tbl_Financial_Progress_Monthly);
-            }
-
-            string webURI = "";
-            if (Page.Request.Url.Query.Trim() == "")
-            {
-                webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
-            }
-            else
-            {
-                webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
-            }
-
-            ReportDocument crystalReport = new ReportDocument();
-            crystalReport.Load(Server.MapPath("~/Crystal/pmis/Financial_Progress_Monthly.rpt"));
-            crystalReport.SetDataSource(obj_tbl_Financial_Progress_Monthly_Li);
-            crystalReport.Refresh();
-            //crystalReport.ReportSource = crystalReport;
-            //crystalReport.RefreshReport();
-            crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
-
-            FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
-            if (fi.Exists)
-            {
-                new AllClasses().Render_PDF_Document(ltEmbed, filePath + fileName);
-                mp1.Show();
-            }
-            else
-            {
-                MessageBox.Show("Unable To Generate Progress Report.");
-                return;
-            }
-        }
-        else
-        {
-            MessageBox.Show("Unable To Generate Progress Report.");
-            return;
         }
     }
 }

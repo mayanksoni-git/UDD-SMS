@@ -12,202 +12,221 @@
                     </cc1:ModalPopupExtender>
                     <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
                     <div class="page-content">
+
                         <div class="row">
-                            <div class="col-xs-12">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <h3 class="header smaller lighter blue">Project Gallery Report
-                                            <div class="form-group" style="float: right; padding-right: 10px">
-                                                <asp:RadioButtonList ID="rbtMappingWith" runat="server" AutoPostBack="true" OnSelectedIndexChanged="rbtMappingWith_SelectedIndexChanged" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Selected="True" Text="Project For Division" Value="D"></asp:ListItem>
-                                                    <asp:ListItem Text="Project For ULB" Value="U"></asp:ListItem>
-                                                </asp:RadioButtonList>
-                                            </div>
-                                        </h3>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Project Gallery Report</h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
                                                         <label class="control-label no-padding-right">Scheme </label>
                                                         <asp:ListBox ID="ddlScheme" runat="server" SelectionMode="Multiple" class="chosen-select form-control"
                                                             data-placeholder="Choose a Scheme..."></asp:ListBox>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3" id="divZone" runat="server">
-                                                    <div class="form-group">
+                                                <!--end col-->
+
+                                                <div class="col-xxl-3 col-md-6" id="divZone" runat="server">
+                                                    <div>
                                                         <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:DropDownList ID="ddlSearchZone" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSearchZone_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3" id="divDistrict" runat="server" visible="false">
-                                                    <div class="form-group">
-                                                        <label class="control-label no-padding-right">District* </label>
-                                                        <asp:DropDownList ID="ddlDistrict" runat="server" class="chosen-select form-control" data-placeholder="Choose a District..." AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3" id="divCircle" runat="server">
-                                                    <div class="form-group">
+                                                <!--end col-->
+
+                                                <div class="col-xxl-3 col-md-6" id="divCircle" runat="server">
+                                                    <div>
                                                         <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:DropDownList ID="ddlSearchCircle" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSearchCircle_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3" id="divULB" runat="server" visible="false">
-                                                    <div class="form-group">
-                                                        <asp:Label ID="lblULB" runat="server" Text="ULB" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlULB" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3" id="divDivision" runat="server">
-                                                    <div class="form-group">
+                                                <!--end col-->
+
+                                                <div class="col-xxl-3 col-md-6" id="divDivision" runat="server">
+                                                    <div>
                                                         <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:DropDownList ID="ddlsearchDivision" runat="server" CssClass="form-control"></asp:DropDownList>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
+                                                <!--end col-->
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <asp:RadioButtonList runat="server" ID="rbtProjectType" OnSelectedIndexChanged="rbtProjectType_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
+                                                            <asp:ListItem Value="O" Text="Ongoing"></asp:ListItem>
+                                                            <asp:ListItem Value="C" Text="Completed"></asp:ListItem>
+                                                            <asp:ListItem Value="A" Text="All" Selected="True"></asp:ListItem>
+                                                        </asp:RadioButtonList>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <asp:CheckBox runat="server" ID="ChkShowPIC_NA" Text=" Show Projects For Which Gallery Not Available" OnCheckedChanged="ChkShowPIC_NA_CheckedChanged" AutoPostBack="true" />
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <asp:CheckBox runat="server" ID="chkShowPicApp" Text=" Show Projects For Which Photo Uploaded Via Mobile App" OnCheckedChanged="chkShowPicApp_CheckedChanged" AutoPostBack="true" />
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
                                                         <br />
                                                         <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" runat="server" CssClass="btn btn-warning"></asp:Button>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <br />
-                                                        <asp:Button ID="btnDownloadDistrictWise" Text="Download District Wise" OnClick="btnDownloadDistrictWise_Click" runat="server" CssClass="btn btn-purple"></asp:Button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <br />
-                                                        <asp:Button ID="btnDownloadZoneWise" Text="Download Zone Wise" OnClick="btnDownloadZoneWise_Click" runat="server" CssClass="btn btn-pink"></asp:Button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <br />
-                                                    <div runat="server" id="divLink" visible="false">
-                                                    </div>
-                                                </div>
+                                                <!--end col-->
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="col-md-4">
-                                                    <asp:RadioButtonList runat="server" ID="rbtProjectType" OnSelectedIndexChanged="rbtProjectType_SelectedIndexChanged" AutoPostBack="true" RepeatDirection="Horizontal">
-                                                        <asp:ListItem Value="O" Text="Ongoing"></asp:ListItem>
-                                                        <asp:ListItem Value="C" Text="Completed"></asp:ListItem>
-                                                        <asp:ListItem Value="A" Text="All" Selected="True"></asp:ListItem>
-                                                    </asp:RadioButtonList>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <asp:CheckBox runat="server" ID="ChkShowPIC_NA" Text=" Show Projects For Which Gallery Not Available" OnCheckedChanged="ChkShowPIC_NA_CheckedChanged" AutoPostBack="true" />
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <asp:CheckBox runat="server" ID="chkShowPicApp" Text=" Show Projects For Which Photo Uploaded Via Mobile App" OnCheckedChanged="chkShowPicApp_CheckedChanged" AutoPostBack="true" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="clearfix">
-                                                    <div class="pull-right tableTools-container"></div>
-                                                </div>
-                                                <div style="overflow: auto">
-                                                    <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
-                                                        <Columns>
-                                                            <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
-                                                                <HeaderStyle CssClass="displayStyle" />
-                                                                <ItemStyle CssClass="displayStyle" />
-                                                                <FooterStyle CssClass="displayStyle" />
-                                                            </asp:BoundField>
-                                                            <asp:BoundField DataField="ProjectWork_Project_Id" HeaderText="ProjectWork_Project_Id">
-                                                                <HeaderStyle CssClass="displayStyle" />
-                                                                <ItemStyle CssClass="displayStyle" />
-                                                                <FooterStyle CssClass="displayStyle" />
-                                                            </asp:BoundField>
-                                                            <asp:BoundField DataField="ProjectWork_DistrictId" HeaderText="ProjectWork_DistrictId">
-                                                                <HeaderStyle CssClass="displayStyle" />
-                                                                <ItemStyle CssClass="displayStyle" />
-                                                                <FooterStyle CssClass="displayStyle" />
-                                                            </asp:BoundField>
-                                                            <asp:TemplateField HeaderText="S No.">
-                                                                <ItemTemplate>
-                                                                    <%# Container.DataItemIndex + 1 %>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField HeaderText="District" DataField="Jurisdiction_Name_Eng" />
-                                                            <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />
-                                                            <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
-                                                            <asp:BoundField HeaderText="Division" DataField="Division_Name" />
-                                                            <asp:BoundField HeaderText="Project Code" DataField="ProjectWork_ProjectCode" />
-                                                            <asp:BoundField HeaderText="Work" DataField="ProjectWork_Name" />
-                                                            <asp:BoundField HeaderText="Physical Progress (%)" DataField="Physical_Progress" />
-                                                            <asp:BoundField HeaderText="Financial Progress (%)" DataField="Financial_Progress" />
-                                                            <asp:TemplateField HeaderText="Total Photo Uploaded">
-                                                                <ItemTemplate>
-                                                                    <a target="_blank" href="ProjectWorkGalleryView.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Mode=P&App=<%# chkShowPicApp.Checked.ToString().Trim() %>"><%# Eval("Total_Photo") %></a>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Total Video Uploaded">
-                                                                <ItemTemplate>
-                                                                    <a target="_blank" href="ProjectWorkGalleryView.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Mode=V&App=<%# chkShowPicApp.Checked.ToString().Trim() %>"><%# Eval("Total_Video") %></a>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Download ZIP">
-                                                                <ItemTemplate>
-                                                                    <asp:ImageButton runat="server" ID="btnDownload" ImageUrl="~/assets/images/download.png" Width="60px" Height="60px" OnClick="btnDownload_Click" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Add More Photos">
-                                                                <ItemTemplate>
-                                                                    <asp:ImageButton runat="server" ID="btnAdd" ImageUrl="~/assets/images/add-icon.png" Width="60px" Height="60px" OnClick="btnAdd_Click" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                    </asp:GridView>
-                                                </div>
-                                            </div>
+                                            <!--end row-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--end col-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Project Gallery Report</h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-12">
+                                                <div class="col-xxl-12 col-md-12">
+                                                    <!-- div.table-responsive -->
+                                                    <div class="clearfix">
+                                                        <div class="pull-right tableTools-container"></div>
+                                                    </div>
+                                                    <div style="overflow: auto">
+                                                        <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                            <Columns>
+                                                                <asp:BoundField DataField="ProjectWork_Id" HeaderText="ProjectWork_Id">
+                                                                    <HeaderStyle CssClass="displayStyle" />
+                                                                    <ItemStyle CssClass="displayStyle" />
+                                                                    <FooterStyle CssClass="displayStyle" />
+                                                                </asp:BoundField>
+                                                                <asp:BoundField DataField="ProjectWork_Project_Id" HeaderText="ProjectWork_Project_Id">
+                                                                    <HeaderStyle CssClass="displayStyle" />
+                                                                    <ItemStyle CssClass="displayStyle" />
+                                                                    <FooterStyle CssClass="displayStyle" />
+                                                                </asp:BoundField>
+                                                                <asp:BoundField DataField="ProjectWork_DistrictId" HeaderText="ProjectWork_DistrictId">
+                                                                    <HeaderStyle CssClass="displayStyle" />
+                                                                    <ItemStyle CssClass="displayStyle" />
+                                                                    <FooterStyle CssClass="displayStyle" />
+                                                                </asp:BoundField>
+                                                                <asp:TemplateField HeaderText="S No.">
+                                                                    <ItemTemplate>
+                                                                        <%# Container.DataItemIndex + 1 %>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:BoundField HeaderText="District" DataField="Jurisdiction_Name_Eng" />
+                                                                <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />
+                                                                <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
+                                                                <asp:BoundField HeaderText="Division" DataField="Division_Name" />
+                                                                <asp:BoundField HeaderText="Project Code" DataField="ProjectWork_ProjectCode" />
+                                                                <asp:BoundField HeaderText="Work" DataField="ProjectWork_Name" />
+                                                                <asp:BoundField HeaderText="Physical Progress (%)" DataField="Physical_Progress" />
+                                                                <asp:BoundField HeaderText="Financial Progress (%)" DataField="Financial_Progress" />
+                                                                <asp:TemplateField HeaderText="Total Photo Uploaded">
+                                                                    <ItemTemplate>
+                                                                        <a target="_blank" href="ProjectWorkGalleryView.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Mode=P&App=<%# chkShowPicApp.Checked.ToString().Trim() %>"><%# Eval("Total_Photo") %></a>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Total Video Uploaded">
+                                                                    <ItemTemplate>
+                                                                        <a target="_blank" href="ProjectWorkGalleryView.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Mode=V&App=<%# chkShowPicApp.Checked.ToString().Trim() %>"><%# Eval("Total_Video") %></a>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Download ZIP">
+                                                                    <ItemTemplate>
+                                                                        <asp:ImageButton runat="server" ID="btnDownload" ImageUrl="~/assets/images/download.png" Width="60px" Height="60px" OnClick="btnDownload_Click" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Add More Photos">
+                                                                    <ItemTemplate>
+                                                                        <asp:ImageButton runat="server" ID="btnAdd" ImageUrl="~/assets/images/add-icon.png" Width="60px" Height="60px" OnClick="btnAdd_Click" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
                         </div>
 
                         <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 1000px; height: 500px; margin-left: -32px" ScrollBars="Auto">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="table-header">
-                                        Upload Images / Videos In Project Gallery (Max 25 Pics or video)
-                                                   
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="max-height: 300px">
-                                <div class="col-xs-12" style="overflow: auto">
-                                    <iframe id="IframeGallery" src="~/CommanFileUpload_Multiple.aspx" runat="server" width="100%"></iframe>
-                                </div>
-                            </div>
 
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Button ID="btnUpdateGallery" Text="Update Photos In Gallery" OnClick="btnUpdateGallery_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Upload Images / Videos In Project Gallery (Max 25 Pics or video)</h4>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Button ID="btnDeleteGallery" Text="Delete Photos" OnClick="btnDeleteGallery_Click" runat="server" CssClass="btn btn-danger"></asp:Button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-12" style="overflow: auto">
+                                                    <iframe id="IframeGallery" src="~/CommanFileUpload_Multiple.aspx" runat="server" width="100%"></iframe>
+                                                </div>
+                                                <!--end row-->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!--end col-->
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Button ID="btnUpdateGallery" Text="Update Photos In Gallery" OnClick="btnUpdateGallery_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Button ID="btnDeleteGallery" Text="Delete Photos" OnClick="btnDeleteGallery_Click" runat="server" CssClass="btn btn-danger"></asp:Button>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                </div>
+                                                <!--end row-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
                             </div>
                         </asp:Panel>
                     </div>
