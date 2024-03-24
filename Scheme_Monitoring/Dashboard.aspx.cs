@@ -156,6 +156,78 @@ public partial class Dashboard : System.Web.UI.Page
 
         DataSet ds = new DataSet();
 
+        //ds = (new DataLayer()).get_PMIS_Dashboard_FinancialYearWise(0, 0, 0, "", 0, 0, "", "", "", -1, "", "");
+        //if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        //{
+        //    List<Project_Over_All_Status> obj_Project_Over_All_Status_Li = new List<Project_Over_All_Status>();
+        //    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        //    {
+        //        Project_Over_All_Status obj_Project_Over_All_Status = new Project_Over_All_Status();
+        //        obj_Project_Over_All_Status.Data_Type = ds.Tables[0].Rows[i]["Data_Type"].ToString();
+        //        try
+        //        {
+        //            obj_Project_Over_All_Status.Total = Convert.ToDecimal(ds.Tables[0].Rows[i]["Total"].ToString());
+        //        }
+        //        catch
+        //        {
+        //            obj_Project_Over_All_Status.Total = 0;
+        //        }
+        //        try
+        //        {
+        //            obj_Project_Over_All_Status.WithIn_UP = Convert.ToDecimal(ds.Tables[0].Rows[i]["WithIn_UP"].ToString());
+        //        }
+        //        catch
+        //        {
+        //            obj_Project_Over_All_Status.WithIn_UP = 0;
+        //        }
+        //        try
+        //        {
+        //            obj_Project_Over_All_Status.OutSide_UP = Convert.ToDecimal(ds.Tables[0].Rows[i]["OutSide_UP"].ToString());
+        //        }
+        //        catch
+        //        {
+        //            obj_Project_Over_All_Status.OutSide_UP = 0;
+        //        }
+        //        try
+        //        {
+        //            obj_Project_Over_All_Status.Completed = Convert.ToDecimal(ds.Tables[0].Rows[i]["Completed"].ToString());
+        //        }
+        //        catch
+        //        {
+        //            obj_Project_Over_All_Status.Completed = 0;
+        //        }
+        //        try
+        //        {
+        //            obj_Project_Over_All_Status.OnGoing = Convert.ToDecimal(ds.Tables[0].Rows[i]["OnGoing"].ToString());
+        //        }
+        //        catch
+        //        {
+        //            obj_Project_Over_All_Status.OnGoing = 0;
+        //        }
+        //        obj_Project_Over_All_Status_Li.Add(obj_Project_Over_All_Status);
+        //    }
+        //    hf_Over_All_Data.Value = Newtonsoft.Json.JsonConvert.SerializeObject(obj_Project_Over_All_Status_Li);
+        //}
+        //else
+        //{
+        //    hf_Over_All_Data.Value = "[]";
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if (Session["UserType"].ToString() == "1")
         {
             ds = (new DataLayer()).get_PMIS_Dashboard_Detailed(Zone_Id, Circle_Id, Division_Id, Scheme_Id, District_Id, ULB_Id, "", -1, "", "", 0);
@@ -466,9 +538,68 @@ public partial class Dashboard : System.Web.UI.Page
             gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
     }
-    
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         Load_dashboard();
+    }
+
+    protected void btnDistWise_Click(object sender, EventArgs e)
+    {
+        int Zone_Id = 0;
+        int Circle_Id = 0;
+        int Division_Id = 0;
+        int District_Id = 0;
+        int ULB_Id = 0;
+
+        try
+        {
+            Zone_Id = Convert.ToInt32(ddlZone.SelectedValue);
+        }
+        catch
+        {
+            Zone_Id = 0;
+        }
+        try
+        {
+            Circle_Id = Convert.ToInt32(ddlCircle.SelectedValue);
+        }
+        catch
+        {
+            Circle_Id = 0;
+        }
+        try
+        {
+            Division_Id = Convert.ToInt32(ddlDivision.SelectedValue);
+        }
+        catch
+        {
+            Division_Id = 0;
+        }
+        GridViewRow gr = (sender as Button).Parent.Parent as GridViewRow;
+        int Scheme_Id = 0;
+        try
+        {
+            Scheme_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
+        }
+        catch
+        {
+            Scheme_Id = 0;
+        }
+        if (Zone_Id == 0)
+        {
+            Response.Redirect("Report_Collection.aspx?Scheme_Id=" + Scheme_Id.ToString());
+        }
+        else if (Zone_Id > 0 && Circle_Id == 0)
+        {
+            Response.Redirect("Report_Collection_District.aspx?Scheme_Id=" + Scheme_Id.ToString() + "&Zone_Id=" + Zone_Id.ToString() + "&Zone_Name=");
+        }
+        else if (Zone_Id > 0 && Circle_Id > 0 && Division_Id == 0)
+        {
+            Response.Redirect("Report_Collection_Circle.aspx?Scheme_Id=" + Scheme_Id.ToString() + "&Zone_Id=" + Zone_Id.ToString() + "&Circle_Id=" + Circle_Id.ToString());
+        }
+        else
+        {
+            Response.Redirect("Report_Collection_Division.aspx?Scheme_Id=" + Scheme_Id.ToString() + "&Zone_Id=" + Zone_Id.ToString() + "&Circle_Id=" + Circle_Id.ToString() + "&Division_Id=" + Division_Id.ToString());
+        }
     }
 }

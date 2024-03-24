@@ -49,22 +49,7 @@ public partial class MasterPerson : System.Web.UI.Page
             get_tbl_Level();
             txtUserName.Text = (new DataLayer()).get_tbl_Employee_User_Name(null, null);
             txtUserName.Enabled = false;
-            //if (Session["UserType"].ToString() != "1")
-            //{
-            //    try
-            //    {
-            //        if (Session["PersonJuridiction_Project_Id"].ToString() != "" && Session["PersonJuridiction_Project_Id"].ToString() != "0")
-            //        {
-            //            ddlSearchScheme.SelectedValue = Session["PersonJuridiction_Project_Id"].ToString();
-            //            ddlSearchScheme.Enabled = false;
-            //        }
-            //    }
-            //    catch
-            //    {
 
-            //    }
-
-            //}
             if (Session["UserType"].ToString() == "4" && Convert.ToInt32(Session["PersonJuridiction_ZoneId"].ToString()) > 0)
             {//Zone
                 try

@@ -368,20 +368,6 @@
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <label class="form-label">Financial Progress (In Lakhs) * </label>
-                                                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Label ID="Label5" runat="server" Text="Total Released Amount Till Date (In Lakhs)*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                    <div class="col-xxl-3 col-md-6">
                                                         <div style="display: none;">
                                                             <asp:Label ID="Label13" runat="server" Text="GST Percentage*" CssClass="form-label"></asp:Label>
                                                             <asp:DropDownList ID="ddlGSTPercentage" runat="server" CssClass="form-control">

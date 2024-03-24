@@ -90,6 +90,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <asp:Button ID="btnDistWise" Text="Open District Wise Details" runat="server" CssClass="btn rounded-pill btn-danger waves-effect waves-light" OnClick="btnDistWise_Click"></asp:Button>
                                                         </div>
                                                         <!-- end card body -->
                                                     </div>
@@ -118,8 +119,6 @@
 
                                                                         <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
                                                                     </a>
-                                                                    <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i><%# Eval("Completed_Count") %> </span>Completed Projects</p>
-                                                                    <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"><i class="ri-arrow-down-line align-middle"></i><%# Eval("Total_Count") %></span>Total Projects</p>
                                                                 </div>
                                                                 <div>
                                                                     <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2"><i data-feather="activity" class="text-primary"></i></span></div>
@@ -138,6 +137,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <asp:Button ID="btnDistWise" Text="Open District Wise Details" runat="server" CssClass="btn rounded-pill btn-danger waves-effect waves-light" OnClick="btnDistWise_Click"></asp:Button>
                                                         </div>
                                                         <!-- end card body -->
                                                     </div>
@@ -165,8 +165,6 @@
 
                                                                         <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
                                                                     </a>
-                                                                    <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i><%# Eval("Completed_Count") %> </span>Completed Projects</p>
-                                                                    <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"><i class="ri-arrow-down-line align-middle"></i><%# Eval("Total_Count") %></span>Total Projects</p>
                                                                 </div>
                                                                 <div>
                                                                     <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2"><i data-feather="activity" class="text-primary"></i></span></div>
@@ -185,6 +183,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <asp:Button ID="btnDistWise" Text="Open District Wise Details" runat="server" CssClass="btn rounded-pill btn-danger waves-effect waves-light" OnClick="btnDistWise_Click"></asp:Button>
                                                         </div>
                                                         <!-- end card body -->
                                                     </div>
@@ -212,8 +211,6 @@
 
                                                                         <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
                                                                     </a>
-                                                                    <p class="mb-0 text-muted"><span class="badge bg-light text-success mb-0"><i class="ri-arrow-up-line align-middle"></i><%# Eval("Completed_Count") %> </span>Completed Projects</p>
-                                                                    <p class="mb-0 text-muted"><span class="badge bg-light text-danger mb-0"><i class="ri-arrow-down-line align-middle"></i><%# Eval("Total_Count") %></span>Total Projects</p>
                                                                 </div>
                                                                 <div>
                                                                     <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary-subtle rounded-circle fs-2"><i data-feather="activity" class="text-primary"></i></span></div>
@@ -232,6 +229,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <asp:Button ID="btnDistWise" Text="Open District Wise Details" runat="server" CssClass="btn rounded-pill btn-danger waves-effect waves-light" OnClick="btnDistWise_Click"></asp:Button>
                                                         </div>
                                                         <!-- end card body -->
                                                     </div>

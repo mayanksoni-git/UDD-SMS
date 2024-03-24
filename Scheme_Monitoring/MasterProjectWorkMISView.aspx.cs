@@ -1,11 +1,9 @@
 ﻿using ClosedXML.Excel;
 using CrystalDecisions.CrystalReports.Engine;
-
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -33,8 +31,15 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
                 btnCreateNew.Visible = true;
                 btnDownload.Visible = true;
                 divCreateNew.Visible = true;
-                divProjectType.Visible = false;
                 chkShowIssue.Checked = false;
+                chkShowIssue.Visible = true;
+            }
+            else if (Client == "ULB")
+            {
+                btnCreateNew.Visible = true;
+                btnDownload.Visible = false;
+                divCreateNew.Visible = true;
+                chkShowIssue.Checked = true;
                 chkShowIssue.Visible = true;
             }
             else if (Client == "SAR")
@@ -42,7 +47,6 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
                 btnCreateNew.Visible = true;
                 btnDownload.Visible = true;
                 divCreateNew.Visible = true;
-                divProjectType.Visible = false;
                 chkShowIssue.Visible = true;
             }
             else
@@ -50,7 +54,6 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
                 btnCreateNew.Visible = false;
                 btnDownload.Visible = false;
                 divCreateNew.Visible = false;
-                divProjectType.Visible = true;
                 chkShowIssue.Checked = true;
                 chkShowIssue.Visible = true;
             }
@@ -64,7 +67,6 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
                 int Zone_Id = 0;
                 int Circle_Id = 0;
                 int Division_Id = 0;
-                int ProjectType_Id = 0;
                 int Updation = -1;
                 int Month = 0;
                 int Year = 0;
@@ -98,7 +100,6 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
                 try
                 {
                     Scheme_Id = Request.QueryString["Scheme_Id"].ToString();
-                    get_tbl_ProjectType(Convert.ToInt32(Scheme_Id));
                 }
                 catch
                 {
@@ -192,24 +193,7 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
                 catch
                 {
                     Updation = -1;
-                }
-
-                try
-                {
-                    ProjectType_Id = Convert.ToInt32(Request.QueryString["Type_Id"].ToString());
-                    try
-                    {
-                        ddlProjectType.SelectedValue = ProjectType_Id.ToString();
-                    }
-                    catch
-                    {
-                        ddlProjectType.SelectedValue = "0";
-                    }
-                }
-                catch
-                {
-                    ProjectType_Id = 0;
-                }
+                }                
                 try
                 {
                     District_Id = Convert.ToInt32(Request.QueryString["District_Id"].ToString());
@@ -250,14 +234,7 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
                 {
                     Division_Id = 0;
                 }
-                if (LD == 0 || LD == 2)
-                {
-                    divTimeOverRun.Visible = true;
-                }
-                else
-                {
-                    divTimeOverRun.Visible = false;
-                }
+
                 int FromRange = -1;
                 int TillRange = -1;
                 try
@@ -504,32 +481,11 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
                 {
                     TillDate = "";
                 }
-                get_tbl_ProjectWork(District_Id, Zone_Id, Circle_Id, Division_Id, Scheme_Id, ProjectType_Id, Updation, Month, Year, PhysicalProgressType, GO, DocType, ProjectStatus, ULB_Id, LD, Component_Id, rbtFilterBy.SelectedValue, FromRange, TillRange, ProgressType, NodalDept_Id, Issue_Id, Dependency_Id, NodalDepartmentScheme_Id, FromDate, TillDate, Jurisdiction_In, _Scheme_Id);
+                get_tbl_ProjectWork(District_Id, Zone_Id, Circle_Id, Division_Id, Scheme_Id, 0, Updation, Month, Year, PhysicalProgressType, GO, DocType, ProjectStatus, ULB_Id, LD, Component_Id, rbtFilterBy.SelectedValue, FromRange, TillRange, ProgressType, NodalDept_Id, Issue_Id, Dependency_Id, NodalDepartmentScheme_Id, FromDate, TillDate, Jurisdiction_In, _Scheme_Id);
             }
         }
     }
 
-    private void get_tbl_ProjectType(int Scheme_Id)
-    {
-        DataSet ds = new DataSet();
-        if (Session["UserType"].ToString() == "1")
-        {
-            ds = (new DataLayer()).get_tbl_ProjectType(Scheme_Id, 0);
-        }
-        else
-        {
-            ds = (new DataLayer()).get_tbl_ProjectType(Scheme_Id, Convert.ToInt32(Session["Person_Id"].ToString()));
-        }
-
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlProjectType, "ProjectType_Name", "ProjectType_Id");
-        }
-        else
-        {
-            ddlProjectType.Items.Clear();
-        }
-    }
     protected void grdPost_PreRender(object sender, EventArgs e)
     {
         GridView gv = (GridView)sender;
@@ -630,6 +586,10 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
         {
             Response.Redirect("MasterProjectWork_DataEntry.aspx?ProjectWork_Id=" + gr.Cells[0].Text.Trim() + "&Scheme_Id=" + gr.Cells[1].Text.Trim());
         }
+        else if (Client == "ULB")
+        {
+            Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + gr.Cells[0].Text.Trim() + "&Scheme_Id=" + gr.Cells[1].Text.Trim());
+        }
         else if (Client == "SAR")
         {
             Response.Redirect("MasterProjectWork_DataEntrySAR.aspx?ProjectWork_Id=" + gr.Cells[0].Text.Trim() + "&Scheme_Id=" + gr.Cells[1].Text.Trim());
@@ -663,239 +623,15 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
                 divMISSteps.Visible = false;
                 divPhoto.Visible = true;
             }
+            else if (Client == "ULB")
+            {
+                divMISSteps.Visible = false;
+                divPhoto.Visible = true;
+            }
             else
             {
                 divMISSteps.Visible = true;
                 divPhoto.Visible = false;
-            }
-        }
-    }
-
-    protected void btnExport1_Click(object sender, EventArgs e)
-    {
-        string Scheme_Id = "";
-        int District_Id = 0;
-        int ULB_Id = 0;
-        int Zone_Id = 0;
-        int Circle_Id = 0;
-        int Division_Id = 0;
-        try
-        {
-            Scheme_Id = Request.QueryString["Scheme_Id"].ToString();
-        }
-        catch
-        {
-            Scheme_Id = "";
-        }
-        try
-        {
-            District_Id = Convert.ToInt32(Request.QueryString["District_Id"].ToString());
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(Request.QueryString["ULB_Id"].ToString());
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
-        try
-        {
-            Zone_Id = Convert.ToInt32(Request.QueryString["Zone_Id"].ToString());
-        }
-        catch
-        {
-            Zone_Id = 0;
-        }
-        try
-        {
-            Circle_Id = Convert.ToInt32(Request.QueryString["Circle_Id"].ToString());
-        }
-        catch
-        {
-            Circle_Id = 0;
-        }
-        try
-        {
-            Division_Id = Convert.ToInt32(Request.QueryString["Division_Id"].ToString());
-        }
-        catch
-        {
-            Division_Id = 0;
-        }
-        DataSet ds = new DataSet();
-        ds = new DataLayer().get_Time_OverRun_Summery_Dashboard(Scheme_Id, Zone_Id, Circle_Id, Division_Id, District_Id, ULB_Id);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            string filePath = "\\Downloads\\" + Session["Person_Id"].ToString() + "\\";
-            if (!Directory.Exists(Server.MapPath(".") + filePath))
-            {
-                Directory.CreateDirectory(Server.MapPath(".") + filePath);
-            }
-
-            string fileName = "TimeOverRun_Summery.pdf";
-
-            List<tbl_TimeOverRun> obj_tbl_TimeOverRun_Li = new List<tbl_TimeOverRun>();
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                tbl_TimeOverRun obj_tbl_TimeOverRun = new tbl_TimeOverRun();
-                obj_tbl_TimeOverRun.ExtentionExpired = Convert.ToInt32(ds.Tables[0].Rows[i]["Extention_Expired"].ToString());
-                obj_tbl_TimeOverRun.RequireExtention = Convert.ToInt32(ds.Tables[0].Rows[i]["Require_Extention"].ToString());
-                obj_tbl_TimeOverRun.Circle_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Circle_Id"].ToString());
-                obj_tbl_TimeOverRun.Zone_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Zone_Id"].ToString());
-                obj_tbl_TimeOverRun.Circle_Name = ds.Tables[0].Rows[i]["Circle_Name"].ToString();
-                obj_tbl_TimeOverRun.Zone_Name = ds.Tables[0].Rows[i]["Zone_Name"].ToString();
-                obj_tbl_TimeOverRun.Zone_Circle_Name = ds.Tables[0].Rows[i]["Zone_Name"].ToString() + " - " + ds.Tables[0].Rows[i]["Circle_Name"].ToString();
-                obj_tbl_TimeOverRun.Header_Text = "Time Over run schemes";
-                obj_tbl_TimeOverRun_Li.Add(obj_tbl_TimeOverRun);
-            }
-
-            string webURI = "";
-            if (Page.Request.Url.Query.Trim() == "")
-            {
-                webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
-            }
-            else
-            {
-                webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
-            }
-
-            ReportDocument crystalReport = new ReportDocument();
-            crystalReport.Load(Server.MapPath("~/Crystal/pmis/Time_Overrun_Summery.rpt"));
-            crystalReport.SetDataSource(obj_tbl_TimeOverRun_Li);
-            crystalReport.Refresh();
-            //crystalReport.ReportSource = crystalReport;
-            //crystalReport.RefreshReport();
-            crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
-
-            FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
-            if (fi.Exists)
-            {
-                new AllClasses().Render_PDF_Document(ltEmbed, filePath + fileName);
-                mp1.Show();
-            }
-            else
-            {
-                MessageBox.Show("Unable To Generate Report.");
-                return;
-            }
-        }
-        else
-        {
-            MessageBox.Show("Unable To Generate Report.");
-            return;
-        }
-    }
-
-    protected void btnExport2_Click(object sender, EventArgs e)
-    {
-        int LD = -1;
-        try
-        {
-            LD = Convert.ToInt32(Request.QueryString["LD"].ToString());
-        }
-        catch
-        {
-            LD = -1;
-        }
-        DataSet ds = new DataSet();
-        if (ViewState["TimeOverRun"] != null)
-        {
-            ds = (DataSet)ViewState["TimeOverRun"];
-            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-            {
-                string filePath = "\\Downloads\\" + Session["Person_Id"].ToString() + "\\";
-                if (!Directory.Exists(Server.MapPath(".") + filePath))
-                {
-                    Directory.CreateDirectory(Server.MapPath(".") + filePath);
-                }
-                string fileName = "";
-                if (LD == 0)
-                    fileName = "TimeOverRun_Expired_Detail.pdf";
-                else
-                    fileName = "TimeOverRun_Extended_Expired_Detail.pdf";
-
-                List<tbl_TimeOverRun_Detail> obj_tbl_TimeOverRun_Detail_Li = new List<tbl_TimeOverRun_Detail>();
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                {
-                    tbl_TimeOverRun_Detail obj_tbl_TimeOverRun_Detail = new tbl_TimeOverRun_Detail();
-                    obj_tbl_TimeOverRun_Detail.Circle_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Circle_Id"].ToString());
-                    obj_tbl_TimeOverRun_Detail.Zone_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Zone_Id"].ToString());
-                    obj_tbl_TimeOverRun_Detail.Division_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Division_Id"].ToString());
-                    obj_tbl_TimeOverRun_Detail.Circle_Name = ds.Tables[0].Rows[i]["Circle_Name"].ToString();
-                    obj_tbl_TimeOverRun_Detail.Zone_Name = ds.Tables[0].Rows[i]["Zone_Name"].ToString();
-                    obj_tbl_TimeOverRun_Detail.Division_Name = ds.Tables[0].Rows[i]["Division_Name"].ToString();
-                    obj_tbl_TimeOverRun_Detail.ProjectWork_Name = ds.Tables[0].Rows[i]["ProjectWork_Name"].ToString();
-                    obj_tbl_TimeOverRun_Detail.ProjectWork_Code = ds.Tables[0].Rows[i]["ProjectWork_ProjectCode"].ToString();
-                    obj_tbl_TimeOverRun_Detail.Circle_Division_Name = ds.Tables[0].Rows[i]["Circle_Name"].ToString() + " - " + ds.Tables[0].Rows[i]["Division_Name"].ToString();
-                    if (LD == 0)
-                        obj_tbl_TimeOverRun_Detail.Header_Text = "Time Over run schemes : Extension is Required";
-                    else
-                        obj_tbl_TimeOverRun_Detail.Header_Text = "Time Over run schemes : Extension is Over";
-                    try
-                    {
-                        obj_tbl_TimeOverRun_Detail.Financial_Progress = Convert.ToDecimal(ds.Tables[0].Rows[i]["Financial_Progress"].ToString());
-                    }
-                    catch
-                    {
-                        obj_tbl_TimeOverRun_Detail.Financial_Progress = 0;
-                    }
-                    try
-                    {
-                        obj_tbl_TimeOverRun_Detail.Physical_Progress = Convert.ToDecimal(ds.Tables[0].Rows[i]["Physical_Progress"].ToString());
-                    }
-                    catch
-                    {
-                        obj_tbl_TimeOverRun_Detail.Physical_Progress = 0;
-                    }
-                    obj_tbl_TimeOverRun_Detail.Agreement_Start_Date = ds.Tables[0].Rows[i]["ProjectWorkPkg_Agreement_Date"].ToString();
-                    obj_tbl_TimeOverRun_Detail.Agreement_End_Date = ds.Tables[0].Rows[i]["ProjectWorkPkg_Due_Date"].ToString();
-                    obj_tbl_TimeOverRun_Detail.Agreement_Extended_Date = ds.Tables[0].Rows[i]["Target_Date_Agreement_Extended"].ToString();
-                    obj_tbl_TimeOverRun_Detail_Li.Add(obj_tbl_TimeOverRun_Detail);
-                }
-
-                string webURI = "";
-                if (Page.Request.Url.Query.Trim() == "")
-                {
-                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
-                }
-                else
-                {
-                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
-                }
-
-                ReportDocument crystalReport = new ReportDocument();
-                if (LD == 0)
-                    crystalReport.Load(Server.MapPath("~/Crystal/pmis/Time_Overrun_Expired_Detail.rpt"));
-                else
-                    crystalReport.Load(Server.MapPath("~/Crystal/pmis/Time_Overrun_Extended_Expired_Detail.rpt"));
-
-                crystalReport.SetDataSource(obj_tbl_TimeOverRun_Detail_Li);
-                crystalReport.Refresh();
-                //crystalReport.ReportSource = crystalReport;
-                //crystalReport.RefreshReport();
-                crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
-
-                FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
-                if (fi.Exists)
-                {
-                    new AllClasses().Render_PDF_Document(ltEmbed, filePath + fileName);
-                    mp1.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Unable To Generate Report.");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Unable To Generate Report.");
-                return;
             }
         }
     }
@@ -910,7 +646,6 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
             int Zone_Id = 0;
             int Circle_Id = 0;
             int Division_Id = 0;
-            int ProjectType_Id = 0;
             int Updation = -1;
             int Month = 0;
             int Year = 0;
@@ -946,7 +681,6 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
             try
             {
                 Scheme_Id = Request.QueryString["Scheme_Id"].ToString();
-                get_tbl_ProjectType(Convert.ToInt32(Scheme_Id));
             }
             catch
             {
@@ -1051,22 +785,6 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
 
             try
             {
-                ProjectType_Id = Convert.ToInt32(Request.QueryString["Type_Id"].ToString());
-                try
-                {
-                    ddlProjectType.SelectedValue = ProjectType_Id.ToString();
-                }
-                catch
-                {
-                    ddlProjectType.SelectedValue = "0";
-                }
-            }
-            catch
-            {
-                ProjectType_Id = 0;
-            }
-            try
-            {
                 District_Id = Convert.ToInt32(Request.QueryString["District_Id"].ToString());
             }
             catch
@@ -1105,14 +823,7 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
             {
                 Division_Id = 0;
             }
-            if (LD == 0 || LD == 2)
-            {
-                divTimeOverRun.Visible = true;
-            }
-            else
-            {
-                divTimeOverRun.Visible = false;
-            }
+
             int FromRange = -1;
             int TillRange = -1;
             try
@@ -1167,7 +878,7 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
             {
                 TillDate = "";
             }
-            get_tbl_ProjectWork(District_Id, Zone_Id, Circle_Id, Division_Id, Scheme_Id, ProjectType_Id, Updation, Month, Year, PhysicalProgressType, GO, DocType, ProjectStatus, ULB_Id, LD, Component_Id, rbtFilterBy.SelectedValue, FromRange, TillRange, ProgressType, NodalDept_Id, Issue_Id, Dependency_Id, NodalDepartmentScheme_Id, FromDate, TillDate, Jurisdiction_In, _Scheme_Id);
+            get_tbl_ProjectWork(District_Id, Zone_Id, Circle_Id, Division_Id, Scheme_Id, 0, Updation, Month, Year, PhysicalProgressType, GO, DocType, ProjectStatus, ULB_Id, LD, Component_Id, rbtFilterBy.SelectedValue, FromRange, TillRange, ProgressType, NodalDept_Id, Issue_Id, Dependency_Id, NodalDepartmentScheme_Id, FromDate, TillDate, Jurisdiction_In, _Scheme_Id);
         }
     }
 
@@ -1184,7 +895,6 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
         int Zone_Id = 0;
         int Circle_Id = 0;
         int Division_Id = 0;
-        int ProjectType_Id = 0;
         int Updation = -1;
         int Month = 0;
         int Year = 0;
@@ -1220,7 +930,6 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
         try
         {
             Scheme_Id = Request.QueryString["Scheme_Id"].ToString();
-            get_tbl_ProjectType(Convert.ToInt32(Scheme_Id));
         }
         catch
         {
@@ -1322,23 +1031,6 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
         {
             Updation = -1;
         }
-
-        try
-        {
-            ProjectType_Id = Convert.ToInt32(Request.QueryString["Type_Id"].ToString());
-            try
-            {
-                ddlProjectType.SelectedValue = ProjectType_Id.ToString();
-            }
-            catch
-            {
-                ddlProjectType.SelectedValue = "0";
-            }
-        }
-        catch
-        {
-            ProjectType_Id = 0;
-        }
         try
         {
             District_Id = Convert.ToInt32(Request.QueryString["District_Id"].ToString());
@@ -1379,14 +1071,7 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        if (LD == 0 || LD == 2)
-        {
-            divTimeOverRun.Visible = true;
-        }
-        else
-        {
-            divTimeOverRun.Visible = false;
-        }
+
         int FromRange = -1;
         int TillRange = -1;
         try
@@ -1507,7 +1192,6 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
     {
         btnFilter_Click(btnFilter, new EventArgs());
     }
-
 
     protected void btnIssueList_Click(object sender, EventArgs e)
     {

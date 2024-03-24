@@ -11,7 +11,7 @@ public partial class Report_Collection : System.Web.UI.Page
 {
     protected void Page_PreInit(object sender, EventArgs e)
     {
-        this.MasterPageFile = SetMasterPage.ReturnPage();        
+        this.MasterPageFile = SetMasterPage.ReturnPage();
     }
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -45,12 +45,12 @@ public partial class Report_Collection : System.Web.UI.Page
         {
             ds = (new DataLayer()).get_PMIS_Dashboard_Detailed(Zone_Id, 0, 0, Scheme_Id.ToString(), 0, 0, "", -1, "", "", Convert.ToInt32(Session["Person_Id"].ToString()));
         }
-        
+
         if (AllClasses.CheckDataSet(ds))
         {
             grdPost.DataSource = ds.Tables[0];
             grdPost.DataBind();
-            
+
             grdPost.FooterRow.Cells[3].Text = ds.Tables[0].Compute("sum(Total_Count)", "").ToString();
             grdPost.FooterRow.Cells[4].Text = ds.Tables[0].Compute("sum(Completed_Count)", "").ToString();
             grdPost.FooterRow.Cells[5].Text = ds.Tables[0].Compute("sum(OnGoing_Count)", "").ToString();
@@ -96,7 +96,7 @@ public partial class Report_Collection : System.Web.UI.Page
     {
         int Scheme_Id = 0;
         Scheme_Id = Convert.ToInt32(((sender as LinkButton).Parent.Parent as GridViewRow).Cells[0].Text);
-        Response.Redirect("Report_Collection_District.aspx?Scheme_Id=" + Scheme_Id.ToString());
+        Response.Redirect("Report_Collection_Circle.aspx?Scheme_Id=" + Scheme_Id.ToString() + "&Zone_Id=1&Zone_Name=Uttar%20Pradesh&Circle_Id=0&Circle_Name=");
     }
 
     protected void lnkSchemeF_Click(object sender, EventArgs e)
@@ -110,6 +110,6 @@ public partial class Report_Collection : System.Web.UI.Page
         {
             Scheme_Id = 0;
         }
-        Response.Redirect("Report_Collection_District.aspx?Scheme_Id="+ Scheme_Id.ToString());
+        Response.Redirect("Report_Collection_Circle.aspx?Scheme_Id=" + Scheme_Id.ToString() + "&Zone_Id=1&Zone_Name=Uttar%20Pradesh&Circle_Id=0&Circle_Name=");
     }
 }

@@ -92,22 +92,22 @@ public partial class Report_Collection_Division : System.Web.UI.Page
             grdPost1.DataSource = ds.Tables[0];
             grdPost1.DataBind();
 
-            grdPost1.FooterRow.Cells[3].Text = ds.Tables[0].Compute("sum(Total_Count)", "").ToString();
-            grdPost1.FooterRow.Cells[4].Text = ds.Tables[0].Compute("sum(Completed_Count)", "").ToString();
-            grdPost1.FooterRow.Cells[5].Text = ds.Tables[0].Compute("sum(OnGoing_Count)", "").ToString();
-            grdPost1.FooterRow.Cells[6].Text = ds.Tables[0].Compute("sum(Total_Sanction)", "").ToString();
-            grdPost1.FooterRow.Cells[7].Text = ds.Tables[0].Compute("sum(Completed_Sanction)", "").ToString();
+            grdPost1.FooterRow.Cells[5].Text = ds.Tables[0].Compute("sum(Total_Count)", "").ToString();
+            grdPost1.FooterRow.Cells[6].Text = ds.Tables[0].Compute("sum(Completed_Count)", "").ToString();
+            grdPost1.FooterRow.Cells[7].Text = ds.Tables[0].Compute("sum(OnGoing_Count)", "").ToString();
+            grdPost1.FooterRow.Cells[8].Text = ds.Tables[0].Compute("sum(Total_Sanction)", "").ToString();
+            grdPost1.FooterRow.Cells[9].Text = ds.Tables[0].Compute("sum(Completed_Sanction)", "").ToString();
 
-            grdPost1.FooterRow.Cells[8].Text = ds.Tables[0].Compute("sum(OnGoing_Sanction)", "").ToString();
-            grdPost1.FooterRow.Cells[9].Text = ds.Tables[0].Compute("sum(Total_Release)", "").ToString();
-            grdPost1.FooterRow.Cells[10].Text = ds.Tables[0].Compute("sum(Completed_Release)", "").ToString();
-            grdPost1.FooterRow.Cells[11].Text = ds.Tables[0].Compute("sum(OnGoing_Release)", "").ToString();
-            grdPost1.FooterRow.Cells[12].Text = ds.Tables[0].Compute("sum(Total_Remaining_Amount)", "").ToString();
-            grdPost1.FooterRow.Cells[13].Text = ds.Tables[0].Compute("sum(Completed_Remaining_Amount)", "").ToString();
-            grdPost1.FooterRow.Cells[14].Text = ds.Tables[0].Compute("sum(OnGoing_Remaining_Amount)", "").ToString();
-            grdPost1.FooterRow.Cells[15].Text = ds.Tables[0].Compute("sum(Total_Expenditure)", "").ToString();
-            grdPost1.FooterRow.Cells[16].Text = ds.Tables[0].Compute("sum(Completed_Expenditure)", "").ToString();
-            grdPost1.FooterRow.Cells[17].Text = ds.Tables[0].Compute("sum(OnGoing_Expenditure)", "").ToString();
+            grdPost1.FooterRow.Cells[10].Text = ds.Tables[0].Compute("sum(OnGoing_Sanction)", "").ToString();
+            grdPost1.FooterRow.Cells[11].Text = ds.Tables[0].Compute("sum(Total_Release)", "").ToString();
+            grdPost1.FooterRow.Cells[12].Text = ds.Tables[0].Compute("sum(Completed_Release)", "").ToString();
+            grdPost1.FooterRow.Cells[13].Text = ds.Tables[0].Compute("sum(OnGoing_Release)", "").ToString();
+            grdPost1.FooterRow.Cells[14].Text = ds.Tables[0].Compute("sum(Total_Remaining_Amount)", "").ToString();
+            grdPost1.FooterRow.Cells[15].Text = ds.Tables[0].Compute("sum(Completed_Remaining_Amount)", "").ToString();
+            grdPost1.FooterRow.Cells[16].Text = ds.Tables[0].Compute("sum(OnGoing_Remaining_Amount)", "").ToString();
+            grdPost1.FooterRow.Cells[17].Text = ds.Tables[0].Compute("sum(Total_Expenditure)", "").ToString();
+            grdPost1.FooterRow.Cells[18].Text = ds.Tables[0].Compute("sum(Completed_Expenditure)", "").ToString();
+            grdPost1.FooterRow.Cells[19].Text = ds.Tables[0].Compute("sum(OnGoing_Expenditure)", "").ToString();
         }
         else
         {
