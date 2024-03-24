@@ -879,114 +879,7 @@ public partial class MasterProjectWork_DataEntry : System.Web.UI.Page
 
         string FilePath = "";
         List<tbl_ProjectWorkGO> obj_tbl_ProjectWorkGO_Li = new List<tbl_ProjectWorkGO>();
-        //for (int i = 0; i < grdCallProductDtls.Rows.Count; i++)
-        //{
-        //    decimal Allocated_Budget = 0;
-        //    decimal CentralShare_Budget = 0;
-        //    decimal StateShare_Budget = 0;
-        //    decimal Centage_Budget = 0;
-        //    decimal ULBShare_Budget = 0;
-
-        //    TextBox txtGODate = grdCallProductDtls.Rows[i].FindControl("txtFinancialTrans_GO_Date") as TextBox;
-        //    TextBox txtCentralShare = grdCallProductDtls.Rows[i].FindControl("txtCentralShare") as TextBox;
-        //    TextBox txtStateShare = grdCallProductDtls.Rows[i].FindControl("txtStateShare") as TextBox;
-        //    TextBox txtCentage = grdCallProductDtls.Rows[i].FindControl("txtCentage") as TextBox;
-        //    TextBox txtULBShare = grdCallProductDtls.Rows[i].FindControl("txtULBShare") as TextBox;
-        //    TextBox txtFinancialTrans_GO_Number = grdCallProductDtls.Rows[i].FindControl("txtFinancialTrans_GO_Number") as TextBox;
-        //    FileUpload flUploadGO = grdCallProductDtls.Rows[i].FindControl("flUploadGO") as FileUpload;
-        //    FilePath = grdCallProductDtls.Rows[i].Cells[9].Text.Trim();
-        //    try
-        //    {
-        //        CentralShare_Budget = Convert.ToDecimal(txtCentralShare.Text);
-        //    }
-        //    catch
-        //    {
-        //        CentralShare_Budget = 0;
-        //    }
-        //    try
-        //    {
-        //        StateShare_Budget = Convert.ToDecimal(txtStateShare.Text);
-        //    }
-        //    catch
-        //    {
-        //        StateShare_Budget = 0;
-        //    }
-        //    try
-        //    {
-        //        Centage_Budget = Convert.ToDecimal(txtCentage.Text);
-        //    }
-        //    catch
-        //    {
-        //        Centage_Budget = 0;
-        //    }
-        //    try
-        //    {
-        //        ULBShare_Budget = Convert.ToDecimal(txtULBShare.Text);
-        //    }
-        //    catch
-        //    {
-        //        ULBShare_Budget = 0;
-        //    }
-        //    Allocated_Budget = CentralShare_Budget + StateShare_Budget + Centage_Budget + ULBShare_Budget;
-
-        //    tbl_ProjectWorkGO obj_tbl_ProjectWorkGO = new tbl_ProjectWorkGO();
-        //    try
-        //    {
-        //        obj_tbl_ProjectWorkGO.ProjectWorkGO_Id = Convert.ToInt32(grdCallProductDtls.Rows[i].Cells[0].Text);
-        //    }
-        //    catch
-        //    {
-        //        obj_tbl_ProjectWorkGO.ProjectWorkGO_Id = 0;
-        //    }
-        //    obj_tbl_ProjectWorkGO.ProjectWorkGO_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
-        //    obj_tbl_ProjectWorkGO.ProjectWorkGO_GO_Date = txtGODate.Text.Trim();
-        //    obj_tbl_ProjectWorkGO.ProjectWorkGO_GO_Number = txtFinancialTrans_GO_Number.Text.Trim();
-        //    if (Request.QueryString.Count > 0)
-        //    {
-        //        try
-        //        {
-        //            obj_tbl_ProjectWorkGO.ProjectWorkGO_Work_Id = Convert.ToInt32(Request.QueryString[0].ToString());
-        //        }
-        //        catch
-        //        {
-        //            obj_tbl_ProjectWorkGO.ProjectWorkGO_Work_Id = 0;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        obj_tbl_ProjectWorkGO.ProjectWorkGO_Work_Id = 0;
-        //    }
-        //    obj_tbl_ProjectWorkGO.ProjectWorkGO_Status = 1;
-        //    obj_tbl_ProjectWorkGO.ProjectWorkGO_TotalRelease = Allocated_Budget * 100000;
-        //    obj_tbl_ProjectWorkGO.ProjectWorkGO_CentralShare = CentralShare_Budget * 100000;
-        //    obj_tbl_ProjectWorkGO.ProjectWorkGO_StateShare = StateShare_Budget * 100000;
-        //    obj_tbl_ProjectWorkGO.ProjectWorkGO_ULBShare = ULBShare_Budget * 100000;
-        //    obj_tbl_ProjectWorkGO.ProjectWorkGO_EntryType = "S";
-        //    obj_tbl_ProjectWorkGO.ProjectWorkGO_Centage = Centage_Budget * 100000;
-        //    if (obj_tbl_ProjectWorkGO.ProjectWorkGO_TotalRelease + obj_tbl_ProjectWorkGO.ProjectWorkGO_CentralShare + obj_tbl_ProjectWorkGO.ProjectWorkGO_StateShare + obj_tbl_ProjectWorkGO.ProjectWorkGO_ULBShare + obj_tbl_ProjectWorkGO.ProjectWorkGO_Centage > 0)
-        //    {
-        //        if (txtGODate.Text.Trim() == "")
-        //        {
-        //            MessageBox.Show("Please Fill GO Date");
-        //            return;
-        //        }
-        //        if (txtFinancialTrans_GO_Number.Text.Trim() == "")
-        //        {
-        //            MessageBox.Show("Please Fill GO No");
-        //            return;
-        //        }
-        //        if (flUploadGO.HasFile)
-        //        {
-        //            obj_tbl_ProjectWorkGO.ProjectWorkGO_Document_Bytes = flUploadGO.FileBytes;
-        //        }
-        //        else
-        //        {
-        //            obj_tbl_ProjectWorkGO.ProjectWorkGO_Document_Bytes = null;
-        //        }
-        //        obj_tbl_ProjectWorkGO_Li.Add(obj_tbl_ProjectWorkGO);
-        //    }
-        //}
-
+        
         tbl_ProjectWorkGO obj_tbl_ProjectWorkGO = new tbl_ProjectWorkGO();
         obj_tbl_ProjectWorkGO.ProjectWorkGO_Id = 0;
         obj_tbl_ProjectWorkGO.ProjectWorkGO_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
@@ -1272,7 +1165,7 @@ public partial class MasterProjectWork_DataEntry : System.Web.UI.Page
         }
 
         string Msg = "";
-        if ((new DataLayer()).Insert_tbl_ProjectWork_Data_Entry(obj_tbl_ProjectWork, obj_tbl_ProjectWorkGO_Li, obj_tbl_ProjectWorkIssueDetails_Li, physicalTarget, obj_tbl_ProjectWorkPkg_Li, Client, obj_tbl_ProjectUC_Li, file_Upload_Array, null, obj_tbl_ProjectSalientFeatures_Li, "", ref Msg))
+        if ((new DataLayer()).Insert_tbl_ProjectWork_Data_Entry(obj_tbl_ProjectWork, obj_tbl_ProjectWorkGO_Li, null, obj_tbl_ProjectWorkIssueDetails_Li, physicalTarget, obj_tbl_ProjectWorkPkg_Li, Client, obj_tbl_ProjectUC_Li, file_Upload_Array, null, obj_tbl_ProjectSalientFeatures_Li, "", ref Msg))
         {
             if (Msg == "")
             {

@@ -1,13 +1,8 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.IO;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -110,10 +105,10 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
                 Load_Project_Details(ProjectWork_Id);
                 get_tbl_ProjectWorkGO(ProjectWork_Id);
                 get_tbl_ProjectWorkPkg_DataEntry_View(ProjectWork_Id);
-
                 get_ProjectWork_Physical_Progress(ProjectWork_Id);
                 get_tbl_ProjectIssue(Scheme_Id);
                 get_tbl_ProjectWorkIssueDetails(ProjectWork_Id);
+                get_UC_Details(ProjectWork_Id);
             }
             else
             {
@@ -122,6 +117,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
                 grdPackageDetails.DataBind();
                 get_tbl_ProjectWorkGO_Blank();
                 get_tbl_ProjectWorkIssueDetails(0);
+                get_UC_Details(0);
             }
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
@@ -636,6 +632,38 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
                 obj_tbl_ProjectWorkGO_Li.Add(obj_tbl_ProjectWorkGO);
             }
         }
+
+        List<tbl_ProjectWorkFundingPattern> obj_tbl_ProjectWorkFundingPattern_Li = new List<tbl_ProjectWorkFundingPattern>();
+
+        for (int i = 0; i < grdFundingPattern.Rows.Count; i++)
+        {
+            tbl_ProjectWorkFundingPattern obj_tbl_ProjectWorkFundingPattern = new tbl_ProjectWorkFundingPattern();
+            obj_tbl_ProjectWorkFundingPattern.ProjectWorkFundingPattern_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
+            obj_tbl_ProjectWorkFundingPattern.ProjectWorkFundingPattern_FundingPatternId = Convert.ToInt32(grdFundingPattern.Rows[i].Cells[0].Text.ToString());
+            try
+            {
+                obj_tbl_ProjectWorkFundingPattern.ProjectWorkFundingPattern_Percentage = Convert.ToDecimal((grdFundingPattern.Rows[i].FindControl("txtShareP") as TextBox).Text.Trim());
+            }
+            catch
+            {
+                obj_tbl_ProjectWorkFundingPattern.ProjectWorkFundingPattern_Percentage = 0;
+            }
+            try
+            {
+                obj_tbl_ProjectWorkFundingPattern.ProjectWorkFundingPattern_Value = Convert.ToDecimal((grdFundingPattern.Rows[i].FindControl("txtShareV") as TextBox).Text.Trim());
+            }
+            catch
+            {
+                obj_tbl_ProjectWorkFundingPattern.ProjectWorkFundingPattern_Value = 0;
+            }
+            obj_tbl_ProjectWorkFundingPattern.ProjectWorkFundingPattern_ProjectWorkId = obj_tbl_ProjectWork.ProjectWork_Id;
+            obj_tbl_ProjectWorkFundingPattern.ProjectWorkFundingPattern_Status = 1;
+            if (obj_tbl_ProjectWorkFundingPattern.ProjectWorkFundingPattern_Value + obj_tbl_ProjectWorkFundingPattern.ProjectWorkFundingPattern_Percentage > 0)
+            {
+                obj_tbl_ProjectWorkFundingPattern_Li.Add(obj_tbl_ProjectWorkFundingPattern);
+            }
+        }
+
         List<tbl_ProjectWorkIssueDetails> obj_tbl_ProjectWorkIssueDetails_Li = new List<tbl_ProjectWorkIssueDetails>();
         obj_tbl_ProjectWorkIssueDetails_Li = (List<tbl_ProjectWorkIssueDetails>)(ViewState["dtIssue"]);
         for (int i = 0; i < obj_tbl_ProjectWorkIssueDetails_Li.Count; i++)
@@ -731,6 +759,92 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             if (obj_tbl_ProjectWorkIssueDetails_Li[i].ProjectWorkIssueDetails_Issue_Id == 0)
             { }
         }
+
+        List<tbl_ProjectUC> obj_tbl_ProjectUC_Li = new List<tbl_ProjectUC>();
+        for (int i = 0; i < grdUC.Rows.Count; i++)
+        {
+            TextBox txtUCDate = grdUC.Rows[i].FindControl("txtUCDate") as TextBox;
+            TextBox txtUC_Number = grdUC.Rows[i].FindControl("txtUC_Number") as TextBox;
+            TextBox txtUCP = grdUC.Rows[i].FindControl("txtUCP") as TextBox;
+            FileUpload flUploadUC = grdUC.Rows[i].FindControl("flUploadUC") as FileUpload;
+            FilePath = grdUC.Rows[i].Cells[1].Text.Trim().Replace("&nbsp;", "");
+
+            tbl_ProjectUC obj_tbl_ProjectUC = new tbl_ProjectUC();
+            obj_tbl_ProjectUC.ProjectUC_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
+            obj_tbl_ProjectUC.ProjectUC_SubmitionDate = txtUCDate.Text.Trim();
+            obj_tbl_ProjectUC.ProjectUC_Comments = txtUC_Number.Text.Trim();
+            if (Request.QueryString.Count > 0)
+            {
+                try
+                {
+                    obj_tbl_ProjectUC.ProjectUC_ProjectWork_Id = Convert.ToInt32(Request.QueryString[0].ToString());
+                }
+                catch
+                {
+                    obj_tbl_ProjectUC.ProjectUC_ProjectWork_Id = 0;
+                }
+            }
+            else
+            {
+                obj_tbl_ProjectUC.ProjectUC_ProjectWork_Id = 0;
+            }
+
+            obj_tbl_ProjectUC.ProjectUC_Status = 1;
+            try
+            {
+                obj_tbl_ProjectUC.ProjectUC_Id = Convert.ToInt32(grdUC.Rows[i].Cells[0].Text.Trim());
+            }
+            catch
+            {
+                obj_tbl_ProjectUC.ProjectUC_Id = 0;
+            }
+            try
+            {
+                obj_tbl_ProjectUC.ProjectUC_Achivment = Convert.ToDecimal(txtUCP.Text.Trim());
+            }
+            catch
+            {
+                obj_tbl_ProjectUC.ProjectUC_Achivment = 0;
+            }
+            if (obj_tbl_ProjectUC.ProjectUC_Achivment > 0)
+            {
+                if (txtUCDate.Text.Trim() == "")
+                {
+                    MessageBox.Show("Please Fill UC Date");
+                    return;
+                }
+                if (txtUC_Number.Text.Trim() == "")
+                {
+                    MessageBox.Show("Please Fill UC Number");
+                    return;
+                }
+                if (FilePath.Replace("&nbsp;", "") == "")
+                {
+                    if (!flUploadUC.HasFile)
+                    {
+                        MessageBox.Show("Please Upload UC Document.");
+                        return;
+                    }
+                }
+                try
+                {
+                    if (flUploadUC.HasFile)
+                    {
+                        obj_tbl_ProjectUC.ProjectUC_Document_Bytes = flUploadUC.FileBytes;
+                    }
+                    else
+                    {
+                        obj_tbl_ProjectUC.ProjectUC_Document_Bytes = null;
+                    }
+                }
+                catch
+                {
+
+                }
+                obj_tbl_ProjectUC_Li.Add(obj_tbl_ProjectUC);
+            }
+        }
+
         try
         {
             physicalTarget = Convert.ToDecimal(txtPhysicalTarget.Text.Trim());
@@ -740,7 +854,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             physicalTarget = 0;
         }
         string Msg = "";
-        if ((new DataLayer()).Insert_tbl_ProjectWork_Data_Entry(obj_tbl_ProjectWork, obj_tbl_ProjectWorkGO_Li, null, physicalTarget, obj_tbl_ProjectWorkPkg_Li, Client, null, null, null, null, extGO, ref Msg))
+        if ((new DataLayer()).Insert_tbl_ProjectWork_Data_Entry(obj_tbl_ProjectWork, obj_tbl_ProjectWorkGO_Li, obj_tbl_ProjectWorkFundingPattern_Li, obj_tbl_ProjectWorkIssueDetails_Li, physicalTarget, obj_tbl_ProjectWorkPkg_Li, Client, obj_tbl_ProjectUC_Li, null, null, null, extGO, ref Msg))
         {
             if (Msg == "")
             {
@@ -1160,6 +1274,16 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             {
                 aGO.Visible = false;
             }
+        }
+        if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+        {
+            grdFundingPattern.DataSource = ds.Tables[1];
+            grdFundingPattern.DataBind();
+        }
+        else
+        {
+            grdFundingPattern.DataSource = null;
+            grdFundingPattern.DataBind();
         }
     }
     protected void get_ProjectWork_Physical_Progress(int ProjectWork_Id)
@@ -1720,6 +1844,186 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
                 ProjectId = 0;
             }
             get_tbl_ProjectType(ProjectId);
+        }
+    }
+    protected void grdFundingPattern_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
+    }
+    private void get_tbl_FundingPattern()
+    {
+        DataSet ds = new DataSet();
+        ds = (new DataLayer()).get_tbl_FundingPattern();
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            grdFundingPattern.DataSource = ds.Tables[0];
+            grdFundingPattern.DataBind();
+        }
+        else
+        {
+            grdFundingPattern.DataSource = null;
+            grdFundingPattern.DataBind();
+        }
+    }
+    protected void grdFundingPattern_PreRender(object sender, EventArgs e)
+    {
+        GridView gv = (GridView)sender;
+        if (gv.Rows.Count > 0)
+        {
+            //This replaces <td> with <th> and adds the scope attribute
+            gv.UseAccessibleHeader = true;
+        }
+        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
+        {
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        if (gv.ShowFooter == true && gv.Rows.Count > 0)
+        {
+            gv.FooterRow.TableSection = TableRowSection.TableFooter;
+        }
+    }
+    protected void grdUC_PreRender(object sender, EventArgs e)
+    {
+        GridView gv = (GridView)sender;
+        if (gv.Rows.Count > 0)
+        {
+            //This replaces <td> with <th> and adds the scope attribute
+            gv.UseAccessibleHeader = true;
+        }
+        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
+        {
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        if (gv.ShowFooter == true && gv.Rows.Count > 0)
+        {
+            gv.FooterRow.TableSection = TableRowSection.TableFooter;
+        }
+    }
+
+    protected void grdUC_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            string ProjectUC_Document = e.Row.Cells[1].Text.Trim().Replace("&nbsp;", "");
+            if (ProjectUC_Document != "")
+            {
+                e.Row.Cells[2].BackColor = System.Drawing.Color.LightGreen;
+            }
+            else
+            {
+                LinkButton lnkBtn = (LinkButton)e.Row.FindControl("lnkUCDoc");
+                lnkBtn.Visible = false;
+            }
+        }
+    }
+
+    private void Add_UC()
+    {
+        DataTable dtUC;
+        if (ViewState["dtUC"] != null)
+        {
+            dtUC = (DataTable)(ViewState["dtUC"]);
+            DataRow dr = dtUC.NewRow();
+            dtUC.Rows.Add(dr);
+            ViewState["dtUC"] = dtUC;
+
+            grdUC.DataSource = dtUC;
+            grdUC.DataBind();
+        }
+        else
+        {
+            dtUC = new DataTable();
+
+            DataColumn dc_Sr_No = new DataColumn("Sr_No", typeof(int));
+
+            dtUC.Columns.AddRange(new DataColumn[] { dc_Sr_No });
+
+            DataRow dr = dtUC.NewRow();
+            dtUC.Rows.Add(dr);
+            ViewState["dtUC"] = dtUC;
+
+            grdUC.DataSource = dtUC;
+            grdUC.DataBind();
+        }
+    }
+
+    protected void btnAddUC_Click(object sender, ImageClickEventArgs e)
+    {
+        Add_UC();
+    }
+
+    protected void btnDeleteUC_Click(object sender, ImageClickEventArgs e)
+    {
+        GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
+        int ProjectUC_Id = 0;
+        try
+        {
+            ProjectUC_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
+        }
+        catch
+        {
+            ProjectUC_Id = 0;
+        }
+        if (ProjectUC_Id == 0)
+        {
+            MessageBox.Show("Nothing To Delete");
+            return;
+        }
+        if (new DataLayer().Delete_tbl_ProjectUC(ProjectUC_Id, Convert.ToInt32(Session["Person_Id"].ToString())))
+        {
+            int ProjectWork_Id = Convert.ToInt32(Request.QueryString[0].Trim());
+            get_UC_Details(ProjectWork_Id);
+            MessageBox.Show("Deleted Successfully .");
+            return;
+        }
+        else
+        {
+            MessageBox.Show("Error");
+            return;
+        }
+    }
+    protected void imgdeleteUC_Click(object sender, ImageClickEventArgs e)
+    {
+        GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
+        int index = gr.RowIndex;
+        if (ViewState["dtUC"] != null)
+        {
+            DataTable dt = (DataTable)ViewState["dtUC"];
+            if (dt.Rows.Count > 1)
+            {
+                dt.Rows.RemoveAt(dt.Rows.Count - 1);
+                grdUC.DataSource = dt;
+                grdUC.DataBind();
+                ViewState["dtUC"] = dt;
+            }
+        }
+    }
+    private void get_UC_Details(int ProjectWork_Id)
+    {
+        DataSet ds = new DataSet();
+        ds = (new DataLayer()).get_tbl_ProjectUC(ProjectWork_Id);
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            grdUC.DataSource = ds.Tables[0];
+            grdUC.DataBind();
+            ViewState["dtUC"] = ds.Tables[0];
+        }
+        else
+        {
+            DataTable dt = new DataTable();
+            DataColumn dc_1 = new DataColumn("ProjectUC_Id", typeof(int));
+            DataColumn dc_2 = new DataColumn("ProjectUC_SubmitionDate", typeof(string));
+            DataColumn dc_3 = new DataColumn("ProjectUC_Comments", typeof(string));
+            DataColumn dc_4 = new DataColumn("ProjectUC_Achivment", typeof(decimal));
+            DataColumn dc_5 = new DataColumn("ProjectUC_Document", typeof(string));
+            dt.Columns.AddRange(new DataColumn[] { dc_1, dc_2, dc_3, dc_4, dc_5 });
+            DataRow dr = dt.NewRow();
+            dr["ProjectUC_Id"] = 0;
+            dt.Rows.Add(dr);
+
+            ViewState["dtUC"] = dt;
+            grdUC.DataSource = dt;
+            grdUC.DataBind();
         }
     }
 }

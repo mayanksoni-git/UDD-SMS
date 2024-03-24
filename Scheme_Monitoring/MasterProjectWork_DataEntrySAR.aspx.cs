@@ -1147,7 +1147,7 @@ public partial class MasterProjectWork_DataEntrySAR : System.Web.UI.Page
             file_Upload_Array.Add(flPhotoUpload2.FileName, flPhotoUpload2.FileBytes);
         }
         string Msg = "";
-        if ((new DataLayer()).Insert_tbl_ProjectWork_Data_Entry(obj_tbl_ProjectWork, obj_tbl_ProjectWorkGO_Li, obj_tbl_ProjectWorkIssueDetails_Li, physicalTarget, obj_tbl_ProjectWorkPkg_Li, Client, obj_tbl_ProjectUC_Li, file_Upload_Array, obj_tbl_ProjectPkg_PhysicalProgress, null, "", ref Msg))
+        if ((new DataLayer()).Insert_tbl_ProjectWork_Data_Entry(obj_tbl_ProjectWork, obj_tbl_ProjectWorkGO_Li, null, obj_tbl_ProjectWorkIssueDetails_Li, physicalTarget, obj_tbl_ProjectWorkPkg_Li, Client, obj_tbl_ProjectUC_Li, file_Upload_Array, obj_tbl_ProjectPkg_PhysicalProgress, null, "", ref Msg))
         {
             if (Msg == "")
             {

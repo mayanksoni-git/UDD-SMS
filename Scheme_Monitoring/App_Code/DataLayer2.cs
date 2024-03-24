@@ -14709,7 +14709,7 @@ public partial class DataLayer : Page, IRequiresSessionState
         }
         return ds;
     }
-    public bool Insert_tbl_ProjectWork_Data_Entry(tbl_ProjectWork obj_tbl_ProjectWork, List<tbl_ProjectWorkGO> obj_tbl_ProjectWorkGO_Li, List<tbl_ProjectWorkIssueDetails> obj_tbl_ProjectWorkIssueDetails_Li, decimal physicalTarget, List<tbl_ProjectWorkPkgTemp> obj_tbl_ProjectWorkPkg_Li, string Client, List<tbl_ProjectUC> obj_tbl_ProjectUC_Li, Dictionary<string, byte[]> file_Upload_Array, List<tbl_ProjectPkg_PhysicalProgress> obj_tbl_ProjectPkg_PhysicalProgress_Li, List<tbl_ProjectSalientFeatures> obj_tbl_ProjectSalientFeatures_Li, string extGO, ref string Msg)
+    public bool Insert_tbl_ProjectWork_Data_Entry(tbl_ProjectWork obj_tbl_ProjectWork, List<tbl_ProjectWorkGO> obj_tbl_ProjectWorkGO_Li, List<tbl_ProjectWorkFundingPattern> obj_tbl_ProjectWorkFundingPattern_Li, List<tbl_ProjectWorkIssueDetails> obj_tbl_ProjectWorkIssueDetails_Li, decimal physicalTarget, List<tbl_ProjectWorkPkgTemp> obj_tbl_ProjectWorkPkg_Li, string Client, List<tbl_ProjectUC> obj_tbl_ProjectUC_Li, Dictionary<string, byte[]> file_Upload_Array, List<tbl_ProjectPkg_PhysicalProgress> obj_tbl_ProjectPkg_PhysicalProgress_Li, List<tbl_ProjectSalientFeatures> obj_tbl_ProjectSalientFeatures_Li, string extGO, ref string Msg)
     {
         bool flag = false;
         string strQuery = "";
@@ -14833,7 +14833,15 @@ public partial class DataLayer : Page, IRequiresSessionState
                             //ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
                         }
                     }
-
+                    Update_tbl_ProjectWorkFundingPattern(obj_tbl_ProjectWork.ProjectWork_AddedBy, obj_tbl_ProjectWork.ProjectWork_Id, trans, cn);
+                    if (obj_tbl_ProjectWorkFundingPattern_Li != null)
+                    {
+                        for (int i = 0; i < obj_tbl_ProjectWorkFundingPattern_Li.Count; i++)
+                        {
+                            obj_tbl_ProjectWorkFundingPattern_Li[i].ProjectWorkFundingPattern_ProjectWorkId = obj_tbl_ProjectWork.ProjectWork_Id;
+                            Insert_tbl_ProjectWorkFundingPattern(obj_tbl_ProjectWorkFundingPattern_Li[i], trans, cn);
+                        }
+                    }
                     if (Client == "CNDS")
                     {
                         for (int i = 0; i < obj_tbl_ProjectWorkIssueDetails_Li.Count; i++)
