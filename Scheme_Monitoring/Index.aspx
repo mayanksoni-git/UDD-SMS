@@ -78,9 +78,6 @@
                                             <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success w-100" OnClick="btnLogin_Click" />
                                         </div>
                                     </div>
-                                    <div class="mt-5 text-center">
-                                        <p class="mb-0">Don't have an account ? <a href="auth-signup-cover.html" class="fw-semibold text-primary text-decoration-underline">Signup</a> </p>
-                                    </div>
                                 </div>
                             </div>
                             <!-- end col -->
@@ -112,7 +109,7 @@
                     <div class="widget-main">
                         <h4 class="header blue lighter bigger">
                             <i class="ace-icon fa fa-coffee green"></i>
-                            Please Select Role
+                            Please Select Role (Additional Charge)
                         </h4>
 
                         <div class="space-4"></div>
@@ -121,8 +118,6 @@
                             <label class="block clearfix" runat="server" id="Label1">
                                 <span class="block input-icon input-icon-right">
                                     <asp:DropDownList ID="ddlAdditionalDivisionAndRole" runat="server" CssClass="form-control">
-                                        <asp:ListItem Selected="True" Text="ePayment and PMIS" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="Payroll HR & Financial Accounting" Value="2"></asp:ListItem>
                                     </asp:DropDownList>
                                 </span>
                             </label>

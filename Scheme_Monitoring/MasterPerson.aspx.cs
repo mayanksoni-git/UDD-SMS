@@ -43,20 +43,12 @@ public partial class MasterPerson : System.Web.UI.Page
             get_tbl_Department();
             //Designation
             get_tbl_Designation();
-            get_District(rbMappingType.SelectedValue);
-
+            
             get_tbl_Designation_Additional();
             //Level
             get_tbl_Level();
-            //District
-            get_tbl_Jurisdiction(1, 0);
             txtUserName.Text = (new DataLayer()).get_tbl_Employee_User_Name(null, null);
             txtUserName.Enabled = false;
-            divExpert1.Visible = false;
-            divExpert2.Visible = false;
-            divExpert3.Visible = false;
-            divExpert4.Visible = false;
-            divExpert5.Visible = false;
             //if (Session["UserType"].ToString() != "1")
             //{
             //    try
@@ -73,18 +65,6 @@ public partial class MasterPerson : System.Web.UI.Page
             //    }
 
             //}
-            if (Session["UserType"].ToString() == "2" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
-            {//District
-                try
-                {
-                    ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    ddlDistrict.Enabled = false;
-                }
-                catch
-                { }
-            }
-
             if (Session["UserType"].ToString() == "4" && Convert.ToInt32(Session["PersonJuridiction_ZoneId"].ToString()) > 0)
             {//Zone
                 try
@@ -212,13 +192,10 @@ public partial class MasterPerson : System.Web.UI.Page
             ddlProjectMaster.DataValueField = "Project_Id";
             ddlProjectMaster.DataSource = ds.Tables[0];
             ddlProjectMaster.DataBind();
-
-            AllClasses.FillDropDown(ds.Tables[0], ddlProjectMasterExp, "Project_Name", "Project_Id");
         }
         else
         {
             ddlProjectMaster.Items.Clear();
-            ddlProjectMasterExp.Items.Clear();
         }
     }
     private void get_tbl_ProjectSearch()
@@ -378,55 +355,6 @@ public partial class MasterPerson : System.Web.UI.Page
         }
     }
 
-    private void get_tbl_ULB(int District_Id)
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_ULB(District_Id);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlULB, "ULB_Name", "ULB_Id");
-        }
-        else
-        {
-            ddlULB.Items.Clear();
-        }
-    }
-
-    private void get_District(string Type)
-    {
-        DataSet ds = new DataSet();
-        if (Type == "D")
-        {
-            ds = (new DataLayer()).get_M_Jurisdiction(3, 0);
-            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-            {
-                lbDistrict.DataTextField = "Jurisdiction_Name_Eng_With_Parent";
-                lbDistrict.DataValueField = "M_Jurisdiction_Id";
-                lbDistrict.DataSource = ds.Tables[0];
-                lbDistrict.DataBind();
-            }
-            else
-            {
-                lbDistrict.Items.Clear();
-            }
-        }
-        else
-        {
-            ds = (new DataLayer()).get_tbl_Zone();
-            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-            {
-                lbDistrict.DataTextField = "Zone_Name";
-                lbDistrict.DataValueField = "Zone_Id";
-                lbDistrict.DataSource = ds.Tables[0];
-                lbDistrict.DataBind();
-            }
-            else
-            {
-                lbDistrict.Items.Clear();
-            }
-        }
-    }
-
     private void get_tbl_UserType()
     {
         string UserTypeId = "";
@@ -455,42 +383,7 @@ public partial class MasterPerson : System.Web.UI.Page
             ddlUserType.Items.Clear();
         }
     }
-
-    private void get_tbl_Jurisdiction(int Level_Id, int Parent_Jurisdiction_Id)
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_M_Jurisdiction(Level_Id, Parent_Jurisdiction_Id);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            if (Level_Id == 1)
-            {
-                AllClasses.FillDropDown(ds.Tables[0], ddlState, "Jurisdiction_Name_Eng_With_Parent", "M_Jurisdiction_Id");
-            }
-            else if (Level_Id == 2)
-            {
-                AllClasses.FillDropDown(ds.Tables[0], ddlMandal, "Jurisdiction_Name_Eng_With_Parent", "M_Jurisdiction_Id");
-            }
-            else if (Level_Id == 3)
-            {
-                AllClasses.FillDropDown(ds.Tables[0], ddlDistrict, "Jurisdiction_Name_Eng_With_Parent", "M_Jurisdiction_Id");
-            }
-        }
-        else
-        {
-            if (Level_Id == 1)
-            {
-                ddlState.Items.Clear();
-            }
-            if (Level_Id == 2)
-            {
-                ddlMandal.Items.Clear();
-            }
-            if (Level_Id == 2)
-            {
-                ddlDistrict.Items.Clear();
-            }
-        }
-    }
+        
     private void get_tbl_Level()
     {
         DataSet ds = new DataSet();
@@ -499,18 +392,6 @@ public partial class MasterPerson : System.Web.UI.Page
         {
             AllClasses.FillDropDown(ds.Tables[0], ddlLevel, "Level_Name", "M_Level_Id");
             ddlLevel.SelectedValue = "0";
-
-            ddlULB.Visible = false;
-            lblULB.Visible = false;
-
-            ddlDistrict.Visible = false;
-            lblDistrict.Visible = false;
-
-            ddlMandal.Visible = false;
-            lblMandal.Visible = false;
-
-            ddlState.Visible = false;
-            lblState.Visible = false;
 
             ddlDivision.Visible = false;
             lblDivision.Visible = false;
@@ -619,30 +500,6 @@ public partial class MasterPerson : System.Web.UI.Page
             ddlUserType.Focus();
             return;
         }
-        if (ddlLevel.SelectedValue == "1" && ddlState.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select State");
-            ddlState.Focus();
-            return;
-        }
-        if (ddlLevel.SelectedValue == "2" && ddlMandal.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select Mandal");
-            ddlMandal.Focus();
-            return;
-        }
-        if (ddlLevel.SelectedValue == "3" && ddlDistrict.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select District");
-            ddlDistrict.Focus();
-            return;
-        }
-        if (ddlLevel.SelectedValue == "11" && ddlULB.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select ULB");
-            ddlULB.Focus();
-            return;
-        }
         if (ddlLevel.SelectedValue == "6" && ddlZone.SelectedValue == "0")
         {
             MessageBox.Show("Please Select " + Session["Default_Zone"].ToString() + "");
@@ -705,22 +562,6 @@ public partial class MasterPerson : System.Web.UI.Page
             obj_PersonJuridiction.PersonJuridiction_PersonId = 0;
         }
         obj_PersonJuridiction.M_Level_Id = Convert.ToInt32(ddlLevel.SelectedValue);
-        if (obj_PersonJuridiction.M_Level_Id == 1)
-        {
-            obj_PersonJuridiction.M_Jurisdiction_Id = Convert.ToInt32(ddlState.SelectedValue);
-        }
-        else if (obj_PersonJuridiction.M_Level_Id == 2)
-        {
-            obj_PersonJuridiction.M_Jurisdiction_Id = Convert.ToInt32(ddlMandal.SelectedValue);
-        }
-        else if (obj_PersonJuridiction.M_Level_Id == 3)
-        {
-            obj_PersonJuridiction.M_Jurisdiction_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        else if (obj_PersonJuridiction.M_Level_Id == 11)
-        {
-            obj_PersonJuridiction.M_Jurisdiction_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
         if (obj_PersonJuridiction.M_Level_Id == 6)
         {
             obj_PersonJuridiction.PersonJuridiction_ZoneId = Convert.ToInt32(ddlZone.SelectedValue);
@@ -735,14 +576,6 @@ public partial class MasterPerson : System.Web.UI.Page
             obj_PersonJuridiction.PersonJuridiction_ZoneId = Convert.ToInt32(ddlZone.SelectedValue);
             obj_PersonJuridiction.PersonJuridiction_CircleId = Convert.ToInt32(ddlCircle.SelectedValue);
             obj_PersonJuridiction.PersonJuridiction_DivisionId = Convert.ToInt32(ddlDivision.SelectedValue);
-        }
-        try
-        {
-            obj_PersonJuridiction.PersonJuridiction_ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            obj_PersonJuridiction.PersonJuridiction_ULB_Id = 0;
         }
         obj_PersonJuridiction.PersonJuridiction_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
         obj_PersonJuridiction.PersonJuridiction_DepartmentId = Convert.ToInt32(ddlDepartment.SelectedValue);
@@ -785,47 +618,7 @@ public partial class MasterPerson : System.Web.UI.Page
         }
 
         List<tbl_PersonAdditionalCharge> obj_tbl_PersonAdditionalCharge_Li = new List<tbl_PersonAdditionalCharge>();
-        if (ddlDesignation.SelectedValue == "33")
-        {
-            for (int i = 0; i < grdExpertDist.Rows.Count; i++)
-            {
-                int Scheme_Id = Convert.ToInt32(grdExpertDist.Rows[i].Cells[1].Text.Trim());
-                string[] Jurisdiction_Id_In = grdExpertDist.Rows[i].Cells[2].Text.Trim().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                if (Jurisdiction_Id_In != null && Jurisdiction_Id_In.Length > 0)
-                {
-                    for (int j = 0; j < Jurisdiction_Id_In.Length; j++)
-                    {
-                        tbl_PersonAdditionalCharge obj_tbl_PersonAdditionalCharge = new tbl_PersonAdditionalCharge();
-                        obj_tbl_PersonAdditionalCharge.PersonAdditionalCharge_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
-                        try
-                        {
-                            obj_tbl_PersonAdditionalCharge.PersonAdditionalCharge_Jurisdiction_Id = Convert.ToInt32(Jurisdiction_Id_In[j]);
-                        }
-                        catch
-                        {
-                            obj_tbl_PersonAdditionalCharge.PersonAdditionalCharge_Jurisdiction_Id = 0;
-                        }
-                        obj_tbl_PersonAdditionalCharge.PersonAdditionalCharge_Level_Id = 3;
-                        obj_tbl_PersonAdditionalCharge.PersonAdditionalCharge_SchemeId = Scheme_Id;
-                        try
-                        {
-                            obj_tbl_PersonAdditionalCharge.PersonAdditionalCharge_PersonId = Convert.ToInt32(hf_Person_Id.Value);
-                        }
-                        catch
-                        {
-                            obj_tbl_PersonAdditionalCharge.PersonAdditionalCharge_PersonId = 0;
-                        }
-                        obj_tbl_PersonAdditionalCharge.PersonAdditionalCharge_MappingType = rbMappingType.SelectedValue;
-                        obj_tbl_PersonAdditionalCharge.PersonAdditionalCharge_Status = 1;
-                        if (obj_tbl_PersonAdditionalCharge.PersonAdditionalCharge_Jurisdiction_Id > 0)
-                        {
-                            obj_tbl_PersonAdditionalCharge_Li.Add(obj_tbl_PersonAdditionalCharge);
-                        }
-                    }
-                }
-            }
-        }
-
+        
         List<tbl_PersonAdditionalArea> obj_tbl_PersonAdditionalArea_Li = new List<tbl_PersonAdditionalArea>();
         for (int i = 0; i < dgvAdditionalDivision.Rows.Count; i++)
         {
@@ -930,13 +723,7 @@ public partial class MasterPerson : System.Web.UI.Page
         txtConfirmPassword.Text = "";
         txtPassowrd.Text = "";
         txtUserName.Text = "";
-        divLoginDetails2.Visible = true;
-        divLoginDetails1.Visible = true;
-
-        ddlState.Visible = false;
-        lblState.Visible = false;
-        ddlDistrict.Visible = false;
-        lblDistrict.Visible = false;
+        divLoginDetails.Visible = true;
 
         if (ddlZoneS.SelectedValue == "0")
         {
@@ -998,20 +785,8 @@ public partial class MasterPerson : System.Web.UI.Page
     {
         if (ddlLevel.SelectedValue == "0")
         {
-            ddlState.SelectedValue = "0";
-            ddlDistrict.Items.Clear();
-            ddlMandal.Items.Clear();
-            ddlULB.Items.Clear();
             ddlCircle.Items.Clear();
             ddlDivision.Items.Clear();
-            ddlDistrict.Visible = false;
-            ddlULB.Visible = false;
-            lblDistrict.Visible = false;
-            lblULB.Visible = false;
-            ddlState.Visible = false;
-            lblState.Visible = false;
-            ddlMandal.Visible = false;
-            lblMandal.Visible = false;
             lblZone.Visible = false;
             ddlZone.Visible = false;
             lblCircle.Visible = false;
@@ -1019,114 +794,8 @@ public partial class MasterPerson : System.Web.UI.Page
             lblDivision.Visible = false;
             ddlDivision.Visible = false;
         }
-        else if (ddlLevel.SelectedValue == "1")
-        {//State
-            ddlState.SelectedValue = "0";
-            ddlDistrict.Items.Clear();
-            ddlMandal.Items.Clear();
-            ddlULB.Items.Clear();
-            ddlCircle.Items.Clear();
-            ddlDivision.Items.Clear();
-            ddlState.Visible = true;
-            lblState.Visible = true;
-            ddlMandal.Visible = false;
-            lblMandal.Visible = false;
-            ddlDistrict.Visible = false;
-            lblDistrict.Visible = false;
-            ddlULB.Visible = false;
-            lblULB.Visible = false;
-            lblZone.Visible = false;
-            ddlZone.Visible = false;
-            lblCircle.Visible = false;
-            ddlCircle.Visible = false;
-            lblDivision.Visible = false;
-            ddlDivision.Visible = false;
-        }
-        else if (ddlLevel.SelectedValue == "2")
-        {//Mandal
-            ddlState.SelectedValue = "0";
-            ddlDistrict.Items.Clear();
-            ddlMandal.Items.Clear();
-            ddlULB.Items.Clear();
-            ddlCircle.Items.Clear();
-            ddlDivision.Items.Clear();
-            ddlState.Visible = true;
-            lblState.Visible = true;
-            ddlMandal.Visible = true;
-            lblMandal.Visible = true;
-            ddlDistrict.Visible = false;
-            lblDistrict.Visible = false;
-            ddlULB.Visible = false;
-            lblULB.Visible = false;
-            lblZone.Visible = false;
-            ddlZone.Visible = false;
-            lblCircle.Visible = false;
-            ddlCircle.Visible = false;
-            lblDivision.Visible = false;
-            ddlDivision.Visible = false;
-        }
-        else if (ddlLevel.SelectedValue == "3")
-        {//District
-            ddlState.SelectedValue = "0";
-            ddlDistrict.Items.Clear();
-            ddlMandal.Items.Clear();
-            ddlULB.Items.Clear();
-            ddlCircle.Items.Clear();
-            ddlDivision.Items.Clear();
-            ddlState.Visible = true;
-            lblState.Visible = true;
-            ddlMandal.Visible = true;
-            lblMandal.Visible = true;
-            ddlDistrict.Visible = true;
-            lblDistrict.Visible = true;
-            ddlULB.Visible = false;
-            lblULB.Visible = false;
-            lblZone.Visible = false;
-            ddlZone.Visible = false;
-            lblCircle.Visible = false;
-            ddlCircle.Visible = false;
-            lblDivision.Visible = false;
-            ddlDivision.Visible = false;
-        }
-        else if (ddlLevel.SelectedValue == "11")
-        {//ULB
-            ddlState.SelectedValue = "0";
-            ddlDistrict.Items.Clear();
-            ddlMandal.Items.Clear();
-            ddlULB.Items.Clear();
-            ddlCircle.Items.Clear();
-            ddlDivision.Items.Clear();
-            ddlState.Visible = true;
-            lblState.Visible = true;
-            ddlMandal.Visible = true;
-            lblMandal.Visible = true;
-            ddlDistrict.Visible = true;
-            lblDistrict.Visible = true;
-            ddlULB.Visible = true;
-            lblULB.Visible = true;
-            lblZone.Visible = false;
-            ddlZone.Visible = false;
-            lblCircle.Visible = false;
-            ddlCircle.Visible = false;
-            lblDivision.Visible = false;
-            ddlDivision.Visible = false;
-        }
-
         else if (ddlLevel.SelectedValue == "6")
         {//Zone
-            ddlState.SelectedValue = "0";
-            ddlDistrict.Items.Clear();
-            ddlMandal.Items.Clear();
-            ddlULB.Items.Clear();
-            ddlState.Visible = false;
-            lblState.Visible = false;
-            ddlMandal.Visible = false;
-            lblMandal.Visible = false;
-            ddlDistrict.Visible = false;
-            lblDistrict.Visible = false;
-            ddlULB.Visible = false;
-            lblULB.Visible = false;
-
             ddlZone.SelectedValue = "0";
             ddlCircle.Items.Clear();
             ddlDivision.Items.Clear();
@@ -1139,19 +808,6 @@ public partial class MasterPerson : System.Web.UI.Page
         }
         else if (ddlLevel.SelectedValue == "7")
         {//Circle
-            ddlState.SelectedValue = "0";
-            ddlDistrict.Items.Clear();
-            ddlMandal.Items.Clear();
-            ddlULB.Items.Clear();
-            ddlState.Visible = false;
-            lblState.Visible = false;
-            ddlMandal.Visible = false;
-            lblMandal.Visible = false;
-            ddlDistrict.Visible = false;
-            lblDistrict.Visible = false;
-            ddlULB.Visible = false;
-            lblULB.Visible = false;
-
             ddlZone.SelectedValue = "0";
             ddlCircle.Items.Clear();
             ddlDivision.Items.Clear();
@@ -1164,19 +820,6 @@ public partial class MasterPerson : System.Web.UI.Page
         }
         else if (ddlLevel.SelectedValue == "8")
         {//Division
-            ddlState.SelectedValue = "0";
-            ddlDistrict.Items.Clear();
-            ddlMandal.Items.Clear();
-            ddlULB.Items.Clear();
-            ddlState.Visible = false;
-            lblState.Visible = false;
-            ddlMandal.Visible = false;
-            lblMandal.Visible = false;
-            ddlDistrict.Visible = false;
-            lblDistrict.Visible = false;
-            ddlULB.Visible = false;
-            lblULB.Visible = false;
-
             ddlZone.SelectedValue = "0";
             ddlCircle.Items.Clear();
             ddlDivision.Items.Clear();
@@ -1261,8 +904,7 @@ public partial class MasterPerson : System.Web.UI.Page
         }
         (lnkUpdate.Parent.Parent as GridViewRow).BackColor = Color.LightGreen;
         divCreateNew.Visible = true;
-        divLoginDetails2.Visible = false;
-        divLoginDetails1.Visible = false;
+        divLoginDetails.Visible = false;
         hf_PersonJuridiction_Id.Value = (lnkUpdate.Parent.Parent as GridViewRow).Cells[1].Text.Trim();
         hf_Person_Id.Value = (lnkUpdate.Parent.Parent as GridViewRow).Cells[0].Text.Trim();
         GridViewRow grd = lnkUpdate.Parent.Parent as GridViewRow;
@@ -1285,25 +927,7 @@ public partial class MasterPerson : System.Web.UI.Page
             M_Jurisdiction_Id = grd.Cells[3].Text.Replace("&nbsp;", "").Trim();
         }
         obj = (new DataLayer()).get_M_Jurisdiction_Detailed(ddlLevel.SelectedValue, M_Jurisdiction_Id);
-        if (obj.State_Id > 0)
-        {
-            ddlState.SelectedValue = obj.State_Id.ToString();
-            ddlState_SelectedIndexChanged(ddlState, e);
-        }
-        if (obj.Mandal_Id > 0)
-        {
-            ddlMandal.SelectedValue = obj.Mandal_Id.ToString();
-            ddlMandal_SelectedIndexChanged(ddlMandal, e);
-        }
-        if (obj.District_Id > 0)
-        {
-            ddlDistrict.SelectedValue = obj.District_Id.ToString();
-            ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-        }
-        if (obj.ULB_Id > 0)
-        {
-            ddlULB.SelectedValue = obj.ULB_Id.ToString();
-        }
+        
         try
         {
             ddlZone.SelectedValue = grd.Cells[8].Text.Replace("&nbsp;", "").Trim();
@@ -1377,22 +1001,6 @@ public partial class MasterPerson : System.Web.UI.Page
         txtMobileNo1.Text = grd.Cells[19].Text.Replace("&nbsp;", "").Trim();
         txtMobileNo2.Text = grd.Cells[20].Text.Replace("&nbsp;", "").Trim();
 
-
-        DataSet ds = new DataSet();
-        ds = new DataLayer().get_tbl_PersonAdditionalCharge(Convert.ToInt32(hf_Person_Id.Value));
-        if (AllClasses.CheckDataSet(ds))
-        {
-            ViewState["ExpertDist"] = ds;
-            grdExpertDist.DataSource = ds.Tables[0];
-            grdExpertDist.DataBind();
-        }
-        else
-        {
-            ViewState["ExpertDist"] = ds;
-            grdExpertDist.DataSource = null;
-            grdExpertDist.DataBind();
-        }
-
         string[] List_ReportingStaffJEAPE = grd.Cells[32].Text.Replace("&nbsp;", "").Trim().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
         if (List_ReportingStaffJEAPE.Length > 0)
         {
@@ -1418,7 +1026,7 @@ public partial class MasterPerson : System.Web.UI.Page
 
         txtEmployeeCode.Text = grd.Cells[34].Text.Replace("&nbsp;", "").Trim();
 
-        ds = new DataSet();
+        DataSet ds = new DataSet();
         ds = (new DataLayer()).get_PersonAdditionalArea_Edit(Convert.ToInt32(hf_Person_Id.Value));
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
@@ -1442,71 +1050,14 @@ public partial class MasterPerson : System.Web.UI.Page
         divCreateNew.Visible = true;
     }
 
-    protected void ddlState_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlState.SelectedValue == "0")
-        {
-            ddlMandal.Items.Clear();
-        }
-        else
-        {
-            get_tbl_Jurisdiction(2, Convert.ToInt32(ddlState.SelectedValue));
-        }
-    }
-
-    protected void ddlMandal_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlMandal.SelectedValue == "0")
-        {
-            ddlDistrict.Items.Clear();
-        }
-        else
-        {
-            get_tbl_Jurisdiction(3, Convert.ToInt32(ddlMandal.SelectedValue));
-        }
-    }
-
-    protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlDistrict.SelectedValue == "0")
-        {
-            ddlULB.Items.Clear();
-        }
-        else
-        {
-            get_tbl_ULB(Convert.ToInt32(ddlDistrict.SelectedValue));
-        }
-    }
-
     protected void ddlDesignation_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlDesignation.SelectedValue == "0")
         {
-            divExpert1.Visible = false;
-            divExpert2.Visible = false;
-            divExpert3.Visible = false;
-            divExpert4.Visible = false;
-            divExpert5.Visible = false;
             ddlReportingManager.Items.Clear();
         }
         else
         {
-            if (ddlDesignation.SelectedValue == "33")
-            {
-                divExpert1.Visible = true;
-                divExpert2.Visible = true;
-                divExpert3.Visible = true;
-                divExpert4.Visible = true;
-                divExpert5.Visible = true;
-            }
-            else
-            {
-                divExpert1.Visible = false;
-                divExpert2.Visible = false;
-                divExpert3.Visible = false;
-                divExpert4.Visible = false;
-                divExpert5.Visible = false;
-            }
             int Zone_Id = 0;
             int Circle_Id = 0;
             int Division_Id = 0;
@@ -1952,7 +1503,6 @@ public partial class MasterPerson : System.Web.UI.Page
                 ViewState["AdditionalDivision"] = null;
             }
         }
-
     }
 
     protected void lnkDeleteAdditionalDivision_Click(object sender, ImageClickEventArgs e)
@@ -1971,73 +1521,6 @@ public partial class MasterPerson : System.Web.UI.Page
             }
 
         }
-    }
-
-    protected void btnAddExp_Click(object sender, EventArgs e)
-    {
-        if (ddlProjectMasterExp.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select Scheme");
-            return;
-        }
-        if (ViewState["ExpertDist"] == null)
-        {
-            DataTable dt = new DataTable();
-            DataColumn dc1 = new DataColumn("PersonAdditionalCharge_PersonId", typeof(int));
-            DataColumn dc6 = new DataColumn("PersonAdditionalCharge_MappingType", typeof(string));
-            DataColumn dc2 = new DataColumn("PersonAdditionalCharge_SchemeId", typeof(int));
-            DataColumn dc3 = new DataColumn("List_Jurisdiction_Id", typeof(string));
-            DataColumn dc4 = new DataColumn("Project_Name", typeof(string));
-            DataColumn dc5 = new DataColumn("List_Jurisdiction_Name", typeof(string));
-            dt.Columns.AddRange(new DataColumn[] { dc1, dc2, dc3, dc4, dc5, dc6 });
-            DataSet ds = new DataSet();
-            ds.Tables.Add(dt);
-            ViewState["ExpertDist"] = ds;
-        }
-        DataSet dsExpertDist = new DataSet();
-        dsExpertDist = (DataSet)ViewState["ExpertDist"];
-        DataRow dr = dsExpertDist.Tables[0].NewRow();
-        dr["PersonAdditionalCharge_PersonId"] = Convert.ToInt32(hf_Person_Id.Value);
-        dr["PersonAdditionalCharge_SchemeId"] = Convert.ToInt32(ddlProjectMasterExp.SelectedValue);
-        dr["PersonAdditionalCharge_MappingType"] = rbMappingType.SelectedValue;
-        string Jurisdiction_Id_In = "0";
-        string Jurisdiction_In = "0";
-        foreach (ListItem listItem in lbDistrict.Items)
-        {
-            if (listItem.Selected)
-            {
-                Jurisdiction_Id_In = Jurisdiction_Id_In + ", " + listItem.Value;
-                Jurisdiction_In = Jurisdiction_In + ", " + listItem.Text;
-            }
-        }
-        dr["List_Jurisdiction_Id"] = Jurisdiction_Id_In;
-        dr["List_Jurisdiction_Name"] = Jurisdiction_In;
-        dr["Project_Name"] = ddlProjectMasterExp.SelectedItem.Text;
-        dsExpertDist.Tables[0].Rows.Add(dr);
-
-        ViewState["ExpertDist"] = dsExpertDist;
-        grdExpertDist.DataSource = dsExpertDist.Tables[0];
-        grdExpertDist.DataBind();
-    }
-
-    protected void lnkDeleteDistrict_Click(object sender, ImageClickEventArgs e)
-    {
-        GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
-        if (ViewState["ExpertDist"] != null)
-        {
-            DataSet dsExpertDist = new DataSet();
-            dsExpertDist = (DataSet)ViewState["ExpertDist"];
-            dsExpertDist.Tables[0].Rows.RemoveAt(gr.RowIndex);
-
-            ViewState["ExpertDist"] = dsExpertDist;
-            grdExpertDist.DataSource = dsExpertDist.Tables[0];
-            grdExpertDist.DataBind();
-        }
-    }
-
-    protected void rbMappingType_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        get_District(rbMappingType.SelectedValue);
     }
 
     protected void dgvAdditionalDivision_RowDataBound(object sender, GridViewRowEventArgs e)
