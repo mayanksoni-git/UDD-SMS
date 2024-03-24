@@ -24,7 +24,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <label for="basiInput" class="form-label">Scheme</label>
-                                                            <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectMaster_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
@@ -47,6 +47,20 @@
                                                         <div id="divDivision" runat="server">
                                                             <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="form-label"></asp:Label>
                                                             <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label14" runat="server" Text="Lok Sabha" CssClass="form-label"></asp:Label>
+                                                            <asp:DropDownList ID="ddlLokSabha" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlLokSabha_SelectedIndexChanged"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label17" runat="server" Text="Vidhan Sabha" CssClass="form-label"></asp:Label>
+                                                            <asp:DropDownList ID="ddlVidhanSabha" runat="server" CssClass="form-control"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -96,18 +110,17 @@
                                                         </div>
                                                     </div>
                                                     <!--end col-->
-
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label18" runat="server" Text="Project Type*" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label15" runat="server" Text="Physical Progress (%)" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtPhysicalTarget" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <br />
-                                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -404,27 +417,12 @@
                                 <!--end col-->
                             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="table-header">
                                         Project Related Issues (If Any)
                                         <div class="blink" style="float: right">
-                                            <asp:CheckBox runat="server" ID="chkNoIssue" Text="Select If No Issue." ForeColor="Yellow" Font-Bold="true" Font-Size="30px" />
+                                            <asp:CheckBox runat="server" ID="chkNoIssue" Text="Select If No Issue." Font-Bold="true" Font-Size="30px" />
                                         </div>
                                     </div>
                                 </div>
@@ -515,6 +513,16 @@
                                                     </Columns>
                                                 </asp:GridView>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="col-xxl-3 col-md-6">
+                                        <div>
+                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
                                         </div>
                                     </div>
                                 </div>

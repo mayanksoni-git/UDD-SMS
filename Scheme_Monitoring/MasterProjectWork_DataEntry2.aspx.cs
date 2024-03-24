@@ -182,6 +182,20 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         }
     }
 
+    private void get_tbl_LokSabha(int Circle_Id)
+    {
+        DataSet ds = new DataSet();
+        ds = (new DataLayer()).get_tbl_LokSabha(Circle_Id);
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            AllClasses.FillDropDown(ds.Tables[0], ddlLokSabha, "LokSabha_Name", "LokSabha_Id");
+        }
+        else
+        {
+            ddlLokSabha.Items.Clear();
+        }
+    }
+
     private void get_tbl_Project()
     {
         DataSet ds = new DataSet();
@@ -360,14 +374,6 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             {
 
             }
-            //try
-            //{
-            //    obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Vendor_JV_Id = Convert.ToInt32(ddlVendor2.SelectedValue);
-            //}
-            //catch
-            //{
-
-            //}
             try
             {
                 obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_GST = rbtGSTType.SelectedValue;
@@ -491,8 +497,14 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         obj_tbl_ProjectWork.ProjectWork_NodalDeptScheme_Id = 0;
 
         obj_tbl_ProjectWork.ProjectWork_DPR_Id = 0;
-        obj_tbl_ProjectWork.ProjectWork_ProjectType_Id = 0;
-
+        try
+        {
+            obj_tbl_ProjectWork.ProjectWork_ProjectType_Id = Convert.ToInt32(ddlProjectType.SelectedValue);
+        }
+        catch
+        {
+            obj_tbl_ProjectWork.ProjectWork_ProjectType_Id = 0;
+        }
         obj_tbl_ProjectWork.ProjectWork_DistrictId = 0;
         obj_tbl_ProjectWork.ProjectWork_BlockId = 0;
         try
@@ -502,6 +514,14 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         catch
         {
             obj_tbl_ProjectWork.ProjectWork_DivisionId = 0;
+        }
+        try
+        {
+            obj_tbl_ProjectWork.ProjectWork_VidhanSabha_Id = Convert.ToInt32(ddlVidhanSabha.SelectedValue);
+        }
+        catch
+        {
+            obj_tbl_ProjectWork.ProjectWork_VidhanSabha_Id = 0;
         }
         obj_tbl_ProjectWork.ProjectWork_ULB_Id = 0;
         obj_tbl_ProjectWork.ProjectWork_ModifiedBy = Convert.ToInt32(Session["Person_Id"].ToString());
@@ -1044,10 +1064,25 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         if (ddlCircle.SelectedValue == "0")
         {
             ddlDivision.Items.Clear();
+            ddlLokSabha.Items.Clear();
         }
         else
         {
             get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue));
+            get_tbl_LokSabha(Convert.ToInt32(ddlCircle.SelectedValue));
+        }
+    }
+    private void get_tbl_ProjectType(int ProjectId)
+    {
+        DataSet ds = new DataSet();
+        ds = (new DataLayer()).get_tbl_ProjectType(ProjectId, 0);
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            AllClasses.FillDropDown(ds.Tables[0], ddlProjectType, "ProjectType_Name", "ProjectType_Id");
+        }
+        else
+        {
+            ddlProjectType.Items.Clear();
         }
     }
     protected void Load_Project_Details(int ProjectWork_Id)
@@ -1082,6 +1117,24 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             {
                 ddlDivision.SelectedValue = "0";
             }
+
+            try
+            {
+                ddlLokSabha.SelectedValue = ds.Tables[0].Rows[0]["VidhanSabha_LokSabha_Id"].ToString();
+            }
+            catch
+            {
+                ddlLokSabha.SelectedValue = "0";
+            }
+            ddlLokSabha_SelectedIndexChanged(ddlLokSabha, new EventArgs());
+            try
+            {
+                ddlVidhanSabha.SelectedValue = ds.Tables[0].Rows[0]["ProjectWork_VidhanSabha_Id"].ToString();
+            }
+            catch
+            {
+                ddlVidhanSabha.SelectedValue = "0";
+            }
             try
             {
                 ddlProjectMaster.SelectedValue = ds.Tables[0].Rows[0]["ProjectWork_Project_Id"].ToString();
@@ -1089,6 +1142,14 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             catch
             {
                 ddlProjectMaster.SelectedValue = "0";
+            }
+            try
+            {
+                ddlProjectType.SelectedValue = ds.Tables[0].Rows[0]["ProjectWork_ProjectType_Id"].ToString();
+            }
+            catch
+            {
+                ddlProjectType.SelectedValue = "0";
             }
             txtProjectWorkName.Text = ds.Tables[0].Rows[0]["ProjectWork_Name"].ToString();
             txtBudget.Text = ds.Tables[0].Rows[0]["ProjectWork_Budget"].ToString();
@@ -1613,5 +1674,52 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
     protected void btnQuestionnaireU_Click(object sender, ImageClickEventArgs e)
     {
         Add_Questionire_Issue();
+    }
+
+    protected void ddlLokSabha_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlLokSabha.SelectedValue == "0")
+        {
+            ddlVidhanSabha.Items.Clear();
+        }
+        else
+        {
+            get_tbl_VidhanSabha(Convert.ToInt32(ddlLokSabha.SelectedValue));
+        }
+    }
+
+    private void get_tbl_VidhanSabha(int LokSabha_Id)
+    {
+        DataSet ds = new DataSet();
+        ds = (new DataLayer()).get_tbl_VidhanSabha(LokSabha_Id);
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            AllClasses.FillDropDown(ds.Tables[0], ddlVidhanSabha, "VidhanSabha_Name", "VidhanSabha_Id");
+        }
+        else
+        {
+            ddlVidhanSabha.Items.Clear();
+        }
+    }
+
+    protected void ddlProjectMaster_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlProjectMaster.SelectedValue == "0")
+        {
+            ddlProjectType.Items.Clear();
+        }
+        else
+        {
+            int ProjectId = 0;
+            try
+            {
+                ProjectId = Convert.ToInt32(ddlProjectMaster.SelectedValue);
+            }
+            catch
+            {
+                ProjectId = 0;
+            }
+            get_tbl_ProjectType(ProjectId);
+        }
     }
 }
