@@ -2131,7 +2131,7 @@ public partial class MasterProjectWork_DataEntry : System.Web.UI.Page
         }
         catch
         {
-            obj_tbl_ProjectWork.ProjectWorkPkg_Percent = 12;
+            obj_tbl_ProjectWork.ProjectWorkPkg_Percent = 18;
         }
         //try
         //{

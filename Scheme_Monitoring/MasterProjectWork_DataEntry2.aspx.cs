@@ -123,6 +123,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
         obj_tbl_ePaymentModules = (tbl_ePaymentModules)Session["tbl_ePaymentModules"];
     }
+
     private void get_Employee_Vendor()
     {
         string UserTypeId = "5";
@@ -223,16 +224,16 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        if (ddlProjectMaster.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select A Scheme");
-            ddlProjectMaster.Focus();
-            return;
-        }
         if (txtProjectWorkName.Text.Trim() == "")
         {
             MessageBox.Show("Please Provide Project Name");
             txtProjectWorkName.Focus();
+            return;
+        }
+        if (txtGODate1.Text.Trim() == "")
+        {
+            MessageBox.Show("Please Provide GO Date");
+            txtGODate1.Focus();
             return;
         }
         if (txtBudget.Text.Trim() == "" || txtBudget.Text.Trim() == "0")
@@ -259,9 +260,6 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         {
             obj_tbl_ProjectWork.ProjectWork_Budget = 0;
         }
-        obj_tbl_ProjectWork.ProjectWork_Budget_R = 0;
-        obj_tbl_ProjectWork.ProjectWork_Centage = 0;
-
         if (physicalTarget > 100)
         {
             MessageBox.Show("Physical Progress Can Not Be More Than 100%.");
@@ -270,6 +268,66 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         }
         string Client = ConfigurationManager.AppSettings.Get("Client");
 
+        decimal TotalRelease = 0;
+        for (int i = 0; i < grdCallProductDtls.Rows.Count; i++)
+        {
+            decimal Allocated_Budget = 0;
+            decimal CentralShare_Budget = 0;
+            decimal StateShare_Budget = 0;
+            decimal Centage_Budget = 0;
+            decimal ULBShare_Budget = 0;
+
+            TextBox txtGODate = grdCallProductDtls.Rows[i].FindControl("txtFinancialTrans_GO_Date") as TextBox;
+            TextBox txtCentralShare = grdCallProductDtls.Rows[i].FindControl("txtCentralShare") as TextBox;
+            TextBox txtStateShare = grdCallProductDtls.Rows[i].FindControl("txtStateShare") as TextBox;
+            TextBox txtCentage = grdCallProductDtls.Rows[i].FindControl("txtCentage") as TextBox;
+            TextBox txtULBShare = grdCallProductDtls.Rows[i].FindControl("txtULBShare") as TextBox;
+            try
+            {
+                CentralShare_Budget = Convert.ToDecimal(txtCentralShare.Text);
+            }
+            catch
+            {
+                CentralShare_Budget = 0;
+            }
+            try
+            {
+                StateShare_Budget = Convert.ToDecimal(txtStateShare.Text);
+            }
+            catch
+            {
+                StateShare_Budget = 0;
+            }
+            try
+            {
+                Centage_Budget = Convert.ToDecimal(txtCentage.Text);
+            }
+            catch
+            {
+                Centage_Budget = 0;
+            }
+            try
+            {
+                ULBShare_Budget = Convert.ToDecimal(txtULBShare.Text);
+            }
+            catch
+            {
+                ULBShare_Budget = 0;
+            }
+            Allocated_Budget = CentralShare_Budget + StateShare_Budget + Centage_Budget + ULBShare_Budget;
+            TotalRelease += Allocated_Budget;
+        }
+        if (obj_tbl_ProjectWork.ProjectWork_Budget > obj_tbl_ProjectWork.ProjectWork_Budget_R)
+        {
+            if (TotalRelease > obj_tbl_ProjectWork.ProjectWork_Budget)
+            {
+                MessageBox.Show("Total Release Amount Can Not Be More Than Sanctioned Cost.");
+                return;
+            }
+        }
+        
+        obj_tbl_ProjectWork.ProjectWork_GO_Date = txtGODate1.Text.Trim();
+        obj_tbl_ProjectWork.ProjectWork_GO_No = txtGONo.Text.Trim();
         obj_tbl_ProjectWorkPkg_Li = (List<tbl_ProjectWorkPkgTemp>)ViewState["tbl_ProjectWorkPkgTemp"];
         tbl_ProjectWorkPkgTemp obj_tbl_ProjectWorkPkgTemp = new tbl_ProjectWorkPkgTemp();
         int Package_Id = 0;
@@ -287,17 +345,40 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         }
         if (Package_Id > 0 || obj_tbl_ProjectWorkPkg_Li == null || obj_tbl_ProjectWorkPkg_Li.Count == 0)
         {
-            //if (txtAgreementAmount.Text.Trim() == "" || txtAgreementAmount.Text.Trim() == "0")
-            //{
-            //    MessageBox.Show("Please Provide Project Agreement Amount");
-            //    txtAgreementAmount.Focus();
-            //    return;
-            //}
-            DateTime AgreementDate;
-            DateTime ActualDate;
-            DateTime DueDate;
-            DateTime DueDateActual;
-
+            if (txtAgreementAmount.Text.Trim() == "" || txtAgreementAmount.Text.Trim() == "0")
+            {
+                MessageBox.Show("Please Provide Project Agreement Amount");
+                txtAgreementAmount.Focus();
+                return;
+            }
+            if (txtAgreementDate.Text.Trim() == "")
+            {
+                MessageBox.Show("Please Provide Agreement Date");
+                txtAgreementDate.Focus();
+                return;
+            }
+            if (txtActualDate.Text.Trim() == "")
+            {
+                MessageBox.Show("Please Provide Actual Date of Start");
+                txtActualDate.Focus();
+                return;
+            }
+            if (txtDueDate.Text.Trim() == "")
+            {
+                MessageBox.Show("Please Provide Date of Completion As Per Agreement");
+                txtDueDate.Focus();
+                return;
+            }
+            if (txtextenddate.Text.Trim() == "")
+            {
+                MessageBox.Show("Please Provide Origional Date of Completion");
+                txtextenddate.Focus();
+                return;
+            }
+            DateTime AgreementDate = new DateTime();
+            DateTime ActualDate = new DateTime();
+            DateTime DueDate = new DateTime();
+            DateTime DueDateActual = new DateTime();
             try
             {
                 AgreementDate = DateTime.ParseExact(txtAgreementDate.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
@@ -322,6 +403,30 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             }
             catch
             { }
+            if (ActualDate < AgreementDate)
+            {
+                MessageBox.Show("Actual Date Of Start Should Be More Than Agreement Date.");
+                txtActualDate.Focus();
+                return;
+            }
+            if (DueDate < AgreementDate)
+            {
+                MessageBox.Show("Actual Date as Per Agreement Should Be More Than Agreement Date.");
+                txtDueDate.Focus();
+                return;
+            }
+            if (DueDateActual < AgreementDate)
+            {
+                MessageBox.Show("Actual Completion Date Should Be More Than Agreement Date.");
+                txtextenddate.Focus();
+                return;
+            }
+            if (DueDateActual < ActualDate)
+            {
+                MessageBox.Show("Actual Completion Date Should Be More Than Actual Date Of Start.");
+                txtextenddate.Focus();
+                return;
+            }
             if (Request.QueryString.Count > 0)
             {
                 try
@@ -350,15 +455,14 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Agreement_Date = txtAgreementDate.Text.Trim();
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Due_Date = txtDueDate.Text.Trim();
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Agreement_No = txtAgreementNo.Text.Trim();
-            if (txtAgreementAmount.Text.Trim() == "" || txtAgreementAmount.Text.Trim() == "0")
-            {
-                obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_AgreementAmount = obj_tbl_ProjectWork.ProjectWork_Budget;
-            }
-            else
+            try
             {
                 obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_AgreementAmount = Convert.ToDecimal(txtAgreementAmount.Text.Trim());
             }
-
+            catch
+            {
+                obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_AgreementAmount = 0;
+            }
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Start_Date = txtActualDate.Text.Trim();
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Name = txtPackageName.Text.Trim();
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Code = txtPackageCode.Text.Trim();
@@ -370,6 +474,14 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             {
 
             }
+            //try
+            //{
+            //    obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Vendor_JV_Id = Convert.ToInt32(ddlVendor2.SelectedValue);
+            //}
+            //catch
+            //{
+
+            //}
             try
             {
                 obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_GST = rbtGSTType.SelectedValue;
@@ -403,7 +515,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
                 obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_PreviousRA = 0;
             }
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_ExtendDate = txtextenddate.Text;
-            obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Lead_Vendor_PAN = txtLeadContractorPAN.Text;
+            obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Lead_Vendor_PAN = txtLeadContractorPAN.Text.Replace("PAN:", "");
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Lead_Vendor_Name = txtLeadContractorName.Text;
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Status = 1;
             for (int i = 0; i < obj_tbl_ProjectWorkPkg_Li.Count; i++)
@@ -425,8 +537,22 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         decimal Expenditure_Total = 0;
         for (int i = 0; i < obj_tbl_ProjectWorkPkg_Li.Count; i++)
         {
-            Agreement_Cost += obj_tbl_ProjectWorkPkg_Li[i].ProjectWorkPkg_AgreementAmount;
-            Expenditure_Total += obj_tbl_ProjectWorkPkg_Li[i].ProjectWorkPkg_PreviousRA;
+            try
+            {
+                Agreement_Cost += obj_tbl_ProjectWorkPkg_Li[i].ProjectWorkPkg_AgreementAmount;
+            }
+            catch
+            {
+                Agreement_Cost += 0;
+            }
+            try
+            {
+                Expenditure_Total += obj_tbl_ProjectWorkPkg_Li[i].ProjectWorkPkg_PreviousRA;
+            }
+            catch
+            {
+                Expenditure_Total += 0;
+            }
         }
         if (obj_tbl_ProjectWork.ProjectWork_Budget > obj_tbl_ProjectWork.ProjectWork_Budget_R)
         {
@@ -437,15 +563,21 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
                 return;
             }
         }
-        //if (obj_tbl_ProjectWork.ProjectWork_Budget_R > obj_tbl_ProjectWork.ProjectWork_Budget)
-        //{
-        //    if (Agreement_Cost > obj_tbl_ProjectWork.ProjectWork_Budget_R)
-        //    {
-        //        MessageBox.Show("Total Agreement Cost Can Not Be More Than Sanctioned Cost.");
-        //        txtAgreementAmount.Focus();
-        //        return;
-        //    }
-        //}
+        if (obj_tbl_ProjectWork.ProjectWork_Budget_R > obj_tbl_ProjectWork.ProjectWork_Budget)
+        {
+            if (Agreement_Cost > obj_tbl_ProjectWork.ProjectWork_Budget_R)
+            {
+                MessageBox.Show("Total Agreement Cost Can Not Be More Than Sanctioned Cost.");
+                txtAgreementAmount.Focus();
+                return;
+            }
+        }
+        if (Expenditure_Total > TotalRelease)
+        {
+            MessageBox.Show("Total Expenditure Can Not Be More Than Total Released Amount.");
+            txtExpenditureRABill.Focus();
+            return;
+        }
 
         if (Request.QueryString.Count > 0)
         {
@@ -1016,7 +1148,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         }
         catch
         {
-            obj_tbl_ProjectWork.ProjectWorkPkg_Percent = 12;
+            obj_tbl_ProjectWork.ProjectWorkPkg_Percent = 18;
         }
         //try
         //{
