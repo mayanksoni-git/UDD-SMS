@@ -29,40 +29,7 @@ public partial class Report_ProjectWork_Physical_Statement : System.Web.UI.Page
             txtDateTill.Text = Session["ServerDate"].ToString();
 
             get_tbl_Project();
-            get_M_Jurisdiction();
             get_tbl_Zone();
-            if (Session["UserType"].ToString() == "2" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
-            {//District
-                try
-                {
-                    ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    ddlDistrict.Enabled = false;
-                }
-                catch
-                { }
-            }
-            if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
-            {
-                try
-                {
-                    ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    ddlDistrict.Enabled = false;
-                    if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["ULB_Id"].ToString()) > 0)
-                    {//ULB
-                        try
-                        {
-                            ddlULB.SelectedValue = Session["ULB_Id"].ToString();
-                            ddlULB.Enabled = false;
-                        }
-                        catch
-                        { }
-                    }
-                }
-                catch
-                { }
-            }
             if (Session["UserType"].ToString() == "4" && Convert.ToInt32(Session["PersonJuridiction_ZoneId"].ToString()) > 0)
             {//Zone
                 try
@@ -131,44 +98,7 @@ public partial class Report_ProjectWork_Physical_Statement : System.Web.UI.Page
             get_Physical_Progress_Statement();
         }
     }
-    protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlDistrict.SelectedValue == "0")
-        {
-            ddlULB.Items.Clear();
-        }
-        else
-        {
-            get_tbl_ULB(Convert.ToInt32(ddlDistrict.SelectedValue));
-        }
-    }
-
-    private void get_tbl_ULB(int District_Id)
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_ULB(District_Id);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlULB, "ULB_Name", "ULB_Id");
-        }
-        else
-        {
-            ddlULB.Items.Clear();
-        }
-    }
-    private void get_M_Jurisdiction()
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_M_Jurisdiction(3, 0);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlDistrict, "Jurisdiction_Name_Eng", "M_Jurisdiction_Id");
-        }
-        else
-        {
-            ddlDistrict.Items.Clear();
-        }
-    }
+    
     private void get_tbl_Project()
     {
         DataSet ds = new DataSet();
@@ -282,23 +212,7 @@ public partial class Report_ProjectWork_Physical_Statement : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
-
+        
         string _Date = txtDateTill.Text.Trim();
 
         DataSet ds = new DataSet();
@@ -403,27 +317,6 @@ public partial class Report_ProjectWork_Physical_Statement : System.Web.UI.Page
         else
         {
             get_tbl_Division_Search(Convert.ToInt32(ddlSearchCircle.SelectedValue));
-        }
-    }
-    protected void rbtMappingWith_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (rbtMappingWith.SelectedValue == "D")
-        {
-            divZone.Visible = true;
-            divCircle.Visible = true;
-            divDivision.Visible = true;
-
-            divDistrict.Visible = false;
-            divULB.Visible = false;
-        }
-        else
-        {
-            divZone.Visible = false;
-            divCircle.Visible = false;
-            divDivision.Visible = false;
-
-            divDistrict.Visible = true;
-            divULB.Visible = true;
         }
     }
 }
