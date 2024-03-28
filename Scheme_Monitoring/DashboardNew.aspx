@@ -117,7 +117,7 @@
                                                                     <a href="Dashboard_PMIS.aspx?Scheme_Id=<%# Eval("Project_Id") %>">
                                                                         <p class="fw-medium text-muted mb-0"><%# Eval("Project_Name") %></p>
 
-                                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
+                                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                     </a>
                                                                 </div>
                                                                 <div>
@@ -163,7 +163,7 @@
                                                                     <a href="Dashboard_PMIS.aspx?Scheme_Id=<%# Eval("Project_Id") %>">
                                                                         <p class="fw-medium text-muted mb-0"><%# Eval("Project_Name") %></p>
 
-                                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
+                                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                     </a>
                                                                 </div>
                                                                 <div>
@@ -209,7 +209,7 @@
                                                                     <a href="Dashboard_PMIS.aspx?Scheme_Id=<%# Eval("Project_Id") %>">
                                                                         <p class="fw-medium text-muted mb-0"><%# Eval("Project_Name") %></p>
 
-                                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("OnGoing_Count") %>'>0</span></h2>
+                                                                        <h2 class="mt-4 ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                     </a>
                                                                 </div>
                                                                 <div>
