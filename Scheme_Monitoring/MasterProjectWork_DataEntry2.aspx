@@ -24,13 +24,13 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <label for="basiInput" class="form-label">Scheme</label>
-                                                            <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectMaster_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectMaster_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="divZone" runat="server">
                                                             <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -38,7 +38,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="divCircle" runat="server">
                                                             <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -46,21 +46,21 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="divDivision" runat="server">
                                                             <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label14" runat="server" Text="Lok Sabha" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlLokSabha" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlLokSabha_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlLokSabha" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlLokSabha_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label17" runat="server" Text="Vidhan Sabha" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlVidhanSabha" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlVidhanSabha" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -90,7 +90,8 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label1" runat="server" Text="GO Date*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox TextMode="Date" ID="txtGODate1" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="dd/mm/yyyy"></asp:TextBox>
+                                                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" style="display:none;" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
+                                                            <asp:TextBox ID="txtGODate2" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -113,7 +114,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label18" runat="server" Text="Project Type*" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -208,7 +209,7 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="GO Date">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="txtFinancialTrans_GO_Date" runat="server" CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy" Text='<%# Eval("ProjectWorkGO_GO_Date") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="txtFinancialTrans_GO_Date" runat="server" CssClass="form-control date-picker" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkGO_GO_Date") %>'></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="GO Number">
@@ -296,21 +297,21 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label8" runat="server" Text="Date Of Start As Per Agreement *" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtAgreementDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="dd/mm/yyyy"></asp:TextBox>
+                                                            <asp:TextBox ID="txtAgreementDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label9" runat="server" Text="Actual Date Of Start" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtActualDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="dd/mm/yyyy"></asp:TextBox>
+                                                            <asp:TextBox ID="txtActualDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr"  data-date-format="d/m/Y"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label4" runat="server" Text="Date Of Completion As Per Agreement" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtDueDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="dd/mm/yyyy"></asp:TextBox>
+                                                            <asp:TextBox ID="txtDueDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -318,7 +319,7 @@
                                                         <div>
                                                             <asp:Label ID="Label11" runat="server" Text="Actual / Expected Date Of Completion" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtextenddate" runat="server" CssClass="form-control" data-provider="flatpickr"
-                                                                autocomplete="off" data-date-format="dd/mm/yyyy"></asp:TextBox>
+                                                                autocomplete="off" data-date-format="d/m/Y"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -342,7 +343,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <label class="form-label">Contractor (Lead)* </label>
-                                                            <asp:DropDownList ID="ddlVendor1" runat="server" class="chosen-select form-control" data-placeholder="Choose a Contractor / Vendor..." AutoPostBack="true" OnSelectedIndexChanged="ddlVendor1_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlVendor1" runat="server" class="chosen-select form-select" data-placeholder="Choose a Contractor / Vendor..." AutoPostBack="true" OnSelectedIndexChanged="ddlVendor1_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -370,7 +371,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div style="display: none;">
                                                             <asp:Label ID="Label13" runat="server" Text="GST Percentage*" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlGSTPercentage" runat="server" CssClass="form-control">
+                                                            <asp:DropDownList ID="ddlGSTPercentage" runat="server" CssClass="form-select">
                                                                 <asp:ListItem Text="5" Value="5.00"></asp:ListItem>
                                                                 <asp:ListItem Text="12" Value="12.00"></asp:ListItem>
                                                                 <asp:ListItem Text="18" Value="18.00" Selected="True"></asp:ListItem>
@@ -484,7 +485,7 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="UC Date">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="txtUCDate" runat="server" CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy" Text='<%# Eval("ProjectUC_SubmitionDate") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="txtUCDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y" Text='<%# Eval("ProjectUC_SubmitionDate") %>'></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="UC Number">
@@ -576,13 +577,13 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Issuing Type">
                                                             <ItemTemplate>
-                                                                <asp:DropDownList ID="ddlIssueType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlIssueType_SelectedIndexChanged">
+                                                                <asp:DropDownList ID="ddlIssueType" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlIssueType_SelectedIndexChanged">
                                                                 </asp:DropDownList>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Dependency">
                                                             <ItemTemplate>
-                                                                <asp:DropDownList ID="ddlDependency" runat="server" CssClass="form-control">
+                                                                <asp:DropDownList ID="ddlDependency" runat="server" CssClass="form-select">
                                                                 </asp:DropDownList>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
@@ -593,7 +594,7 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Issuing Effective Date">
                                                             <ItemTemplate>
-                                                                <asp:TextBox ID="txtIssuingDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="dd/mm/yyyy" Text='<%# Eval("ProjectWorkIssueDetails_Date") %>'></asp:TextBox>
+                                                                <asp:TextBox ID="txtIssuingDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkIssueDetails_Date") %>'></asp:TextBox>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Comments">
@@ -617,7 +618,7 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Resolved Date">
                                                             <ItemTemplate>
-                                                                <asp:TextBox ID="txtResolvedDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="dd/mm/yyyy" Text='<%# Eval("ProjectWorkIssueDetails_DateResolved") %>'></asp:TextBox>
+                                                                <asp:TextBox ID="txtResolvedDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkIssueDetails_DateResolved") %>'></asp:TextBox>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Resolved">

@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <div class="main-content">
-        <div class="main-content-inner">
+        <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
@@ -13,13 +13,10 @@
                     </cc1:ModalPopupExtender>
                     <asp:Button ID="btnShowPopup2" Text="Show" runat="server" Style="display: none;"></asp:Button>
 
-                    <div class="page-content">
+                    <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
-                                    <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Additional Jurisdiction (In Case Of Additional Charge)</h4>
-                                    </div>
                                     <!-- end card header -->
                                     <div class="card-body">
                                         <div class="live-preview">
@@ -50,7 +47,7 @@
                                                 <!--end col-->
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <asp:Button ID="btnFilter" Text="Filter" OnClick="btnFilter_Click" runat="server" CssClass="btn btn-pink"></asp:Button>
+                                                        <asp:Button ID="btnFilter" Text="Filter" OnClick="btnFilter_Click" runat="server" CssClass="btn btn-primary"></asp:Button>
                                                         &nbsp; &nbsp;
                                                         <asp:ImageButton ID="btnDownload" OnClick="btnDownload_Click" runat="server" ImageUrl="~/assets/images/excel_import.png"
                                                             Width="60px" Height="50px"></asp:ImageButton>

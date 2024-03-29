@@ -230,10 +230,10 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             txtProjectWorkName.Focus();
             return;
         }
-        if (txtGODate1.Text.Trim() == "")
+        if (txtGODate2.Text.Trim() == "")
         {
             MessageBox.Show("Please Provide GO Date");
-            txtGODate1.Focus();
+            txtGODate2.Focus();
             return;
         }
         if (txtBudget.Text.Trim() == "" || txtBudget.Text.Trim() == "0")
@@ -326,7 +326,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             }
         }
         
-        obj_tbl_ProjectWork.ProjectWork_GO_Date = txtGODate1.Text.Trim();
+        obj_tbl_ProjectWork.ProjectWork_GO_Date = txtGODate2.Text.Trim();
         obj_tbl_ProjectWork.ProjectWork_GO_No = txtGONo.Text.Trim();
         obj_tbl_ProjectWorkPkg_Li = (List<tbl_ProjectWorkPkgTemp>)ViewState["tbl_ProjectWorkPkgTemp"];
         tbl_ProjectWorkPkgTemp obj_tbl_ProjectWorkPkgTemp = new tbl_ProjectWorkPkgTemp();
@@ -514,7 +514,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             {
                 obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_PreviousRA = 0;
             }
-            obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_ExtendDate = txtextenddate.Text;
+            obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_ExtendDate = txtextenddate.Text.Trim();
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Lead_Vendor_PAN = txtLeadContractorPAN.Text.Replace("PAN:", "");
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Lead_Vendor_Name = txtLeadContractorName.Text;
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Status = 1;
@@ -604,7 +604,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             string[] _fname = flUploadGO.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
             extGO = _fname[_fname.Length - 1];
         }
-        obj_tbl_ProjectWork.ProjectWork_GO_Date = txtGODate1.Text.Trim();
+        obj_tbl_ProjectWork.ProjectWork_GO_Date = txtGODate2.Text.Trim();
         obj_tbl_ProjectWork.ProjectWork_GO_No = txtGONo.Text.Trim();
         try
         {
@@ -1168,7 +1168,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         }
         obj_tbl_ProjectWork.ProjectWorkPkg_Lead_Vendor_PAN = txtLeadContractorPAN.Text;
         obj_tbl_ProjectWork.ProjectWorkPkg_Lead_Vendor_Name = txtLeadContractorName.Text;
-        obj_tbl_ProjectWork.ProjectWorkPkg_ExtendDate = txtextenddate.Text;
+        obj_tbl_ProjectWork.ProjectWorkPkg_ExtendDate = txtextenddate.Text.Trim();
         obj_tbl_ProjectWork.ProjectWorkPkg_Status = 1;
         obj_tbl_ProjectWorkPkg_Li = (List<tbl_ProjectWorkPkgTemp>)ViewState["tbl_ProjectWorkPkgTemp"];
         if (obj_tbl_ProjectWorkPkg_Li == null)
@@ -1400,7 +1400,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             txtProjectWorkName.Text = ds.Tables[0].Rows[0]["ProjectWork_Name"].ToString();
             txtBudget.Text = ds.Tables[0].Rows[0]["ProjectWork_Budget"].ToString();
             txtGONo.Text = ds.Tables[0].Rows[0]["ProjectWork_GO_No"].ToString();
-            txtGODate1.Text = ds.Tables[0].Rows[0]["ProjectWork_GO_Date"].ToString();
+            txtGODate2.Text = ds.Tables[0].Rows[0]["ProjectWork_GO_Date"].ToString();
             hf_GO_Path.Value = ds.Tables[0].Rows[0]["ProjectWork_GO_Path"].ToString();
             if (hf_GO_Path.Value == "")
             {
@@ -1601,7 +1601,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             MessageBox.Show("Please Input Issue Resolved Date");
             return;
         }
-        if (new DataLayer().Delete_tbl_ProjectWorkIssueDetails(ProjectWorkIssueDetails_Id, txtResolvedDate.Text, Convert.ToInt32(Session["Person_Id"].ToString())))
+        if (new DataLayer().Delete_tbl_ProjectWorkIssueDetails(ProjectWorkIssueDetails_Id, txtResolvedDate.Text.Trim(), Convert.ToInt32(Session["Person_Id"].ToString())))
         {
             int ProjectWork_Id = Convert.ToInt32(Request.QueryString[0].Trim());
             get_tbl_ProjectWorkIssueDetails(ProjectWork_Id);
