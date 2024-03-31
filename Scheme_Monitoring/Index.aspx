@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Login.master" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Index" %>
 
-<%@ Register Assembly="MSCaptcha" Namespace="MSCaptcha" TagPrefix="cc1" %>
-
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
     </cc1:ToolkitScriptManager>
@@ -26,8 +24,9 @@
                                                 <img src="assets/images/logo-light.png" alt="" class="img-fluid">
                                             </a>
                                         </div>
-                                        <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-                                        <p class="text-white">It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+                                        <p class="text-white">Introducing the Scheme Monitoring System: A Unified Portal for Government Schemes under the Directorate of Local Bodies, Jal Nigam, and SUDA. This innovative platform serves as an information hub, offering comprehensive details on schemes across various directorates. At its core lies a smart dashboard, providing real-time insights into critical metrics. </p>
+                                        <p class="text-white">Within this dashboard, users can access two main categories of statistics: Dashboard Stats, divided into Physical Units and Financial Amounts. Under Physical Units, metrics include the total number of Approved Projects, Ongoing Projects, Completed Projects, and Utilization Certificates Received. In the Financial category, users can track the Total Approved Amount, Total Released Amount, Total Spent Amount, and the Balance Amount yet to be released. </p>
+                                        <%--<p class="text-white">Moreover, this platform serves as a Gateway to Insights, enabling users to delve deeper into project statuses, financial standings, and scheme-wise name, values and units. By seamlessly navigating through data, stakeholders can make informed decisions and drive strategic direction effectively. </p>--%>
                                     </div>
                                 </div>
                             </div>
@@ -56,23 +55,6 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
                                             <label class="form-check-label" for="auth-remember-check">Remember me</label>
-                                        </div>
-                                        <div class="mt-4">
-                                            <asp:TextBox ID="txtCaptcha" runat="server" CssClass="form-control" placeholder="Captcha">
-                                            </asp:TextBox>
-                                        </div>
-
-                                        <div class="mt-4">
-                                            <div class="float-end">
-                                                <asp:ImageButton ImageUrl="~/refresh.png" runat="server" CausesValidation="false" />
-                                            </div>
-                                            <cc1:CaptchaControl ID="Captcha1" runat="server" CaptchaBackgroundNoise="Low" CaptchaLength="5"
-                                                CaptchaHeight="60" CaptchaWidth="200" CaptchaMinTimeout="5" CaptchaMaxTimeout="240"
-                                                FontColor="#D20B0C" NoiseColor="#B1B1B1" />
-                                        </div>
-                                        <div class="mt-4">
-                                            <asp:CustomValidator ErrorMessage="Invalid. Please try again." OnServerValidate="ValidateCaptcha"
-                                                runat="server" />
                                         </div>
                                         <div class="mt-4">
                                             <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success w-100" OnClick="btnLogin_Click" />

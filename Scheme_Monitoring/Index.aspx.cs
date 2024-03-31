@@ -329,19 +329,7 @@ public partial class Index : System.Web.UI.Page
         return FormsAuthentication.HashPasswordForStoringInConfigFile((randomNo + strPassword), "MD5");
 #pragma warning restore 618
     }
-    protected void ValidateCaptcha(object sender, ServerValidateEventArgs e)
-    {
-        Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
-        e.IsValid = Captcha1.UserValidated;
-        if (e.IsValid)
-        {
-            ViewState["IsValid"] = "true";
-        }
-        else
-        {
-            ViewState["IsValid"] = "false";
-        }
-    }
+
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         if (txtUserName.Text.Trim().Replace("'", "") == "")
@@ -354,18 +342,6 @@ public partial class Index : System.Web.UI.Page
         {
             MessageBox.Show("Please Provide Password!!");
             txtPassowrd.Focus();
-            return;
-        }
-        if (txtCaptcha.Text.Trim() == "")
-        {
-            MessageBox.Show("Please Solve Captcha Puzzle..!!");
-            txtCaptcha.Focus();
-            return;
-        }
-        if (ViewState["IsValid"].ToString() == "false")
-        {
-            MessageBox.Show("Please Solve Captcha Puzzle..!!");
-            txtCaptcha.Focus();
             return;
         }
         DataSet ds = new DataSet();
