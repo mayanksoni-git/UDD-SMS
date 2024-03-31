@@ -32,14 +32,14 @@ public partial class Report_Collection_Division : System.Web.UI.Page
             }
             if (Scheme_Id == 0)
             {
-                lblScheme.Text = "सभी योजना / कार्यक्रम";
+                lblScheme.InnerHtml = "सभी योजना / कार्यक्रम";
             }
             else
             {
                 DataSet ds = new DataLayer().get_tbl_Project(Scheme_Id.ToString());
                 if (AllClasses.CheckDataSet(ds))
                 {
-                    lblScheme.Text = "योजना / कार्यक्रम: " + ds.Tables[0].Rows[0]["Project_Name"].ToString();
+                    lblScheme.InnerHtml = "योजना / कार्यक्रम: " + ds.Tables[0].Rows[0]["Project_Name"].ToString();
                 }
             }
             int Zone_Id = 0;
@@ -89,34 +89,34 @@ public partial class Report_Collection_Division : System.Web.UI.Page
         ds = (new DataLayer()).get_PMIS_Dashboard_Division_Wise_Detailed(Zone_Id, Circle_Id, Division_Id, Scheme_Id.ToString(), 0, 0, "", -1);
         if (AllClasses.CheckDataSet(ds))
         {
-            grdPost1.DataSource = ds.Tables[0];
-            grdPost1.DataBind();
+            grdPost.DataSource = ds.Tables[0];
+            grdPost.DataBind();
 
-            grdPost1.FooterRow.Cells[5].Text = ds.Tables[0].Compute("sum(Total_Count)", "").ToString();
-            grdPost1.FooterRow.Cells[6].Text = ds.Tables[0].Compute("sum(Completed_Count)", "").ToString();
-            grdPost1.FooterRow.Cells[7].Text = ds.Tables[0].Compute("sum(OnGoing_Count)", "").ToString();
-            grdPost1.FooterRow.Cells[8].Text = ds.Tables[0].Compute("sum(Total_Sanction)", "").ToString();
-            grdPost1.FooterRow.Cells[9].Text = ds.Tables[0].Compute("sum(Completed_Sanction)", "").ToString();
+            grdPost.FooterRow.Cells[5].Text = ds.Tables[0].Compute("sum(Total_Count)", "").ToString();
+            grdPost.FooterRow.Cells[6].Text = ds.Tables[0].Compute("sum(Completed_Count)", "").ToString();
+            grdPost.FooterRow.Cells[7].Text = ds.Tables[0].Compute("sum(OnGoing_Count)", "").ToString();
+            grdPost.FooterRow.Cells[8].Text = ds.Tables[0].Compute("sum(Total_Sanction)", "").ToString();
+            grdPost.FooterRow.Cells[9].Text = ds.Tables[0].Compute("sum(Completed_Sanction)", "").ToString();
 
-            grdPost1.FooterRow.Cells[10].Text = ds.Tables[0].Compute("sum(OnGoing_Sanction)", "").ToString();
-            grdPost1.FooterRow.Cells[11].Text = ds.Tables[0].Compute("sum(Total_Release)", "").ToString();
-            grdPost1.FooterRow.Cells[12].Text = ds.Tables[0].Compute("sum(Completed_Release)", "").ToString();
-            grdPost1.FooterRow.Cells[13].Text = ds.Tables[0].Compute("sum(OnGoing_Release)", "").ToString();
-            grdPost1.FooterRow.Cells[14].Text = ds.Tables[0].Compute("sum(Total_Remaining_Amount)", "").ToString();
-            grdPost1.FooterRow.Cells[15].Text = ds.Tables[0].Compute("sum(Completed_Remaining_Amount)", "").ToString();
-            grdPost1.FooterRow.Cells[16].Text = ds.Tables[0].Compute("sum(OnGoing_Remaining_Amount)", "").ToString();
-            grdPost1.FooterRow.Cells[17].Text = ds.Tables[0].Compute("sum(Total_Expenditure)", "").ToString();
-            grdPost1.FooterRow.Cells[18].Text = ds.Tables[0].Compute("sum(Completed_Expenditure)", "").ToString();
-            grdPost1.FooterRow.Cells[19].Text = ds.Tables[0].Compute("sum(OnGoing_Expenditure)", "").ToString();
+            grdPost.FooterRow.Cells[10].Text = ds.Tables[0].Compute("sum(OnGoing_Sanction)", "").ToString();
+            grdPost.FooterRow.Cells[11].Text = ds.Tables[0].Compute("sum(Total_Release)", "").ToString();
+            grdPost.FooterRow.Cells[12].Text = ds.Tables[0].Compute("sum(Completed_Release)", "").ToString();
+            grdPost.FooterRow.Cells[13].Text = ds.Tables[0].Compute("sum(OnGoing_Release)", "").ToString();
+            grdPost.FooterRow.Cells[14].Text = ds.Tables[0].Compute("sum(Total_Remaining_Amount)", "").ToString();
+            grdPost.FooterRow.Cells[15].Text = ds.Tables[0].Compute("sum(Completed_Remaining_Amount)", "").ToString();
+            grdPost.FooterRow.Cells[16].Text = ds.Tables[0].Compute("sum(OnGoing_Remaining_Amount)", "").ToString();
+            grdPost.FooterRow.Cells[17].Text = ds.Tables[0].Compute("sum(Total_Expenditure)", "").ToString();
+            grdPost.FooterRow.Cells[18].Text = ds.Tables[0].Compute("sum(Completed_Expenditure)", "").ToString();
+            grdPost.FooterRow.Cells[19].Text = ds.Tables[0].Compute("sum(OnGoing_Expenditure)", "").ToString();
         }
         else
         {
-            grdPost1.DataSource = null;
-            grdPost1.DataBind();
+            grdPost.DataSource = null;
+            grdPost.DataBind();
         }
     }
 
-    protected void grdPost1_PreRender(object sender, EventArgs e)
+    protected void grdPost_PreRender(object sender, EventArgs e)
     {
         GridView gv = (GridView)sender;
         if (gv.Rows.Count > 0)
@@ -153,7 +153,7 @@ public partial class Report_Collection_Division : System.Web.UI.Page
         Response.Redirect("MasterProjectWorkMISView?Scheme_Id=" + Scheme_Id + "&District_Id=0&ULB_Id=0&Zone_Id=" + Zone_Id + "&Circle_Id=" + Circle_Id + "&Division_Id=" + Division_Id + "&Type=");
     }
 
-    protected void grdPost1_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.Header)
         {

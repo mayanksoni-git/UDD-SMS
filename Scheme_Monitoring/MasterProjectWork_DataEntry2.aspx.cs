@@ -118,6 +118,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
                 get_tbl_ProjectWorkGO_Blank();
                 get_tbl_ProjectWorkIssueDetails(0);
                 get_UC_Details(0);
+                get_tbl_FundingPattern();
             }
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
@@ -210,6 +211,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             try
             {
                 ddlProjectMaster.SelectedValue = Session["Default_Scheme"].ToString();
+                ddlProjectMaster_SelectedIndexChanged(ddlProjectMaster, new EventArgs());
             }
             catch
             {

@@ -3,87 +3,79 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="main-content">
-        <div class="main-content-inner">
+        <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
-                    <div class="page-content">
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-12">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <h3 class="header smaller lighter blue">Analysis Report Scheme Wise</h3>
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Analysis Report Scheme Wise</h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-12">
+                                                <div class="clearfix" id="dtOptions" runat="server">
+                                                    <div class="pull-right tableTools-container"></div>
+                                                </div>
+                                                <div class="col-xxl-12 col-md-12">
+                                                    <div style="overflow: auto">
+                                                        <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" ShowFooter="true">
+                                                            <Columns>
+                                                                <asp:BoundField DataField="Project_Id" HeaderText="Project_Id">
+                                                                    <HeaderStyle CssClass="displayStyle" />
+                                                                    <ItemStyle CssClass="displayStyle" />
+                                                                    <FooterStyle CssClass="displayStyle" />
+                                                                </asp:BoundField>
+                                                                <asp:TemplateField HeaderText="S No.">
+                                                                    <ItemTemplate>
+                                                                        <%# Container.DataItemIndex + 1 %>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="योजना / कार्यक्रम का नाम">
+                                                                    <ItemTemplate>
+                                                                        <asp:LinkButton ID="lnkScheme" runat="server" Text='<%# Eval("Project_Name") %>' OnClick="lnkScheme_Click"></asp:LinkButton>
+                                                                    </ItemTemplate>
+                                                                    <FooterTemplate>
+                                                                        <asp:LinkButton ID="lnkSchemeF" runat="server" Text="All Schemes" OnClick="lnkSchemeF_Click" Font-Bold="true" ForeColor="White" BackColor="#666666"></asp:LinkButton>
+                                                                    </FooterTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:BoundField DataField="Total_Count" HeaderText="कुल परियोजनाओं की संख्या" />
+                                                                <asp:BoundField DataField="Completed_Count" HeaderText="भौतिक रूप से पूर्ण परियोजनाओं की संख्या" />
+                                                                <asp:BoundField DataField="OnGoing_Count" HeaderText="चल रहे परियोजनाओं की संख्या" />
+
+                                                                <asp:BoundField DataField="Total_Sanction" HeaderText="कुल स्वीकृत धनराशी (लाख में)" />
+                                                                <asp:BoundField DataField="Completed_Sanction" HeaderText="भौतिक रूप से पूर्ण परियोजनाओं की स्वीकृत धनराशी (लाख में)" />
+                                                                <asp:BoundField DataField="OnGoing_Sanction" HeaderText="चल रहे परियोजनाओं की स्वीकृत धनराशी (लाख में)" />
+
+                                                                <asp:BoundField DataField="Total_Release" HeaderText="कुल अवमुक्त धनराशी (लाख में)" />
+                                                                <asp:BoundField DataField="Completed_Release" HeaderText="भौतिक रूप से पूर्ण परियोजनाओं की अवमुक्त धनराशी (लाख में)" />
+                                                                <asp:BoundField DataField="OnGoing_Release" HeaderText="चल रहे परियोजनाओं की अवमुक्त धनराशी (लाख में)" />
+
+                                                                <asp:BoundField DataField="Total_Remaining_Amount" HeaderText="कुल अवशेष धनराशी (लाख में)" />
+                                                                <asp:BoundField DataField="Completed_Remaining_Amount" HeaderText="भौतिक रूप से पूर्ण परियोजनाओं में अवशेष धनराशी (लाख में)" />
+                                                                <asp:BoundField DataField="OnGoing_Remaining_Amount" HeaderText="चल रहे परियोजनाओं में अवशेष धनराशी (लाख में)" />
+
+                                                                <asp:BoundField DataField="Total_Expenditure" HeaderText="कुल व्यय (लाख में)" />
+                                                                <asp:BoundField DataField="Completed_Expenditure" HeaderText="भौतिक रूप से पूर्ण परियोजनाओं में व्यय (लाख में)" />
+                                                                <asp:BoundField DataField="OnGoing_Expenditure" HeaderText="चल रहे परियोजनाओं में व्यय (लाख में)" />
+                                                            </Columns>
+                                                            <FooterStyle BackColor="#666666" ForeColor="White" Font-Bold="true" />
+                                                        </asp:GridView>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-xs-12">
-
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="clearfix" id="dtOptions" runat="server">
-                                            <div class="pull-right tableTools-container"></div>
-                                        </div>
-                                        <div class="table-header">
-                                            Scheme Wise Work Execution Report
-                                        </div>
-
-                                        <!-- div.table-responsive -->
-
-                                        <!-- div.dataTables_borderWrap -->
-                                        <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" ShowFooter="true">
-                                                <Columns>
-                                                    <asp:BoundField DataField="Project_Id" HeaderText="Project_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:TemplateField HeaderText="S No.">
-                                                        <ItemTemplate>
-                                                            <%# Container.DataItemIndex + 1 %>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="योजना / कार्यक्रम का नाम">
-                                                        <ItemTemplate>
-                                                            <asp:LinkButton ID="lnkScheme" runat="server" Text='<%# Eval("Project_Name") %>' OnClick="lnkScheme_Click"></asp:LinkButton>
-                                                        </ItemTemplate>
-                                                        <FooterTemplate>
-                                                            <asp:LinkButton ID="lnkSchemeF" runat="server" Text="All Schemes" OnClick="lnkSchemeF_Click" Font-Bold="true" ForeColor="White" BackColor="#666666"></asp:LinkButton>
-                                                        </FooterTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="Total_Count" HeaderText="कुल परियोजनाओं की संख्या" />
-                                                    <asp:BoundField DataField="Completed_Count" HeaderText="भौतिक रूप से पूर्ण परियोजनाओं की संख्या" />
-                                                    <asp:BoundField DataField="OnGoing_Count" HeaderText="चल रहे परियोजनाओं की संख्या" />
-
-                                                    <asp:BoundField DataField="Total_Sanction" HeaderText="कुल स्वीकृत धनराशी (लाख में)" />
-                                                    <asp:BoundField DataField="Completed_Sanction" HeaderText="भौतिक रूप से पूर्ण परियोजनाओं की स्वीकृत धनराशी (लाख में)" />
-                                                    <asp:BoundField DataField="OnGoing_Sanction" HeaderText="चल रहे परियोजनाओं की स्वीकृत धनराशी (लाख में)" />
-
-                                                    <asp:BoundField DataField="Total_Release" HeaderText="कुल अवमुक्त धनराशी (लाख में)" />
-                                                    <asp:BoundField DataField="Completed_Release" HeaderText="भौतिक रूप से पूर्ण परियोजनाओं की अवमुक्त धनराशी (लाख में)" />
-                                                    <asp:BoundField DataField="OnGoing_Release" HeaderText="चल रहे परियोजनाओं की अवमुक्त धनराशी (लाख में)" />
-
-                                                    <asp:BoundField DataField="Total_Remaining_Amount" HeaderText="कुल अवशेष धनराशी (लाख में)" />
-                                                    <asp:BoundField DataField="Completed_Remaining_Amount" HeaderText="भौतिक रूप से पूर्ण परियोजनाओं में अवशेष धनराशी (लाख में)" />
-                                                    <asp:BoundField DataField="OnGoing_Remaining_Amount" HeaderText="चल रहे परियोजनाओं में अवशेष धनराशी (लाख में)" />
-
-                                                    <asp:BoundField DataField="Total_Expenditure" HeaderText="कुल व्यय (लाख में)" />
-                                                    <asp:BoundField DataField="Completed_Expenditure" HeaderText="भौतिक रूप से पूर्ण परियोजनाओं में व्यय (लाख में)" />
-                                                    <asp:BoundField DataField="OnGoing_Expenditure" HeaderText="चल रहे परियोजनाओं में व्यय (लाख में)" />
-                                                </Columns>
-                                                <FooterStyle BackColor="#666666" ForeColor="White" Font-Bold="true" />
-                                            </asp:GridView>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- PAGE CONTENT ENDS -->
-                            </div>
-                            <!-- /.col -->
+                            <!--end col-->
                         </div>
                     </div>
 
@@ -100,173 +92,5 @@
             </asp:UpdateProgress>
         </div>
     </div>
-
-    <!-- DataTable specific plugin scripts -->
-    <script src="assets/js/jquery-2.1.4.min.js"></script>
-    <%-- <script src="assets/js/bootstrap.min.js"></script>--%>
-    <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/dataTables.buttons.min.js"></script>
-    <script src="assets/js/buttons.flash.min.js"></script>
-    <script src="assets/js/buttons.html5.min.js"></script>
-    <script src="assets/js/buttons.print.min.js"></script>
-    <script src="assets/js/buttons.colVis.min.js"></script>
-    <script src="assets/js/dataTables.select.min.js"></script>
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
-    <script src="assets/js/dataTables.fixedHeader.min.js"></script>
-    <script src="assets/js/jquery.mark.min.js"></script>
-    <script src="assets/js/datatables.mark.js"></script>
-    <%--<script src="assets/js/dataTables.colReorder.min.js"></script>--%>
-
-    <script type="text/javascript">
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                var DataTableLength = $('#ctl00_ContentPlaceHolder1_grdPost').length;
-                if (DataTableLength > 0) {
-                    var outerHTML = $('#ctl00_ContentPlaceHolder1_grdPost')[0].outerText;
-                    if (outerHTML.trim() !== "No Records Found") {
-                        //initiate dataTables plugin
-                        var myTable =
-                            $('#ctl00_ContentPlaceHolder1_grdPost')
-                                //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                .DataTable({
-                                    mark: true,
-                                    colReorder: false,
-                                    fixedHeader: {
-                                        header: true,
-                                        footer: false
-                                    },
-                                    bAutoWidth: false,
-                                    "aoColumns": [
-                                        { "bSortable": false },
-                                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 
-                                        { "bSortable": false }
-                                    ],
-                                    "aaSorting": [],
-                                    //"bProcessing": true,
-                                    //"bServerSide": true,
-                                    //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-                                    //,
-                                    //"sScrollY": "200px",
-                                    //"bPaginate": false,
-                                    //"sScrollX": "100%",
-                                    //"sScrollXInner": "120%",
-                                    //"bScrollCollapse": true,
-                                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                    "iDisplayLength": 25,
-                                    select: {
-                                        style: 'multi'
-                                    }
-                                });
-                        $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
-                        new $.fn.dataTable.Buttons(myTable, {
-                            buttons: [
-                                {
-                                    "extend": "colvis",
-                                    "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    columns: ':not(:first):not(:last)'
-                                },
-                                {
-                                    "extend": "copy",
-                                    "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "csv",
-                                    "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "excel",
-                                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "pdf",
-                                    "text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "print",
-                                    "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    autoPrint: true,
-                                    message: 'This print was produced using the Print button for DataTables',
-                                    exportOptions: {
-                                        columns: ':visible'
-                                    }
-                                }
-                            ]
-                        });
-                        myTable.buttons().container().appendTo($('.tableTools-container'));
-
-                        //style the message box
-                        var defaultCopyAction = myTable.button(1).action();
-                        myTable.button(1).action(function (e, dt, button, config) {
-                            defaultCopyAction(e, dt, button, config);
-                            $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-                        });
-                        var defaultColvisAction = myTable.button(0).action();
-                        myTable.button(0).action(function (e, dt, button, config) {
-
-                            defaultColvisAction(e, dt, button, config);
-                            if ($('.dt-button-collection > .dropdown-menu').length == 0) {
-                                $('.dt-button-collection')
-                                    .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-                                    .find('a').attr('href', '#').wrap("<li />")
-                            }
-                            $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
-                        });
-                        ////
-                        setTimeout(function () {
-                            $($('.tableTools-container')).find('a.dt-button').each(function () {
-                                var div = $(this).find(' > div').first();
-                                if (div.length == 1) div.tooltip({ container: 'body', title: div.parent().text() });
-                                else $(this).tooltip({ container: 'body', title: $(this).text() });
-                            });
-                        }, 500);
-
-                        $(document).on('click', '#ctl00_ContentPlaceHolder1_grdPost .dropdown-toggle', function (e) {
-                            e.stopImmediatePropagation();
-                            e.stopPropagation();
-                            //e.preventDefault();
-                        });
-                        //And for the first simple table, which doesn't have TableTools or dataTables
-                        //select/deselect all rows according to table header checkbox
-                        var active_class = 'active';
-                        /********************************/
-                        //add tooltip for small view action buttons in dropdown menu
-                        $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
-
-                        //tooltip placement on right or left
-                        function tooltip_placement(context, source) {
-                            var $source = $(source);
-                            var $parent = $source.closest('table')
-                            var off1 = $parent.offset();
-                            var w1 = $parent.width();
-
-                            var off2 = $source.offset();
-                            //var w2 = $source.width();
-
-                            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-                            return 'left';
-                        }
-                        /***************/
-                        $('.show-details-btn').on('click', function (e) {
-                            e.preventDefault();
-                            $(this).closest('tr').next().toggleClass('open');
-                            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-                        });
-                    }
-                }
-            })
-        });
-
-    </script>
 </asp:Content>
 

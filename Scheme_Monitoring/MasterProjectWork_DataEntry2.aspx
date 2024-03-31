@@ -90,7 +90,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label1" runat="server" Text="GO Date*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" style="display:none;" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
+                                                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Style="display: none;" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
                                                             <asp:TextBox ID="txtGODate2" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
                                                         </div>
                                                     </div>
@@ -281,7 +281,7 @@
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Agreement / Work Order Details      </h4>
+                                            <h4 class="card-title mb-0 flex-grow-1">Agreement / Work Order Details</h4>
                                         </div>
                                         <!-- end card header -->
                                         <div class="card-body">
@@ -304,7 +304,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label9" runat="server" Text="Actual Date Of Start" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtActualDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr"  data-date-format="d/m/Y"></asp:TextBox>
+                                                            <asp:TextBox ID="txtActualDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -531,117 +531,132 @@
                                 <!--end col-->
                             </div>
 
-
-
                             <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="table-header">
-                                        Project Related Issues (If Any)
-                                        <div class="blink" style="float: right">
-                                            <asp:CheckBox runat="server" ID="chkNoIssue" Text="Select If No Issue." Font-Bold="true" Font-Size="30px" />
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Project Related Issues (If Any)
+                                                <div style="float: right">
+                                                    <asp:CheckBox runat="server" ID="chkNoIssue" Text="Select If No Issue." Font-Bold="true" />
+                                                </div>
+
+                                            </h4>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div style="overflow: auto">
-                                                <asp:GridView ID="grdIssue" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdIssue_PreRender" OnRowDataBound="grdIssue_RowDataBound">
-                                                    <Columns>
-                                                        <asp:BoundField DataField="ProjectWorkIssueDetails_Id" HeaderText="ProjectWorkIssueDetails_Id">
-                                                            <HeaderStyle CssClass="displayStyle" />
-                                                            <ItemStyle CssClass="displayStyle" />
-                                                            <FooterStyle CssClass="displayStyle" />
-                                                        </asp:BoundField>
-                                                        <asp:BoundField DataField="ProjectWorkIssueDetails_Path" HeaderText="ProjectWorkIssueDetails_Path">
-                                                            <HeaderStyle CssClass="displayStyle" />
-                                                            <ItemStyle CssClass="displayStyle" />
-                                                            <FooterStyle CssClass="displayStyle" />
-                                                        </asp:BoundField>
-                                                        <asp:BoundField DataField="ProjectWorkIssueDetails_Issue_Id" HeaderText="ProjectWorkIssueDetails_Issue_Id">
-                                                            <HeaderStyle CssClass="displayStyle" />
-                                                            <ItemStyle CssClass="displayStyle" />
-                                                            <FooterStyle CssClass="displayStyle" />
-                                                        </asp:BoundField>
-                                                        <asp:BoundField DataField="ProjectWorkIssueDetails_Dependency_Id" HeaderText="ProjectWorkIssueDetails_Dependency_Id">
-                                                            <HeaderStyle CssClass="displayStyle" />
-                                                            <ItemStyle CssClass="displayStyle" />
-                                                            <FooterStyle CssClass="displayStyle" />
-                                                        </asp:BoundField>
-                                                        <asp:TemplateField HeaderText="S No.">
-                                                            <ItemTemplate>
-                                                                <asp:Label runat="server" ID="lblRowNumber" Text='<%#Container.DataItemIndex + 1 %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Issuing Type">
-                                                            <ItemTemplate>
-                                                                <asp:DropDownList ID="ddlIssueType" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlIssueType_SelectedIndexChanged">
-                                                                </asp:DropDownList>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Dependency">
-                                                            <ItemTemplate>
-                                                                <asp:DropDownList ID="ddlDependency" runat="server" CssClass="form-select">
-                                                                </asp:DropDownList>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Discription" Visible="false">
-                                                            <ItemTemplate>
-                                                                <asp:TextBox ID="txtIssuingCategory" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkIssueDetails_Category") %>'></asp:TextBox>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Issuing Effective Date">
-                                                            <ItemTemplate>
-                                                                <asp:TextBox ID="txtIssuingDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkIssueDetails_Date") %>'></asp:TextBox>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Comments">
-                                                            <ItemTemplate>
-                                                                <asp:TextBox ID="txtComments" runat="server" TextMode="MultiLine" Text='<%# Eval("ProjectWorkIssueDetails_Comments") %>' />
-                                                            </ItemTemplate>
-                                                            <FooterTemplate>
-                                                                <asp:ImageButton ID="btnQuestionnaireU" OnClick="btnQuestionnaireU_Click" runat="server" ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
-                                                                <asp:ImageButton ID="btnDeleteQuestionnaireU" CssClass="pull-right" runat="server" ImageUrl="~/assets/images/minus-icon.png" OnClick="btnDeleteQuestionnaireU_Click" Width="30px" Height="30px" />
-                                                            </FooterTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Upload Issue Document" Visible="false">
-                                                            <ItemTemplate>
-                                                                <asp:FileUpload ID="flUploadIssue" runat="server" />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Download Document" Visible="false">
-                                                            <ItemTemplate>
-                                                                <asp:LinkButton ID="lnkIssueDoc" runat="server" Text="Download" GO_FilePath='<%#Eval("ProjectWorkIssueDetails_Path") %>' OnClientClick="return downloadGO(this);"></asp:LinkButton>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Resolved Date">
-                                                            <ItemTemplate>
-                                                                <asp:TextBox ID="txtResolvedDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkIssueDetails_DateResolved") %>'></asp:TextBox>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Resolved">
-                                                            <ItemTemplate>
-                                                                <asp:ImageButton ID="btnDeleteIssue" OnClick="btnDeleteIssue_Click" runat="server" ImageUrl="~/assets/images/resolved.jpg" Width="50px" Height="50px" />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                    </Columns>
-                                                </asp:GridView>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-12">
+                                                    <div class="col-xxl-12 col-md-12">
+                                                        <div style="overflow: auto">
+                                                            <asp:GridView ID="grdIssue" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdIssue_PreRender" OnRowDataBound="grdIssue_RowDataBound">
+                                                                <Columns>
+                                                                    <asp:BoundField DataField="ProjectWorkIssueDetails_Id" HeaderText="ProjectWorkIssueDetails_Id">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:BoundField DataField="ProjectWorkIssueDetails_Path" HeaderText="ProjectWorkIssueDetails_Path">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:BoundField DataField="ProjectWorkIssueDetails_Issue_Id" HeaderText="ProjectWorkIssueDetails_Issue_Id">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:BoundField DataField="ProjectWorkIssueDetails_Dependency_Id" HeaderText="ProjectWorkIssueDetails_Dependency_Id">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:TemplateField HeaderText="S No.">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label runat="server" ID="lblRowNumber" Text='<%#Container.DataItemIndex + 1 %>'></asp:Label>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Issuing Type">
+                                                                        <ItemTemplate>
+                                                                            <asp:DropDownList ID="ddlIssueType" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlIssueType_SelectedIndexChanged">
+                                                                            </asp:DropDownList>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Dependency">
+                                                                        <ItemTemplate>
+                                                                            <asp:DropDownList ID="ddlDependency" runat="server" CssClass="form-select">
+                                                                            </asp:DropDownList>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Discription" Visible="false">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="txtIssuingCategory" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkIssueDetails_Category") %>'></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Issuing Effective Date">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="txtIssuingDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkIssueDetails_Date") %>'></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Comments">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="txtComments" runat="server" TextMode="MultiLine" Text='<%# Eval("ProjectWorkIssueDetails_Comments") %>' />
+                                                                        </ItemTemplate>
+                                                                        <FooterTemplate>
+                                                                            <asp:ImageButton ID="btnQuestionnaireU" OnClick="btnQuestionnaireU_Click" runat="server" ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
+                                                                            <asp:ImageButton ID="btnDeleteQuestionnaireU" CssClass="pull-right" runat="server" ImageUrl="~/assets/images/minus-icon.png" OnClick="btnDeleteQuestionnaireU_Click" Width="30px" Height="30px" />
+                                                                        </FooterTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Upload Issue Document" Visible="false">
+                                                                        <ItemTemplate>
+                                                                            <asp:FileUpload ID="flUploadIssue" runat="server" />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Download Document" Visible="false">
+                                                                        <ItemTemplate>
+                                                                            <asp:LinkButton ID="lnkIssueDoc" runat="server" Text="Download" GO_FilePath='<%#Eval("ProjectWorkIssueDetails_Path") %>' OnClientClick="return downloadGO(this);"></asp:LinkButton>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Resolved Date">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="txtResolvedDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkIssueDetails_DateResolved") %>'></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Resolved">
+                                                                        <ItemTemplate>
+                                                                            <asp:ImageButton ID="btnDeleteIssue" OnClick="btnDeleteIssue_Click" runat="server" ImageUrl="~/assets/images/resolved.jpg" Width="50px" Height="50px" />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                </Columns>
+                                                            </asp:GridView>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                </div>
+                                                <!--end row-->
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!--end col-->
                             </div>
-
                             <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="col-xxl-3 col-md-6">
-                                        <div>
-                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end row-->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!--end col-->
                             </div>
                         </div>
                         <asp:HiddenField ID="hf_ProjectWorkPkg_Id" runat="server" Value="0" />

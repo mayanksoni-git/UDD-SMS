@@ -194,7 +194,6 @@
                                         <li class="nav-item"><a href="MasterDesignation.aspx" class="nav-link" data-key="t-basic-elements">Designation</a> </li>
                                         <li class="nav-item"><a href="MasterDepartment.aspx" class="nav-link" data-key="t-form-select">Department</a></li>
                                         <li class="nav-item"><a href="MasterPerson.aspx" class="nav-link" data-key="t-checkboxs-radios">Create Admin Officers / Staff</a> </li>
-                                        <li class="nav-item"><a href="MasterPersonVendor.aspx" class="nav-link" data-key="t-pickers">Create Executing Agency / Vendors</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -208,6 +207,7 @@
                                         <li class="nav-item"><a href="MasterProjectType.aspx" class="nav-link" data-key="t-datatables">Project Type</a> </li>
                                         <li class="nav-item"><a href="MasterProjectIssues.aspx" class="nav-link" data-key="t-datatables">Project Issues</a> </li>
                                         <li class="nav-item"><a href="MasterDependency.aspx" class="nav-link" data-key="t-datatables">Project Sub-Issues</a> </li>
+                                        <li class="nav-item"><a href="MasterInspectionConfiguration.aspx" class="nav-link" data-key="t-datatables">Inspection Configuration</a> </li>
                                     </ul>
                                 </div>
                             </li>
@@ -218,6 +218,7 @@
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="MasterProject.aspx" class="nav-link" data-key="t-basic-tables">Create Scheme</a> </li>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx" class="nav-link" data-key="t-grid-js">Create / Update Project </a> </li>
+                                        <li class="nav-item"><a href="ProjectWorkInspectionUpdate.aspx" class="nav-link" data-key="t-grid-js">Fill Site Visit / Inspection</a> </li>
                                     </ul>
                                 </div>
                             </li>
