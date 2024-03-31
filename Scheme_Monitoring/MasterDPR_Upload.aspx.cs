@@ -28,20 +28,10 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
             lblDivisionH.Text = Session["Default_Division"].ToString();
 
             txtDPRDate.Text = Session["ServerDate"].ToString();
-            get_tbl_TrancheType();
             get_tbl_Project();
             get_tbl_Zone();
-            get_NodalDepartment();
             string Client = ConfigurationManager.AppSettings.Get("Client");
-            if (Client == "CNDS")
-            {
-                divNodal.Visible = true;
-            }
-            else
-            {
-                divNodal.Visible = false;
-            }
-
+            
             //if (Session["UserType"].ToString() != "1")
             //{
             //    try
@@ -65,27 +55,6 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
                     //ddlDistrict.SelectedValue = Session["District_Id"].ToString();
                     //ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
                     //ddlDistrict.Enabled = false;
-                }
-                catch
-                { }
-            }
-            if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
-            {
-                try
-                {
-                    //ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    //ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    //ddlDistrict.Enabled = false;
-                    if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["ULB_Id"].ToString()) > 0)
-                    {//ULB
-                        try
-                        {
-                            ddlULB.SelectedValue = Session["ULB_Id"].ToString();
-                            ddlULB.Enabled = false;
-                        }
-                        catch
-                        { }
-                    }
                 }
                 catch
                 { }
@@ -161,37 +130,7 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
         trg1.ControlID = btnSave.ID;
         up.Triggers.Add(trg1);
     }
-    private void get_NodalDepartment()
-    {
-        int District_Id = 0;
-        int Zone_Id = 0;
-        int Circle_Id = 0;
-        int Division_Id = 0;
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_Employee("12", 0, 0, District_Id, Zone_Id, Circle_Id, Division_Id, 0, "", "", 0, 0, 0);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlNodalDepartment, "Person_Name", "Person_Id");
-        }
-        else
-        {
-            ddlNodalDepartment.Items.Clear();
-        }
-    }
 
-    private void get_tbl_TrancheType()
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_TrancheType();
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlTranche, "TrancheType_Name", "TrancheType_Id");
-        }
-        else
-        {
-            ddlTranche.Items.Clear();
-        }
-    }
     private void get_tbl_Zone()
     {
         DataSet ds = new DataSet();
@@ -411,26 +350,11 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
             Division_Id = 0;
         }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+        
         DataSet ds = new DataSet();
         if (Session["UserType"].ToString() == "1")
         {
-            ds = (new DataLayer()).get_tbl_ProjectWorkDPR(Project_Id.ToString(), 0, Zone_Id, Circle_Id, Division_Id, 0, 0, 0, "0", 0, Tranche_Id, NodalDepartment_Id);
+            ds = (new DataLayer()).get_tbl_ProjectWorkDPR(Project_Id.ToString(), 0, Zone_Id, Circle_Id, Division_Id, 0, 0, 0, "0", 0, 0, 0);
         }
         else
         {

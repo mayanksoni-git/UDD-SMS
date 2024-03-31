@@ -244,6 +244,9 @@
                         </div>
                     </div>
                 </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="btnUpload" />
+                </Triggers>
             </asp:UpdatePanel>
             <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
                 <ProgressTemplate>

@@ -26,25 +26,19 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             lblCircleH.Text = Session["Default_Circle"].ToString();
             lblDivisionH.Text = Session["Default_Division"].ToString();
 
-            get_tbl_TrancheType();
             get_M_Jurisdiction();
             get_tbl_Zone();
             get_tbl_ProjectType(0);
             get_tbl_Project();
-            get_NodalDepartment();
             string Client = ConfigurationManager.AppSettings.Get("Client");
             if (Client == "CNDS")
             {
                 chkSkip.Visible = true;
                 chkSkip.Checked = true;
-                divTranche.Visible = false;
-                divNodal.Visible = true;
             }
             else
             {
-                divTranche.Visible = true;
                 chkSkip.Visible = false;
-                divNodal.Visible = false;
             }
             if (Session["UserType"].ToString() == "2" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
             {//District
@@ -162,23 +156,7 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             divCreate.Visible = false;
         }
     }
-    private void get_NodalDepartment()
-    {
-        int District_Id = 0;
-        int Zone_Id = 0;
-        int Circle_Id = 0;
-        int Division_Id = 0;
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_Employee("12", 0, 0, District_Id, Zone_Id, Circle_Id, Division_Id, 0, "", "", 0, 0, 0);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlNodalDepartment, "Person_Name", "Person_Id");
-        }
-        else
-        {
-            ddlNodalDepartment.Items.Clear();
-        }
-    }
+    
     protected void grdPost_PreRender(object sender, EventArgs e)
     {
         GridView gv = (GridView)sender;
@@ -324,22 +302,7 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             Division_Id = 0;
         }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+       
         DataSet ds = new DataSet();
         ds = (new DataLayer()).get_tbl_ProjectWorkDPR(Project_Id.ToString(), 0, Zone_Id, Circle_Id, Division_Id, 0, 0, 0, "0", 0, Tranche_Id, NodalDepartment_Id);
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
@@ -395,20 +358,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
         else
         {
             ddlProjectMaster.Items.Clear();
-        }
-    }
-
-    private void get_tbl_TrancheType()
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_TrancheType();
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlTranche, "TrancheType_Name", "TrancheType_Id");
-        }
-        else
-        {
-            ddlTranche.Items.Clear();
         }
     }
 
@@ -502,22 +451,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
         obj_tbl_ProjectDPR.ProjectDPR_DistrictId = Convert.ToInt32(ddlDistrict.SelectedValue);
         try
         {
-            obj_tbl_ProjectDPR.ProjectDPR_TrancheTypeId = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            obj_tbl_ProjectDPR.ProjectDPR_TrancheTypeId = 0;
-        }
-        try
-        {
-            obj_tbl_ProjectDPR.ProjectDPR_NodalDept_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            obj_tbl_ProjectDPR.ProjectDPR_NodalDept_Id = 0;
-        }
-        try
-        {
             obj_tbl_ProjectDPR.ProjectDPR_ULBId = Convert.ToInt32(ddlULB.SelectedValue);
         }
         catch
@@ -563,7 +496,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
         txtProjectWorkName.Text = "";
         txtACACost.Text = "0";
         txtCapexCost.Text = "";
-        ddlTranche.SelectedValue = "0";
         txtProjectWorkName.Text = "";
     }
 
@@ -661,22 +593,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             catch
             {
                 ddlDivision.SelectedValue = "0";
-            }
-            try
-            {
-                ddlTranche.SelectedValue = ds.Tables[0].Rows[0]["ProjectDPR_TrancheTypeId"].ToString();
-            }
-            catch
-            {
-                ddlTranche.SelectedValue = "0";
-            }
-            try
-            {
-                ddlNodalDepartment.SelectedValue = ds.Tables[0].Rows[0]["ProjectDPR_NodalDept_Id"].ToString();
-            }
-            catch
-            {
-                ddlNodalDepartment.SelectedValue = "0";
             }
             int ProjectDPR_LandIdentified = 0;
             int ProjectDPR_LandTransfered = 0;

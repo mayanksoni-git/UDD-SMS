@@ -28,54 +28,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
             lblCircleH.Text = Session["Default_Circle"].ToString();
             lblDivisionH.Text = Session["Default_Division"].ToString();
 
-            get_tbl_TrancheType();
             get_tbl_Project();
-            get_M_Jurisdiction();
             get_tbl_Zone();
-            get_NodalDepartment();
 
             string Client = ConfigurationManager.AppSettings.Get("Client");
-            if (Client == "CNDS")
-            {
-                divNodal.Visible = true;
-            }
-            else
-            {
-                divNodal.Visible = false;
-            }
-
-            if (Session["UserType"].ToString() == "2" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
-            {//District
-                try
-                {
-                    ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    ddlDistrict.Enabled = false;
-                }
-                catch
-                { }
-            }
-            if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
-            {
-                try
-                {
-                    ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    ddlDistrict.Enabled = false;
-                    if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["ULB_Id"].ToString()) > 0)
-                    {//ULB
-                        try
-                        {
-                            ddlULB.SelectedValue = Session["ULB_Id"].ToString();
-                            ddlULB.Enabled = false;
-                        }
-                        catch
-                        { }
-                    }
-                }
-                catch
-                { }
-            }
             if (Session["UserType"].ToString() == "4" && Convert.ToInt32(Session["PersonJuridiction_ZoneId"].ToString()) > 0)
             {//Zone
                 try
@@ -152,25 +108,6 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
             {
                 try
                 {
-                    District_Id = Convert.ToInt32(Request.QueryString["District_Id"].ToString());
-                    ddlDistrict.SelectedValue = District_Id.ToString();
-                    ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                }
-                catch
-                {
-                    District_Id = 0;
-                }
-                try
-                {
-                    ULB_Id = Convert.ToInt32(Request.QueryString["ULB_Id"].ToString());
-                    ddlULB.SelectedValue = ULB_Id.ToString();
-                }
-                catch
-                {
-                    ULB_Id = 0;
-                }
-                try
-                {
                     Zone_Id = Convert.ToInt32(Request.QueryString["Zone_Id"].ToString());
                     ddlSearchZone.SelectedValue = Zone_Id.ToString();
                     ddlSearchZone_SelectedIndexChanged(ddlSearchZone, e);
@@ -216,75 +153,6 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
             }
 
             get_tbl_ProjectWorkDPR();
-        }
-    }
-    private void get_NodalDepartment()
-    {
-        int District_Id = 0;
-        int Zone_Id = 0;
-        int Circle_Id = 0;
-        int Division_Id = 0;
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_Employee("12", 0, 0, District_Id, Zone_Id, Circle_Id, Division_Id, 0, "", "", 0, 0, 0);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlNodalDepartment, "Person_Name", "Person_Id");
-        }
-        else
-        {
-            ddlNodalDepartment.Items.Clear();
-        }
-    }
-
-    private void get_tbl_TrancheType()
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_TrancheType();
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlTranche, "TrancheType_Name", "TrancheType_Id");
-        }
-        else
-        {
-            ddlTranche.Items.Clear();
-        }
-    }
-    protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlDistrict.SelectedValue == "0")
-        {
-            ddlULB.Items.Clear();
-        }
-        else
-        {
-            get_tbl_ULB(Convert.ToInt32(ddlDistrict.SelectedValue));
-        }
-    }
-
-    private void get_tbl_ULB(int District_Id)
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_ULB(District_Id);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlULB, "ULB_Name", "ULB_Id");
-        }
-        else
-        {
-            ddlULB.Items.Clear();
-        }
-    }
-    private void get_M_Jurisdiction()
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_M_Jurisdiction(3, 0);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlDistrict, "Jurisdiction_Name_Eng", "M_Jurisdiction_Id");
-        }
-        else
-        {
-            ddlDistrict.Items.Clear();
         }
     }
     private void get_tbl_Project()
@@ -377,14 +245,7 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
             ddlScheme.Focus();
             return;
         }
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+        
         try
         {
             Zone_Id = Convert.ToInt32(ddlSearchZone.SelectedValue);
@@ -409,30 +270,7 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         DataSet ds = new DataSet();
         DataSet ds1 = new DataSet();
         ds = (new DataLayer()).get_DPR_Process_Status_Summery(Scheme_Id, Zone_Id, Circle_Id, Division_Id, District_Id, ULB_Id, Tranche_Id);
@@ -636,27 +474,6 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
             get_tbl_Division_Search(Convert.ToInt32(ddlSearchCircle.SelectedValue));
         }
     }
-    protected void rbtMappingWith_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (rbtMappingWith.SelectedValue == "D")
-        {
-            divZone.Visible = true;
-            divCircle.Visible = true;
-            divDivision.Visible = true;
-
-            divDistrict.Visible = false;
-            divULB.Visible = false;
-        }
-        else
-        {
-            divZone.Visible = false;
-            divCircle.Visible = false;
-            divDivision.Visible = false;
-
-            divDistrict.Visible = true;
-            divULB.Visible = true;
-        }
-    }
 
     protected void grdFinancialFull_PreRender(object sender, EventArgs e)
     {
@@ -724,40 +541,11 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
+
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "0", 0, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -808,40 +596,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "0", 0, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -893,40 +651,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "4, 9, 1056", 1, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -977,40 +705,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "4, 9, 1056", 1, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1062,40 +760,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "1035, 1040", 1, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1146,40 +814,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "1035, 1040", 1, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1231,40 +869,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "1042", 1, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1315,40 +923,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "1042", 1, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1400,40 +978,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "1035", 8, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1484,40 +1032,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "1035", 8, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1569,40 +1087,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "1", 6, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1653,40 +1141,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "1", 6, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1738,40 +1196,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "33", 9, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1822,40 +1250,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "33", 9, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1906,40 +1304,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "33", 10, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -1991,40 +1359,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "33", 10, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -2145,40 +1483,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "34", 1, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -2229,40 +1537,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "34", 1, Tranche_Id, NodalDepartment_Id);
     }
     protected void lnkCE2_Click(object sender, EventArgs e)
@@ -2313,40 +1591,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "34", 1, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -2397,40 +1645,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "34", 1, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -2519,7 +1737,7 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             ProjectDPRApproval_Id = 0;
         }
-        
+
         int Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
         if (new DataLayer().RollBack_DPR_Approval(ProjectDPRApproval_Id, Person_Id))
         {
@@ -2597,40 +1815,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "1045", 11, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -2681,40 +1869,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "1045", 11, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -2766,40 +1924,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "-1", -1, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -2850,40 +1978,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "-1", -1, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -2935,40 +2033,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "-2", -2, Tranche_Id, NodalDepartment_Id);
     }
 
@@ -3019,40 +2087,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             Division_Id = 0;
         }
-        try
-        {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
         int Tranche_Id = 0;
-        try
-        {
-            Tranche_Id = Convert.ToInt32(ddlTranche.SelectedValue);
-        }
-        catch
-        {
-            Tranche_Id = 0;
-        }
+
         int NodalDepartment_Id = 0;
-        try
-        {
-            NodalDepartment_Id = Convert.ToInt32(ddlNodalDepartment.SelectedValue);
-        }
-        catch
-        {
-            NodalDepartment_Id = 0;
-        }
+
         get_tbl_ProjectWorkDPR(District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, Scheme_Id, "-2", -2, Tranche_Id, NodalDepartment_Id);
     }
 }
