@@ -39,18 +39,6 @@
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <label class="control-label no-padding-right">District* </label>
-                                                            <asp:DropDownList ID="ddlDistrict" runat="server" class="chosen-select form-control" data-placeholder="Choose a District..." AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Label ID="lblULB" runat="server" Text="ULB" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:DropDownList ID="ddlULB" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
                                                             <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
                                                             <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
@@ -77,12 +65,6 @@
                                                         <div>
                                                             <asp:Label ID="Label3" runat="server" Text="Total CAPEX Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
                                                             <asp:TextBox ID="txtCapexCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Label ID="Label1" runat="server" Text="Total ACA Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:TextBox ID="txtACACost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">

@@ -1,221 +1,238 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true"
-    CodeFile="MasterProject.aspx.cs" Inherits="MasterProject" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
+﻿<%@ page language="C#" masterpagefile="~/TemplateMasterAdmin.master" autoeventwireup="true"
+    codefile="MasterProject.aspx.cs" inherits="MasterProject" maintainscrollpositiononpostback="true" enableeventvalidation="false" validaterequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
     <div class="main-content">
-        <div class="page-content">
-            <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
-            </cc1:ToolkitScriptManager>
+        <div class="main-content-inner">
+            <cc1:toolkitscriptmanager id="ToolkitScriptManager1" runat="server" enablepartialrendering="true" enablepagemethods="true" asyncpostbacktimeout="6000">
+            </cc1:toolkitscriptmanager>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="divCreateNew" runat="server" visible="false">
+                    <div class="page-content">
+                        <div class="container-fluid">
                             <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Create / Update Scheme</h4>
-                                        </div>
-                                        <!-- end card header -->
-                                        <div class="card-body">
-                                            <div class="live-preview">
-                                                <div class="row gy-4">
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Label ID="lblProject" runat="server" Text="Scheme*" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:TextBox ID="txtProject" runat="server" CssClass="form-control"></asp:TextBox>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div id="divZone" runat="server">
-                                                            <asp:Label ID="Label3" runat="server" Text="Total Budget Allocated (In Lakhs)*" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:TextBox ID="txtBudget" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div id="divCircle" runat="server">
-                                                            <asp:Label ID="Label4" runat="server" Text="Upload GO" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:FileUpload ID="flUploadGO" runat="server" />
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div id="divDivision" runat="server">
-                                                            <asp:Label ID="Label5" runat="server" Text="Upload Guideline" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:FileUpload ID="flUploadGuideline" runat="server" />
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Label ID="Label12" runat="server" Text="Download GO" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <br />
-                                                            <asp:ImageButton ID="btnDownload" runat="server" ImageUrl="~/assets/images/download.png" Width="50px" Height="50px" OnClientClick="javascript:downloadFile(this);" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Label ID="Label13" runat="server" Text="Download Guideline" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <br />
-                                                            <asp:ImageButton ID="btnDownloadGuideline" runat="server" ImageUrl="~/assets/images/download.png" Width="50px" Height="50px" OnClientClick="javascript:downloadFile(this);" />
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                </div>
-                                                <!--end row-->
-                                            </div>
+                                <div class="col-12 mb-3">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Scheme Master</h4>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                                <li class="breadcrumb-item">Project Master</li>
+                                                <li class="breadcrumb-item active">Scheme Master</li>
+                                            </ol>
                                         </div>
                                     </div>
                                 </div>
-                                <!--end col-->
+
+                                <div class="create-btn clearfix">
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter"></asp:Button>
+                                </div>
+
                             </div>
 
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Funding Pattern Breakup</h4>
-                                        </div>
-                                        <!-- end card header -->
-                                        <div class="card-body">
-                                            <div class="live-preview">
-                                                <div class="row gy-12">
-                                                    <asp:GridView ID="grdFundingPattern" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdFundingPattern_RowDataBound">
-                                                        <Columns>
-                                                            <asp:BoundField DataField="FundingPattern_Id" HeaderText="FundingPattern_Id">
-                                                                <HeaderStyle CssClass="displayStyle" />
-                                                                <ItemStyle CssClass="displayStyle" />
-                                                                <FooterStyle CssClass="displayStyle" />
-                                                            </asp:BoundField>
-                                                            <asp:TemplateField HeaderText="S No.">
-                                                                <ItemTemplate>
-                                                                    <%# Container.DataItemIndex + 1 %>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField DataField="FundingPattern_Name" HeaderText="Funding Pattern Name" />
-                                                            <asp:TemplateField HeaderText="Percentage (%)">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox ID="txtShareP" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" MaxLength="3" AutoPostBack="True" OnTextChanged="txtShareP_TextChanged" Text='<%# Eval("ProjectFundingPattern_Percentage") %>'></asp:TextBox>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Value">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox ID="txtShareV" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" Text='<%# Eval("ProjectFundingPattern_Value") %>'></asp:TextBox>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                    </asp:GridView>
+
+
+
+                            <div id="divCreateNew" runat="server" visible="false">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header align-items-center d-flex">
+                                                <h4 class="card-title mb-0 flex-grow-1">Create / Update Scheme</h4>
+                                            </div>
+                                            <!-- end card header -->
+                                            <div class="card-body">
+                                                <div class="live-preview">
+                                                    <div class="row gy-4">
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div>
+                                                                <asp:Label ID="lblProject" runat="server" Text="Scheme*" CssClass="control-label no-padding-right"></asp:Label>
+                                                                <asp:TextBox ID="txtProject" runat="server" CssClass="form-control"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div id="divZone" runat="server">
+                                                                <asp:Label ID="Label3" runat="server" Text="Total Budget Allocated (In Lakhs)*" CssClass="control-label no-padding-right"></asp:Label>
+                                                                <asp:TextBox ID="txtBudget" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div id="divCircle" runat="server">
+                                                                <asp:Label ID="Label4" runat="server" Text="Upload GO" CssClass="control-label no-padding-right"></asp:Label>
+                                                                <asp:FileUpload ID="flUploadGO" runat="server" />
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div id="divDivision" runat="server">
+                                                                <asp:Label ID="Label5" runat="server" Text="Upload Guideline" CssClass="control-label no-padding-right"></asp:Label>
+                                                                <asp:FileUpload ID="flUploadGuideline" runat="server" />
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div>
+                                                                <asp:Label ID="Label12" runat="server" Text="Download GO" CssClass="control-label no-padding-right"></asp:Label>
+                                                                <br />
+                                                                <asp:ImageButton ID="btnDownload" runat="server" ImageUrl="~/assets/images/download.png" Width="50px" Height="50px" OnClientClick="javascript:downloadFile(this);" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div>
+                                                                <asp:Label ID="Label13" runat="server" Text="Download Guideline" CssClass="control-label no-padding-right"></asp:Label>
+                                                                <br />
+                                                                <asp:ImageButton ID="btnDownloadGuideline" runat="server" ImageUrl="~/assets/images/download.png" Width="50px" Height="50px" OnClientClick="javascript:downloadFile(this);" />
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                    </div>
+                                                    <!--end row-->
                                                 </div>
-                                                <!--end row-->
                                             </div>
                                         </div>
                                     </div>
+                                    <!--end col-->
                                 </div>
-                                <!--end col-->
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="live-preview">
-                                                <div class="row gy-4">
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--end row-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end col-->
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
 
                                 <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="clearfix" id="dtOptions" runat="server">
-                                            <div class="pull-right tableTools-container"></div>
-                                        </div>
-                                        <div class="table-header">
-                                            Scheme Master
-                                        </div>
-                                        <!-- div.table-responsive -->
-
-                                        <!-- div.dataTables_borderWrap -->
-                                        <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
-                                                <Columns>
-                                                    <asp:BoundField DataField="Project_Id" HeaderText="Project_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="Project_GO_Path" HeaderText="Project_GO_Path">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="Project_Guideline_Path" HeaderText="Project_Guideline_Path">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:TemplateField HeaderText="S No.">
-                                                        <ItemTemplate>
-                                                            <%# Container.DataItemIndex + 1 %>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="Project_Name" HeaderText="Scheme" />
-                                                    <asp:BoundField DataField="Project_Budget" HeaderText="Scheme Budget (In Lakhs)" />
-                                                    <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
-                                                    <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
-                                                    <asp:BoundField DataField="ModifyBy" HeaderText="Modified By" />
-                                                    <asp:BoundField DataField="Modify_Date" HeaderText="Modified Date" />
-                                                    <asp:TemplateField HeaderText="View">
-                                                        <ItemTemplate>
-                                                            <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                            </asp:GridView>
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header align-items-center d-flex">
+                                                <h4 class="card-title mb-0 flex-grow-1">Funding Pattern Breakup</h4>
+                                            </div>
+                                            <!-- end card header -->
+                                            <div class="card-body">
+                                                <div class="live-preview">
+                                                    <div class="row gy-12">
+                                                        <asp:GridView ID="grdFundingPattern" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdFundingPattern_RowDataBound">
+                                                            <Columns>
+                                                                <asp:BoundField DataField="FundingPattern_Id" HeaderText="FundingPattern_Id">
+                                                                    <HeaderStyle CssClass="displayStyle" />
+                                                                    <ItemStyle CssClass="displayStyle" />
+                                                                    <FooterStyle CssClass="displayStyle" />
+                                                                </asp:BoundField>
+                                                                <asp:TemplateField HeaderText="S No.">
+                                                                    <ItemTemplate>
+                                                                        <%# Container.DataItemIndex + 1 %>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:BoundField DataField="FundingPattern_Name" HeaderText="Funding Pattern Name" />
+                                                                <asp:TemplateField HeaderText="Percentage (%)">
+                                                                    <ItemTemplate>
+                                                                        <asp:TextBox ID="txtShareP" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" MaxLength="3" AutoPostBack="True" OnTextChanged="txtShareP_TextChanged" Text='<%# Eval("ProjectFundingPattern_Percentage") %>'></asp:TextBox>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Value">
+                                                                    <ItemTemplate>
+                                                                        <asp:TextBox ID="txtShareV" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" Text='<%# Eval("ProjectFundingPattern_Value") %>'></asp:TextBox>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    </div>
+                                                    <!--end row-->
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <!--end col-->
                                 </div>
-                                <!-- PAGE CONTENT ENDS -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="live-preview">
+                                                    <div class="row gy-4">
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div>
+                                                                <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div>
+                                                                <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-3 col-md-6">
+                                                            <div>
+                                                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--end row-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                </div>
                             </div>
-                            <!-- /.col -->
+
+                            <div class="row">
+                                <div class="col-xs-12">
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="clearfix" id="dtOptions" runat="server">
+                                                <div class="pull-right tableTools-container"></div>
+                                            </div>
+
+                                            <!-- div.table-responsive -->
+
+                                            <!-- div.dataTables_borderWrap -->
+                                            <div class="table-responsive">
+                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                    <Columns>
+                                                        <asp:BoundField DataField="Project_Id" HeaderText="Project_Id">
+                                                            <HeaderStyle CssClass="displayStyle" />
+                                                            <ItemStyle CssClass="displayStyle" />
+                                                            <FooterStyle CssClass="displayStyle" />
+                                                        </asp:BoundField>
+                                                        <asp:BoundField DataField="Project_GO_Path" HeaderText="Project_GO_Path">
+                                                            <HeaderStyle CssClass="displayStyle" />
+                                                            <ItemStyle CssClass="displayStyle" />
+                                                            <FooterStyle CssClass="displayStyle" />
+                                                        </asp:BoundField>
+                                                        <asp:BoundField DataField="Project_Guideline_Path" HeaderText="Project_Guideline_Path">
+                                                            <HeaderStyle CssClass="displayStyle" />
+                                                            <ItemStyle CssClass="displayStyle" />
+                                                            <FooterStyle CssClass="displayStyle" />
+                                                        </asp:BoundField>
+                                                        <asp:TemplateField HeaderText="S No.">
+                                                            <ItemTemplate>
+                                                                <%# Container.DataItemIndex + 1 %>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:BoundField DataField="Project_Name" HeaderText="Scheme" />
+                                                        <asp:BoundField DataField="Project_Budget" HeaderText="Scheme Budget (In Lakhs)" />
+                                                        <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
+                                                        <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
+                                                        <asp:BoundField DataField="ModifyBy" HeaderText="Modified By" />
+                                                        <asp:BoundField DataField="Modify_Date" HeaderText="Modified Date" />
+                                                        <asp:TemplateField HeaderText="View">
+                                                            <ItemTemplate>
+                                                                <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- PAGE CONTENT ENDS -->
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
                         </div>
-                        <!-- /.row -->
                     </div>
                     <asp:HiddenField ID="hf_Project_Id" runat="server" Value="0" />
                 </ContentTemplate>
@@ -236,6 +253,7 @@
         <!-- /.main-content -->
 
     </div>
+
 
 
     <script>

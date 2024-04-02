@@ -26,7 +26,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             lblCircleH.Text = Session["Default_Circle"].ToString();
             lblDivisionH.Text = Session["Default_Division"].ToString();
 
-            get_M_Jurisdiction();
             get_tbl_Zone();
             get_tbl_ProjectType(0);
             get_tbl_Project();
@@ -40,38 +39,7 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             {
                 chkSkip.Visible = false;
             }
-            if (Session["UserType"].ToString() == "2" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
-            {//District
-                try
-                {
-                    ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    ddlDistrict.Enabled = false;
-                }
-                catch
-                { }
-            }
-            if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
-            {
-                try
-                {
-                    ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    ddlDistrict.Enabled = false;
-                    if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["ULB_Id"].ToString()) > 0)
-                    {//ULB
-                        try
-                        {
-                            ddlULB.SelectedValue = Session["ULB_Id"].ToString();
-                            ddlULB.Enabled = false;
-                        }
-                        catch
-                        { }
-                    }
-                }
-                catch
-                { }
-            }
+            
             if (Session["UserType"].ToString() == "4" && Convert.ToInt32(Session["PersonJuridiction_ZoneId"].ToString()) > 0)
             {//Zone
                 try
@@ -262,23 +230,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
         int NodalDepartment_Id = 0;
         try
         {
-            District_Id = Convert.ToInt32(ddlDistrict.SelectedValue);
-        }
-        catch
-        {
-            District_Id = 0;
-        }
-        
-        try
-        {
-            ULB_Id = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            ULB_Id = 0;
-        }
-        try
-        {
             Zone_Id = Convert.ToInt32(ddlZone.SelectedValue);
         }
         catch
@@ -316,21 +267,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             grdPost.DataBind();
         }
     }
-
-    private void get_M_Jurisdiction()
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_M_Jurisdiction(3, 0);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlDistrict, "Jurisdiction_Name_Eng_With_Parent", "M_Jurisdiction_Id");
-        }
-        else
-        {
-            ddlDistrict.Items.Clear();
-        }
-    }
-
     private void get_tbl_Project()
     {
         DataSet ds = new DataSet();
@@ -375,12 +311,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             txtProjectWorkName.Focus();
             return;
         }
-        if (ddlDistrict.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select District");
-            ddlDistrict.Focus();
-            return;
-        }
         if (txtTentitiveDate.Text== "")
         {
             MessageBox.Show("Please Select DPR Preparation Tentitive Date");
@@ -398,15 +328,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
         }
         obj_tbl_ProjectDPR.ProjectDPR_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
 
-        
-        try
-        {
-            obj_tbl_ProjectDPR.ProjectDPR_ACA_Cost = Convert.ToDecimal(txtACACost.Text.Trim());
-        }
-        catch
-        {
-            obj_tbl_ProjectDPR.ProjectDPR_ACA_Cost = 0;
-        }
         try
         {
             obj_tbl_ProjectDPR.ProjectDPR_CapexCost = Convert.ToDecimal(txtCapexCost.Text.Trim());
@@ -448,15 +369,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             obj_tbl_ProjectDPR.ProjectDPR_Project_Id = 0;
         }
         obj_tbl_ProjectDPR.ProjectDPR_Name = txtProjectWorkName.Text.Trim();
-        obj_tbl_ProjectDPR.ProjectDPR_DistrictId = Convert.ToInt32(ddlDistrict.SelectedValue);
-        try
-        {
-            obj_tbl_ProjectDPR.ProjectDPR_ULBId = Convert.ToInt32(ddlULB.SelectedValue);
-        }
-        catch
-        {
-            obj_tbl_ProjectDPR.ProjectDPR_ULBId = 0;
-        }
         obj_tbl_ProjectDPR.ProjectDPR_DivisionId = Convert.ToInt32(ddlDivision.SelectedValue);
         obj_tbl_ProjectDPR.ProjectDPR_ModifiedBy = Convert.ToInt32(Session["Person_Id"].ToString());
         obj_tbl_ProjectDPR.ProjectDPR_TentitiveDate = txtTentitiveDate.Text.Trim();
@@ -490,39 +402,10 @@ public partial class MasterProjectDPR : System.Web.UI.Page
 
     private void reset()
     {
-        ddlDistrict.SelectedValue = "0";
-        ddlULB.Items.Clear();
         hf_ProjectDPR_Id.Value = "0";
         txtProjectWorkName.Text = "";
-        txtACACost.Text = "0";
         txtCapexCost.Text = "";
         txtProjectWorkName.Text = "";
-    }
-
-    protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlDistrict.SelectedValue == "0")
-        {
-            ddlULB.Items.Clear();
-        }
-        else
-        {
-            get_tbl_ULB(Convert.ToInt32(ddlDistrict.SelectedValue));
-        }
-    }
-
-    private void get_tbl_ULB(int District_Id)
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_ULB(District_Id);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlULB, "ULB_Name", "ULB_Id");
-        }
-        else
-        {
-            ddlULB.Items.Clear();
-        }
     }
         
     protected void btnEdit_Click(object sender, ImageClickEventArgs e)
@@ -534,23 +417,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
         ds = (new DataLayer()).get_tbl_ProjectWorkDPR("", 0, 0, 0, 0, 0, 0, Convert.ToInt32(hf_ProjectDPR_Id.Value), "0", 0, 0, 0);
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
-            try
-            {
-                ddlDistrict.SelectedValue = ds.Tables[0].Rows[0]["ProjectDPR_DistrictId"].ToString();
-                ddlDistrict_SelectedIndexChanged(ddlDistrict, null);
-            }
-            catch
-            {
-                ddlDistrict.SelectedValue = "0";
-            }
-            try
-            {
-                ddlULB.SelectedValue = ds.Tables[0].Rows[0]["ProjectDPR_ULBId"].ToString();
-            }
-            catch
-            {
-                ddlULB.SelectedValue = "0";
-            }
             try
             {
                 ddlProjectMaster.SelectedValue = ds.Tables[0].Rows[0]["ProjectDPR_Project_Id"].ToString();
@@ -630,7 +496,6 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             }
             txtTentitiveDate.Text = ds.Tables[0].Rows[0]["ProjectDPR_TentitiveDate"].ToString();
             txtProjectWorkName.Text = ds.Tables[0].Rows[0]["ProjectDPR_Name"].ToString();
-            txtACACost.Text = ds.Tables[0].Rows[0]["ProjectDPR_ACA_Cost"].ToString();
             txtCapexCost.Text = ds.Tables[0].Rows[0]["ProjectDPR_CapexCost"].ToString();
             txtOMCost.Text = ds.Tables[0].Rows[0]["ProjectDPR_OandM_Cost"].ToString();
             txtProjectCost.Text = ds.Tables[0].Rows[0]["ProjectDPR_Project_Cost"].ToString();

@@ -390,33 +390,32 @@
                             </div>
                         </div>
 
+
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-6">
-                                    <asp:GridView ID="grdIssueReportedGlobal" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdIssueReportedGlobal_PreRender">
-                                        <Columns>
-                                            <asp:BoundField DataField="ProjectWorkIssueDetails_Issue_Id" HeaderText="ProjectWorkIssueDetails_Issue_Id">
-                                                <HeaderStyle CssClass="displayStyle" />
-                                                <ItemStyle CssClass="displayStyle" />
-                                                <FooterStyle CssClass="displayStyle" />
-                                            </asp:BoundField>
-                                            <asp:TemplateField HeaderText="S No.">
-                                                <ItemTemplate>
-                                                    <%# Container.DataItemIndex + 1 %>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="ProjectIssue_Name" HeaderText="Issue" />
-                                            <asp:TemplateField HeaderText="Total Issues">
-                                                <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkTotalIssuesGlobal" runat="server" OnClick="lnkTotalIssuesGlobal_Click" Font-Bold="true" Text='<%# Eval("Total_Isues") %>'></asp:LinkButton>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                    </asp:GridView>
-                                </div>
-                                <div class="col-md-6">
-                                    <div id="chartContainerIssue" style="height: 500px; width: 100%; margin: 0px auto;"></div>
-                                </div>
+                            <div class="col-xl-6 col-md-6">
+                                <asp:GridView ID="grdIssueReportedGlobal" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdIssueReportedGlobal_PreRender">
+                                    <Columns>
+                                        <asp:BoundField DataField="ProjectWorkIssueDetails_Issue_Id" HeaderText="ProjectWorkIssueDetails_Issue_Id">
+                                            <HeaderStyle CssClass="displayStyle" />
+                                            <ItemStyle CssClass="displayStyle" />
+                                            <FooterStyle CssClass="displayStyle" />
+                                        </asp:BoundField>
+                                        <asp:TemplateField HeaderText="S No.">
+                                            <ItemTemplate>
+                                                <%# Container.DataItemIndex + 1 %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="ProjectIssue_Name" HeaderText="Issue" />
+                                        <asp:TemplateField HeaderText="Total Issues">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lnkTotalIssuesGlobal" runat="server" OnClick="lnkTotalIssuesGlobal_Click" Font-Bold="true" Text='<%# Eval("Total_Isues") %>'></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div id="chartContainerIssue" style="height: 500px; width: 100%; margin: 0px auto;"></div>
                             </div>
                         </div>
 
@@ -638,7 +637,7 @@
             </asp:UpdateProgress>
         </div>
     </div>
-    
+
     <script>
         Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
             jQuery(function ($) {
