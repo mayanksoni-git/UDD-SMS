@@ -20,36 +20,33 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <label class="control-label no-padding-right">Scheme </label>
-                                                        <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
-
-                                                        <asp:Label ID="lblULB" runat="server" Text="ULB" CssClass="control-label no-padding-right" Visible="false"></asp:Label>
-                                                        <asp:DropDownList ID="ddlULB" runat="server" CssClass="form-control" Visible="false"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6" id="divCircle" runat="server">
                                                     <div>
                                                         <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6" id="divDivision" runat="server">
                                                     <div>
                                                         <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <label class="control-label no-padding-right">GO Number</label>
-                                                        <asp:TextBox ID="txtGONoSearch" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        <label class="control-label no-padding-right">Project Code</label>
+                                                        <asp:TextBox ID="txtProjectCode" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
 
@@ -126,18 +123,42 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Select">
                                                                     <ItemTemplate>
-                                                                        <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
+                                                                        <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" /><br />
+
+
+                                                                        <div class="input-group">
+
+                                                                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">SMS Step</button>
+                                                                            <ul class="dropdown-menu dropdown-menu-end" style="">
+                                                                                <li><a href="MasterProjectWorkMIS_2_CNDS.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&District_Id=<%# Eval("ProjectWork_DistrictId")%>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="dropdown-item">Installment Details</a></li>
+                                                                                <li><a href="MasterProjectWorkMIS_6.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="dropdown-item">Utilization Details and Issues</a></li>
+
+                                                                                <li>
+                                                                                    <hr class="dropdown-divider">
+                                                                                </li>
+                                                                                <li><a target="_blank" href="ProjectWorkGalleryView.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Mode=P&App=false" class="dropdown-item">View Gallery (<%# Eval("Total_Photo") %>)</a></li>
+                                                                            </ul>
+                                                                        </div>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
-                                                                <asp:BoundField HeaderText="District" DataField="Jurisdiction_Name_Eng" />
+                                                                <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />
                                                                 <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
                                                                 <asp:BoundField HeaderText="Division" DataField="Division_Name" />
-                                                                <asp:BoundField HeaderText="Project" DataField="Project_Name" />
                                                                 <asp:BoundField HeaderText="Project Code" DataField="ProjectWork_ProjectCode" />
                                                                 <asp:BoundField HeaderText="Work" DataField="ProjectWork_Name" />
-                                                                <asp:BoundField HeaderText="GO Date" DataField="ProjectWork_GO_Date" />
-                                                                <asp:BoundField HeaderText="GO No" DataField="ProjectWork_GO_No" />
-                                                                <asp:BoundField HeaderText="Budget (In Lakhs)" DataField="ProjectWork_Budget" />
+                                                                <asp:BoundField HeaderText="Sanctioned Cost (In Lakhs)" DataField="ProjectWork_Budget" />
+                                                                <asp:BoundField HeaderText="Agreement Cost (In Lakhs)" DataField="tender_cost" />
+                                                                <asp:BoundField HeaderText="Released Amount (In Lakhs)" DataField="Total_Release" />
+                                                                <asp:BoundField HeaderText="Total Expenditure (In Lakhs)" DataField="Total_Expenditure" />
+                                                                <asp:BoundField HeaderText="Physical Progress" DataField="Physical_Progress" />
+                                                                <asp:BoundField HeaderText="Financial Progress" DataField="Financial_Progress" />
+                                                                <asp:BoundField HeaderText="Start Date As Per Agreement" DataField="ProjectWorkPkg_Agreement_Date" />
+                                                                <asp:BoundField HeaderText="Actual Start Date" DataField="ProjectWorkPkg_Start_Date" />
+                                                                <asp:BoundField HeaderText="End Date As Per Agreement" DataField="ProjectWorkPkg_Due_Date" />
+                                                                <asp:BoundField HeaderText="End Date As Per Agreement (Actual)" DataField="Target_Date_Agreement_Extended" />
+                                                                <asp:BoundField HeaderText="Issue" DataField="Issue" />
+                                                                <asp:BoundField HeaderText="Last Updated On (Data)" DataField="ProjectWork_ModifiedOn" />
+                                                                <asp:BoundField HeaderText="Last Updated On (Photo)" DataField="Last_Updated" />
                                                             </Columns>
                                                         </asp:GridView>
                                                     </div>

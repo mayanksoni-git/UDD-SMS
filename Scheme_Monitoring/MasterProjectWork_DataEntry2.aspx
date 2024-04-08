@@ -9,6 +9,10 @@
                 </cc1:ToolkitScriptManager>
                 <asp:UpdatePanel ID="up" runat="server">
                     <ContentTemplate>
+                        <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="btnShowPopup"
+                            CancelControlID="btnclose" BackgroundCssClass="modalBackground1">
+                        </cc1:ModalPopupExtender>
+                        <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
                         <div id="divCreate" runat="server">
 
                             <div class="row">
@@ -38,13 +42,13 @@
                                                         <div>
                                                             <%--<label for="basiInput" class="form-label">Scheme</label>--%>
                                                             <asp:Label ID="lblSchemeH" runat="server" Text="Scheme" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectMaster_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectMaster_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="divZone" runat="server">
                                                             <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -52,7 +56,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="divCircle" runat="server">
                                                             <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -60,21 +64,21 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="divDivision" runat="server">
                                                             <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label14" runat="server" Text="Lok Sabha" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlLokSabha" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlLokSabha_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlLokSabha" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlLokSabha_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label17" runat="server" Text="Vidhan Sabha" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlVidhanSabha" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlVidhanSabha" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -129,7 +133,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label18" runat="server" Text="Project Type*" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -224,7 +228,7 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="GO Date">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="txtFinancialTrans_GO_Date" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr"  data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkGO_GO_Date") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="txtFinancialTrans_GO_Date" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkGO_GO_Date") %>'></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="GO Number">
@@ -312,14 +316,14 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label8" runat="server" Text="Date Of Start As Per Agreement *" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtAgreementDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr"  data-date-format="d/m/Y"></asp:TextBox>
+                                                            <asp:TextBox ID="txtAgreementDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label9" runat="server" Text="Actual Date Of Start" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtActualDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr"  data-date-format="d/m/Y"></asp:TextBox>
+                                                            <asp:TextBox ID="txtActualDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -358,7 +362,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <label class="form-label">Contractor (Lead)* </label>
-                                                            <asp:DropDownList ID="ddlVendor1" runat="server" class="chosen-select form-control" data-placeholder="Choose a Contractor / Vendor..." AutoPostBack="true" OnSelectedIndexChanged="ddlVendor1_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlVendor1" runat="server" class="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlVendor1_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -386,7 +390,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div style="display: none;">
                                                             <asp:Label ID="Label13" runat="server" Text="GST Percentage*" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlGSTPercentage" runat="server" CssClass="form-control">
+                                                            <asp:DropDownList ID="ddlGSTPercentage" runat="server" CssClass="form-select">
                                                                 <asp:ListItem Text="5" Value="5.00"></asp:ListItem>
                                                                 <asp:ListItem Text="12" Value="12.00"></asp:ListItem>
                                                                 <asp:ListItem Text="18" Value="18.00" Selected="True"></asp:ListItem>
@@ -469,6 +473,114 @@
 
 
 
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Physical Component Progress Details</h4>
+                                        </div>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-12">
+                                                    <div class="col-xxl-12 col-md-12">
+                                                        <div class="table-responsive">
+                                                            <asp:GridView ID="grdPhysicalProgress" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdPhysicalProgress_RowDataBound">
+                                                                <Columns>
+                                                                    <asp:BoundField DataField="PhysicalProgressComponent_Id" HeaderText="PhysicalProgressComponent_Id">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:BoundField DataField="ProjectPkg_PhysicalProgress_Id" HeaderText="ProjectPkg_PhysicalProgress_Id">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:BoundField DataField="PhysicalProgressComponent_EnableList" HeaderText="PhysicalProgressComponent_EnableList">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:TemplateField HeaderText="S No.">
+                                                                        <ItemTemplate>
+                                                                            <%# Container.DataItemIndex + 1 %>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Select">
+                                                                        <HeaderTemplate>
+                                                                            <asp:CheckBox ID="chkSelectAllApproveH" runat="server" Text="Select" AutoPostBack="True" OnCheckedChanged="chkSelectAllApproveH_CheckedChanged" />
+                                                                        </HeaderTemplate>
+                                                                        <ItemTemplate>
+                                                                            <asp:CheckBox ID="chkPostPhysicalProgress" runat="server" />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:BoundField DataField="PhysicalProgressComponent_Component" HeaderText="Component" />
+                                                                    <asp:BoundField DataField="Unit_Name" HeaderText="Unit" />
+                                                                    <asp:TemplateField HeaderText="Proposed (Number) As Per Origional">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="txtProposedNumberO" runat="server" CssClass="form-control " Text='<%# Eval("ProjectPkg_PhysicalProgress_MasterValueF") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Proposed (Number) As Per Actual">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="txtProposedNumber" runat="server" CssClass="form-control " Text='<%# Eval("ProjectPkg_PhysicalProgress_MasterValue") %>' onkeyup="isNumericVal(this);" ToolTip='<%# Eval("ProjectPkg_PhysicalProgress_MasterValue") %>'></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Completed (Number)">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="txtProgressNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_PhysicalProgress") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Withheld / Blocked Due to Other Work (Number)">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="txtWithheldNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_WithheldProgress") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Functional (Number)">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="txtFunctionalNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_PhysicalFunctional") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Non-Functional (Number)">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="txtNonFunctionalNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_PhysicalNonFunctional") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Remarks">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="txtRemarks" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_Remarks") %>' TextMode="MultiLine"></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                </Columns>
+                                                            </asp:GridView>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                </div>
+                                                <!--end row-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card">
@@ -500,7 +612,7 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="UC Date">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="txtUCDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr"  data-date-format="d/m/Y" Text='<%# Eval("ProjectUC_SubmitionDate") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="txtUCDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y" Text='<%# Eval("ProjectUC_SubmitionDate") %>'></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="UC Number">
@@ -525,6 +637,11 @@
                                                                     <asp:TemplateField HeaderText="Upload UC Document">
                                                                         <ItemTemplate>
                                                                             <asp:LinkButton ID="lnkUCDoc" runat="server" Text="Download" GO_FilePath='<%#Eval("ProjectUC_Document") %>' OnClientClick="return downloadGO(this);"></asp:LinkButton>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Action">
+                                                                        <ItemTemplate>
+                                                                            <asp:ImageButton ID="btnAction" OnClick="btnAction_Click" runat="server" ImageUrl="~/assets/images/edit.png" Width="30px" Height="30px" />
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Delete">
@@ -586,13 +703,13 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Issuing Type">
                                                             <ItemTemplate>
-                                                                <asp:DropDownList ID="ddlIssueType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlIssueType_SelectedIndexChanged">
+                                                                <asp:DropDownList ID="ddlIssueType" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlIssueType_SelectedIndexChanged">
                                                                 </asp:DropDownList>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Dependency">
                                                             <ItemTemplate>
-                                                                <asp:DropDownList ID="ddlDependency" runat="server" CssClass="form-control">
+                                                                <asp:DropDownList ID="ddlDependency" runat="server" CssClass="form-select">
                                                                 </asp:DropDownList>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
@@ -654,6 +771,65 @@
 
                             </div>
                         </div>
+
+                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 1000px; height: 500px; margin-left: -32px" ScrollBars="Auto">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Action On UC</h4>
+                                        </div>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label5" runat="server" Text="Action*" CssClass="form-label"></asp:Label>
+                                                            <asp:DropDownList CssClass="form-select" ID="ddlAction" runat="server">
+                                                                <asp:ListItem Text="---Select---" Value="0" Selected="True"></asp:ListItem>
+                                                                <asp:ListItem Text="Approved" Value="A"></asp:ListItem>
+                                                                <asp:ListItem Text="Rejected" Value="R"></asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label19" runat="server" Text="Comments*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtCommentsUC" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <br />
+                                                            <asp:Button ID="btnUpdateAction" Text="Update" OnClick="btnUpdateAction_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                </div>
+                                                <!--end row-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </asp:Panel>
+
                         <asp:HiddenField ID="hf_ProjectWorkPkg_Id" runat="server" Value="0" />
                         <asp:HiddenField ID="hf_GO_Path" runat="server" Value="0" />
                     </ContentTemplate>

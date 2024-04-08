@@ -22,18 +22,6 @@ public partial class MasterProjectWorkMIS_2_CNDS : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
-            if (Session["PersonJuridiction_DesignationId"].ToString() == "1" || Session["PersonJuridiction_DesignationId"].ToString() == "33")
-            {
-                btnSkip.Visible = true;
-            }
-            else if (Session["UserType"].ToString() == "1" || Session["UserType"].ToString() == "4" || Session["UserType"].ToString() == "6" || Session["UserType"].ToString() == "8")
-            {
-                btnSkip.Visible = true;
-            }
-            else
-            {
-                btnSkip.Visible = false;
-            }
             if (Request.QueryString.Count > 0)
             {
                 int ProjectWork_Id = Convert.ToInt32(Request.QueryString[0].Trim());

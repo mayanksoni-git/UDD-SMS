@@ -28,55 +28,7 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
             lblZoneH.Text = Session["Default_Zone"].ToString();
             lblCircleH.Text = Session["Default_Circle"].ToString();
             lblDivisionH.Text = Session["Default_Division"].ToString();
-
-            //if (Session["UserType"].ToString() != "1")
-            //{
-            //    try
-            //    {
-            //        if (Session["PersonJuridiction_Project_Id"].ToString() != "" && Session["PersonJuridiction_Project_Id"].ToString() != "0")
-            //        {
-            //            ddlSearchScheme.SelectedValue = Session["PersonJuridiction_Project_Id"].ToString();
-            //            ddlSearchScheme.Enabled = false;
-            //        }
-            //    }
-            //    catch
-            //    {
-
-            //    }
-
-            //}
-            if (Session["UserType"].ToString() == "2" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
-            {//District
-                try
-                {
-                    //ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    //ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    //ddlDistrict.Enabled = false;
-                }
-                catch
-                { }
-            }
-            if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
-            {
-                try
-                {
-                    //ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    //ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    //ddlDistrict.Enabled = false;
-                    if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["ULB_Id"].ToString()) > 0)
-                    {//ULB
-                        try
-                        {
-                            ddlULB.SelectedValue = Session["ULB_Id"].ToString();
-                            ddlULB.Enabled = false;
-                        }
-                        catch
-                        { }
-                    }
-                }
-                catch
-                { }
-            }
+                        
             if (Session["UserType"].ToString() == "4" && Convert.ToInt32(Session["PersonJuridiction_ZoneId"].ToString()) > 0)
             {//Zone
                 try
@@ -148,7 +100,6 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
             if (Session["SearchStorage"] != null)
             {
                 SearchStorage obj_SearchStorage = (SearchStorage)Session["SearchStorage"];
-                txtGONoSearch.Text = obj_SearchStorage.FromDate;
                 try
                 {
                     ddlSearchScheme.SelectedValue = obj_SearchStorage.Scheme_Id;
@@ -345,7 +296,6 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         obj_SearchStorage.Circle_Id = Circle_Id;
         obj_SearchStorage.District_Id = 0;
         obj_SearchStorage.Division_Id = Division_Id;
-        obj_SearchStorage.FromDate = txtGONoSearch.Text.Trim();
         obj_SearchStorage.Scheme_Id = Project_Id;
         obj_SearchStorage.Search_By = "2";
         obj_SearchStorage.TillDate = "";
@@ -353,7 +303,7 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         obj_SearchStorage.Zone_Id = Zone_Id;
         Session["SearchStorage"] = obj_SearchStorage;
         DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_ProjectWork_DataEntry(Project_Id, 0, Zone_Id, Circle_Id, Division_Id, 0, AllClasses.re_Organize_GO_No(txtGONoSearch.Text.Trim(), true), "");
+        ds = (new DataLayer()).get_tbl_ProjectWork(Project_Id, 0, Zone_Id, Circle_Id, Division_Id, 0, "", 0, txtProjectCode.Text.Trim(), 0);
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             grdPost.DataSource = ds.Tables[0];
