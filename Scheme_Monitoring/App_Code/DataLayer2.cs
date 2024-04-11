@@ -14842,7 +14842,7 @@ public partial class DataLayer : Page, IRequiresSessionState
                             Insert_tbl_ProjectWorkFundingPattern(obj_tbl_ProjectWorkFundingPattern_Li[i], trans, cn);
                         }
                     }
-                    if (Client == "CNDS")
+                    if (obj_tbl_ProjectWorkIssueDetails_Li != null)
                     {
                         for (int i = 0; i < obj_tbl_ProjectWorkIssueDetails_Li.Count; i++)
                         {
@@ -14871,7 +14871,9 @@ public partial class DataLayer : Page, IRequiresSessionState
                                 Update_tbl_ProjectWorkIssueDetails(obj_tbl_ProjectWorkIssueDetails_Li[i], trans, cn);
                             }
                         }
-
+                    }
+                    if (Client == "CNDS")
+                    {
                         if (physicalTarget >= 100)
                         {
                             strQuery = " set dateformat dmy; update tbl_ProjectWork set ProjectWork_Is_Phase_1 = 3 where ProjectWork_Id = '" + obj_tbl_ProjectWork.ProjectWork_Id + "'";

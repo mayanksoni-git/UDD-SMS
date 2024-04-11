@@ -133,6 +133,8 @@
                                                                                 <li><a href="MasterProjectWorkMIS_2_CNDS.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&District_Id=<%# Eval("ProjectWork_DistrictId")%>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="dropdown-item">Installment Details</a></li>
                                                                                 <li><a href="MasterProjectWorkMIS_6.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="dropdown-item">Utilization Details and Issues</a></li>
 
+                                                                                <li><a href="MasterProjectWork_DataEntrySection.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Scheme_Id=<%# Eval("ProjectWork_Project_Id") %>" class="dropdown-item">Update Project (Section)</a></li>
+
                                                                                 <li>
                                                                                     <hr class="dropdown-divider">
                                                                                 </li>
