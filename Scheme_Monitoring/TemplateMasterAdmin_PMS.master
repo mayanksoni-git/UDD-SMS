@@ -217,7 +217,12 @@
                                 <div class="collapse menu-dropdown" id="sidebarProject">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="MasterProject.aspx" class="nav-link" data-key="t-basic-tables">Create Scheme</a> </li>
-                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx" class="nav-link" data-key="t-grid-js">Create / Update Project </a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx" class="nav-link" data-key="t-grid-js">Create / Update Project (ULB)</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=SO" class="nav-link" data-key="t-grid-js">Update Project (SO)</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=GO" class="nav-link" data-key="t-grid-js">Update Installments</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=UC" class="nav-link" data-key="t-grid-js">Update UC / Issue</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=Comp" class="nav-link" data-key="t-grid-js">Update Component</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=G" class="nav-link" data-key="t-grid-js">View Project Gallery</a> </li>
                                         <li class="nav-item"><a href="ProjectWorkInspectionUpdate.aspx" class="nav-link" data-key="t-grid-js">Fill Site Visit / Inspection</a> </li>
                                     </ul>
                                 </div>

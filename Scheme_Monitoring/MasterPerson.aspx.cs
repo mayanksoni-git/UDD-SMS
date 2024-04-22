@@ -226,7 +226,7 @@ public partial class MasterPerson : System.Web.UI.Page
     }
     private void get_Employee(int Zone_Id, int Circle_Id, int Division_Id)
     {
-        string UserTypeId = "1, 2, 4, 6, 7, 8, 9, 11, 3, 13";
+        string UserTypeId = "1, 2, 4, 6, 7, 8, 9, 11, 3, 13, 14";
         int District_Id = 0;
         int Project_Id = 0;
         //try
@@ -346,7 +346,7 @@ public partial class MasterPerson : System.Web.UI.Page
 
         if (Session["UserType"].ToString() == "1")
         {
-            UserTypeId = "1, 2, 4, 6, 7, 8, 9, 11, 3, 13";
+            UserTypeId = "1, 2, 4, 6, 7, 8, 9, 11, 3, 13, 14";
         }
         else
         {

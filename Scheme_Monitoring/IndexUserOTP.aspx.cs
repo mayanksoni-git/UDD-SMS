@@ -227,6 +227,30 @@ public partial class IndexUserOTP : System.Web.UI.Page
                 else
                     Response.Redirect("ChangePassword.aspx");
             }
+            else if (Session["UserType"] != null && Session["UserType"].ToString() == "14")//Operator
+            {
+                if (Session["Login_IsDefault"].ToString() == "1")
+                {
+                    if (Client == "CNDS")
+                    {
+                        Response.Redirect("Dashboard_PMIS_CNDS.aspx");
+                    }
+                    else if (Client == "SAR")
+                    {
+                        Response.Redirect("Dashboard_Sarovar.aspx");
+                    }
+                    else if (Client == "JNUP")
+                    {
+                        Response.Redirect("Dashboard_PMIS.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("DashboardNew.aspx");
+                    }
+                }
+                else
+                    Response.Redirect("ChangePassword.aspx");
+            }
             else
             {
                 //Response.Redirect("Index.aspx");
@@ -285,6 +309,13 @@ public partial class IndexUserOTP : System.Web.UI.Page
                     else
                         Response.Redirect("ChangePassword.aspx");
                 }
+            }
+            else if (Session["UserType"] != null && Session["UserType"].ToString() == "14")//Division Officer
+            {
+                if (Session["Login_IsDefault"].ToString() == "1")
+                    Response.Redirect("DashboardFinance.aspx");
+                else
+                    Response.Redirect("ChangePassword.aspx");
             }
             else
             {
@@ -836,6 +867,30 @@ public partial class IndexUserOTP : System.Web.UI.Page
                 else
                     Response.Redirect("ChangePassword.aspx");
             }
+            else if (Session["UserType"].ToString() == "14")//Operator
+            {
+                if (Session["Login_IsDefault"].ToString() == "1")
+                {
+                    if (Client == "CNDS")
+                    {
+                        Response.Redirect("Dashboard_PMIS_CNDS.aspx");
+                    }
+                    else if (Client == "SAR")
+                    {
+                        Response.Redirect("Dashboard_Sarovar.aspx");
+                    }
+                    else if (Client == "JNUP")
+                    {
+                        Response.Redirect("Dashboard_PMIS.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("DashboardNew.aspx");
+                    }
+                }
+                else
+                    Response.Redirect("ChangePassword.aspx");
+            }
             else
             {
                 MessageBox.Show("Not Authorized To Login...!!");
@@ -897,6 +952,13 @@ public partial class IndexUserOTP : System.Web.UI.Page
                 }
             }
             else if (Session["UserType"].ToString() == "9")//Operator
+            {
+                if (Session["Login_IsDefault"].ToString() == "1")
+                    Response.Redirect("DashboardFinance.aspx");
+                else
+                    Response.Redirect("ChangePassword.aspx");
+            }
+            else if (Session["UserType"].ToString() == "14")//Zone Officer
             {
                 if (Session["Login_IsDefault"].ToString() == "1")
                     Response.Redirect("DashboardFinance.aspx");

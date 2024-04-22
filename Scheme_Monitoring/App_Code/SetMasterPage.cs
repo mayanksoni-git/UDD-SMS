@@ -97,6 +97,10 @@ public class SetMasterPage : Page
                     {
                         _page = "TemplateMasterOperator.master";
                     }
+                    else if (HttpContext.Current.Session["UserType"].ToString() == "14")//Inspection
+                    {
+                        _page = "TemplateMasterInspection_PMS.master";
+                    }
                     else
                     {
                         _page = "TemplateMasterAdmin_PMS.master";
@@ -271,6 +275,10 @@ public class SetMasterPage : Page
                     else if (HttpContext.Current.Session["UserType"].ToString() == "8")//Organisational Admin
                     {
                         _page = "TemplateMasterAdminOrg_PMS.master";
+                    }
+                    else if (HttpContext.Current.Session["UserType"].ToString() == "14")//Inspection
+                    {
+                        _page = "TemplateMasterInspection_PMS.master";
                     }
                     else if (HttpContext.Current.Session["UserType"].ToString() == "9")//Operator Admin
                     {

@@ -123,24 +123,7 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Select">
                                                                     <ItemTemplate>
-                                                                        <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" /><br />
-
-
-                                                                        <div class="input-group">
-
-                                                                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">SMS Step</button>
-                                                                            <ul class="dropdown-menu dropdown-menu-end" style="">
-                                                                                <li><a href="MasterProjectWorkMIS_2_CNDS.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&District_Id=<%# Eval("ProjectWork_DistrictId")%>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="dropdown-item">Installment Details</a></li>
-                                                                                <li><a href="MasterProjectWorkMIS_6.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="dropdown-item">Utilization Details and Issues</a></li>
-
-                                                                                <li><a href="MasterProjectWork_DataEntrySection.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Scheme_Id=<%# Eval("ProjectWork_Project_Id") %>" class="dropdown-item">Update Project (Section)</a></li>
-
-                                                                                <li>
-                                                                                    <hr class="dropdown-divider">
-                                                                                </li>
-                                                                                <li><a target="_blank" href="ProjectWorkGalleryView.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Mode=P&App=false" class="dropdown-item">View Gallery (<%# Eval("Total_Photo") %>)</a></li>
-                                                                            </ul>
-                                                                        </div>
+                                                                        <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" />
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />

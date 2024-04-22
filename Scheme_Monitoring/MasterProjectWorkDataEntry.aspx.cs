@@ -28,7 +28,14 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
             lblZoneH.Text = Session["Default_Zone"].ToString();
             lblCircleH.Text = Session["Default_Circle"].ToString();
             lblDivisionH.Text = Session["Default_Division"].ToString();
-                        
+            if (Request.QueryString.Count > 0)
+            {
+                btnCreateNew.Visible = false;
+            }
+            else
+            {
+                btnCreateNew.Visible = true;
+            }
             if (Session["UserType"].ToString() == "4" && Convert.ToInt32(Session["PersonJuridiction_ZoneId"].ToString()) > 0)
             {//Zone
                 try
@@ -324,6 +331,7 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
         int ProjectWork_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
         int Project_Id = Convert.ToInt32(gr.Cells[1].Text.Trim());
+        int District_Id = Convert.ToInt32(gr.Cells[2].Text.Trim());
         string Client = ConfigurationManager.AppSettings.Get("Client");
         if (Client == "CNDS")
         {
@@ -331,7 +339,48 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
+            string Mode = "";
+            if (Request.QueryString.Count > 0)
+            {
+                try
+                {
+                    Mode = Request.QueryString[0].ToString();
+                }
+                catch
+                {
+                    Mode = "";
+                }
+                if (Mode == "GO")
+                {
+                    Response.Redirect("MasterProjectWorkMIS_2_CNDS.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&District_Id=" + District_Id + "&Id=" + Project_Id.ToString());
+                }
+                else if (Mode == "UC")
+                {
+                    Response.Redirect("MasterProjectWorkMIS_6.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
+                }
+                else if (Mode == "Comp")
+                {
+                    Response.Redirect("MasterProjectWorkMIS_4.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
+                }
+                else if (Mode == "SO")
+                {
+                    Response.Redirect("MasterProjectWork_DataEntrySection.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
+                }
+                else if (Mode == "G")
+                {
+                    Response.Redirect("ProjectWorkGalleryView.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Mode=P&App=false");
+                }
+                else
+                {
+                    Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
+                }
+
+            }
+            else
+            {
+                Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
+            }
+
         }
     }
 
