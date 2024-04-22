@@ -18,7 +18,8 @@
                                         <div class="page-title-right">
                                             <ol class="breadcrumb m-0">
                                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                                <li class="breadcrumb-item active">DPR</li>
+                                                <li class="breadcrumb-item">DPR</li>
+                                                <li class="breadcrumb-item active">Create Project DPR</li>
                                             </ol>
                                         </div>
                                     </div>
@@ -33,7 +34,8 @@
                                                 <div class="row gy-4">
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <label class="control-label no-padding-right">Scheme* </label>
+                                                            <%--<label class="control-label no-padding-right">Scheme* </label>--%>
+                                                            <asp:Label ID="lblScheme" runat="server" Text="Scheme*" CssClass="control-label no-padding-right"></asp:Label>
                                                             <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectMaster_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
@@ -57,7 +59,8 @@
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <label class="control-label no-padding-right">Project Name* </label>
+                                                            <%--<label class="control-label no-padding-right">Project Name* </label>--%>
+                                                            <asp:Label ID="lblProjectName" runat="server" Text="Project Name* " CssClass="control-label no-padding-right"></asp:Label>
                                                             <asp:TextBox ID="txtProjectWorkName" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                                                         </div>
                                                     </div>
@@ -75,7 +78,8 @@
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <label class="control-label no-padding-right">Project Type* </label>
+                                                            <%--<label class="control-label no-padding-right">Project Type* </label>--%>
+                                                            <asp:Label ID="lblProjectType" runat="server" Text="Project Type*" CssClass="control-label no-padding-right"></asp:Label>
                                                             <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-control"></asp:DropDownList>
                                                         </div>
                                                     </div>

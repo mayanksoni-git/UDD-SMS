@@ -124,8 +124,15 @@
 
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <button class="btn btn-danger btn-md" onclick="return downloadGO(this);" title="Download GO" runat="server" id="aGO">
+                                                            <%--<button class="btn btn-danger btn-md" onclick="return downloadGO(this);" title="Download GO" runat="server" id="aGO">
                                                                 <i class="ri-file-download-line icon-only"></i>
+                                                            </button>--%>
+                                                            <button type="button" class="btn btn-outline-success" onclick="return downloadGO(this);" title="Download GO" runat="server" id="aGO">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"></path>
+                                                                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"></path>
+                                                                </svg>
+                                                                Download GO
                                                             </button>
                                                         </div>
                                                     </div>
@@ -277,7 +284,7 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Delete">
                                                                         <ItemTemplate>
-                                                                            <asp:ImageButton ID="btnDeleteGO" OnClick="btnDeleteGO_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="30px" Height="30px" />
+                                                                            <asp:ImageButton ID="btnDeleteGO" OnClick="btnDeleteGO_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="25px" Height="25px" />
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                 </Columns>
@@ -454,7 +461,7 @@
                                                                     <asp:BoundField HeaderText="Total Expenditure Till Date In Lakhs [Including GST]" DataField="ProjectWorkPkg_PreviousRA" />
                                                                     <asp:TemplateField HeaderText="Delete">
                                                                         <ItemTemplate>
-                                                                            <asp:ImageButton ID="btnPackageDelete" Width="20px" Height="30px" OnClick="btnPackageDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
+                                                                            <asp:ImageButton ID="btnPackageDelete" Width="25px" Height="25px" OnClick="btnPackageDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                 </Columns>
@@ -641,12 +648,12 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Action">
                                                                         <ItemTemplate>
-                                                                            <asp:ImageButton ID="btnAction" OnClick="btnAction_Click" runat="server" ImageUrl="~/assets/images/edit.png" Width="30px" Height="30px" />
+                                                                            <asp:ImageButton ID="btnAction" OnClick="btnAction_Click" runat="server" ToolTip="Click to edit" ImageUrl="~/assets/images/edit.png" Width="25px" Height="25px" />
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Delete">
                                                                         <ItemTemplate>
-                                                                            <asp:ImageButton ID="btnDeleteUC" OnClick="btnDeleteUC_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="30px" Height="30px" />
+                                                                            <asp:ImageButton ID="btnDeleteUC" OnClick="btnDeleteUC_Click" runat="server" ImageUrl="~/assets/images/delete.png" ToolTip="Click to delete" Width="25px" Height="25px" />
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                 </Columns>
@@ -749,7 +756,7 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Resolved">
                                                             <ItemTemplate>
-                                                                <asp:ImageButton ID="btnDeleteIssue" OnClick="btnDeleteIssue_Click" runat="server" ImageUrl="~/assets/images/resolved.jpg" Width="50px" Height="50px" />
+                                                                <asp:ImageButton ID="btnDeleteIssue" ToolTip="Resolved" OnClick="btnDeleteIssue_Click" runat="server" ImageUrl="~/assets/images/resolved.jpg" Width="30px" Height="30px" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>

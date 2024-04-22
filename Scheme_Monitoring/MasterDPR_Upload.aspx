@@ -20,7 +20,8 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                            <li class="breadcrumb-item active">DPR</li>
+                                            <li class="breadcrumb-item">DPR</li>
+                                            <li class="breadcrumb-item active">Upload DPR Document</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -35,7 +36,8 @@
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <label class="control-label no-padding-right">Scheme </label>
+                                                        <%--<label class="control-label no-padding-right">Scheme </label>--%>
+                                                        <asp:Label ID="lblScheme" runat="server" Text="Scheme" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>

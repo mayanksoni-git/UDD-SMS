@@ -26,7 +26,8 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                            <li class="breadcrumb-item active">DPR</li>
+                                            <li class="breadcrumb-item">DPR</li>
+                                            <li class="breadcrumb-item active">DPR Status Report</li>
                                         </ol>
                                     </div>
                                 </div>
