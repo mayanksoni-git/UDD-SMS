@@ -64,7 +64,7 @@
                             <div class="col-xs-12">
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <h3 class="header smaller lighter blue">Circle Master</h3>
+                                        <h3 class="header smaller lighter blue"><%= Session["Default_Circle"].ToString() %> Master</h3>
                                         <div class="clearfix" id="dtOptions" runat="server">
                                             <div class="pull-right tableTools-container"></div>
                                         </div>

@@ -711,7 +711,7 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
 
             try
             {
-                ddlLokSabha.SelectedValue = ds.Tables[0].Rows[0]["VidhanSabha_LokSabha_Id"].ToString();
+                ddlLokSabha.SelectedValue = ds.Tables[0].Rows[0]["VidhanSabha_LokSabhaId"].ToString();
             }
             catch
             {

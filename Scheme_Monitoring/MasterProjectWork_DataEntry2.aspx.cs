@@ -1499,7 +1499,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
 
             try
             {
-                ddlLokSabha.SelectedValue = ds.Tables[0].Rows[0]["VidhanSabha_LokSabha_Id"].ToString();
+                ddlLokSabha.SelectedValue = ds.Tables[0].Rows[0]["VidhanSabha_LokSabhaId"].ToString();
             }
             catch
             {
@@ -2252,7 +2252,9 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
 
     protected void btnDeleteUC_Click(object sender, ImageClickEventArgs e)
     {
+        int indx = -1;
         GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
+        indx = gr.RowIndex;
         int ProjectUC_Id = 0;
         try
         {
@@ -2264,8 +2266,29 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         }
         if (ProjectUC_Id == 0)
         {
-            MessageBox.Show("Nothing To Delete");
-            return;
+            DataTable dtUC;
+            if (ViewState["dtUC"] != null)
+            {
+                if (indx > 0)
+                {
+                    dtUC = (DataTable)(ViewState["dtUC"]);
+                    dtUC.Rows.RemoveAt(indx);
+                    ViewState["dtUC"] = dtUC;
+
+                    grdUC.DataSource = dtUC;
+                    grdUC.DataBind();
+                }
+                else
+                {
+                    MessageBox.Show("Nothing To Delete");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nothing To Delete");
+                return;
+            }
         }
         if (new DataLayer().Delete_tbl_ProjectUC(ProjectUC_Id, Convert.ToInt32(Session["Person_Id"].ToString())))
         {

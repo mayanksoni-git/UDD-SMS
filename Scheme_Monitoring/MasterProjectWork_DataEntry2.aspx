@@ -707,7 +707,7 @@
                                                                 </asp:DropDownList>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Dependency">
+                                                        <asp:TemplateField HeaderText="Sub Issue">
                                                             <ItemTemplate>
                                                                 <asp:DropDownList ID="ddlDependency" runat="server" CssClass="form-select">
                                                                 </asp:DropDownList>
