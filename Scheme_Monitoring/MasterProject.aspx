@@ -1,12 +1,12 @@
-﻿<%@ page language="C#" masterpagefile="~/TemplateMasterAdmin.master" autoeventwireup="true"
-    codefile="MasterProject.aspx.cs" inherits="MasterProject" maintainscrollpositiononpostback="true" enableeventvalidation="false" validaterequest="false" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true"
+    CodeFile="MasterProject.aspx.cs" Inherits="MasterProject" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <div class="main-content">
         <div class="main-content-inner">
-            <cc1:toolkitscriptmanager id="ToolkitScriptManager1" runat="server" enablepartialrendering="true" enablepagemethods="true" asyncpostbacktimeout="6000">
-            </cc1:toolkitscriptmanager>
+            <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
+            </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
                     <div class="page-content">
@@ -24,16 +24,15 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="create-btn clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter"></asp:Button>
-                                </div>
-
                             </div>
 
-
-
-
+                            <div class="row">
+                                <div class="col-xxl-12 col-md-12 text-center">
+                                    <div>
+                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter"></asp:Button>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div id="divCreateNew" runat="server" visible="false">
                                 <div class="row">

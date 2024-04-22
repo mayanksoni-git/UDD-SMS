@@ -14872,14 +14872,13 @@ public partial class DataLayer : Page, IRequiresSessionState
                             }
                         }
                     }
-                    if (Client == "CNDS")
+
+                    if (physicalTarget >= 100)
                     {
-                        if (physicalTarget >= 100)
-                        {
-                            strQuery = " set dateformat dmy; update tbl_ProjectWork set ProjectWork_Is_Phase_1 = 3 where ProjectWork_Id = '" + obj_tbl_ProjectWork.ProjectWork_Id + "'";
-                            ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
-                        }
-                        strQuery = @"set dateformat dmy;
+                        strQuery = " set dateformat dmy; update tbl_ProjectWork set ProjectWork_Is_Phase_1 = 3 where ProjectWork_Id = '" + obj_tbl_ProjectWork.ProjectWork_Id + "'";
+                        ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
+                    }
+                    strQuery = @"set dateformat dmy;
                                     with cte as (
                                     select 
 	                                    ROW_NUMBER() over (partition by ProjectWorkFinancialTarget_ProjectWork_Id order by ProjectWorkFinancialTarget_Id desc) rrr,
@@ -14893,21 +14892,23 @@ public partial class DataLayer : Page, IRequiresSessionState
 	                                    ProjectWorkFinancialTarget_TrialMonth = convert(char(10), ProjectWorkFinancialTarget_TrialMonth, 103)
                                     from tbl_ProjectWorkFinancialTarget 
                                     where ProjectWorkFinancialTarget_Status = 1 and ProjectWorkFinancialTarget_ProjectWork_Id = '" + obj_tbl_ProjectWork.ProjectWork_Id + "') select * from cte where cte.rrr = 1";
-                        ds = ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
+                    ds = ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
 
-                        strQuery = " set dateformat dmy; update tbl_ProjectWorkFinancialTarget set ProjectWorkFinancialTarget_Status = 0 where ProjectWorkFinancialTarget_ProjectWork_Id = '" + obj_tbl_ProjectWork.ProjectWork_Id + "' and ProjectWorkFinancialTarget_Status = 1 ";
-                        ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
+                    strQuery = " set dateformat dmy; update tbl_ProjectWorkFinancialTarget set ProjectWorkFinancialTarget_Status = 0 where ProjectWorkFinancialTarget_ProjectWork_Id = '" + obj_tbl_ProjectWork.ProjectWork_Id + "' and ProjectWorkFinancialTarget_Status = 1 ";
+                    ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
 
-                        if (AllClasses.CheckDataSet(ds))
-                        {
-                            strQuery = " set dateformat dmy; insert into tbl_ProjectWorkFinancialTarget(ProjectWorkFinancialTarget_ProjectWork_Id, ProjectWorkFinancialTarget_Month, ProjectWorkFinancialTarget_Year, ProjectWorkFinancialTarget_Target, ProjectWorkPhysicalTarget_Target, ProjectWorkFinancialTarget_AddedOn, ProjectWorkFinancialTarget_AddadBy, ProjectWorkFinancialTarget_Status, ProjectWorkFinancialTarget_TargetMonth) values('" + obj_tbl_ProjectWork.ProjectWork_Id + "', '" + ds.Tables[0].Rows[0]["ProjectWorkFinancialTarget_Month"].ToString() + "', '" + ds.Tables[0].Rows[0]["ProjectWorkFinancialTarget_Year"].ToString() + "', '" + ds.Tables[0].Rows[0]["ProjectWorkFinancialTarget_Target"].ToString() + "', '" + physicalTarget + "', getdate(), '" + obj_tbl_ProjectWork.ProjectWork_AddedBy + "', 1, convert(date, '" + ds.Tables[0].Rows[0]["ProjectWorkFinancialTarget_TargetMonth"].ToString() + "', 103))";
-                        }
-                        else
-                        {
-                            strQuery = " set dateformat dmy; insert into tbl_ProjectWorkFinancialTarget(ProjectWorkFinancialTarget_ProjectWork_Id, ProjectWorkPhysicalTarget_Target, ProjectWorkFinancialTarget_AddedOn, ProjectWorkFinancialTarget_AddadBy, ProjectWorkFinancialTarget_Status) values('" + obj_tbl_ProjectWork.ProjectWork_Id + "', '" + physicalTarget + "', getdate(), '" + obj_tbl_ProjectWork.ProjectWork_AddedBy + "', 1)";
-                        }
-                        ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
+                    if (AllClasses.CheckDataSet(ds))
+                    {
+                        strQuery = " set dateformat dmy; insert into tbl_ProjectWorkFinancialTarget(ProjectWorkFinancialTarget_ProjectWork_Id, ProjectWorkFinancialTarget_Month, ProjectWorkFinancialTarget_Year, ProjectWorkFinancialTarget_Target, ProjectWorkPhysicalTarget_Target, ProjectWorkFinancialTarget_AddedOn, ProjectWorkFinancialTarget_AddadBy, ProjectWorkFinancialTarget_Status, ProjectWorkFinancialTarget_TargetMonth) values('" + obj_tbl_ProjectWork.ProjectWork_Id + "', '" + ds.Tables[0].Rows[0]["ProjectWorkFinancialTarget_Month"].ToString() + "', '" + ds.Tables[0].Rows[0]["ProjectWorkFinancialTarget_Year"].ToString() + "', '" + ds.Tables[0].Rows[0]["ProjectWorkFinancialTarget_Target"].ToString() + "', '" + physicalTarget + "', getdate(), '" + obj_tbl_ProjectWork.ProjectWork_AddedBy + "', 1, convert(date, '" + ds.Tables[0].Rows[0]["ProjectWorkFinancialTarget_TargetMonth"].ToString() + "', 103))";
+                    }
+                    else
+                    {
+                        strQuery = " set dateformat dmy; insert into tbl_ProjectWorkFinancialTarget(ProjectWorkFinancialTarget_ProjectWork_Id, ProjectWorkPhysicalTarget_Target, ProjectWorkFinancialTarget_AddedOn, ProjectWorkFinancialTarget_AddadBy, ProjectWorkFinancialTarget_Status) values('" + obj_tbl_ProjectWork.ProjectWork_Id + "', '" + physicalTarget + "', getdate(), '" + obj_tbl_ProjectWork.ProjectWork_AddedBy + "', 1)";
+                    }
+                    ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
 
+                    if (Client == "CNDS")
+                    {
                         strQuery = @"set dateformat dmy; update tbl_PackageInvoice set PackageInvoice_Status = 0, PackageInvoice_ModifiedOn = getdate(), PackageInvoice_ModifiedBy = '" + obj_tbl_ProjectWork.ProjectWork_AddedBy + "' from tbl_PackageInvoice join tbl_ProjectWorkPkg on ProjectWorkPkg_Id = PackageInvoice_Package_Id inner join tbl_FinancialTrans on FinancialTrans_Invoice_Id=PackageInvoice_Id where PackageInvoice_Status=1 and ProjectWorkPkg_Status = 1 and ProjectWorkPkg_Work_Id = '" + obj_tbl_ProjectWork.ProjectWork_Id + "' and FinancialTrans_EntryType='Fund Allocated' and FinancialTrans_TransType='C' and PackageInvoice_Id not in (select PackageInvoiceEMBMasterLink_Invoice_Id from tbl_PackageInvoiceEMBMasterLink where PackageInvoiceEMBMasterLink_Status=1)";
                         ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
 
