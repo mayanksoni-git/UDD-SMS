@@ -18,7 +18,8 @@
                     <img class="d-block w-100" src="Banner/banner_2.jpeg" alt="Second slide">
                 </div>
             </div>
-            <%--jkdfjdkf--%>
+
+<%--            new comment--%>
             <div class="carousel-item">
                 <div class="carousel-container">
                     <img class="d-block w-100" src="Banner/ban-05.jpg" alt="Second slide">
@@ -67,7 +68,7 @@
                     <img class="d-block w-100" src="Banner/ban-01-nw.jpeg" alt="Fourth slide">
                 </div>
             </div>
-
+            <%--new set comment 2--%>
             <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
