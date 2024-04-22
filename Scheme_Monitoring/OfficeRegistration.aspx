@@ -85,7 +85,7 @@
 
                                                     <div class="col-xxl-4 col-md-6">
                                                         <div class="form-group">
-                                                            <asp:Label ID="lblState" runat="server" Text="State" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:Label ID="lblState" runat="server" Text="State" CssClass="form-label no-padding-right"></asp:Label>
                                                             <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlState_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>

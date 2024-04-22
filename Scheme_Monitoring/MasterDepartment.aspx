@@ -14,6 +14,18 @@
                     <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
                     <div class="container-fluid">
                         <div class="row">
+                            <div class="col-12">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Department Master</h4>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                                <li class="breadcrumb-item">Employee Masters</li>
+                                                <li class="breadcrumb-item active">Department</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="col-xs-12">
                                 <div class="clearfix">
                                     <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
@@ -28,9 +40,6 @@
                                     <div class="col-xs-12">
                                         <div class="clearfix" id="dtOptions" runat="server">
                                             <div class="pull-right tableTools-container"></div>
-                                        </div>
-                                        <div class="table-header">
-                                            Department Master
                                         </div>
                                         <div style="overflow: auto">
                                             <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">

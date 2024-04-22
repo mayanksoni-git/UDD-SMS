@@ -9,6 +9,18 @@
                 <ContentTemplate>
                     <div class="container-fluid">
                         <div class="row">
+                            <div class="col-12">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Department Master</h4>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                                <li class="breadcrumb-item">Employee Masters</li>
+                                                <li class="breadcrumb-item active">Create Admin Officers/Staff</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
@@ -20,7 +32,8 @@
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <label class="control-label no-padding-right">Scheme </label>
+                                                        <%--<label class="control-label no-padding-right">Scheme </label>--%>
+                                                        <asp:Label ID="lblSchmes" runat="server" Text="Scheme" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-control"></asp:DropDownList>
                                                     </div>
                                                 </div>
@@ -56,7 +69,8 @@
                                                 <!--end col-->
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <label class="control-label no-padding-right">Search (MobileNo / Name)</label>
+                                                        <%--<label class="control-label no-padding-right">Search (MobileNo / Name)</label>--%>
+                                                        <asp:Label ID="lblMobileNoName" runat="server" Text="Search (MobileNo / Name)" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:TextBox ID="txtSearchMobile" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
