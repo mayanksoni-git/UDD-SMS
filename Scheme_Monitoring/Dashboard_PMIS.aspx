@@ -47,7 +47,8 @@
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <label class="control-label no-padding-right">Scheme</label>
+                                                        <%--<label class="control-label no-padding-right">Scheme</label>--%>
+                                                        <asp:Label ID="lblScheme" runat="server" Text="Scheme" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:DropDownList ID="ddlScheme" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>

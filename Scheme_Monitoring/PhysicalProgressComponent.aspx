@@ -27,7 +27,7 @@
                                 </div>
                             <div class="col-xs-12">
                                 <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning mb-2"></asp:Button>
                                 </div>
                             </div>
                         </div>
@@ -103,14 +103,15 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <label class="control-label no-padding-right">Scheme </label>
-                                                        <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <asp:Label ID="lblUnit" runat="server" Text="Component*" CssClass="control-label no-padding-right"></asp:Label>
+                                                        <%--<asp:Label ID="lblUnit" runat="server" Text="Component*" CssClass="control-label no-padding-right"></asp:Label>--%>
+                                                        <label runat="server" id="lblUnit" class="control-label no-padding-right">Component*</label>
                                                         <asp:TextBox ID="txtComponent" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
@@ -118,7 +119,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <label class="control-label no-padding-right">Unit*</label>
-                                                        <asp:DropDownList ID="ddlUnit" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlUnit" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
@@ -126,7 +127,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <label class="control-label no-padding-right">Enable Beneficiary List</label>
-                                                        <asp:RadioButtonList ID="rbtList" runat="server">
+                                                        <asp:RadioButtonList ID="rbtList" runat="server" RepeatDirection="Horizontal">
                                                             <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
                                                             <asp:ListItem Text="No" Value="No" Selected="True"></asp:ListItem>
                                                         </asp:RadioButtonList>
@@ -143,11 +144,6 @@
                                                     <div>
                                                         <br />
                                                         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div>
-                                                        <br />
                                                         <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-danger"></asp:Button>
                                                     </div>
                                                 </div>

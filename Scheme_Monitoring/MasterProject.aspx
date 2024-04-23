@@ -27,9 +27,9 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-xxl-12 col-md-12 text-center">
+                                <div class="col-xxl-12 col-md-12">
                                     <div>
-                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter"></asp:Button>
+                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter mb-2"></asp:Button>
                                     </div>
                                 </div>
                             </div>
@@ -62,6 +62,7 @@
                                                         <div class="col-xxl-3 col-md-6">
                                                             <div id="divCircle" runat="server">
                                                                 <asp:Label ID="Label4" runat="server" Text="Upload GO" CssClass="control-label no-padding-right"></asp:Label>
+                                                                <br />
                                                                 <asp:FileUpload ID="flUploadGO" runat="server" />
                                                             </div>
                                                         </div>
@@ -70,6 +71,7 @@
                                                         <div class="col-xxl-3 col-md-6">
                                                             <div id="divDivision" runat="server">
                                                                 <asp:Label ID="Label5" runat="server" Text="Upload Guideline" CssClass="control-label no-padding-right"></asp:Label>
+                                                                <br />
                                                                 <asp:FileUpload ID="flUploadGuideline" runat="server" />
                                                             </div>
                                                         </div>
@@ -78,16 +80,16 @@
                                                         <div class="col-xxl-3 col-md-6">
                                                             <div>
                                                                 <asp:Label ID="Label12" runat="server" Text="Download GO" CssClass="control-label no-padding-right"></asp:Label>
-                                                                <br />
-                                                                <asp:ImageButton ID="btnDownload" runat="server" ImageUrl="~/assets/images/download.png" Width="50px" Height="50px" OnClientClick="javascript:downloadFile(this);" />
+                                                                
+                                                                <asp:ImageButton ID="btnDownload" ToolTip="Download GO" runat="server" ImageUrl="~/assets/images/download.png" Width="30px" Height="30px" OnClientClick="javascript:downloadFile(this);" />
                                                             </div>
                                                         </div>
 
                                                         <div class="col-xxl-3 col-md-6">
                                                             <div>
                                                                 <asp:Label ID="Label13" runat="server" Text="Download Guideline" CssClass="control-label no-padding-right"></asp:Label>
-                                                                <br />
-                                                                <asp:ImageButton ID="btnDownloadGuideline" runat="server" ImageUrl="~/assets/images/download.png" Width="50px" Height="50px" OnClientClick="javascript:downloadFile(this);" />
+                                                                
+                                                                <asp:ImageButton ID="btnDownloadGuideline" ToolTip="Download Guidline" runat="server" ImageUrl="~/assets/images/download.png" Width="30px" Height="30px" OnClientClick="javascript:downloadFile(this);" />
                                                             </div>
                                                         </div>
                                                         <!--end col-->

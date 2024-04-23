@@ -28,7 +28,7 @@
                             <div class="row">
                                 <div class="col-xxl-12 col-md-12">
                                     <div>
-                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning mb-2"></asp:Button>
                                     </div>
                                 </div>
                             </div>
@@ -37,8 +37,9 @@
 
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <div class="table-header">
-                                            Create Lok Sabha
+                                        <div class="table-header col-lg-6">
+                                            <h3 style="font-weight:bold; font-size:large">Create Lok Sabha</h3>
+                                            <hr />
                                         </div>
 
                                     </div>
@@ -48,13 +49,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <asp:Label ID="lblProject" runat="server" Text="District*" CssClass="control-label no-padding-right"></asp:Label>
-                                                <asp:ListBox ID="ddlDistrict" runat="server" SelectionMode="Multiple" class="chosen-select form-control" data-placeholder="Choose a District..."></asp:ListBox>
+                                                <asp:ListBox ID="ddlDistrict" runat="server" SelectionMode="Multiple" class="chosen-select form-control mb-2" data-placeholder="Choose a District..."></asp:ListBox>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <asp:Label ID="Label1" runat="server" Text="Lok Sabha Name*" CssClass="control-label no-padding-right"></asp:Label>
-                                                <asp:TextBox ID="txtLokSabha" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="txtLokSabha" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                             </div>
                                         </div>
 
@@ -64,7 +65,7 @@
                                     <div class="col-md-12">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                                <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
                                                 &nbsp; &nbsp; &nbsp;
                                          <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>&nbsp; &nbsp; &nbsp;
                                 <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>

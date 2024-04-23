@@ -86,14 +86,14 @@
                                                     <div class="col-xxl-4 col-md-6">
                                                         <div class="form-group">
                                                             <asp:Label ID="lblState" runat="server" Text="State" CssClass="form-label no-padding-right"></asp:Label>
-                                                            <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlState_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlState" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlState_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xxl-4 col-md-6">
                                                         <div class="form-group">
                                                             <asp:Label ID="lblDistrict" runat="server" Text="District" CssClass="form-label no-padding-right"></asp:Label>
-                                                            <asp:DropDownList ID="ddlDistrict" runat="server" class="chosen-select form-control" data-placeholder="Choose a District..."></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlDistrict" runat="server" class="chosen-select form-select" data-placeholder="Choose a District..."></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                 </div>

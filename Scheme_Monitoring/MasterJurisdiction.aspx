@@ -43,7 +43,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <asp:Label ID="lblLevel" runat="server" Text="Level" CssClass="control-label no-padding-right"></asp:Label>
-                                                    <asp:DropDownList ID="ddlLevel" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLevel_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
+                                                    <asp:DropDownList ID="ddlLevel" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLevel_SelectedIndexChanged" CssClass="form-select"></asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>
@@ -61,6 +61,7 @@
                                                                 <div class="table-header">
                                                                     
                                                                 </div>
+                                                                <h4></h4>
                                                             </h4>
                                                         </div>
 
@@ -117,16 +118,17 @@
                                 <div class="col-xs-12">
 
                                     <div class="table-header">
-                                        <asp:Label ID="lblHeader" runat="server" Text="Create / Update Jurisdiction" CssClass="control-label no-padding-right"></asp:Label>
+                                       <asp:Label ID="lblHeader" runat="server" Text="Create / Update Jurisdiction" CssClass="control-label no-padding-right" Font-Bold="True" Font-Size="Larger"></asp:Label>
+                                        <hr />
                                     </div>
                                 </div>
                             </div>
                             <div class="row" id="dvPJ" runat="server">
                                 <div class="col-md-12">
-                                    <div class="col-md-12">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <asp:Label ID="lblParentJurisdiction" runat="server" Text="Parent Jurisdiction*" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:DropDownList ID="ddlParentJurisdiction" runat="server" class="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlParentJurisdiction_SelectedIndexChanged"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlParentJurisdiction" runat="server" class="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlParentJurisdiction_SelectedIndexChanged"></asp:DropDownList>
                                         </div>
                                     </div>
 
@@ -139,7 +141,6 @@
                                             <asp:Label ID="lblJurisdictionName" runat="server" Text="Jurisdiction Name*" CssClass="control-label no-padding-right"></asp:Label>
                                             <asp:TextBox ID="txtJurisdictionName" runat="server" CssClass="form-control"></asp:TextBox>
                                         </div>
-
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">

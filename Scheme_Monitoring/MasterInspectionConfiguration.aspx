@@ -17,7 +17,8 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="table-header">
-                                        Scheme Wise Inspection Configuration
+                                        <h3>Scheme Wise Inspection Configuration</h3>
+                                        <hr />
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +68,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
-                                        <div class="form-group">
+                                        <div class="form-group mb-5">
 
                                             <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
                                             &nbsp; &nbsp; &nbsp;

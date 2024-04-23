@@ -19,7 +19,8 @@
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <label class="control-label no-padding-right">Scheme </label>
+                                                        <%--<label class="control-label no-padding-right">Scheme </label>--%>
+                                                        <asp:Label ID="lblScheme" runat="server" Text="Scheme" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
@@ -45,7 +46,8 @@
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <label class="control-label no-padding-right">Project Code</label>
+                                                        <%--<label class="control-label no-padding-right">Project Code</label>--%>
+                                                        <asp:Label ID="lblProjectCode" runat="server" Text="Project Code" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:TextBox ID="txtProjectCode" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>

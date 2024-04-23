@@ -29,7 +29,7 @@
                                 </div>
                             <div class="col-xs-12">
                                 <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning mb-2"  ></asp:Button>
                                 </div>
                             </div>
                         </div>
@@ -89,8 +89,9 @@
                         <div class="row">
                             <div class="col-xs-12">
 
-                                <div class="table-header">
-                                    Project Type
+                                <div class="table-header col-lg-12">
+                                    <h3>Project Type</h3>
+                                    <hr />
                                 </div>
 
                             </div>
@@ -100,14 +101,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label no-padding-right">Scheme </label>
-                                        <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-select mb-2"></asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
 
                                         <asp:Label ID="lblProjectType" runat="server" Text="Project Type*" CssClass="control-label no-padding-right"></asp:Label>
-                                        <asp:TextBox ID="txtProjectType" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtProjectType" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -117,7 +118,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
                                         &nbsp; &nbsp; &nbsp;
                                              <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>&nbsp; &nbsp; &nbsp;
                                 <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>

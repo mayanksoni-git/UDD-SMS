@@ -29,7 +29,7 @@
                                 </div>
                             <div class="col-xs-12">
                                 <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning mb-2"></asp:Button>
                                 </div>
                             </div>
                         </div>
@@ -78,41 +78,60 @@
                         </div>
 
                     </div>
-                    <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
+
+
+
+                    
+                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
 
                         <div class="row">
-                            <div class="col-xs-12">
-
-                                <div class="table-header">
-                                    Funding Pattern
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-
-                                        <asp:Label ID="lblFundingPattern" runat="server" Text="Funding Pattern*" CssClass="control-label no-padding-right"></asp:Label>
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Funding Pattern</h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <asp:Label ID="lblFundingPattern" runat="server" Text="Funding Pattern*" CssClass="control-label no-padding-right"></asp:Label>
                                         <asp:TextBox ID="txtFundingPattern" runat="server" CssClass="form-control"></asp:TextBox>
-                                    </div>
-                                </div>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
 
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
-                                        &nbsp; &nbsp; &nbsp;
-                                             <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>&nbsp; &nbsp; &nbsp;
-                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>
-                                        <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
+
+                                                <!--end col-->
+
+                                                <!--end col-->
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <br />
+                                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <br />
+                                                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>
+                                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <br />
+                                                        <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end row-->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--end col-->
                         </div>
                     </asp:Panel>
                     <asp:HiddenField ID="hf_FundingPattern_Id" runat="server" Value="0" />

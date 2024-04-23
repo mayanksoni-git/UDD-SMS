@@ -30,7 +30,7 @@
                                 </div>
                             <div class="col-xs-12">
                                 <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning mb-2"></asp:Button>
 
                                 </div>
                             </div>
@@ -88,8 +88,9 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="table-header">
-                                    DPR Status
+                                <div class="table-header col-lg-12">
+                                    <h3>DPR Status</h3>
+                                    <hr />
                                 </div>
 
                             </div>
@@ -100,7 +101,7 @@
                                     <div class="form-group">
 
                                         <asp:Label ID="lblDPR_Status" runat="server" Text="DPR Status*" CssClass="control-label no-padding-right"></asp:Label>
-                                        <asp:TextBox ID="txtDPR_Status" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtDPR_Status" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                     </div>
                                 </div>
 
@@ -110,7 +111,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
                                         &nbsp; &nbsp; &nbsp;
                                              <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>&nbsp; &nbsp; &nbsp;
                                         <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>

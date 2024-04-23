@@ -24,7 +24,7 @@
                                 </div>
                             <div class="col-xs-12">
                                 <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning mb-2"></asp:Button>
                                 </div>
                             </div>
                         </div>
@@ -34,8 +34,9 @@
                             <div class="row">
                                 <div class="col-xs-12">
 
-                                    <div class="table-header">
-                                        Create / Update Division
+                                    <div class="table-header col-lg-6">
+                                        <h3 style="font-weight:bold; font-size:large">Create / Update Division</h3>
+                                            <hr />
                                     </div>
                                 </div>
                             </div>
@@ -45,13 +46,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:DropDownList ID="ddlZoneMaster" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlZoneMaster" runat="server" CssClass="form-select mb-2"></asp:DropDownList>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <asp:Label ID="lblDivisionH" CssClass="control-label no-padding-right" Text="Division" runat="server"></asp:Label>
-                                            <asp:TextBox ID="txtDivisionName" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txtDivisionName" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
@@ -59,10 +60,10 @@
 
 
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-6">
+                                <div class="col-md-12">       
+                                    <div class="col-md-6">   
                                         <div class="form-group">
-                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
                                             &nbsp; &nbsp; &nbsp;
                                 <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>
                                         </div>

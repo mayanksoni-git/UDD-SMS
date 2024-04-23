@@ -20,7 +20,8 @@
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <label class="control-label no-padding-right">Scheme </label>
+                                                        <%--<label class="control-label no-padding-right">Scheme </label>--%>
+                                                        <asp:Label ID="lblScheme" runat="server" Text="Scheme" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:ListBox ID="ddlScheme" runat="server" SelectionMode="Multiple" class="chosen-select form-control"
                                                             data-placeholder="Choose a Scheme..."></asp:ListBox>
                                                     </div>
@@ -30,7 +31,7 @@
                                                 <div class="col-xxl-3 col-md-6" id="divZone" runat="server">
                                                     <div>
                                                         <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlSearchZone" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlSearchZone_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlSearchZone" runat="server" CssClass="form-select" OnSelectedIndexChanged="ddlSearchZone_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
@@ -38,7 +39,7 @@
                                                 <div class="col-xxl-3 col-md-6" id="divCircle" runat="server">
                                                     <div>
                                                         <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlSearchCircle" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSearchCircle_SelectedIndexChanged"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlSearchCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlSearchCircle_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
@@ -46,14 +47,15 @@
                                                 <div class="col-xxl-3 col-md-6" id="divDivision" runat="server">
                                                     <div>
                                                         <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlsearchDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlsearchDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <label class="control-label no-padding-right">Date Till</label>
+                                                        <%--<label class="control-label no-padding-right">Date Till</label>--%>
+                                                        <asp:Label ID="lblDateTill" runat="server" Text="Date Till" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y" style="display:none;"></asp:TextBox>
                                                         <asp:TextBox ID="txtDateTill" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y"></asp:TextBox>
                                                     </div>

@@ -28,7 +28,7 @@
                                 </div>
                             <div class="col-xs-12">
                                 <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning mb-2"></asp:Button>
 
                                 </div>
                             </div>
@@ -88,7 +88,8 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="table-header">
-                                    Designation
+                                    <h3>Designation</h3>
+                                    <hr />
                                 </div>
 
                             </div>
@@ -99,14 +100,14 @@
                                     <div class="form-group">
 
                                         <asp:Label ID="lblDesignation" runat="server" Text="Designation*" CssClass="control-label no-padding-right"></asp:Label>
-                                        <asp:TextBox ID="txtDesignation" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtDesignation" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
 
                                         <asp:Label ID="Label1" runat="server" Text="Designation Level*" CssClass="control-label no-padding-right"></asp:Label>
-                                        <asp:DropDownList ID="ddlDesignationLevel" runat="server" CssClass="form-control">
+                                        <asp:DropDownList ID="ddlDesignationLevel" runat="server" CssClass="form-select mb-2">
                                             <asp:ListItem Value="0">--Select---</asp:ListItem>
                                             <asp:ListItem>1</asp:ListItem>
                                             <asp:ListItem>2</asp:ListItem>
