@@ -602,7 +602,7 @@
                                                             <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
                                                             <asp:TemplateField HeaderText="Delete">
                                                                 <ItemTemplate>
-                                                                    <asp:ImageButton ID="btnDelete" Width="20px" Height="30px" OnClick="btnDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
+                                                                    <asp:ImageButton ID="btnDelete" Width="20px" Height="20px" OnClick="btnDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                         </Columns>
