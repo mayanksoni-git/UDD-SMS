@@ -97,7 +97,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <asp:Label ID="lblFundingPattern" runat="server" Text="Funding Pattern*" CssClass="control-label no-padding-right"></asp:Label>
-                                        <asp:TextBox ID="txtFundingPattern" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        <asp:TextBox ID="txtFundingPattern" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
@@ -110,19 +110,17 @@
                                                     <div>
                                                         <br />
                                                         <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div>
-                                                        <br />
                                                         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>
-                                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>
+                                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning"></asp:Button>
+                                                        <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <br />
-                                                        <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
                                                     </div>
                                                 </div>
                                             </div>

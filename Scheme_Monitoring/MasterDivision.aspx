@@ -64,8 +64,7 @@
                                     <div class="col-md-6">   
                                         <div class="form-group">
                                             <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
-                                            &nbsp; &nbsp; &nbsp;
-                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>
+                                            <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning mb-2"></asp:Button>
                                         </div>
                                     </div>
                                 </div>

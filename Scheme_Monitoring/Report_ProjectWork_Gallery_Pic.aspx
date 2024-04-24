@@ -147,12 +147,12 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Download ZIP">
                                                                     <ItemTemplate>
-                                                                        <asp:ImageButton runat="server" ID="btnDownload" ImageUrl="~/assets/images/download.png" Width="60px" Height="60px" OnClick="btnDownload_Click" />
+                                                                        <asp:ImageButton runat="server" ID="btnDownload" ImageUrl="~/assets/images/download.png" Width="30px" Height="30px" OnClick="btnDownload_Click" />
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Add More Photos">
                                                                     <ItemTemplate>
-                                                                        <asp:ImageButton runat="server" ID="btnAdd" ImageUrl="~/assets/images/add-icon.png" Width="60px" Height="60px" OnClick="btnAdd_Click" />
+                                                                        <asp:ImageButton runat="server" ID="btnAdd" ImageUrl="~/assets/images/add_image.png" Width="30px" Height="30px" OnClick="btnAdd_Click" />
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>

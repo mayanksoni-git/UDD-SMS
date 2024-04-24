@@ -34,7 +34,7 @@
                                                                         <%# Container.DataItemIndex + 1 %>
                                                                     </ItemTemplate>
                                                                     <FooterTemplate>
-                                                                        <asp:Image ID="imgNew" runat="server" ImageUrl="~/assets/images/new.gif" Width="30px" Height="30px" />
+                                                                        <asp:Image ID="imgNew" runat="server" ImageUrl="~/assets/images/new.gif" Width="48px" Height="37px" />
                                                                     </FooterTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="GO Date">
@@ -94,11 +94,11 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Delete">
                                                                     <ItemTemplate>
-                                                                        <asp:ImageButton ID="btnDeleteGO" OnClick="btnDeleteGO_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="30px" Height="30px" />
+                                                                        <asp:ImageButton ID="btnDeleteGO" OnClick="btnDeleteGO_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="25px" Height="25px" />
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>
-                                                            <FooterStyle Font-Bold="true" BackColor="Black" ForeColor="White" />
+                                                            <FooterStyle Font-Bold="true" BackColor="white" ForeColor="White" />
                                                         </asp:GridView>
                                                     </div>
                                                 </div>

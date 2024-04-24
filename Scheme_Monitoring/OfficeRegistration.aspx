@@ -2,7 +2,6 @@
     codefile="OfficeRegistration.aspx.cs" inherits="OfficeRegistration" maintainscrollpositiononpostback="true" enableeventvalidation="false" validaterequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
     <div class="main-content">
         <div class="main-content-inner">
             <div class="page-content">
@@ -114,7 +113,7 @@
 
                                             <div class="col-xxl-4 col-md-6">
                                                 <ul class="list-unstyled mb-0" id="dropzone-preview">
-                                                    <asp:Image ID="imgPreview" Width="50px" Height="50px" runat="server" />
+                                                    <asp:Image ID="imgPreview" Width="50px" Height="50px" ImageUrl="assets/images/add_image.png" runat="server" />
                                                 </ul>
                                             </div>
 

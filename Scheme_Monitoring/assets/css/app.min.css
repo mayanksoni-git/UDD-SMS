@@ -621,7 +621,9 @@ body {
             background: linear-gradient(180deg, rgba(251, 108, 71, 1) 0%, rgba(242, 139, 42, 1) 100%);
             color: #fff;
         }
-
+            .navbar-menu .navbar-nav .nav-link:hover svg {
+                color: #FFF;
+            }
         .navbar-menu .navbar-nav .nav-link i {
             display: inline-block;
             min-width: 1.75rem;
@@ -675,7 +677,6 @@ body {
 
             .navbar-menu .navbar-nav .nav-link[data-bs-toggle=collapse][aria-expanded=true] .icon-dual {
                 color: #fff;
-                fill: rgba(37, 160, 226, .16)
             }
 
             .navbar-menu .navbar-nav .nav-link[data-bs-toggle=collapse][aria-expanded=true]:after {
@@ -5844,7 +5845,8 @@ a, button {
 .card {
     margin-bottom: 1.5rem;
     -webkit-box-shadow: none;
-    box-shadow: none
+    box-shadow: none;
+    border: 1px solid #d9e1ea;
 }
 
 .card-header {

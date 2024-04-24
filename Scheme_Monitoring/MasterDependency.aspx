@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <asp:Label ID="lblDependency" runat="server" Text="Dependency*" CssClass="control-label no-padding-right"></asp:Label>
+                                        <asp:Label ID="lblDependency" runat="server" Text="Sub-Issue*" CssClass="control-label no-padding-right"></asp:Label>
                                         <asp:TextBox ID="txtDependency" runat="server" CssClass="form-control  mb-2"></asp:TextBox>
                                     </div>
                                 </div>
@@ -130,11 +130,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info  mb-2"></asp:Button>
-                                        &nbsp; &nbsp; &nbsp;
-                                         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>&nbsp; &nbsp; &nbsp;
-                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>&nbsp; &nbsp; &nbsp;
-                                         
-                                            <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
+                                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>
+                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning mb-2"></asp:Button>
+                                        <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
                                     </div>
                                 </div>
                             </div>

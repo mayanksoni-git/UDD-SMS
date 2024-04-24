@@ -428,12 +428,13 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                                            <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning"></asp:Button>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>
+                                                            
                                                         </div>
                                                     </div>
                                                     <!--end col-->

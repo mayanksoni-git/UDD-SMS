@@ -69,7 +69,7 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Delete">
                                                                     <ItemTemplate>
-                                                                        <asp:ImageButton ID="btnDeleteUC" OnClick="btnDeleteUC_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="30px" Height="30px" />
+                                                                        <asp:ImageButton ID="btnDeleteUC" OnClick="btnDeleteUC_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="25px" Height="25px" />
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>
@@ -179,7 +179,7 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Resolved">
                                                                     <ItemTemplate>
-                                                                        <asp:ImageButton ID="btnDeleteIssue" OnClick="btnDeleteIssue_Click" runat="server" ImageUrl="~/assets/images/resolved.jpg" Width="50px" Height="50px" />
+                                                                        <asp:ImageButton ID="btnDeleteIssue" OnClick="btnDeleteIssue_Click" runat="server" ImageUrl="~/assets/images/resolved.jpg" Width="35px" Height="35px" />
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>

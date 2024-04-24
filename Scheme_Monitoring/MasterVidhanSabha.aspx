@@ -46,7 +46,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label no-padding-right">Lok Sabha* </label>
-                                                <asp:DropDownList ID="ddlLokSabhaMaster" runat="server" CssClass="form-control mb-2"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlLokSabhaMaster" runat="server" CssClass="form-select mb-2"></asp:DropDownList>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -64,8 +64,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
-                                                &nbsp; &nbsp; &nbsp;
-                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>
+                                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning mb-2"></asp:Button>
                                             </div>
                                         </div>
                                     </div>
