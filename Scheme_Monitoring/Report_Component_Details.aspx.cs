@@ -425,51 +425,6 @@ public partial class Report_Component_Details : System.Web.UI.Page
         ds = (new DataLayer()).get_Component_Data(Project_Id, Zone_Id, Circle_Id, Division_Id, Component_Id, ProjectType_Id, txtDateTill.Text.Trim());
         if (AllClasses.CheckDataSet(ds))
         {
-            tbl_ProgramAnalysisReport_Property1 ProgramAnalysisReport_Property = new tbl_ProgramAnalysisReport_Property1();
-
-            try
-            {
-                ProgramAnalysisReport_Property.Project_Id = ds.Tables[0].Rows[0]["Component_Id"].ToString();
-
-            }
-            catch
-            {
-                ProgramAnalysisReport_Property.Project_Id = "";
-            }
-            try
-            {
-                ProgramAnalysisReport_Property.Project_Name = ds.Tables[0].Rows[0]["Component"].ToString();
-            }
-            catch
-            {
-                ProgramAnalysisReport_Property.Project_Id = "";
-            }
-            try
-            {
-                ProgramAnalysisReport_Property.AGR = Convert.ToDecimal(ds.Tables[0].Compute("sum(Proposed)", "").ToString());
-            }
-            catch
-            {
-                ProgramAnalysisReport_Property.AGR = 0;
-            }
-            try
-            {
-                ProgramAnalysisReport_Property.ALD = Convert.ToDecimal(ds.Tables[0].Compute("sum(PhysicalProgress)", "").ToString()); 
-            }
-            catch(Exception ee)
-            {
-                ProgramAnalysisReport_Property.ALD = 0;
-            }
-            
-            if (ProgramAnalysisReport_Property != null)
-            {
-                JavaScriptSerializer jss = new JavaScriptSerializer();
-                hf_PhysicalReport_ZoneWise.Value = jss.Serialize(ProgramAnalysisReport_Property);
-            }
-            else
-            {
-                hf_PhysicalReport_ZoneWise.Value = "";
-            }
             grdPost.DataSource = ds;
             grdPost.DataBind();
 

@@ -805,9 +805,6 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             CheckBox checkBox = grdPhysicalProgress.Rows[i].FindControl("chkPostPhysicalProgress") as CheckBox;
             TextBox txtProposedNumber = grdPhysicalProgress.Rows[i].FindControl("txtProposedNumber") as TextBox;
             TextBox txtProgressNumber = grdPhysicalProgress.Rows[i].FindControl("txtProgressNumber") as TextBox;
-            TextBox txtWithheldNumber = grdPhysicalProgress.Rows[i].FindControl("txtWithheldNumber") as TextBox;
-            TextBox txtFunctionalNumber = grdPhysicalProgress.Rows[i].FindControl("txtFunctionalNumber") as TextBox;
-            TextBox txtNonFunctionalNumber = grdPhysicalProgress.Rows[i].FindControl("txtNonFunctionalNumber") as TextBox;
             TextBox txtRemarks = grdPhysicalProgress.Rows[i].FindControl("txtRemarks") as TextBox;
             TextBox txtProposedNumberO = grdPhysicalProgress.Rows[i].FindControl("txtProposedNumberO") as TextBox;
             decimal ProposedNumber_Prev = 0;
@@ -847,30 +844,9 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
                 {
                     obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Value = 0;
                 }
-                try
-                {
-                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectUC_PhysicalProgress_WithheldProgress = Convert.ToDecimal(txtWithheldNumber.Text.Trim());
-                }
-                catch
-                {
-                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectUC_PhysicalProgress_WithheldProgress = 0;
-                }
-                try
-                {
-                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Functional = Convert.ToDecimal(txtFunctionalNumber.Text.Trim());
-                }
-                catch
-                {
-                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Functional = 0;
-                }
-                try
-                {
-                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_NonFunctional = Convert.ToDecimal(txtNonFunctionalNumber.Text.Trim());
-                }
-                catch
-                {
-                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_NonFunctional = 0;
-                }
+                obj_tbl_ProjectPkg_PhysicalProgress1.ProjectUC_PhysicalProgress_WithheldProgress = 0;
+                obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Functional = obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Value;
+                obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_NonFunctional = 0;
                 obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Remarks = txtRemarks.Text.Trim();
                 obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_PhysicalProgressComponent_Id = Convert.ToInt32(grdPhysicalProgress.Rows[i].Cells[0].Text.Trim());
                 if (Request.QueryString.Count > 0)

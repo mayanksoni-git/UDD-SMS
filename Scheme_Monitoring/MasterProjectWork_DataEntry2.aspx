@@ -539,21 +539,6 @@
                                                                             <asp:TextBox ID="txtProgressNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_PhysicalProgress") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Withheld / Blocked Due to Other Work (Number)">
-                                                                        <ItemTemplate>
-                                                                            <asp:TextBox ID="txtWithheldNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_WithheldProgress") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Functional (Number)">
-                                                                        <ItemTemplate>
-                                                                            <asp:TextBox ID="txtFunctionalNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_PhysicalFunctional") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Non-Functional (Number)">
-                                                                        <ItemTemplate>
-                                                                            <asp:TextBox ID="txtNonFunctionalNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_PhysicalNonFunctional") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Remarks">
                                                                         <ItemTemplate>
                                                                             <asp:TextBox ID="txtRemarks" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_Remarks") %>' TextMode="MultiLine"></asp:TextBox>

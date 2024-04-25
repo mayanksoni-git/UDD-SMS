@@ -10,39 +10,10 @@ using System.Web.UI.WebControls;
 
 public partial class ProjectWorkFeildVisitUploadView : System.Web.UI.Page
 {
-    private void get_tbl_FeildVisitL1()
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_FeildVisitL1();
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlFeildVisitL1, "FeildVisitL1_Name", "FeildVisitL1_Id");
-        }
-        else
-        {
-            ddlFeildVisitL1.Items.Clear();
-        }
-    }
-
-    private void get_tbl_FeildVisitL2(int FeildVisitL1_Id)
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_FeildVisitL2(FeildVisitL1_Id);
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown(ds.Tables[0], ddlFeildVisitL2, "FeildVisitL2_Name", "FeildVisitL2_Id");
-        }
-        else
-        {
-            ddlFeildVisitL2.Items.Clear();
-        }
-    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            get_tbl_FeildVisitL1();
-
             int ProjectWork_Id = 0;
             int Division_Id = 0;
             int Added_By = 0;
@@ -97,21 +68,6 @@ public partial class ProjectWorkFeildVisitUploadView : System.Web.UI.Page
         up.Triggers.Add(trg1);
     }
 
-    protected void get_Physical_Component(int ProjectWork_Id)
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_Physical_Component_PMIS_Dashboard(0, 0, 0, "", 0, 0, 0, ProjectWork_Id, "");
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            grdPhysicalProgress.DataSource = ds.Tables[0];
-            grdPhysicalProgress.DataBind();
-        }
-        else
-        {
-            grdPhysicalProgress.DataSource = null;
-            grdPhysicalProgress.DataBind();
-        }
-    }
     protected void get_tbl_ProjectWork(int ProjectWork_Id, int Added_By, int Division_Id, string VType)
     {
         DataSet ds = new DataSet();
@@ -153,7 +109,6 @@ public partial class ProjectWorkFeildVisitUploadView : System.Web.UI.Page
         get_tbl_ProjectWork(ProjectWork_Id, Added_By, Division_Id, VType);
         if (ProjectWork_Id > 0)
         {
-            get_Physical_Component(ProjectWork_Id);
             get_tbl_ProjectVisit(ProjectWork_Id, VType);
         }
         else
@@ -167,24 +122,6 @@ public partial class ProjectWorkFeildVisitUploadView : System.Web.UI.Page
     }
 
     protected void grdPost1_PreRender(object sender, EventArgs e)
-    {
-        GridView gv = (GridView)sender;
-        if (gv.Rows.Count > 0)
-        {
-            //This replaces <td> with <th> and adds the scope attribute
-            gv.UseAccessibleHeader = true;
-        }
-        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
-        {
-            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
-        }
-        if (gv.ShowFooter == true && gv.Rows.Count > 0)
-        {
-            gv.FooterRow.TableSection = TableRowSection.TableFooter;
-        }
-    }
-
-    protected void grdPhysicalProgress_PreRender(object sender, EventArgs e)
     {
         GridView gv = (GridView)sender;
         if (gv.Rows.Count > 0)
@@ -240,13 +177,11 @@ public partial class ProjectWorkFeildVisitUploadView : System.Web.UI.Page
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             divMap.Visible = true;
-            btnAddComments.Visible = true;
             divMap1.InnerHtml = "<a onclick='return openPopup(this);' role='button' class='bigger bg-primary white' data-toggle='modal' lat='" + ds.Tables[0].Rows[0]["ProjectVisit_Latitude"].ToString() + "' long='" + ds.Tables[0].Rows[0]["ProjectVisit_Longitude"].ToString() + "'>&nbsp;View On Map</a>";
         }
         else
         {
             divMap.Visible = false;
-            btnAddComments.Visible = false;
         }
         if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
         {
@@ -268,17 +203,6 @@ public partial class ProjectWorkFeildVisitUploadView : System.Web.UI.Page
         {
             grdSitePics.DataSource = null;
             grdSitePics.DataBind();
-        }
-
-        if (ds != null && ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
-        {
-            grdComments.DataSource = ds.Tables[3];
-            grdComments.DataBind();
-        }
-        else
-        {
-            grdComments.DataSource = null;
-            grdComments.DataBind();
         }
 
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
@@ -322,7 +246,6 @@ public partial class ProjectWorkFeildVisitUploadView : System.Web.UI.Page
         int ProjectWork_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
         hf_ProjectWork_Id.Value = ProjectWork_Id.ToString();
 
-        get_Physical_Component(ProjectWork_Id);
         get_tbl_ProjectVisit(ProjectWork_Id, hf_VType.Value);
     }
 
@@ -425,11 +348,6 @@ public partial class ProjectWorkFeildVisitUploadView : System.Web.UI.Page
         }
     }
 
-    protected void btnAddComments_Click(object sender, ImageClickEventArgs e)
-    {
-        mp1.Show();
-    }
-
     protected void grdComments_PreRender(object sender, EventArgs e)
     {
         GridView gv = (GridView)sender;
@@ -446,64 +364,6 @@ public partial class ProjectWorkFeildVisitUploadView : System.Web.UI.Page
         {
             gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
-    }
-
-    protected void btnSaveComments_Click(object sender, EventArgs e)
-    {
-        if (txtComments.Text.Trim() == "")
-        {
-            MessageBox.Show("Please Fill Comments / Reply");
-            mp1.Show();
-            return;
-        }
-        tbl_ProjectVisitComment obj_tbl_ProjectVisitComment = new tbl_ProjectVisitComment();
-        obj_tbl_ProjectVisitComment.ProjectVisitComment_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
-        obj_tbl_ProjectVisitComment.ProjectVisitComment_ProjectVisit_Id = Convert.ToInt32(hf_ProjectVisit_Id.Value);
-        try
-        {
-            obj_tbl_ProjectVisitComment.ProjectVisitComment_L1Id = Convert.ToInt32(ddlFeildVisitL1.SelectedValue);
-        }
-        catch
-        {
-            obj_tbl_ProjectVisitComment.ProjectVisitComment_L1Id = 0;
-        }
-        try
-        {
-            obj_tbl_ProjectVisitComment.ProjectVisitComment_L2Id = Convert.ToInt32(ddlFeildVisitL2.SelectedValue);
-        }
-        catch
-        {
-            obj_tbl_ProjectVisitComment.ProjectVisitComment_L2Id = 0;
-        }
-        obj_tbl_ProjectVisitComment.ProjectVisitComment_Comments = txtComments.Text.Trim();
-        obj_tbl_ProjectVisitComment.ProjectVisitComment_Status = 1;
-
-        if (new DataLayer().Insert_tbl_ProjectVisitComment(obj_tbl_ProjectVisitComment))
-        {
-            MessageBox.Show("Field Visit Comments Added Successfully");
-            btnGetVisitData_Click(btnGetVisitData, e);
-            divVisitPics.Visible = false;
-            return;
-        }
-        else
-        {
-            MessageBox.Show("Unable To Add Comments ");
-            return;
-        }
-
-    }
-
-    protected void ddlFeildVisitL1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlFeildVisitL1.SelectedValue == "0")
-        {
-            ddlFeildVisitL2.Items.Clear();
-        }
-        else
-        {
-            get_tbl_FeildVisitL2(Convert.ToInt32(ddlFeildVisitL1.SelectedValue));
-        }
-        mp1.Show();
     }
 }
 

@@ -40,7 +40,7 @@
 
 
                                 <div class="col-xl-3 col-md-6">
-                                     <div class="card card-animate anal-btn-details">
+                                    <div class="card card-animate anal-btn-details">
                                         <div class="d-flex justify-content-between">
                                             <h3 class="ff-secondary fw-semibold"><span>Stagnant Physical Progress</span></h3>
                                             <span class="avatar-title bg-primary bg-gradient rounded-circle fs-4">
@@ -53,7 +53,7 @@
 
                                 </div>
                                 <div class="col-xl-3 col-md-6">
-                                     <div class="card card-animate anal-btn-details">
+                                    <div class="card card-animate anal-btn-details">
                                         <div class="d-flex justify-content-between">
                                             <h3 class="ff-secondary fw-semibold"><span>Financial Progress Monthly Statement</span></h3>
                                             <span class="avatar-title bg-success bg-gradient rounded-circle fs-4">
@@ -83,11 +83,11 @@
                             <div class="row mt-5">
                                 <div class="col-12">
                                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                        <h4 class="mb-sm-0">Project Gallary and Other Details</h4>
+                                        <h4 class="mb-sm-0">Project Gallary and Other Reports</h4>
                                     </div>
                                 </div>
                                 <div class="col-xl-3 col-md-6">
-                                      <div class="card card-animate anal-btn-details">
+                                    <div class="card card-animate anal-btn-details">
                                         <div class="d-flex justify-content-between">
                                             <h3 class="ff-secondary fw-semibold"><span>Project Wise Photo & Videos</span></h3>
                                             <span class="avatar-title bg-warning bg-gradient rounded-circle fs-4">
@@ -97,7 +97,28 @@
                                         <a href="Report_ProjectWork_Gallery_Pic.aspx" class="">View More  </a>
                                     </div>
                                 </div>
-
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Field Visit and Inspection Report</span></h3>
+                                            <span class="avatar-title bg-warning bg-gradient rounded-circle fs-4">
+                                                <img src="assets/Analysis/Inspection.jpg" />
+                                            </span>
+                                        </div>
+                                        <a href="Report_ProjectWork_Visit_Pic.aspx" class="">View More  </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Component Wise Progress</span></h3>
+                                            <span class="avatar-title bg-warning bg-gradient rounded-circle fs-4">
+                                                <img src="assets/Analysis/Physical_components.png" />
+                                            </span>
+                                        </div>
+                                        <a href="Report_Component_Details.aspx" class="">View More  </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
