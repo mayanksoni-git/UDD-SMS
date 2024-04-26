@@ -5960,6 +5960,9 @@ a, button {
 .control-label {
     font-weight: 600;
     font-size: 14px;
+    display: block;
+    padding-bottom: 7px;
+    margin: 0px;
 }
 
 .card-animate {
@@ -18214,3 +18217,52 @@ span.flatpickr-weekday {
     width: 100%;
     border-radius: 5px;
 }
+
+.select2-container--bootstrap-5 .select2-selection--multiple .select2-search .select2-search__field {
+    font-size: 14px;
+}
+
+.select2-container--bootstrap-5 .select2-dropdown .select2-results__options .select2-results__option {
+    font-size: 14px;
+}
+
+.select2-container--bootstrap-5.select2-container--focus .select2-selection, .select2-container--bootstrap-5.select2-container--open .select2-selection {
+    box-shadow: 0 0 0 .25rem rgb(13 110 253 / 0%);
+}
+.select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: .35em .65em;
+    margin-left: .375rem;
+    margin-bottom: .375rem;
+    font-size: 12px;
+    color: #ffffff;
+    cursor: auto;
+    font-weight: 600;
+    border: 1px solid #ffffff;
+    border-radius: .25rem;
+}
+
+.select2-container .select2-selection--multiple .select2-selection__choice {
+    background-color: #f78e56;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    padding: 3px;
+    margin-top: 0px;
+}
+
+.select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice .select2-selection__choice__remove {
+    width: 0.75rem;
+    height: 0.75rem;
+    padding: .25em;
+    margin-left: 0.25rem;
+    overflow: hidden;
+    text-indent: 200%;
+    white-space: nowrap;
+    background: transparent url("../images/malti-select-close-icon.svg") 50% /.75rem auto no-repeat;
+    border: 0;
+    background-size: 72%;
+}
+

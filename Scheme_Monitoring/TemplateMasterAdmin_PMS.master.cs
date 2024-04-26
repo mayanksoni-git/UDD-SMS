@@ -14,6 +14,7 @@ public partial class TemplateMasterAdmin_PMS : System.Web.UI.MasterPage
         }
         if (!IsPostBack)
         {
+            
             string lastLogin = new DataLayer().get_tbl_LoginHistory_Last_Login(Session["Person_Id"].ToString());
             lblUserHeader.InnerHtml = Session["Person_Name"].ToString();
             lblUserHeader2.InnerHtml = Session["Person_Name"].ToString();

@@ -16,84 +16,85 @@
                     <div class="page-content">
                         <div class="row">
                             <div class="col-12">
-                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                        <h4 class="mb-sm-0">Project Sub-Issues Master</h4>
-                                        <div class="page-title-right">
-                                            <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                                <li class="breadcrumb-item">Basic Masters</li>
-                                                <li class="breadcrumb-item active">Project Sub-Issues</li>
-                                            </ol>
-                                        </div>
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Project Sub-Issues Master</h4>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                            <li class="breadcrumb-item">Basic Masters</li>
+                                            <li class="breadcrumb-item active">Project Sub-Issues</li>
+                                        </ol>
                                     </div>
                                 </div>
+                            </div>
                             <div class="col-xs-12">
-                                <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning mb-2"></asp:Button>
+                                <div class="clearfix mb-2">
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                             
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
-
+                        <div class="card">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Dependency Master</h4>
+                            </div>
+                            <!-- end card header -->
+                            <div class="card-body">
                                 <div class="row">
-                                    <div class="col-xs-12">
+                                    <div class="col-md-12">
                                         <div class="clearfix" id="dtOptions" runat="server">
                                             <div class="pull-right tableTools-container"></div>
                                         </div>
                                         <div class="table-header">
-                                            <div style="float: right" runat="server" id="divChkShowEMB">
-                                                <asp:DropDownList runat="server" ID="ddlScheme" AutoPostBack="true" CssClass="form-control" OnSelectedIndexChanged="ddlScheme_SelectedIndexChanged" />
+                                            <div class="col-md-4 mb-2">
+                                                <div runat="server" id="divChkShowEMB">
+                                                    <asp:DropDownList runat="server" ID="ddlScheme" AutoPostBack="true" CssClass="form-select " OnSelectedIndexChanged="ddlScheme_SelectedIndexChanged" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
-                                                <Columns>
-                                                    <asp:BoundField DataField="Dependency_Id" HeaderText="Dependency_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="Dependency_Issue_Id" HeaderText="Dependency_Issue_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:TemplateField HeaderText="S No.">
-                                                        <ItemTemplate>
-                                                            <%# Container.DataItemIndex + 1 %>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="ProjectIssue_Name" HeaderText="Issue" />
-                                                    <asp:BoundField DataField="Dependency_Name" HeaderText="Dependency" />
-                                                    <%-- <asp:TemplateField HeaderText="Dependency">
+                                    </div>
+                                    <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                        <Columns>
+                                            <asp:BoundField DataField="Dependency_Id" HeaderText="Dependency_Id">
+                                                <HeaderStyle CssClass="displayStyle" />
+                                                <ItemStyle CssClass="displayStyle" />
+                                                <FooterStyle CssClass="displayStyle" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="Dependency_Issue_Id" HeaderText="Dependency_Issue_Id">
+                                                <HeaderStyle CssClass="displayStyle" />
+                                                <ItemStyle CssClass="displayStyle" />
+                                                <FooterStyle CssClass="displayStyle" />
+                                            </asp:BoundField>
+                                            <asp:TemplateField HeaderText="S No.">
+                                                <ItemTemplate>
+                                                    <%# Container.DataItemIndex + 1 %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="ProjectIssue_Name" HeaderText="Issue" />
+                                            <asp:BoundField DataField="Dependency_Name" HeaderText="Dependency" />
+                                            <%-- <asp:TemplateField HeaderText="Dependency">
                                                         <ItemTemplate>
                                                             <asp:TextBox ID="txtDependencyG" Enabled="false" runat="server" CssClass="form-control" Text='<%# Eval("Dependency_Name") %>'></asp:TextBox>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>--%>
-                                                    <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
-                                                    <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
-                                                    <asp:BoundField DataField="ModifyBy" HeaderText="Modified By" />
-                                                    <asp:BoundField DataField="Modify_Date" HeaderText="Modified Date" />
-                                                    <asp:TemplateField HeaderText="View">
-                                                        <ItemTemplate>
-                                                            <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                            </asp:GridView>
+                                            <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
+                                            <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
+                                            <asp:BoundField DataField="ModifyBy" HeaderText="Modified By" />
+                                            <asp:BoundField DataField="Modify_Date" HeaderText="Modified Date" />
+                                            <asp:TemplateField HeaderText="View">
+                                                <ItemTemplate>
+                                                    <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
 
-                                        </div>
-                                    </div>
+
                                 </div>
-
-
-
-                                <!-- PAGE CONTENT ENDS -->
                             </div>
-                            <!-- /.col -->
                         </div>
+
                         <!-- /.row -->
 
                     </div>
@@ -101,9 +102,8 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <div class="table-header col-lg-12">
-                                    <h3>Project Sub-Issues</h3>
-                                    <hr />
+                                <div class="table-header">
+                                    Dependency
                                 </div>
 
                             </div>
@@ -113,13 +113,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <asp:Label ID="Label1" runat="server" Text="Issue*" CssClass="control-label no-padding-right"></asp:Label>
-                                        <asp:DropDownList ID="ddlIssue" runat="server" CssClass="form-select  mb-2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlIssue" runat="server" CssClass="form-control"></asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <asp:Label ID="lblDependency" runat="server" Text="Sub-Issue*" CssClass="control-label no-padding-right"></asp:Label>
-                                        <asp:TextBox ID="txtDependency" runat="server" CssClass="form-control  mb-2"></asp:TextBox>
+                                        <asp:Label ID="lblDependency" runat="server" Text="Dependency*" CssClass="control-label no-padding-right"></asp:Label>
+                                        <asp:TextBox ID="txtDependency" runat="server" CssClass="form-control"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -129,10 +129,12 @@
                             <div class="col-md-12">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info  mb-2"></asp:Button>
-                                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>
-                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning mb-2"></asp:Button>
-                                        <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
+                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                        &nbsp; &nbsp; &nbsp;
+                                         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>&nbsp; &nbsp; &nbsp;
+                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>&nbsp; &nbsp; &nbsp;
+                                         
+                                            <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
                                     </div>
                                 </div>
                             </div>

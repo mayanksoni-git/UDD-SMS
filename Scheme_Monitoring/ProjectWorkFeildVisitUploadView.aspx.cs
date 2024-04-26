@@ -19,6 +19,7 @@ public partial class ProjectWorkFeildVisitUploadView : System.Web.UI.Page
             int Added_By = 0;
             string VType = "";
             string Mode = "";
+            
             try
             {
                 ProjectWork_Id = Convert.ToInt32(Request.QueryString["ProjectWork_Id"].ToString());

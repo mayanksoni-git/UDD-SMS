@@ -63,7 +63,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <asp:Label ID="Label13" runat="server" Text="Designation" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:ListBox ID="lbDesignationS" runat="server" SelectionMode="Multiple" class="chosen-select form-control" data-placeholder="Choose a Designation..."></asp:ListBox>
+                                                           <asp:ListBox ID="lbDesignationS" runat="server" SelectionMode="Multiple" class="chosen-select form-control multiselect" data-placeholder="Choose a Designation..."></asp:ListBox>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
@@ -113,7 +113,7 @@
                                                         <div>
                                                             <%--<asp:Label ID="Label12" runat="server" Text="Scheme*" CssClass="control-label no-padding-right"></asp:Label>--%>
                                                             <label id="lblScheme" class="control-label no-padding-right">Scheme*</label>
-                                                            <asp:ListBox ID="ddlProjectMaster" runat="server" SelectionMode="Multiple" class="chosen-select form-control" data-placeholder="Choose a Scheme..."></asp:ListBox>
+                                                            <asp:ListBox ID="ddlProjectMaster" runat="server" SelectionMode="Multiple" class="chosen-select form-control multiselect" data-placeholder="Choose a Scheme..."></asp:ListBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
