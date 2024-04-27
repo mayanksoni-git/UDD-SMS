@@ -184,13 +184,13 @@
                                 <a class="nav-link menu-link" href="#sidebarProject" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProject"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Project Master</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarProject">
                                     <ul class="nav nav-sm flex-column">
-                                        <% if (Session["Designation_Id"].ToString() == "33")//SO
+                                        <% if (Session["PersonJuridiction_DesignationId"].ToString() == "33")//SO
                                             {
                                         %>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=GO" class="nav-link" data-key="t-grid-js">Update Installments</a> </li>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=UC" class="nav-link" data-key="t-grid-js">Update UC / Issue</a> </li>
                                         <% }
-                                            else if (Session["Designation_Id"].ToString() == "35") //PMU
+                                            else if (Session["PersonJuridiction_DesignationId"].ToString() == "35") //PMU
                                             {
                                         %>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=PMU" class="nav-link" data-key="t-grid-js">Update Project</a> </li>
