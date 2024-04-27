@@ -255,7 +255,7 @@ public partial class MasterProjectWorkMIS_4 : System.Web.UI.Page
         }
         if ((new DataLayer()).Insert_tbl_Project_Component_Deleverables(Convert.ToInt32(hf_ProjectWork_Id.Value), Convert.ToInt32(Session["Person_Id"].ToString()), obj_tbl_ProjectPkg_PhysicalProgress, physicalTarget))
         {
-            Response.Redirect("MasterProjectWorkMIS_5.aspx?ProjectWork_Id=" + hf_ProjectWork_Id.Value + "&Id=" + hf_Scheme_Id.Value);
+            MessageBox.Show("Details Updated successfully");
         }
         else
         {
