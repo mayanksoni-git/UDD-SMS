@@ -99,6 +99,45 @@
                             <!--end col-->
                         </div>
 
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Over all Physical & Financial Progress 
+                                        </h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <asp:Label ID="Label15" runat="server" Text="Physical Progress (%)" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtPhysicalTarget" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <asp:Label ID="Label16" runat="server" Text="Total Expenditure Till Date In Lakhs [Including GST]*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtExpenditureRABill" onkeyup="isNumericVal(this);" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
+                        </div>
+
+
+
+
+
+
                         <div class="row">
 
                             <div class="col-xxl-12 col-md-12 text-center">
@@ -108,7 +147,7 @@
                             </div>
 
                         </div>
-                                                
+
                     </div>
                     <asp:HiddenField ID="hf_Project_Id" runat="server" Value="0" />
                     <asp:HiddenField ID="hf_Scheme_Id" runat="server" Value="0" />

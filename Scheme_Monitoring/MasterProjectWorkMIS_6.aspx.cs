@@ -34,7 +34,14 @@ public partial class MasterProjectWorkMIS_6 : System.Web.UI.Page
             }
         }
     }
+    protected void btnAction_Click(object sender, ImageClickEventArgs e)
+    {
+        mp1.Show();
+    }
+    protected void btnUpdateAction_Click(object sender, EventArgs e)
+    {
 
+    }
     private void get_tbl_ProjectIssue(int Scheme_Id)
     {
         DataSet ds = new DataSet();
@@ -339,7 +346,7 @@ public partial class MasterProjectWorkMIS_6 : System.Web.UI.Page
         {
             List<tbl_ProjectWorkIssueDetails> obj_tbl_ProjectWorkIssueDetails_Li = new List<tbl_ProjectWorkIssueDetails>();
             if (ViewState["dtIssue"] != null)
-            {                
+            {
                 obj_tbl_ProjectWorkIssueDetails_Li = (List<tbl_ProjectWorkIssueDetails>)(ViewState["dtIssue"]);
 
                 tbl_ProjectWorkIssueDetails obj_tbl_ProjectWorkIssueDetails = new tbl_ProjectWorkIssueDetails();
@@ -360,7 +367,7 @@ public partial class MasterProjectWorkMIS_6 : System.Web.UI.Page
 
                 obj_tbl_ProjectWorkIssueDetails_Li.Add(obj_tbl_ProjectWorkIssueDetails);
                 ViewState["dtIssue"] = obj_tbl_ProjectWorkIssueDetails_Li;
-                
+
                 ViewState["dtIssue"] = obj_tbl_ProjectWorkIssueDetails_Li;
 
                 grdIssue.DataSource = obj_tbl_ProjectWorkIssueDetails_Li;
@@ -428,7 +435,7 @@ public partial class MasterProjectWorkMIS_6 : System.Web.UI.Page
             DropDownList ddlIssueType = e.Row.FindControl("ddlIssueType") as DropDownList;
 
             DropDownList ddlDependency = e.Row.FindControl("ddlDependency") as DropDownList;
-                        
+
             DataTable dtProjectIssue = (DataTable)ViewState["dtProjectIssue"];
             if (AllClasses.CheckDt(dtProjectIssue))
             {
@@ -583,7 +590,7 @@ public partial class MasterProjectWorkMIS_6 : System.Web.UI.Page
         GridViewRow gr = (sender as LinkButton).Parent.Parent as GridViewRow;
         divLog.Visible = true;
         List<tbl_PMIS_ProjectWorkIssueHistory> ProjectWorkIssueDetail_History_Li = new List<tbl_PMIS_ProjectWorkIssueHistory>();
-        List <tbl_ProjectWorkIssueDetails> obj_tbl_ProjectWorkIssueDetails_Li = new List<tbl_ProjectWorkIssueDetails>();
+        List<tbl_ProjectWorkIssueDetails> obj_tbl_ProjectWorkIssueDetails_Li = new List<tbl_ProjectWorkIssueDetails>();
         if (ViewState["dtIssue"] != null)
         {
             obj_tbl_ProjectWorkIssueDetails_Li = (List<tbl_ProjectWorkIssueDetails>)(ViewState["dtIssue"]);
@@ -626,7 +633,7 @@ public partial class MasterProjectWorkMIS_6 : System.Web.UI.Page
         {
             gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
-        }
+    }
 
     protected void btnAddLog_Click(object sender, ImageClickEventArgs e)
     {
@@ -662,7 +669,7 @@ public partial class MasterProjectWorkMIS_6 : System.Web.UI.Page
             obj_tbl_ProjectWorkIssueDetails_Li = (List<tbl_ProjectWorkIssueDetails>)(ViewState["dtIssue"]);
 
             ProjectWorkIssueDetail_History_Li = obj_tbl_ProjectWorkIssueDetails_Li[Issue_Row_Indx].ProjectWorkIssueDetail_History_Li;
-            ProjectWorkIssueDetail_History_Li.RemoveAt(ProjectWorkIssueDetail_History_Li.Count-1);
+            ProjectWorkIssueDetail_History_Li.RemoveAt(ProjectWorkIssueDetail_History_Li.Count - 1);
 
             obj_tbl_ProjectWorkIssueDetails_Li[Issue_Row_Indx].ProjectWorkIssueDetail_History_Li = ProjectWorkIssueDetail_History_Li;
             grdLog.DataSource = ProjectWorkIssueDetail_History_Li;
@@ -713,13 +720,13 @@ public partial class MasterProjectWorkMIS_6 : System.Web.UI.Page
                 TextBox txtLogComments = grdLog.Rows[i].FindControl("txtLogComments") as TextBox;
                 FileUpload flUploadLog = grdLog.Rows[i].FindControl("flUploadLog") as FileUpload;
                 FilePath = grdLog.Rows[i].Cells[2].Text.Trim();
-                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_AddedBy= Convert.ToInt32(Session["Person_Id"].ToString());
-                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_Comments= txtLogComments.Text.Trim();
-                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_Date= txtLogDate.Text.Trim();
-                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_LetterWrittenBy= txtFrom.Text.Trim();
-                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_LetterWrittenTo= txtTo.Text.Trim();
-                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_Subject= txtSubject.Text.Trim();
-                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_Status = 1; 
+                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
+                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_Comments = txtLogComments.Text.Trim();
+                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_Date = txtLogDate.Text.Trim();
+                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_LetterWrittenBy = txtFrom.Text.Trim();
+                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_LetterWrittenTo = txtTo.Text.Trim();
+                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_Subject = txtSubject.Text.Trim();
+                ProjectWorkIssueDetail_History_Li[i].PMIS_ProjectWorkIssueHistory_Status = 1;
                 if (FilePath.Replace("&nbsp;", "") == "")
                 {
                     if (!flUploadLog.HasFile)

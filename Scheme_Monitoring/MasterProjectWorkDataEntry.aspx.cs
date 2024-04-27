@@ -28,9 +28,45 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
             lblZoneH.Text = Session["Default_Zone"].ToString();
             lblCircleH.Text = Session["Default_Circle"].ToString();
             lblDivisionH.Text = Session["Default_Division"].ToString();
+            string Mode = "";
             if (Request.QueryString.Count > 0)
             {
-                btnCreateNew.Visible = false;
+                try
+                {
+                    Mode = Request.QueryString[0].ToString();
+                }
+                catch
+                {
+                    Mode = "";
+                }
+                if (Mode == "GO")
+                {
+                    btnCreateNew.Visible = false;
+                }
+                else if (Mode == "UC")
+                {
+                    btnCreateNew.Visible = false;
+                }
+                else if (Mode == "Comp")
+                {
+                    btnCreateNew.Visible = false;
+                }
+                else if (Mode == "SO")
+                {
+                    btnCreateNew.Visible = false;
+                }
+                else if (Mode == "PMU")
+                {
+                    btnCreateNew.Visible = true;
+                }
+                else if (Mode == "G")
+                {
+                    btnCreateNew.Visible = false;
+                }
+                else
+                {
+                    btnCreateNew.Visible = false;
+                }
             }
             else
             {
@@ -366,6 +402,10 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
                 {
                     Response.Redirect("MasterProjectWork_DataEntrySection.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
                 }
+                else if (Mode == "PMU")
+                {
+                    Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
+                }
                 else if (Mode == "G")
                 {
                     Response.Redirect("ProjectWorkGalleryView.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Mode=P&App=false");
@@ -374,7 +414,6 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
                 {
                     Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
                 }
-
             }
             else
             {

@@ -28,8 +28,18 @@ public partial class MasterProjectWorkMIS_4 : System.Web.UI.Page
                 int ProjectWork_Id = Convert.ToInt32(Request.QueryString[0].Trim());
                 hf_Scheme_Id.Value = Request.QueryString["Id"].ToString().Trim();
                 load_Project(ProjectWork_Id);
+                get_ProjectWork_Physical_Progress(ProjectWork_Id);
             }
             Page.Form.Attributes.Add("enctype", "multipart/form-data");
+        }
+    }
+    protected void get_ProjectWork_Physical_Progress(int ProjectWork_Id)
+    {
+        DataSet ds = new DataSet();
+        ds = (new DataLayer()).get_ProjectWork_Physical_Progress(ProjectWork_Id);
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            txtPhysicalTarget.Text = ds.Tables[0].Rows[0]["ProjectWorkPhysicalTarget_Target"].ToString();
         }
     }
     protected void load_Project(int ProjectWork_Id)
@@ -139,6 +149,21 @@ public partial class MasterProjectWorkMIS_4 : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        decimal physicalTarget = 0;
+        try
+        {
+            physicalTarget = Convert.ToDecimal(txtPhysicalTarget.Text.Trim());
+        }
+        catch
+        {
+            physicalTarget = 0;
+        }
+        if (physicalTarget > 100)
+        {
+            MessageBox.Show("Physical Progress Can Not Be More Than 100%.");
+            txtPhysicalTarget.Focus();
+            return;
+        }
         List<tbl_ProjectPkg_PhysicalProgress> obj_tbl_ProjectPkg_PhysicalProgress = new List<tbl_ProjectPkg_PhysicalProgress>();
         for (int i = 0; i < grdPhysicalProgress.Rows.Count; i++)
         {
@@ -228,7 +253,7 @@ public partial class MasterProjectWorkMIS_4 : System.Web.UI.Page
             MessageBox.Show("Please Fill Component Proposed Data");
             return;
         }
-        if ((new DataLayer()).Insert_tbl_Project_Component_Deleverables(Convert.ToInt32(hf_ProjectWork_Id.Value), Convert.ToInt32(Session["Person_Id"].ToString()), obj_tbl_ProjectPkg_PhysicalProgress))
+        if ((new DataLayer()).Insert_tbl_Project_Component_Deleverables(Convert.ToInt32(hf_ProjectWork_Id.Value), Convert.ToInt32(Session["Person_Id"].ToString()), obj_tbl_ProjectPkg_PhysicalProgress, physicalTarget))
         {
             Response.Redirect("MasterProjectWorkMIS_5.aspx?ProjectWork_Id=" + hf_ProjectWork_Id.Value + "&Id=" + hf_Scheme_Id.Value);
         }

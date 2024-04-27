@@ -119,6 +119,39 @@
                                         <a href="Report_Component_Details.aspx" class="">View More  </a>
                                     </div>
                                 </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Project Wise Issue Analysis</span></h3>
+                                            <span class="avatar-title bg-warning bg-gradient rounded-circle fs-4">
+                                                <img src="assets/Analysis/Issue_Analysis.png" />
+                                            </span>
+                                        </div>
+                                        <a href="Report_Issue_Details.aspx" class="">View More  </a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="row mt-5">
+                                <div class="col-12">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Other Analysis and Details</h4>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Download SMS Project Wise Data</span></h3>
+                                            <span class="avatar-title bg-warning bg-gradient rounded-circle fs-4">
+                                                <img src="assets/Analysis/PMIS_Download.jpg" />
+                                            </span>
+                                        </div>
+                                        <a href="Report_PMIS_Dump.aspx" class="">View More  </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

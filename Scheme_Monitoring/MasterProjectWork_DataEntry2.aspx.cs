@@ -2324,10 +2324,6 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         }
     }
 
-    protected void btnAction_Click(object sender, ImageClickEventArgs e)
-    {
-        mp1.Show();
-    }
     protected void chkSelectAllApproveH_CheckedChanged(object sender, EventArgs e)
     {
         CheckBox chkSelectAllApproveH1 = (sender as CheckBox);
@@ -2379,9 +2375,5 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
                 txtProposedNumberO.ReadOnly = false;
             }
         }
-    }
-    protected void btnUpdateAction_Click(object sender, EventArgs e)
-    {
-
     }
 }
