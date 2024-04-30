@@ -342,11 +342,11 @@
 
         var prm = Sys.WebForms.PageRequestManager.getInstance();
 
-        prm.add_endRequest(function () {
-            // re-bind your jQuery events here
-            loadscript();
-
-        });
+    prm.add_endRequest(function () {
+        // re-bind your jQuery events here
+        loadscript();
+        initializeTables();
+    });
 
 
         $(document).ready(loadscript);
