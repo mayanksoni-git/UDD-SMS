@@ -128,7 +128,7 @@ public partial class ProjectWorkGalleryView : System.Web.UI.Page
         }
         else
         {
-            divGallery.InnerHtml = "Gallery Image Not Uploaded..";
+            //divGallery.InnerHtml = "Gallery Image Not Uploaded..";
         }
     }
 
