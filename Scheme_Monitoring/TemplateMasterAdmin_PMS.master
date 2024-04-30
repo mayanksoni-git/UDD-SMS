@@ -30,8 +30,8 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
     <%--Css for multiselect--%>
-      <link href="assets/css/select2.min.css" rel="stylesheet">
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-5-theme/1.3.0/select2-bootstrap-5-theme.rtl.min.css" rel="stylesheet">
+    <link href="assets/css/select2.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-5-theme/1.3.0/select2-bootstrap-5-theme.rtl.min.css" rel="stylesheet">
 
     <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
@@ -40,8 +40,6 @@
     <!-- custom Css-->
     <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/myStyle.css" rel="stylesheet" type="text/css" />
-
-
 </head>
 <body>
     <form id="form1" runat="server">
@@ -226,8 +224,9 @@
                                         <li class="nav-item"><a href="MasterProject.aspx" class="nav-link" data-key="t-basic-tables">Create Scheme</a> </li>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx" class="nav-link" data-key="t-grid-js">Create / Update Project (ULB)</a> </li>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=SO" class="nav-link" data-key="t-grid-js">Update Project (SO)</a> </li>
-                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=GO" class="nav-link" data-key="t-grid-js">Update Installments</a> </li>
-                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=UC" class="nav-link" data-key="t-grid-js">Update UC / Issue</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=GO" class="nav-link" data-key="t-grid-js">Update Find Release Details</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=UC" class="nav-link" data-key="t-grid-js">Update UC</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=Issue" class="nav-link" data-key="t-grid-js">Update Issue</a> </li>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=Comp" class="nav-link" data-key="t-grid-js">Update Component</a> </li>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=G" class="nav-link" data-key="t-grid-js">View Project Gallery</a> </li>
                                         <li class="nav-item"><a href="ProjectWorkInspectionUpdate.aspx" class="nav-link" data-key="t-grid-js">Fill Site Visit / Inspection</a> </li>
@@ -329,19 +328,19 @@
     <script src="assets/js/myJSFunc.js"></script>
 
 
-<%--Script for multiselect--%>
-<script src="assets/js/select2.min.js"></script> 
-<script>
-    $(document).ready(function () {
-        $('.multiselect').select2({
-            theme: "bootstrap-5",
-            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-            placeholder: $(this).data('placeholder'),
-            closeOnSelect: false,
+    <%--Script for multiselect--%>
+    <script src="assets/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.multiselect').select2({
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                closeOnSelect: false,
+            });
         });
-    });
 
-    var prm = Sys.WebForms.PageRequestManager.getInstance();
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
 
     prm.add_endRequest(function () {
         // re-bind your jQuery events here
@@ -350,18 +349,18 @@
     });
 
 
-    $(document).ready(loadscript);
+        $(document).ready(loadscript);
 
-    function loadscript() {
-        //yourcode 
-        $('.multiselect').select2({
-            theme: "bootstrap-5",
-            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-            placeholder: $(this).data('placeholder'),
-            closeOnSelect: false,
-        });
-    }
-</script>
-<%--End of Script for multiselect--%>
+        function loadscript() {
+            //yourcode 
+            $('.multiselect').select2({
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                closeOnSelect: false,
+            });
+        }
+    </script>
+    <%--End of Script for multiselect--%>
 </body>
 </html>

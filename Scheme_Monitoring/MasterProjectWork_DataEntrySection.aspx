@@ -9,12 +9,7 @@
                 </cc1:ToolkitScriptManager>
                 <asp:UpdatePanel ID="up" runat="server">
                     <ContentTemplate>
-                        <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="btnShowPopup"
-                            CancelControlID="btnclose" BackgroundCssClass="modalBackground1">
-                        </cc1:ModalPopupExtender>
-                        <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
                         <div id="divCreate" runat="server">
-
                             <div class="row">
                                 <div class="col-12 mb-3">
                                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -300,87 +295,7 @@
                                 <!--end col-->
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Upload Utilization Certificate</h4>
-                                        </div>
-                                        <!-- end card header -->
-                                        <div class="card-body">
-                                            <div class="live-preview">
-                                                <div class="row gy-12">
-                                                    <div class="col-xxl-12 col-md-12">
-                                                        <div class="table-responsive">
-                                                            <asp:GridView ID="grdUC" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdUC_PreRender" OnRowDataBound="grdUC_RowDataBound">
-                                                                <Columns>
-                                                                    <asp:BoundField DataField="ProjectUC_Id" HeaderText="ProjectUC_Id">
-                                                                        <HeaderStyle CssClass="displayStyle" />
-                                                                        <ItemStyle CssClass="displayStyle" />
-                                                                        <FooterStyle CssClass="displayStyle" />
-                                                                    </asp:BoundField>
-                                                                    <asp:BoundField DataField="ProjectUC_Document" HeaderText="ProjectUC_Document">
-                                                                        <HeaderStyle CssClass="displayStyle" />
-                                                                        <ItemStyle CssClass="displayStyle" />
-                                                                        <FooterStyle CssClass="displayStyle" />
-                                                                    </asp:BoundField>
-                                                                    <asp:TemplateField HeaderText="S No.">
-                                                                        <ItemTemplate>
-                                                                            <%# Container.DataItemIndex + 1 %>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="UC Date">
-                                                                        <ItemTemplate>
-                                                                            <asp:TextBox ID="txtUCDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y" Text='<%# Eval("ProjectUC_SubmitionDate") %>'></asp:TextBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="UC Number">
-                                                                        <ItemTemplate>
-                                                                            <asp:TextBox ID="txtUC_Number" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_Comments") %>'></asp:TextBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="% Utilization against Released Amount">
-                                                                        <ItemTemplate>
-                                                                            <asp:TextBox ID="txtUCP" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" Text='<%# Eval("ProjectUC_Achivment") %>'></asp:TextBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Upload UC Document">
-                                                                        <ItemTemplate>
-                                                                            <asp:FileUpload ID="flUploadUC" runat="server" />
-                                                                        </ItemTemplate>
-                                                                        <FooterTemplate>
-                                                                            <asp:ImageButton ID="btnAddUC" OnClick="btnAddUC_Click" runat="server" ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
-                                                                            <asp:ImageButton ID="imgdeleteUC" CssClass="pull-right" runat="server" ImageUrl="~/assets/images/minus-icon.png" OnClick="imgdeleteUC_Click" Width="30px" Height="30px" />
-                                                                        </FooterTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Upload UC Document">
-                                                                        <ItemTemplate>
-                                                                            <asp:LinkButton ID="lnkUCDoc" runat="server" Text="Download" GO_FilePath='<%#Eval("ProjectUC_Document") %>' OnClientClick="return downloadGO(this);"></asp:LinkButton>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Action">
-                                                                        <ItemTemplate>
-                                                                            <asp:ImageButton ID="btnAction" OnClick="btnAction_Click" runat="server" ImageUrl="~/assets/images/edit.png" Width="25px" Height="25px" />
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Delete">
-                                                                        <ItemTemplate>
-                                                                            <asp:ImageButton ID="btnDeleteUC" OnClick="btnDeleteUC_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="25px" Height="25px" />
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                </Columns>
-                                                            </asp:GridView>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                </div>
-                                                <!--end row-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end col-->
-                            </div>
+                            
 
                             <div class="row">
 
@@ -393,64 +308,7 @@
                             </div>
                         </div>
 
-                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 1000px; height: 500px; margin-left: -32px" ScrollBars="Auto">
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Action On UC</h4>
-                                        </div>
-                                        <!-- end card header -->
-                                        <div class="card-body">
-                                            <div class="live-preview">
-                                                <div class="row gy-4">
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Label ID="Label5" runat="server" Text="Action*" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList CssClass="form-select" ID="ddlAction" runat="server">
-                                                                <asp:ListItem Text="---Select---" Value="0" Selected="True"></asp:ListItem>
-                                                                <asp:ListItem Text="Approved" Value="A"></asp:ListItem>
-                                                                <asp:ListItem Text="Rejected" Value="R"></asp:ListItem>
-                                                            </asp:DropDownList>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Label ID="Label19" runat="server" Text="Comments*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtCommentsUC" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <br />
-                                                            <asp:Button ID="btnUpdateAction" Text="Update" OnClick="btnUpdateAction_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                </div>
-                                                <!--end row-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end col-->
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </asp:Panel>
-
+                        
                         <asp:HiddenField ID="hf_ProjectWorkPkg_Id" runat="server" Value="0" />
                         <asp:HiddenField ID="hf_GO_Path" runat="server" Value="0" />
                     </ContentTemplate>

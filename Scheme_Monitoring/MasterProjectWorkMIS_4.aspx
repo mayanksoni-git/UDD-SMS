@@ -142,7 +142,7 @@
 
                             <div class="col-xxl-12 col-md-12 text-center">
                                 <div>
-                                    <asp:Button ID="btnSave" Text="Save and Next >>" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                    <asp:Button ID="btnSave" Text="Update" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
                                 </div>
                             </div>
 
