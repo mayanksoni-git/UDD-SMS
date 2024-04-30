@@ -188,13 +188,14 @@
                                             {
                                         %>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=GO" class="nav-link" data-key="t-grid-js">Fund Release Installments</a> </li>
-                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=UC" class="nav-link" data-key="t-grid-js">Update UC / Issue</a> </li>
                                         <% }
                                             else if (Session["PersonJuridiction_DesignationId"].ToString() == "35") //PMU
                                             {
                                         %>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=PMU" class="nav-link" data-key="t-grid-js">Create / Update Project (Legacy Data)</a> </li>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=SO" class="nav-link" data-key="t-grid-js">Create / Update Project</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=UC" class="nav-link" data-key="t-grid-js">Update UC</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=Issue" class="nav-link" data-key="t-grid-js">Update Issue</a> </li>
                                         <% }
                                             else
                                             {
