@@ -24275,7 +24275,7 @@ public partial class DataLayer : Page, IRequiresSessionState
                         from tbl_ProjectWorkFinancialTarget
                         where ProjectWorkFinancialTarget_Status = 1   
                     ) tTarget on tTarget.ProjectWorkFinancialTarget_ProjectWork_Id = tbl_ProjectWork.ProjectWork_Id and rrT = 1
-                    where tbl_Darpan_Temp_Data.rr = 1 and ProjectWork_Status = 1 and ProjectWork_Project_Id = Scheme_IdCond and tbl_ProjectWork.ProjectWork_Id not in (1267, 2829) ";
+                    where tbl_Darpan_Temp_Data.rr = 1 and ProjectWork_Status = 1 and ProjectWork_Project_Id = Scheme_IdCond  ";
         }
         else
         {
@@ -24388,7 +24388,7 @@ public partial class DataLayer : Page, IRequiresSessionState
                         from tbl_ProjectWorkFinancialTarget
                         where ProjectWorkFinancialTarget_Status = 1   
                     ) tTarget on tTarget.ProjectWorkFinancialTarget_ProjectWork_Id = tbl_ProjectWork.ProjectWork_Id and rrT = 1
-                    where tbl_Darpan_Temp_Data.rr = 1 and ProjectWork_Status = 1 and ProjectWork_Project_Id = Scheme_IdCond and tbl_ProjectWork.ProjectWork_Id not in (1267, 2829) ";
+                    where tbl_Darpan_Temp_Data.rr = 1 and ProjectWork_Status = 1 and ProjectWork_Project_Id = Scheme_IdCond  ";
         }
         strQuery = strQuery.Replace("Scheme_IdCond", Scheme_Id);
         if (District_Id > 0)

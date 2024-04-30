@@ -87,6 +87,272 @@
                         </div>
 
                         <div runat="server" visible="false" id="divData">
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Project Summery</h4>
+                                        </div>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-4 col-md-6">
+                                                        <div>
+                                                            <ul class="list-group list-group-flush border-dashed">
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divTotal" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Total Projects</h5>
+                                                                            <p class="text-reset fs-14 mb-0">Total No Of Projects Under Searched Criteria</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divPhyCompleted" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Physically Completed / Not completed</h5>
+                                                                            <p class="text-reset fs-14 mb-0 pull-right">Projects With Phisical Progress is 100 will be assumed as Physically Completed.</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divPhyNotCompleted" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divFinCompleted" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Financially Completed / Not completed</h5>
+                                                                            <p class="text-reset fs-14 mb-0 pull-right">Projects With financial Progress is 100 will be assumed as Financially Completed.</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divFinNotCompleted" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-4 col-md-6">
+                                                        <div>
+                                                            <ul class="list-group list-group-flush border-dashed">
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divGalleryUpdated" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Gallery Available</h5>
+                                                                            <p class="text-reset fs-14 mb-0">Total No Of Projects where Photo Gallery is Uploaded</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divGalleryNotUpdated" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divInspectionUpdated" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Site Inspection Completed / Not completed</h5>
+                                                                            <p class="text-reset fs-14 mb-0 pull-right">Projects For With Site Visit / Inspection Has Been Done.</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divInspectionNotUpdated" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divAgreementUpdated" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Agreement Details Updated / Not Updated</h5>
+                                                                            <p class="text-reset fs-14 mb-0 pull-right">Projects With Details of Agreement With Vendor Has Been Updated.</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divAgreementNotUpdated" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-4 col-md-6">
+                                                        <div>
+                                                            <ul class="list-group list-group-flush border-dashed">
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divUCUpload" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">UC Uploaded / UC Not Uploaded</h5>
+                                                                            <p class="text-reset fs-14 mb-0">Total Projects With Financial Progress More Than 60 and UC Uploaded</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divUCNotUpload" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divUCApproved" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">UC Status (Approved / Not Approved)</h5>
+                                                                            <p class="text-reset fs-14 mb-0">Total No UC and Its Approval Status</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0" id="divUCNotApproved" runat="server">0</h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end row-->
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card">
@@ -143,7 +409,6 @@
                                                                 <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />
                                                                 <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
                                                                 <asp:BoundField HeaderText="Division" DataField="Division_Name" />
-                                                                <asp:BoundField HeaderText="Project Code" DataField="ProjectWork_ProjectCode" />
                                                                 <asp:BoundField HeaderText="Work" DataField="ProjectWork_Name" />
                                                                 <asp:BoundField HeaderText="Sanctioned Cost (In Lakhs)" DataField="ProjectWork_Budget" />
                                                                 <asp:BoundField HeaderText="Agreement Cost (In Lakhs)" DataField="tender_cost" />
@@ -152,11 +417,9 @@
                                                                 <asp:BoundField HeaderText="Physical Progress" DataField="Physical_Progress" />
                                                                 <asp:BoundField HeaderText="Financial Progress" DataField="Financial_Progress" />
                                                                 <asp:BoundField HeaderText="Start Date As Per Agreement" DataField="ProjectWorkPkg_Agreement_Date" />
-                                                                <asp:BoundField HeaderText="Actual Start Date" DataField="ProjectWorkPkg_Start_Date" />
                                                                 <asp:BoundField HeaderText="End Date As Per Agreement" DataField="ProjectWorkPkg_Due_Date" />
-                                                                <asp:BoundField HeaderText="End Date As Per Agreement (Actual)" DataField="Target_Date_Agreement_Extended" />
                                                                 <asp:BoundField HeaderText="Issue" DataField="Issue" />
-                                                                <asp:TemplateField HeaderText="Timelines">
+                                                                <asp:TemplateField HeaderText="Importent Timeline (Specific To This Project)">
                                                                     <ItemTemplate>
                                                                         <div class="list-group">
                                                                             <a href="#" class="list-group-item list-group-item-action">Last Updated On (Data): <%# Eval("ProjectWork_ModifiedOn") %></a>
@@ -167,6 +430,9 @@
                                                                             <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Financial Progress As On: <%# Eval("Financial_As_On") %></a>
                                                                         </div>
                                                                     </ItemTemplate>
+                                                                    <HeaderStyle  Width="200" />
+                                                                    <ItemStyle Width="200" />
+                                                                    <FooterStyle Width="200" />
                                                                 </asp:TemplateField>
                                                             </Columns>
                                                         </asp:GridView>

@@ -350,6 +350,43 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         obj_SearchStorage.Zone_Id = Zone_Id;
         Session["SearchStorage"] = obj_SearchStorage;
         DataSet ds = new DataSet();
+        ds = (new DataLayer().get_Custom_Dashboard_View(Zone_Id, Circle_Id, Division_Id, Project_Id, 0, 0, txtProjectCode.Text.Trim()));
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            divTotal.InnerHtml = ds.Tables[0].Rows[0]["Total_Projects"].ToString();
+            divPhyCompleted.InnerHtml = ds.Tables[0].Rows[0]["Projects_Physical_Completed"].ToString();
+            divPhyNotCompleted.InnerHtml = ds.Tables[0].Rows[0]["Projects_Physical_Not_Completed"].ToString();
+            divFinCompleted.InnerHtml = ds.Tables[0].Rows[0]["Projects_Financial_Completed"].ToString();
+            divFinNotCompleted.InnerHtml = ds.Tables[0].Rows[0]["Projects_Financial_Not_Completed"].ToString();
+            divGalleryUpdated.InnerHtml = ds.Tables[0].Rows[0]["Gallery_Available"].ToString();
+            divGalleryNotUpdated.InnerHtml = ds.Tables[0].Rows[0]["Gallery_Not_Available"].ToString();
+            divInspectionUpdated.InnerHtml = ds.Tables[0].Rows[0]["Inspection_Available"].ToString();
+            divInspectionNotUpdated.InnerHtml = ds.Tables[0].Rows[0]["Inspection_Not_Available"].ToString();
+            divAgreementUpdated.InnerHtml = ds.Tables[0].Rows[0]["Agreement_Available"].ToString();
+            divAgreementNotUpdated.InnerHtml = ds.Tables[0].Rows[0]["Agreement_Not_Available"].ToString();
+            divUCUpload.InnerHtml = ds.Tables[0].Rows[0]["UC_Available"].ToString();
+            divUCNotUpload.InnerHtml = ds.Tables[0].Rows[0]["UC_Not_Available"].ToString();
+            divUCApproved.InnerHtml = ds.Tables[0].Rows[0]["UC_Approved"].ToString();
+            divUCNotApproved.InnerHtml = ds.Tables[0].Rows[0]["UC_Not_Approved"].ToString();
+        }
+        else
+        {
+            divTotal.InnerHtml = "0";
+            divPhyCompleted.InnerHtml = "0";
+            divPhyNotCompleted.InnerHtml = "0";
+            divFinCompleted.InnerHtml = "0";
+            divFinNotCompleted.InnerHtml = "0";
+            divGalleryUpdated.InnerHtml = "0";
+            divGalleryNotUpdated.InnerHtml = "0";
+            divInspectionUpdated.InnerHtml = "0";
+            divInspectionNotUpdated.InnerHtml = "0";
+            divAgreementUpdated.InnerHtml = "0";
+            divAgreementNotUpdated.InnerHtml = "0";
+            divUCUpload.InnerHtml = "0";
+            divUCNotUpload.InnerHtml = "0";
+            divUCApproved.InnerHtml = "0";
+            divUCNotApproved.InnerHtml = "0";
+        }
         ds = (new DataLayer()).get_tbl_ProjectWork(Project_Id, 0, Zone_Id, Circle_Id, Division_Id, 0, "", 0, txtProjectCode.Text.Trim(), 0);
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
