@@ -47,6 +47,10 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
                 {
                     btnCreateNew.Visible = false;
                 }
+                else if (Mode == "Issue")
+                {
+                    btnCreateNew.Visible = false;
+                }
                 else if (Mode == "Comp")
                 {
                     btnCreateNew.Visible = false;
@@ -393,6 +397,10 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
                 else if (Mode == "UC")
                 {
                     Response.Redirect("MasterProjectWorkMIS_6.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
+                }
+                else if (Mode == "Issue")
+                {
+                    Response.Redirect("MasterProjectWorkMIS_8.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
                 }
                 else if (Mode == "Comp")
                 {
