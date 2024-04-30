@@ -346,7 +346,7 @@
     prm.add_endRequest(function () {
         // re-bind your jQuery events here
         loadscript();
-
+        initializeTables();
     });
 
 

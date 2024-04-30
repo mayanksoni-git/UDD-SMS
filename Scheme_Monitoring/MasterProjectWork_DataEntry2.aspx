@@ -1,7 +1,20 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="MasterProjectWork_DataEntry2.aspx.cs" Inherits="MasterProjectWork_DataEntry2" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+    <style>
+        div.ajax__calendar_days table tr td
+        {
+            padding-right: 0px;
+        }
+        div.ajax__calendar_body
+        {
+            width: 205px;
+        }
+        div.ajax__calendar_container
+        {
+            width: 205px;
+        }
+    </style>
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
@@ -105,7 +118,9 @@
                                                         <div>
                                                             <asp:Label ID="Label1" runat="server" Text="GO Date*" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Style="display: none;" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
-                                                            <asp:TextBox ID="txtGODate2" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
+                                                            <asp:TextBox ID="txtGODate2" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                            
+                                                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtGODate2" Format="dd-MMM-yyyy"> </cc1:CalendarExtender>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
