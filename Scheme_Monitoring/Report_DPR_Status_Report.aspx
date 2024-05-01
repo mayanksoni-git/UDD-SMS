@@ -43,7 +43,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <label class="control-label no-padding-right">Scheme </label>
-                                                        <asp:ListBox ID="ddlScheme" runat="server" SelectionMode="Multiple" class="chosen-select form-control"
+                                                        <asp:ListBox ID="ddlScheme" runat="server" SelectionMode="Multiple" class="chosen-select form-control multiselect"
                                                             data-placeholder="Choose a Scheme..."></asp:ListBox>
                                                     </div>
                                                 </div>
