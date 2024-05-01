@@ -1,20 +1,67 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="MasterProjectWork_DataEntry2.aspx.cs" Inherits="MasterProjectWork_DataEntry2" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <style>
-        div.ajax__calendar_days table tr td
-        {
-            padding-right: 0px;
-        }
-        div.ajax__calendar_body
-        {
-            width: 205px;
-        }
-        div.ajax__calendar_container
-        {
-            width: 205px;
-        }
-    </style>
+
+<style type="text/css">
+/*Calendar Control CSS*/
+.cal_Theme1 .ajax__calendar_container   {
+background-color: #DEF1F4;
+border:solid 1px #77D5F7;
+width:180px;
+}
+
+.cal_Theme1 .ajax__calendar_header  {
+background-color: #ffffff;
+margin-bottom: 4px;
+}
+
+.cal_Theme1 .ajax__calendar_title,
+.cal_Theme1 .ajax__calendar_next,
+.cal_Theme1 .ajax__calendar_prev    {
+color: #004080;
+padding-top: 3px;
+}
+
+.cal_Theme1 .ajax__calendar_body    {
+background-color: #ffffff;
+border: solid 1px #77D5F7;
+width:170px;
+}
+
+.cal_Theme1 .ajax__calendar_dayname {
+text-align:center;
+font-weight:bold;
+margin-bottom: 4px;
+margin-top: 2px;
+color: #004080;
+width:22px
+}
+
+.cal_Theme1 .ajax__calendar_day {
+color: #004080;
+text-align:center;
+}
+
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_day,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_month,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_year,
+.cal_Theme1 .ajax__calendar_active  {
+color: #004080;
+font-weight: bold;
+background-color: #DEF1F4;
+}
+
+
+.cal_Theme1 .ajax__calendar_today   {
+font-weight:bold;
+}
+
+.cal_Theme1 .ajax__calendar_other,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_today,
+.cal_Theme1 .ajax__calendar_hover .ajax__calendar_title {
+color: #bbbbbb;
+}
+</style>
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
@@ -120,7 +167,7 @@
                                                             <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Style="display: none;" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
                                                             <asp:TextBox ID="txtGODate2" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
                                                             
-                                                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtGODate2" Format="dd-MMM-yyyy"> </cc1:CalendarExtender>
+                                                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" TargetControlID="txtGODate2" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
