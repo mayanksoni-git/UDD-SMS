@@ -1,7 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true"
     CodeFile="MasterProjectWorkMIS_6.aspx.cs" Inherits="MasterProjectWorkMIS_6" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+            <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
     <div class="main-content">
         <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
@@ -44,7 +45,8 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="UC Date">
                                                                     <ItemTemplate>
-                                                                        <asp:TextBox ID="txtUCDate" runat="server" CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy" Text='<%# Eval("ProjectUC_SubmitionDate") %>'></asp:TextBox>
+                                                                        <asp:TextBox ID="txtUCDate" runat="server" CssClass="form-control date-picker" autocomplete="off"  Text='<%# Eval("ProjectUC_SubmitionDate") %>'></asp:TextBox>
+                                                                        <cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" TargetControlID="txtUCDate" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="UC Number">
