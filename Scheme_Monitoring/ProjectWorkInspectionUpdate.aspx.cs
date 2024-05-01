@@ -351,7 +351,18 @@ public partial class ProjectWorkInspectionUpdate : System.Web.UI.Page
         obj_SearchStorage.Zone_Id = Zone_Id;
         Session["SearchStorage"] = obj_SearchStorage;
         DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_ProjectWork(Project_Id, 0, Zone_Id, Circle_Id, Division_Id, 0, 0, "", 0, 0);
+
+        int ProjectWork_Id = 0;
+        try
+        {
+            ProjectWork_Id = Convert.ToInt32(Request.QueryString["ProjectWork_Id"].ToString());
+        }
+        catch
+        {
+            ProjectWork_Id = 0;
+        }
+
+        ds = (new DataLayer()).get_tbl_ProjectWork(Project_Id, 0, Zone_Id, Circle_Id, Division_Id, 0, 0, "", ProjectWork_Id, 0);
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             grdPost.DataSource = ds.Tables[0];

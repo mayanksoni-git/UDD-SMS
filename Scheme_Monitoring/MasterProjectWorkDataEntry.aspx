@@ -106,9 +106,7 @@
                                                                         <div class="col-auto">
                                                                             <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
                                                                                 <div class="text-center">
-                                                                                    <a href="#">
-                                                                                        <h5 class="mb-0" id="divTotal" runat="server">0</h5>
-                                                                                    </a>
+                                                                                    <h5 class="mb-0" id="divTotal" runat="server">0</h5>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -423,14 +421,14 @@
                                                                     <ItemTemplate>
                                                                         <div class="list-group">
                                                                             <a href="#" class="list-group-item list-group-item-action">Last Updated On (Data): <%# Eval("ProjectWork_ModifiedOn") %></a>
-                                                                            <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Last Updated On (Gallery Photo): <%# Eval("Last_Updated") %></a>
-                                                                            <a href="#" class="list-group-item list-group-item-action list-group-item-secondary">Last Inspection / Field Visit: <%# Eval("Inspection_Submitted_Date") %></a>
-                                                                            <a href="#" class="list-group-item list-group-item-action list-group-item-success">Last UC Submitted On: <%# Eval("UC_Submitted_Date") %></a>
-                                                                            <a href="#" class="list-group-item list-group-item-action list-group-item-danger">Physical Progress As On: <%# Eval("Physical_As_On") %></a>
-                                                                            <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Financial Progress As On: <%# Eval("Financial_As_On") %></a>
+                                                                            <a href="ProjectWorkGalleryView.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>" class="list-group-item list-group-item-action list-group-item-primary">Last Updated On (Gallery Photo): <%# Eval("Last_Updated") %></a>
+                                                                            <a href="ProjectWorkInspectionUpdate.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>" class="list-group-item list-group-item-action list-group-item-secondary">Last Inspection / Field Visit: <%# Eval("Inspection_Submitted_Date") %></a>
+                                                                            <a href="MasterProjectWorkMIS_6.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="list-group-item list-group-item-action list-group-item-success">Last UC Submitted On: <%# Eval("UC_Submitted_Date") %></a>
+                                                                            <a href="MasterProjectWorkMIS_4.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="list-group-item list-group-item-action list-group-item-danger">Physical Progress As On: <%# Eval("Physical_As_On") %></a>
+                                                                            <a href="MasterProjectWorkMIS_4.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="list-group-item list-group-item-action list-group-item-warning">Financial Progress As On: <%# Eval("Financial_As_On") %></a>
                                                                         </div>
                                                                     </ItemTemplate>
-                                                                    <HeaderStyle  Width="200" />
+                                                                    <HeaderStyle Width="200" />
                                                                     <ItemStyle Width="200" />
                                                                     <FooterStyle Width="200" />
                                                                 </asp:TemplateField>
