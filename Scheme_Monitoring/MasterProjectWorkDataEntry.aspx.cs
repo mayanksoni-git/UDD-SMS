@@ -57,7 +57,7 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
                 }
                 else if (Mode == "SO")
                 {
-                    btnCreateNew.Visible = false;
+                    btnCreateNew.Visible = true;
                 }
                 else if (Mode == "PMU")
                 {
@@ -353,39 +353,39 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         ds = (new DataLayer().get_Custom_Dashboard_View(Zone_Id, Circle_Id, Division_Id, Project_Id, 0, 0, txtProjectCode.Text.Trim()));
             if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
-            divTotal.InnerHtml = ds.Tables[0].Rows[0]["Total_Projects"].ToString();
-            divPhyCompleted.InnerHtml = ds.Tables[0].Rows[0]["Projects_Physical_Completed"].ToString();
-            divPhyNotCompleted.InnerHtml = ds.Tables[0].Rows[0]["Projects_Physical_Not_Completed"].ToString();
-            divFinCompleted.InnerHtml = ds.Tables[0].Rows[0]["Projects_Financial_Completed"].ToString();
-            divFinNotCompleted.InnerHtml = ds.Tables[0].Rows[0]["Projects_Financial_Not_Completed"].ToString();
-            divGalleryUpdated.InnerHtml = ds.Tables[0].Rows[0]["Gallery_Available"].ToString();
-            divGalleryNotUpdated.InnerHtml = ds.Tables[0].Rows[0]["Gallery_Not_Available"].ToString();
-            divInspectionUpdated.InnerHtml = ds.Tables[0].Rows[0]["Inspection_Available"].ToString();
-            divInspectionNotUpdated.InnerHtml = ds.Tables[0].Rows[0]["Inspection_Not_Available"].ToString();
-            divAgreementUpdated.InnerHtml = ds.Tables[0].Rows[0]["Agreement_Available"].ToString();
-            divAgreementNotUpdated.InnerHtml = ds.Tables[0].Rows[0]["Agreement_Not_Available"].ToString();
-            divUCUpload.InnerHtml = ds.Tables[0].Rows[0]["UC_Available"].ToString();
-            divUCNotUpload.InnerHtml = ds.Tables[0].Rows[0]["UC_Not_Available"].ToString();
-            divUCApproved.InnerHtml = ds.Tables[0].Rows[0]["UC_Approved"].ToString();
-            divUCNotApproved.InnerHtml = ds.Tables[0].Rows[0]["UC_Not_Approved"].ToString();
+            lnkTotal.Text = ds.Tables[0].Rows[0]["Total_Projects"].ToString();
+            lnkPhyCompleted.Text = ds.Tables[0].Rows[0]["Projects_Physical_Completed"].ToString();
+            lnkPhyNotCompleted.Text = ds.Tables[0].Rows[0]["Projects_Physical_Not_Completed"].ToString();
+            lnkFinCompleted.Text = ds.Tables[0].Rows[0]["Projects_Financial_Completed"].ToString();
+            lnkFinNotCompleted.Text = ds.Tables[0].Rows[0]["Projects_Financial_Not_Completed"].ToString();
+            lnkGalleryUpdated.Text = ds.Tables[0].Rows[0]["Gallery_Available"].ToString();
+            lnkGalleryNotUpdated.Text = ds.Tables[0].Rows[0]["Gallery_Not_Available"].ToString();
+            lnkInspectionUpdated.Text = ds.Tables[0].Rows[0]["Inspection_Available"].ToString();
+            lnkInspectionNotUpdated.Text = ds.Tables[0].Rows[0]["Inspection_Not_Available"].ToString();
+            lnkAgreementUpdated.Text = ds.Tables[0].Rows[0]["Agreement_Available"].ToString();
+            lnkAgreementNotUpdated.Text = ds.Tables[0].Rows[0]["Agreement_Not_Available"].ToString();
+            lnkUCUpload.Text = ds.Tables[0].Rows[0]["UC_Available"].ToString();
+            lnkUCNotUpload.Text = ds.Tables[0].Rows[0]["UC_Not_Available"].ToString();
+            lnkUCApproved.Text = ds.Tables[0].Rows[0]["UC_Approved"].ToString();
+            lnkUCNotApproved.Text = ds.Tables[0].Rows[0]["UC_Not_Approved"].ToString();
         }
         else
         {
-            divTotal.InnerHtml = "0";
-            divPhyCompleted.InnerHtml = "0";
-            divPhyNotCompleted.InnerHtml = "0";
-            divFinCompleted.InnerHtml = "0";
-            divFinNotCompleted.InnerHtml = "0";
-            divGalleryUpdated.InnerHtml = "0";
-            divGalleryNotUpdated.InnerHtml = "0";
-            divInspectionUpdated.InnerHtml = "0";
-            divInspectionNotUpdated.InnerHtml = "0";
-            divAgreementUpdated.InnerHtml = "0";
-            divAgreementNotUpdated.InnerHtml = "0";
-            divUCUpload.InnerHtml = "0";
-            divUCNotUpload.InnerHtml = "0";
-            divUCApproved.InnerHtml = "0";
-            divUCNotApproved.InnerHtml = "0";
+            lnkTotal.Text = "0";
+            lnkPhyCompleted.Text = "0";
+            lnkPhyNotCompleted.Text = "0";
+            lnkFinCompleted.Text = "0";
+            lnkFinNotCompleted.Text = "0";
+            lnkGalleryUpdated.Text = "0";
+            lnkGalleryNotUpdated.Text = "0";
+            lnkInspectionUpdated.Text = "0";
+            lnkInspectionNotUpdated.Text = "0";
+            lnkAgreementUpdated.Text = "0";
+            lnkAgreementNotUpdated.Text = "0";
+            lnkUCUpload.Text = "0";
+            lnkUCNotUpload.Text = "0";
+            lnkUCApproved.Text = "0";
+            lnkUCNotApproved.Text = "0";
         }
         ds = (new DataLayer()).get_tbl_ProjectWork(Project_Id, 0, Zone_Id, Circle_Id, Division_Id, 0, "", 0, txtProjectCode.Text.Trim(), 0);
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
@@ -471,6 +471,18 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
 
     protected void btnCreateNew_Click(object sender, EventArgs e)
     {
+        string Mode = "";
+        if (Request.QueryString.Count > 0)
+        {
+            try
+            {
+                Mode = Request.QueryString[0].ToString();
+            }
+            catch
+            {
+                Mode = "";
+            }
+        }
         string Client = ConfigurationManager.AppSettings.Get("Client");
         if (Client == "CNDS")
         {
@@ -478,7 +490,81 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("MasterProjectWork_DataEntry2.aspx");
+            if (Mode == "SO")
+            {
+                Response.Redirect("MasterProjectWork_DataEntrySO.aspx");
+            }
+            else
+            {
+                Response.Redirect("MasterProjectWork_DataEntry2.aspx");
+            }
         }
+    }
+
+    protected void lnkTotal_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkPhyCompleted_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkPhyNotCompleted_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkFinCompleted_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkFinNotCompleted_Click(object sender, EventArgs e)
+    {
+
+    }
+
+
+
+    protected void lnkGalleryUpdated_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkGalleryNotUpdated_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkAgreementUpdated_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkAgreementNotUpdated_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkUCNotUpload_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkUCUpload_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkUCApproved_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkUCNotApproved_Click(object sender, EventArgs e)
+    {
+
     }
 }

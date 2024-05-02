@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.VariantTypes;
+using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -75,16 +76,22 @@ public partial class ProjectWorkGalleryView : System.Web.UI.Page
             filePath1 = dt.Rows[i]["ProjectWorkGallery_Path"].ToString();
             if (filePath1 != "")
             {
-                _inner1 += "<ul class=\"ace-thumbnails clearfix\">";
-                _inner1 += "    <li>";
-                _inner1 += "        <a href = '" + baseURL + filePath1.Replace("&nbsp;", "") + "' data-rel=\"colorbox\" class=\"cboxElement\" onclick=\"Poppuplose()\">";
-                _inner1 += "            <img width = \"600\" height=\"500\" alt=" + ProjectWork_Name + " src='" + baseURL + filePath1.Replace("&nbsp;", "") + "'>";
-                _inner1 += "            <div class=\"text\">";
-                _inner1 += "                <div class=\"inner\">" + ProjectWork_Name + "</div>";
-                _inner1 += "            </div>";
-                _inner1 += "        </a>";
-                _inner1 += "    </li>";
-                _inner1 += "</ul>";
+                //_inner1 += "<ul class=\"ace-thumbnails clearfix\">";
+                //_inner1 += "    <li>";
+                //_inner1 += "        <a href = '" + baseURL + filePath1.Replace("&nbsp;", "") + "' data-rel=\"colorbox\" class=\"cboxElement\" onclick=\"Poppuplose()\">";
+                //_inner1 += "            <img width = \"600\" height=\"500\" alt=" + ProjectWork_Name + " src='" + baseURL + filePath1.Replace("&nbsp;", "") + "'>";
+                //_inner1 += "            <div class=\"text\">";
+                //_inner1 += "                <div class=\"inner\">" + ProjectWork_Name + "</div>";
+                //_inner1 += "            </div>";
+                //_inner1 += "        </a>";
+                //_inner1 += "    </li>";
+                //_inner1 += "</ul>";
+
+                _inner1 += "<div class='col-lg-4'>";
+                _inner1 += "<div class='item'>";
+                _inner1 += "<a href = '" + baseURL + filePath1.Replace("&nbsp;", "") + "?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' data-fancybox='gallery'><img src = '" + baseURL + filePath1.Replace("&nbsp;", "") + "?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' alt='" + ProjectWork_Name + "'></a><h3>View</h3>";
+                _inner1 += "</div>";
+                _inner1 += "</div>";
             }
         }
         divGallery.InnerHtml = _inner1;

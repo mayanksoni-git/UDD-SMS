@@ -78,48 +78,22 @@
                         </div>
 
 
-                    
-                            <div class="card" id="gallaryCard">
-                                <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">View Project Gallery</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="col-sm-12">
-                                        <div class="gallerycontainer" id="divGallery" runat="server">
 
-                                            <div class="item">
-                                                <a href="https://images.pexels.com/photos/302804/pexels-photo-302804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" data-fancybox="gallery">
-                                                <img src="https://images.pexels.com/photos/302804/pexels-photo-302804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="sun coming through trees"></a>
-                                                <h3>View</h3>
-                                            </div>
-                                            <div class="item"><a href="https://images.pexels.com/photos/4827/nature-forest-trees-fog.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" data-fancybox="gallery">
-                                                <img src="https://images.pexels.com/photos/4827/nature-forest-trees-fog.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="fog rolling over pine trees"></a> <h3>View</h3></div>
-                                            <div class="item"><a href="https://images.pexels.com/photos/206673/pexels-photo-206673.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" data-fancybox="gallery">
-                                                <img src="https://images.pexels.com/photos/206673/pexels-photo-206673.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="country house in the woods"></a> <h3>View</h3></div>
-                                            <div class="item"><a href="https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" data-fancybox="gallery">
-                                                <img src="https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="lake view between two trees with mountain in the background"></a> <h3>View</h3></div>
-                                            <div class="item"><a href="https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" data-fancybox="gallery">
-                                                <img src="https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="forest with a focus on an old oak tree"></a> <h3>View</h3></div>
-                                            <div class="item"><a href="https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" data-fancybox="gallery">
-                                                <img src="https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="lake in a valley"></a> <h3>View</h3></div>
-                                            <div class="item"><a href="https://images.pexels.com/photos/129105/pexels-photo-129105.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" data-fancybox="gallery">
-                                                <img src="https://images.pexels.com/photos/129105/pexels-photo-129105.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="tree top view looking out over forest"></a> <h3>View</h3></div>
-                                            <div class="item"><a href="https://images.pexels.com/photos/131723/pexels-photo-131723.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" data-fancybox="gallery">
-                                                <img src="https://images.pexels.com/photos/131723/pexels-photo-131723.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="sun shining through trees"></a> <h3>View</h3></div>
-                                            <div class="item"><a href="https://images.pexels.com/photos/225203/pexels-photo-225203.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" data-fancybox="gallery">
-                                                <img src="https://images.pexels.com/photos/225203/pexels-photo-225203.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="island on a lake"></a> <h3>View</h3></div>
-                                            <div class="item"><a href="https://images.pexels.com/photos/460621/pexels-photo-460621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" data-fancybox="gallery">
-                                                <img src="https://images.pexels.com/photos/460621/pexels-photo-460621.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="waterfall surrounded by green trees"></a> <h3>View</h3></div>
-                                            <div class="item"><a href="https://images.pexels.com/photos/145685/pexels-photo-145685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" data-fancybox="gallery">
-                                                <img src="https://images.pexels.com/photos/145685/pexels-photo-145685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="beautiful garden in back yard"></a> <h3>View</h3></div>
-
-                                        </div>
+                        <div class="card" id="gallaryCard">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">View Project Gallery</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-sm-12">
+                                    <div class="gallerycontainer" id="divGallery" runat="server">
+                                        
                                     </div>
                                 </div>
                             </div>
-                     
+                        </div>
 
-                   
+
+
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
