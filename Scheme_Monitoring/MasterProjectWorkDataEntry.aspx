@@ -104,15 +104,23 @@
                                                                 <li class="list-group-item ps-0">
                                                                     <div class="row align-items-center g-3">
                                                                         <div class="col-auto">
-                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
                                                                                 <div class="text-center">
-                                                                                    <h5 class="mb-0" id="divTotal" runat="server">0</h5>
+                                                                                    <h5 class="mb-0">
+                                                                                        <asp:LinkButton ID="lnkTotal" runat="server" OnClick="lnkTotal_Click"></asp:LinkButton></h5>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col">
                                                                             <h5 class="text-muted mt-0 mb-1 fs-13">Total Projects</h5>
                                                                             <p class="text-reset fs-14 mb-0">Total No Of Projects Under Searched Criteria</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <h5 class="mb-0"></h5>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                     <!-- end row -->
@@ -124,7 +132,8 @@
                                                                             <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divPhyCompleted" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkPhyCompleted" runat="server" OnClick="lnkPhyCompleted_Click"></asp:LinkButton></h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -137,7 +146,8 @@
                                                                             <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divPhyNotCompleted" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkPhyNotCompleted" runat="server" OnClick="lnkPhyNotCompleted_Click"></asp:LinkButton></h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -152,7 +162,8 @@
                                                                             <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divFinCompleted" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkFinCompleted" runat="server" OnClick="lnkFinCompleted_Click"></asp:LinkButton></h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -165,7 +176,8 @@
                                                                             <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divFinNotCompleted" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkFinNotCompleted" runat="server" OnClick="lnkFinNotCompleted_Click"></asp:LinkButton></h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -183,10 +195,11 @@
                                                                 <li class="list-group-item ps-0">
                                                                     <div class="row align-items-center g-3">
                                                                         <div class="col-auto">
-                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divGalleryUpdated" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkGalleryUpdated" runat="server" OnClick="lnkGalleryUpdated_Click"></asp:LinkButton></h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -196,10 +209,11 @@
                                                                             <p class="text-reset fs-14 mb-0">Total No Of Projects where Photo Gallery is Uploaded</p>
                                                                         </div>
                                                                         <div class="col-auto">
-                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divGalleryNotUpdated" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkGalleryNotUpdated" runat="server" OnClick="lnkGalleryNotUpdated_Click"></asp:LinkButton></h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -214,7 +228,8 @@
                                                                             <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divInspectionUpdated" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkInspectionUpdated" runat="server" OnClick="lnkGalleryNotUpdated_Click"></asp:LinkButton></h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -227,7 +242,8 @@
                                                                             <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divInspectionNotUpdated" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkInspectionNotUpdated" runat="server" OnClick="lnkGalleryNotUpdated_Click"></asp:LinkButton></h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -242,7 +258,9 @@
                                                                             <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divAgreementUpdated" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkAgreementUpdated" runat="server" OnClick="lnkAgreementUpdated_Click"></asp:LinkButton>
+                                                                                        </h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -255,7 +273,9 @@
                                                                             <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divAgreementNotUpdated" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkAgreementNotUpdated" runat="server" OnClick="lnkAgreementNotUpdated_Click"></asp:LinkButton>
+                                                                                        </h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -273,10 +293,12 @@
                                                                 <li class="list-group-item ps-0">
                                                                     <div class="row align-items-center g-3">
                                                                         <div class="col-auto">
-                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divUCUpload" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkUCUpload" runat="server" OnClick="lnkUCUpload_Click"></asp:LinkButton>
+                                                                                        </h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -286,10 +308,12 @@
                                                                             <p class="text-reset fs-14 mb-0">Total Projects With Financial Progress More Than 60 and UC Uploaded</p>
                                                                         </div>
                                                                         <div class="col-auto">
-                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divUCNotUpload" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkUCNotUpload" runat="server" OnClick="lnkUCNotUpload_Click"></asp:LinkButton>
+                                                                                        </h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -304,7 +328,9 @@
                                                                             <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divUCApproved" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkUCApproved" runat="server" OnClick="lnkUCApproved_Click"></asp:LinkButton>
+                                                                                        </h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
@@ -317,7 +343,9 @@
                                                                             <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
                                                                                 <div class="text-center">
                                                                                     <a href="#">
-                                                                                        <h5 class="mb-0" id="divUCNotApproved" runat="server">0</h5>
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkUCNotApproved" runat="server" OnClick="lnkUCNotApproved_Click"></asp:LinkButton>
+                                                                                        </h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
