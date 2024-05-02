@@ -1,7 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true"
     CodeFile="MasterProjectWorkMIS_8.aspx.cs" Inherits="MasterProjectWorkMIS_8" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
     <div class="main-content">
         <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
@@ -67,7 +68,8 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Issuing Effective Date">
                                                                     <ItemTemplate>
-                                                                        <asp:TextBox ID="txtIssuingDate" runat="server" CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy" Text='<%# Eval("ProjectWorkIssueDetails_Date") %>'></asp:TextBox>
+                                                                        <asp:TextBox ID="txtIssuingDate" runat="server" CssClass="form-control date-picker" autocomplete="off" Text='<%# Eval("ProjectWorkIssueDetails_Date") %>'></asp:TextBox>
+                                                                        <cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" TargetControlID="txtIssuingDate" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Comments">
@@ -96,7 +98,8 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Resolved Date">
                                                                     <ItemTemplate>
-                                                                        <asp:TextBox ID="txtResolvedDate" runat="server" CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy" Text='<%# Eval("ProjectWorkIssueDetails_DateResolved") %>'></asp:TextBox>
+                                                                        <asp:TextBox ID="txtResolvedDate" runat="server" CssClass="form-control date-picker" autocomplete="off" Text='<%# Eval("ProjectWorkIssueDetails_DateResolved") %>'></asp:TextBox>
+                                                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" CssClass="cal_Theme1" TargetControlID="txtResolvedDate" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Resolved">

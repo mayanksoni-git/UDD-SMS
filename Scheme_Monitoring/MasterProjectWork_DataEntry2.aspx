@@ -1,20 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="MasterProjectWork_DataEntry2.aspx.cs" Inherits="MasterProjectWork_DataEntry2" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <style>
-        div.ajax__calendar_days table tr td
-        {
-            padding-right: 0px;
-        }
-        div.ajax__calendar_body
-        {
-            width: 205px;
-        }
-        div.ajax__calendar_container
-        {
-            width: 205px;
-        }
-    </style>
+
+    <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
@@ -120,7 +108,7 @@
                                                             <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Style="display: none;" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
                                                             <asp:TextBox ID="txtGODate2" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
                                                             
-                                                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtGODate2" Format="dd-MMM-yyyy"> </cc1:CalendarExtender>
+                                                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" TargetControlID="txtGODate2" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -245,7 +233,8 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="GO Date">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="txtFinancialTrans_GO_Date" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkGO_GO_Date") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="txtFinancialTrans_GO_Date" runat="server" CssClass="form-control" autocomplete="off" Text='<%# Eval("ProjectWorkGO_GO_Date") %>'></asp:TextBox>
+                                                                            <cc1:CalendarExtender ID="CalendarExtender11" runat="server" CssClass="cal_Theme1" TargetControlID="txtFinancialTrans_GO_Date" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="GO Number">
@@ -333,29 +322,33 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label8" runat="server" Text="Date Of Start As Per Agreement *" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtAgreementDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
+                                                            <asp:TextBox ID="txtAgreementDate" runat="server" CssClass="form-control" autocomplete="off" ></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" CssClass="cal_Theme1" TargetControlID="txtAgreementDate" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
+
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label9" runat="server" Text="Actual Date Of Start" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtActualDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
+                                                            <asp:TextBox ID="txtActualDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender3" runat="server" CssClass="cal_Theme1" TargetControlID="txtActualDate" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label4" runat="server" Text="Date Of Completion As Per Agreement" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtDueDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y"></asp:TextBox>
+                                                            <asp:TextBox ID="txtDueDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender4" runat="server" CssClass="cal_Theme1" TargetControlID="txtDueDate" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label11" runat="server" Text="Actual / Expected Date Of Completion" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtextenddate" runat="server" CssClass="form-control" data-provider="flatpickr"
-                                                                autocomplete="off" data-date-format="d/m/Y"></asp:TextBox>
+                                                            <asp:TextBox ID="txtextenddate" runat="server" CssClass="form-control" autocomplete="off" ></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender5" runat="server" CssClass="cal_Theme1" TargetControlID="txtextenddate" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -599,7 +592,8 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="UC Date">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="txtUCDate" runat="server" CssClass="form-control" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y" Text='<%# Eval("ProjectUC_SubmitionDate") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="txtUCDate" runat="server" CssClass="form-control" autocomplete="off" Text='<%# Eval("ProjectUC_SubmitionDate") %>'></asp:TextBox>
+                                                                            <cc1:CalendarExtender ID="CalendarExtender21" runat="server" CssClass="cal_Theme1" TargetControlID="txtUCDate" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="UC Number">
@@ -705,7 +699,8 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Issuing Effective Date">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="txtIssuingDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkIssueDetails_Date") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="txtIssuingDate" runat="server" CssClass="form-control" autocomplete="off" Text='<%# Eval("ProjectWorkIssueDetails_Date") %>'></asp:TextBox>
+                                                                            <cc1:CalendarExtender ID="CalendarExtender31" runat="server" CssClass="cal_Theme1" TargetControlID="txtIssuingDate" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Comments">
@@ -729,7 +724,8 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Resolved Date">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="txtResolvedDate" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y" Text='<%# Eval("ProjectWorkIssueDetails_DateResolved") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="txtResolvedDate" runat="server" CssClass="form-control" autocomplete="off" Text='<%# Eval("ProjectWorkIssueDetails_DateResolved") %>'></asp:TextBox>
+                                                                            <cc1:CalendarExtender ID="CalendarExtender32" runat="server" CssClass="cal_Theme1" TargetControlID="txtResolvedDate" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Resolved">

@@ -1,7 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true"
     CodeFile="MasterProjectWorkMIS_2_CNDS.aspx.cs" Inherits="MasterProjectWorkMIS_2_CNDS" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+        <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
     <div class="main-content">
         <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
@@ -39,10 +40,11 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="GO Date">
                                                                     <ItemTemplate>
-                                                                        <asp:TextBox ID="txtFinancialTrans_GO_Date" runat="server" CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy" Text='<%# Eval("ProjectWorkGO_GO_Date") %>'></asp:TextBox>
+                                                                        <asp:TextBox ID="txtFinancialTrans_GO_Date" runat="server" CssClass="form-control date-picker" autocomplete="off" Text='<%# Eval("ProjectWorkGO_GO_Date") %>'></asp:TextBox>
+                                                                        <cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" TargetControlID="txtFinancialTrans_GO_Date" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                                     </ItemTemplate>
                                                                     <FooterTemplate>
-                                                                        <asp:Label ID="lbl1" CssClass="control-label no-padding-right" runat="server" Text="Total GO Issued Till Date:" />
+                                                                        <asp:Label ID="lbl1" ForeColor="Black" CssClass="control-label no-padding-right" runat="server" Text="Total GO Issued Till Date:" />
                                                                     </FooterTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="GO Number">

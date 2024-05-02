@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="Report_ProjectWork_Physical_Statement.aspx.cs" Inherits="Report_ProjectWork_Physical_Statement" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+        <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
     <div class="main-content">
         <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
@@ -57,7 +58,8 @@
                                                         <%--<label class="control-label no-padding-right">Date Till</label>--%>
                                                         <asp:Label ID="lblDateTill" runat="server" Text="Date Till" CssClass="control-label no-padding-right"></asp:Label>
                                                         <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y" style="display:none;"></asp:TextBox>
-                                                        <asp:TextBox ID="txtDateTill" runat="server" CssClass="form-control" data-provider="flatpickr" autocomplete="off" data-date-format="d/m/Y"></asp:TextBox>
+                                                        <asp:TextBox ID="txtDateTill" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" CssClass="cal_Theme1" TargetControlID="txtDateTill" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
