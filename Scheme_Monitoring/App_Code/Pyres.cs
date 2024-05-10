@@ -17,16 +17,19 @@ public class Pyres
 
     string ConStr = ConfigurationManager.AppSettings.Get("conn").ToString();
 
-    public DataTable Method1(string CIF, int SponserID)
+    public DataTable getPyresTrackerBySearch(SearchPyresTracker objSearch)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[2];
-            param[0] = new SqlParameter("@CIF", CIF);
-            param[1] = new SqlParameter("@SponserID", SponserID);
+            SqlParameter[] param = new SqlParameter[5];
+            param[0] = new SqlParameter("@Zone", objSearch.Zone);
+            param[1] = new SqlParameter("@Circle", objSearch.Circle);
+            param[2] = new SqlParameter("@Division", objSearch.Division);
+            param[3] = new SqlParameter("@Year", objSearch.Year);
+            param[4] = new SqlParameter("@Month", objSearch.Month);
 
-            return objDAL.GetDataByProcedure("BecomeAgent", param);
+            return objDAL.GetDataByProcedure("sp_GetPyresTrackerBySearch", param);
         }
         catch (Exception ex)
         {

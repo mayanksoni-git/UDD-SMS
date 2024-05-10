@@ -194,7 +194,16 @@
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=Comp" class="nav-link" data-key="t-grid-js">Update Physical & Financial</a> </li>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=G" class="nav-link" data-key="t-grid-js">View Project Gallery</a> </li>
                                         <li class="nav-item"><a href="ProjectWorkInspectionUpdate.aspx" class="nav-link" data-key="t-grid-js">Fill Site Visit / Inspection</a> </li>
-                                        <li class="nav-item"><a href="PyersTracker.aspx" class="nav-link" data-key="t-grid-js">Pyers Tracker</a> </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarMIS" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMIS"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">MIS</span> </a>
+                                <div class="collapse menu-dropdown" id="sidebarMIS">
+                                    <ul class="nav nav-sm flex-column">
+                                        <%--<li class="nav-item"><a href="PyersTracker.aspx" class="nav-link" data-key="t-grid-js">Crematorium Tracker</a> </li>--%>
+                                        <li class="nav-item"><a href="RptPyresTracker.aspx" class="nav-link" data-key="t-grid-js">Report Crematorium Tracker</a> </li>
                                     </ul>
                                 </div>
                             </li>

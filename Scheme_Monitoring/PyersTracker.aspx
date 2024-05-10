@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="PyersTracker.aspx.cs" Inherits="PyersTracker" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="PyersTracker.aspx.cs" Inherits="PyersTracker" EnableEventValidation="false" ValidateRequest="false" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
@@ -13,12 +13,12 @@
                             <div class="row">
                                 <div class="col-12 mb-3">
                                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                        <h4 class="mb-sm-0">Create / Update Pyres Tracker</h4>
+                                        <h4 class="mb-sm-0">Create / Update Crematorium Tracker</h4>
                                         <div class="page-title-right">
                                             <ol class="breadcrumb m-0">
                                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                                 <li class="breadcrumb-item">Project Master</li>
-                                                <li class="breadcrumb-item active">Pyres Tracker</li>
+                                                <li class="breadcrumb-item active">Crematorium Tracker</li>
                                             </ol>
                                         </div>
                                     </div>
