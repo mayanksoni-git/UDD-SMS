@@ -17,6 +17,7 @@ public partial class Index : System.Web.UI.Page
     public tbl_ePaymentModules obj_tbl_ePaymentModules = new tbl_ePaymentModules();
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         string Client = ConfigurationManager.AppSettings.Get("Client");
         if (Session["Module_Id"] != null && Session["Module_Id"].ToString() == "1")
         {
