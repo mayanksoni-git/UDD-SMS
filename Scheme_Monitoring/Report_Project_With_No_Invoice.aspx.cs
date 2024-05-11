@@ -1,4 +1,4 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -409,169 +409,12 @@ public partial class Report_Project_With_No_Invoice : System.Web.UI.Page
 
     protected void btnExport1_Click(object sender, EventArgs e)
     {
-        DataSet ds = new DataSet();
-        if (ViewState["StagnantFinancial"] != null)
-        {
-            ds = (DataSet)ViewState["StagnantFinancial"];
-            if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
-            {
-                string filePath = "\\Downloads\\" + Session["Person_Id"].ToString() + "\\";
-                if (!Directory.Exists(Server.MapPath(".") + filePath))
-                {
-                    Directory.CreateDirectory(Server.MapPath(".") + filePath);
-                }
-
-                string fileName = "StagnantFinancial_Summery.pdf";
-
-                List<tbl_Stagnant_Progress> obj_tbl_Stagnant_Progress_Li = new List<tbl_Stagnant_Progress>();
-                for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
-                {
-                    tbl_Stagnant_Progress obj_tbl_Stagnant_Progress = new tbl_Stagnant_Progress();
-                    obj_tbl_Stagnant_Progress.OnGoing = Convert.ToInt32(ds.Tables[1].Rows[i]["OnGoing"].ToString());
-                    obj_tbl_Stagnant_Progress.Completed = Convert.ToInt32(ds.Tables[1].Rows[i]["Completed"].ToString());
-                    obj_tbl_Stagnant_Progress.Total = Convert.ToInt32(ds.Tables[1].Rows[i]["Total"].ToString());
-                    obj_tbl_Stagnant_Progress.Circle_Id = Convert.ToInt32(ds.Tables[1].Rows[i]["Circle_Id"].ToString());
-                    obj_tbl_Stagnant_Progress.Zone_Id = Convert.ToInt32(ds.Tables[1].Rows[i]["Zone_Id"].ToString());
-                    obj_tbl_Stagnant_Progress.Circle_Name = ds.Tables[1].Rows[i]["Circle_Name"].ToString();
-                    obj_tbl_Stagnant_Progress.Zone_Name = ds.Tables[1].Rows[i]["Zone_Name"].ToString();
-                    obj_tbl_Stagnant_Progress.Zone_Circle_Name = ds.Tables[1].Rows[i]["Zone_Name"].ToString() + " - " + ds.Tables[1].Rows[i]["Circle_Name"].ToString();
-                    obj_tbl_Stagnant_Progress.Header_Text = "Stagnant Financial Progress for more than " + txtPendencyDays.Text + " Days - : " + ddlSearchScheme.SelectedItem.Text;
-                    obj_tbl_Stagnant_Progress_Li.Add(obj_tbl_Stagnant_Progress);
-                }
-
-                string webURI = "";
-                if (Page.Request.Url.Query.Trim() == "")
-                {
-                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
-                }
-                else
-                {
-                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
-                }
-
-                ReportDocument crystalReport = new ReportDocument();
-                crystalReport.Load(Server.MapPath("~/Crystal/pmis/Stagnant_Fin_Progress_Summery.rpt"));
-                crystalReport.SetDataSource(obj_tbl_Stagnant_Progress_Li);
-                crystalReport.Refresh();
-                //crystalReport.ReportSource = crystalReport;
-                //crystalReport.RefreshReport();
-                crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
-
-                FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
-                if (fi.Exists)
-                {
-                    new AllClasses().Render_PDF_Document(ltEmbed, filePath + fileName);
-                    mp1.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Unable To Generate Report.");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Unable To Generate Report.");
-                return;
-            }
-        }
+        
     }
 
     protected void btnExport2_Click(object sender, EventArgs e)
     {
-        DataSet ds = new DataSet();
-        if (ViewState["StagnantFinancial"] != null)
-        {
-            ds = (DataSet)ViewState["StagnantFinancial"];
-            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-            {
-                string filePath = "\\Downloads\\" + Session["Person_Id"].ToString() + "\\";
-                if (!Directory.Exists(Server.MapPath(".") + filePath))
-                {
-                    Directory.CreateDirectory(Server.MapPath(".") + filePath);
-                }
-
-                string fileName = "StagnantFinancial_Detail.pdf";
-
-                List<tbl_Stagnant_Progress_Detail> obj_tbl_Stagnant_Progress_Detail_Li = new List<tbl_Stagnant_Progress_Detail>();
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                {
-                    tbl_Stagnant_Progress_Detail obj_tbl_Stagnant_Progress_Detail = new tbl_Stagnant_Progress_Detail();
-                    obj_tbl_Stagnant_Progress_Detail.Circle_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Circle_Id"].ToString());
-                    obj_tbl_Stagnant_Progress_Detail.Zone_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Zone_Id"].ToString());
-                    obj_tbl_Stagnant_Progress_Detail.Division_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Division_Id"].ToString());
-                    obj_tbl_Stagnant_Progress_Detail.Circle_Name = ds.Tables[0].Rows[i]["Circle_Name"].ToString();
-                    obj_tbl_Stagnant_Progress_Detail.Zone_Name = ds.Tables[0].Rows[i]["Zone_Name"].ToString();
-                    obj_tbl_Stagnant_Progress_Detail.Division_Name = ds.Tables[0].Rows[i]["Division_Name"].ToString();
-                    obj_tbl_Stagnant_Progress_Detail.ProjectWork_Name = ds.Tables[0].Rows[i]["ProjectWork_Name"].ToString();
-                    obj_tbl_Stagnant_Progress_Detail.ProjectWork_Code = ds.Tables[0].Rows[i]["ProjectWork_ProjectCode"].ToString();
-                    obj_tbl_Stagnant_Progress_Detail.Circle_Division_Name = ds.Tables[0].Rows[i]["Circle_Name"].ToString() + " - " + ds.Tables[0].Rows[i]["Division_Name"].ToString();
-                    obj_tbl_Stagnant_Progress_Detail.Header_Text = "Stagnant Financial Progress for more than " + txtPendencyDays.Text + " Days - : " + ddlSearchScheme.SelectedItem.Text;
-                    try
-                    {
-                        obj_tbl_Stagnant_Progress_Detail.Financial_Progress = Convert.ToDecimal(ds.Tables[0].Rows[i]["Financial_Progress"].ToString());
-                    }
-                    catch
-                    {
-                        obj_tbl_Stagnant_Progress_Detail.Financial_Progress = 0;
-                    }
-                    try
-                    {
-                        obj_tbl_Stagnant_Progress_Detail.Physical_Progress = Convert.ToDecimal(ds.Tables[0].Rows[i]["Physical_Progress"].ToString());
-                    }
-                    catch
-                    {
-                        obj_tbl_Stagnant_Progress_Detail.Physical_Progress = 0;
-                    }
-                    obj_tbl_Stagnant_Progress_Detail.Last_Invoice_Date = ds.Tables[0].Rows[i]["Last_Invoice_Date"].ToString();
-                    try
-                    {
-                        obj_tbl_Stagnant_Progress_Detail.Days_Since_Last_Invoice = Convert.ToInt32(ds.Tables[0].Rows[i]["Days_Diff"].ToString());
-                    }
-                    catch
-                    {
-                        obj_tbl_Stagnant_Progress_Detail.Days_Since_Last_Invoice = 0;
-                    }
-                    obj_tbl_Stagnant_Progress_Detail.Issue_Reported = ds.Tables[0].Rows[i]["Issue"].ToString();
-                    obj_tbl_Stagnant_Progress_Detail_Li.Add(obj_tbl_Stagnant_Progress_Detail);
-                }
-
-                string webURI = "";
-                if (Page.Request.Url.Query.Trim() == "")
-                {
-                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
-                }
-                else
-                {
-                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
-                }
-
-                ReportDocument crystalReport = new ReportDocument();
-                crystalReport.Load(Server.MapPath("~/Crystal/pmis/Stagnant_Fin_Progress_Detail.rpt"));
-                crystalReport.SetDataSource(obj_tbl_Stagnant_Progress_Detail_Li);
-                crystalReport.Refresh();
-                //crystalReport.ReportSource = crystalReport;
-                //crystalReport.RefreshReport();
-                crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
-
-                FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
-                if (fi.Exists)
-                {
-                    new AllClasses().Render_PDF_Document(ltEmbed, filePath + fileName);
-                    mp1.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Unable To Generate Report.");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Unable To Generate Report.");
-                return;
-            }
-        }
+        
     }
 
     protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)

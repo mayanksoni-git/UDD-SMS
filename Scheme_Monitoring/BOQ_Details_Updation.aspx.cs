@@ -1,4 +1,4 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -956,31 +956,7 @@ public partial class BOQ_Details_Updation : System.Web.UI.Page
                     webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
                 }
 
-                ReportDocument crystalReport = new ReportDocument();
-                crystalReport.Load(Server.MapPath("~/Crystal/BOQ_Export.rpt"));
-                crystalReport.SetDataSource(obj_tbl_Report_BOQ_Li);
-                crystalReport.Refresh();
-                //crystalReport.ReportSource = crystalReport;
-                //crystalReport.RefreshReport();
-                crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
-
-                FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
-                if (fi.Exists)
-                {
-                    #region For Download File
-                    Response.ClearContent();
-                    Response.AddHeader("Content-Disposition", "attachment; filename=" + fi.Name);
-                    Response.AddHeader("Content-Length", fi.Length.ToString());
-                    string CId = Request["__EVENTTARGET"];
-                    Response.TransmitFile(fi.FullName);
-                    Response.End();
-                    #endregion
-                }
-                else
-                {
-                    MessageBox.Show("Unable To Generate Invoice.");
-                    return;
-                }
+                
             }
         }
         else

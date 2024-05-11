@@ -1,7 +1,7 @@
 ﻿using Aspose.Pdf;
 using Aspose.Pdf.Operators;
 using ClosedXML.Excel;
-using CrystalDecisions.CrystalReports.Engine;
+
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -721,45 +721,7 @@ public partial class Report_PMIS_Dump : System.Web.UI.Page
     }
     protected void Export_Data_One_Pager(List<One_Pager_Lite> obj_One_Pager_Lite_Li)
     {
-        string filePath = "\\Downloads\\";
-
-        string fileName = "OnePager.pdf";
-
-        string webURI = "";
-        if (Page.Request.Url.Query.Trim() == "")
-        {
-            webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
-        }
-        else
-        {
-            webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
-        }
-
-        ReportDocument crystalReport = new ReportDocument();
-        crystalReport.Load(Server.MapPath("~/Crystal/One_Pager.rpt"));
-        crystalReport.SetDataSource(obj_One_Pager_Lite_Li);
-        crystalReport.Refresh();
-        //crystalReport.ReportSource = crystalReport;
-        //crystalReport.RefreshReport();
-        crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
-
-        FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
-        if (fi.Exists)
-        {
-            System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
-            response.ClearContent();
-            response.Clear();
-            response.ContentType = "application/octet-stream";
-            response.AddHeader("Content-Disposition", "attachment; filename=" + fi.Name + ";");
-            response.TransmitFile(fi.FullName);
-            response.Flush();
-            response.End();
-        }
-        else
-        {
-            MessageBox.Show("Unable To Generate One Pager.");
-            return;
-        }
+        
     }
     protected void lnkOnePager_Click(object sender, EventArgs e)
     {
@@ -1253,45 +1215,6 @@ public partial class Report_PMIS_Dump : System.Web.UI.Page
 
     protected void Export_Data_MPR(List<MPR_Detailed> obj_MPR_Detailed_Li, List<MPR_Component> obj_MPR_Component_Li)
     {
-        string filePath = "\\Downloads\\";
-
-        string fileName = "MPR.pdf";
-
-        string webURI = "";
-        if (Page.Request.Url.Query.Trim() == "")
-        {
-            webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
-        }
-        else
-        {
-            webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
-        }
-
-        ReportDocument crystalReport = new ReportDocument();
-        crystalReport.Load(Server.MapPath("~/Crystal/MPR.rpt"));
-        crystalReport.SetDataSource(obj_MPR_Detailed_Li);
-        crystalReport.Subreports[0].SetDataSource(obj_MPR_Component_Li);
-        crystalReport.Refresh();
-        //crystalReport.ReportSource = crystalReport;
-        //crystalReport.RefreshReport();
-        crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
-
-        FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
-        if (fi.Exists)
-        {
-            System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
-            response.ClearContent();
-            response.Clear();
-            response.ContentType = "application/octet-stream";
-            response.AddHeader("Content-Disposition", "attachment; filename=" + fi.Name + ";");
-            response.TransmitFile(fi.FullName);
-            response.Flush();
-            response.End();
-        }
-        else
-        {
-            MessageBox.Show("Unable To Generate MPR.");
-            return;
-        }
+        
     }
 }

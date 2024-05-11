@@ -1,4 +1,4 @@
-﻿using CrystalDecisions.CrystalReports.Engine;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -387,110 +387,7 @@ public partial class PackageUpdateConfiguration : System.Web.UI.Page
 
     protected void btnDownload_Click(object sender, ImageClickEventArgs e)
     {
-        try
-        {
-            GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
-            List<Decleration_Letter> obj_Decleration_Letter_Li = new List<Decleration_Letter>();
-            string ProjectWorkPkg_Id = gr.Cells[0].Text.Trim();
-            Decleration_Letter obj_Decleration_Letter = new Decleration_Letter();
-            obj_Decleration_Letter.Circle_Name = gr.Cells[8].Text.Trim();
-            obj_Decleration_Letter.Division_Name = gr.Cells[9].Text.Trim();
-            obj_Decleration_Letter.Package_Name = gr.Cells[15].Text.Trim();
-            obj_Decleration_Letter.Package_Code = gr.Cells[14].Text.Trim();
-            obj_Decleration_Letter.Project_Name = gr.Cells[12].Text.Trim();
-            obj_Decleration_Letter.Project_Code = gr.Cells[11].Text.Trim();
-            try
-            {
-                obj_Decleration_Letter.Last_RA_Bill_No = Convert.ToInt32(gr.Cells[24].Text.Trim());
-            }
-            catch
-            { }
-            obj_Decleration_Letter.Last_RA_Bill_Date = gr.Cells[25].Text.Trim();
-
-            obj_Decleration_Letter.Subject = "अमृत कार्यक्रम के अंतर्गत " + obj_Decleration_Letter.Division_Name + " के " + obj_Decleration_Letter.Project_Code + " के पैकेज " + obj_Decleration_Letter.Package_Code + " के डेटा को Freeze करने के सम्बन्ध में |";
-            string _content = "";
-            _content += "उपरोक्त विषयक अवगत कराना है कि इस इकाई द्वारा अमृत कार्यक्रम के अंतर्गत " + obj_Decleration_Letter.Project_Name + " के पैकेज " + obj_Decleration_Letter.Package_Name + " से सम्बंधित निम्न सूचनाओं को पोर्टल "+ Session["Base_Web_URL"].ToString() + " पर अपडेट की जा चुकी है:-";
-            _content += Environment.NewLine;
-            _content += "Last RA Bill No: " + obj_Decleration_Letter.Last_RA_Bill_No.ToString();
-            _content += Environment.NewLine;
-            _content += "Last RA Bill Date: " + obj_Decleration_Letter.Last_RA_Bill_Date;
-            _content += Environment.NewLine;
-            _content += "Quantity Paid Till Date: Updated";
-            _content += Environment.NewLine;
-            _content += "Updation Of Percentage Payment: Updated (If Applicable)";
-            _content += Environment.NewLine;
-            _content += "Item Wise GST Applicability & Rate: Updated";
-            _content += Environment.NewLine;
-            _content += "अतः अनुरोध है की उक्त पैकेज की BOQ को Freeze करने की कृपा करें, जिससे की पैकेजों की पोर्टल पर ऑनलाइन eMB कर बीजकों को भुगतान हेतु अमृत निदेशालय प्रेषित किया जा सके |";
-
-            obj_Decleration_Letter.Content = _content;
-
-            obj_Decleration_Letter_Li.Add(obj_Decleration_Letter);
-
-            string filePath = "\\Downloads\\Decleration\\";
-            if (!Directory.Exists(Server.MapPath(".") + filePath))
-            {
-                Directory.CreateDirectory(Server.MapPath(".") + filePath);
-            }
-
-            string fileName = ProjectWorkPkg_Id + ".pdf";
-
-            if (File.Exists(Server.MapPath(".") + filePath + fileName))
-            {
-                File.Delete(Server.MapPath(".") + filePath + fileName);
-            }
-            string webURI = "";
-            if (Page.Request.Url.Query.Trim() == "")
-            {
-                webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
-            }
-            else
-            {
-                webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
-            }
-
-            ReportDocument crystalReport = new ReportDocument();
-            crystalReport.Load(Server.MapPath("~/Crystal/Decleration.rpt"));
-            crystalReport.SetDataSource(obj_Decleration_Letter_Li);
-            //crystalReport.ReportSource = crystalReport;
-            //crystalReport.RefreshReport();
-            crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
-
-            FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
-            if (fi.Exists)
-            {
-                new AllClasses().Render_PDF_Document(ltEmbed, filePath + fileName);
-                mp1.Show();
-                #region For Open In Browser
-                //WebClient User = new WebClient();
-                //Byte[] FileBuffer = User.DownloadData(webURI);
-                //if (FileBuffer != null)
-                //{
-                //    Response.ContentType = "application/pdf";
-                //    Response.AddHeader("content-length", FileBuffer.Length.ToString());
-                //    Response.BinaryWrite(FileBuffer);
-                //}
-                #endregion
-
-                #region For Download File
-                //Response.ClearContent();
-                //Response.AddHeader("Content-Disposition", "attachment; filename=" + fi.Name);
-                //Response.AddHeader("Content-Length", fi.Length.ToString());
-                //string CId = Request["__EVENTTARGET"];
-                //Response.TransmitFile(fi.FullName);
-                //Response.End(); 
-                #endregion
-            }
-            else
-            {
-                MessageBox.Show("Unable To Download File.");
-                return;
-            }
-        }
-        catch(Exception ee)
-        {
-            MessageBox.Show(ee.Message);
-        }
+        
     }
 
     protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
