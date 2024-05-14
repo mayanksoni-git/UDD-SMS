@@ -1,4 +1,4 @@
-﻿
+﻿using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -513,11 +513,173 @@ public partial class Report_ProjectDocumentNotAvailable : System.Web.UI.Page
 
     protected void btnExport1_Click(object sender, EventArgs e)
     {
-        
+        DataSet ds = new DataSet();
+        if (ViewState["Document_NA"] != null)
+        {
+            ds = (DataSet)ViewState["Document_NA"];
+            if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+            {
+                string filePath = "\\Downloads\\" + Session["Person_Id"].ToString() + "\\";
+                if (!Directory.Exists(Server.MapPath(".") + filePath))
+                {
+                    Directory.CreateDirectory(Server.MapPath(".") + filePath);
+                }
+
+                string fileName = "Document_NA_Summery.pdf";
+
+                List<tbl_Document_NA_Summery> obj_tbl_Document_NA_Summery_Li = new List<tbl_Document_NA_Summery>();
+                for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+                {
+                    tbl_Document_NA_Summery obj_tbl_Document_NA_Summery = new tbl_Document_NA_Summery();
+                    obj_tbl_Document_NA_Summery.Agreement_Stamp = Convert.ToInt32(ds.Tables[1].Rows[i]["CB_Stamp"].ToString());
+                    obj_tbl_Document_NA_Summery.BG = Convert.ToInt32(ds.Tables[1].Rows[i]["BG"].ToString());
+                    obj_tbl_Document_NA_Summery.CB = Convert.ToInt32(ds.Tables[1].Rows[i]["Agreement"].ToString());
+                    obj_tbl_Document_NA_Summery.Circle_Id = Convert.ToInt32(ds.Tables[1].Rows[i]["Circle_Id"].ToString());
+                    obj_tbl_Document_NA_Summery.Zone_Id = Convert.ToInt32(ds.Tables[1].Rows[i]["Zone_Id"].ToString());
+                    obj_tbl_Document_NA_Summery.Circle_Name = ds.Tables[1].Rows[i]["Circle_Name"].ToString();
+                    obj_tbl_Document_NA_Summery.Zone_Name = ds.Tables[1].Rows[i]["Zone_Name"].ToString();
+                    obj_tbl_Document_NA_Summery.Zone_Circle_Name = ds.Tables[1].Rows[i]["Zone_Name"].ToString() + " - " + ds.Tables[1].Rows[i]["Circle_Name"].ToString();
+                    obj_tbl_Document_NA_Summery.CB_Front = Convert.ToInt32(ds.Tables[1].Rows[i]["CB_Front"].ToString());
+                    obj_tbl_Document_NA_Summery.Financial_Closure = Convert.ToInt32(ds.Tables[1].Rows[i]["FC"].ToString());
+                    obj_tbl_Document_NA_Summery.First_GO = Convert.ToInt32(ds.Tables[1].Rows[i]["GO_1"].ToString());
+                    obj_tbl_Document_NA_Summery.LD = Convert.ToInt32(ds.Tables[1].Rows[i]["LD"].ToString());
+                    obj_tbl_Document_NA_Summery.LOI = Convert.ToInt32(ds.Tables[1].Rows[i]["LOI"].ToString());
+                    obj_tbl_Document_NA_Summery.MA = Convert.ToInt32(ds.Tables[1].Rows[i]["MA"].ToString());
+                    obj_tbl_Document_NA_Summery.Package_Count = Convert.ToInt32(ds.Tables[1].Rows[i]["Total_Package"].ToString());
+                    obj_tbl_Document_NA_Summery.Physical_Closure = 0;
+                    obj_tbl_Document_NA_Summery.PS = Convert.ToInt32(ds.Tables[1].Rows[i]["PS"].ToString());
+                    obj_tbl_Document_NA_Summery.Schedule_G = Convert.ToInt32(ds.Tables[1].Rows[i]["Schedule_G"].ToString());
+                    obj_tbl_Document_NA_Summery.Second_GO = Convert.ToInt32(ds.Tables[1].Rows[i]["GO_2"].ToString());
+                    obj_tbl_Document_NA_Summery.TE = Convert.ToInt32(ds.Tables[1].Rows[i]["TE"].ToString());
+                    obj_tbl_Document_NA_Summery.Third_GO = Convert.ToInt32(ds.Tables[1].Rows[i]["GO_3"].ToString());
+                    obj_tbl_Document_NA_Summery.Variation = Convert.ToInt32(ds.Tables[1].Rows[i]["Variation"].ToString());
+                    obj_tbl_Document_NA_Summery.Header_Text = "PMIS Documents not available - Number of Packages : " + ddlScheme.SelectedItem.Text;
+                    obj_tbl_Document_NA_Summery_Li.Add(obj_tbl_Document_NA_Summery);
+                }
+
+                string webURI = "";
+                if (Page.Request.Url.Query.Trim() == "")
+                {
+                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
+                }
+                else
+                {
+                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
+                }
+
+                ReportDocument crystalReport = new ReportDocument();
+                crystalReport.Load(Server.MapPath("~/Crystal/pmis/Document_Miss_Summary.rpt"));
+                crystalReport.SetDataSource(obj_tbl_Document_NA_Summery_Li);
+                crystalReport.Refresh();
+                //crystalReport.ReportSource = crystalReport;
+                //crystalReport.RefreshReport();
+                crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
+
+                FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
+                if (fi.Exists)
+                {
+                    new AllClasses().Render_PDF_Document(ltEmbed, filePath + fileName);
+                    mp1.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Unable To Generate Achivment Report.");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Unable To Generate Achivment Report.");
+                return;
+            }
+        }
     }
 
     protected void btnExport2_Click(object sender, EventArgs e)
     {
-        
+        DataSet ds = new DataSet();
+        if (ViewState["Document_NA"] != null)
+        {
+            ds = (DataSet)ViewState["Document_NA"];
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                string filePath = "\\Downloads\\" + Session["Person_Id"].ToString() + "\\";
+                if (!Directory.Exists(Server.MapPath(".") + filePath))
+                {
+                    Directory.CreateDirectory(Server.MapPath(".") + filePath);
+                }
+
+                string fileName = "Document_NA_Detail.pdf";
+
+                List<tbl_Document_NA_Detail> obj_tbl_Document_NA_Detail_Li = new List<tbl_Document_NA_Detail>();
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    tbl_Document_NA_Detail obj_tbl_Document_NA_Detail = new tbl_Document_NA_Detail();
+                    obj_tbl_Document_NA_Detail.Agreement_Stamp = Convert.ToInt32(ds.Tables[0].Rows[i]["CB_Stamp"].ToString());
+                    obj_tbl_Document_NA_Detail.BG = Convert.ToInt32(ds.Tables[0].Rows[i]["BG"].ToString());
+                    obj_tbl_Document_NA_Detail.CB = Convert.ToInt32(ds.Tables[0].Rows[i]["Agreement"].ToString());
+                    obj_tbl_Document_NA_Detail.Circle_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Circle_Id"].ToString());
+                    obj_tbl_Document_NA_Detail.Zone_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Zone_Id"].ToString());
+                    obj_tbl_Document_NA_Detail.Division_Id= Convert.ToInt32(ds.Tables[0].Rows[i]["Division_Id"].ToString());
+                    obj_tbl_Document_NA_Detail.Circle_Name = ds.Tables[0].Rows[i]["Circle_Name"].ToString();
+                    obj_tbl_Document_NA_Detail.Zone_Name = ds.Tables[0].Rows[i]["Zone_Name"].ToString();
+                    obj_tbl_Document_NA_Detail.Division_Name = ds.Tables[0].Rows[i]["Division_Name"].ToString();
+                    obj_tbl_Document_NA_Detail.ProjectWork_Name = ds.Tables[0].Rows[i]["ProjectWork_Name"].ToString();
+                    obj_tbl_Document_NA_Detail.ProjectWork_Code = ds.Tables[0].Rows[i]["ProjectWork_ProjectCode"].ToString();
+                    obj_tbl_Document_NA_Detail.Circle_Division_Name = ds.Tables[0].Rows[i]["Circle_Name"].ToString() + " - " + ds.Tables[0].Rows[i]["Division_Name"].ToString();
+                    obj_tbl_Document_NA_Detail.CB_Front = Convert.ToInt32(ds.Tables[0].Rows[i]["CB_Front"].ToString());
+                    obj_tbl_Document_NA_Detail.Financial_Closure = Convert.ToInt32(ds.Tables[0].Rows[i]["FC"].ToString());
+                    obj_tbl_Document_NA_Detail.First_GO = Convert.ToInt32(ds.Tables[0].Rows[i]["GO_1"].ToString());
+                    obj_tbl_Document_NA_Detail.LD = Convert.ToInt32(ds.Tables[0].Rows[i]["LD"].ToString());
+                    obj_tbl_Document_NA_Detail.LOI = Convert.ToInt32(ds.Tables[0].Rows[i]["LOI"].ToString());
+                    obj_tbl_Document_NA_Detail.MA = Convert.ToInt32(ds.Tables[0].Rows[i]["MA"].ToString());
+                    obj_tbl_Document_NA_Detail.Package_Count = Convert.ToInt32(ds.Tables[0].Rows[i]["Total_Package"].ToString());
+                    obj_tbl_Document_NA_Detail.Physical_Closure = 0;
+                    obj_tbl_Document_NA_Detail.PS = Convert.ToInt32(ds.Tables[0].Rows[i]["PS"].ToString());
+                    obj_tbl_Document_NA_Detail.Schedule_G = Convert.ToInt32(ds.Tables[0].Rows[i]["Schedule_G"].ToString());
+                    obj_tbl_Document_NA_Detail.Second_GO = Convert.ToInt32(ds.Tables[0].Rows[i]["GO_2"].ToString());
+                    obj_tbl_Document_NA_Detail.TE = Convert.ToInt32(ds.Tables[0].Rows[i]["TE"].ToString());
+                    obj_tbl_Document_NA_Detail.Third_GO = Convert.ToInt32(ds.Tables[0].Rows[i]["GO_3"].ToString());
+                    obj_tbl_Document_NA_Detail.Variation = Convert.ToInt32(ds.Tables[0].Rows[i]["Variation"].ToString());
+                    obj_tbl_Document_NA_Detail.Header_Text = "PMIS Documents not available - Project Details : " + ddlScheme.SelectedItem.Text;
+                    obj_tbl_Document_NA_Detail_Li.Add(obj_tbl_Document_NA_Detail);
+                }
+
+                string webURI = "";
+                if (Page.Request.Url.Query.Trim() == "")
+                {
+                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
+                }
+                else
+                {
+                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
+                }
+
+                ReportDocument crystalReport = new ReportDocument();
+                crystalReport.Load(Server.MapPath("~/Crystal/pmis/Document_Miss_Descriptive.rpt"));
+                crystalReport.SetDataSource(obj_tbl_Document_NA_Detail_Li);
+                crystalReport.Refresh();
+                //crystalReport.ReportSource = crystalReport;
+                //crystalReport.RefreshReport();
+                crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
+
+                FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
+                if (fi.Exists)
+                {
+                    new AllClasses().Render_PDF_Document(ltEmbed, filePath + fileName);
+                    mp1.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Unable To Generate Achivment Report.");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Unable To Generate Achivment Report.");
+                return;
+            }
+        }
     }
 }

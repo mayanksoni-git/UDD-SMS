@@ -1,4 +1,4 @@
-﻿
+﻿using CrystalDecisions.CrystalReports.Engine;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -384,7 +384,133 @@ public partial class Work_Detail : System.Web.UI.Page
 
     protected void btnUC_Click(object sender, ImageClickEventArgs e)
     {
-        
+        //int UC_Id = Convert.ToInt32(((sender as ImageButton).Parent.Parent as GridViewRow).Cells[4].Text.Trim());
+
+        //DataSet ds = new DataSet();
+        //ds = new DataLayer().get_tbl_ProjectDPR_UC_Report(UC_Id);
+        //if (AllClasses.CheckDataSet(ds))
+        //{
+        //    List<Report_UC> obj_Report_UC_Li = new List<Report_UC>();
+
+        //    Report_UC obj_Report_UC = new Report_UC();
+        //    string ULB_Type = "";
+        //    if (ds.Tables[0].Rows[0]["ULB_Type"].ToString() == "NN")
+        //    {
+        //        ULB_Type = "नगर निगम ";
+        //    }
+        //    if (ds.Tables[0].Rows[0]["ULB_Type"].ToString() == "NPP")
+        //    {
+        //        ULB_Type = "नगर पालिका परिषद् ";
+        //    }
+        //    if (ds.Tables[0].Rows[0]["ULB_Type"].ToString() == "NP")
+        //    {
+        //        ULB_Type = "नगर पंचायत ";
+        //    }
+        //    try
+        //    {
+        //        obj_Report_UC.Budget_Approved = decimal.Round(Convert.ToDecimal(ds.Tables[0].Rows[0]["ProjectDPR_BudgetAllocated"].ToString()) / 100000, 2, MidpointRounding.AwayFromZero).ToString();
+        //    }
+        //    catch
+        //    {
+        //        obj_Report_UC.Budget_Approved = "0";
+        //    }
+        //    obj_Report_UC.Comments = ds.Tables[0].Rows[0]["ProjectUC_PhysicalProgress"].ToString();
+        //    obj_Report_UC.Designation_1 = "अवर अभियन्ता";
+        //    obj_Report_UC.Designation_1_Sub_Text = "स्थानीय निकाय";
+        //    obj_Report_UC.Designation_2 = "अधीशासी अधिकारी";
+        //    obj_Report_UC.Designation_2_Sub_Text = ULB_Type + ds.Tables[0].Rows[0]["ULB_Name"].ToString();
+        //    obj_Report_UC.Designation_3 = "अध्यक्ष";
+        //    obj_Report_UC.Designation_3_Sub_Text = ULB_Type + ds.Tables[0].Rows[0]["ULB_Name"].ToString();
+        //    obj_Report_UC.District_Name_With_Caption = "जिला " + ds.Tables[0].Rows[0]["District_Name"].ToString();
+        //    obj_Report_UC.Expenditure_Percentage = ds.Tables[0].Rows[0]["ProjectUC_Achivment"].ToString();
+        //    obj_Report_UC.GO_Date = ds.Tables[0].Rows[0]["ProjectWork_GO_Date"].ToString();
+        //    obj_Report_UC.GO_No = ds.Tables[0].Rows[0]["ProjectWork_GO_No"].ToString();
+        //    obj_Report_UC.GO_No_And_Date = "शाशानादेश संख्या: " + ds.Tables[0].Rows[0]["ProjectWork_GO_No"].ToString() + ", दिनांक: " + ds.Tables[0].Rows[0]["ProjectWork_GO_Date"].ToString();
+        //    obj_Report_UC.Header_Text_Main = "कार्यालय " + ULB_Type + ds.Tables[0].Rows[0]["ULB_Name"].ToString() + ", " + ds.Tables[0].Rows[0]["District_Name"].ToString();
+        //    obj_Report_UC.Header_Text_Sub = "उपयोगिता प्रमाण - पत्र";
+        //    obj_Report_UC.Note_Text = "प्रमाणित किया जाता है की सन्दर्भित योजना / कार्यक्रम के अंतर्गत स्वीकुत धनराशि से प्रस्तावित / स्वीकुत कार्य शाशनादेश की शर्तो के अनुसार कराये गए है तथा इसमें विचलन नहीं किया गया है |";
+        //    obj_Report_UC.Project_Name = ds.Tables[0].Rows[0]["Project_Name"].ToString();
+        //    try
+        //    {
+        //        obj_Report_UC.Total_Expenditure = decimal.Round(Convert.ToDecimal(ds.Tables[0].Rows[0]["ProjectUC_BudgetUtilized"].ToString()) / 100000, 2, MidpointRounding.AwayFromZero).ToString();
+        //    }
+        //    catch
+        //    {
+        //        obj_Report_UC.Total_Expenditure = "0";
+        //    }
+        //    try
+        //    {
+        //        obj_Report_UC.Total_Released = decimal.Round(Convert.ToDecimal(ds.Tables[0].Rows[0]["ProjectUC_Total_Allocated"].ToString()) / 100000, 2, MidpointRounding.AwayFromZero).ToString();
+        //    }
+        //    catch
+        //    {
+        //        obj_Report_UC.Total_Released = "0";
+        //    }
+        //    obj_Report_UC.ULB_Name = ds.Tables[0].Rows[0]["ULB_Name"].ToString();
+        //    obj_Report_UC.UC_File_Date = ds.Tables[0].Rows[0]["ProjectUC_SubmitionDate"].ToString();
+        //    obj_Report_UC.ULB_Name_With_District = ds.Tables[0].Rows[0]["ULB_Name"].ToString() + ", " + ds.Tables[0].Rows[0]["District_Name"].ToString();
+        //    obj_Report_UC_Li.Add(obj_Report_UC);
+
+        //    string filePath = "\\Downloads\\UC\\";
+        //    if (!Directory.Exists(Server.MapPath(".") + filePath))
+        //    {
+        //        Directory.CreateDirectory(Server.MapPath(".") + filePath);
+        //    }
+
+        //    string fileName = UC_Id.ToString() + ".pdf";
+        //    string webURI = "";
+        //    if (Page.Request.Url.Query.Trim() == "")
+        //    {
+        //        webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
+        //    }
+        //    else
+        //    {
+        //        webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
+        //    }
+
+        //    ReportDocument crystalReport = new ReportDocument();
+        //    crystalReport.Load(Server.MapPath("~/Crystal/Upyogita_Pramad.rpt"));
+        //    crystalReport.SetDataSource(obj_Report_UC_Li);
+        //    //crystalReport.ReportSource = crystalReport;
+        //    //crystalReport.RefreshReport();
+        //    crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
+
+        //    FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
+        //    if (fi.Exists)
+        //    {
+        //        new AllClasses().Render_PDF_Document(ltEmbed, filePath + fileName);
+        //        mp1.Show();
+        //        #region For Open In Browser
+        //        //WebClient User = new WebClient();
+        //        //Byte[] FileBuffer = User.DownloadData(webURI);
+        //        //if (FileBuffer != null)
+        //        //{
+        //        //    Response.ContentType = "application/pdf";
+        //        //    Response.AddHeader("content-length", FileBuffer.Length.ToString());
+        //        //    Response.BinaryWrite(FileBuffer);
+        //        //}
+        //        #endregion
+
+        //        #region For Download File
+        //        //Response.ClearContent();
+        //        //Response.AddHeader("Content-Disposition", "attachment; filename=" + fi.Name);
+        //        //Response.AddHeader("Content-Length", fi.Length.ToString());
+        //        //string CId = Request["__EVENTTARGET"];
+        //        //Response.TransmitFile(fi.FullName);
+        //        //Response.End(); 
+        //        #endregion
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Unable To Download File.");
+        //        return;
+        //    }
+        //}
+        //else
+        //{
+        //    MessageBox.Show("Unable To Generate UC.");
+        //    return;
+        //}
     }
 
     protected void grdSaveVisit_RowDataBound(object sender, GridViewRowEventArgs e)

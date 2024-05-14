@@ -1,5 +1,5 @@
 ﻿using ClosedXML.Excel;
-
+using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -843,7 +843,138 @@ public partial class MasterProjectWorkSNALimitView : System.Web.UI.Page
         }
         if (ProjectWork_Id > 0)
         {
-            
+            List<tbl_Report_BOQ> obj_tbl_Report_BOQ_Li = new List<tbl_Report_BOQ>();
+            DataSet ds = new DataSet();
+            ds = (new DataLayer()).get_tbl_PackageEMB_Export(0, ProjectWork_Id);
+            if (AllClasses.CheckDataSet(ds))
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    tbl_Report_BOQ obj_tbl_Report_BOQ = new tbl_Report_BOQ();
+                    try
+                    {
+                        obj_tbl_Report_BOQ.Estimated_Rate = decimal.Parse(ds.Tables[0].Rows[i]["PackageBOQ_RateEstimated"].ToString().Trim());
+                    }
+                    catch
+                    {
+                        obj_tbl_Report_BOQ.Estimated_Rate = 0;
+                    }
+                    try
+                    {
+                        obj_tbl_Report_BOQ.Quoted_Rate = decimal.Parse(ds.Tables[0].Rows[i]["PackageBOQ_RateQuoted"].ToString().Trim());
+                    }
+                    catch
+                    {
+                        obj_tbl_Report_BOQ.Quoted_Rate = 0;
+                    }
+                    try
+                    {
+                        obj_tbl_Report_BOQ.Unit_Name = ds.Tables[0].Rows[i]["Unit_Name"].ToString().Trim();
+                    }
+                    catch
+                    {
+                        obj_tbl_Report_BOQ.Unit_Name = "NA";
+                    }
+                    try
+                    {
+                        obj_tbl_Report_BOQ.BOQ_Quantity = decimal.Parse(ds.Tables[0].Rows[i]["PackageBOQ_Qty"].ToString().Trim());
+                    }
+                    catch
+                    {
+                        obj_tbl_Report_BOQ.BOQ_Quantity = 0;
+                    }
+
+                    try
+                    {
+                        obj_tbl_Report_BOQ.Quantity_Paid = decimal.Parse(ds.Tables[0].Rows[i]["PackageBOQ_QtyPaid"].ToString().Trim());
+                    }
+                    catch
+                    {
+                        obj_tbl_Report_BOQ.Quantity_Paid = 0;
+                    }
+
+                    try
+                    {
+                        obj_tbl_Report_BOQ.Percentage_Paid = Convert.ToDecimal(ds.Tables[0].Rows[i]["PercentageValuePaidTillDate"].ToString());
+                    }
+                    catch
+                    {
+                        obj_tbl_Report_BOQ.Percentage_Paid = 0;
+                    }
+                    if (obj_tbl_Report_BOQ.Percentage_Paid > 100)
+                    {
+                        obj_tbl_Report_BOQ.Percentage_Paid = 100;
+                    }
+                    try
+                    {
+                        if (obj_tbl_Report_BOQ.Percentage_Paid == 0)
+                            obj_tbl_Report_BOQ.Amount_Paid = obj_tbl_Report_BOQ.Quantity_Paid * obj_tbl_Report_BOQ.Quoted_Rate;
+                        else
+                            obj_tbl_Report_BOQ.Amount_Paid = (obj_tbl_Report_BOQ.Quantity_Paid * obj_tbl_Report_BOQ.Quoted_Rate * obj_tbl_Report_BOQ.Percentage_Paid) / 100;
+                    }
+                    catch
+                    {
+                        obj_tbl_Report_BOQ.Amount_Paid = 0;
+                    }
+                    obj_tbl_Report_BOQ.BOQ_Description = ds.Tables[0].Rows[i]["PackageEMB_Specification"].ToString().Trim().Replace("'", "");
+                    //obj_tbl_Report_BOQ.Division_Name = ds.Tables[0].Rows[i]["Division_Name"].ToString().Trim();
+                    //obj_tbl_Report_BOQ.Project_Name = ds.Tables[0].Rows[i]["ProjectWork_Name"].ToString().Trim();
+                    //obj_tbl_Report_BOQ.project_code = ds.Tables[0].Rows[i]["ProjectWork_ProjectCode"].ToString().Trim();
+                    //obj_tbl_Report_BOQ.Scheme_Name = ds.Tables[0].Rows[i]["Project_Name"].ToString().Trim();
+
+                    obj_tbl_Report_BOQ_Li.Add(obj_tbl_Report_BOQ);
+                }
+            }
+            if (obj_tbl_Report_BOQ_Li.Count == 0)
+            {
+                MessageBox.Show("No Item to Download");
+                return;
+            }
+            else
+            {
+                string filePath = "\\BOQ\\";
+                if (!Directory.Exists(Server.MapPath(".") + filePath))
+                {
+                    Directory.CreateDirectory(Server.MapPath(".") + filePath);
+                }
+
+                string fileName = "BOQ_" + ProjectWork_Id.ToString() + ".xls";
+                string webURI = "";
+                if (Page.Request.Url.Query.Trim() == "")
+                {
+                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
+                }
+                else
+                {
+                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
+                }
+
+                ReportDocument crystalReport = new ReportDocument();
+                crystalReport.Load(Server.MapPath("~/Crystal/BOQ_Export.rpt"));
+                crystalReport.SetDataSource(obj_tbl_Report_BOQ_Li);
+                crystalReport.Refresh();
+                //crystalReport.ReportSource = crystalReport;
+                //crystalReport.RefreshReport();
+                crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.ExcelWorkbook, Server.MapPath(".") + filePath + fileName);
+
+                FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
+                if (fi.Exists)
+                {
+                    #region For Download File
+                    Response.ClearContent();
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + fi.Name);
+                    Response.AddHeader("Content-Length", fi.Length.ToString());
+                    string CId = Request["__EVENTTARGET"];
+                    Response.TransmitFile(fi.FullName);
+                    Response.End();
+                    #endregion
+                }
+                else
+                {
+                    MessageBox.Show("Unable To Generate Invoice.");
+                    return;
+                }
+            }
         }
         else
         {

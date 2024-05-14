@@ -1,4 +1,4 @@
-﻿
+﻿using CrystalDecisions.CrystalReports.Engine;
 using QRCoder;
 using System;
 using System.Collections.Generic;

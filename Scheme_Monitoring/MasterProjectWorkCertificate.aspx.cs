@@ -1,5 +1,5 @@
 ﻿using Aspose.Pdf.Operators;
-
+using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -1151,7 +1151,31 @@ public partial class MasterProjectWorkCertificate : System.Web.UI.Page
         }
         if (obj_Report_ProjectWorkPkgCert_Li != null && obj_Report_ProjectWorkPkgCert_Li.Count > 0)
         {
-            
+            Certificate_View obj_Certificate_View = new Certificate_View();
+            obj_Certificate_View.obj_Certificate_Component_Li = obj_Certificate_Component_Li;
+            obj_Certificate_View.obj_Report_ProjectWorkPkgCert_Li = obj_Report_ProjectWorkPkgCert_Li;
+
+            ReportDocument crystalReport = new ReportDocument();
+            crystalReport.Load(Server.MapPath("~/Crystal/Experience_Certificate.rpt"));
+            crystalReport.SetDataSource(obj_Report_ProjectWorkPkgCert_Li);
+            crystalReport.Subreports[0].SetDataSource(obj_Certificate_Component_Li);
+            crystalReport.Refresh();
+            //crystalReport.ReportSource = crystalReport;
+            //crystalReport.RefreshReport();
+            string FileName = "Cert_" + obj_Report_ProjectWorkPkgCert_Li[0].ProjectWorkPkgCert_Id.ToString() + ".pdf";
+            crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + "\\Downloads\\Certificate\\" + FileName);
+
+            FileInfo fi = new FileInfo(Server.MapPath(".") + "\\Downloads\\Certificate\\" + FileName);
+            if (fi.Exists)
+            {
+                new AllClasses().Render_PDF_Document(ltEmbed, "\\Downloads\\Certificate\\" + FileName);
+                mp1.Show();
+            }
+            else
+            {
+                MessageBox.Show("Unable To Generate Report.");
+                return;
+            }
         }
         else
         {

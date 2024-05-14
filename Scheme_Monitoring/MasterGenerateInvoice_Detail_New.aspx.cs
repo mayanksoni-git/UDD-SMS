@@ -1,4 +1,4 @@
-﻿
+﻿using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -2743,7 +2743,68 @@ public partial class MasterGenerateInvoice_Detail_New : System.Web.UI.Page
 
     protected void link_PaymentOrder_ServerClick(object sender, EventArgs e)
     {
-        
+        List<tbl_Report_Payment_Order> obj_tbl_Report_Payment_Order_Li = new List<tbl_Report_Payment_Order>();
+
+        tbl_Report_Payment_Order obj_tbl_Report_Payment_Order = new tbl_Report_Payment_Order();
+        DataSet ds = new DataSet();
+        int Invoice_Id = Convert.ToInt32(hf_Invoice_Id.Value);
+        ds = (new DataLayer()).get_Report_PaymentOrder_Details(Invoice_Id);
+        if (AllClasses.CheckDataSet(ds))
+        {
+            obj_tbl_Report_Payment_Order.Invoice_Date = ds.Tables[0].Rows[0]["PackageInvoice_Date"].ToString();
+            try
+            {
+                obj_tbl_Report_Payment_Order.Invoice_Amount = Convert.ToDecimal(ds.Tables[0].Rows[0]["Total_Amount"].ToString());
+            }
+            catch
+            { }
+
+            obj_tbl_Report_Payment_Order.Invoice_Id = Convert.ToInt32(ds.Tables[0].Rows[0]["PackageInvoice_Id"].ToString());
+            obj_tbl_Report_Payment_Order.MB_No = ds.Tables[0].Rows[0]["List_EMBNo"].ToString();
+            obj_tbl_Report_Payment_Order.PPA_No = "";
+            obj_tbl_Report_Payment_Order.Content_Line_1 = "     अमृत योजनान्तर्गत सैप वर्ष के अन्तर्गत " + ds.Tables[0].Rows[0]["ProjectWork_Name"].ToString() + " (योजना कोड- " + ds.Tables[0].Rows[0]["ProjectWork_ProjectCode"].ToString() + ") संचालित योजना हेतु धनराशि रू0 " + obj_tbl_Report_Payment_Order.Invoice_Amount.ToString() + " का समायोजन अनुबन्ध संख्या " + ds.Tables[0].Rows[0]["ProjectWorkPkg_Agreement_No"].ToString() + " के बीजक संख्या " + ds.Tables[0].Rows[0]["PackageInvoice_VoucherNo"].ToString() + " रनिंग / फाइनल दिनांक " + ds.Tables[0].Rows[0]["PackageInvoice_Date"].ToString() + " के सापेक्ष मैसर्स " + ds.Tables[0].Rows[0]["Person_Name"].ToString() + " के भुगतान हेतु कार्यालय अधिशासी अभियन्ता / परियोजना प्रबन्धक " + ds.Tables[0].Rows[0]["Division_Name"].ToString() + " उ0प्र0 जल निगम (नगरीय)...........................द्वारा किया जा चुका है। अन्य विवरण निम्नानुसार है :-";
+            obj_tbl_Report_Payment_Order_Li.Add(obj_tbl_Report_Payment_Order);
+
+            //Session["Payment_Order"] = obj_tbl_Report_Payment_Order_Li;
+            //mpViewPaymentOrder.Show();
+            string filePath = "\\Downloads\\";
+            string fileName = Invoice_Id.ToString() + ".pdf";
+
+            string webURI = "";
+            if (Page.Request.Url.Query.Trim() == "")
+            {
+                webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
+            }
+            else
+            {
+                webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
+            }
+
+            ReportDocument crystalReport = new ReportDocument();
+            crystalReport.Load(Server.MapPath("~/Crystal/Payment_Order.rpt"));
+            crystalReport.SetDataSource(obj_tbl_Report_Payment_Order_Li);
+            //Session["rptDocI"] = crystalReport;
+            //crystalReport.ReportSource = crystalReport;
+            //crystalReport.RefreshReport();
+            crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
+
+            FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
+            if (fi.Exists)
+            {
+                new AllClasses().Render_PDF_Document(ltEmbed, filePath + fileName);
+                mp1.Show();
+            }
+            else
+            {
+                MessageBox.Show("Unable To Download File.");
+                return;
+            }
+        }
+        else
+        {
+            MessageBox.Show("Unable To View Payment Order");
+            return;
+        }
     }
 
     protected void btnSaveInvoice_Click(object sender, EventArgs e)

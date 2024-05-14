@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 /Scheme_Monitoring/vwd.webinfo
 /Scheme_Monitoring/vwd.webinfo
+/Scheme_Monitoring/web.config
+/Scheme_Monitoring/packages.config

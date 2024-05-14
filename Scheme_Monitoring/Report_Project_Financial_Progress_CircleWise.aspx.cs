@@ -1,5 +1,5 @@
 ﻿using Aspose.Pdf;
-
+using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -324,12 +324,164 @@ public partial class Report_Project_Financial_Progress_CircleWise : System.Web.U
 
     protected void btnExport_Click(object sender, EventArgs e)
     {
-        
+        DataTable dt = new DataTable();
+        if (ViewState["Achivment"] != null)
+        {
+            dt = (DataTable)ViewState["Achivment"];
+            if (AllClasses.CheckDt(dt))
+            {
+                string filePath = "\\Downloads\\" + Session["Person_Id"].ToString() + "\\";
+                if (!Directory.Exists(Server.MapPath(".") + filePath))
+                {
+                    Directory.CreateDirectory(Server.MapPath(".") + filePath);
+                }
+
+                string fileName = "Achivment_" + ddlMonth.Text + "_" + txtYear.Text + ".pdf";
+
+                List<tbl_Achivment> obj_tbl_Achivment_Li = new List<tbl_Achivment>();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    tbl_Achivment obj_tbl_Achivment = new tbl_Achivment();
+                    obj_tbl_Achivment.Achivment_Percentage = Convert.ToDecimal(dt.Rows[i]["Percentage_Val"].ToString());
+                    obj_tbl_Achivment.Achivment_Value = Convert.ToDecimal(dt.Rows[i]["Total_Achivment_In_Current_Month"].ToString());
+                    obj_tbl_Achivment.ADP_Value = Convert.ToDecimal(dt.Rows[i]["Other_Dept_Current_Month"].ToString());
+                    obj_tbl_Achivment.Circle_Id = Convert.ToInt32(dt.Rows[i]["Circle_Id"].ToString());
+                    obj_tbl_Achivment.Zone_Id = Convert.ToInt32(dt.Rows[i]["Zone_Id"].ToString());
+                    obj_tbl_Achivment.Circle_Name = dt.Rows[i]["Circle_Name"].ToString();
+                    obj_tbl_Achivment.Zone_Name = dt.Rows[i]["Zone_Name"].ToString();
+                    obj_tbl_Achivment.Zone_Circle_Name = dt.Rows[i]["Zone_Name"].ToString() + " - " + dt.Rows[i]["Circle_Name"].ToString();
+                    obj_tbl_Achivment.Deduction_Release_Value = Convert.ToDecimal(dt.Rows[i]["Deduction_Release_Current_Month"].ToString());
+                    obj_tbl_Achivment.EMB_Value = Convert.ToDecimal(dt.Rows[i]["EMB_Current_Month"].ToString());
+                    obj_tbl_Achivment.Invoice_Value = Convert.ToDecimal(dt.Rows[i]["Total_Invoice_Value_Current_Month"].ToString());
+                    obj_tbl_Achivment.MA_Value = Convert.ToDecimal(dt.Rows[i]["Moblization_Adv_Current_Month"].ToString());
+                    obj_tbl_Achivment.Target_Value = Convert.ToDecimal(dt.Rows[i]["CircleFinancialTarget_Value"].ToString());
+                    obj_tbl_Achivment.Header_Text = "Circle Wise Target and Achievement Analysis (" + ddlMonth.Text + " - " + txtYear.Text + "): " + ddlSearchScheme.SelectedItem.Text;
+                    obj_tbl_Achivment_Li.Add(obj_tbl_Achivment);
+                }
+
+                string webURI = "";
+                if (Page.Request.Url.Query.Trim() == "")
+                {
+                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
+                }
+                else
+                {
+                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
+                }
+
+                ReportDocument crystalReport = new ReportDocument();
+                crystalReport.Load(Server.MapPath("~/Crystal/pmis/Achievement.rpt"));
+                crystalReport.SetDataSource(obj_tbl_Achivment_Li);
+                crystalReport.Refresh();
+                //crystalReport.ReportSource = crystalReport;
+                //crystalReport.RefreshReport();
+                crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
+
+                FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
+                if (fi.Exists)
+                {
+                    new AllClasses().Render_PDF_Document(ltEmbed, filePath + fileName);
+                    mp1.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Unable To Generate Achivment Report.");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Unable To Generate Achivment Report.");
+                return;
+            }
+        }
     }
 
     protected void btnExportPPT_Click(object sender, EventArgs e)
     {
-        
+        DataTable dt = new DataTable();
+        if (ViewState["Achivment"] != null)
+        {
+            dt = (DataTable)ViewState["Achivment"];
+            if (AllClasses.CheckDt(dt))
+            {
+                string filePath = "\\Downloads\\" + Session["Person_Id"].ToString() + "\\";
+                if (!Directory.Exists(Server.MapPath(".") + filePath))
+                {
+                    Directory.CreateDirectory(Server.MapPath(".") + filePath);
+                }
+
+                string fileName = "Achivment_" + ddlMonth.Text + "_" + txtYear.Text + ".pdf";
+
+                List<tbl_Achivment> obj_tbl_Achivment_Li = new List<tbl_Achivment>();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    tbl_Achivment obj_tbl_Achivment = new tbl_Achivment();
+                    obj_tbl_Achivment.Achivment_Percentage = Convert.ToDecimal(dt.Rows[i]["Percentage_Val"].ToString());
+                    obj_tbl_Achivment.Achivment_Value = Convert.ToDecimal(dt.Rows[i]["Total_Achivment_In_Current_Month"].ToString());
+                    obj_tbl_Achivment.ADP_Value = Convert.ToDecimal(dt.Rows[i]["Other_Dept_Current_Month"].ToString());
+                    obj_tbl_Achivment.Circle_Id = Convert.ToInt32(dt.Rows[i]["Circle_Id"].ToString());
+                    obj_tbl_Achivment.Zone_Id = Convert.ToInt32(dt.Rows[i]["Zone_Id"].ToString());
+                    obj_tbl_Achivment.Circle_Name = dt.Rows[i]["Circle_Name"].ToString();
+                    obj_tbl_Achivment.Zone_Name = dt.Rows[i]["Zone_Name"].ToString();
+                    obj_tbl_Achivment.Zone_Circle_Name = dt.Rows[i]["Zone_Name"].ToString() + " - " + dt.Rows[i]["Circle_Name"].ToString();
+                    obj_tbl_Achivment.Deduction_Release_Value = Convert.ToDecimal(dt.Rows[i]["Deduction_Release_Current_Month"].ToString());
+                    obj_tbl_Achivment.EMB_Value = Convert.ToDecimal(dt.Rows[i]["EMB_Current_Month"].ToString());
+                    obj_tbl_Achivment.Invoice_Value = Convert.ToDecimal(dt.Rows[i]["Total_Invoice_Value_Current_Month"].ToString());
+                    obj_tbl_Achivment.MA_Value = Convert.ToDecimal(dt.Rows[i]["Moblization_Adv_Current_Month"].ToString());
+                    obj_tbl_Achivment.Target_Value = Convert.ToDecimal(dt.Rows[i]["CircleFinancialTarget_Value"].ToString());
+                    obj_tbl_Achivment.Header_Text = "Circle Wise Target and Achievement Analysis (" + ddlMonth.Text + " - " + txtYear.Text + "): " + ddlSearchScheme.SelectedItem.Text;
+                    obj_tbl_Achivment_Li.Add(obj_tbl_Achivment);
+                }
+
+                string webURI = "";
+                if (Page.Request.Url.Query.Trim() == "")
+                {
+                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + filePath + fileName).Replace("\\", "/");
+                }
+                else
+                {
+                    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + filePath + fileName).Replace("\\", "/");
+                }
+
+                ReportDocument crystalReport = new ReportDocument();
+                crystalReport.Load(Server.MapPath("~/Crystal/pmis/Achievement.rpt"));
+                crystalReport.SetDataSource(obj_tbl_Achivment_Li);
+                crystalReport.Refresh();
+                //crystalReport.ReportSource = crystalReport;
+                //crystalReport.RefreshReport();
+                crystalReport.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Server.MapPath(".") + filePath + fileName);
+
+                FileInfo fi = new FileInfo(Server.MapPath(".") + filePath + fileName);
+                if (fi.Exists)
+                {
+                    // Load PDF document
+                    Document pdfDocument = new Document(fi.FullName);
+                    PptxSaveOptions pptxOptions = new PptxSaveOptions();
+                    // Save output file
+                    pdfDocument.Save(fi.FullName.Replace(".pdf", ".pptx"), pptxOptions);
+                    //Download File
+                    System.Web.HttpResponse response = System.Web.HttpContext.Current.Response;
+                    response.ClearContent();
+                    response.Clear();
+                    response.ContentType = "application/octet-stream";
+                    response.AddHeader("Content-Disposition", "attachment; filename=" + fi.Name.Replace(".pdf", ".pptx") + ";");
+                    response.TransmitFile(fi.FullName.Replace(".pdf", ".pptx"));
+                    response.Flush();
+                    response.End();
+                }
+                else
+                {
+                    MessageBox.Show("Unable To Generate Achivment Report.");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Unable To Generate Achivment Report.");
+                return;
+            }
+        }
     }
 
     protected void lnkCircle_Click(object sender, EventArgs e)
