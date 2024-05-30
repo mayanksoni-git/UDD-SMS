@@ -356,7 +356,7 @@
                                                         <asp:RadioButtonList ID="rblRegistration" CssClass="form-control" runat="server" RepeatDirection="Horizontal">
                                                             <asp:ListItem Value="1">Yes</asp:ListItem>
                                                             <asp:ListItem Value="0" Selected="True">NO</asp:ListItem>
-                                                            <asp:ListItem Value="2">Other</asp:ListItem>
+                                                            <%--<asp:ListItem Value="2">Other</asp:ListItem>--%>
                                                         </asp:RadioButtonList>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">

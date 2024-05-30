@@ -142,32 +142,32 @@
                                                 <div class="row gy-4">
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="div3" runat="server">
-                                                            <asp:Label ID="lblConventional" runat="server" Text="Conventional (Mortal remian handling capacity per pyre per day=1)*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblConventional" runat="server" Text="Conventional (Mortal remain handling capacity per pyre per day=1)*" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtConventional" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);" OnTextChanged="TextChangedEvent" TextMode="Number"></asp:TextBox>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="div5" runat="server">
-                                                            <asp:Label ID="lblImprovisedWood" runat="server" Text="Improvised Wood (Mortal remian handling capacity per pyre per day=2)*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblImprovisedWood" runat="server" Text="Improvised Wood (Mortal remain handling capacity per pyre per day=2)*" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtImprovisedWood" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);" OnTextChanged="TextChangedEvent" TextMode="Number"></asp:TextBox>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="div4" runat="server">
-                                                            <asp:Label ID="lblGas" runat="server" Text="Gas (Mortal remian handling capacity per pyre per day=4)*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblGas" runat="server" Text="Gas (Mortal remain handling capacity per pyre per day=4)*" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtGas" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);" OnTextChanged="TextChangedEvent" TextMode="Number"></asp:TextBox>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="div6" runat="server">
-                                                            <asp:Label ID="lblElectric" runat="server" Text="Electric (Mortal remian handling capacity per pyre per day=4)*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblElectric" runat="server" Text="Electric (Mortal remain handling capacity per pyre per day=4)*" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtElectric" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);" OnTextChanged="TextChangedEvent" TextMode="Number"></asp:TextBox>
                                                         </div>
                                                     </div>
-
+                                                    
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="div7" runat="server">
                                                             <asp:Label ID="lblExistCapacity" runat="server" Text="Existing 'mortal remains' handling capacity" CssClass="form-label"></asp:Label>
