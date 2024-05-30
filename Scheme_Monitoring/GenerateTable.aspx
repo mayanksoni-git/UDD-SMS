@@ -11,7 +11,6 @@
         <div>
             <table style="border-color:black; border-style: solid; width: 100%;">
                 <tr>
-                    <th></th>
                     <th rowspan="4" style="background-color: #CFE2F3">Edit</th>
                     <th style="background-color: #76A5AF">A</th>
                     <th colspan="6" style="background-color: #F1C232">B</th>
@@ -22,7 +21,6 @@
                     <th colspan="2" style="background-color: #76A5AF">E</th>
                 </tr>
                 <tr>
-                    <th></th>
                     <th rowspan="3" style="background-color: #CFE2F3">Sr.No.</th>
                     <th colspan="6" style="background-color: #C9DAF8">City Profile</th>
                     <th colspan="5" style="background-color: #D9D2E9">No. of existing pyres (excluding under construction) as per city administration</th>
@@ -32,7 +30,6 @@
                     <th colspan="2" style="background-color: #00FFFF">Final output</th>
                 </tr>
                 <tr>
-                    <th></th>
                     <th rowspan="2" style="background-color: #C9DAF8">District</th>
                     <th rowspan="2" style="background-color: #C9DAF8">ULB</th>
                     <th rowspan="2" style="background-color: #C9DAF8">Total urban population</th>
@@ -54,7 +51,6 @@
                     <th colspan="2" style="background-color: #A4C2F4">Upgrade existing ones</th>
                 </tr>
                 <tr>
-                    <th></th>
                     <th style="background-color: #D9D2E9">2</th>
                     <th style="background-color: #D9D2E9">4</th>
                     <th style="background-color: #D9D2E9">4</th>

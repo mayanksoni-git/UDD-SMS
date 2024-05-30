@@ -10,12 +10,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Report Crematorium Tracker</h4>
+                                    <h4 class="mb-sm-0">Crematorium Main Tracker</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                            <li class="breadcrumb-item">Project Master</li>
-                                            <li class="breadcrumb-item active">Report Crematorium Tracker</li>
+                                            <li class="breadcrumb-item">MIS</li>
+                                            <li class="breadcrumb-item active">Crematorium Main Tracker</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -23,7 +23,12 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Report Crematorium Tracker</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Crematorium Main Tracker</h4>
+                                        <a class="btn btn-primary" href="PyersTracker.aspx">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-database-fill-add" viewBox="0 0 16 16">
+                                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0M8 1c-1.573 0-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4s.875 1.755 1.904 2.223C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777C13.125 5.755 14 5.007 14 4s-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1" />
+                                                <path d="M2 7v-.839c.457.432 1.004.751 1.49.972C4.722 7.693 6.318 8 8 8s3.278-.307 4.51-.867c.486-.22 1.033-.54 1.49-.972V7c0 .424-.155.802-.411 1.133a4.51 4.51 0 0 0-4.815 1.843A12 12 0 0 1 8 10c-1.573 0-3.022-.289-4.096-.777C2.875 8.755 2 8.007 2 7m6.257 3.998L8 11c-1.682 0-3.278-.307-4.51-.867-.486-.22-1.033-.54-1.49-.972V10c0 1.007.875 1.755 1.904 2.223C4.978 12.711 6.427 13 8 13h.027a4.55 4.55 0 0 1 .23-2.002m-.002 3L8 14c-1.682 0-3.278-.307-4.51-.867-.486-.22-1.033-.54-1.49-.972V13c0 1.007.875 1.755 1.904 2.223C4.978 15.711 6.427 16 8 16c.536 0 1.058-.034 1.555-.097a4.5 4.5 0 0 1-1.3-1.905" />
+                                            </svg> Add New</a>
                                     </div>
                                     <div class="card-body">
                                         <div class="live-preview">
@@ -83,12 +88,12 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xxl-3 col-md-6">
+                                                <%--<div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <br />
                                                         <asp:Button ID="btnCreateNew" Text="Create New" OnClick="btnCreateNew_Click" runat="server" CssClass="btn btn-danger"></asp:Button>
                                                     </div>
-                                                </div>
+                                                </div>--%>
                                             </div>
                                             <!--end row-->
                                         </div>
@@ -103,7 +108,7 @@
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Main Crematorium Tracker</h4>
+                                            <h4 class="card-title mb-0 flex-grow-1">Crematorium Main Tracker</h4>
                                         </div>
                                         <!-- end card header -->
                                         <div class="card-body">
@@ -115,8 +120,17 @@
                                                     </div>
                                                     <!-- div.dataTables_borderWrap -->
                                                     <div style="overflow: auto">
-                                                        <asp:GridView ID="MainTracker" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
-                                                            <Columns>  
+                                                        <asp:Button ID="btnExport" runat="server" Text="Export to Excel" OnClick="btnExport_Click" CssClass="btn btn-primary" />
+                                                        <asp:Button ID="btnPrintA4" runat="server" Text="Export in A4"  OnClientClick="PrintMainTracker(); return false;"  CssClass="btn btn-primary"  />
+                                                        <%--Same grid is used on Page PrintMainTracker.aspx and ExportToExcel.aspx page also, please change there as well if needed--%>
+
+                                                        <asp:GridView ID="MainTracker" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="MainTracker_RowDataBound">
+                                                            <Columns> 
+                                                                <asp:BoundField DataField="PyresTracker_Id" HeaderText="Pyres Tracker Id">
+                                                                    <HeaderStyle CssClass="displayStyle" />
+                                                                    <ItemStyle CssClass="displayStyle" />
+                                                                    <FooterStyle CssClass="displayStyle" />
+                                                                </asp:BoundField>
                                                                 <asp:TemplateField>
                                                                     <HeaderTemplate>
                                                                         <%--<tr>
@@ -172,59 +186,61 @@
                                                                         </tr>--%>
 
                                                                         <tr>
-                    <th></th>
-                    <th rowspan="4" style="background-color: #CFE2F3">Edit</th>
-                    <th style="background-color: #76A5AF">A</th>
-                    <th colspan="6" style="background-color: #F1C232">B</th>
-                    <th colspan="5" style="background-color: #F1C232">C</th>
-                    <th colspan="2" style="background-color: #76A5AF">C2</th>
-                    <th colspan="3" style="background-color: #E69138">D1</th>
-                    <th colspan="2" style="background-color: #E69138">D3</th>
-                    <th colspan="2" style="background-color: #76A5AF">E</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th rowspan="3" style="background-color: #CFE2F3">Sr.No.</th>
-                    <th colspan="6" style="background-color: #C9DAF8">City Profile</th>
-                    <th colspan="5" style="background-color: #D9D2E9">No. of existing pyres (excluding under construction) as per city administration</th>
-                    <th colspan="2" style="background-color: #C9DAF8">Decision for next step</th>
-                    <th colspan="3" style="background-color: #D9D2E9">Upgradation of existing conventional pyres</th>
-                    <th colspan="2" style="background-color: #D9D2E9">Current status for installation of EFPs</th>
-                    <th colspan="2" style="background-color: #00FFFF">Final output</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th rowspan="2" style="background-color: #C9DAF8">District</th>
-                    <th rowspan="2" style="background-color: #C9DAF8">ULB</th>
-                    <th rowspan="2" style="background-color: #C9DAF8">Total urban population</th>
-                    <th rowspan="2" style="background-color: #C9DAF8">Population likely to be cremated (80%)</th>
-                    <th rowspan="2" style="background-color: #C9DAF8">Death rate per 1000 per year</th>
-                    <th rowspan="2" style="background-color: #C9DAF8">Estimated no. of deaths per day (incl 10% buffer)</th>
-                    <th rowspan="2" style="background-color: #D9D2E9">Conventional</th>
-                    <th rowspan="2" style="background-color: #D9D2E9">Improvised Wood</th>
-                    <th rowspan="2" style="background-color: #D9D2E9">Gas</th>
-                    <th rowspan="2" style="background-color: #D9D2E9">Electric </th>
-                    <th rowspan="2" style="background-color: #D9D2E9">Existing &#39;mortal remains&#39; handling capacity**</th>
-                    <th rowspan="2" style="background-color: #C9DAF8">Decision: Upgrade existing or build new dependent on existing capacity</th>
-                    <th rowspan="2" style="background-color: #C9DAF8">Total estimated deaths per day - Existing &#39;mortal remains&#39; handling capacity of EFCs = Remaining &#39;mortal remains&#39; to be handled</th>
-                    <th style="background-color: #D9D2E9">Improvised Wood </th>
-                    <th style="background-color: #D9D2E9">Gas </th>
-                    <th style="background-color: #D9D2E9">Electric </th>
-                    <th rowspan="2" style="background-color: #C9DAF8">Remaining capacity (ideally should be negative)</th>
-                    <th rowspan="2" style="background-color: #D9D2E9">Comment on capacity</th>
-                    <th colspan="2" style="background-color: #A4C2F4">Upgrade existing ones</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th style="background-color: #D9D2E9">2</th>
-                    <th style="background-color: #D9D2E9">4</th>
-                    <th style="background-color: #D9D2E9">4</th>
-                    <th style="background-color: #A4C2F4">Number of conventional pyres to be revamped</th>
-                    <th style="background-color: #A4C2F4">Funds required in lacs (only includes pyres and not other facilities)</th>
-                </tr>
+                                                                            <th></th>
+                                                                            <th rowspan="4" style="background-color: #CFE2F3">Edit</th>
+                                                                            <th style="background-color: #76A5AF">A</th>
+                                                                            <th colspan="7" style="background-color: #F1C232">B</th>
+                                                                            <th colspan="5" style="background-color: #F1C232">C</th>
+                                                                            <th colspan="2" style="background-color: #76A5AF">C2</th>
+                                                                            <th colspan="3" style="background-color: #E69138">D1</th>
+                                                                            <th colspan="2" style="background-color: #E69138">D3</th>
+                                                                            <th colspan="2" style="background-color: #76A5AF">E</th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th></th>
+                                                                            <th rowspan="3" style="background-color: #CFE2F3">Sr.No.</th>
+                                                                            <th colspan="7" style="background-color: #C9DAF8">City Profile</th>
+                                                                            <th colspan="5" style="background-color: #D9D2E9">No. of existing pyres (excluding under construction) as per city administration</th>
+                                                                            <th colspan="2" style="background-color: #C9DAF8">Decision for next step</th>
+                                                                            <th colspan="3" style="background-color: #D9D2E9">Upgradation of existing conventional pyres</th>
+                                                                            <th colspan="2" style="background-color: #D9D2E9">Current status for installation of EFPs</th>
+                                                                            <th colspan="2" style="background-color: #00FFFF">Final output</th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th></th>
+                                                                            <th rowspan="2" style="background-color: #C9DAF8">District</th>
+                                                                            <th rowspan="2" style="background-color: #C9DAF8">ULB</th>
+                                                                            <th rowspan="2" style="background-color: #C9DAF8">Total urban population</th>
+                                                                            <th rowspan="2" style="background-color: #C9DAF8">Population likely to be cremated (80%)</th>
+                                                                            <th rowspan="2" style="background-color: #C9DAF8">Death rate per 1000 per year</th>
+                                                                            <th rowspan="2" style="background-color: #C9DAF8">Estimated no. of deaths per day (incl 10% buffer)</th>
+                                                                            <th rowspan="2" style="background-color: #C9DAF8">No of Existing Crematorium</th>
+                                                                            <th rowspan="2" style="background-color: #D9D2E9">Conventional</th>
+                                                                            <th rowspan="2" style="background-color: #D9D2E9">Improvised Wood</th>
+                                                                            <th rowspan="2" style="background-color: #D9D2E9">Gas</th>
+                                                                            <th rowspan="2" style="background-color: #D9D2E9">Electric </th>
+                                                                            <th rowspan="2" style="background-color: #D9D2E9">Existing &#39;mortal remains&#39; handling capacity</th>
+                                                                            <th rowspan="2" style="background-color: #C9DAF8">Decision: Upgrade existing or build new dependent on existing capacity</th>
+                                                                            <th rowspan="2" style="background-color: #C9DAF8">Total estimated deaths per day - Existing &#39;mortal remains&#39; handling capacity of EFCs = Remaining &#39;mortal remains&#39; to be handled</th>
+                                                                            <th style="background-color: #D9D2E9">Improvised Wood </th>
+                                                                            <th style="background-color: #D9D2E9">Gas </th>
+                                                                            <th style="background-color: #D9D2E9">Electric </th>
+                                                                            <th rowspan="2" style="background-color: #C9DAF8">Remaining capacity (ideally should be negative)</th>
+                                                                            <th rowspan="2" style="background-color: #D9D2E9">Comment on capacity</th>
+                                                                            <th colspan="2" style="background-color: #A4C2F4">Upgrade existing ones</th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th></th>
+                                                                            <th style="background-color: #D9D2E9">2</th>
+                                                                            <th style="background-color: #D9D2E9">4</th>
+                                                                            <th style="background-color: #D9D2E9">4</th>
+                                                                            <th style="background-color: #A4C2F4">Number of conventional pyres to be revamped</th>
+                                                                            <th style="background-color: #A4C2F4">Funds required in Lakhs (only includes pyres and not other facilities)</th>
+                                                                        </tr>
                                                                     </HeaderTemplate>
                                                                     <ItemTemplate>
-                                                                        <td><asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" /></td>
+                                                                        <td>
+                                                                            <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" /></td>
                                                                         <td><%# Container.DataItemIndex + 1 %></td>
                                                                         <td><%# Eval("CircleName")%></td>
                                                                         <td><%# Eval("DivisionName")%></td>
@@ -232,11 +248,22 @@
                                                                         <td><%# Eval("PopulationCreamtion80")%></td>
                                                                         <td><%# Eval("DeathPer1000")%></td>
                                                                         <td><%# Eval("EstDeath10Buffer")%></td>
+                                                                        <%--<td><%# Eval("ExistCMTR")%></td>--%>
+                                                                        <td>
+                                                                            <asp:LinkButton
+                                                                                Text='<%# Eval("ExistCMTR") %>'
+                                                                                CssClass="btn btn-primary btn-sm"
+                                                                                ToolTip="Click to Open Crematorium Detail"
+                                                                                runat="server"
+                                                                                OnClientClick='<%# "openCrematoriumDetail(\"" + Eval("Division") + "\"); return false;" %>'>
+                                                                            </asp:LinkButton>
+                                                                        </td>
                                                                         <td><%# Eval("Conventional")%></td>
                                                                         <td><%# Eval("ImprovisedWood")%></td>
                                                                         <td><%# Eval("Gas")%></td>
                                                                         <td><%# Eval("Electric")%></td>
                                                                         <td><%# Eval("ExistCapacity")%></td>
+                                                                        
                                                                         <td><%# Eval("UpgradeExisting")%></td>
                                                                         <td><%# Eval("RemainingToBeHandled")%></td>
                                                                         <td><%# Eval("UpgradeImprovisedWood")%></td>
@@ -245,10 +272,14 @@
                                                                         <td><%# Eval("RemainingCapacity")%></td>
                                                                         <td><%# Eval("CommentOnCapacity")%></td>
                                                                         <td><%# Eval("PyresToBeRevamped")%></td>
-                                                                        <td><%# Eval("FundsRequired")%></td>
+                                                                        <%--<td><asp:Label runat="server" ToolTip='(ImprovisedWood*CostofImprovisedWood)+(Gas*CostOfGas)+(Electric*CostOfElectric)'><%# Eval("FundsRequired")%>*</asp:Label></td>--%>
+                                                                        <td>
+                                                                            <asp:Label ID="lblFundsRequired" runat="server" CssClass="cursor-pointer" ToolTip='<%# GetToolTipText(Container.DataItem) %>'><%# Eval("FundsRequired")%></asp:Label>
+                                                                            <asp:ImageButton ID="btnInfo" Width="20px" Height="20px" runat="server" ImageUrl="~/assets/images/info_icon.png" CssClass="ml-2" ToolTip='<%# GetToolTipText(Container.DataItem) %>' />
+                                                                        </td>
                                                                     </ItemTemplate>
-
                                                                 </asp:TemplateField>
+                                                                
                                                                 <%--<asp:TemplateField HeaderText="Sr. No.">
                                                                     <ItemTemplate>
                                                                         <%# Container.DataItemIndex + 1 %>
@@ -298,7 +329,7 @@
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
-            <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
+            <%--<asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
                 <ProgressTemplate>
                     <div style="position: fixed; z-index: 999; height: 100%; width: 100%; top: 0; background-color: Black; filter: alpha(opacity=60); opacity: 0.6; -moz-opacity: 0.8; cursor: not-allowed;">
                         <div style="z-index: 1000; margin: 300px auto; padding: 10px; width: 130px; background-color: transparent; border-radius: 1px; filter: alpha(opacity=100); opacity: 1; -moz-opacity: 1;">
@@ -306,9 +337,22 @@
                         </div>
                     </div>
                 </ProgressTemplate>
-            </asp:UpdateProgress>
+            </asp:UpdateProgress>--%>
         </div>
     </div>
+
+    <script type="text/javascript">
+        function PrintMainTracker() {
+            window.open('PrintMainTracker.aspx', '_blank');
+        }
+    </script>
+
+    <script type="text/javascript">
+        function openCrematoriumDetail(Division) {
+            var url = 'RptCrematoriumDetail.aspx?Division=' + encodeURIComponent(Division);
+            window.open(url, '_blank');
+        }
+    </script>
     <script>
         Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
             jQuery(function ($) {
@@ -316,8 +360,6 @@
                     var id = $(this).attr('id').replace('_backgroundElement', '');
                     $find(id).hide();
                 });
-
-
             })
         });
     </script>
