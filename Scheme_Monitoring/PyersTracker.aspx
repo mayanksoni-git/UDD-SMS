@@ -219,6 +219,14 @@
                                         <div class="card-body">
                                             <div class="live-preview">
                                                 <div class="row gy-4">
+                                                    <div class="col-xxl-4 col-md-6">
+                                                        <div id="div18" runat="server">
+                                                            <p><b>Enter the number of pyres to be upgraded</b></p>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row gy-4">
                                                     <div class="col-xxl-2 col-md-6">
                                                         <div id="div10" runat="server">
                                                             <asp:Label ID="lblUpgradeImprovisedWood" runat="server" Text="Improvised Wood" CssClass="form-label"></asp:Label>
@@ -345,33 +353,9 @@
                 </asp:UpdateProgress>
             
         </div>
-    </div>>, #<%= txtUpgradeImprovisedWood.ClientID %>, #<%= txtUpgradeGas.ClientID %>, #<%= txtUpgradeElectric.ClientID %>, #<%= txtCostImprovisedWood.ClientID %>, #<%= txtCostGas.ClientID %>, #<%= txtCostElectric.ClientID %>");
-            inputs.forEach(input => {
-                input.addEventListener("input", calculateAllFields);
-            });
-        }
-
-        // Call this function when the document is fully loaded
-        document.addEventListener("DOMContentLoaded", attachEventListeners);
+    </div>
 
 
-    </script>
-
-    <script type="text/javascript">
-        function downloadGO(obj) {
-            var path = document.getElementById('ctl00_ContentPlaceHolder1_hf_GO_Path').value;
-            if (path.trim() == "") {
-                obj.href = '#';
-                alert('File Not Found');
-                return false;
-            }
-            else {
-                window.open(location.origin + path, "_blank", "", false);
-                //location.href = window.location.origin + GO_FilePath;
-                return false;
-            }
-        }
-    </script>
 
     <script>
         Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {

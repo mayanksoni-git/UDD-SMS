@@ -606,122 +606,233 @@ public partial class PyersTracker : System.Web.UI.Page
     }
     //----------------------------------------------------------------------------------------
 
-    
+
 
     //Click Events --------------------------------------------------------------------------------
+
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        bool IsValid = true;
-        IsValid = ValidateFields();
-        if(IsValid==false)
+        if (!ValidateFields())
         {
             return;
         }
 
-        tbl_PyresTracker obj_PyresTracker = new tbl_PyresTracker();
+        tbl_PyresTracker obj_PyresTracker = PopulatePyresTrackerFromInput();
 
-        obj_PyresTracker.AddedBy = Int32.Parse(Session["Person_Id"].ToString());
-        obj_PyresTracker.Year = Int32.Parse(ddlYear.SelectedValue.ToString());
-        obj_PyresTracker.Month = Int32.Parse(ddlMonth.SelectedValue.ToString()); 
-        obj_PyresTracker.Zone = Int32.Parse(ddlZone.SelectedValue.ToString()); 
-        obj_PyresTracker.Circle = Int32.Parse(ddlCircle.SelectedValue.ToString());
-        obj_PyresTracker.Division = Int32.Parse(ddlDivision.SelectedValue.ToString());
-        obj_PyresTracker.UrbanPopulation = Int32.Parse(txtUrbanPopulation.Text);
-        obj_PyresTracker.PopulationCreamtion80 = Int32.Parse(txtPopulationCreamtion80.Text);
-        obj_PyresTracker.DeathPer1000 = double.Parse(txtDeathPer1000.Text);
-        obj_PyresTracker.EstDeath10Buffer = Int32.Parse(txtEstDeath10Buffer.Text);
-        obj_PyresTracker.ExistCMTR = Int32.Parse(txtExistCMTR.Text);
-
-        obj_PyresTracker.Conventional = Int32.Parse(txtConventional.Text);
-        obj_PyresTracker.ImprovisedWood = Int32.Parse(txtImprovisedWood.Text);
-        obj_PyresTracker.Gas = Int32.Parse(txtGas.Text);
-        obj_PyresTracker.Electric = Int32.Parse(txtElectric.Text);
-        obj_PyresTracker.ExistCapacity = Int32.Parse(txtExistCapacity.Text);
-
-        obj_PyresTracker.UpgradeExisting = txtUpgradeExisting.Text.ToString();
-        obj_PyresTracker.RemainingToBeHandled = Int32.Parse(txtRemainingToBeHandled.Text);
-
-        obj_PyresTracker.UpgradeImprovisedWood = Int32.Parse(txtUpgradeImprovisedWood.Text);
-        obj_PyresTracker.UpgradeGas = Int32.Parse(txtUpgradeGas.Text);
-        obj_PyresTracker.UpgradeElectric = Int32.Parse(txtUpgradeElectric.Text);
-        obj_PyresTracker.CostImprovisedWood = Int32.Parse(txtCostImprovisedWood.Text);
-        obj_PyresTracker.CostGas = Int32.Parse(txtCostGas.Text);
-        obj_PyresTracker.CostElectric = Int32.Parse(txtCostElectric.Text);
-
-        obj_PyresTracker.RemainingCapacity = Int32.Parse(txtRemainingCapacity.Text);
-        obj_PyresTracker.CommentOnCapacity = txtCommentOnCapacity.Text.ToString();
-
-        obj_PyresTracker.PyresToBeRevamped = Int32.Parse(txtPyresToBeRevamped.Text);
-        obj_PyresTracker.FundsRequired = double.Parse(txtFundsRequired.Text);
-
-        int result = objPyres.InsertPyresTracker(obj_PyresTracker);
-
-        if(result>0)
+        try
         {
-            MessageBox.Show("Record saved successfully!");
-            reset();
-            return;
+            int result = objPyres.InsertPyresTracker(obj_PyresTracker);
+
+            if (result > 0)
+            {
+                MessageBox.Show("Record saved successfully!");
+                reset();
+            }
+            else
+            {
+                MessageBox.Show("Record already exists! Year, Month and Division should be different in all the records.");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            MessageBox.Show("Record already exists! Year, Month and Division should be different in all the record.");
-            return;
+            MessageBox.Show("An error occurred: " + ex.Message);
         }
     }
+
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
-        bool IsValid = true;
-        IsValid = ValidateFields();
-        if (IsValid == false)
+        if (!ValidateFields())
         {
             return;
         }
 
-        tbl_PyresTracker obj_PyresTracker = new tbl_PyresTracker();
-        
-        obj_PyresTracker.AddedBy = Int32.Parse(Session["Person_Id"].ToString());
-        obj_PyresTracker.Year = Int32.Parse(ddlYear.SelectedValue.ToString());
-        obj_PyresTracker.Month = Int32.Parse(ddlMonth.SelectedValue.ToString());
-        obj_PyresTracker.Zone = Int32.Parse(ddlZone.SelectedValue.ToString());
-        obj_PyresTracker.Circle = Int32.Parse(ddlCircle.SelectedValue.ToString());
-        obj_PyresTracker.Division = Int32.Parse(ddlDivision.SelectedValue.ToString());
-        obj_PyresTracker.UrbanPopulation = Int32.Parse(txtUrbanPopulation.Text);
-        obj_PyresTracker.PopulationCreamtion80 = Int32.Parse(txtPopulationCreamtion80.Text);
-        obj_PyresTracker.DeathPer1000 = double.Parse(txtDeathPer1000.Text);
-        obj_PyresTracker.EstDeath10Buffer = Int32.Parse(txtEstDeath10Buffer.Text);
-        obj_PyresTracker.ExistCMTR = Int32.Parse(txtExistCMTR.Text);
-        obj_PyresTracker.Conventional = Int32.Parse(txtConventional.Text);
-        obj_PyresTracker.ImprovisedWood = Int32.Parse(txtImprovisedWood.Text);
-        obj_PyresTracker.Gas = Int32.Parse(txtGas.Text);
-        obj_PyresTracker.Electric = Int32.Parse(txtElectric.Text);
-        obj_PyresTracker.ExistCapacity = Int32.Parse(txtExistCapacity.Text);
-        obj_PyresTracker.UpgradeExisting = txtUpgradeExisting.Text.ToString();
-        obj_PyresTracker.RemainingToBeHandled = Int32.Parse(txtRemainingToBeHandled.Text);
-        obj_PyresTracker.UpgradeImprovisedWood = Int32.Parse(txtUpgradeImprovisedWood.Text);
-        obj_PyresTracker.UpgradeGas = Int32.Parse(txtUpgradeGas.Text);
-        obj_PyresTracker.UpgradeElectric = Int32.Parse(txtUpgradeElectric.Text);
-        obj_PyresTracker.CostImprovisedWood = Int32.Parse(txtCostImprovisedWood.Text);
-        obj_PyresTracker.CostGas = Int32.Parse(txtCostGas.Text);
-        obj_PyresTracker.CostElectric = Int32.Parse(txtCostElectric.Text);
-        obj_PyresTracker.RemainingCapacity = Int32.Parse(txtRemainingCapacity.Text);
-        obj_PyresTracker.CommentOnCapacity = txtCommentOnCapacity.Text.ToString();
-        obj_PyresTracker.PyresToBeRevamped = Int32.Parse(txtPyresToBeRevamped.Text);
-        obj_PyresTracker.FundsRequired = double.Parse(txtFundsRequired.Text);
+        tbl_PyresTracker obj_PyresTracker = PopulatePyresTrackerFromInput();
 
-        int result = objPyres.UpdatePyresTracker(obj_PyresTracker, Convert.ToInt32(hfPyresTracker_Id.Value));
-
-        if (result > 0)
+        try
         {
-            MessageBox.Show("Record updated successfully!");
-            reset();
-            return;
+            int result = objPyres.UpdatePyresTracker(obj_PyresTracker, Convert.ToInt32(hfPyresTracker_Id.Value));
+
+            if (result > 0)
+            {
+                MessageBox.Show("Record updated successfully!");
+                reset();
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong. Please try again or contact administration!");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            MessageBox.Show("Something wen wrong please try again or contact administration!");
-            return;
+            MessageBox.Show("An error occurred: " + ex.Message);
         }
     }
+
+    private tbl_PyresTracker PopulatePyresTrackerFromInput()
+    {
+        tbl_PyresTracker obj_PyresTracker = new tbl_PyresTracker();
+        try
+        {
+            obj_PyresTracker.AddedBy = Int32.Parse(Session["Person_Id"].ToString());
+            obj_PyresTracker.Year = Int32.Parse(ddlYear.SelectedValue.ToString());
+            obj_PyresTracker.Month = Int32.Parse(ddlMonth.SelectedValue.ToString());
+            obj_PyresTracker.Zone = Int32.Parse(ddlZone.SelectedValue.ToString());
+            obj_PyresTracker.Circle = Int32.Parse(ddlCircle.SelectedValue.ToString());
+            obj_PyresTracker.Division = Int32.Parse(ddlDivision.SelectedValue.ToString());
+            obj_PyresTracker.UrbanPopulation = Int32.Parse(txtUrbanPopulation.Text);
+            obj_PyresTracker.PopulationCreamtion80 = Int32.Parse(txtPopulationCreamtion80.Text);
+            obj_PyresTracker.DeathPer1000 = double.Parse(txtDeathPer1000.Text);
+            obj_PyresTracker.EstDeath10Buffer = Int32.Parse(txtEstDeath10Buffer.Text);
+            obj_PyresTracker.ExistCMTR = Int32.Parse(txtExistCMTR.Text);
+
+            obj_PyresTracker.Conventional = Int32.Parse(txtConventional.Text);
+            obj_PyresTracker.ImprovisedWood = Int32.Parse(txtImprovisedWood.Text);
+            obj_PyresTracker.Gas = Int32.Parse(txtGas.Text);
+            obj_PyresTracker.Electric = Int32.Parse(txtElectric.Text);
+            obj_PyresTracker.ExistCapacity = Int32.Parse(txtExistCapacity.Text);
+
+            obj_PyresTracker.UpgradeExisting = txtUpgradeExisting.Text.ToString();
+            obj_PyresTracker.RemainingToBeHandled = Int32.Parse(txtRemainingToBeHandled.Text);
+
+            obj_PyresTracker.UpgradeImprovisedWood = Int32.Parse(txtUpgradeImprovisedWood.Text);
+            obj_PyresTracker.UpgradeGas = Int32.Parse(txtUpgradeGas.Text);
+            obj_PyresTracker.UpgradeElectric = Int32.Parse(txtUpgradeElectric.Text);
+            obj_PyresTracker.CostImprovisedWood = Int32.Parse(txtCostImprovisedWood.Text);
+            obj_PyresTracker.CostGas = Int32.Parse(txtCostGas.Text);
+            obj_PyresTracker.CostElectric = Int32.Parse(txtCostElectric.Text);
+
+            obj_PyresTracker.RemainingCapacity = Int32.Parse(txtRemainingCapacity.Text);
+            obj_PyresTracker.CommentOnCapacity = txtCommentOnCapacity.Text.ToString();
+
+            obj_PyresTracker.PyresToBeRevamped = Int32.Parse(txtPyresToBeRevamped.Text);
+            obj_PyresTracker.FundsRequired = double.Parse(txtFundsRequired.Text);
+        }
+        catch (FormatException ex)
+        {
+            MessageBox.Show("Input string was not in a correct format: " + ex.Message);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("An unexpected error occurred: " + ex.Message);
+        }
+
+        return obj_PyresTracker;
+    }
+
+
+    //protected void btnSave_Click(object sender, EventArgs e)
+    //{
+    //    bool IsValid = true;
+    //    IsValid = ValidateFields();
+    //    if(IsValid==false)
+    //    {
+    //        return;
+    //    }
+
+    //    tbl_PyresTracker obj_PyresTracker = new tbl_PyresTracker();
+
+    //    obj_PyresTracker.AddedBy = Int32.Parse(Session["Person_Id"].ToString());
+    //    obj_PyresTracker.Year = Int32.Parse(ddlYear.SelectedValue.ToString());
+    //    obj_PyresTracker.Month = Int32.Parse(ddlMonth.SelectedValue.ToString()); 
+    //    obj_PyresTracker.Zone = Int32.Parse(ddlZone.SelectedValue.ToString()); 
+    //    obj_PyresTracker.Circle = Int32.Parse(ddlCircle.SelectedValue.ToString());
+    //    obj_PyresTracker.Division = Int32.Parse(ddlDivision.SelectedValue.ToString());
+    //    obj_PyresTracker.UrbanPopulation = Int32.Parse(txtUrbanPopulation.Text);
+    //    obj_PyresTracker.PopulationCreamtion80 = Int32.Parse(txtPopulationCreamtion80.Text);
+    //    obj_PyresTracker.DeathPer1000 = double.Parse(txtDeathPer1000.Text);
+    //    obj_PyresTracker.EstDeath10Buffer = Int32.Parse(txtEstDeath10Buffer.Text);
+    //    obj_PyresTracker.ExistCMTR = Int32.Parse(txtExistCMTR.Text);
+
+    //    obj_PyresTracker.Conventional = Int32.Parse(txtConventional.Text);
+    //    obj_PyresTracker.ImprovisedWood = Int32.Parse(txtImprovisedWood.Text);
+    //    obj_PyresTracker.Gas = Int32.Parse(txtGas.Text);
+    //    obj_PyresTracker.Electric = Int32.Parse(txtElectric.Text);
+    //    obj_PyresTracker.ExistCapacity = Int32.Parse(txtExistCapacity.Text);
+
+    //    obj_PyresTracker.UpgradeExisting = txtUpgradeExisting.Text.ToString();
+    //    obj_PyresTracker.RemainingToBeHandled = Int32.Parse(txtRemainingToBeHandled.Text);
+
+    //    obj_PyresTracker.UpgradeImprovisedWood = Int32.Parse(txtUpgradeImprovisedWood.Text);
+    //    obj_PyresTracker.UpgradeGas = Int32.Parse(txtUpgradeGas.Text);
+    //    obj_PyresTracker.UpgradeElectric = Int32.Parse(txtUpgradeElectric.Text);
+    //    obj_PyresTracker.CostImprovisedWood = Int32.Parse(txtCostImprovisedWood.Text);
+    //    obj_PyresTracker.CostGas = Int32.Parse(txtCostGas.Text);
+    //    obj_PyresTracker.CostElectric = Int32.Parse(txtCostElectric.Text);
+
+    //    obj_PyresTracker.RemainingCapacity = Int32.Parse(txtRemainingCapacity.Text);
+    //    obj_PyresTracker.CommentOnCapacity = txtCommentOnCapacity.Text.ToString();
+
+    //    obj_PyresTracker.PyresToBeRevamped = Int32.Parse(txtPyresToBeRevamped.Text);
+    //    obj_PyresTracker.FundsRequired = double.Parse(txtFundsRequired.Text);
+
+    //    int result = objPyres.InsertPyresTracker(obj_PyresTracker);
+
+    //    if(result>0)
+    //    {
+    //        MessageBox.Show("Record saved successfully!");
+    //        reset();
+    //        return;
+    //    }
+    //    else
+    //    {
+    //        MessageBox.Show("Record already exists! Year, Month and Division should be different in all the record.");
+    //        return;
+    //    }
+    //}
+    //protected void btnUpdate_Click(object sender, EventArgs e)
+    //{
+    //    bool IsValid = true;
+    //    IsValid = ValidateFields();
+    //    if (IsValid == false)
+    //    {
+    //        return;
+    //    }
+
+    //    tbl_PyresTracker obj_PyresTracker = new tbl_PyresTracker();
+
+    //    obj_PyresTracker.AddedBy = Int32.Parse(Session["Person_Id"].ToString());
+    //    obj_PyresTracker.Year = Int32.Parse(ddlYear.SelectedValue.ToString());
+    //    obj_PyresTracker.Month = Int32.Parse(ddlMonth.SelectedValue.ToString());
+    //    obj_PyresTracker.Zone = Int32.Parse(ddlZone.SelectedValue.ToString());
+    //    obj_PyresTracker.Circle = Int32.Parse(ddlCircle.SelectedValue.ToString());
+    //    obj_PyresTracker.Division = Int32.Parse(ddlDivision.SelectedValue.ToString());
+    //    obj_PyresTracker.UrbanPopulation = Int32.Parse(txtUrbanPopulation.Text);
+    //    obj_PyresTracker.PopulationCreamtion80 = Int32.Parse(txtPopulationCreamtion80.Text);
+    //    obj_PyresTracker.DeathPer1000 = double.Parse(txtDeathPer1000.Text);
+    //    obj_PyresTracker.EstDeath10Buffer = Int32.Parse(txtEstDeath10Buffer.Text);
+    //    obj_PyresTracker.ExistCMTR = Int32.Parse(txtExistCMTR.Text);
+    //    obj_PyresTracker.Conventional = Int32.Parse(txtConventional.Text);
+    //    obj_PyresTracker.ImprovisedWood = Int32.Parse(txtImprovisedWood.Text);
+    //    obj_PyresTracker.Gas = Int32.Parse(txtGas.Text);
+    //    obj_PyresTracker.Electric = Int32.Parse(txtElectric.Text);
+    //    obj_PyresTracker.ExistCapacity = Int32.Parse(txtExistCapacity.Text);
+    //    obj_PyresTracker.UpgradeExisting = txtUpgradeExisting.Text.ToString();
+    //    obj_PyresTracker.RemainingToBeHandled = Int32.Parse(txtRemainingToBeHandled.Text);
+    //    obj_PyresTracker.UpgradeImprovisedWood = Int32.Parse(txtUpgradeImprovisedWood.Text);
+    //    obj_PyresTracker.UpgradeGas = Int32.Parse(txtUpgradeGas.Text);
+    //    obj_PyresTracker.UpgradeElectric = Int32.Parse(txtUpgradeElectric.Text);
+    //    obj_PyresTracker.CostImprovisedWood = Int32.Parse(txtCostImprovisedWood.Text);
+    //    obj_PyresTracker.CostGas = Int32.Parse(txtCostGas.Text);
+    //    obj_PyresTracker.CostElectric = Int32.Parse(txtCostElectric.Text);
+    //    obj_PyresTracker.RemainingCapacity = Int32.Parse(txtRemainingCapacity.Text);
+    //    obj_PyresTracker.CommentOnCapacity = txtCommentOnCapacity.Text.ToString();
+    //    obj_PyresTracker.PyresToBeRevamped = Int32.Parse(txtPyresToBeRevamped.Text);
+    //    obj_PyresTracker.FundsRequired = double.Parse(txtFundsRequired.Text);
+
+    //    int result = objPyres.UpdatePyresTracker(obj_PyresTracker, Convert.ToInt32(hfPyresTracker_Id.Value));
+
+    //    if (result > 0)
+    //    {
+    //        MessageBox.Show("Record updated successfully!");
+    //        reset();
+    //        return;
+    //    }
+    //    else
+    //    {
+    //        MessageBox.Show("Something wen wrong please try again or contact administration!");
+    //        return;
+    //    }
+    //}
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         reset();

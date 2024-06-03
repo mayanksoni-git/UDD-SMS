@@ -93,4 +93,9 @@ public partial class CreateThumbnailOfImage : System.Web.UI.Page
         }
         return thumbnailImage;
     }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        ClientScript.RegisterStartupScript(this.GetType(), "myscript", "alert('hello world!');");
+    }
 }

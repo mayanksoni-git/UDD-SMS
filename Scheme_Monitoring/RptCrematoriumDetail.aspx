@@ -164,7 +164,7 @@
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <asp:Label ID="lblMonth" runat="server" Text="Month*" CssClass="form-label"></asp:Label>p
+                                                        <asp:Label ID="lblMonth" runat="server" Text="Month*" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>

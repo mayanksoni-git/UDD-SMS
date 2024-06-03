@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="CrematoriumDetail.aspx.cs" Inherits="CrematoriumDetail" EnableEventValidation="false" ValidateRequest="false" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin_PMS.master" AutoEventWireup="true" CodeFile="CrematoriumDetail.aspx.cs" Inherits="CrematoriumDetail" EnableEventValidation="false" ValidateRequest="false" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
@@ -367,8 +367,6 @@
                                                         </div>
                                                     </div>
 
-                                                    
-
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="div4" runat="server">
                                                             <asp:Label ID="lblFillerName" runat="server" Text="Name of the person filling this form*" CssClass="form-label"></asp:Label>
@@ -525,22 +523,6 @@
             modal.style.display = "block";
             modalImg.src = imageUrl;
             modalImg.style.transform = "scale(1)";
-        }
-    </script>
-
-    <script type="text/javascript">
-        function downloadGO(obj) {
-            var path = document.getElementById('ctl00_ContentPlaceHolder1_hf_GO_Path').value;
-            if (path.trim() == "") {
-                obj.href = '#';
-                alert('File Not Found');
-                return false;
-            }
-            else {
-                window.open(location.origin + path, "_blank", "", false);
-                //location.href = window.location.origin + GO_FilePath;
-                return false;
-            }
         }
     </script>
 
