@@ -118,7 +118,7 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                             <td><%# Container.DataItemIndex + 1 %></td>
-                            <td><%# Eval("CircleName")%></td>
+                            <td><%# Eval("CircleName")%> <%# Eval("MonthName")%> <%# Eval("Year")%></td>
                             <td><%# Eval("DivisionName")%></td>
                             <td><%# Eval("UrbanPopulation")%></td>
                             <td><%# Eval("PopulationCreamtion80")%></td>

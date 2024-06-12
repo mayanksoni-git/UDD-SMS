@@ -34,6 +34,13 @@ public partial class CrematoriumDetail : System.Web.UI.Page
             get_tbl_Month();
             SetDropdownsBasedOnUserType();
 
+            if (!string.IsNullOrEmpty(Request.QueryString["message"]))
+            {
+                string message = Request.QueryString["message"];
+                // Register the script to show an alert
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + Server.HtmlEncode(message) + "');", true);
+            }
+
             if (Request.QueryString["CrematoriumDetail_Id"] != null)
             {
                 int crematoriumDetailId = Convert.ToInt32(Request.QueryString["CrematoriumDetail_Id"]);
@@ -340,9 +347,48 @@ public partial class CrematoriumDetail : System.Web.UI.Page
     }
 
     //Click Events --------------------------------------------------------------------------------
+    //protected void btnSave_Click(object sender, EventArgs e)
+    //{
+
+    //    if (!ValidateFields())
+    //    {
+    //        return;
+    //    }
+
+    //    string imageLocation = UploadImage();
+
+    //    if (string.IsNullOrEmpty(imageLocation))
+    //    {
+    //        MessageBox.Show("Please select an image to upload.");
+    //        return;
+    //    }
+
+    //    tbl_CrematoriumDetail crematoriumDetail = CreateCrematoriumDetailObject(imageLocation);
+    //    int result = objPyres.InsertCrematoriumDetail(crematoriumDetail);
+    //    if (result>0)
+    //    {
+    //        reset();
+    //        MessageBox.Show("Record has been saved successfully.");
+    //        return;
+    //    }
+    //    else
+    //    {
+    //        reset();
+    //        bool IsImageDelete = ImageUploader.DeleteImage(imageLocation);
+    //        if(!IsImageDelete)
+    //        {
+    //            MessageBox.Show("You cannot insert more records than the number of existing crematoriums in the division. While processing this data, an image was uploaded but failed to be deleted.");
+    //        }
+    //        else
+    //        {
+    //            MessageBox.Show("You cannot insert more records than the number of existing crematoriums in the division.");
+    //        }
+    //        return;
+    //    }
+    //}
+
     protected void btnSave_Click(object sender, EventArgs e)
     {
-
         if (!ValidateFields())
         {
             return;
@@ -358,17 +404,28 @@ public partial class CrematoriumDetail : System.Web.UI.Page
 
         tbl_CrematoriumDetail crematoriumDetail = CreateCrematoriumDetailObject(imageLocation);
         int result = objPyres.InsertCrematoriumDetail(crematoriumDetail);
-        if (result>0)
+
+        if (result > 0)
         {
-            reset();
-            MessageBox.Show("Record has been saved successfully.");
+            int remainingCount = objPyres.GetNoOfExistingCreamtoriumInULB(crematoriumDetail.Division, crematoriumDetail.Year, crematoriumDetail.Month);
+
+            if (remainingCount > 0)
+            {
+                MessageBox.Show("Record has been saved successfully. " + remainingCount.ToString()+" Crematorium detail(s) are still remaining to be filled.");
+                resetForRemaining();
+            }
+            else
+            {
+                MessageBox.Show("You have entered all the crematorium details. There are no remaining data to fill in.");
+                reset();
+            }
             return;
         }
         else
         {
             reset();
             bool IsImageDelete = ImageUploader.DeleteImage(imageLocation);
-            if(!IsImageDelete)
+            if (!IsImageDelete)
             {
                 MessageBox.Show("You cannot insert more records than the number of existing crematoriums in the division. While processing this data, an image was uploaded but failed to be deleted.");
             }
@@ -782,6 +839,42 @@ public partial class CrematoriumDetail : System.Web.UI.Page
 
         txtFillerName.Text ="";
         txtFillerContact.Text = "";
+        txtTotalCMTRDone.Text = "";
+
+        hfImageUrl.Value = "";
+        lblCMTRImageDisplay.Visible = false;
+        imgCMTRImageDisplay.Visible = false;
+        imgCMTRImageDisplay.ImageUrl = "";
+
+        btnSave.Visible = true;
+        btnUpdate.Visible = false;
+    }
+    private void resetForRemaining()
+    {
+        txtNameCMTR.Text = "";
+        txtLocationCMTR.Text = "";
+
+        txtConventional.Text = "";
+        txtImprovisedWood.Text = "";
+        txtGas.Text = "";
+        txtElectric.Text = "";
+        txtNoOfPyres.Text = "";
+
+        rblDrinkingWater.SelectedValue = "0";
+        rblElecticityGrid.SelectedValue = "0";
+        rblParking.SelectedValue = "0";
+        rblShed.SelectedValue = "0";
+        rblHearse.SelectedValue = "0";
+        rblHandPump.SelectedValue = "0";
+        rblBoundaryWall.SelectedValue = "0";
+        rblEntryGate.SelectedValue = "0";
+        rblPrayerHall.SelectedValue = "0";
+        rblCareTakerRoom.SelectedValue = "0";
+        rblAshStorage.SelectedValue = "0";
+        rblBathrooms.SelectedValue = "0";
+        rblWashroom.SelectedValue = "0";
+        rblRegistration.SelectedValue = "0";
+
         txtTotalCMTRDone.Text = "";
 
         hfImageUrl.Value = "";

@@ -35,9 +35,9 @@ public partial class ExportToExcelCrematoriumDetail : System.Web.UI.Page
 
         // Create table for the heading
         htw.Write("<table>");
-        htw.Write("<tr><td colspan='25' style='font-weight:bold; font-size:30pt; text-align:center;'>Schemes Monitoring System</td></tr>");
-        htw.Write("<tr><td colspan='25' style='font-weight:bold; font-size:25pt; text-align:center;'>Urban Development Department, Government of Uttar Pradesh</td></tr>");
-        htw.Write("<tr><td colspan='25' style='font-weight:bold; font-size:20pt; text-align:center;'>Crematorium Detail</td></tr>");
+        htw.Write("<tr><td colspan='26' style='font-weight:bold; font-size:30pt; text-align:center;'>Schemes Monitoring System</td></tr>");
+        htw.Write("<tr><td colspan='26' style='font-weight:bold; font-size:25pt; text-align:center;'>Urban Development Department, Government of Uttar Pradesh</td></tr>");
+        htw.Write("<tr><td colspan='26' style='font-weight:bold; font-size:20pt; text-align:center;'>Crematorium Detail</td></tr>");
         htw.Write("</table>");
 
         // Add a line break

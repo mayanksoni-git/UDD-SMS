@@ -59,7 +59,7 @@ public class Pyres
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[28];
+            SqlParameter[] param = new SqlParameter[30];
 
             param[0] =  new SqlParameter("@AddedBy", obj_PyresTracker.AddedBy);
             param[1] =  new SqlParameter("@Year", obj_PyresTracker.Year);
@@ -89,6 +89,8 @@ public class Pyres
             param[25] = new SqlParameter("@CostImprovisedWood", obj_PyresTracker.CostImprovisedWood);
             param[26] = new SqlParameter("@CostGas", obj_PyresTracker.CostGas);
             param[27] = new SqlParameter("@CostElectric", obj_PyresTracker.CostElectric);
+            param[28] = new SqlParameter("@AmenitiesRequired", obj_PyresTracker.AmenitiesRequired);
+            param[29] = new SqlParameter("@FundforAmeneties", obj_PyresTracker.FundforAmeneties);
 
             return objDAL.ExecuteProcedure("sp_InsertPyresTracker", param);
         }
@@ -135,7 +137,7 @@ public class Pyres
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[29];
+            SqlParameter[] param = new SqlParameter[31];
 
             param[0] = new SqlParameter("@AddedBy", obj_PyresTracker.AddedBy);
             param[1] = new SqlParameter("@Year", obj_PyresTracker.Year);
@@ -166,6 +168,8 @@ public class Pyres
             param[26] = new SqlParameter("@CostImprovisedWood", obj_PyresTracker.CostImprovisedWood);
             param[27] = new SqlParameter("@CostGas", obj_PyresTracker.CostGas);
             param[28] = new SqlParameter("@CostElectric", obj_PyresTracker.CostElectric);
+            param[29] = new SqlParameter("@AmenitiesRequired", obj_PyresTracker.AmenitiesRequired);
+            param[30] = new SqlParameter("@FundforAmeneties", obj_PyresTracker.FundforAmeneties);
 
             return objDAL.ExecuteProcedure("sp_UpdatePyresTracker", param);
         }
@@ -174,6 +178,7 @@ public class Pyres
             throw new Exception(ex.Message);
         }
     }
+    
     #endregion
 
 
@@ -308,6 +313,22 @@ public class Pyres
             throw new Exception(ex.Message);
         }
     }
+    public int GetNoOfExistingCreamtoriumInULB(int Division, int Year, int Month)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[3];
 
+            param[0] = new SqlParameter("@Division", Division);
+            param[1] = new SqlParameter("@Year", Year);
+            param[2] = new SqlParameter("@Month", Month);
+
+            return objDAL.ExecuteScalarProcedure("sp_GetNoOfExistingCMTRinULB", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
     #endregion
 }

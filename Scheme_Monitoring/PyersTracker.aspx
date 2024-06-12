@@ -2,12 +2,35 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
+    <style>
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1; /* Ensure the overlay is above the TextBox */
+            background-color: transparent; /* Make it invisible */
+        }
+        .form-control-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+    </style>
+    <script type="text/javascript">
+        function showAlert1() {
+            alert('To change the total urban population, you need to update it in the ULB Master under Jurisdiction Masters.');
+        }
+        function showAlert2() {
+            alert('To change the death rate per 1000 per year, you need to update it in the ULB Master under Jurisdiction Masters.');
+        }
+    </script>
     <asp:HiddenField ID="hfPyresTracker_Id" runat="server" />
     <div class="main-content">
         <div class="page-content">
-            
                 <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
                 </cc1:ToolkitScriptManager>
+                <asp:Literal ID="ScriptPlaceholder" runat="server"></asp:Literal>
                 <asp:UpdatePanel ID="up" runat="server">
                     <ContentTemplate>
                         <div class="container-fluid">
@@ -78,14 +101,16 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="divDivision" runat="server">
                                                             <asp:Label ID="lblDivisionH" runat="server" Text="Division*" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="divPopulation" runat="server">
                                                             <asp:Label ID="lblUrbanPopulation" runat="server" Text="Total urban population*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtUrbanPopulation" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);" OnTextChanged="TextChangedEvent" TextMode="Number"></asp:TextBox>
+                                                            <asp:TextBox ID="txtUrbanPopulation" runat="server" Font-Bold="True" Enabled="false" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);" OnTextChanged="TextChangedEvent" TextMode="Number"></asp:TextBox>
+                                                            <div class="overlay" onclick="showAlert1()"></div>
+                                                                
                                                         </div>
                                                     </div>
 
@@ -99,7 +124,8 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="divDeathPer1000" runat="server">
                                                             <asp:Label ID="lblDeathPer1000" runat="server" Text="Death rate per 1000 per year*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtDeathPer1000" runat="server" AutoPostBack="true" CssClass="form-control" onkeyup="isNumericVal(this);" OnTextChanged="TextChangedEvent"></asp:TextBox>
+                                                            <asp:TextBox ID="txtDeathPer1000" runat="server" Font-Bold="True" Enabled="false" AutoPostBack="true" CssClass="form-control" onkeyup="isNumericVal(this);" OnTextChanged="TextChangedEvent"></asp:TextBox>
+                                                            <div class="overlay" onclick="showAlert2()"></div>
                                                         </div>
                                                     </div>
 
@@ -222,7 +248,6 @@
                                                     <div class="col-xxl-4 col-md-6">
                                                         <div id="div18" runat="server">
                                                             <p><b>Enter the number of pyres to be upgraded</b></p>
-                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -233,7 +258,7 @@
                                                             <asp:TextBox ID="txtUpgradeImprovisedWood" OnTextChanged="TextChangedEvent" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);"  TextMode="Number"></asp:TextBox>
                                                             *
                                                             <asp:Label ID="Label1" runat="server" Text="Cost of per Improvised Wood Pyre (In Lakhs)" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtCostImprovisedWood" OnTextChanged="TextChangedEvent" ToolTip="Enter Cost of Improvised Wood Pyre per pyre per vender" Text="23" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);"  TextMode="Number"></asp:TextBox>
+                                                            <asp:TextBox ID="txtCostImprovisedWood" Enabled="false" OnTextChanged="TextChangedEvent" ToolTip="Enter Cost of Improvised Wood Pyre per pyre per vender" Text="23" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);"  TextMode="Number"></asp:TextBox>
                                                         </div>
                                                     </div>
 
@@ -243,7 +268,7 @@
                                                             <asp:TextBox ID="txtUpgradeGas" OnTextChanged="TextChangedEvent" runat="server"  CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                              *
                                                             <asp:Label ID="Label2" runat="server" Text="Cost of per Gas Pyre  (In Lakhs)" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtCostGas" OnTextChanged="TextChangedEvent" ToolTip="Enter Cost of Gas Pyre per pyre per vender " Text="45" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);"  TextMode="Number"></asp:TextBox>
+                                                            <asp:TextBox ID="txtCostGas" Enabled="false" OnTextChanged="TextChangedEvent" ToolTip="Enter Cost of Gas Pyre per pyre per vender " Text="45" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);"  TextMode="Number"></asp:TextBox>
                                                         </div>
                                                     </div>
 
@@ -253,7 +278,7 @@
                                                             <asp:TextBox ID="txtUpgradeElectric" OnTextChanged="TextChangedEvent" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                              *
                                                             <asp:Label ID="Label3" runat="server" Text="Cost of per Electric Pyre  (In Lakhs)" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtCostElectric" OnTextChanged="TextChangedEvent"  ToolTip="Enter Cost of Electric Pyre per pyre per vender" Text="51" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);"  TextMode="Number"></asp:TextBox>
+                                                            <asp:TextBox ID="txtCostElectric" Enabled="false" OnTextChanged="TextChangedEvent"  ToolTip="Enter Cost of Electric Pyre per pyre per vender" Text="51" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);"  TextMode="Number"></asp:TextBox>
                                                         </div>
                                                     </div>
 
@@ -263,6 +288,39 @@
                                                             <asp:TextBox ID="txtCheckOn" ReadOnly="true" runat="server" CssClass="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>--%>
+                                                </div>
+
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row" runat="server" id="div21">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Amenities and Fund Required for Amenities</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-4 col-md-6">
+                                                        <div id="div20" runat="server">
+                                                            <asp:Label ID="lblAmenitiesRequired" runat="server" Text="Enter Names of Amenities Required*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtAmenitiesRequired" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div id="div19" runat="server">
+                                                            <asp:Label ID="lblFundforAmeneties" runat="server" Text="Total Fund required for Amenities*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblMaxFundForULBAmenities" runat="server" Text="" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtFundforAmeneties" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="CheckMaxValue" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
+                                                            <asp:HiddenField ID="hfMaxFundForAmenities" runat="server" Value="" />
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -317,7 +375,7 @@
 
                                                     <div class="col-xxl-4 col-md-6">
                                                         <div id="div15" runat="server">
-                                                            <asp:Label ID="lblFundsRequired" runat="server" Text="Funds required  in Lakhs (only includes pyres and not other facilities)" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblFundsRequired" runat="server" Text="Funds required  in Lakhs" CssClass="form-label"></asp:Label><%--(only includes pyres and not other facilities)--%>
                                                             <asp:TextBox ID="txtFundsRequired" Enabled="false" Font-Bold="True" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                         </div>
                                                     </div>
@@ -333,6 +391,9 @@
                                         <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" OnClientClick="return confirm('Are you sure want to save record? Please make sure values in all the calculated fields are correct?');" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                         <asp:Button ID="btnUpdate" Text="Update" Visible="false" OnClick="btnUpdate_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                         <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
+                                        
+                                        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+                                        
                                     </div>
                                 </div>
                             </div>

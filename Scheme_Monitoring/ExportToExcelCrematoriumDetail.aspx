@@ -63,6 +63,12 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
+            <asp:TemplateField HeaderText="Entry Gate">
+                <ItemTemplate>
+                    <%# Convert.ToBoolean(Eval("EntryGate")) ? "Yes" : "No" %>
+                </ItemTemplate>
+            </asp:TemplateField>
+
             <asp:TemplateField HeaderText="Waiting/Prayer Hall">
                 <ItemTemplate>
                     <%# Convert.ToBoolean(Eval("PrayerHall")) ? "Yes" : "No" %>
@@ -104,7 +110,7 @@
             </asp:TemplateField>
             <asp:BoundField HeaderText="Name of Filler" DataField="FillerName" />
             <asp:BoundField HeaderText="Contact No of Filler" DataField="FillerContact" />
-            <asp:BoundField HeaderText="Total no. of Cremations done in from 1/Jan/2023 - 31/Dec/2023 " DataField="TotalCMTRDone" />
+            <asp:BoundField HeaderText="Total no. of Cremations done from 1/Jan/2023 - 31/Dec/2023" DataField="TotalCMTRDone" />
         </Columns>
     </asp:GridView>
 </asp:Content>

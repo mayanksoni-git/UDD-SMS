@@ -192,7 +192,7 @@
                                                                             <th colspan="7" style="background-color: #F1C232">B</th>
                                                                             <th colspan="5" style="background-color: #F1C232">C</th>
                                                                             <th colspan="2" style="background-color: #76A5AF">C2</th>
-                                                                            <th colspan="3" style="background-color: #E69138">D1</th>
+                                                                            <th colspan="5" style="background-color: #E69138">D1</th>
                                                                             <th colspan="2" style="background-color: #E69138">D3</th>
                                                                             <th colspan="2" style="background-color: #76A5AF">E</th>
                                                                         </tr>
@@ -202,7 +202,7 @@
                                                                             <th colspan="7" style="background-color: #C9DAF8">City Profile</th>
                                                                             <th colspan="5" style="background-color: #D9D2E9">No. of existing pyres (excluding under construction) as per city administration</th>
                                                                             <th colspan="2" style="background-color: #C9DAF8">Decision for next step</th>
-                                                                            <th colspan="3" style="background-color: #D9D2E9">Upgradation of existing conventional pyres</th>
+                                                                            <th colspan="5" style="background-color: #D9D2E9">Upgradation of existing conventional pyres</th>
                                                                             <th colspan="2" style="background-color: #D9D2E9">Current status for installation of EFPs</th>
                                                                             <th colspan="2" style="background-color: #00FFFF">Final output</th>
                                                                         </tr>
@@ -225,6 +225,8 @@
                                                                             <th style="background-color: #D9D2E9">Improvised Wood </th>
                                                                             <th style="background-color: #D9D2E9">Gas </th>
                                                                             <th style="background-color: #D9D2E9">Electric </th>
+                                                                            <th rowspan="2" style="background-color: #D9D2E9">Amenities Required</th>
+                                                                            <th rowspan="2" style="background-color: #D9D2E9">Fun for Amenities(in Lakhs)</th>
                                                                             <th rowspan="2" style="background-color: #C9DAF8">Remaining capacity (ideally should be negative)</th>
                                                                             <th rowspan="2" style="background-color: #D9D2E9">Comment on capacity</th>
                                                                             <th colspan="2" style="background-color: #A4C2F4">Upgrade existing ones</th>
@@ -242,7 +244,7 @@
                                                                         <td>
                                                                             <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" /></td>
                                                                         <td><%# Container.DataItemIndex + 1 %></td>
-                                                                        <td><%# Eval("CircleName")%></td>
+                                                                        <td><%# Eval("CircleName")%> <%# Eval("MonthName")%> <%# Eval("Year")%></td>
                                                                         <td><%# Eval("DivisionName")%></td>
                                                                         <td><%# Eval("UrbanPopulation")%></td>
                                                                         <td><%# Eval("PopulationCreamtion80")%></td>
@@ -251,11 +253,11 @@
                                                                         <%--<td><%# Eval("ExistCMTR")%></td>--%>
                                                                         <td>
                                                                             <asp:LinkButton
-                                                                                Text='<%# Eval("ExistCMTR") %>'
+                                                                                Text='<%# Eval("Filled")+" + "+Eval("RemainingToBeFill")+" = "+ Eval(" ExistCMTR") %>'
                                                                                 CssClass="btn btn-primary btn-sm"
-                                                                                ToolTip="Click to Open Crematorium Detail"
+                                                                                ToolTip="Click to Open Crematorium Detail (Filled Crematorium Detail + Reamaining Crematorium Detail to be fill = Existing Crematorium)"
                                                                                 runat="server"
-                                                                                OnClientClick='<%# "openCrematoriumDetail(\"" + Eval("Division") + "\"); return false;" %>'>
+                                                                                OnClientClick='<%# "openCrematoriumDetail(\"" + Eval("Zone") + "\", \"" + Eval("Circle") + "\", \"" + Eval("Division") + "\", \"" + Eval("Year") + "\", \"" + Eval("Month") + "\"); return false;" %>'>
                                                                             </asp:LinkButton>
                                                                         </td>
                                                                         <td><%# Eval("Conventional")%></td>
@@ -269,6 +271,8 @@
                                                                         <td><%# Eval("UpgradeImprovisedWood")%></td>
                                                                         <td><%# Eval("UpgradeGas")%></td>
                                                                         <td><%# Eval("UpgradeElectric")%></td>
+                                                                        <td><%# Eval("AmenitiesRequired")%></td>
+                                                                        <td><%# Eval("FundforAmeneties")%></td>
                                                                         <td><%# Eval("RemainingCapacity")%></td>
                                                                         <td><%# Eval("CommentOnCapacity")%></td>
                                                                         <td><%# Eval("PyresToBeRevamped")%></td>
@@ -315,6 +319,11 @@
                                                                 <asp:BoundField HeaderText="Funds required in lacs (only includes pyres and not other facilities)" DataField="FundsRequired" />--%>
                                                                     
                                                             </Columns>
+                                                            <EmptyDataTemplate>
+                                                                <tr>
+                                                                    <td colspan="22" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                                </tr>
+                                                            </EmptyDataTemplate>
                                                         </asp:GridView>
                                                     </div>
                                                 </div>
@@ -348,8 +357,8 @@
     </script>
 
     <script type="text/javascript">
-        function openCrematoriumDetail(Division) {
-            var url = 'RptCrematoriumDetail.aspx?Division=' + encodeURIComponent(Division);
+        function openCrematoriumDetail(Zone, Circle, Division, Year, Month) {
+            var url = 'RptCrematoriumDetail.aspx?Zone=' + encodeURIComponent(Zone) + '&Circle=' + encodeURIComponent(Circle) + '&Division=' + encodeURIComponent(Division) + '&Year=' + encodeURIComponent(Year) + '&Month=' + encodeURIComponent(Month);
             window.open(url, '_blank');
         }
     </script>

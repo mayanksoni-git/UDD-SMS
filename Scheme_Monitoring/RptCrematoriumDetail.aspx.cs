@@ -96,13 +96,17 @@ public partial class RptCrematoriumDetail : System.Web.UI.Page
 
             if (Request.QueryString["Division"] != null)
             {
+                int Zone = Convert.ToInt32(Request.QueryString["Zone"].ToString());
+                int Circle = Convert.ToInt32(Request.QueryString["Circle"].ToString());
                 int Division = Convert.ToInt32(Request.QueryString["Division"].ToString());
+                int Year = Convert.ToInt32(Request.QueryString["Year"].ToString());
+                int Month = Convert.ToInt32(Request.QueryString["Month"].ToString());
                 SearchCrematoriumDetail obj_Search = new SearchCrematoriumDetail();
-                obj_Search.Zone = 0;
-                obj_Search.Circle = 0;
+                obj_Search.Zone = Zone;
+                obj_Search.Circle = Circle;
                 obj_Search.Division = Division;
-                obj_Search.Year = 0;
-                obj_Search.Month = 0;
+                obj_Search.Year = Year;
+                obj_Search.Month = Month;
                 LoadCrematoriumDetailGrid(obj_Search);
             }
         }
@@ -276,10 +280,42 @@ public partial class RptCrematoriumDetail : System.Web.UI.Page
             gvCrematoriumDetail.DataSource = dt;
             gvCrematoriumDetail.DataBind();
             divData.Visible = true;
+
+            ddlYear.SelectedValue = obj_Search.Year.ToString();
+            ddlMonth.SelectedValue = obj_Search.Month.ToString();
+            try
+            {
+                ddlZone.SelectedValue = obj_Search.Zone.ToString();
+
+            }
+            catch
+            {
+                ddlZone.SelectedValue = "0";
+            }
+
+            ddlZone_SelectedIndexChanged(ddlZone, new EventArgs());
+            try
+            {
+                ddlCircle.SelectedValue = obj_Search.Circle.ToString();
+            }
+            catch
+            {
+                ddlCircle.SelectedValue = "0";
+            }
+
+            ddlCircle_SelectedIndexChanged(ddlCircle, new EventArgs());
+            try
+            {
+                ddlDivision.SelectedValue = obj_Search.Division.ToString();
+            }
+            catch
+            {
+                ddlDivision.SelectedValue = "0";
+            }
         }
         else
         {
-            divData.Visible = false;
+            divData.Visible = true;
             gvCrematoriumDetail.DataSource = null;
             gvCrematoriumDetail.DataBind();
             MessageBox.Show("No Records Found");

@@ -269,7 +269,7 @@ public partial class RptPyresTracker : System.Web.UI.Page
         }
         else
         {
-            divData.Visible = false;
+            divData.Visible = true;
             MainTracker.DataSource = null;
             MainTracker.DataBind();
             MessageBox.Show("No Records Found");

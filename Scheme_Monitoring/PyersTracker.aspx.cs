@@ -84,6 +84,7 @@ public partial class PyersTracker : System.Web.UI.Page
                                     string value = Session["PersonJuridiction_DivisionId"].ToString();
                                     ddlDivision.SelectedValue = Session["PersonJuridiction_DivisionId"].ToString();
                                     ddlDivision.Enabled = false;
+                                    ddlDivision_SelectedIndexChanged(ddlDivision, e);
                                 }
                                 catch
                                 { }
@@ -180,25 +181,89 @@ public partial class PyersTracker : System.Web.UI.Page
     {
         if (ddlCircle.SelectedValue == "0")
         {
-            ddlDivision.Items.Clear();
+            ddlCircle.Items.Clear();
         }
         else
         {
             get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue));
         }
     }
-
-
-
+    protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlDivision.SelectedValue == "0")
+        {
+            txtUrbanPopulation.Text = "";
+            txtDeathPer1000.Text = "";
+            CalculateAllFields();
+            //MessageBox.Show("Please Select a ULB. ");
+            lblMessage.Text = "Please Select a ULB.";
+            ddlDivision.Focus();
+        }
+        else
+        {
+            get_tbl_DivisionData(Convert.ToInt32(ddlDivision.SelectedValue));
+        }
+    }
+    
 
     //Calculations---------------------------------------------------------------------------------
     //Variables names picked from the columns of ExcelSheet provided to make this form
-    
+
     protected void TextChangedEvent(object sender, EventArgs e)
     {
         CalculateAllFields();
     }
+    protected void CheckMaxValue(object sender, EventArgs e)
+    {
+        if(double.Parse(txtFundforAmeneties.Text)> double.Parse(hfMaxFundForAmenities.Value))
+        {
+            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Record saved successfully!');", true);
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You cannot enter more than max allowed fund! Please enter lower amount in lakhs');", true);
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('You cannot enter more than max allowed fund! Please enter lower amount in lakhs');", true);
+            //string script = "<script type='text/javascript'>alert('You cannot enter more than max allowed fund! Please enter lower amount in lakhs');</script>";
+            //ScriptPlaceholder.Text = script;
 
+            lblMessage.Text = "You cannot enter more than max allowed fund! Please enter lower amount in lakhs";
+            lblMessage.Focus();
+            lblMessage.ForeColor = System.Drawing.Color.Red;
+            return;
+        }
+        else
+        {
+            CalculateAllFields();
+        }
+    }
+    private void get_tbl_DivisionData(int Division_Id)
+    {
+        DataSet ds = new DataSet();
+        ds = (new DataLayer()).get_tbl_Division(0, Division_Id);
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            DataTable dt = ds.Tables[0];
+            txtUrbanPopulation.Text = dt.Rows[0]["UrbanPopulation"].ToString();
+            txtDeathPer1000.Text = dt.Rows[0]["DeathPer1000"].ToString();
+            string dddd = dt.Rows[0]["Division_Type"].ToString();
+            if (dt.Rows[0]["Division_Type"].ToString().Trim() == "NN" | dt.Rows[0]["Division_Type"].ToString().Trim() == "NPP")
+            {
+                hfMaxFundForAmenities.Value = DivisionType.NN.ToString();
+                lblMaxFundForULBAmenities.Text = "(Max fund allowed is " + hfMaxFundForAmenities.Value.ToString() + "Lakhs)";
+            }
+            else if (dt.Rows[0]["Division_Type"].ToString().Trim() == "NP")
+            {
+                hfMaxFundForAmenities.Value = DivisionType.NP.ToString();
+            }
+            else
+            {
+                hfMaxFundForAmenities.Value = "";
+            }
+            lblMaxFundForULBAmenities.Text = "(Max fund allowed is " + hfMaxFundForAmenities.Value.ToString() + ")";
+            CalculateAllFields();
+        }
+        else
+        {
+            lblMaxFundForULBAmenities.Text = "";
+        }
+    }
     private void CalculateAllFields()
     {
         #region Variables
@@ -223,7 +288,7 @@ public partial class PyersTracker : System.Web.UI.Page
         double U = 0;
         string V = "";
         int W = 0;
-        int X = 0;
+        double X = 0;
 
         int C2 = 1;
         int C3 = 2;
@@ -233,6 +298,7 @@ public partial class PyersTracker : System.Web.UI.Page
         int CostN = 0;
         int CostO = 0;
         int CostP = 0;
+        double FundForAmenities = 0;
         #endregion
 
         #region Calculate Population likely to be cremated (80%)
@@ -297,14 +363,14 @@ public partial class PyersTracker : System.Web.UI.Page
         txtRemainingToBeHandled.Text = M.ToString();
         if (M > 0)
         {
-            divUpgradation.Visible = true;
+            //divUpgradation.Visible = true;
             //txtUpgradeImprovisedWood.Text = "";
             //txtUpgradeGas.Text = "";
             //txtUpgradeElectric.Text = "";
         }
         else
         {
-            divUpgradation.Visible = false;
+            //divUpgradation.Visible = false;
             //txtUpgradeImprovisedWood.Text = "0";
             //txtUpgradeGas.Text = "0";
             //txtUpgradeElectric.Text = "0";
@@ -370,7 +436,11 @@ public partial class PyersTracker : System.Web.UI.Page
         #endregion
 
         #region Calculate Total Fund Required
-        X = N * CostN + O * CostO + P * CostP;
+        if(txtFundforAmeneties.Text!="")
+        {
+            FundForAmenities = double.Parse(txtFundforAmeneties.Text);
+        }
+        X = N * CostN + O * CostO + P * CostP + FundForAmenities;
         txtFundsRequired.Text = X.ToString();
         #endregion
     }
@@ -420,193 +490,6 @@ public partial class PyersTracker : System.Web.UI.Page
     }
 
 
-    //Revoked Method--------------------------------------------------------------------------
-    protected void txtUrbanPopulation_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-    protected void txtDeathPer1000_TextChanged(object sender, EventArgs e)
-    {
-        double D13 = 0.00;
-        double E13 = 0.00;
-        if (txtPopulationCreamtion80.Text != "")
-        {
-            D13 = double.Parse(txtPopulationCreamtion80.Text);
-        }
-        if (txtDeathPer1000.Text != "")
-        {
-            E13 = double.Parse(txtDeathPer1000.Text);
-        }
-
-        // Calculation of EstimatedDeath10Buffer
-        double EstDeath10Buffer = Math.Round(1.1 * ((D13 / 1000) * E13) / 365, 0);
-
-        txtEstDeath10Buffer.Text = EstDeath10Buffer.ToString();
-    }
-    protected void ExistingPyersHandlingCapacity(object sender, EventArgs e)
-    {
-        //Calculation for Existing Capacity--------------------------------------------------------------------
-        int Conventional = 0;
-        int ImprovisedWood = 0;
-        int Gas = 0;
-        int Electric = 0;
-
-        int C2 = 1;
-        int C3 = 2;
-        int C4 = 4;
-        int C5 = 4;
-
-        if (txtConventional.Text!="")
-        {
-            Conventional = Int32.Parse(txtConventional.Text);
-        }
-        if(txtImprovisedWood.Text!="")
-        {
-            ImprovisedWood = Int32.Parse(txtImprovisedWood.Text);
-        }
-        if (txtGas.Text != "")
-        {
-            Gas = Int32.Parse(txtGas.Text);
-        }
-        if (txtElectric.Text != "")
-        {
-            Electric = Int32.Parse(txtElectric.Text);
-        }
-        // Perform the calculations
-        int ExistingCapacity = Conventional * C2 + ImprovisedWood * C3 + Gas * C4 + Electric * C5;
-        txtExistCapacity.Text = ExistingCapacity.ToString();
-
-        // Calculation for Upgrade Decision------------------------------------------------------------------------------------
-
-        
-        int F13 = 0;
-        int K13 = ExistingCapacity;
-        int G13 = Conventional;
-        int M13 = 0;
-
-        if (txtEstDeath10Buffer.Text != "")
-        {
-            F13 = Int32.Parse(txtEstDeath10Buffer.Text);
-        }
-
-        //Calculation for Ramaining to be handled
-        int RemainingToBeHandled = F13 - (ImprovisedWood * C3 + Gas * C4 + Electric * C5);
-        M13 = RemainingToBeHandled;
-        string UpgradeDecision = "";
-
-        if (F13 > K13 && G13 > 0)
-        {
-            UpgradeDecision = "Build New + Upgrade Existing";
-        }
-        else if (F13 <= K13 && G13 > 0 && M13>0)
-        {
-            UpgradeDecision = "Upgrade Existing";
-        }
-        else
-        {
-            UpgradeDecision = "Upgradation not required";
-        }
-        txtUpgradeExisting.Text = UpgradeDecision;
-        
-        txtRemainingToBeHandled.Text = RemainingToBeHandled.ToString();
-        if(RemainingToBeHandled>0)
-        {
-            divUpgradation.Visible = true;
-            txtUpgradeImprovisedWood.Text = "";
-            txtUpgradeGas.Text = "";
-            txtUpgradeElectric.Text = "";
-        }
-        else
-        {
-            divUpgradation.Visible = false;
-            txtUpgradeImprovisedWood.Text = "0";
-            txtUpgradeGas.Text = "0";
-            txtUpgradeElectric.Text = "0";
-            txtPyresToBeRevamped.Text = "0";
-        }
-    }
-    protected void CalculateCheckOn(object sender, EventArgs e)
-    {
-        // Sample values
-        int N13 = 0;
-        int O13 = 0;
-        int P13 = 0;
-        int CostN13 = 0;
-        int CostO13 = 0;
-        int CostP13 = 0;
-        int G13 = 0;
-        int TotalFundRequired = 0;
-
-
-        if (txtUpgradeImprovisedWood.Text != "")
-        {
-            N13 = Int32.Parse(txtUpgradeImprovisedWood.Text);
-        }
-        if (txtUpgradeGas.Text != "")
-        {
-            O13 = Int32.Parse(txtUpgradeGas.Text);
-        }
-        if (txtUpgradeElectric.Text != "")
-        {
-            P13 = Int32.Parse(txtUpgradeElectric.Text);
-        }
-        if (txtCostImprovisedWood.Text != "")
-        {
-            CostN13 = Int32.Parse(txtCostImprovisedWood.Text);
-        }
-        if (txtCostGas.Text != "")
-        {
-            CostO13 = Int32.Parse(txtCostGas.Text);
-        }
-        if (txtCostElectric.Text != "")
-        {
-            CostP13 = Int32.Parse(txtCostElectric.Text);
-        }
-
-
-
-        if (txtConventional.Text != "")
-        {
-            G13 = Int32.Parse(txtConventional.Text);
-        }
-
-        // Perform the calculation
-        int sumNtoP = N13 + O13 + P13;
-        TotalFundRequired = N13 * CostN13 + O13 * CostO13 + P13 * CostP13;
-        string result = sumNtoP > G13 ? "Exceeded total upgradation possible" : "OK";
-        txtFundsRequired.Text = TotalFundRequired.ToString();
-        txtPyresToBeRevamped.Text = sumNtoP.ToString();
-        //txtCheckOn.Text = result;
-    }
-    protected void GetCommentOnCapacity(object sender, EventArgs e)
-    {
-        double U13 = 0;
-        if (txtRemainingCapacity.Text != "")
-        {
-            U13 = double.Parse(txtRemainingCapacity.Text);
-        }
-
-        // Perform the calculation
-        double roundU13 = Math.Round(U13, 0);
-        string CommentOnCapacity = "";
-
-        if (roundU13 > 0)
-        {
-            CommentOnCapacity = "More EFP required";
-        }
-        else if (roundU13 == 0)
-        {
-            CommentOnCapacity = "EFP requirement met";
-        }
-        else
-        {
-            CommentOnCapacity = "Exceeded EFP requirement";
-        }
-        txtCommentOnCapacity.Text = CommentOnCapacity;
-    }
-    //----------------------------------------------------------------------------------------
-
-
 
     //Click Events --------------------------------------------------------------------------------
 
@@ -625,12 +508,14 @@ public partial class PyersTracker : System.Web.UI.Page
 
             if (result > 0)
             {
-                MessageBox.Show("Record saved successfully!");
+                //MessageBox.Show("Record saved successfully!");
+                lblMessage.Text = "Record saved successfully!";
                 reset();
             }
             else
             {
-                MessageBox.Show("Record already exists! Year, Month and Division should be different in all the records.");
+                //MessageBox.Show("Record already exists! Year, Month and Division should be different in all the records.");
+                lblMessage.Text = "Record already exists! Year, Month and Division should be different in all the records.";
             }
         }
         catch (Exception ex)
@@ -638,7 +523,6 @@ public partial class PyersTracker : System.Web.UI.Page
             MessageBox.Show("An error occurred: " + ex.Message);
         }
     }
-
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
         if (!ValidateFields())
@@ -654,7 +538,8 @@ public partial class PyersTracker : System.Web.UI.Page
 
             if (result > 0)
             {
-                MessageBox.Show("Record updated successfully!");
+                //MessageBox.Show("Record updated successfully!");
+                lblMessage.Text = "Record updated successfully!";
                 reset();
             }
             else
@@ -667,7 +552,6 @@ public partial class PyersTracker : System.Web.UI.Page
             MessageBox.Show("An error occurred: " + ex.Message);
         }
     }
-
     private tbl_PyresTracker PopulatePyresTrackerFromInput()
     {
         tbl_PyresTracker obj_PyresTracker = new tbl_PyresTracker();
@@ -700,6 +584,9 @@ public partial class PyersTracker : System.Web.UI.Page
             obj_PyresTracker.CostImprovisedWood = Int32.Parse(txtCostImprovisedWood.Text);
             obj_PyresTracker.CostGas = Int32.Parse(txtCostGas.Text);
             obj_PyresTracker.CostElectric = Int32.Parse(txtCostElectric.Text);
+
+            obj_PyresTracker.AmenitiesRequired = txtAmenitiesRequired.Text.ToString().Trim();
+            obj_PyresTracker.FundforAmeneties = double.Parse(txtFundforAmeneties.Text);
 
             obj_PyresTracker.RemainingCapacity = Int32.Parse(txtRemainingCapacity.Text);
             obj_PyresTracker.CommentOnCapacity = txtCommentOnCapacity.Text.ToString();
@@ -915,36 +802,44 @@ public partial class PyersTracker : System.Web.UI.Page
             txtElectric.Focus();
             IsValid = false;
         }
-        if(txtRemainingToBeHandled.Text!="" && Convert.ToInt32(txtRemainingToBeHandled.Text)>0)
+        if (double.Parse(txtFundforAmeneties.Text) > double.Parse(hfMaxFundForAmenities.Value))
+        {
+            //MessageBox.Show("You cannot enter more than max allowed fund! Please enter lower amount in lakhs");
+            lblMessage.Text = "You cannot enter more than max allowed fund! Please enter lower amount in lakhs";
+            txtFundforAmeneties.Focus();
+            IsValid = false;
+        }
+        if (double.Parse(txtFundforAmeneties.Text) > 0 && txtAmenitiesRequired.Text == "")
+        {
+            //MessageBox.Show("Please enter detail of amenities required because of you have entered amount for amenities.");
+            lblMessage.Text = "Please enter detail of amenities required because of you have entered amount for amenities.";
+            txtAmenitiesRequired.Focus();
+            IsValid = false;
+        }
+        if (txtRemainingToBeHandled.Text!="" && Convert.ToInt32(txtRemainingToBeHandled.Text)>0)
         {
             if(txtUpgradeImprovisedWood.Text=="")
             {
-                MessageBox.Show("Please enter upgradation required for Improvised Wood Pyres!. ");
+                //MessageBox.Show("Please enter upgradation required for Improvised Wood Pyres!. ");
+                lblMessage.Text = "Please enter upgradation required for Improvised Wood Pyres!. ";
                 txtUpgradeImprovisedWood.Focus();
                 IsValid = false;
             }
             if (txtUpgradeGas.Text == "")
             {
-                MessageBox.Show("Please enter upgradation required for Gas Pyres!. ");
+                //MessageBox.Show("Please enter upgradation required for Gas Pyres!. ");
+                lblMessage.Text = "Please enter upgradation required for Gas Pyres!. ";
                 txtUpgradeGas.Focus();
                 IsValid = false;
             }
             if (txtElectric.Text == "")
             {
-                MessageBox.Show("Please enter upgradation required for Electric Pyres!. ");
+                //MessageBox.Show("Please enter upgradation required for Electric Pyres!. ");
+                lblMessage.Text = "Please enter upgradation required for Electric Pyres!. ";
                 txtElectric.Focus();
                 IsValid = false;
             }
-            else
-            {
-                IsValid = true;
-            }
         }
-        else
-        {
-            IsValid = true;
-        }
-
         return IsValid;
     }
     private void reset()
@@ -975,6 +870,9 @@ public partial class PyersTracker : System.Web.UI.Page
         txtCostGas.Text = "45";
         txtUpgradeElectric.Text = "";
         txtCostElectric.Text = "51";
+        
+        txtAmenitiesRequired.Text = "";
+        txtFundforAmeneties.Text = "";
 
         txtRemainingCapacity.Text = "";
         txtCommentOnCapacity.Text = "";
@@ -1020,6 +918,9 @@ public partial class PyersTracker : System.Web.UI.Page
                 ddlDivision.SelectedValue = "0";
             }
 
+            ddlDivision_SelectedIndexChanged(ddlDivision, new EventArgs());
+
+
             txtUrbanPopulation.Text = dt.Rows[0]["UrbanPopulation"].ToString();
             txtPopulationCreamtion80.Text = dt.Rows[0]["PopulationCreamtion80"].ToString();
             txtDeathPer1000.Text = dt.Rows[0]["DeathPer1000"].ToString();
@@ -1038,6 +939,11 @@ public partial class PyersTracker : System.Web.UI.Page
             txtCostImprovisedWood.Text = dt.Rows[0]["CostImprovisedWood"].ToString();
             txtCostGas.Text = dt.Rows[0]["CostGas"].ToString();
             txtCostElectric.Text = dt.Rows[0]["CostElectric"].ToString();
+
+            txtAmenitiesRequired.Text = dt.Rows[0]["AmenitiesRequired"].ToString();
+            txtFundforAmeneties.Text = dt.Rows[0]["FundforAmeneties"].ToString();
+
+
             if (Convert.ToInt32(dt.Rows[0]["RemainingToBeHandled"]) > 0)
             {
                 divUpgradation.Visible = true;
@@ -1060,4 +966,194 @@ public partial class PyersTracker : System.Web.UI.Page
             MessageBox.Show("Record with pyres tracker id = "+ PyresTracker_Id.ToString()+" does not found please contact administration.");
         }
     }
+
+
+    #region Revoked Method
+
+    //Revoked Method--------------------------------------------------------------------------
+    protected void txtUrbanPopulation_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void txtDeathPer1000_TextChanged(object sender, EventArgs e)
+    {
+        double D13 = 0.00;
+        double E13 = 0.00;
+        if (txtPopulationCreamtion80.Text != "")
+        {
+            D13 = double.Parse(txtPopulationCreamtion80.Text);
+        }
+        if (txtDeathPer1000.Text != "")
+        {
+            E13 = double.Parse(txtDeathPer1000.Text);
+        }
+
+        // Calculation of EstimatedDeath10Buffer
+        double EstDeath10Buffer = Math.Round(1.1 * ((D13 / 1000) * E13) / 365, 0);
+
+        txtEstDeath10Buffer.Text = EstDeath10Buffer.ToString();
+    }
+    protected void ExistingPyersHandlingCapacity(object sender, EventArgs e)
+    {
+        //Calculation for Existing Capacity--------------------------------------------------------------------
+        int Conventional = 0;
+        int ImprovisedWood = 0;
+        int Gas = 0;
+        int Electric = 0;
+
+        int C2 = 1;
+        int C3 = 2;
+        int C4 = 4;
+        int C5 = 4;
+
+        if (txtConventional.Text != "")
+        {
+            Conventional = Int32.Parse(txtConventional.Text);
+        }
+        if (txtImprovisedWood.Text != "")
+        {
+            ImprovisedWood = Int32.Parse(txtImprovisedWood.Text);
+        }
+        if (txtGas.Text != "")
+        {
+            Gas = Int32.Parse(txtGas.Text);
+        }
+        if (txtElectric.Text != "")
+        {
+            Electric = Int32.Parse(txtElectric.Text);
+        }
+        // Perform the calculations
+        int ExistingCapacity = Conventional * C2 + ImprovisedWood * C3 + Gas * C4 + Electric * C5;
+        txtExistCapacity.Text = ExistingCapacity.ToString();
+
+        // Calculation for Upgrade Decision------------------------------------------------------------------------------------
+
+
+        int F13 = 0;
+        int K13 = ExistingCapacity;
+        int G13 = Conventional;
+        int M13 = 0;
+
+        if (txtEstDeath10Buffer.Text != "")
+        {
+            F13 = Int32.Parse(txtEstDeath10Buffer.Text);
+        }
+
+        //Calculation for Ramaining to be handled
+        int RemainingToBeHandled = F13 - (ImprovisedWood * C3 + Gas * C4 + Electric * C5);
+        M13 = RemainingToBeHandled;
+        string UpgradeDecision = "";
+
+        if (F13 > K13 && G13 > 0)
+        {
+            UpgradeDecision = "Build New + Upgrade Existing";
+        }
+        else if (F13 <= K13 && G13 > 0 && M13 > 0)
+        {
+            UpgradeDecision = "Upgrade Existing";
+        }
+        else
+        {
+            UpgradeDecision = "Upgradation not required";
+        }
+        txtUpgradeExisting.Text = UpgradeDecision;
+
+        txtRemainingToBeHandled.Text = RemainingToBeHandled.ToString();
+        if (RemainingToBeHandled > 0)
+        {
+            divUpgradation.Visible = true;
+            txtUpgradeImprovisedWood.Text = "";
+            txtUpgradeGas.Text = "";
+            txtUpgradeElectric.Text = "";
+        }
+        else
+        {
+            divUpgradation.Visible = false;
+            txtUpgradeImprovisedWood.Text = "0";
+            txtUpgradeGas.Text = "0";
+            txtUpgradeElectric.Text = "0";
+            txtPyresToBeRevamped.Text = "0";
+        }
+    }
+    protected void CalculateCheckOn(object sender, EventArgs e)
+    {
+        // Sample values
+        int N13 = 0;
+        int O13 = 0;
+        int P13 = 0;
+        int CostN13 = 0;
+        int CostO13 = 0;
+        int CostP13 = 0;
+        int G13 = 0;
+        int TotalFundRequired = 0;
+
+
+        if (txtUpgradeImprovisedWood.Text != "")
+        {
+            N13 = Int32.Parse(txtUpgradeImprovisedWood.Text);
+        }
+        if (txtUpgradeGas.Text != "")
+        {
+            O13 = Int32.Parse(txtUpgradeGas.Text);
+        }
+        if (txtUpgradeElectric.Text != "")
+        {
+            P13 = Int32.Parse(txtUpgradeElectric.Text);
+        }
+        if (txtCostImprovisedWood.Text != "")
+        {
+            CostN13 = Int32.Parse(txtCostImprovisedWood.Text);
+        }
+        if (txtCostGas.Text != "")
+        {
+            CostO13 = Int32.Parse(txtCostGas.Text);
+        }
+        if (txtCostElectric.Text != "")
+        {
+            CostP13 = Int32.Parse(txtCostElectric.Text);
+        }
+
+
+
+        if (txtConventional.Text != "")
+        {
+            G13 = Int32.Parse(txtConventional.Text);
+        }
+
+        // Perform the calculation
+        int sumNtoP = N13 + O13 + P13;
+        TotalFundRequired = N13 * CostN13 + O13 * CostO13 + P13 * CostP13;
+        string result = sumNtoP > G13 ? "Exceeded total upgradation possible" : "OK";
+        txtFundsRequired.Text = TotalFundRequired.ToString();
+        txtPyresToBeRevamped.Text = sumNtoP.ToString();
+        //txtCheckOn.Text = result;
+    }
+    protected void GetCommentOnCapacity(object sender, EventArgs e)
+    {
+        double U13 = 0;
+        if (txtRemainingCapacity.Text != "")
+        {
+            U13 = double.Parse(txtRemainingCapacity.Text);
+        }
+
+        // Perform the calculation
+        double roundU13 = Math.Round(U13, 0);
+        string CommentOnCapacity = "";
+
+        if (roundU13 > 0)
+        {
+            CommentOnCapacity = "More EFP required";
+        }
+        else if (roundU13 == 0)
+        {
+            CommentOnCapacity = "EFP requirement met";
+        }
+        else
+        {
+            CommentOnCapacity = "Exceeded EFP requirement";
+        }
+        txtCommentOnCapacity.Text = CommentOnCapacity;
+    }
+    //----------------------------------------------------------------------------------------
+    #endregion
 }
