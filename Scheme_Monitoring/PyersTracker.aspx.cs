@@ -246,7 +246,7 @@ public partial class PyersTracker : System.Web.UI.Page
             if (dt.Rows[0]["Division_Type"].ToString().Trim() == "NN" | dt.Rows[0]["Division_Type"].ToString().Trim() == "NPP")
             {
                 hfMaxFundForAmenities.Value = DivisionType.NN.ToString();
-                lblMaxFundForULBAmenities.Text = "(Max fund allowed is " + hfMaxFundForAmenities.Value.ToString() + "Lakhs)";
+                lblMaxFundForULBAmenities.Text = "(Max fund allowed is " + hfMaxFundForAmenities.Value.ToString() + " Lakhs)";
             }
             else if (dt.Rows[0]["Division_Type"].ToString().Trim() == "NP")
             {
@@ -256,7 +256,7 @@ public partial class PyersTracker : System.Web.UI.Page
             {
                 hfMaxFundForAmenities.Value = "";
             }
-            lblMaxFundForULBAmenities.Text = "(Max fund allowed is " + hfMaxFundForAmenities.Value.ToString() + ")";
+            lblMaxFundForULBAmenities.Text = "(Max fund allowed is " + hfMaxFundForAmenities.Value.ToString() + " Lakhs)";
             CalculateAllFields();
         }
         else
@@ -510,6 +510,7 @@ public partial class PyersTracker : System.Web.UI.Page
             {
                 //MessageBox.Show("Record saved successfully!");
                 lblMessage.Text = "Record saved successfully!";
+                Response.Redirect("CrematoriumDetail.aspx?message=Record saved successfully! You have to fill "+ txtExistCMTR.Text.ToString()+ " records  in Crematorium Detail after inserting data into pyrestracker.aspx");
                 reset();
             }
             else

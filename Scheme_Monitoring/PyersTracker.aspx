@@ -309,13 +309,13 @@
                                                 <div class="row gy-4">
                                                     <div class="col-xxl-4 col-md-6">
                                                         <div id="div20" runat="server">
-                                                            <asp:Label ID="lblAmenitiesRequired" runat="server" Text="Enter Names of Amenities Required*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblAmenitiesRequired" runat="server" Text="Enter The Name of Amenities Required*" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtAmenitiesRequired" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="div19" runat="server">
-                                                            <asp:Label ID="lblFundforAmeneties" runat="server" Text="Total Fund required for Amenities*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblFundforAmeneties" runat="server" Text="Fund required for Amenities*" CssClass="form-label"></asp:Label>
                                                             <asp:Label ID="lblMaxFundForULBAmenities" runat="server" Text="" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtFundforAmeneties" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="CheckMaxValue" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                             <asp:HiddenField ID="hfMaxFundForAmenities" runat="server" Value="" />
@@ -375,7 +375,7 @@
 
                                                     <div class="col-xxl-4 col-md-6">
                                                         <div id="div15" runat="server">
-                                                            <asp:Label ID="lblFundsRequired" runat="server" Text="Funds required  in Lakhs" CssClass="form-label"></asp:Label><%--(only includes pyres and not other facilities)--%>
+                                                            <asp:Label ID="lblFundsRequired" runat="server" Text="Total Funds required  in Lakhs" CssClass="form-label"></asp:Label><%--(only includes pyres and not other facilities)--%>
                                                             <asp:TextBox ID="txtFundsRequired" Enabled="false" Font-Bold="True" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                         </div>
                                                     </div>
