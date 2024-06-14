@@ -418,14 +418,5 @@
 
 
 
-    <script>
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                $('.modalBackground1').click(function () {
-                    var id = $(this).attr('id').replace('_backgroundElement', '');
-                    $find(id).hide();
-                });
-            })
-        });
-    </script>
+    
 </asp:Content>

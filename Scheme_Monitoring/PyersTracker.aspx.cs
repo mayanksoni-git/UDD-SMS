@@ -803,14 +803,14 @@ public partial class PyersTracker : System.Web.UI.Page
             txtElectric.Focus();
             IsValid = false;
         }
-        if (double.Parse(txtFundforAmeneties.Text) > double.Parse(hfMaxFundForAmenities.Value))
+        if (txtFundforAmeneties.Text!="" && double.Parse(txtFundforAmeneties.Text) > double.Parse(hfMaxFundForAmenities.Value))
         {
             //MessageBox.Show("You cannot enter more than max allowed fund! Please enter lower amount in lakhs");
             lblMessage.Text = "You cannot enter more than max allowed fund! Please enter lower amount in lakhs";
             txtFundforAmeneties.Focus();
             IsValid = false;
         }
-        if (double.Parse(txtFundforAmeneties.Text) > 0 && txtAmenitiesRequired.Text == "")
+        if (txtFundforAmeneties.Text != "" && double.Parse(txtFundforAmeneties.Text) > 0 && txtAmenitiesRequired.Text == "")
         {
             //MessageBox.Show("Please enter detail of amenities required because of you have entered amount for amenities.");
             lblMessage.Text = "Please enter detail of amenities required because of you have entered amount for amenities.";
