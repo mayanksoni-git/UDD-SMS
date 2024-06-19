@@ -55,6 +55,34 @@
                                             <asp:TextBox ID="txtDivisionName" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblUrbanPopulation" CssClass="control-label no-padding-right" Text="Total urban population*" runat="server"></asp:Label>
+                                            <asp:TextBox ID="txtUrbanPopulation" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblUrbanPopulationSource" CssClass="control-label no-padding-right" Text="Source of Urban Population*" runat="server"></asp:Label>
+                                            <asp:TextBox ID="txtUrbanPopulationSource" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblDeathPer1000" runat="server" Text="Death rate per 1000 per year*" CssClass="form-label"></asp:Label>
+                                            <asp:TextBox ID="txtDeathPer1000" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblDeathPer1000Source" CssClass="control-label no-padding-right" Text="Source of Death rate per 1000 per year*" runat="server"></asp:Label>
+                                            <asp:TextBox ID="txtDeathPer1000Source" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -107,6 +135,10 @@
                                                     </asp:TemplateField>
                                                     <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
                                                     <asp:BoundField HeaderText="Division" DataField="Division_Name" />
+                                                    <asp:BoundField HeaderText="Urban Population" DataField="UrbanPopulation" />
+                                                    <asp:BoundField HeaderText="Urban Population Source" DataField="UrbanPopulationSource" />
+                                                    <asp:BoundField HeaderText="Death Per 1000" DataField="DeathPer1000" />
+                                                    <asp:BoundField HeaderText="Death Per 1000 Source" DataField="DeathPer1000Source" />
                                                      <asp:TemplateField HeaderText="Delete">
                                                         <ItemTemplate>
                                                             <asp:ImageButton ID="btnDelete" Width="20px" Height="20px" OnClick="btnDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />

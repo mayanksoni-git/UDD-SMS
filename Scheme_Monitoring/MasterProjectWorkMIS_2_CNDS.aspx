@@ -12,6 +12,18 @@
 
                     <div class="container-fluid">
                         <div class="row">
+                            <div class="col-12 mb-3">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Update Next Fund Release</h4>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                                <li class="breadcrumb-item">Project Master</li>
+                                                <li class="breadcrumb-item active">Update Next Fund Release</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
@@ -144,24 +156,7 @@
         <!-- /.main-content -->
     </div>
 
-    <!-- DataTable specific plugin scripts -->
-    <script src="assets/js/jquery-2.1.4.min.js"></script>
-    <%--<script src="assets/js/bootstrap.min.js"></script>--%>
-    <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/dataTables.buttons.min.js"></script>
-    <script src="assets/js/buttons.flash.min.js"></script>
-    <script src="assets/js/buttons.html5.min.js"></script>
-    <script src="assets/js/buttons.print.min.js"></script>
-    <script src="assets/js/buttons.colVis.min.js"></script>
-    <script src="assets/js/dataTables.select.min.js"></script>
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
-    <script src="assets/js/dataTables.fixedHeader.min.js"></script>
-    <script src="assets/js/jquery.mark.min.js"></script>
-    <script src="assets/js/datatables.mark.js"></script>
-    <script src="assets/js/dataTables.colReorder.min.js"></script>
-    <script src="assets/js/jquery.colorbox.min.js"></script>
+    <%--<script src="assets/js/jquery.colorbox.min.js"></script>--%>
 
     <script>
         function downloadGO(obj) {
@@ -180,45 +175,45 @@
     </script>
 
     <script type="text/javascript">
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                var $overflow = '';
-                var colorbox_params = {
-                    rel: 'colorbox',
-                    reposition: true,
-                    scalePhotos: true,
-                    scrolling: false,
-                    previous: '<i class="ace-icon fa fa-arrow-left"></i>',
-                    next: '<i class="ace-icon fa fa-arrow-right"></i>',
-                    close: '&times;',
-                    current: '{current} of {total}',
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    onOpen: function () {
-                        $overflow = document.body.style.overflow;
-                        document.body.style.overflow = 'hidden';
-                    },
-                    onClosed: function () {
-                        document.body.style.overflow = $overflow;
-                    },
-                    onComplete: function () {
-                        $.colorbox.resize();
-                    }
-                };
+        //Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
+        //    jQuery(function ($) {
+        //        var $overflow = '';
+        //        var colorbox_params = {
+        //            rel: 'colorbox',
+        //            reposition: true,
+        //            scalePhotos: true,
+        //            scrolling: false,
+        //            previous: '<i class="ace-icon fa fa-arrow-left"></i>',
+        //            next: '<i class="ace-icon fa fa-arrow-right"></i>',
+        //            close: '&times;',
+        //            current: '{current} of {total}',
+        //            maxWidth: '100%',
+        //            maxHeight: '100%',
+        //            onOpen: function () {
+        //                $overflow = document.body.style.overflow;
+        //                document.body.style.overflow = 'hidden';
+        //            },
+        //            onClosed: function () {
+        //                document.body.style.overflow = $overflow;
+        //            },
+        //            onComplete: function () {
+        //                $.colorbox.resize();
+        //            }
+        //        };
 
-                $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
-                $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
+        //        $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+        //        $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
 
 
-                $(document).one('ajaxloadstart.page', function (e) {
-                    $('#colorbox, #cboxOverlay').remove();
-                });
-            })
-        });
+        //        $(document).one('ajaxloadstart.page', function (e) {
+        //            $('#colorbox, #cboxOverlay').remove();
+        //        });
+        //    })
+        //});
 
-        function Poppuplose() {
-            $find('details').hide();
-        }
+        //function Poppuplose() {
+        //    $find('details').hide();
+        //}
     </script>
 
     <style type="text/css">

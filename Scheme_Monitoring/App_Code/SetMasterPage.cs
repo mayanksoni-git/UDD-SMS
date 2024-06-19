@@ -65,15 +65,15 @@ public class SetMasterPage : Page
                     {
                         _page = "TemplateMasterAdmin_PMS.master";
                     }
-                    else if (HttpContext.Current.Session["UserType"].ToString() == "2")//District
-                    {
-                        _page = "TemplateMasterDistrict.master";
-                    }
-                    else if (HttpContext.Current.Session["UserType"].ToString() == "3")//ULB
-                    {
-                        _page = "TemplateMasterULB.master";
-                    }
-                    else if (HttpContext.Current.Session["UserType"].ToString() == "4")//Zone Officer
+                    //else if (HttpContext.Current.Session["UserType"].ToString() == "2")//District
+                    //{
+                    //    _page = "TemplateMasterDistrict.master";
+                    //}
+                    //else if (HttpContext.Current.Session["UserType"].ToString() == "3")//ULB
+                    //{
+                    //    _page = "TemplateMasterULB.master";
+                    //}
+                    else if (HttpContext.Current.Session["UserType"].ToString() == "4")//State Officer
                     {
                         _page = "TemplateMasterZone_PMS.master";
                     }
@@ -81,11 +81,11 @@ public class SetMasterPage : Page
                     {
                         _page = "TemplateMasterSection.master";
                     }
-                    else if (HttpContext.Current.Session["UserType"].ToString() == "6")//Circle Officer
+                    else if (HttpContext.Current.Session["UserType"].ToString() == "6")//District Officer
                     {
                         _page = "TemplateMasterCircle_PMS.master";
                     }
-                    else if (HttpContext.Current.Session["UserType"].ToString() == "7")//Division Officer
+                    else if (HttpContext.Current.Session["UserType"].ToString() == "7")//ULB Officer
                     {
                         _page = "TemplateMasterDivision_PMS.master";
                     }

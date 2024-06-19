@@ -322,4 +322,43 @@ public class DAL
             }
         }
     }
+
+    public int ExecuteScalarProcedure(string procedureName, SqlParameter[] param)
+    {
+        using (SqlConnection conn = new SqlConnection(ConStr))
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(procedureName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                for (int i = 0; i < param.Length; i++)
+                {
+                    cmd.Parameters.Add(param[i]);
+                }
+                // Assuming the procedure returns a single integer value
+                object result = cmd.ExecuteScalar();
+                int value;
+                if (result != null && int.TryParse(result.ToString(), out value))
+                {
+                    return value;
+                }
+                else
+                {
+                    throw new Exception("Procedure did not return a valid integer value.");
+                }
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                string msg = "Error: ";
+                msg += ex.Message;
+                throw new Exception(msg);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+            }
+        }
+    }
 }

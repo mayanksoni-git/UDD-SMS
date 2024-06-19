@@ -103,13 +103,16 @@ public partial class RptPyresTracker : System.Web.UI.Page
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             AllClasses.FillDropDown(ds.Tables[0], ddlZone, "Zone_Name", "Zone_Id");
+            if (ddlZone.SelectedItem.Value != "0")
+            {
+                get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
+            }
         }
         else
         {
             ddlZone.Items.Clear();
         }
     }
-
     private void get_tbl_Month()
     {
         DataSet ds = new DataSet();
@@ -149,25 +152,24 @@ public partial class RptPyresTracker : System.Web.UI.Page
             ddlDivision.Items.Clear();
         }
     }
-    
 
-    protected void grdPost_PreRender(object sender, EventArgs e)
-    {
-        GridView gv = (GridView)sender;
-        if (gv.Rows.Count > 0)
-        {
-            //This replaces <td> with <th> and adds the scope attribute
-            gv.UseAccessibleHeader = true;
-        }
-        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
-        {
-            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
-        }
-        if (gv.ShowFooter == true && gv.Rows.Count > 0)
-        {
-            gv.FooterRow.TableSection = TableRowSection.TableFooter;
-        }
-    }
+    //protected void grdPost_PreRender(object sender, EventArgs e)
+    //{
+    //    GridView gv = (GridView)sender;
+    //    if (gv.Rows.Count > 0)
+    //    {
+    //        //This replaces <td> with <th> and adds the scope attribute
+    //        gv.UseAccessibleHeader = true;
+    //    }
+    //    if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
+    //    {
+    //        gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+    //    }
+    //    if (gv.ShowFooter == true && gv.Rows.Count > 0)
+    //    {
+    //        gv.FooterRow.TableSection = TableRowSection.TableFooter;
+    //    }
+    //}
 
     protected void ddlZone_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -260,113 +262,82 @@ public partial class RptPyresTracker : System.Web.UI.Page
 
         if (dt != null && dt.Rows.Count > 0)
         {
+            Session["GridViewData"] = dt;
             MainTracker.DataSource = dt;
             MainTracker.DataBind();
             divData.Visible = true;
         }
         else
         {
-            divData.Visible = false;
+            divData.Visible = true;
             MainTracker.DataSource = null;
             MainTracker.DataBind();
             MessageBox.Show("No Records Found");
         }
     }
 
+    
+    protected void MainTracker_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            var dataItem = e.Row.DataItem as DataRowView;
+            if (dataItem != null)
+            {
+                Label lblFundsRequired = e.Row.FindControl("lblFundsRequired") as Label;
+                ImageButton btnInfo = e.Row.FindControl("btnInfo") as ImageButton;
+
+                if (lblFundsRequired != null && btnInfo != null)
+                {
+                    string toolTipText = GetToolTipText(dataItem);
+                    lblFundsRequired.ToolTip = toolTipText;
+                    btnInfo.ToolTip = toolTipText;
+                }
+            }
+        }
+    }
+
+    protected string GetToolTipText(object dataItem)
+    {
+        var drv = dataItem as DataRowView;
+        if (drv != null)
+        {
+            // Assuming these fields exist in your data source and are of type double or can be parsed as double
+            double improvisedWoodCost = Convert.ToDouble(drv["CostImprovisedWood"]);
+            double gasCost = Convert.ToDouble(drv["CostGas"]);
+            double electricCost = Convert.ToDouble(drv["CostElectric"]);
+            double improvisedWoodUpgrade = Convert.ToDouble(drv["UpgradeImprovisedWood"]);
+            double gasUpgrade = Convert.ToDouble(drv["UpgradeGas"]);
+            double electricUpgrade = Convert.ToDouble(drv["UpgradeElectric"]);
+            double fundsRequired = Convert.ToDouble(drv["fundsRequired"]);
+
+            // Construct the tooltip text
+            return "("+ improvisedWoodUpgrade + "*"+improvisedWoodCost+")+("+ gasUpgrade + "*"+gasCost+")+("+ electricUpgrade + "*"+electricCost+")="+ fundsRequired;
+        }
+        return string.Empty;
+    }
+
     protected void btnEdit_Click(object sender, ImageClickEventArgs e)
     {
         GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
-        int ProjectWork_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        int Project_Id = Convert.ToInt32(gr.Cells[1].Text.Trim());
-        int District_Id = Convert.ToInt32(gr.Cells[2].Text.Trim());
-        string Client = ConfigurationManager.AppSettings.Get("Client");
-        if (Client == "CNDS")
+        int PyresTracker_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
+        if (PyresTracker_Id>0 )
         {
-            Response.Redirect("MasterProjectWork_DataEntry.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
+            Response.Redirect("PyersTracker.aspx?PyresTracker_Id=" + PyresTracker_Id.ToString());
         }
         else
         {
-            string Mode = "";
-            if (Request.QueryString.Count > 0)
-            {
-                try
-                {
-                    Mode = Request.QueryString[0].ToString();
-                }
-                catch
-                {
-                    Mode = "";
-                }
-                if (Mode == "GO")
-                {
-                    Response.Redirect("MasterProjectWorkMIS_2_CNDS.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&District_Id=" + District_Id + "&Id=" + Project_Id.ToString());
-                }
-                else if (Mode == "UC")
-                {
-                    Response.Redirect("MasterProjectWorkMIS_6.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
-                }
-                else if (Mode == "Issue")
-                {
-                    Response.Redirect("MasterProjectWorkMIS_8.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
-                }
-                else if (Mode == "Comp")
-                {
-                    Response.Redirect("MasterProjectWorkMIS_4.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
-                }
-                else if (Mode == "SO")
-                {
-                    Response.Redirect("MasterProjectWork_DataEntrySection.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
-                }
-                else if (Mode == "PMU")
-                {
-                    Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
-                }
-                else if (Mode == "G")
-                {
-                    Response.Redirect("ProjectWorkGalleryView.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Mode=P&App=false");
-                }
-                else
-                {
-                    Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
-                }
-            }
-            else
-            {
-                Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
-            }
-
+            return;
         }
     }
 
     protected void btnCreateNew_Click(object sender, EventArgs e)
     {
-        string Mode = "";
-        if (Request.QueryString.Count > 0)
-        {
-            try
-            {
-                Mode = Request.QueryString[0].ToString();
-            }
-            catch
-            {
-                Mode = "";
-            }
-        }
-        string Client = ConfigurationManager.AppSettings.Get("Client");
-        if (Client == "CNDS")
-        {
-            Response.Redirect("PyersTracker.aspx");
-        }
-        else
-        {
-            if (Mode == "SO")
-            {
-                Response.Redirect("PyersTracker.aspx");
-            }
-            else
-            {
-                Response.Redirect("PyersTracker.aspx");
-            }
-        }
+        Response.Redirect("PyersTracker.aspx");
+    }
+
+    protected void btnExport_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ExportToExcel.aspx");
     }
 }
