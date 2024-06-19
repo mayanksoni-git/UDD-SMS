@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Device.Location;
+//using System.Device.Location;
 using System.IO;
 using System.Web;
 using System.Web.UI;
