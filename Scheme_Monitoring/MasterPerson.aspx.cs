@@ -332,6 +332,10 @@ public partial class MasterPerson : System.Web.UI.Page
         {
             AllClasses.FillDropDown(ds.Tables[0], ddlZone, "Zone_Name", "Zone_Id");
             AllClasses.FillDropDown_WithOutSelect(ds.Tables[0], ddlZoneS, "Zone_Name", "Zone_Id");
+            if (ddlZone.SelectedItem.Value != "0")
+            {
+                get_tbl_Circle(Convert.ToInt32(ddlZoneS.SelectedValue), ddlCircleS);
+            }
         }
         else
         {

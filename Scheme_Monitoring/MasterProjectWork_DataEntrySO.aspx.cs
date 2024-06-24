@@ -119,6 +119,10 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             AllClasses.FillDropDown(ds.Tables[0], ddlZone, "Zone_Name", "Zone_Id");
+            if (ddlZone.SelectedItem.Value != "0")
+            {
+                get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
+            }
         }
         else
         {
