@@ -244,7 +244,7 @@ public partial class LoanDeposit : System.Web.UI.Page
             txtDepositAmount.Text = "";
         }
 
-        txtDepositDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+        txtDepositDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
     }
 
     private void LoadLoanEMIs()
@@ -353,6 +353,7 @@ public partial class LoanDeposit : System.Web.UI.Page
     //}
 
 
+
     protected void btnSave_Click(object sender, EventArgs e)
     {
         if (!ValidateFields())
@@ -362,8 +363,20 @@ public partial class LoanDeposit : System.Web.UI.Page
 
         decimal depositAmount = Convert.ToDecimal(txtDepositAmount.Text);
         int ProjectWork_Id = Convert.ToInt32(ddlProject.SelectedValue);
-        DateTime depositDate = txtDepositDate.Text.ToString().ToDate();
-        
+
+
+
+        string depositDateString = txtDepositDate.Text;
+
+        DateTime depositDate;
+
+
+        if (!DateTime.TryParse(depositDateString, out depositDate))
+        {
+            lblMessage.Text = "Invalid deposit date format!";
+            return;
+        }
+       
 
         string ConStr = ConfigurationManager.AppSettings.Get("conn").ToString();
 
