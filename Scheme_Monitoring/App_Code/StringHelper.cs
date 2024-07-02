@@ -19,6 +19,7 @@ public static class StringHelper
         double d;
         return double.TryParse(Str, out d);
     }
+
     public static bool IsInt(this string Str)
     {
         Int32 d;

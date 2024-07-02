@@ -5,11 +5,10 @@
     
     <div class="main-content">
         <div class="page-content">
-            
-                <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
-                </cc1:ToolkitScriptManager>
                 <asp:UpdatePanel ID="up" runat="server">
                     <ContentTemplate>
+                        <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
+                        </cc1:ToolkitScriptManager>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12">
@@ -114,7 +113,7 @@
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Crematorium Detail</h4>
+                                            <h4 class="card-title mb-0 flex-grow-1">Released Loan Detail</h4>
                                         </div>
                                         <!-- end card header -->
                                         <div class="card-body">
@@ -178,7 +177,7 @@
                         <asp:PostBackTrigger ControlID="btnUpdate" />
                     </Triggers>
                 </asp:UpdatePanel>
-                <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
+                <%--<asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
                     <ProgressTemplate>
                         <div style="position: fixed; z-index: 999; height: 100%; width: 100%; top: 0; filter: alpha(opacity=60); opacity: 0.6; -moz-opacity: 0.8; cursor: not-allowed;">
                             <div style="z-index: 1000; margin: 300px auto; padding: 10px; width: 130px; background-color: transparent; border-radius: 1px; filter: alpha(opacity=100); opacity: 1; -moz-opacity: 1;">
@@ -186,10 +185,7 @@
                             </div>
                         </div>
                     </ProgressTemplate>
-                </asp:UpdateProgress>
-            
+                </asp:UpdateProgress>--%>
         </div>
-        
     </div>
-    
 </asp:Content>

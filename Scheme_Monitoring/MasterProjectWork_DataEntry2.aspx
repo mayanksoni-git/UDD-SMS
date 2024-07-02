@@ -63,6 +63,20 @@
                                                             <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         </div>
                                                     </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div id="div1" runat="server">
+                                                            <asp:Label ID="lblWard" runat="server" Text="Ward" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtWardName" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div id="div2" runat="server">
+                                                            <asp:Label ID="lblZone" runat="server" Text="Zone" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtZone" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
