@@ -271,4 +271,90 @@ public class Loan
     }
 
     #endregion
+
+    #region FundSanctionMaster
+    public DataTable getFundSanctionBySearch(int? YearID, int? DistID, int? ULBID, int? SchemeID, int? PersonId, int? ULBTypeID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[6];
+            param[0] = new SqlParameter("@YearID", YearID);
+            param[1] = new SqlParameter("@DistID", DistID);
+            param[2] = new SqlParameter("@ULBID", ULBID);
+            param[3] = new SqlParameter("@SchemeID", SchemeID);
+            param[4] = new SqlParameter("@PersonId", PersonId);
+            param[5] = new SqlParameter("@ULBTypeID", ULBTypeID);
+
+
+            return objDAL.GetDataByProcedure("sp_GetFundSanctionBySearch", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getFundSanctionedById(int Id)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@Id", Id);
+
+            return objDAL.GetDataByProcedure("sp_GetFundSanctionedById", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public int UpdateFundSanctioned(FundSanctionedMaster obj, Int32 Id)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[8];
+
+            param[0] = new SqlParameter("@UpdatedBy", obj.AddedBy);
+            param[1] = new SqlParameter("@SessionID", obj.SessionID);
+            param[2] = new SqlParameter("@DistID", obj.DistID);
+            param[3] = new SqlParameter("@ULBTypeID", obj.ULBTypeID);
+            param[4] = new SqlParameter("@ULBID", obj.ULBID);
+            param[5] = new SqlParameter("@SchemeID", obj.SchemeID);
+            param[6] = new SqlParameter("@AmtInLac", obj.AmtInLac);
+            param[7] = new SqlParameter("@Id", Id);
+
+            return objDAL.ExecuteProcedure("sp_UpdateFundSanctioned", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+
+    public int InsertFundSanction(FundSanctionedMaster obj)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[7];
+
+            param[0] = new SqlParameter("@AddedBy", obj.AddedBy);
+            param[1] = new SqlParameter("@SessionID", obj.SessionID);
+            param[2] = new SqlParameter("@DistID", obj.DistID);
+            param[3] = new SqlParameter("@ULBTypeID", obj.ULBTypeID);
+            param[4] = new SqlParameter("@ULBID", obj.ULBID);
+            param[5] = new SqlParameter("@SchemeID", obj.SchemeID);
+            param[6] = new SqlParameter("@AmtInLac", obj.AmtInLac);
+
+            return objDAL.ExecuteProcedure("sp_InsertFundSanction", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    #endregion
 }
