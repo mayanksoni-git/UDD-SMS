@@ -19,7 +19,6 @@ public partial class TemplateMasterAdmin_PMS : System.Web.UI.MasterPage
             lblUserHeader.InnerHtml = Session["Person_Name"].ToString();
             lblUserHeader2.InnerHtml = Session["Person_Name"].ToString();
             lblDesignation.InnerHtml = Session["Designation_DesignationName"].ToString();
-            ProflePic.Src = Session["Profile_Pic"].ToString();
         }
         obj_tbl_ePaymentModules = (tbl_ePaymentModules)Session["tbl_ePaymentModules"];
     }

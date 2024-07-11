@@ -172,7 +172,7 @@
                                 <!--end col-->
                             </div>
 
-                            <div class="row" style="display:none">
+                            <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-header align-items-center d-flex">

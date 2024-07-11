@@ -201,7 +201,6 @@
                                                     <div id="div8" runat="server">
                                                         <asp:Label ID="lblDepositAmount" runat="server" Text="Deposit Amount*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="txtDepositAmount"  runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                        <asp:Label ID="TxtDepositeCheck" runat="server" ></asp:Label>
 
                                                     </div>
                                                 </div>
@@ -209,7 +208,6 @@
                                                     <div>
                                                         <asp:Label ID="lblDepositDate" runat="server" Text="Deposit Date*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="txtDepositDate"  Placeholder="YYYY-MM-DD"  runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
-                                                      
                                                         <%--<cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" TargetControlID="txtDepositDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>--%>
                                                     </div>
                                                 </div>

@@ -258,8 +258,6 @@ public partial class LoanDeposit : System.Web.UI.Page
             gvRecords.DataSource = dt;
             gvRecords.DataBind();
             divData.Visible = true;
-            //---- check that EMI Of Loan Record is less than 10 (By Ali 06-07-024)
-           
 
 
             decimal TotalPaidAmount = dt.Compute("Sum(PaidAmount)", "").ToString().ToDecimal();
@@ -273,24 +271,7 @@ public partial class LoanDeposit : System.Web.UI.Page
             decimal TotalRemainingAmount = dt.Compute("Sum(RemainingAmount)", "").ToString().ToDecimal();
             Label lblTotalRemainingAmount = (Label)gvRecords.FooterRow.FindControl("lblTotalRemainingAmount");
             lblTotalRemainingAmount.Text = "Total Remaining Amount = ₹ " + TotalRemainingAmount.ToString("0.00");
-            dt = new DataTable();
-            dt = objLoan.GetLoanDepositsByProjectId(Convert.ToInt32(ddlProject.SelectedValue));
-            if (dt != null && dt.Rows.Count>0)
-            {
-                if(dt.Rows.Count>=9)
-                {
-                    txtDepositAmount.Text = TotalRemainingAmount.ToString("0.00");
-                    txtDepositAmount.Enabled = false;
-                    TxtDepositeCheck.Text = "Please note: You have a maximum of 10 EMIs available. The 10th EMI will require full payment of the remaining loan amount.";
-                    TxtDepositeCheck.Attributes["style"] = "color: red; font-weight: bold;";
-                }
-                else
-                {
-                    txtDepositAmount.Text = "";
-                    txtDepositAmount.Enabled = true;
-                    TxtDepositeCheck.Text = "";
-                }
-            }
+
 
         }
         else
@@ -309,7 +290,6 @@ public partial class LoanDeposit : System.Web.UI.Page
 
         if (dt != null && dt.Rows.Count > 0)
         {
-
             //Session["GridViewData"] = dt;
             gvDeposits.DataSource = dt;
             gvDeposits.DataBind();
