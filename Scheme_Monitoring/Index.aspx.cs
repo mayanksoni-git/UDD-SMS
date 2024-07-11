@@ -438,6 +438,17 @@ public partial class Index : System.Web.UI.Page
         string Client = ConfigurationManager.AppSettings.Get("Client");
         Session["LoginHistory_Id"] = (new DataLayer()).Insert_tbl_LoginHistory(ds.Tables[0].Rows[0]["Person_Id"].ToString());
         Session["User_Permission"] = (new DataLayer()).get_User_Permission(ds.Tables[0].Rows[0]["Person_BranchOffice_Id"].ToString().Trim(), ds.Tables[0].Rows[0]["PersonJuridiction_DesignationId"].ToString());
+        
+        if((ds.Tables[0].Rows[0]["Person_Id"].ToString())!=null)
+        {
+            Session["Profile_Pic"] = ds.Tables[0].Rows[0]["Person_ProfilePIC"].ToString();
+        }
+        else
+        {
+           
+                Session["Profile_Pic"] = "assets/images/users/avatar-1.jpg";
+           
+        }
         Session["Module_Id"] = "1";
         Session["Login_Id"] = ds.Tables[0].Rows[0]["Login_Id"].ToString().Trim();
         Session["Person_BranchOffice_Id"] = ds.Tables[0].Rows[0]["Person_BranchOffice_Id"].ToString().Trim();

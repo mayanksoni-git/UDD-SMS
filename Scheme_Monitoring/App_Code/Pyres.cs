@@ -331,4 +331,30 @@ public class Pyres
         }
     }
     #endregion
+
+    #region Profile
+    public DataTable UpdateProfile(string EmpName, string FatherName, string landline, string address, string mobile2, int personId,string pathProfile, string action)
+    {
+        try
+        {
+            
+                SqlParameter[] param = new SqlParameter[8];
+
+                param[0] = new SqlParameter("@Action", action);
+                param[1] = new SqlParameter("@personId", personId);
+                param[2] = new SqlParameter("@personName", EmpName);
+                param[3] = new SqlParameter("@PersonFName", FatherName);
+                param[4] = new SqlParameter("@alternamePhone", mobile2);
+                param[5] = new SqlParameter("@landLineNo", landline);
+                param[6] = new SqlParameter("@PersonAddress", address);
+                param[7] = new SqlParameter("@PersonProfile", pathProfile);
+            return objDAL.FetchDataWithParam_sp("UpdateLoginPersonProfile", param);
+
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    #endregion
 }
