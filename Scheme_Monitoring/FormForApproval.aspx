@@ -237,6 +237,7 @@
                                                                     <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
+                                                            <asp:BoundField HeaderText="Proposal Code" DataField="ProposalCode" />
                                                             <asp:BoundField HeaderText="Financial Year" DataField="FinYear" />
                                                             <asp:BoundField HeaderText="State" DataField="Zone_Name" />
                                                             <asp:BoundField HeaderText="District" DataField="Circle_Name" />

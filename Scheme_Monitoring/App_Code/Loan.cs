@@ -395,13 +395,14 @@ public class Loan
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[5];
+            SqlParameter[] param = new SqlParameter[6];
 
             param[0] = new SqlParameter("@Zone", objSearch.Zone);
             param[1] = new SqlParameter("@Circle", objSearch.Circle);
             param[2] = new SqlParameter("@Division", objSearch.Division);
             param[3] = new SqlParameter("@FY", objSearch.FY);
             param[4] = new SqlParameter("@Scheme", objSearch.Scheme);
+            param[5] = new SqlParameter("@ProposalStatus", objSearch.ProposalStatus);
 
             return objDAL.GetDataByProcedure("sp_SelectWorkProposalsBySearch", param);
         }
@@ -420,6 +421,21 @@ public class Loan
             param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
 
             return objDAL.GetDataByProcedure("sp_SelectWorkProposalById", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    public DataTable getWorkProposalByIdForAction(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("sp_SelectWorkProposalsBySearch2", param);
         }
         catch (Exception ex)
         {
@@ -452,6 +468,130 @@ public class Loan
             param[16] = new SqlParameter("@WorkProposalId", WorkProposalId);
 
             return objDAL.ExecuteProcedure("sp_UpdateWorkProposal", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public int ActionOnWorkProposal(string Remark, int Status, DateTime ActionDate,  int WorkProposalId, int UpdatedBy)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[5];
+
+            param[0] = new SqlParameter("@Remark", Remark);
+            param[1] = new SqlParameter("@Status", Status);
+            param[2] = new SqlParameter("@ActionDate", ActionDate);
+            param[3] = new SqlParameter("@WorkProposalId", WorkProposalId);
+            param[4] = new SqlParameter("@UpdatedBy", UpdatedBy);
+
+            return objDAL.ExecuteProcedure("sp_UpdateWorkProposalForAction", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public string GetWorkProposalCode(int WorkProposalId)
+    {
+        string sqlQuery = "select top 1 ProposalCode from tbl_WorkProposal where WorkProposalId=@WorkProposalId";
+        SqlParameter[] parameters = new SqlParameter[]
+        {
+            new SqlParameter("@WorkProposalId", WorkProposalId)
+        };
+
+        try
+        {
+            string ProposalCode = objDAL.ExecuteSqlReturnString(sqlQuery, parameters);
+            return ProposalCode;
+        }
+        catch (Exception ex)
+        {
+            return "Error executing SQL statement: "+ ex.Message;
+        }
+    }
+    #endregion
+
+    #region
+    public DataTable getFYWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("spGetFYWiseData", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getMPWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("SpMPviseSchemeAmountReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getMLAWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("SpMLAviseSchemeAmountReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    public DataTable getDivisionWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("SpDivisionWiseSchemeAmountReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    public DataTable getWorkPlanWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("SpFinancialYearWisePropasalReport", param);
         }
         catch (Exception ex)
         {

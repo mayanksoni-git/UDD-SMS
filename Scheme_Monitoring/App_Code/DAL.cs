@@ -323,6 +323,100 @@ public class DAL
         }
     }
 
+    public string ExecuteProcedureReturnString(string procedureName, SqlParameter[] parameters)
+    {
+        string result = string.Empty;
+
+        using (SqlConnection conn = new SqlConnection(ConStr))
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(procedureName, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters to the command
+                if (parameters != null)
+                {
+                    foreach (SqlParameter param in parameters)
+                    {
+                        cmd.Parameters.Add(param);
+                    }
+                }
+
+                // Execute the command and retrieve the scalar result (string)
+                object scalarResult = cmd.ExecuteScalar();
+                if (scalarResult != null)
+                {
+                    result = scalarResult.ToString();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                string msg = "Error:";
+                msg += ex.Message;
+                throw new Exception(msg);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+            }
+        }
+
+        return result;
+    }
+
+    public string ExecuteSqlReturnString(string sqlQuery, SqlParameter[] parameters)
+    {
+        string result = string.Empty;
+
+        using (SqlConnection conn = new SqlConnection(ConStr))
+        {
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sqlQuery, conn);
+
+                // Add parameters to the command
+                if (parameters != null)
+                {
+                    foreach (SqlParameter param in parameters)
+                    {
+                        cmd.Parameters.Add(param);
+                    }
+                }
+
+                // Execute the command and retrieve the scalar result (string)
+                object scalarResult = cmd.ExecuteScalar();
+                if (scalarResult != null)
+                {
+                    result = scalarResult.ToString();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                string msg = "SQL Error:";
+                msg += ex.Message;
+                throw new Exception(msg);
+            }
+            catch (Exception ex)
+            {
+                string msg = "Error:";
+                msg += ex.Message;
+                throw new Exception(msg);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+            }
+        }
+
+        return result;
+    }
+
+
     public int ExecuteScalarProcedure(string procedureName, SqlParameter[] param)
     {
         using (SqlConnection conn = new SqlConnection(ConStr))
