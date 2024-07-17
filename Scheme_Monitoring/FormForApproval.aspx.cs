@@ -12,8 +12,7 @@ using System.Text;
 public partial class FormForApproval : System.Web.UI.Page
 {
     Loan objLoan = new Loan();
-    //Testing For Git 
-    //Testing by mayank
+
     protected void Page_PreInit(object sender, EventArgs e)
     {
         this.MasterPageFile = SetMasterPage.ReturnPage();
@@ -40,7 +39,6 @@ public partial class FormForApproval : System.Web.UI.Page
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
         //BindWorkProposalGridBySearch();
-        //testing by mayank 2
     }
 
     private void get_tbl_FinancialYear()
