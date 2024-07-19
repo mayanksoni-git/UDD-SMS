@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Text;
 
+
 public partial class FormForApproval : System.Web.UI.Page
 {
     Loan objLoan = new Loan();
@@ -32,8 +33,12 @@ public partial class FormForApproval : System.Web.UI.Page
             if (Request.QueryString["WorkProposalId"] != null)
             {
                 int WorkProposalId = Convert.ToInt32(Request.QueryString["WorkProposalId"].ToString());
+                WorkProposalIds.Value = WorkProposalId.ToString();
+
                 Load_WorkProposal(WorkProposalId);
             }
+            
+
         }
 
        
@@ -344,6 +349,307 @@ public partial class FormForApproval : System.Web.UI.Page
             gridWorkPlanWise.DataBind();
             MessageBox.Show("No Records Found");
         }
+    }
+
+    //public void GetDataYearWise(int? workProposalId, int? ParliamentId)
+    //{
+    //    DataTable dt = new DataTable();
+    //    dt = objLoan.getYearWiseData(workProposalId, ParliamentId);
+
+    //    if (dt != null && dt.Rows.Count > 0)
+    //    {
+    //        CondidateName.InnerText = dt.Rows[0]["MPName"].ToString();
+    //        GridViewYealydatas.DataSource = dt;
+    //        GridViewYealydatas.DataBind();
+    //        //ToggleDiv(divWorkPlanWise);
+    //    }
+    //    else
+    //    {
+    //        //gridWorkPlanWise.DataSource = null;
+    //        //gridWorkPlanWise.DataBind();
+    //        //MessageBox.Show("No Records Found");
+    //    }
+    //}
+
+    //public void GetULbYearWise(int? workProposalId, int? ParliamentId, string type)
+    //{
+    //    int WorkProposalId = Convert.ToInt32(WorkProposalIds.Value.ToString());
+
+    //    DataTable dt = new DataTable();
+    //    dt = objLoan.getYearWiseData(workProposalId, ParliamentId);
+
+    //    if (dt != null && dt.Rows.Count > 0)
+    //    {
+    //        condidatename2.InnerText = dt.Rows[0]["MPName"].ToString();
+    //        GridULBWise.DataSource = dt;
+    //        GridULBWise.DataBind();
+    //        //ToggleDiv(divWorkPlanWise);
+    //    }
+    //    else
+    //    {
+    //        //gridWorkPlanWise.DataSource = null;
+    //        //gridWorkPlanWise.DataBind();
+    //        //MessageBox.Show("No Records Found");
+    //    }
+    //}
+    #endregion
+
+    #region DrillDown Report
+    //protected void btnAction_Command(object sender, CommandEventArgs e)
+    //{
+    //    if (e.CommandName == "Action")
+    //    {
+    //        int ParliyamentId, WorkProposalID;
+    //        if (int.TryParse(e.CommandArgument.ToString(), out ParliyamentId))
+    //        {
+    //            WorkProposalID = Convert.ToInt32(hfWorkProposalId.Value);
+
+    //            DataTable dt = new DataTable();
+    //            dt = objLoan.getULBWiseData(WorkProposalID, ParliyamentId,"MP");
+
+    //            if (dt != null && dt.Rows.Count > 0)
+    //            {
+    //                MPMLAName.InnerText = "Mp Name : " + dt.Rows[0]["MPName"].ToString();
+    //                SchemeNamesof.InnerText = "Scheme Name: " + dt.Rows[0]["SchemeName"].ToString();
+
+
+    //                gridULBCount.Visible = true;
+    //                GridViewOfAmountWise1.Visible = false;
+    //                GridYearViseSingle.Visible = false;
+
+    //                gridULBCount.DataSource = dt;
+    //                gridULBCount.DataBind();
+                   
+    //                mp1.Show();
+    //            }
+    //        }
+    //        else
+    //        {
+               
+    //        }
+    //    }
+    //}
+
+    protected void GetYearWiseData(object sender, CommandEventArgs e)
+    {
+
+        string type = "";
+        if (e.CommandName == "Action")
+        {
+            type = "MLA";
+        }
+        else if (e.CommandName == "Action2")
+        {
+            type = "MP";
+        }
+        else
+        {
+            type = "Division";
+        }
+
+        int ParliyamentId, WorkProposalID;
+            if (int.TryParse(e.CommandArgument.ToString(), out ParliyamentId))
+            {
+                WorkProposalID = Convert.ToInt32(hfWorkProposalId.Value);
+
+                DataTable dt = new DataTable();
+                dt = objLoan.getYearWiseData(WorkProposalID, ParliyamentId, type);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                if (e.CommandName == "Action")
+                {
+                    MPMLAName.InnerText = "MLA Name : " + dt.Rows[0]["MLAName"].ToString();
+
+                }
+                else if (e.CommandName == "Action2")
+                {
+
+                    MPMLAName.InnerText = "MP Name : " + dt.Rows[0]["MPName"].ToString();
+
+                }
+                else
+                {
+                    MPMLAName.InnerText = "Division : " + dt.Rows[0]["DivName"].ToString();
+
+
+                }
+                SchemeNamesof.InnerText = "Scheme Name : " + dt.Rows[0]["SchemeName"].ToString();
+                    gridULBCount.Visible = false;
+                   
+                    GridViewOfAmountWise1.Visible = false;
+                    GridYearViseSingle.Visible = true;
+
+                    GridYearViseSingle.DataSource = dt;
+                    GridYearViseSingle.DataBind();
+                   
+
+                    mp1.Show();
+                }
+           
+        }
+    }
+
+    protected void GetULBWiseData(object sender, CommandEventArgs e)
+    {
+        string type = "";
+        if (e.CommandName == "Action")
+        {
+            type = "MLA";
+        }
+        else if (e.CommandName == "Action2")
+        {
+            type = "MP";
+        }
+        else
+        {
+            type = "Division";
+        }
+        int ParliyamentId, WorkProposalID;
+         if (int.TryParse(e.CommandArgument.ToString(), out ParliyamentId))
+          {
+                WorkProposalID = Convert.ToInt32(hfWorkProposalId.Value);
+
+                DataTable dt = new DataTable();
+                dt = objLoan.getULBWiseData(WorkProposalID, ParliyamentId, type);
+
+             if (dt != null && dt.Rows.Count > 0)
+             {
+                if (e.CommandName == "Action")
+                {
+                    MPMLAName.InnerText = "MLA Name : " + dt.Rows[0]["MLAName"].ToString();
+
+                }
+                else if (e.CommandName == "Action2")
+                {
+
+                    MPMLAName.InnerText = "MP Name : " + dt.Rows[0]["MPName"].ToString();
+
+                }
+                else
+                {
+                    MPMLAName.InnerText = "Division : " + dt.Rows[0]["DivName"].ToString();
+
+
+                }
+
+
+
+                SchemeNamesof.InnerText = "Scheme Name : " + dt.Rows[0]["SchemeName"].ToString();
+
+                    gridULBCount.Visible = true;
+                    GridViewOfAmountWise1.Visible = false;
+                    GridYearViseSingle.Visible = false;
+                    gridULBCount.DataSource = dt;
+                    gridULBCount.DataBind();
+                  
+
+                    mp1.Show();
+             }
+           
+        }
+    }
+    //protected void btnAction4_Command(object sender, CommandEventArgs e)
+    //{
+    //    if (e.CommandName == "Action")
+    //    {
+    //        int ParliyamentId, WorkProposalID;
+    //        if (int.TryParse(e.CommandArgument.ToString(), out ParliyamentId))
+    //        {
+    //            WorkProposalID = Convert.ToInt32(hfWorkProposalId.Value);
+
+    //            DataTable dt = new DataTable();
+    //            dt = objLoan.getYearWiseData(WorkProposalID, ParliyamentId, "MLA");
+
+    //            if (dt != null && dt.Rows.Count > 0)
+    //            {
+    //                MPMLAName.InnerText = "MLA Name : " + dt.Rows[0]["MLAName"].ToString();
+    //                SchemeNamesof.InnerText = "Scheme Name : " + dt.Rows[0]["SchemeName"].ToString();
+
+    //                gridULBCount.Visible = false;
+    //                GridYearViseSingle.DataSource = dt;
+    //                GridYearViseSingle.DataBind();
+    //                GridYearViseSingle.Visible = true;
+
+    //                mp1.Show();
+    //            }
+    //        }
+    //        else
+    //        {
+
+    //        }
+    //    }
+    //}
+
+
+    protected void GetAmountWiseData(object sender, CommandEventArgs e)
+    {
+        string type = "";
+
+        if (e.CommandName == "Action")
+        {
+            type = "MLA";
+        }
+        else if (e.CommandName == "Action2")
+        {
+            type = "MP";
+        }
+        else
+        {
+            type = "Division";
+        }
+            int ParliyamentId, WorkProposalID;
+        if (int.TryParse(e.CommandArgument.ToString(), out ParliyamentId))
+        {
+            WorkProposalID = Convert.ToInt32(hfWorkProposalId.Value);
+
+            DataTable dt = new DataTable();
+            dt = objLoan.getAmountWiseData(WorkProposalID, ParliyamentId, type);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                if (e.CommandName == "Action")
+                {
+                    MPMLAName.InnerText = "MLA Name : " + dt.Rows[0]["MLAName"].ToString();
+
+                }
+                else if (e.CommandName == "Action2")
+                {
+
+                    MPMLAName.InnerText = "MP Name : " + dt.Rows[0]["MPName"].ToString();
+
+                }
+                else
+                {
+                    MPMLAName.InnerText = "Division : " + dt.Rows[0]["DivName"].ToString();
+
+
+                }
+                // MPMLAName.InnerText = "MLA Name : " + dt.Rows[0]["MLAName"].ToString();
+                SchemeNamesof.InnerText = "Scheme Name : " + dt.Rows[0]["SchemeName"].ToString();
+
+                GridYearViseSingle.Visible = false;
+                gridULBCount.Visible = false;
+                GridViewOfAmountWise1.Visible = true;
+
+                GridViewOfAmountWise1.DataSource = dt;
+                GridViewOfAmountWise1.DataBind();
+
+                mp1.Show();
+            }
+        }
+        }
+    
+
+
+    protected void btnAddNew_Click(object sender, EventArgs e)
+    {
+        mp1.Show();
+    }
+    protected void btnclose_Click(object sender, EventArgs e)
+    {
+        // Code to hide the modal popup
+        Panel1.Style["display"] = "none";
     }
     #endregion
 }

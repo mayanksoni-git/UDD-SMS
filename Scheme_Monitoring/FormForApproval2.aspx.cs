@@ -270,7 +270,7 @@ public partial class FormForApproval2 : System.Web.UI.Page
 
         LoadWorkProposalGrid(obj);
         btnHideModal.Visible = false;
-        btnShowModal.Visible = true;
+        btnShowModal.Visible = false;
 
     }
     private void LoadWorkProposalGrid(tbl_WorkProposal obj)
