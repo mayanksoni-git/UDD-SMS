@@ -102,19 +102,16 @@ public partial class FormForApproval2 : System.Web.UI.Page
             get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
         }
     }
-
     private void get_tbl_Project()
     {
         DataSet ds = (new DataLayer()).get_tbl_Project(0);
         FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
     }
-
     private void get_tbl_WorkType(int ProjectId)
     {
         DataSet ds = (new DataLayer()).get_tbl_ProjectType(ProjectId, 0);
         FillDropDown(ds, ddlWorkType, "ProjectType_Name", "ProjectType_Id");
     }
-
     private void get_tbl_FinancialYear()
     {
         DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
@@ -122,13 +119,11 @@ public partial class FormForApproval2 : System.Web.UI.Page
         FillDropDown(ds, ddlFY1, "FinancialYear_Comments", "FinancialYear_Id");
         FillDropDown(ds, ddlFY2, "FinancialYear_Comments", "FinancialYear_Id");
     }
-
     private void get_tbl_Circle(int zoneId)
     {
         DataSet ds = (new DataLayer()).get_tbl_Circle(zoneId);
         FillDropDown(ds, ddlCircle, "Circle_Name", "Circle_Id");
     }
-
     private void get_tbl_Division(int circleId)
     {
         DataSet ds = (new DataLayer()).get_tbl_Division(circleId);
@@ -139,14 +134,13 @@ public partial class FormForApproval2 : System.Web.UI.Page
     {
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
-            AllClasses.FillDropDown(ds.Tables[0], ddl, textField, valueField);
+            AllClasses.FillDropDown2(ds.Tables[0], ddl, textField, valueField);
         }
         else
         {
             ddl.Items.Clear();
         }
     }
-
     protected void ddlZone_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlZone.SelectedValue == "0")
@@ -159,7 +153,6 @@ public partial class FormForApproval2 : System.Web.UI.Page
             get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
         }
     }
-
     protected void ddlCircle_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlCircle.SelectedValue == "0")
@@ -171,7 +164,6 @@ public partial class FormForApproval2 : System.Web.UI.Page
             get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue));
         }
     }
-
     protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlDivision.SelectedValue == "0")
@@ -184,7 +176,6 @@ public partial class FormForApproval2 : System.Web.UI.Page
             //BindLoanReleaseGridByULB();
         }
     }
-
     protected void ddlProjectMaster_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlProjectMaster.SelectedValue == "0")
@@ -206,11 +197,23 @@ public partial class FormForApproval2 : System.Web.UI.Page
         }
     }
 
-
-
-    protected void BindLoanReleaseGridByULB()
+    protected void btnSearch_Click(object sender, EventArgs e)
     {
-        int Zone_Id = 0, Circle_Id = 0, Division_Id = 0;
+        BindWorkProposalGridBySearch();
+    }
+
+    protected void BindWorkProposalGridBySearch()
+    {
+        int Fy = 0, Zone_Id = 0, Circle_Id = 0, Division_Id = 0, Scheme = 0, ProposalStatus=0;
+
+        try
+        {
+            Fy = Convert.ToInt32(ddlFY.SelectedValue);
+        }
+        catch
+        {
+            Fy = 0;
+        }
 
         try
         {
@@ -239,22 +242,44 @@ public partial class FormForApproval2 : System.Web.UI.Page
             Division_Id = 0;
         }
 
-        tbl_LoanRelease obj_Loan = new tbl_LoanRelease();
-        obj_Loan.Zone = Zone_Id;
-        obj_Loan.Circle = Circle_Id;
-        obj_Loan.Division = Division_Id;
+        try
+        {
+            Scheme = Convert.ToInt32(ddlProjectMaster.SelectedValue);
+        }
+        catch
+        {
+            Scheme = 0;
+        }
 
-        LoadLoanReleaseGrid(obj_Loan);
+        try
+        {
+            ProposalStatus = Convert.ToInt32(ddlProposalStatus.SelectedValue);
+        }
+        catch
+        {
+            ProposalStatus = 0;
+        }
+
+        tbl_WorkProposal obj = new tbl_WorkProposal();
+        obj.FY = Fy;
+        obj.Zone = Zone_Id;
+        obj.Circle = Circle_Id;
+        obj.Division = Division_Id;
+        obj.Scheme = Scheme;
+        obj.ProposalStatus = ProposalStatus;
+
+        LoadWorkProposalGrid(obj);
+        btnHideModal.Visible = false;
+        btnShowModal.Visible = false; 
+
     }
-
-    private void LoadLoanReleaseGrid(tbl_LoanRelease obj_Loan)
+    private void LoadWorkProposalGrid(tbl_WorkProposal obj)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.getLoanReleaseBySearch(obj_Loan);
+        dt = objLoan.getWorkProposalBySearch(obj);
 
         if (dt != null && dt.Rows.Count > 0)
         {
-            //Session["GridViewData"] = dt;
             gvRecords.DataSource = dt;
             gvRecords.DataBind();
             divData.Visible = true;
@@ -268,61 +293,12 @@ public partial class FormForApproval2 : System.Web.UI.Page
             MessageBox.Show("No Records Found");
         }
     }
-
-
-
-
-    //protected void btnSearch_Click(object sender, EventArgs e)
-    //{
-    //    if (!ValidateFields())
-    //    {
-    //        return;
-    //    }
-
-    //    tbl_LoanRelease LoanRelease = CreateLoanReleaseObject();
-    //    int result = objLoan.InsertLoanRelease(LoanRelease);
-
-    //    if (result > 0)
-    //    {
-    //        MessageBox.Show("Record saved successfully.");
-    //        reset();
-    //    }
-    //    else
-    //    {
-    //        MessageBox.Show("Something went wrong please try again or contact administrator!");
-    //        return;
-    //    }
-    //}
-
-    protected void btnSearch_Click(object sender, EventArgs e)
+    protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        // Sample data for the GridView
-        DataTable dt = new DataTable();
-        dt.Columns.Add("SrNo", typeof(int));
-        dt.Columns.Add("District", typeof(string));
-        dt.Columns.Add("ULB", typeof(string));
-        dt.Columns.Add("SchemeName", typeof(string));
-        dt.Columns.Add("WorkType", typeof(string));
-        dt.Columns.Add("ExpectedAmount", typeof(decimal));
-        dt.Columns.Add("Proposer", typeof(string));
-        dt.Columns.Add("PoliticalParty", typeof(string));
-        dt.Columns.Add("MobileNo", typeof(string));
-        dt.Columns.Add("Designation", typeof(string));
-        dt.Columns.Add("RecommendationLetter", typeof(string));
-        dt.Columns.Add("ID", typeof(int));
-        dt.Columns.Add("Status", typeof(string));
-
-        // Add some sample data
-        dt.Rows.Add(1, "District A", "ULB A", "Scheme A", "Type A", 100000, "Proposer A", "Party A", "1234567890", "Designation A", "file.pdf", 1, "Pending");
-        dt.Rows.Add(2, "District B", "ULB B", "Scheme B", "Type B", 200000, "Proposer B", "Party B", "0987654321", "Designation B", "file.pdf", 2, "Approved");
-
-        gvRecords.DataSource = dt;
-        gvRecords.DataBind();
-
-        btnHideModal.Visible = false;
-        btnShowModal.Visible = true;
-
+        gvRecords.PageIndex = e.NewPageIndex;
+        BindWorkProposalGridBySearch();
     }
+
 
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
@@ -532,39 +508,65 @@ public partial class FormForApproval2 : System.Web.UI.Page
 
     protected void btnSubmitAction_Click(object sender, EventArgs e)
     {
-        // Logic to submit action on proposal
-        int id = Convert.ToInt32(hfFormApproval_Id.Value);
-        string action = ddlAction.SelectedValue;
-        string remarks = txtRemarks.Text;
-        // Update logic here
+        //string Remarks = txtRemarks.Text;
+        //int status = Convert.ToInt16(ddlAction.SelectedValue);
+        //int id = Convert.ToInt32(hfFormApproval_Id.Value);
+        //int personId;
+        //if (!int.TryParse(Session["Person_Id"].ToString(), out personId))
+        //{
+        //    throw new FormatException("Invalid Person_Id in session.");
+        //}
+        //int result = objLoan.ActionOnWorkProposal(Remarks, status, id, personId);
 
-        gvRecords.DataSource = null;
-        gvRecords.DataBind();
-        //btnViewFundStatus.Visible = false;
-        mpActionProposal.Hide();
+        //if (result > 0)
+        //{
+        //    MessageBox.Show("Record Updated successfully.");
+        //    mpActionProposal.Visible = false;
+        //    BindWorkProposalGridBySearch();
+        //}
+        //else
+        //{
+        //    MessageBox.Show("Something went wrong please try again or contact administrator!");
+        //    return;
+        //}
+        
     }
 
     protected void btnCloseActionProposal_Click(object sender, EventArgs e)
     {
-        mpActionProposal.Hide();
+        mpActionProposal.Visible = false;
     }
 
-    protected void gvData_RowCommand(object sender, GridViewCommandEventArgs e)
+
+    protected void btnAction_Command(object sender, CommandEventArgs e)
     {
-        if (e.CommandName == "Download")
+        if (e.CommandName == "Action")
         {
-            // Logic to download the file
-            string filePath = e.CommandArgument.ToString();
-            // Provide download logic here
-        }
-        else if (e.CommandName == "Action")
-        {
-            // Logic to open action modal
-            int id = Convert.ToInt32(e.CommandArgument);
-            hfFormApproval_Id.Value = id.ToString();
-            mpActionProposal.Show();
+            // Retrieve the command argument (WorkProposalId)
+            int workProposalId;
+            if (int.TryParse(e.CommandArgument.ToString(), out workProposalId))
+            {
+                // Call a method to handle the action based on WorkProposalId
+                int id = Convert.ToInt32(e.CommandArgument);
+                hfFormApproval_Id.Value = id.ToString();
+                workProposalId = id;
+                mpActionProposal.Visible = true;
+                string WorkProposalCode = objLoan.GetWorkProposalCode(workProposalId);
+                if(!string.IsNullOrEmpty(WorkProposalCode))
+                {
+                    lblWrokProposalId.Text = "Work Proposal Code= " + WorkProposalCode;
+                }
+                else
+                {
+                    lblWrokProposalId.Text = "Work Proposal Id= " + workProposalId;
+                }
+                //HandleAction(workProposalId);
+            }
+            else
+            {
+                // Handle error if parsing fails
+            }
+            Response.Redirect("FormForApproval3.aspx?WorkProposalId=" + workProposalId.ToString());
         }
     }
-
-
 }
