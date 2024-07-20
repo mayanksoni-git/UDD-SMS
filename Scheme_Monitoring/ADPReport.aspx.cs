@@ -9,7 +9,6 @@ using System.Web.UI.WebControls;
 
 public partial class ADPReport : System.Web.UI.Page
 {
-    //Tesing git
     protected void Page_PreInit(object sender, EventArgs e)
     {
         this.MasterPageFile = SetMasterPage.ReturnPage();
