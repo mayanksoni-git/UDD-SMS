@@ -14,12 +14,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Work Proposals</h4>
+                                    <h4 class="mb-sm-0">Work Plan</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">Work Plan Management System</li>
-                                            <li class="breadcrumb-item active">Work Proposals</li>
+                                            <li class="breadcrumb-item active">Work Plan</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -30,7 +30,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Search Proposal</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Search  Work Plan</h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -73,7 +73,7 @@
                                                 </div>
 
 
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-3 col-md-6" style="display:none">
                                                     <div id="divWorkType" runat="server">
                                                         <asp:Label ID="lblWorkType" runat="server" Text="Type of Work*" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlWorkType" runat="server" CssClass="form-select"></asp:DropDownList>
@@ -82,8 +82,8 @@
                                                 </div>
 
                                                 <div class="col-xxl-2 col-md-6" id="divParty">
-                                                    <asp:Label ID="lblStatus" runat="server" Text="Proposal Status*" CssClass="form-label"></asp:Label>
-                                                    <asp:DropDownList ID="ddlParty" runat="server" CssClass="form-select">
+                                                    <asp:Label ID="lblStatus" runat="server" Text=" Work Plan Status*" CssClass="form-label"></asp:Label>
+                                                    <asp:DropDownList ID="ddlProposalStatus" runat="server" CssClass="form-select">
                                                         <asp:ListItem Text="--Select Status--" Value="-1"></asp:ListItem>
                                                         <asp:ListItem Text="Pending" Value="0"></asp:ListItem>
                                                         <asp:ListItem Text="Approved" Value="1"></asp:ListItem>
@@ -92,13 +92,13 @@
                                                     </asp:DropDownList>
                                                 </div>
 
-                                                <div class="col-xxl-3 offset-xxl-1 col-md-6">
+                                                <div class="col-xxl-3 offset-xxl-4 col-md-6">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
                                                         <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
-                                                        <asp:Button ID="btnShowModal" runat="server" Visible="false" CssClass="btn bg-success text-white" Text="Show" OnClick="btnShowModal_Click" />
-                                                        <asp:Button ID="btnHideModal" runat="server" Visible="false" CssClass="btn bg-black text-white" Text="Hide" OnClick="btnHideModal_Click" />
+                                                        <asp:Button ID="btnShowModal" runat="server" Visible="false" CssClass="btn bg-success text-white" Text="Show Fund Status" OnClick="btnShowModal_Click" />
+                                                        <asp:Button ID="btnHideModal" runat="server" Visible="false" CssClass="btn bg-black text-white" Text="Hide Fund Status" OnClick="btnHideModal_Click" />
                                                         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
                                                         <asp:HiddenField ID="hfFormApproval_Id" runat="server" />
                                                     </div>
@@ -161,6 +161,31 @@
                                                                     <td>Received/Not Received</td>
                                                                     <td>Received/Not Received</td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td>Total Proposals</td>
+                                                                    <td>2</td>
+                                                                    <td>2</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Total Approved Proposals</td>
+                                                                    <td>1</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Total Rejected Proposals</td>
+                                                                    <td>1</td>
+                                                                    <td>1</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Total Fund Released(In Lakhs)</td>
+                                                                    <td>100</td>
+                                                                    <td>100</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Total Fund Sanctioned(In Lakhs)</td>
+                                                                    <td>85</td>
+                                                                    <td>90</td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -175,6 +200,8 @@
                         </div>
                     </div>
 
+
+
                     <%--place grid here--%>
 
                     <div runat="server" visible="true" id="divData">
@@ -182,7 +209,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Work Proposal Detail</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Work Plan Detail</h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -195,30 +222,63 @@
                                                 <!-- div.dataTables_borderWrap -->
                                                 <div style="overflow: auto">
 
-                                                    <asp:GridView ID="gvRecords" runat="server" CssClass="table table-bordered mt-4" AutoGenerateColumns="false" OnRowCommand="gvData_RowCommand">
+                                                    <asp:GridView ID="gvRecords" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
+                                                    OnPageIndexChanging="OnPageIndexChanging" PageSize="5">
                                                         <Columns>
-                                                            <asp:BoundField HeaderText="Sr. No." DataField="SrNo" />
-                                                            <asp:BoundField HeaderText="District" DataField="District" />
-                                                            <asp:BoundField HeaderText="ULB" DataField="ULB" />
-                                                            <asp:BoundField HeaderText="Scheme Name" DataField="SchemeName" />
-                                                            <asp:BoundField HeaderText="Type of Work" DataField="WorkType" />
+                                                            <asp:BoundField DataField="WorkProposalId" HeaderText="Work Proposal Id">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <asp:TemplateField HeaderText="Sr. No.">
+                                                                <ItemTemplate>
+                                                                    <%# Container.DataItemIndex + 1 %>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <%--<asp:TemplateField HeaderText="Edit">
+                                                                <ItemTemplate>
+                                                                    <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>--%>
+                                                            <asp:BoundField HeaderText="Proposal Code" DataField="ProposalCode" />
+                                                            <asp:BoundField HeaderText="Financial Year" DataField="FinYear" />
+                                                            <%--<asp:BoundField HeaderText="State" DataField="Zone_Name" />--%>
+                                                            <asp:BoundField HeaderText="District" DataField="Circle_Name" />
+                                                            <asp:BoundField HeaderText="ULB" DataField="Division_Name" />
+                                                            <asp:BoundField HeaderText="Zone" DataField="ZoneOfULB" />
+                                                            <asp:BoundField HeaderText="Ward" DataField="Ward" />
+                                                            <asp:BoundField HeaderText="Scheme" DataField="Project_Name" />
+                                                            <asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />
+                                                            <%--<asp:BoundField HeaderText="Sanctioned Amount in 2nd Last Year" DataField="FY2" />--%>
+                                                            <%--<asp:BoundField HeaderText="Sanctioned Amount in Last Year" DataField="FY1" />--%>
+
                                                             <asp:BoundField HeaderText="Expected Amount" DataField="ExpectedAmount" />
-                                                            <asp:BoundField HeaderText="Proposer" DataField="Proposer" />
-                                                            <asp:BoundField HeaderText="Political Party" DataField="PoliticalParty" />
-                                                            <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" />
+                                                            <asp:BoundField HeaderText="Proposer Type" DataField="ProposerType" />
+                                                            <asp:BoundField HeaderText="MP/MLA Name" DataField="MPMLAName" />
+                                                            <asp:BoundField HeaderText="Proposer Name" DataField="ProposerName" />
+                                                            <asp:BoundField HeaderText="Mobile" DataField="Mobile" />
                                                             <asp:BoundField HeaderText="Designation" DataField="Designation" />
                                                             <asp:TemplateField HeaderText="Recommendation Letter">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="lnkDownload" runat="server" Text="Download" CommandName="Download" CommandArgument='<%# Eval("RecommendationLetter") %>'></asp:LinkButton>
+                                                                    <asp:HyperLink ID="hypRecommendationLetter" runat="server" Target="_blank" NavigateUrl='<%# Eval("RecomendationLetter") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("RecomendationLetter").ToString()) %>'>
+                                                                        <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                                    </asp:HyperLink>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
+                                                            <asp:BoundField HeaderText="Status" DataField="ProposalStatus" />
                                                             <asp:TemplateField HeaderText="Action">
                                                                 <ItemTemplate>
-                                                                    <asp:Button ID="btnAction" runat="server" Text="Take Action" CommandName="Action" CommandArgument='<%# Eval("ID") %>' CssClass="btn btn-primary" />
+                                                                    <asp:Button ID="btnAction" runat="server" Text="Action" CommandName="Action" CommandArgument='<%# Eval("WorkProposalId") %>' CssClass="btn btn-primary" OnCommand="btnAction_Command" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:BoundField HeaderText="Status" DataField="Status" />
+                                                            
+                                                            <%--<asp:BoundField HeaderText="Added On" DataField="AddedOn" DataFormatString="{0:dd/MM/yyyy}" />--%>
                                                         </Columns>
+                                                        <EmptyDataTemplate>
+                                                            <tr>
+                                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                            </tr>
+                                                        </EmptyDataTemplate>
                                                     </asp:GridView>
                                                 </div>
                                             </div>
@@ -231,42 +291,58 @@
                         </div>
                     </div>
 
-                    
-                    <!-- ModalPopup for Action on Proposal -->
-
-                    <asp:Panel ID="pnlActionProposal" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Action on Proposal</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <asp:Label ID="lblAction" runat="server" Text="Action"></asp:Label>
-                                        <asp:DropDownList ID="ddlAction" runat="server" CssClass="form-control">
-                                            <asp:ListItem Text="Pending" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="Approved" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="Reject" Value="2"></asp:ListItem>
-                                            <asp:ListItem Text="Hold/Archive" Value="3"></asp:ListItem>
-                                        </asp:DropDownList>
+                    <div runat="server" visible="false" id="mpActionProposal">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Action on Proposal</h4> <b><asp:Label runat="server" id="lblWrokProposalId" Text=""></asp:Label></b>
                                     </div>
-                                    <div class="form-group">
-                                        <asp:Label ID="lblRemarks" runat="server" Text="Remarks"></asp:Label>
-                                        <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-12">
+                                                <!-- div.table-responsive -->
+                                                <div class="clearfix" id="Div3" runat="server">
+                                                    <div class="pull-right tableTools-container"></div>
+                                                </div>
+                                                <!-- div.dataTables_borderWrap -->
+                                                <div style="overflow: auto">
+                                                    <div id="Div4" runat="server" class="modal-content">
+                                                        <span id="Span1" runat="server" class="close" onserverclick="btnClose_Click"></span>
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="Label1" runat="server" Text="Action"></asp:Label>
+                                                                    <asp:DropDownList ID="ddlAction" runat="server" CssClass="form-control">
+                                                                        <asp:ListItem Text="Pending" Value="0"></asp:ListItem>
+                                                                        <asp:ListItem Text="Approved" Value="1"></asp:ListItem>
+                                                                        <asp:ListItem Text="Reject" Value="2"></asp:ListItem>
+                                                                        <asp:ListItem Text="Hold/Archive" Value="3"></asp:ListItem>
+                                                                    </asp:DropDownList>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <asp:Label ID="Label2" runat="server" Text="Remarks"></asp:Label>
+                                                                    <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                                                </div>
+                                                            </div>
+                                                            <br />
+                                                            <div class="modal-footer">
+                                                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSubmitAction_Click" /> 
+                                                                <asp:Button ID="btnCloseAction" runat="server" Text="Close" CssClass="btn btn-secondary" OnClick="btnCloseActionProposal_Click" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end row-->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <asp:Button ID="btnSubmitAction" runat="server" Text="Submit" CssClass="btn btn-primary" OnClick="btnSubmitAction_Click" />
-                                    <asp:Button ID="btnCloseActionProposal" runat="server" Text="Close" CssClass="btn btn-secondary" OnClick="btnCloseActionProposal_Click" />
                                 </div>
                             </div>
+                            <!--end col-->
                         </div>
-                    </asp:Panel>
-                    <cc1:ModalPopupExtender ID="mpActionProposal" runat="server" PopupControlID="pnlActionProposal" TargetControlID="btnDummyActionProposal"
-                        CancelControlID="btnclose" BackgroundCssClass="modalBackground1">
-                    </cc1:ModalPopupExtender>
-                    <asp:Button ID="btnDummyActionProposal" runat="server" Style="display: none;" />
-                   
+                    </div>
                 </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="btnSearch" />
@@ -274,4 +350,35 @@
             </asp:UpdatePanel>
         </div>
     </div>
+    <style>
+        .form-control img {
+            height: 20px;
+            width: 20px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        #ctl00_ContentPlaceHolder1_gvRecords tbody tbody td {
+            height: 35px;
+            width: 35px;
+            line-height: 35px;
+            display: inline-block;
+            background: #dce9f7;
+            border: 1px solid #d1e3f7;
+            text-align: center;
+            margin: 0 2px;
+        }
+
+        #ctl00_ContentPlaceHolder1_gvRecords tbody tbody td a {
+            height: 35px;
+            color: #000;
+            width: 35px;
+            display: block;
+        }
+
+        #ctl00_ContentPlaceHolder1_gvRecords tbody tbody td:hover {
+            background: #c5dffb;
+            border: 1px solid #bbdbff;
+        }
+    </style>
 </asp:Content>
