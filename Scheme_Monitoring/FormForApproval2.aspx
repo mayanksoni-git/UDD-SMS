@@ -14,12 +14,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Work Proposals</h4>
+                                    <h4 class="mb-sm-0">Work Plan</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">Work Plan Management System</li>
-                                            <li class="breadcrumb-item active">Work Proposals</li>
+                                            <li class="breadcrumb-item active">Work Plan</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -30,7 +30,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Search Proposal</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Search  Work Plan</h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -82,7 +82,7 @@
                                                 </div>
 
                                                 <div class="col-xxl-2 col-md-6" id="divParty">
-                                                    <asp:Label ID="lblStatus" runat="server" Text="Proposal Status*" CssClass="form-label"></asp:Label>
+                                                    <asp:Label ID="lblStatus" runat="server" Text=" Work Plan Status*" CssClass="form-label"></asp:Label>
                                                     <asp:DropDownList ID="ddlProposalStatus" runat="server" CssClass="form-select">
                                                         <asp:ListItem Text="--Select Status--" Value="-1"></asp:ListItem>
                                                         <asp:ListItem Text="Pending" Value="0"></asp:ListItem>
@@ -209,7 +209,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Work Proposal Detail</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Work Plan Detail</h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">

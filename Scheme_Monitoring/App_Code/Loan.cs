@@ -598,5 +598,64 @@ public class Loan
             throw new Exception(ex.Message);
         }
     }
+
+    public DataTable getYearWiseData(int? WorkProposalId,int? parliamentID,string type)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[3];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+            param[1] = new SqlParameter("@parliament", parliamentID); 
+            param[2] = new SqlParameter("@action", type); 
+
+            return objDAL.GetDataByProcedure("SpYealyFundReportOfMP", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getULBWiseData(int? WorkProposalId, int? parliamentID,string type)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[3];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+            param[1] = new SqlParameter("@parliamentId", parliamentID);
+            param[2] = new SqlParameter("@action", type);
+
+            return objDAL.GetDataByProcedure("SpULBWiseData", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getAmountWiseData(int? WorkProposalId, int? parliamentID, string type)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[3];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+            param[1] = new SqlParameter("@parliamentId", parliamentID);
+            param[2] = new SqlParameter("@action", type);
+
+            return objDAL.GetDataByProcedure("SpAMountWiseFundReportOfMPMLA", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+
     #endregion
 }

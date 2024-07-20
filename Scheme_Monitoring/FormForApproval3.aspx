@@ -1,19 +1,25 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin_PMS.master" AutoEventWireup="true" CodeFile="FormForApproval3.aspx.cs" Inherits="FormForApproval" EnableEventValidation="false" ValidateRequest="false" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin_PMS.master" AutoEventWireup="true" CodeFile="FormForApproval3.aspx.cs" MaintainScrollPositionOnPostback="true" Inherits="FormForApproval" EnableEventValidation="false" ValidateRequest="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
+    <asp:HiddenField ID="WorkProposalIds" runat="server" />
     <div class="main-content">
         <div class="page-content">
+            <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
+            </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
-                    <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
-                    </cc1:ToolkitScriptManager>
+                   <cc1:modalpopupextender id="mp1" runat="server" popupcontrolid="Panel1" targetcontrolid="btnShowPopup"
+                        cancelcontrolid="btnclose" backgroundcssclass="modalBackground1">
+                    </cc1:modalpopupextender>
+                    <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Approve Work Plan</h4>
+                                    <h4 class="mb-sm-0">Approve Work Plan</h4> 
+                                    <%--<asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>--%>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
@@ -29,8 +35,8 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Work Proposal Detail</h4>
-                                        <u><b>Work Proposal Code:<asp:Label runat="server" id="lblWrokProposalId" Text=""></asp:Label></b></u>
+                                        <h4 class="card-title mb-0 flex-grow-1">Work Plan Detail</h4>
+                                        <u><b> Proposal Code:<asp:Label runat="server" id="lblWrokProposalId" Text=""></asp:Label></b></u>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -140,7 +146,7 @@
                                                 </div> 
                                                 <div class="col-xxl-3 col-md-6 ">
                                                     <div id="divPStatus" class="d-flex" runat="server">
-                                                        <asp:Label ID="lblPStatus" runat="server" Text="Proposal Status :" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblPStatus" runat="server" Text="Work Plan Status :" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:Label ID="txtPStatus" runat="server" CssClass="form-label" Enabled="false"></asp:Label>
                                                     </div>
                                                 </div>
@@ -170,7 +176,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Action On Work Proposal</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Action On Work Plan</h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -178,7 +184,7 @@
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div2" runat="server">
-                                                        <asp:Label ID="lblStatus" runat="server" Text="Proposal Status" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblStatus" runat="server" Text="Work Plan Status" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlAction" runat="server" CssClass="form-select">
                                                             <asp:ListItem Text="Pending" Value="0"></asp:ListItem>
                                                             <asp:ListItem Text="Approved" Value="1"></asp:ListItem>
@@ -219,12 +225,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xxl-12 col-md-12">
-                            <div>
-                            </div>
-                        </div>
-                    </div>
+                   
                     <div runat="server" visible="true" id="div1">
                         <div class="row">
                             <div class="col-lg-12">
@@ -234,10 +235,10 @@
                                         
                                     </div>
                                     <!-- end card header -->
-                                    <div class="card-body">
+                                    <div class="card-body" >
                                         <div class="live-preview">
                                             <div class="row gy-12">
-                                                <div class="d-flex">
+                                                <div class="d-flex"style="margin-top:20px;margin-bottom:20px">
                                                 <asp:Button ID="btnFYWise" Text="Financial Year Wise" OnClick="btnFYWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
                                                 <asp:Button ID="btnMPWise" Text="MP Wise" OnClick="btnMPWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
                                                 <asp:Button ID="btnMLAWise" Text="MLA Wise" OnClick="btnMLAWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
@@ -245,9 +246,9 @@
                                                 <asp:Button ID="btnProjectWise" OnClick="btnWorkPlanWise_Click" Text="Work Plan Wise" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
                                                </div>
                                                 <!-- div.dataTables_borderWrap -->
-                                                <div runat="server" id="divFYWise" visible="false" style="overflow: auto">
+                                                <div runat="server" id="divFYWise" class="tblheader" visible="false" style="overflow: auto">
                                                     <h3>Financial Year Wise Data</h3>
-                                                    <asp:GridView ID="gridFyWise" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
+                                                    <asp:GridView ID="gridFyWise" runat="server" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
                                                     OnPageIndexChanging="OnPageIndexChangingFyWise" PageSize="10">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
@@ -257,7 +258,7 @@
                                                             </asp:TemplateField>
                                                             <asp:BoundField HeaderText="ULB Name" DataField="ULBName" />
                                                             <asp:BoundField HeaderText="Financial Year" DataField="SessionYear" />
-                                                            <asp:BoundField HeaderText="Total Sactioned Amount" DataField="TotalSactionedAmount" />
+                                                            <asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />
                                                             <asp:BoundField HeaderText="No Of Projects" DataField="NoOfProjects" />
                                                         </Columns>
                                                         <EmptyDataTemplate>
@@ -267,10 +268,10 @@
                                                         </EmptyDataTemplate>
                                                     </asp:GridView>
                                                 </div>
-                                                <div runat="server" id="divMPWise" visible="false" style="overflow: auto">
+                                                <div runat="server" id="divMPWise" class="tblheader" visible="false" style="overflow: auto">
                                                     <h3>MP Wise Data</h3>
-                                                    <asp:GridView ID="gridMPWise" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
-                                                    OnPageIndexChanging="OnPageIndexChangingMPWise" PageSize="10">
+                                                    <asp:GridView ID="gridMPWise" runat="server" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
+                                                        OnPageIndexChanging="OnPageIndexChangingMPWise" PageSize="10">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
                                                                 <ItemTemplate>
@@ -278,10 +279,24 @@
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:BoundField HeaderText="MP Name" DataField="MPName" />
-                                                            <asp:BoundField HeaderText="No of ULB" DataField="ulb_count" />
-                                                            <asp:BoundField HeaderText="No of Years" DataField="session_count" />
-                                                            <asp:BoundField HeaderText="No Of Projects" DataField="projectCount" />
-                                                            <asp:BoundField HeaderText="Total Sactioned Amount" DataField="total_amount" />
+                                                          
+
+                                                           <asp:TemplateField HeaderText="No of ULB">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Action2" OnCommand="GetULBWiseData"  CommandArgument='<%# Eval("ParliamentaryConstID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+
+                                                             <asp:TemplateField HeaderText="No of Years">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction2" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action2" OnCommand="GetYearWiseData"  CommandArgument='<%# Eval("ParliamentaryConstID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Total Sactioned Amount(In Lacs)">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction6" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action2" OnCommand="GetAmountWiseData"  CommandArgument='<%# Eval("ParliamentaryConstID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
                                                         </Columns>
                                                         <EmptyDataTemplate>
                                                             <tr>
@@ -290,10 +305,10 @@
                                                         </EmptyDataTemplate>
                                                     </asp:GridView>
                                                 </div>
-                                                <div runat="server" id="divMLAWise" visible="false" style="overflow: auto">
+                                                <div runat="server" id="divMLAWise" class="tblheader" visible="false" style="overflow: auto">
                                                      
                                                     <h3>MLA Wise Data</h3>
-                                                    <asp:GridView ID="gridMLAWise" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
+                                                    <asp:GridView ID="gridMLAWise" runat="server" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
                                                     OnPageIndexChanging="OnPageIndexChangingMLAWise" PageSize="10">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
@@ -302,10 +317,25 @@
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:BoundField HeaderText="MLA Name" DataField="MLAName" />
-                                                            <asp:BoundField HeaderText="No of ULB" DataField="ulb_count" />
-                                                            <asp:BoundField HeaderText="No of Years" DataField="session_count" />
-                                                            <asp:BoundField HeaderText="No Of Projects" DataField="projectCount" />
-                                                            <asp:BoundField HeaderText="Total Sactioned Amount" DataField="total_amount" />
+                                                             <asp:TemplateField HeaderText="No of ULB">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction3" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Action" OnCommand="GetULBWiseData"  CommandArgument='<%# Eval("AssemblyConstID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+
+                                                             <asp:TemplateField HeaderText="No of Years">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction4" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action" OnCommand="GetYearWiseData"  CommandArgument='<%# Eval("AssemblyConstID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+
+                                                          
+                                                            <asp:TemplateField HeaderText="Total Sactioned Amount (In Lacs)">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction5" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action" OnCommand="GetAmountWiseData"  CommandArgument='<%# Eval("AssemblyConstID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            
                                                         </Columns>
                                                         <EmptyDataTemplate>
                                                             <tr>
@@ -314,9 +344,9 @@
                                                         </EmptyDataTemplate>
                                                     </asp:GridView>
                                                 </div>
-                                                <div runat="server" id="divDivisionWise" visible="false" style="overflow: auto">
+                                                <div runat="server" id="divDivisionWise" class="tblheader" visible="false" style="overflow: auto">
                                                     <h3>Division Wise Data</h3>
-                                                    <asp:GridView ID="gridDivisionWise" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
+                                                    <asp:GridView ID="gridDivisionWise" runat="server" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
                                                     OnPageIndexChanging="OnPageIndexChangingDivisionWise" PageSize="18">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
@@ -325,10 +355,25 @@
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:BoundField HeaderText="Division Name" DataField="DivName" />
-                                                            <asp:BoundField HeaderText="No of ULB" DataField="ulb_count" />
-                                                            <asp:BoundField HeaderText="No of Years" DataField="session_count" />
-                                                            <asp:BoundField HeaderText="No Of Projects" DataField="projectCount" />
-                                                            <asp:BoundField HeaderText="Total Sactioned Amount" DataField="total_amount" />
+                                                          
+                                                             <asp:TemplateField HeaderText="No of ULB">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction3" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Division" OnCommand="GetULBWiseData"  CommandArgument='<%# Eval("DivisionID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+
+                                                           
+                                                           <asp:TemplateField HeaderText="No of Years">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction7" runat="server" Text='<%# Eval("session_count") %>' CommandName="Division" OnCommand="GetYearWiseData"  CommandArgument='<%# Eval("DivisionID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            
+                                                            <asp:TemplateField HeaderText="Total Sactioned Amount (In Lacs)">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction6" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Division" OnCommand="GetAmountWiseData"  CommandArgument='<%# Eval("DivisionID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
                                                             <asp:BoundField HeaderText="Percent b/w Division" DataField="percentage_of_total_amount" />
                                                         </Columns>
                                                         <EmptyDataTemplate>
@@ -338,9 +383,9 @@
                                                         </EmptyDataTemplate>
                                                     </asp:GridView>
                                                 </div>
-                                                <div runat="server" id="divWorkPlanWise" visible="false" style="overflow: auto">
+                                                <div runat="server" id="divWorkPlanWise" class="tblheader" visible="false" style="overflow: auto">
                                                     <h3>Work Plan Data</h3>
-                                                    <asp:GridView ID="gridWorkPlanWise" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
+                                                    <asp:GridView ID="gridWorkPlanWise" runat="server" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
                                                     OnPageIndexChanging="OnPageIndexChangingWorkPlanWise" PageSize="10">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
@@ -350,15 +395,15 @@
                                                             </asp:TemplateField>
                                                             <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
                                                             <asp:BoundField HeaderText="No Of Proposals" DataField="NoOfProposals" />
-                                                            <asp:BoundField HeaderText="All Proposals Amount" DataField="TotalAmount" />
+                                                            <asp:BoundField HeaderText="All Proposals Amount(In Rupees)" DataField="TotalAmount" />
                                                             <asp:BoundField HeaderText="PendingProposals" DataField="PendingProposals" />
-                                                            <asp:BoundField HeaderText="Pending Proposals Amount" DataField="PendingProposalsAmount" />
+                                                            <asp:BoundField HeaderText="Pending Proposals Amount(In Rupees)" DataField="PendingProposalsAmount" />
                                                             <asp:BoundField HeaderText="Approved Proposals" DataField="ApprovedProposals" />
-                                                            <asp:BoundField HeaderText="Approved Proposals Amount" DataField="ApprovedProposalsAmount" />
+                                                            <asp:BoundField HeaderText="Approved Proposals Amount(In Rupees)" DataField="ApprovedProposalsAmount" />
                                                             <asp:BoundField HeaderText="Reject Proposals" DataField="RejectProposals" />
-                                                            <asp:BoundField HeaderText="Reject Proposals Amount" DataField="RejectProposalsAmount" />
+                                                            <asp:BoundField HeaderText="Reject Proposals Amount(In Rupees)" DataField="RejectProposalsAmount" />
                                                             <asp:BoundField HeaderText="Hold Proposals" DataField="HoldProposals" />
-                                                            <asp:BoundField HeaderText="Hold Proposals Amount" DataField="HoldProposalsAmount" />
+                                                            <asp:BoundField HeaderText="Hold Proposals Amount (In Rupees)" DataField="HoldProposalsAmount" />
                                                         </Columns>
                                                         <EmptyDataTemplate>
                                                             <tr>
@@ -374,9 +419,103 @@
                                 </div>
                             </div>
                             <!--end col-->
+
+
+
+                            
+
+                            
+                         
+
                         </div>
                     </div>
                     </div>
+
+                    <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1 p-0" Style="display: none; width: 800px; margin-left: -32px;height:800px;overflow:auto">
+                            <div class="row  bg-warning" style="border-radius: 11px; padding:10px;">
+                                <div class="col-xs-12">
+                                    <div class="table-header fw-bold fs-4">
+                                        Fund Detail                                      
+                                    </div>
+                                </div>
+                            </div>
+
+                        <div class="row" style="padding:10px">
+                            <div class="col-xl-12">
+                                <h5 id="MPMLAName" style="text-align:center" runat="server"></h5>
+                            </div>
+                             <div class="col-xl-12">
+                                <h5 id="SchemeNamesof" style="text-align:center" runat="server"></h5>
+                            </div>
+                        </div>
+                        <div class="row p-3">
+                            <div class="col-md-12" id="dvPJ" runat="server">
+                                <div class="form-group">
+                                    <asp:GridView ID="gridULBCount" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Sr. No.">
+                                                <ItemTemplate>
+                                                    <%# Container.DataItemIndex + 1 %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField HeaderText="ULB Name" DataField="ULBName" />
+                                            <asp:BoundField HeaderText="Total Sactioned Amount (In Lacs)" DataField="amount" />
+                                        </Columns>
+                                        <EmptyDataTemplate>
+                                            <tr>
+                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                            </tr>
+                                        </EmptyDataTemplate>
+                                    </asp:GridView>
+
+                                     <asp:GridView ID="GridYearViseSingle" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Sr. No.">
+                                                <ItemTemplate>
+                                                    <%# Container.DataItemIndex + 1 %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField HeaderText="Session" DataField="SessionYear" />
+                                            <asp:BoundField HeaderText="Total Sactioned Amount (In Lacs)" DataField="amount" />
+                                        </Columns>
+                                        <EmptyDataTemplate>
+                                            <tr>
+                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                            </tr>
+                                        </EmptyDataTemplate>
+                                    </asp:GridView>
+
+
+                                    <asp:GridView ID="GridViewOfAmountWise1" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Sr. No.">
+                                                <ItemTemplate>
+                                                    <%# Container.DataItemIndex + 1 %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField HeaderText="ULB NAme" DataField="ULBName" />
+                                            <asp:BoundField HeaderText="Session" DataField="SessionYear" />
+
+                                            <asp:BoundField HeaderText="Total Sactioned Amount(In Lacs)" DataField="AmtInLac" />
+                                        </Columns>
+                                        <EmptyDataTemplate>
+                                            <tr>
+                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                            </tr>
+                                        </EmptyDataTemplate>
+                                    </asp:GridView>
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group mt-2 text-end">
+                                    <asp:Button ID="btnclose" runat="server" Text="Close" CssClass="text-light btn bg-danger p-2" OnClick="btnclose_Click" />
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+
                 </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="btnAction" />
@@ -393,7 +532,44 @@
                 </asp:UpdateProgress>--%>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
+            jQuery(function ($) {
+                $('.modalBackground1').click(function () {
+                    var id = $(this).attr('id').replace('_backgroundElement', '');
+                    $find(id).hide();
+                });
+            })
+        });
+    </script>
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $(".ulb-count").click(function () {
+
+                 var container = $(this).closest("td");
+
+                 var mpidValue = container.find(".MPID").val();
+                 alert(mpidValue)
+
+                 $.ajax({
+                     url: '/FormForApproval3.aspx/GetULbYearWise',
+                     type: "GET",
+                     data: { parliamentaryConstID: mpidValue },
+                 success: function (result) {
+
+                     $("#ViewULBWiseOfSingleCondidateRecord").modal('show');
+
+                 }
+             })
+             });
+         });
+    </script>
     <style>
+       /*  table:nth-of-type(1) tbody:nth-of-type(1) tr:first-child {
+            background: linear-gradient(180deg, rgba(251, 108, 71, 1) 0%, rgba(242, 139, 42, 1) 100%);
+            color:white;
+        }*/
         .form-control img {
             height: 20px;
             width: 20px;
@@ -401,7 +577,7 @@
             margin-right: 10px;
         }
 
-        #ctl00_ContentPlaceHolder1_gvRecords tbody tbody td {
+        .reportGrid tbody tbody td {
             height: 35px;
             width: 35px;
             line-height: 35px;
@@ -411,18 +587,25 @@
             text-align: center;
             margin: 0 2px;
         }
-
-        #ctl00_ContentPlaceHolder1_gvRecords tbody tbody td a {
+        .tblheader h3{
+            margin-bottom:20px
+        }
+        .reportGrid tbody tbody td a {
             height: 35px;
             color: #000;
             width: 35px;
             display: block;
         }
 
-        #ctl00_ContentPlaceHolder1_gvRecords tbody tbody td:hover {
+        .reportGrid tbody tbody td:hover {
             background: #c5dffb;
             border: 1px solid #bbdbff;
         }
+       .drill_btn {
+    width: 75px;
+    height: 33px;
+    padding: 0;
+}
         .tab_btn {
     margin: 2px;
 }
