@@ -210,6 +210,8 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Work Plan Detail</h4>
+                                 
+                                        <a href="#" id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="filter-btn" style="float:right"><i class="icon-download"></i> Export To Excel</a>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -223,7 +225,7 @@
                                                 <div style="overflow: auto">
 
                                                     <asp:GridView ID="gvRecords" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
-                                                    OnPageIndexChanging="OnPageIndexChanging" PageSize="5">
+                                                    OnPageIndexChanging="OnPageIndexChanging" PageSize="15">
                                                         <Columns>
                                                             <asp:BoundField DataField="WorkProposalId" HeaderText="Work Proposal Id">
                                                                 <HeaderStyle CssClass="displayStyle" />
@@ -240,7 +242,7 @@
                                                                     <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>--%>
-                                                            <asp:BoundField HeaderText="Proposal Code" DataField="ProposalCode" />
+                                                            <asp:BoundField HeaderText="Work Plan Proposal Code" DataField="ProposalCode" />
                                                             <asp:BoundField HeaderText="Financial Year" DataField="FinYear" />
                                                             <%--<asp:BoundField HeaderText="State" DataField="Zone_Name" />--%>
                                                             <asp:BoundField HeaderText="District" DataField="Circle_Name" />
@@ -253,9 +255,9 @@
                                                             <%--<asp:BoundField HeaderText="Sanctioned Amount in Last Year" DataField="FY1" />--%>
 
                                                             <asp:BoundField HeaderText="Expected Amount" DataField="ExpectedAmount" />
-                                                            <asp:BoundField HeaderText="Proposer Type" DataField="ProposerType" />
+                                                            <asp:BoundField HeaderText="Work Plan Proposer Type" DataField="ProposerType" />
                                                             <asp:BoundField HeaderText="MP/MLA Name" DataField="MPMLAName" />
-                                                            <asp:BoundField HeaderText="Proposer Name" DataField="ProposerName" />
+                                                            <asp:BoundField HeaderText="Work Plan Proposer Name" DataField="ProposerName" />
                                                             <asp:BoundField HeaderText="Mobile" DataField="Mobile" />
                                                             <asp:BoundField HeaderText="Designation" DataField="Designation" />
                                                             <asp:TemplateField HeaderText="Recommendation Letter">
@@ -346,10 +348,33 @@
                 </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="btnSearch" />
+                    <asp:PostBackTrigger ControlID="exportToExcel" />
                 </Triggers>
             </asp:UpdatePanel>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+    <script>
+        function ExportToExcel(type, fn, dl) {
+          debugger
+            const currentDate = new Date();
+
+            // Get the current date
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth() + 1; // Months are zero-based
+            const day = currentDate.getDate();
+
+            // Format the date as desired (e.g., YYYY-MM-DD)
+            const formattedDate = "Work Plan Detail_" + `${year}-${month}-${day}`;
+
+            var elt = document.getElementById('ctl00_ContentPlaceHolder1_gvRecords');
+            var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+            return dl ?
+                XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+                XLSX.writeFile(wb, fn || (formattedDate + "." + (type || 'xlsx')));
+        }
+    </script>
+   
     <style>
         .form-control img {
             height: 20px;

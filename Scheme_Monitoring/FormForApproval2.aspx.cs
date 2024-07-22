@@ -552,7 +552,7 @@ public partial class FormForApproval2 : System.Web.UI.Page
                 workProposalId = id;
                 mpActionProposal.Visible = true;
                 string WorkProposalCode = objLoan.GetWorkProposalCode(workProposalId);
-                if(!string.IsNullOrEmpty(WorkProposalCode))
+                if (!string.IsNullOrEmpty(WorkProposalCode))
                 {
                     lblWrokProposalId.Text = "Work Proposal Code= " + WorkProposalCode;
                 }
@@ -569,4 +569,79 @@ public partial class FormForApproval2 : System.Web.UI.Page
             Response.Redirect("FormForApproval3.aspx?WorkProposalId=" + workProposalId.ToString());
         }
     }
+        //protected void btnAction_Click(object sender, EventArgs e)
+        //{
+        //    ExportHtmlTableToExcel(gvRecords, "ExportedData");
+
+        //}
+
+
+    protected void ExportButton_Click(object sender, EventArgs e)
+    {
+        ExportGridViewToExcel(gvRecords, "ExportedData");
+    }
+
+    private DataTable GetData()
+    {
+        // Sample data; replace with your actual data fetching logic
+        DataTable table = new DataTable();
+        table.Columns.Add("Column1", typeof(string));
+        table.Columns.Add("Column2", typeof(int));
+        table.Columns.Add("Column3", typeof(string));
+        table.Columns.Add("Column4", typeof(DateTime));
+        table.Columns.Add("Column5", typeof(decimal));
+        table.Columns.Add("Column6", typeof(decimal));
+        table.Columns.Add("Column7", typeof(decimal));
+        table.Columns.Add("Column8", typeof(decimal));
+        table.Columns.Add("Column9", typeof(decimal));
+        table.Columns.Add("Column10", typeof(decimal));
+        table.Columns.Add("Column11", typeof(decimal));
+        table.Columns.Add("Column12", typeof(decimal));
+        table.Columns.Add("Column13", typeof(decimal));
+        table.Columns.Add("Column14", typeof(decimal));
+        table.Columns.Add("Column15", typeof(decimal));
+        table.Columns.Add("Column16", typeof(decimal));
+        table.Columns.Add("Column5", typeof(decimal));
+
+        table.Rows.Add("Row1Data1", 1, "Row1Data3", DateTime.Now, 100.50m);
+        table.Rows.Add("Row2Data1", 2, "Row2Data3", DateTime.Now.AddDays(1), 200.75m);
+        return table;
+    }
+
+    private void ExportGridViewToExcel(GridView gridView, string fileName)
+    {
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition", "attachment;filename=" + fileName + ".xls");
+        Response.Charset = "";
+        Response.ContentType = "application/vnd.ms-excel";
+
+        using (StringWriter sw = new StringWriter())
+        {
+            HtmlTextWriter htw = new HtmlTextWriter(sw);
+
+            // Hide the controls we don't want to export
+            gridView.AllowPaging = false;
+            gridView.DataBind();
+
+            // Render the GridView to the HtmlTextWriter
+            gridView.RenderControl(htw);
+
+            // Write the rendered content to the response
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+        }
+    }
+
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+        // Confirms that an HtmlForm control is rendered for the specified ASP.NET
+        // server control at run time. Required for exporting to work.
+    }
+
 }
+
+   
+
+   
