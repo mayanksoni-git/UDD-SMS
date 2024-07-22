@@ -269,6 +269,10 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             gridFyWise.DataSource = dt;
             gridFyWise.DataBind();
+            decimal TotalSactionedAmount = dt.Compute("Sum(TotalSactionedAmount)", "").ToString().ToDecimal();
+            Label lblTotalInstallmentAmount = (Label)gridFyWise.FooterRow.FindControl("lblTotalSactionedAmountOfFY");
+            lblTotalInstallmentAmount.Text = TotalSactionedAmount.ToString("0.00");
+            // lblTotalSactionedAmountOfFY
             ToggleDiv(divFYWise);
         }
         else
@@ -285,8 +289,14 @@ public partial class FormForApproval : System.Web.UI.Page
 
         if (dt != null && dt.Rows.Count > 0)
         {
+
             gridMPWise.DataSource = dt;
             gridMPWise.DataBind();
+
+            decimal TotalSactionedAmount = dt.Compute("Sum(total_amount)", "").ToString().ToDecimal();
+            Label lblTotalInstallmentAmount = (Label)gridMPWise.FooterRow.FindControl("lblTotalSactionedAmountOfMp");
+            lblTotalInstallmentAmount.Text = TotalSactionedAmount.ToString("0.00");
+
             ToggleDiv(divMPWise);
         }
         else
@@ -305,6 +315,10 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             gridMLAWise.DataSource = dt;
             gridMLAWise.DataBind();
+
+            decimal TotalSactionedAmount = dt.Compute("Sum(total_amount)", "").ToString().ToDecimal();
+            Label lblTotalInstallmentAmount = (Label)gridMLAWise.FooterRow.FindControl("lblTotalSactionedAmountOfMLA");
+            lblTotalInstallmentAmount.Text = TotalSactionedAmount.ToString("0.00");
             ToggleDiv(divMLAWise);
         }
         else
@@ -323,6 +337,9 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             gridDivisionWise.DataSource = dt;
             gridDivisionWise.DataBind();
+            decimal TotalSactionedAmount = dt.Compute("Sum(total_amount)", "").ToString().ToDecimal();
+            Label lblTotalInstallmentAmount = (Label)gridDivisionWise.FooterRow.FindControl("lblTotalSactionedAmountOfDivision");
+            lblTotalInstallmentAmount.Text = TotalSactionedAmount.ToString("0.00");
             ToggleDiv(divDivisionWise);
         }
         else
@@ -341,7 +358,47 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             gridWorkPlanWise.DataSource = dt;
             gridWorkPlanWise.DataBind();
+
+            //-- Footer  content ---//
+
+            decimal TotalPropsal = dt.Compute("Sum(NoOfProposals)", "").ToString().ToDecimal();
+            decimal TotalPropsalAmount = dt.Compute("Sum(TotalAmount)", "").ToString().ToDecimal();
+            decimal TotalPending = dt.Compute("Sum(PendingProposals)", "").ToString().ToDecimal(); 
+            decimal TotalPendingAmount = dt.Compute("Sum(PendingProposalsAmount)", "").ToString().ToDecimal(); 
+            decimal TotalApproved = dt.Compute("Sum(ApprovedProposals)", "").ToString().ToDecimal();
+            decimal TotalApprovedAmount = dt.Compute("Sum(ApprovedProposalsAmount)", "").ToString().ToDecimal();
+            decimal TotalReject  = dt.Compute("Sum(RejectProposals)", "").ToString().ToDecimal();
+            decimal TotalRejectAmount = dt.Compute("Sum(RejectProposalsAmount)", "").ToString().ToDecimal();
+            decimal TotalHold = dt.Compute("Sum(HoldProposals)", "").ToString().ToDecimal();
+            decimal TotalHoldAmount = dt.Compute("Sum(HoldProposalsAmount)", "").ToString().ToDecimal();
+
+
+            Label lblTotalPropsal = (Label)gridWorkPlanWise.FooterRow.FindControl("lblTotaldProposals");
+            Label lblTotalPropsalAmount = (Label)gridWorkPlanWise.FooterRow.FindControl("lblTotaldProposalsAmount");
+            Label lblTotalPending = (Label)gridWorkPlanWise.FooterRow.FindControl("lblTotaldProposalsPending");
+            Label lblTotalPendingAmount = (Label)gridWorkPlanWise.FooterRow.FindControl("lblTotaldProposalsPendingAmount");
+            Label lblTotalApproved = (Label)gridWorkPlanWise.FooterRow.FindControl("lblTotaldProposalsApproved");
+            Label lblTotalApprovedAmount = (Label)gridWorkPlanWise.FooterRow.FindControl("lblTotaldProposalsApprovedAmount");
+            Label lblTotalReject = (Label)gridWorkPlanWise.FooterRow.FindControl("lblTotaldProposalsRejected");
+            Label lblTotalRejectedAmount = (Label)gridWorkPlanWise.FooterRow.FindControl("lblTotaldProposalsRejectedAmount");
+            Label lblTotalHold = (Label)gridWorkPlanWise.FooterRow.FindControl("lblTotaldProposalsHold");
+            Label lblTotalHoldAmount = (Label)gridWorkPlanWise.FooterRow.FindControl("lblTotaldProposalsHoldAmount");
+            
+            
+            lblTotalPropsal.Text = TotalPropsal.ToString("0.00");
+            lblTotalPropsalAmount.Text = TotalPropsalAmount.ToString("0.00");
+            lblTotalPending.Text = TotalPending.ToString("0.00");
+            lblTotalPendingAmount.Text = TotalPendingAmount.ToString("0.00");
+            lblTotalApproved.Text = TotalApproved.ToString("0.00");
+            lblTotalApprovedAmount.Text = TotalApprovedAmount.ToString("0.00");
+            lblTotalReject.Text = TotalReject.ToString("0.00");
+            lblTotalRejectedAmount.Text = TotalRejectAmount.ToString("0.00");
+            lblTotalHold.Text = TotalHold.ToString("0.00");
+            lblTotalHoldAmount.Text = TotalHoldAmount.ToString("0.00");
+
             ToggleDiv(divWorkPlanWise);
+
+
         }
         else
         {
@@ -482,9 +539,11 @@ public partial class FormForApproval : System.Web.UI.Page
 
                     GridYearViseSingle.DataSource = dt;
                     GridYearViseSingle.DataBind();
-                   
 
-                    mp1.Show();
+                decimal TotalSactionedAmount = dt.Compute("Sum(amount)", "").ToString().ToDecimal();
+                Label lblTotalInstallmentAmount = (Label)GridYearViseSingle.FooterRow.FindControl("lblTotalUlbsyearAmount");
+                lblTotalInstallmentAmount.Text = TotalSactionedAmount.ToString("0.00");
+                mp1.Show();
                 }
            
         }
@@ -542,9 +601,13 @@ public partial class FormForApproval : System.Web.UI.Page
                     GridYearViseSingle.Visible = false;
                     gridULBCount.DataSource = dt;
                     gridULBCount.DataBind();
-                  
+                decimal TotalSactionedAmount = dt.Compute("Sum(amount)", "").ToString().ToDecimal();
+                Label lblTotalInstallmentAmount = (Label)gridULBCount.FooterRow.FindControl("lblTotalUlbsAmount");
+                lblTotalInstallmentAmount.Text = TotalSactionedAmount.ToString("0.00");
 
-                    mp1.Show();
+                //lblTotalUlbsAmount
+
+                mp1.Show();
              }
            
         }
@@ -635,6 +698,9 @@ public partial class FormForApproval : System.Web.UI.Page
                 GridViewOfAmountWise1.DataSource = dt;
                 GridViewOfAmountWise1.DataBind();
 
+                decimal TotalSactionedAmount = dt.Compute("Sum(AmtInLac)", "").ToString().ToDecimal();
+                Label lblTotalInstallmentAmount = (Label)GridViewOfAmountWise1.FooterRow.FindControl("lblTotalAmount");
+                lblTotalInstallmentAmount.Text = TotalSactionedAmount.ToString("0.00");
                 mp1.Show();
             }
         }
@@ -652,4 +718,217 @@ public partial class FormForApproval : System.Web.UI.Page
         Panel1.Style["display"] = "none";
     }
     #endregion
+
+
+    //protected void btnExportToExcel_Click(object sender, EventArgs e)
+    //{
+    //    var check = "MPVISEDATA";
+    //    Response.Clear();
+    //    Response.Buffer = true;
+    //    Response.AddHeader("content-disposition", "attachment;filename="+check+".xls");
+    //    Response.Charset = "";
+    //    Response.ContentType = "application/vnd.ms-excel";
+
+    //    using (var sw = new StringWriter())
+    //    {
+    //        using (var hw = new HtmlTextWriter(sw))
+    //        {
+    //            // Render the GridView to HTML
+    //            gridMPWise.AllowPaging = false;
+    //            DataTable dt = new DataTable();
+    //          int  WorkProposalID = Convert.ToInt32(hfWorkProposalId.Value);
+    //            dt = objLoan.getMPWiseData(WorkProposalID);
+
+    //            if (dt != null && dt.Rows.Count > 0)
+    //            {
+
+    //                gridMPWise.DataSource = dt;
+
+
+    //            }
+    //                gridMPWise.DataBind();
+    //            gridMPWise.RenderControl(hw);
+
+    //            // Write the HTML to the response
+
+    //            Response.Output.Write(sw.ToString());
+    //            Response.Flush();
+    //            Response.End();
+    //        }
+    //    }
+    //}
+
+
+    protected void btnExportToExcel_Click(object sender, EventArgs e)
+    {
+        // Clear the response
+        Response.Clear();
+        Response.Buffer = true;
+        string ExcelName = "";
+        int count = 0;
+        Button clickedButton = sender as Button;
+
+        // Now you can access properties of the Button, like its ID or Text
+        string text = clickedButton.Text;
+
+        if (text == "Export to Excel Of Financial Year Wise")
+        {
+            ExcelName = "Financial Year Wise_" + DateTime.Now;
+            count = 1;
+        }
+        else if (text == "Export to Excel Of MP")
+        {
+            ExcelName = "MPDataOf_" + DateTime.Now;
+            count =2;
+        }
+        else if (text == "Export to Excel Of MLA")
+        {
+            ExcelName = "MLADataOf_" + DateTime.Now;
+            count = 3;
+        }
+        else if (text == "Export to Excel Of Division Wise")
+        {
+            ExcelName = "DivisionWiseDataOf_" + DateTime.Now;
+            count = 4;
+        }
+        else
+        {
+            ExcelName = "WorkPlanWiseDataOf_" + DateTime.Now;
+            count = 5;
+
+        }
+        Response.AddHeader("content-disposition", "attachment;filename="+ExcelName+".xls");
+        Response.Charset = "";
+        Response.ContentType = "application/vnd.ms-excel";
+
+        using (var sw = new StringWriter())
+        {
+            using (var hw = new HtmlTextWriter(sw))
+            {
+                // Disable paging and rebind the GridView to include all data
+                //gridMPWise.AllowPaging = false;
+
+                DataTable dt = new DataTable();
+                int WorkProposalID = Convert.ToInt32(hfWorkProposalId.Value);
+                if (count == 1)
+                {
+                    dt = objLoan.getFYWiseData(WorkProposalID);
+                    gridFyWise.AllowPaging = false;
+
+                    bool originalShowFooter = gridFyWise.ShowFooter;
+                    gridFyWise.ShowFooter = false;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        gridFyWise.DataSource = dt;
+                        gridFyWise.DataBind();
+                    }
+                    ReplaceButtonsWithText(gridFyWise);
+                    gridFyWise.RenderControl(hw);
+
+                }
+                if (count == 2)
+                {
+                    dt = objLoan.getMPWiseData(WorkProposalID);
+
+                    bool originalShowFooter = gridMPWise.ShowFooter;
+                    gridMPWise.ShowFooter = false;
+                    gridMPWise.AllowPaging = false;
+                    if (dt != null && dt.Rows.Count > 0)
+                    { gridMPWise.DataSource = dt; }
+                    gridMPWise.DataBind();
+
+                    // Replace buttons with their text
+                    ReplaceButtonsWithText(gridMPWise);
+                gridMPWise.RenderControl(hw);
+                }
+                if (count ==3)
+                {
+                    dt = objLoan.getMLAWiseData(WorkProposalID);
+                    gridMLAWise.AllowPaging = false;
+                    bool originalShowFooter = gridMLAWise.ShowFooter;
+                    gridMLAWise.ShowFooter = false;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        gridMLAWise.DataSource = dt;
+                        gridMLAWise.DataBind();
+                    }
+                        // Replace buttons with their text
+                        ReplaceButtonsWithText(gridMLAWise);
+                    gridMLAWise.RenderControl(hw);
+                }
+                if (count == 4)
+                {
+                    gridDivisionWise.AllowPaging = false;
+                    dt = objLoan.getDivisionWiseData(WorkProposalID);
+                    bool originalShowFooter = gridDivisionWise.ShowFooter;
+                    gridDivisionWise.ShowFooter = false;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        gridDivisionWise.DataSource = dt;
+                        gridDivisionWise.DataBind();
+                    }
+                    // Replace buttons with their text
+                    ReplaceButtonsWithText(gridDivisionWise);
+                    gridDivisionWise.RenderControl(hw);
+                }
+                if (count == 5)
+                {
+                    gridWorkPlanWise.AllowPaging = false;
+                    dt = objLoan.getWorkPlanWiseData(WorkProposalID);
+                    bool originalShowFooter = gridWorkPlanWise.ShowFooter;
+                    gridWorkPlanWise.ShowFooter = false;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        gridWorkPlanWise.DataSource = dt;
+                        gridWorkPlanWise.DataBind();
+                    }
+                    // Replace buttons with their text
+                    ReplaceButtonsWithText(gridWorkPlanWise);
+                    gridWorkPlanWise.RenderControl(hw);
+                }
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+            }
+        }
+    }
+
+    private void ReplaceButtonsWithText(Control control)
+    {
+        var controlsToReplace = new List<KeyValuePair<Button, Control>>();
+
+        // Collect all buttons to replace
+        CollectButtons(control, controlsToReplace);
+
+        // Replace collected buttons with literals
+        foreach (var pair in controlsToReplace)
+        {
+            var parent = pair.Value;
+            var button = pair.Key;
+            int index = parent.Controls.IndexOf(button);
+            parent.Controls.RemoveAt(index);
+            parent.Controls.AddAt(index, new Literal { Text = button.Text });
+        }
+    }
+
+    private void CollectButtons(Control control, List<KeyValuePair<Button, Control>> controlsToReplace)
+    {
+        foreach (Control ctrl in control.Controls)
+        {
+            if (ctrl is Button)
+            {
+                controlsToReplace.Add(new KeyValuePair<Button, Control>((Button)ctrl, control));
+            }
+            else if (ctrl.HasControls())
+            {
+                CollectButtons(ctrl, controlsToReplace);
+            }
+        }
+    }
+
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+        // Confirms that an HtmlForm control is rendered
+    }
+
 }
