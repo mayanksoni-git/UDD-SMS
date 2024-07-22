@@ -412,6 +412,28 @@ public class Loan
         }
     }
 
+    public DataTable getWorkPlanWiseForChartBySearch(tbl_WorkProposal objSearch)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[6];
+
+            param[0] = new SqlParameter("@Zone", objSearch.Zone);
+            param[1] = new SqlParameter("@Circle", objSearch.Circle);
+            param[2] = new SqlParameter("@Division", objSearch.Division);
+            param[3] = new SqlParameter("@FY", objSearch.FY);
+            param[4] = new SqlParameter("@Scheme", objSearch.Scheme);
+            param[5] = new SqlParameter("@ProposalStatus", objSearch.ProposalStatus);
+
+            return objDAL.GetDataByProcedure("sp_GetWorkPlanWiseForChart", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     public DataTable getWorkProposalById(int WorkProposalId)
     {
         try

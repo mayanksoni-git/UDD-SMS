@@ -4,6 +4,431 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <style>
+        canvas {
+            max-width: 500px;
+            max-height: 300px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            //function BindChart() {
+                
+                var Fy = $("#ctl00_ContentPlaceHolder1_ddlFY").val();
+                var Zone_Id = $("#ctl00_ContentPlaceHolder1_ddlZone").val();
+                var Circle_Id = $("#ctl00_ContentPlaceHolder1_ddlCircle").val();
+                var Division_Id = $("#ctl00_ContentPlaceHolder1_ddlDivision").val();
+                var Scheme = $("#ctl00_ContentPlaceHolder1_ddlProjectMaster").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "FormForApproval.aspx/GetProposalData",
+                    data: "{Fy:'" + Fy + "',Zone_Id:'" + Zone_Id + "',Circle_Id:'" + Circle_Id + "',Division_Id:'" + Division_Id + "',Scheme:'" + Scheme + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        //Bar Chart for No of Work Proposals--------------------------------------------------------------------------------
+                        var data = JSON.parse(response.d);
+
+                        // Prepare data for Chart.js
+                        var chartData = {
+                            labels: ['Total', 'Pending', 'Approved', 'Rejected', 'Hold'],
+                            datasets: [{
+                                label: 'Number of Work Plans',
+                                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1,
+                                data: [
+                                    data.totalProposals,
+                                    data.pendingProposals,
+                                    data.approvedProposals,
+                                    data.rejectedProposals,
+                                    data.holdProposals
+                                ]
+                            }]
+                        };
+
+                        // Configuration for Chart.js
+                        var config = {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function (tooltipItem) {
+                                                return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
+                                            }
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Work Plan Status'
+                                        }
+                                    },
+                                    y: {
+                                        title: {
+                                            display: true,
+                                            text: 'Number of Work Plans'
+                                        }
+                                    }
+                                }
+                            }
+                        };
+
+                        // Create the chart
+                        var ctx = document.getElementById('proposalChart').getContext('2d');
+                        var myChart = new Chart(ctx, config);
+
+
+
+                        //Pie Chart for No of Work Proposals--------------------------------------------------------------------------------
+                        // Prepare data for Chart.js
+                        var chartData = {
+                            labels: [/*'Total', */'Pending', 'Approved', 'Rejected', 'Hold'],
+                            datasets: [{
+                                label: 'Number of Work Plans',
+                                backgroundColor: [
+                                    /*'rgba(54, 162, 235, 0.6)',*/
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(75, 192, 192, 0.6)',
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(153, 102, 255, 0.6)'
+                                ],
+                                borderColor: [
+                                    /*'rgba(54, 162, 235, 1)',*/
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(153, 102, 255, 1)'
+                                ],
+                                borderWidth: 1,
+                                data: [
+                                    /*data.totalProposals,*/
+                                    data.pendingProposals,
+                                    data.approvedProposals,
+                                    data.rejectedProposals,
+                                    data.holdProposals
+                                ]
+                            }]
+                        };
+
+                        // Configuration for Chart.js
+                        var config = {
+                            type: 'pie',
+                            data: chartData,
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        formatter: (value, context) => {
+                                            let label = context.chart.data.labels[context.dataIndex];
+                                            return label + ': ' + value;
+                                        },
+                                        color: '#666666',
+                                        font: {
+                                            weight: 'bold'
+                                        }
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function (tooltipItem) {
+                                                let label = tooltipItem.label;
+                                                let value = tooltipItem.raw;
+                                                return label + ': ' + value;
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            plugins: [ChartDataLabels]
+                        };
+
+                        // Create the chart
+                        var ctx = document.getElementById('proposalPieChart').getContext('2d');
+                        var myChart = new Chart(ctx, config);
+
+
+                        //Pie Chart for Percent of Work Proposals-------------------------------------------------------------------------------
+                        // Prepare data for Chart.js
+                        var chartData = {
+                            labels: [/*'Total', */'Pending(%)', 'Approved(%)', 'Rejected(%)', 'Hold(%)'],
+                            datasets: [{
+                                label: 'Percentage of Work Plans',
+                                backgroundColor: [
+                                    /*'rgba(54, 162, 235, 0.6)',*/
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(75, 192, 192, 0.6)',
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(153, 102, 255, 0.6)'
+                                ],
+                                borderColor: [
+                                    /*'rgba(54, 162, 235, 1)',*/
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(153, 102, 255, 1)'
+                                ],
+                                borderWidth: 1,
+                                data: [
+                                    /*data.totalProposals,*/
+                                    data.pendingProposalsPercentage,
+                                    data.approvedProposalsPercentage,
+                                    data.rejectedProposalsPercentage,
+                                    data.holdProposalsPercentage
+                                ]
+                            }]
+                        };
+
+                        // Configuration for Chart.js
+                        var config = {
+                            type: 'pie',
+                            data: chartData,
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        formatter: (value, context) => {
+                                            let label = context.chart.data.labels[context.dataIndex];
+                                            return label + ': ' + value;
+                                        },
+                                        color: '#666666',
+                                        font: {
+                                            weight: 'bold'
+                                        }
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function (tooltipItem) {
+                                                let label = tooltipItem.label;
+                                                let value = tooltipItem.raw;
+                                                return label + ': ' + value;
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            plugins: [ChartDataLabels]
+                        };
+
+                        // Create the chart
+                        var ctx = document.getElementById('proposalPieChartPercent').getContext('2d');
+                        var myChart = new Chart(ctx, config);
+
+
+
+                        //Bar Chart for Amount of Work Proposals--------------------------------------------------------------------------------
+
+                        // Prepare data for Chart.js
+                        var chartData = {
+                            labels: ['Total Amount', 'Pending Amount', 'Approved Amount', 'Rejected Amount', 'Hold Amount'],
+                            datasets: [{
+                                label: 'Amount of Work Plans',
+                                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1,
+                                data: [
+                                    data.TotalAmount,
+                                    data.PendingProposalsAmount,
+                                    data.ApprovedProposalsAmount,
+                                    data.RejectProposalsAmount,
+                                    data.HoldProposalsAmount
+                                ]
+                            }]
+                        };
+
+                        // Configuration for Chart.js
+                        var config = {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function (tooltipItem) {
+                                                return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
+                                            }
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Work Plan Amount Status'
+                                        }
+                                    },
+                                    y: {
+                                        title: {
+                                            display: true,
+                                            text: 'Amount of Work Plans'
+                                        }
+                                    }
+                                }
+                            }
+                        };
+
+                        // Create the chart
+                        var ctx = document.getElementById('proposalChart1').getContext('2d');
+                        var myChart = new Chart(ctx, config);
+
+
+                        //Pie Chart for Amount of Work Proposals--------------------------------------------------------------------------------
+
+                        // Prepare data for Chart.js
+                        var chartData = {
+                            labels: [/*'Total', */'Pending Amount', 'Approved Amount', 'Rejected Amount', 'Hold Amount'],
+                            datasets: [{
+                                label: 'Amount of Work Plans',
+                                backgroundColor: [
+                                    /*'rgba(54, 162, 235, 0.6)',*/
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(75, 192, 192, 0.6)',
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(153, 102, 255, 0.6)'
+                                ],
+                                borderColor: [
+                                    /*'rgba(54, 162, 235, 1)',*/
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(153, 102, 255, 1)'
+                                ],
+                                borderWidth: 1,
+                                data: [
+                                    /*data.totalProposals,*/
+                                    data.PendingProposalsAmount,
+                                    data.ApprovedProposalsAmount,
+                                    data.RejectProposalsAmount,
+                                    data.HoldProposalsAmount
+                                ]
+                            }]
+                        };
+
+                        // Configuration for Chart.js
+                        var config = {
+                            type: 'pie',
+                            data: chartData,
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        formatter: (value, context) => {
+                                            let label = context.chart.data.labels[context.dataIndex];
+                                            return label + ': ' + value;
+                                        },
+                                        color: '#666666',
+                                        font: {
+                                            weight: 'bold'
+                                        }
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function (tooltipItem) {
+                                                let label = tooltipItem.label;
+                                                let value = tooltipItem.raw;
+                                                return label + ': ' + value;
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            plugins: [ChartDataLabels]
+                        };
+
+                        // Create the chart
+                        var ctx = document.getElementById('proposalPieChart1').getContext('2d');
+                        var myChart = new Chart(ctx, config);
+
+
+                        //Pie Chart for Percent Amount of Work Proposals------------------------------------------------------------------------
+
+                        // Prepare data for Chart.js
+                        var chartData = {
+                            labels: [/*'Total', */'Pending Amount(%)', 'Approved Amount(%)', 'Rejected Amount(%)', 'Hold Amount(%)'],
+                            datasets: [{
+                                label: 'Percetage Amount of Proposals',
+                                backgroundColor: [
+                                    /*'rgba(54, 162, 235, 0.6)',*/
+                                    'rgba(255, 206, 86, 0.6)',
+                                    'rgba(75, 192, 192, 0.6)',
+                                    'rgba(255, 99, 132, 0.6)',
+                                    'rgba(153, 102, 255, 0.6)'
+                                ],
+                                borderColor: [
+                                    /*'rgba(54, 162, 235, 1)',*/
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(153, 102, 255, 1)'
+                                ],
+                                borderWidth: 1,
+                                data: [
+                                    /*data.totalProposals,*/
+                                    data.PendingProposalsAmountPercentage,
+                                    data.ApprovedProposalsAmountPercentage,
+                                    data.RejectProposalsAmountPercentage,
+                                    data.HoldProposalsAmountPercentage
+                                ]
+                            }]
+                        };
+
+                        // Configuration for Chart.js
+                        var config = {
+                            type: 'pie',
+                            data: chartData,
+                            options: {
+                                responsive: true,
+                                plugins: {
+                                    datalabels: {
+                                        formatter: (value, context) => {
+                                            let label = context.chart.data.labels[context.dataIndex];
+                                            return label + ': ' + value;
+                                        },
+                                        color: '#666666',
+                                        font: {
+                                            weight: 'bold'
+                                        }
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function (tooltipItem) {
+                                                let label = tooltipItem.label;
+                                                let value = tooltipItem.raw;
+                                                return label + ': ' + value;
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            plugins: [ChartDataLabels]
+                        };
+
+                        // Create the chart
+                        var ctx = document.getElementById('proposalPieChartPercent1').getContext('2d');
+                        var myChart = new Chart(ctx, config);
+
+                    },
+                    error: function (error) {
+                        console.log("Error fetching data: ", error);
+                    }
+                });
+            //}
+
+            window.BindChart = BindChart;
+            
+        });
+</script>
+
     <div class="main-content">
         <div class="page-content">
             <asp:UpdatePanel ID="up" runat="server">
@@ -31,7 +456,8 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Work Plan Detail</h4>
-                                        <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
+                                        <%--OnClientClick="BindChart(); return false;"--%>
+                                        <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click"  runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                         <%--<a class="btn btn-primary" href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
                                                     <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
@@ -196,12 +622,78 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xxl-12 col-md-12">
-                            <div>
+
+
+                    <div class="container-fluid">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header align-items-center d-flex">
+                                    <h4 class="card-title mb-0 flex-grow-1">Statics of Work Plan</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="live-preview">
+                                        <div class="row">
+                                            <div class="col-xxl-4 col-md-12">
+                                                <div>
+                                                    <div>
+                                                        <!-- Canvas element for Chart.js -->
+                                                        <canvas id="proposalChart"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-4 col-md-12">
+                                                <div>
+                                                    <div>
+                                                        <canvas id="proposalPieChart"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-4 col-md-12">
+                                                <div>
+                                                    <div>
+                                                        <canvas id="proposalPieChartPercent"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-xxl-4 col-md-12">
+                                                <div>
+                                                    <div>
+                                                        <!-- Canvas element for Chart.js -->
+                                                        <canvas id="proposalChart1"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-4 col-md-12">
+                                                <div>
+                                                    <div>
+                                                        <canvas id="proposalPieChart1"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-4 col-md-12">
+                                                <div>
+                                                    <div>
+                                                        <canvas id="proposalPieChartPercent1"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
+
                     </div>
+
+
+
+                    
+                    
                     <div runat="server" visible="false" id="divData">
                         <div class="row">
                             <div class="col-lg-12">
@@ -215,7 +707,29 @@
                                             <div class="row gy-12">
                                                 <!-- div.table-responsive -->
                                                 <div class="clearfix" id="dtOptions" runat="server">
-                                                    <div class="pull-right tableTools-container"></div>
+                                                    <div class="pull-right tableTools-container">
+                                                        <%--<asp:Chart ID="Chart1" runat="server" Width="500" Height="300">
+                                                            <Titles>
+                                                                <asp:Title Font="Bold, 14pt" Name="Title1" Text="Proposal Status"></asp:Title>
+                                                            </Titles>
+                                                            <Series>
+                                                                <asp:Series Name="Series1" ChartType="Column">
+                                                                </asp:Series>
+                                                            </Series>
+                                                            <ChartAreas>
+                                                                <asp:ChartArea Name="ChartArea1">
+                                                                    <AxisX Title="Proposal Status">
+                                                                        <MajorGrid Enabled="false" />
+                                                                    </AxisX>
+                                                                    <AxisY Title="Number of Proposals">
+                                                                        <MajorGrid Enabled="true" />
+                                                                    </AxisY>
+                                                                </asp:ChartArea>
+                                                            </ChartAreas>
+                                                        </asp:Chart>--%>
+
+                                                        
+                                                    </div>
                                                 </div>
                                                 <!-- div.dataTables_borderWrap -->
                                                 <div style="overflow: auto">
@@ -268,7 +782,8 @@
                                                             </tr>
                                                         </EmptyDataTemplate>
                                                     </asp:GridView>
-
+                                                    <asp:Button ID="btnExportToExcel" runat="server" Text="Export to Excel" OnClick="btnExportToExcel_Click" CssClass="btn btn-primary" />
+                                                        
                                                 </div>
                                             </div>
                                             <!--end row-->
@@ -279,10 +794,12 @@
                             <!--end col-->
                         </div>
                     </div>
-                    </div>
+                    
                 </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="btnSave" />
+                    <asp:PostBackTrigger ControlID="btnExportToExcel" />
+                    <asp:PostBackTrigger ControlID="btnSearch" />
                     <asp:PostBackTrigger ControlID="btnUpdate" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />
@@ -332,4 +849,60 @@
             border: 1px solid #bbdbff;
         }
     </style>
+
+<%--    <script>
+        $(document).ready(function () {
+            // Fetch data from backend or use hardcoded data
+            var data = {
+                labels: ['Total', 'Pending', 'Approved', 'Rejected', 'Hold'],
+                datasets: [{
+                    label: 'Number of Proposals',
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    data: [15, 5, 5, 3, 2]
+                }]
+            };
+
+            // Configuration for Chart.js
+            var config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Proposal Status'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Number of Proposals'
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Create the chart
+            var ctx = document.getElementById('proposalChart').getContext('2d');
+            var myChart = new Chart(ctx, config);
+        });
+    </script>--%>
+
+    
+
+
 </asp:Content>

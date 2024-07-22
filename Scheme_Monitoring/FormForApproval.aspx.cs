@@ -8,6 +8,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Text;
+using System.Web.UI.DataVisualization.Charting;
+using System.Web.Script.Serialization;
+using System.Web.Services;
 
 public partial class FormForApproval : System.Web.UI.Page
 {
@@ -33,13 +36,54 @@ public partial class FormForApproval : System.Web.UI.Page
             get_tbl_FinancialYear();
             get_tbl_Zone();
             get_tbl_Project();
+            
 
             SetDropdownsBasedOnUserType();
             
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
-        //BindWorkProposalGridBySearch();
     }
+
+    //protected void BindChartData()
+    //{
+    //    // Fetch data from your backend (you can replace this with your actual data retrieval logic)
+    //    int totalProposals = 15;
+    //    int pendingProposals = 5;
+    //    int approvedProposals = 5;
+    //    int rejectedProposals = 3;
+    //    int holdProposals = 2;
+
+    //    // Clear any existing series and points
+    //    Chart1.Series.Clear();
+    //    Chart1.Series.Add(new Series("Series1"));
+
+    //    // Set data points for the chart
+    //    DataPoint totalPoint = new DataPoint(0, totalProposals);
+    //    totalPoint.ToolTip = "Total: " + totalProposals;
+    //    Chart1.Series["Series1"].Points.Add(totalPoint);
+
+    //    DataPoint pendingPoint = new DataPoint(1, pendingProposals);
+    //    pendingPoint.ToolTip = "Pending: " + pendingProposals;
+    //    Chart1.Series["Series1"].Points.Add(pendingPoint);
+
+    //    DataPoint approvedPoint = new DataPoint(2, approvedProposals);
+    //    approvedPoint.ToolTip = "Approved: " + approvedProposals;
+    //    Chart1.Series["Series1"].Points.Add(approvedPoint);
+
+    //    DataPoint rejectedPoint = new DataPoint(3, rejectedProposals);
+    //    rejectedPoint.ToolTip = "Rejected: " + rejectedProposals;
+    //    Chart1.Series["Series1"].Points.Add(rejectedPoint);
+
+    //    DataPoint holdPoint = new DataPoint(4, holdProposals);
+    //    holdPoint.ToolTip = "Hold: " + holdProposals;
+    //    Chart1.Series["Series1"].Points.Add(holdPoint);
+
+    //    // Set chart title
+    //    Chart1.Titles.Add("Proposal Status");
+
+    //    // Set chart type to column chart
+    //    Chart1.Series["Series1"].ChartType = SeriesChartType.Column;
+    //}
 
     private void get_tbl_FinancialYear()
     {
@@ -529,9 +573,72 @@ public partial class FormForApproval : System.Web.UI.Page
     //work form here
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-        BindWorkProposalGridBySearch();
+        tbl_WorkProposal obj = BindWorkProposalGridBySearch();
+        LoadWorkProposalGrid(obj);
     }
-    protected void BindWorkProposalGridBySearch()
+    [WebMethod]
+    public static string GetProposalData(string Fy, string Zone_Id, string Circle_Id, string Division_Id, string Scheme)
+    {
+        FormForApproval obj1 = new FormForApproval();
+
+        tbl_WorkProposal obj = new tbl_WorkProposal();
+        obj.FY = Convert.ToInt16(Fy);
+        obj.Zone = Convert.ToInt16(Zone_Id);
+        obj.Circle = Convert.ToInt16(Circle_Id);
+        obj.Division = (Division_Id == null || Division_Id == "null") ? 0 : Convert.ToInt32(Division_Id);
+        obj.Scheme = Convert.ToInt16(Scheme);
+        obj.ProposalStatus = -1;
+
+        DataTable dt = new DataTable();
+        dt = obj1.objLoan.getWorkPlanWiseForChartBySearch(obj);
+
+        var data = new
+        {
+            totalProposals = dt.Rows[0]["totalProposals"].ToString(),
+            pendingProposals = dt.Rows[0]["pendingProposals"].ToString(),
+            approvedProposals = dt.Rows[0]["approvedProposals"].ToString(),
+            rejectedProposals = dt.Rows[0]["rejectedProposals"].ToString(),
+            holdProposals = dt.Rows[0]["holdProposals"].ToString(),
+
+            pendingProposalsPercentage = dt.Rows[0]["pendingProposalsPercentage"].ToString(),
+            approvedProposalsPercentage = dt.Rows[0]["approvedProposalsPercentage"].ToString(),
+            rejectedProposalsPercentage = dt.Rows[0]["rejectedProposalsPercentage"].ToString(),
+            holdProposalsPercentage = dt.Rows[0]["holdProposalsPercentage"].ToString(),
+
+            TotalAmount = dt.Rows[0]["TotalAmount"].ToString(),
+            PendingProposalsAmount = dt.Rows[0]["PendingProposalsAmount"].ToString(),
+            ApprovedProposalsAmount = dt.Rows[0]["ApprovedProposalsAmount"].ToString(),
+            RejectProposalsAmount = dt.Rows[0]["RejectProposalsAmount"].ToString(),
+            HoldProposalsAmount = dt.Rows[0]["HoldProposalsAmount"].ToString(),
+
+            PendingProposalsAmountPercentage = dt.Rows[0]["PendingProposalsAmountPercentage"].ToString(),
+            ApprovedProposalsAmountPercentage = dt.Rows[0]["ApprovedProposalsAmountPercentage"].ToString(),
+            RejectProposalsAmountPercentage = dt.Rows[0]["RejectProposalsAmountPercentage"].ToString(),
+            HoldProposalsAmountPercentage = dt.Rows[0]["HoldProposalsAmountPercentage"].ToString(),
+
+        };
+
+        JavaScriptSerializer js = new JavaScriptSerializer();
+        return js.Serialize(data);
+    }
+    //[WebMethod]
+    //public static string GetProposalAmountData()
+    //{
+    //    var data = new
+    //    {
+    //        totalProposals = 2000000,
+    //        pendingProposals = 800000,
+    //        approvedProposals = 500000,
+    //        rejectedProposals = 400000,
+    //        holdProposals = 300000
+    //    };
+
+    //    JavaScriptSerializer js = new JavaScriptSerializer();
+    //    return js.Serialize(data);
+    //}
+
+
+    protected tbl_WorkProposal BindWorkProposalGridBySearch()
     {
         int Fy=0, Zone_Id = 0, Circle_Id = 0, Division_Id = 0, Scheme=0;
 
@@ -586,8 +693,9 @@ public partial class FormForApproval : System.Web.UI.Page
         obj.Circle = Circle_Id;
         obj.Division = Division_Id;
         obj.Scheme = Scheme;
+        obj.ProposalStatus = -1;
 
-        LoadWorkProposalGrid(obj);
+        return obj;
     }
     private void LoadWorkProposalGrid(tbl_WorkProposal obj)
     {
@@ -609,10 +717,80 @@ public partial class FormForApproval : System.Web.UI.Page
             MessageBox.Show("No Records Found");
         }
     }
+    protected void btnExportToExcel_Click(object sender, EventArgs e)
+    {
+        ExportGridToExcel();
+    }
+
+    private void ExportGridToExcel()
+    {
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition", "attachment;filename=GridViewExport.xls");
+        Response.Charset = "";
+        Response.ContentType = "application/vnd.ms-excel";
+        using (StringWriter sw = new StringWriter())
+        {
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            // To export all pages
+            gvRecords.AllowPaging = false;
+            // Rebind your data here if needed
+            tbl_WorkProposal obj = BindWorkProposalGridBySearch();
+            LoadWorkProposalGrid(obj);
+
+            gvRecords.HeaderRow.Cells[0].Visible = false; // Work Proposal Id
+            gvRecords.HeaderRow.Cells[2].Visible = false; // Edit
+            gvRecords.HeaderRow.Cells[18].Visible = false; // Recommendation Letter
+
+            foreach (GridViewRow row in gvRecords.Rows)
+            {
+                row.Cells[0].Visible = false; // Work Proposal Id
+                row.Cells[2].Visible = false; // Edit
+                row.Cells[18].Visible = false; // Recommendation Letter
+            }
+
+            gvRecords.HeaderRow.BackColor = System.Drawing.Color.White;
+            foreach (TableCell cell in gvRecords.HeaderRow.Cells)
+            {
+                cell.BackColor = gvRecords.HeaderStyle.BackColor;
+            }
+            foreach (GridViewRow row in gvRecords.Rows)
+            {
+                row.BackColor = System.Drawing.Color.White;
+                foreach (TableCell cell in row.Cells)
+                {
+                    if (row.RowIndex % 2 == 0)
+                    {
+                        cell.BackColor = gvRecords.AlternatingRowStyle.BackColor;
+                    }
+                    else
+                    {
+                        cell.BackColor = gvRecords.RowStyle.BackColor;
+                    }
+                    cell.CssClass = "textmode";
+                }
+            }
+
+            gvRecords.RenderControl(hw);
+
+            // Style to format numbers to string
+            string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+            Response.Write(style);
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+        }
+    }
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+        // Required for exporting to work
+    }
     protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvRecords.PageIndex = e.NewPageIndex;
-        BindWorkProposalGridBySearch();
+        tbl_WorkProposal obj = BindWorkProposalGridBySearch();
+        LoadWorkProposalGrid(obj);        
     }
 
     protected void btnEdit_Click(object sender, ImageClickEventArgs e)
