@@ -44,47 +44,6 @@ public partial class FormForApproval : System.Web.UI.Page
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
 
-    //protected void BindChartData()
-    //{
-    //    // Fetch data from your backend (you can replace this with your actual data retrieval logic)
-    //    int totalProposals = 15;
-    //    int pendingProposals = 5;
-    //    int approvedProposals = 5;
-    //    int rejectedProposals = 3;
-    //    int holdProposals = 2;
-
-    //    // Clear any existing series and points
-    //    Chart1.Series.Clear();
-    //    Chart1.Series.Add(new Series("Series1"));
-
-    //    // Set data points for the chart
-    //    DataPoint totalPoint = new DataPoint(0, totalProposals);
-    //    totalPoint.ToolTip = "Total: " + totalProposals;
-    //    Chart1.Series["Series1"].Points.Add(totalPoint);
-
-    //    DataPoint pendingPoint = new DataPoint(1, pendingProposals);
-    //    pendingPoint.ToolTip = "Pending: " + pendingProposals;
-    //    Chart1.Series["Series1"].Points.Add(pendingPoint);
-
-    //    DataPoint approvedPoint = new DataPoint(2, approvedProposals);
-    //    approvedPoint.ToolTip = "Approved: " + approvedProposals;
-    //    Chart1.Series["Series1"].Points.Add(approvedPoint);
-
-    //    DataPoint rejectedPoint = new DataPoint(3, rejectedProposals);
-    //    rejectedPoint.ToolTip = "Rejected: " + rejectedProposals;
-    //    Chart1.Series["Series1"].Points.Add(rejectedPoint);
-
-    //    DataPoint holdPoint = new DataPoint(4, holdProposals);
-    //    holdPoint.ToolTip = "Hold: " + holdProposals;
-    //    Chart1.Series["Series1"].Points.Add(holdPoint);
-
-    //    // Set chart title
-    //    Chart1.Titles.Add("Proposal Status");
-
-    //    // Set chart type to column chart
-    //    Chart1.Series["Series1"].ChartType = SeriesChartType.Column;
-    //}
-
     private void get_tbl_FinancialYear()
     {
         DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
@@ -198,7 +157,6 @@ public partial class FormForApproval : System.Web.UI.Page
         }
     }
 
-
     protected void ddlZone_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlZone.SelectedValue == "0")
@@ -297,7 +255,6 @@ public partial class FormForApproval : System.Web.UI.Page
             lblParyOfMPMLA.Text = "";
         }
     }
-
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
@@ -569,74 +526,12 @@ public partial class FormForApproval : System.Web.UI.Page
         gvRecords.DataBind();
     }
 
-
     //work form here
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         tbl_WorkProposal obj = BindWorkProposalGridBySearch();
         LoadWorkProposalGrid(obj);
     }
-    [WebMethod]
-    public static string GetProposalData(string Fy, string Zone_Id, string Circle_Id, string Division_Id, string Scheme)
-    {
-        FormForApproval obj1 = new FormForApproval();
-
-        tbl_WorkProposal obj = new tbl_WorkProposal();
-        obj.FY = Convert.ToInt16(Fy);
-        obj.Zone = Convert.ToInt16(Zone_Id);
-        obj.Circle = Convert.ToInt16(Circle_Id);
-        obj.Division = (Division_Id == null || Division_Id == "null") ? 0 : Convert.ToInt32(Division_Id);
-        obj.Scheme = Convert.ToInt16(Scheme);
-        obj.ProposalStatus = -1;
-
-        DataTable dt = new DataTable();
-        dt = obj1.objLoan.getWorkPlanWiseForChartBySearch(obj);
-
-        var data = new
-        {
-            totalProposals = dt.Rows[0]["totalProposals"].ToString(),
-            pendingProposals = dt.Rows[0]["pendingProposals"].ToString(),
-            approvedProposals = dt.Rows[0]["approvedProposals"].ToString(),
-            rejectedProposals = dt.Rows[0]["rejectedProposals"].ToString(),
-            holdProposals = dt.Rows[0]["holdProposals"].ToString(),
-
-            pendingProposalsPercentage = dt.Rows[0]["pendingProposalsPercentage"].ToString(),
-            approvedProposalsPercentage = dt.Rows[0]["approvedProposalsPercentage"].ToString(),
-            rejectedProposalsPercentage = dt.Rows[0]["rejectedProposalsPercentage"].ToString(),
-            holdProposalsPercentage = dt.Rows[0]["holdProposalsPercentage"].ToString(),
-
-            TotalAmount = dt.Rows[0]["TotalAmount"].ToString(),
-            PendingProposalsAmount = dt.Rows[0]["PendingProposalsAmount"].ToString(),
-            ApprovedProposalsAmount = dt.Rows[0]["ApprovedProposalsAmount"].ToString(),
-            RejectProposalsAmount = dt.Rows[0]["RejectProposalsAmount"].ToString(),
-            HoldProposalsAmount = dt.Rows[0]["HoldProposalsAmount"].ToString(),
-
-            PendingProposalsAmountPercentage = dt.Rows[0]["PendingProposalsAmountPercentage"].ToString(),
-            ApprovedProposalsAmountPercentage = dt.Rows[0]["ApprovedProposalsAmountPercentage"].ToString(),
-            RejectProposalsAmountPercentage = dt.Rows[0]["RejectProposalsAmountPercentage"].ToString(),
-            HoldProposalsAmountPercentage = dt.Rows[0]["HoldProposalsAmountPercentage"].ToString(),
-
-        };
-
-        JavaScriptSerializer js = new JavaScriptSerializer();
-        return js.Serialize(data);
-    }
-    //[WebMethod]
-    //public static string GetProposalAmountData()
-    //{
-    //    var data = new
-    //    {
-    //        totalProposals = 2000000,
-    //        pendingProposals = 800000,
-    //        approvedProposals = 500000,
-    //        rejectedProposals = 400000,
-    //        holdProposals = 300000
-    //    };
-
-    //    JavaScriptSerializer js = new JavaScriptSerializer();
-    //    return js.Serialize(data);
-    //}
-
 
     protected tbl_WorkProposal BindWorkProposalGridBySearch()
     {

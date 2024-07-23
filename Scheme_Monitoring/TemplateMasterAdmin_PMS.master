@@ -188,6 +188,7 @@
                                         <li class="nav-item"><a href="MasterLokSabha.aspx" class="nav-link" data-key="t-checkboxs-radios">Lok Sabha</a> </li>
                                         <li class="nav-item"><a href="MasterVidhanSabha.aspx" class="nav-link" data-key="t-checkboxs-radios">Vidhan Sabha</a> </li>
                                         <li class="nav-item"><a href="MasterDivision.aspx" class="nav-link" data-key="t-pickers">ULB</a></li>
+                                        <li class="nav-item"><a href="MasterULBIncome.aspx" class="nav-link" data-key="t-pickers">ULB Income Type</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -225,7 +226,7 @@
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="FormForApproval.aspx" class="nav-link" data-key="t-grid-js">Create Work Plan</a> </li>
                                         <li class="nav-item"><a href="FormForApproval2.aspx" class="nav-link" data-key="t-grid-js">Action on  Work Plan</a> </li>
-                                        
+                                        <li class="nav-item"><a href="WorkPlanReport.aspx" class="nav-link" data-key="t-grid-js">Work Plan Report</a> </li>
                                     </ul>
                                 </div>
                             </li>
