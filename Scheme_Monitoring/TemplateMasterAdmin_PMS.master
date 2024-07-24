@@ -237,6 +237,7 @@
                                 <div class="collapse menu-dropdown" id="sidebarFund">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="FundSanctionMaster.aspx" class="nav-link" data-key="t-grid-js">Fund Sanction Master</a> </li>
+                                        <li class="nav-item"><a href="AnnualActionPlan.aspx" class="nav-link" data-key="t-grid-js">Annual Action Plan</a> </li>
                                     </ul>
                                 </div>
                             </li>
