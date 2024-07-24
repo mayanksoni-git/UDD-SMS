@@ -506,7 +506,7 @@
             var Division_Id = $("#ctl00_ContentPlaceHolder1_ddlDivision").val();
             var Scheme = $("#ctl00_ContentPlaceHolder1_ddlProjectMaster").val();
 
-            fetchChartData("FormForApproval.aspx/GetProposalData", { Fy, Zone_Id, Circle_Id, Division_Id, Scheme })
+            fetchChartData("WorkPlanReport.aspx/GetProposalData", { Fy, Zone_Id, Circle_Id, Division_Id, Scheme })
                 .done(function (response) {
                     var data = JSON.parse(response.d);
 
