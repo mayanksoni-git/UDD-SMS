@@ -78,6 +78,7 @@ public partial class FundRecievedInULB : System.Web.UI.Page
                 if (divisionId > 0)
                 {
                     SetDropdownValueAndDisable(ddlDivision, divisionId);
+                    GetAllData(divisionId);
                 }
             }
         }
