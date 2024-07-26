@@ -266,6 +266,8 @@
                                         <li class="nav-item"><a href="RptCrematoriumDetail.aspx" class="nav-link" data-key="t-grid-js">Crematorium Detail</a> </li>
                                         <%--<li class="nav-item"><a href="LoanRelease.aspx" class="nav-link" data-key="t-grid-js">Loan Release</a> </li>--%>
                                         <li class="nav-item"><a href="LoanDeposit.aspx" class="nav-link" data-key="t-grid-js">Loan Recovery</a> </li>
+                                        <li class="nav-item"><a href="AddULBIncomeType.aspx" class="nav-link" data-key="t-grid-js">ULB Income</a> </li>
+                                        <li class="nav-item"><a href="AddExpensesType.aspx" class="nav-link" data-key="t-grid-js">ULB Expense</a> </li>
                                     </ul>
                                 </div>
                             </li>
