@@ -356,7 +356,72 @@
                 $('#ctl00_ContentPlaceHolder1_GrdULBFund').DataTable();
             }); 
 
-      
+        //function ExportToExcel(type, fn, dl) {
+        //    const currentDate = new Date();
+
+        //    // Get the current date
+        //    const year = currentDate.getFullYear();
+        //    const month = currentDate.getMonth() + 1; // Months are zero-based
+        //    const day = currentDate.getDate();
+
+        //    // Format the date as desired (e.g., YYYY-MM-DD)
+        //    const formattedDate = "ULB Fund Detail_" + `${year}-${month}-${day}`;
+
+        //    var elt = document.getElementById('ctl00_ContentPlaceHolder1_GrdULBFund');
+
+        //    // Clone the table to avoid modifying the original
+        //    var clonedTable = elt.cloneNode(true);
+
+        //    // Create a new header row
+        //    var headerRow = document.createElement('tr');
+        //    var headerCell = document.createElement('th');
+        //    headerCell.colSpan = clonedTable.rows[0].cells.length; // Span all columns
+        //    headerCell.textContent = 'Report of ULB';
+        //    headerCell.style.fontWeight = 'bold';
+        //    headerCell.style.fontSize = '18px';
+        //    headerCell.style.textAlign = 'center';
+        //    headerRow.appendChild(headerCell);
+
+        //    // Insert the new header row at the top of the cloned table
+        //    clonedTable.insertBefore(headerRow, clonedTable.firstChild);
+
+        //    // Get all rows
+        //    var rows = clonedTable.rows;
+
+        //    // Remove the last two columns from each row
+        //    for (var i = 1; i < rows.length; i++) { // Start from 1 to skip the header row
+        //        if (rows[i].cells.length > 2) {
+        //            rows[i].deleteCell(-1); // Remove last cell
+        //            // Remove second to last cell
+        //        }
+        //    }
+
+        //    // Convert the cloned table to an array
+        //    var data = Array.from(clonedTable.rows).map(row =>
+        //        Array.from(row.cells).map(cell => cell.textContent)
+        //    );
+
+        //    // Create a workbook and add a worksheet
+        //    var wb = XLSX.utils.book_new();
+        //    var ws = XLSX.utils.aoa_to_sheet(data);
+
+        //    // Add the header row
+        //    XLSX.utils.sheet_add_aoa(ws, [['Report of ULB']], { origin: 'A1' });
+
+        //    // Adjust column widths (optional)
+        //    ws['!cols'] = ws['!cols'] || [];
+        //    for (let i = 0; i < ws['!cols'].length; i++) {
+        //        ws['!cols'][i] = { width: 20 }; // Adjust width as needed
+        //    }
+
+        //    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+        //    // Write to file or base64
+        //    return dl ?
+        //        XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+        //        XLSX.writeFile(wb, fn || (formattedDate + "." + (type || 'xlsx')));
+        //}
+
 
         function ExportToExcel(type, fn, dl) {
             debugger
