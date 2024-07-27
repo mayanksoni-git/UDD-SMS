@@ -13,12 +13,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Create Work Plan</h4>
+                                    <h4 class="mb-sm-0">Create Work Proposal</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                            <li class="breadcrumb-item">Work Plan Management System</li>
-                                            <li class="breadcrumb-item active">Create Work Plan</li>
+                                            <li class="breadcrumb-item">Work Proposal Management System</li>
+                                            <li class="breadcrumb-item active">Create Work Proposal</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Work Plan Detail</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Work Proposal Detail</h4>
                                         <%--OnClientClick="BindChart(); return false;"--%>
                                         <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click"  runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                         <%--<a class="btn btn-primary" href="#">
@@ -47,6 +47,7 @@
                                                     <div id="divFY" runat="server">
                                                         <asp:Label ID="lblFY" runat="server" Text="Select Financial Year*" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
+
                                                     </div>
                                                 </div>
 
@@ -72,12 +73,12 @@
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6" id="divZoneOfULB">
-                                                    <asp:Label ID="lblZoneOfULB" runat="server" Text="Zone*" CssClass="form-label"></asp:Label>
+                                                    <asp:Label ID="lblZoneOfULB" runat="server" Text="Zone" CssClass="form-label"></asp:Label>
                                                     <asp:TextBox ID="txtZoneOfULB" runat="server" CssClass="form-control"></asp:TextBox>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6" id="divWard">
-                                                    <asp:Label ID="lblWard" runat="server" Text="Ward*" CssClass="form-label"></asp:Label>
+                                                    <asp:Label ID="lblWard" runat="server" Text="Ward" CssClass="form-label"></asp:Label>
                                                     <asp:TextBox ID="txtWard" runat="server" CssClass="form-control"></asp:TextBox>
                                                 </div>
                                                 </div>
@@ -90,11 +91,32 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="col-xxl-3 col-md-6" id="divSubScheme" visible="false" runat="server">
+                                                    <asp:Label ID="lblSubScheme" runat="server" Text="Choose Sub Scheme*" CssClass="form-label"></asp:Label>
+                                                    <asp:RadioButtonList ID="rblSubScheme" runat="server" CssClass="form-control" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="rblRoles_SelectedIndexChanged">
+                                                        <asp:ListItem Text="Anudaan 37 " Value="37"></asp:ListItem>
+                                                        <asp:ListItem Text="Anudaan 83 " Value="83"></asp:ListItem>
+                                                    </asp:RadioButtonList>
+                                                </div>
+
+
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divWorkType" runat="server">
                                                         <asp:Label ID="lblWorkType" runat="server" Text="Type of Work*" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlWorkType" runat="server" CssClass="form-select"></asp:DropDownList>
-
+                                                        <%--<asp:DropDownList ID="ddlWorkType" runat="server" CssClass="form-select"></asp:DropDownList>--%>
+                                                        <asp:ListBox ID="ddlWorkType" runat="server" SelectionMode="Multiple" class="chosen-select form-control multiselect" data-placeholder="Choose a Work Type..."></asp:ListBox>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divProposalName" runat="server">
+                                                        <asp:Label ID="lblProposalName" runat="server" Text="Proposal Name*" CssClass="form-label"></asp:Label>
+                                                    <asp:TextBox ID="txtProposalName" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divProposalDetail" runat="server">
+                                                        <asp:Label ID="lblProposalDetail" runat="server" Text="Proposal Detail" CssClass="form-label"></asp:Label>
+                                                    <asp:TextBox ID="txtProposalDetail" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
 
@@ -108,16 +130,23 @@
                                             <br />
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
-                                                    <asp:Label ID="lblRole" runat="server" Text="Select Proposer*" CssClass="form-label"></asp:Label>
-                                                    <asp:RadioButtonList ID="rblRoles" runat="server" CssClass="form-control" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="rblRoles_SelectedIndexChanged">
+                                                    <asp:Label ID="lblRole" runat="server" Text="Select Proposer Type*" CssClass="form-label"></asp:Label>
+                                                    <asp:DropDownList ID="rblRoles" runat="server" CssClass="form-select" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="rblRoles_SelectedIndexChanged">
+                                                        <asp:ListItem Text="-Select-" Value="-1" Selected="True"></asp:ListItem>
+                                                        <asp:ListItem Text="Minister" Value="Minister"></asp:ListItem>
                                                         <asp:ListItem Text="MP" Value="MP"></asp:ListItem>
                                                         <asp:ListItem Text="MLA" Value="MLA"></asp:ListItem>
+                                                        <asp:ListItem Text="MLC" Value="MLC"></asp:ListItem>
+                                                        <asp:ListItem Text="Mayor" Value="Mayor"></asp:ListItem>
+                                                        <asp:ListItem Text="Municipal Commissioner" Value="Municipal Commissioner"></asp:ListItem>
+                                                        <asp:ListItem Text="District Magistrate" Value="District Magistrate"></asp:ListItem>
+                                                        <asp:ListItem Text="Divisional Commissioner" Value="Divisional Commissioner"></asp:ListItem>
                                                         <asp:ListItem Text="Others" Value="Others"></asp:ListItem>
-                                                    </asp:RadioButtonList>
+                                                    </asp:DropDownList>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6" id="divMPMLA" style="display: block;" runat="server">
-                                                    <asp:Label ID="lblMPMLA" runat="server" Text="MP/MLA*" CssClass="form-label"></asp:Label>
+                                                    <asp:Label ID="lblMPMLA" runat="server" Text="Select Proposer*" CssClass="form-label"></asp:Label>
                                                     <asp:DropDownList ID="ddlMPMLA" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlMPMLA_SelectedIndexChanged"></asp:DropDownList>
                                                 </div>
 

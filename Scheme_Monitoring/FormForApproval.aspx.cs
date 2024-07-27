@@ -11,6 +11,7 @@ using System.Text;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.Script.Serialization;
 using System.Web.Services;
+using System.Data.SqlClient;
 
 public partial class FormForApproval : System.Web.UI.Page
 {
@@ -37,9 +38,7 @@ public partial class FormForApproval : System.Web.UI.Page
             get_tbl_Zone();
             get_tbl_Project();
             
-
             SetDropdownsBasedOnUserType();
-            
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
@@ -76,11 +75,21 @@ public partial class FormForApproval : System.Web.UI.Page
     private void get_tbl_WorkType(int ProjectId)
     {
         DataSet ds = (new DataLayer()).get_tbl_ProjectType(ProjectId, 0);
-        FillDropDown(ds, ddlWorkType, "ProjectType_Name", "ProjectType_Id");
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            ddlWorkType.DataTextField = "ProjectType_Name";
+            ddlWorkType.DataValueField = "ProjectType_Id";
+            ddlWorkType.DataSource = ds.Tables[0];
+            ddlWorkType.DataBind();
+        }
+        else
+        {
+            ddlWorkType.Items.Clear();
+        }
     }
-    private void get_tbl_MPMLA(string MpMla)
+    private void get_tbl_MPMLA(string ProposerRole)
     {
-        DataSet ds = (new DataLayer()).get_tbl_MPMLA(MpMla);
+        DataSet ds = (new DataLayer()).get_tbl_MPMLA(ProposerRole);
         FillDropDown(ds, ddlMPMLA, "MPMLAName", "MPMLAId");
     }
     private void get_MPPLADataById(int MPMLAid,string MpMla)
@@ -209,6 +218,14 @@ public partial class FormForApproval : System.Web.UI.Page
             {
                 ProjectId = 0;
             }
+            if(ddlProjectMaster.SelectedValue=="16")
+            {
+                divSubScheme.Visible = true;
+            }
+            else
+            {
+                divSubScheme.Visible = false;
+            }
             get_tbl_WorkType(ProjectId);
         }
     }
@@ -263,6 +280,27 @@ public partial class FormForApproval : System.Web.UI.Page
             return;
         }
 
+        //Create List of Selected Project Work Type
+        List<WorkProposal_ProjectType> objList = new List<WorkProposal_ProjectType>();
+        foreach (ListItem listItem in ddlWorkType.Items)
+        {
+            if (listItem.Selected)
+            {
+                WorkProposal_ProjectType obj = new WorkProposal_ProjectType();
+                obj.AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
+                obj.ProjectType_Id = Convert.ToInt32(listItem.Value);
+                obj.Status = 1;
+                objList.Add(obj);
+            }
+        }
+        //Check Project Work Type is empty or not and alert
+        if (objList == null || objList.Count == 0)
+        {
+            MessageBox.Show("Please Provide Work Type!");
+            ddlWorkType.Focus();
+            return;
+        }
+
         string pdfLocation = UploadPDF();
         if (string.IsNullOrEmpty(pdfLocation))
         {
@@ -270,28 +308,92 @@ public partial class FormForApproval : System.Web.UI.Page
         }
 
         tbl_WorkProposal WorkProposal = CreateWorkProposalObject(pdfLocation);
-        int result = objLoan.InsertWorkProposal(WorkProposal);
+        string ConStr = ConfigurationManager.AppSettings.Get("conn").ToString();
 
-        if (result > 0)
+        using (SqlConnection connection = new SqlConnection(ConStr))
         {
-            MessageBox.Show("Record saved successfully.");
-            reset();
-        }
-        else
-        {
-            reset();
-            bool IsPDFDelete = PDFUploader.DeletePDF(pdfLocation);
-            if (!IsPDFDelete)
+            connection.Open();
+
+            SqlTransaction trans = null;
+
+            try
             {
-                MessageBox.Show("Something went wrong please try again or contact administrator!. While processing this data, recomendation letter was uploaded but failed to be deleted.");
+                // Begin transaction
+                trans = connection.BeginTransaction();
+
+                // Set transaction for commands
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = trans;
+
+                int result = objLoan.InsertWorkProposal(WorkProposal);
+
+               
+
+                if (result > 0)
+                {
+                    if (objList != null && objList.Count > 0)
+                    {
+                        objList[0].Proposal_Id = result;
+                        for (int i = 0; i < objList.Count; i++)
+                        {
+                            objList[i].Proposal_Id = result;
+                            objLoan.Insert_WorkProposal_ProjectType(objList[i], trans, connection);
+                        }
+                    }
+                    trans.Commit();
+                    MessageBox.Show("Record saved successfully.");
+                    reset();
+                }
+                else
+                {
+                    trans.Rollback();
+                    reset();
+                    bool IsPDFDelete = PDFUploader.DeletePDF(pdfLocation);
+                    if (!IsPDFDelete)
+                    {
+                        MessageBox.Show("Something went wrong please try again or contact administrator!. While processing this data, recomendation letter was uploaded but failed to be deleted.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Something went wrong please try again or contact administrator!");
+                    }
+                    return;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong please try again or contact administrator!");
+                // Handle exceptions
+                MessageBox.Show("Error: " + ex.Message);
+
+                // Rollback transaction on error
+                if (trans != null)
+                {
+                    try
+                    {
+                        trans.Rollback();
+                    }
+                    catch (Exception rollbackEx)
+                    {
+                        MessageBox.Show("Rollback error: " + rollbackEx.Message);
+                    }
+                }
             }
-            return;
+            finally
+            {
+                // Ensure the connection is closed and resources are released
+                if (trans != null)
+                {
+                    //trans.Dispose();
+                }
+                connection.Close();
+            }
         }
     }
+
+    
+
+
+
     public bool ValidateFields()
     {
         double result;
@@ -321,18 +423,18 @@ public partial class FormForApproval : System.Web.UI.Page
             ddlDivision.Focus();
             IsValid = false;
         }
-        if (txtZoneOfULB.Text.Trim() == "")
-        {
-            MessageBox.Show("Please enter the names of the zones where the project will be built or implemented.");
-            txtZoneOfULB.Focus();
-            IsValid = false;
-        }
-        if (txtWard.Text.Trim() == "")
-        {
-            MessageBox.Show("Please enter the names of the wards where the project will be built or implemented.");
-            txtWard.Focus();
-            IsValid = false;
-        }
+        //if (txtZoneOfULB.Text.Trim() == "")
+        //{
+        //    MessageBox.Show("Please enter the names of the zones where the project will be built or implemented.");
+        //    txtZoneOfULB.Focus();
+        //    IsValid = false;
+        //}
+        //if (txtWard.Text.Trim() == "")
+        //{
+        //    MessageBox.Show("Please enter the names of the wards where the project will be built or implemented.");
+        //    txtWard.Focus();
+        //    IsValid = false;
+        //}
         if (ddlProjectMaster.SelectedValue == "0")
         {
             MessageBox.Show("Please Select a Scheme. ");
@@ -345,18 +447,31 @@ public partial class FormForApproval : System.Web.UI.Page
             ddlWorkType.Focus();
             IsValid = false;
         }
+
+        if (ddlWorkType.SelectedValue == "0")
+        {
+            MessageBox.Show("Please Select a type of Work. ");
+            ddlWorkType.Focus();
+            IsValid = false;
+        }
+        if (txtProposalName.Text.Trim() == "")
+        {
+            MessageBox.Show("Please enter Proposal Name.");
+            txtProposalName.Focus();
+            IsValid = false;
+        }
         if (txtExpectedAmount.Text.Trim() == "" || !double.TryParse(txtExpectedAmount.Text.Trim(), out result))
         {
             MessageBox.Show("Please enter valid expected amount.");
             txtExpectedAmount.Focus();
             IsValid = false;
         }
-        if (rblRoles.SelectedValue == "MP" || rblRoles.SelectedValue == "MLA")
+        if (rblRoles.SelectedValue != "-1" && rblRoles.SelectedValue != "Other")
         {
             if (ddlMPMLA.SelectedValue == "0")
             {
-                MessageBox.Show("Please Select a MPMLA. ");
-                ddlWorkType.Focus();
+                MessageBox.Show("Please Select a Proposer. ");
+                ddlMPMLA.Focus();
                 IsValid = false;
             }
         }
@@ -365,7 +480,14 @@ public partial class FormForApproval : System.Web.UI.Page
             if (txtMobileNo.Text.Trim() == "")
             {
                 MessageBox.Show("Please enter mobile no of proposer.");
-                ddlWorkType.Focus();
+                txtMobileNo.Focus();
+                IsValid = false;
+            }
+
+            if (txtOthers.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter Name of proposer.");
+                txtOthers.Focus();
                 IsValid = false;
             }
         }
@@ -395,12 +517,14 @@ public partial class FormForApproval : System.Web.UI.Page
         int personId;
         int FY, zone, circle, division;
         string ZoneOfULB = "", Ward = "";
+        string ProposalName = "", ProposalDetail = "";
 
-        int SchemeId, WorkType;
+        int SchemeId, WorkType=0, SubSchemeId=0;
         double ExpectedAmount = 0.00;
 
         string ProposerType = "", ProposerName = "", MobileNo = "", Designation = "";
         int MPMLAid;
+
 
 
         if (!int.TryParse(Session["Person_Id"].ToString(), out personId))
@@ -440,13 +564,28 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             throw new FormatException("Invalid Scheme selected value.");
         }
-        if (!int.TryParse(ddlWorkType.SelectedValue, out WorkType))
+
+        if (!int.TryParse(rblSubScheme.SelectedValue, out SubSchemeId))
         {
-            throw new FormatException("Invalid Work Type selected value.");
+            throw new FormatException("Invalid Sub Scheme selected value.");
         }
+        //if (!int.TryParse(ddlWorkType.SelectedValue, out WorkType))
+        //{
+        //    throw new FormatException("Invalid Work Type selected value.");
+        //}
         if (!double.TryParse(txtExpectedAmount.Text, out ExpectedAmount))
         {
             throw new FormatException("Invalid Expected Amount value.");
+        }
+
+
+        if (txtProposalName.Text != "")
+        {
+            ProposalName = txtProposalName.Text.ToString();
+        }
+        if (txtProposalDetail.Text != "")
+        {
+            ProposalDetail = txtProposalDetail.Text.ToString();
         }
 
         if (string.IsNullOrEmpty(rblRoles.SelectedValue))
@@ -488,7 +627,7 @@ public partial class FormForApproval : System.Web.UI.Page
             ZoneOfULB = ZoneOfULB,
             Ward = Ward,
             Scheme = SchemeId,
-            WorkType = WorkType,
+            WorkType = 0,
             ExpectedAmount = ExpectedAmount,
             ProposerType = ProposerType,
             MPMLAid = MPMLAid,
@@ -497,6 +636,9 @@ public partial class FormForApproval : System.Web.UI.Page
             Designation = Designation,
             RecomendationLetter = pdfLocation,
             AddedBy = personId,
+            ProposalName = ProposalName,
+            ProposalDetail = ProposalDetail,
+            SubSchemeId=SubSchemeId
 
         };
     }
