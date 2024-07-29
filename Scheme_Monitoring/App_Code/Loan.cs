@@ -360,7 +360,7 @@ public class Loan
     #endregion
 
     #region WorkProposal
-    public int InsertWorkProposal(tbl_WorkProposal obj)
+    public DataTable InsertWorkProposal(tbl_WorkProposal obj)
     {
         try
         {
@@ -386,7 +386,7 @@ public class Loan
             param[17] = new SqlParameter("@ProposalDetail", obj.ProposalDetail);
             param[18] = new SqlParameter("@SubSchemeId", obj.SubSchemeId);
 
-            return objDAL.ExecuteScalarProcedure("sp_InsertWorkProposal", param);
+            return objDAL.ExecuteProcedureReturnDataTable("sp_InsertWorkProposal", param);
         }
         catch (Exception ex)
         {

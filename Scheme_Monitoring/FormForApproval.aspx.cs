@@ -59,7 +59,15 @@ public partial class FormForApproval : System.Web.UI.Page
     }
     private void get_tbl_Project()
     {
-        DataSet ds = (new DataLayer()).get_tbl_Project(0);
+        DataSet ds = new DataSet();
+        if (Session["UserType"].ToString() == "1")
+        {
+            ds = (new DataLayer()).get_tbl_Project(0);
+        }
+        else
+        {
+            ds = (new DataLayer()).get_tbl_Project(Convert.ToInt32(Session["Person_Id"].ToString()));
+        }
         FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
     }
     private void get_tbl_Circle(int zoneId)
@@ -325,12 +333,11 @@ public partial class FormForApproval : System.Web.UI.Page
                 SqlCommand command = connection.CreateCommand();
                 command.Transaction = trans;
 
-                int result = objLoan.InsertWorkProposal(WorkProposal);
-
-               
-
-                if (result > 0)
+                DataTable dt = objLoan.InsertWorkProposal(WorkProposal);
+                
+                if (dt.Rows.Count>0)
                 {
+                    int result = Convert.ToInt32(dt.Rows[0]["WorkProposalId"].ToString());
                     if (objList != null && objList.Count > 0)
                     {
                         objList[0].Proposal_Id = result;
@@ -341,7 +348,7 @@ public partial class FormForApproval : System.Web.UI.Page
                         }
                     }
                     trans.Commit();
-                    MessageBox.Show("Record saved successfully.");
+                    MessageBox.Show("Record with Work Proposal Code \""+ dt.Rows[0]["ProposalCode"].ToString()+ "\" saved successfully.");
                     reset();
                 }
                 else
@@ -389,9 +396,6 @@ public partial class FormForApproval : System.Web.UI.Page
             }
         }
     }
-
-    
-
 
 
     public bool ValidateFields()
@@ -441,25 +445,27 @@ public partial class FormForApproval : System.Web.UI.Page
             ddlProjectMaster.Focus();
             IsValid = false;
         }
+        if(ddlProjectMaster.SelectedValue=="16")
+        {
+            if (rblSubScheme.SelectedValue == "")
+            {
+                MessageBox.Show("Please Select Sub Scheme. ");
+                rblSubScheme.Focus();
+                IsValid = false;
+            }
+        }
         if (ddlWorkType.SelectedValue == "0")
         {
             MessageBox.Show("Please Select a type of Work. ");
             ddlWorkType.Focus();
             IsValid = false;
         }
-
-        if (ddlWorkType.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select a type of Work. ");
-            ddlWorkType.Focus();
-            IsValid = false;
-        }
-        if (txtProposalName.Text.Trim() == "")
-        {
-            MessageBox.Show("Please enter Proposal Name.");
-            txtProposalName.Focus();
-            IsValid = false;
-        }
+        //if (txtProposalName.Text.Trim() == "")
+        //{
+        //    MessageBox.Show("Please enter Proposal Name.");
+        //    txtProposalName.Focus();
+        //    IsValid = false;
+        //}
         if (txtExpectedAmount.Text.Trim() == "" || !double.TryParse(txtExpectedAmount.Text.Trim(), out result))
         {
             MessageBox.Show("Please enter valid expected amount.");
@@ -671,6 +677,15 @@ public partial class FormForApproval : System.Web.UI.Page
     //work form here
     protected void btnSearch_Click(object sender, EventArgs e)
     {
+        if (Session["UserType"].ToString() != "1")
+        {
+            if (ddlProjectMaster.SelectedValue == "0")
+            {
+                MessageBox.Show("Please Select A Scheme");
+                ddlProjectMaster.Focus();
+                return;
+            }
+        }
         tbl_WorkProposal obj = BindWorkProposalGridBySearch();
         LoadWorkProposalGrid(obj);
     }

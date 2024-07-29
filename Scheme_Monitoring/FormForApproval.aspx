@@ -47,7 +47,6 @@
                                                     <div id="divFY" runat="server">
                                                         <asp:Label ID="lblFY" runat="server" Text="Select Financial Year*" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
-
                                                     </div>
                                                 </div>
 
@@ -86,7 +85,7 @@
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divScheme" runat="server">
-                                                        <asp:Label ID="lblScheme" runat="server" Text="Scheme" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblScheme" runat="server" Text="Scheme*" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectMaster_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
@@ -109,7 +108,7 @@
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divProposalName" runat="server">
-                                                        <asp:Label ID="lblProposalName" runat="server" Text="Proposal Name*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblProposalName" runat="server" Text="Proposal Name" CssClass="form-label"></asp:Label>
                                                     <asp:TextBox ID="txtProposalName" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
@@ -133,6 +132,7 @@
                                                     <asp:Label ID="lblRole" runat="server" Text="Select Proposer Type*" CssClass="form-label"></asp:Label>
                                                     <asp:DropDownList ID="rblRoles" runat="server" CssClass="form-select" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="rblRoles_SelectedIndexChanged">
                                                         <asp:ListItem Text="-Select-" Value="-1" Selected="True"></asp:ListItem>
+                                                        <asp:ListItem Text="Central Minister" Value="Central Minister"></asp:ListItem>
                                                         <asp:ListItem Text="Minister" Value="Minister"></asp:ListItem>
                                                         <asp:ListItem Text="MP" Value="MP"></asp:ListItem>
                                                         <asp:ListItem Text="MLA" Value="MLA"></asp:ListItem>
@@ -141,6 +141,10 @@
                                                         <asp:ListItem Text="Municipal Commissioner" Value="Municipal Commissioner"></asp:ListItem>
                                                         <asp:ListItem Text="District Magistrate" Value="District Magistrate"></asp:ListItem>
                                                         <asp:ListItem Text="Divisional Commissioner" Value="Divisional Commissioner"></asp:ListItem>
+                                                        <asp:ListItem Text="President Nagar Palika" Value="President Nagar Palika"></asp:ListItem>
+                                                        <asp:ListItem Text="EO Nagar Palika" Value="EO Nagar Palika"></asp:ListItem>
+                                                        <asp:ListItem Text="President Nagar Palika Parishad" Value="President Nagar Palika Parishad"></asp:ListItem>
+                                                        <asp:ListItem Text="EO Nagar Palika Parishad" Value="EO Nagar Palika Parishad"></asp:ListItem>
                                                         <asp:ListItem Text="Others" Value="Others"></asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
@@ -170,7 +174,7 @@
                                             <br />
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
-                                                    <asp:Label ID="lblMobileNo" runat="server" Text="Mobile No*" CssClass="form-label"></asp:Label>
+                                                    <asp:Label ID="lblMobileNo" runat="server" Text="Mobile No" CssClass="form-label"></asp:Label>
                                                     <asp:TextBox ID="txtMobileNo" runat="server" CssClass="form-control" TextMode="Phone" MaxLength="10"></asp:TextBox>
                                                     <asp:RegularExpressionValidator ID="revMobileNo" runat="server"
                                                         ControlToValidate="txtMobileNo"
@@ -285,7 +289,7 @@
                                                                     </asp:HyperLink>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                             <asp:BoundField HeaderText="Status" DataField="ProposalStatus" />
+                                                             <%--<asp:BoundField HeaderText="Status" DataField="ProposalStatus" />--%>
 
                                                             <asp:BoundField HeaderText="Added On" DataField="AddedOn" DataFormatString="{0:dd/MM/yyyy}" />
                                                         </Columns>
