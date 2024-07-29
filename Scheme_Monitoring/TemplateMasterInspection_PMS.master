@@ -100,8 +100,10 @@
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end">
 
-                                        <h6 class="dropdown-header" runat="server" ID="lblUserHeader2">Welcome Anna!</h6>
-                                        <a class="dropdown-item" href="ChangePassword.aspx"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i><span class="align-middle">Change Password</span></a>                                        
+                                        <h6 class="dropdown-header" runat="server" id="lblUserHeader2">Welcome Anna!</h6>
+
+                                        <a class="dropdown-item" href="UpdateProfile.aspx"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i><span class="align-middle">Profile</span></a>
+                                        <a class="dropdown-item" href="ChangePassword.aspx"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i><span class="align-middle">Change Password</span></a>
                                         <a class="dropdown-item" href="#" runat="server" id="a_Logout" onserverclick="lnkLogOut_Click"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i><span class="align-middle" data-key="t-logout">Logout</span></a>
                                     </div>
                                 </div>
