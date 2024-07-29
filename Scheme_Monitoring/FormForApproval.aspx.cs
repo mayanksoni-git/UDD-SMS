@@ -570,10 +570,16 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             throw new FormatException("Invalid Scheme selected value.");
         }
-
-        if (!int.TryParse(rblSubScheme.SelectedValue, out SubSchemeId))
+        if (ddlProjectMaster.SelectedValue == "16")
         {
-            throw new FormatException("Invalid Sub Scheme selected value.");
+            if (!int.TryParse(rblSubScheme.SelectedValue, out SubSchemeId))
+            {
+                throw new FormatException("Invalid Sub Scheme selected value.");
+            }
+        }
+        else
+        {
+            SubSchemeId = 0;
         }
         //if (!int.TryParse(ddlWorkType.SelectedValue, out WorkType))
         //{
