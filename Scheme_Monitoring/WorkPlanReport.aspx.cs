@@ -68,7 +68,15 @@ public partial class WorkPlanReport : System.Web.UI.Page
     }
     private void get_tbl_Project()
     {
-        DataSet ds = (new DataLayer()).get_tbl_Project(0);
+        DataSet ds = new DataSet();
+        if (Session["UserType"].ToString() == "1")
+        {
+            ds = (new DataLayer()).get_tbl_Project(0);
+        }
+        else
+        {
+            ds = (new DataLayer()).get_tbl_Project(Convert.ToInt32(Session["Person_Id"].ToString()));
+        }
         FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
     }
 
@@ -184,6 +192,16 @@ public partial class WorkPlanReport : System.Web.UI.Page
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
+        if (Session["UserType"].ToString() != "1")
+        {
+            if (ddlProjectMaster.SelectedValue == "0")
+            {
+                MessageBox.Show("Please Select A Scheme");
+                ddlProjectMaster.Focus();
+                return;
+            }
+        }
+        
         tbl_WorkProposal obj = BindWorkProposalGridBySearch();
         LoadWorkProposalGrid(obj);
     }

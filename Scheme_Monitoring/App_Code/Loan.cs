@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 public class Loan
 {
@@ -359,11 +360,11 @@ public class Loan
     #endregion
 
     #region WorkProposal
-    public int InsertWorkProposal(tbl_WorkProposal obj)
+    public DataTable InsertWorkProposal(tbl_WorkProposal obj)
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[16];
+            SqlParameter[] param = new SqlParameter[19];
 
             param[0] = new SqlParameter("@FY", obj.FY);
             param[1] = new SqlParameter("@Zone", obj.Zone);
@@ -381,12 +382,36 @@ public class Loan
             param[13] = new SqlParameter("@Designation", obj.Designation);
             param[14] = new SqlParameter("@RecomendationLetter", obj.RecomendationLetter);
             param[15] = new SqlParameter("@AddedBy", obj.AddedBy);
+            param[16] = new SqlParameter("@ProposalName", obj.ProposalName);
+            param[17] = new SqlParameter("@ProposalDetail", obj.ProposalDetail);
+            param[18] = new SqlParameter("@SubSchemeId", obj.SubSchemeId);
 
-            return objDAL.ExecuteProcedure("sp_InsertWorkProposal", param);
+            return objDAL.ExecuteProcedureReturnDataTable("sp_InsertWorkProposal", param);
         }
         catch (Exception ex)
         {
             throw new Exception(ex.Message);
+        }
+    }
+
+    public void Insert_WorkProposal_ProjectType(WorkProposal_ProjectType obj, SqlTransaction trans, SqlConnection cn)
+    {
+        string strQuery = "";
+
+        strQuery = " set dateformat dmy; insert into WorkProposal_ProjectType (Proposal_Id, ProjectType_Id, AddedBy, AddedOn,  Status) values ('" + obj.Proposal_Id + "','" + obj.ProjectType_Id + "','" + obj.AddedBy + "', getdate(),'" + obj.Status + "')";
+        if (trans == null)
+        {
+            try
+            {
+                objDAL.ExecuteSelectQuery(strQuery);
+            }
+            catch
+            {
+            }
+        }
+        else
+        {
+            objDAL.ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
         }
     }
 

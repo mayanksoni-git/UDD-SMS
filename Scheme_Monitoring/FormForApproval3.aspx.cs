@@ -25,6 +25,11 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
+        if(Session["UserTypeName"].ToString()!= "Administrator" /* Session["UserType"]*/)
+        {
+            Response.Redirect("Index.aspx");
+        }
+
         if (!IsPostBack)
         {
             lblZoneH.Text = Session["Default_Zone"].ToString() + " :";

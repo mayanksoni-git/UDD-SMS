@@ -222,12 +222,12 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarWPMS" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarWPMS"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Work Plan Management</span> </a>
+                                <a class="nav-link menu-link" href="#sidebarWPMS" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarWPMS"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Work Proposal Management</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarWPMS">
                                     <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item"><a href="FormForApproval.aspx" class="nav-link" data-key="t-grid-js">Create Work Plan</a> </li>
-                                        <li class="nav-item"><a href="FormForApproval2.aspx" class="nav-link" data-key="t-grid-js">Action on  Work Plan</a> </li>
-                                        <li class="nav-item"><a href="WorkPlanReport.aspx" class="nav-link" data-key="t-grid-js">Work Plan Report</a> </li>
+                                        <li class="nav-item"><a href="FormForApproval.aspx" class="nav-link" data-key="t-grid-js">Create Work Proposal</a> </li>
+                                        <li class="nav-item"><a href="FormForApproval2.aspx" class="nav-link" data-key="t-grid-js">Action on  Work Proposal</a> </li>
+                                        <li class="nav-item"><a href="WorkPlanReport.aspx" class="nav-link" data-key="t-grid-js">Work Proposal Report</a> </li>
                                     </ul>
                                 </div>
                             </li>
@@ -267,6 +267,8 @@
                                         <li class="nav-item"><a href="RptCrematoriumDetail.aspx" class="nav-link" data-key="t-grid-js">Crematorium Detail</a> </li>
                                         <%--<li class="nav-item"><a href="LoanRelease.aspx" class="nav-link" data-key="t-grid-js">Loan Release</a> </li>--%>
                                         <li class="nav-item"><a href="LoanDeposit.aspx" class="nav-link" data-key="t-grid-js">Loan Recovery</a> </li>
+                                        <li class="nav-item"><a href="AddULBIncomeType.aspx" class="nav-link" data-key="t-grid-js">ULB Income</a> </li>
+                                        <li class="nav-item"><a href="AddExpensesType.aspx" class="nav-link" data-key="t-grid-js">ULB Expense</a> </li>
                                         <li class="nav-item"><a href="FundRecievedInULB.aspx.aspx" class="nav-link" data-key="t-grid-js">Fund Recieved in ULB</a> </li>
                                     </ul>
                                 </div>
@@ -280,6 +282,7 @@
                                         <li class="nav-item"><a href="MasterProjectDPR.aspx" class="nav-link" data-key="t-grid-js">Create Project DPR</a> </li>
                                         <li class="nav-item"><a href="MasterDPR_Upload.aspx" class="nav-link" data-key="t-list-js">Upload DPR Document</a> </li>
                                         <li class="nav-item"><a href="Report_DPR_Status_Report.aspx" class="nav-link" data-key="t-list-js">DPR Status Report</a> </li>
+                                        <li class="nav-item"><a href="CheckListForDPR.aspx" class="nav-link" data-key="t-list-js">Check List & Upload DPR</a> </li>
                                     </ul>
                                 </div>
                             </li>

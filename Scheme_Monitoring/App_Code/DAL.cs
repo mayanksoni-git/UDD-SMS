@@ -323,6 +323,74 @@ public class DAL
         }
     }
 
+    public DataTable ExecuteProcedureReturnDataTable(string statement, SqlParameter[] param)
+    {
+        using (SqlConnection conn = new SqlConnection(ConStr))
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(statement, conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                for (int i = 0; i < param.Length; i++)
+                {
+                    cmd.Parameters.Add(param[i]);
+                }
+                if (cmd.Connection.State == ConnectionState.Closed)
+                    conn.Open();
+
+                using (IDataReader dataReader = cmd.ExecuteReader())
+                {
+                    dt.Load(dataReader);
+                }
+
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+
+                return dt;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                string msg = "Error:";
+                msg += ex.Message;
+                throw new Exception(msg);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+            }
+        }
+    }
+
+    public DataSet ExecuteSelectQuery(string Sql)
+    {
+        DataSet set1 = new DataSet();
+        using (SqlConnection con = new SqlConnection(ConStr))
+        {
+            SqlCommand command1 = new SqlCommand(Sql, con);
+            if (command1.Connection.State == ConnectionState.Closed)
+            {
+                command1.Connection.Open();
+            }
+            command1.CommandTimeout = 7000;
+            SqlDataAdapter adapter1 = new SqlDataAdapter(command1);
+
+            adapter1.Fill(set1);
+        }
+        return set1;
+    }
+    public DataSet ExecuteSelectQuerywithTransaction(SqlConnection Con, string Sql, SqlTransaction trans)
+    {
+        DataSet set1 = new DataSet();
+        SqlCommand command1 = new SqlCommand(Sql, Con, trans);
+        command1.CommandTimeout = 7000;
+        SqlDataAdapter adapter1 = new SqlDataAdapter(command1);
+        adapter1.Fill(set1);
+        return set1;
+    }
+
     public string ExecuteProcedureReturnString(string procedureName, SqlParameter[] parameters)
     {
         string result = string.Empty;

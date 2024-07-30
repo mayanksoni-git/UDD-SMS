@@ -200,24 +200,7 @@
                 $('#ctl00_ContentPlaceHolder1_GrdULBFund').DataTable();
             }); 
 
-        //function ExportToExcel(type, fn, dl) {
-        //  debugger
-        //    const currentDate = new Date();
-
-        //    // Get the current date
-        //    const year = currentDate.getFullYear();
-        //    const month = currentDate.getMonth() + 1; // Months are zero-based
-        //    const day = currentDate.getDate();
-
-        //    // Format the date as desired (e.g., YYYY-MM-DD)
-        //    const formattedDate = "ULB Fund  Detail_" + `${year}-${month}-${day}`;
-
-        //    var elt = document.getElementById('ctl00_ContentPlaceHolder1_GrdULBFund');
-        //    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
-        //    return dl ?
-        //        XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
-        //        XLSX.writeFile(wb, fn || (formattedDate + "." + (type || 'xlsx')));
-        //}
+      
 
         function ExportToExcel(type, fn, dl) {
             debugger
