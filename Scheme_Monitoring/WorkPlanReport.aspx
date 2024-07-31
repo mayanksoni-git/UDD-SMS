@@ -36,7 +36,7 @@
                     var chartData = {
                         labels: ['Total', 'Pending', 'Approved', 'Rejected', 'Hold'],
                         datasets: [{
-                            label: 'Number of Work Plans',
+                            label: 'Number of Work Proposals',
                             backgroundColor: 'rgba(54, 162, 235, 0.6)',
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1,
@@ -69,13 +69,13 @@
                                 x: {
                                     title: {
                                         display: true,
-                                        text: 'Work Plan Status'
+                                        text: 'Work Proposal Status'
                                     }
                                 },
                                 y: {
                                     title: {
                                         display: true,
-                                        text: 'Number of Work Plans'
+                                        text: 'Number of Work Proposals'
                                     }
                                 }
                             }
@@ -93,7 +93,7 @@
                     var chartData = {
                         labels: [/*'Total', */'Pending', 'Approved', 'Rejected', 'Hold'],
                         datasets: [{
-                            label: 'Number of Work Plans',
+                            label: 'Number of Work Proposals',
                             backgroundColor: [
                                 /*'rgba(54, 162, 235, 0.6)',*/
                                 'rgba(255, 206, 86, 0.6)',
@@ -160,7 +160,7 @@
                     var chartData = {
                         labels: [/*'Total', */'Pending(%)', 'Approved(%)', 'Rejected(%)', 'Hold(%)'],
                         datasets: [{
-                            label: 'Percentage of Work Plans',
+                            label: 'Percentage of Work Proposals',
                             backgroundColor: [
                                 /*'rgba(54, 162, 235, 0.6)',*/
                                 'rgba(255, 206, 86, 0.6)',
@@ -229,7 +229,7 @@
                     var chartData = {
                         labels: ['Total Amount', 'Pending Amount', 'Approved Amount', 'Rejected Amount', 'Hold Amount'],
                         datasets: [{
-                            label: 'Amount of Work Plans',
+                            label: 'Amount of Work Proposals',
                             backgroundColor: 'rgba(54, 162, 235, 0.6)',
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1,
@@ -262,13 +262,13 @@
                                 x: {
                                     title: {
                                         display: true,
-                                        text: 'Work Plan Amount Status'
+                                        text: 'Work Proposals Amount Status'
                                     }
                                 },
                                 y: {
                                     title: {
                                         display: true,
-                                        text: 'Amount of Work Plans'
+                                        text: 'Amount of Work Proposals'
                                     }
                                 }
                             }
@@ -286,7 +286,7 @@
                     var chartData = {
                         labels: [/*'Total', */'Pending Amount', 'Approved Amount', 'Rejected Amount', 'Hold Amount'],
                         datasets: [{
-                            label: 'Amount of Work Plans',
+                            label: 'Amount of Work Proposals',
                             backgroundColor: [
                                 /*'rgba(54, 162, 235, 0.6)',*/
                                 'rgba(255, 206, 86, 0.6)',
@@ -461,8 +461,8 @@
                             }
                         },
                         scales: {
-                            x: { title: { display: true, text: 'Work Plan Status' } },
-                            y: { title: { display: true, text: 'Number of Work Plans' } }
+                            x: { title: { display: true, text: 'Work Proposals Status' } },
+                            y: { title: { display: true, text: 'Number of Work Proposals' } }
                         }
                     }
                 });
@@ -513,13 +513,13 @@
                     createBarChart(document.getElementById('proposalChart').getContext('2d'),
                         ['Total', 'Pending', 'Approved', 'Rejected', 'Hold'],
                         [data.totalProposals, data.pendingProposals, data.approvedProposals, data.rejectedProposals, data.holdProposals],
-                        'Number of Work Plans'
+                        'Number of Work Proposals'
                     );
 
                     createPieChart(document.getElementById('proposalPieChart').getContext('2d'),
                         ['Pending', 'Approved', 'Rejected', 'Hold'],
                         [data.pendingProposals, data.approvedProposals, data.rejectedProposals, data.holdProposals],
-                        'Number of Work Plans',
+                        'Number of Work Proposals',
                         ['rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(153, 102, 255, 0.6)'],
                         ['rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(153, 102, 255, 1)']
                     );
@@ -527,7 +527,7 @@
                     createPieChart(document.getElementById('proposalPieChartPercent').getContext('2d'),
                         ['Pending(%)', 'Approved(%)', 'Rejected(%)', 'Hold(%)'],
                         [data.pendingProposalsPercentage, data.approvedProposalsPercentage, data.rejectedProposalsPercentage, data.holdProposalsPercentage],
-                        'Percentage of Work Plans',
+                        'Percentage of Work Proposals',
                         ['rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(153, 102, 255, 0.6)'],
                         ['rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(153, 102, 255, 1)']
                     );
@@ -535,13 +535,13 @@
                     createBarChart(document.getElementById('proposalChart1').getContext('2d'),
                         ['Total Amount', 'Pending Amount', 'Approved Amount', 'Rejected Amount', 'Hold Amount'],
                         [data.TotalAmount, data.PendingProposalsAmount, data.ApprovedProposalsAmount, data.RejectProposalsAmount, data.HoldProposalsAmount],
-                        'Amount of Work Plans'
+                        'Amount of Work Proposals'
                     );
 
                     createPieChart(document.getElementById('proposalPieChart1').getContext('2d'),
                         ['Pending Amount', 'Approved Amount', 'Rejected Amount', 'Hold Amount'],
                         [data.PendingProposalsAmount, data.ApprovedProposalsAmount, data.RejectProposalsAmount, data.HoldProposalsAmount],
-                        'Amount of Work Plans',
+                        'Amount of Work Proposals',
                         ['rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(153, 102, 255, 0.6)'],
                         ['rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(153, 102, 255, 1)']
                     );
@@ -571,12 +571,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Work Plan Report</h4>
+                                    <h4 class="mb-sm-0">Work Proposal Report</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                            <li class="breadcrumb-item">Work Plan Management System</li>
-                                            <li class="breadcrumb-item active">Work Plan Report</li>
+                                            <li class="breadcrumb-item">Work Proposal Management</li>
+                                            <li class="breadcrumb-item active">Work Proposal Report</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -587,7 +587,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Work Plan Report</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Work Proposal Report</h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -653,7 +653,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Work Plan Stats</h4>
+                                    <h4 class="card-title mb-0 flex-grow-1">Work Proposal Stats</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="live-preview">
@@ -755,21 +755,21 @@
                                                             <asp:BoundField HeaderText="Zone" DataField="ZoneOfULB" />
                                                             <asp:BoundField HeaderText="Ward" DataField="Ward" />
                                                             <asp:BoundField HeaderText="Scheme" DataField="Project_Name" />
-                                                            <asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />
+                                                            <%--<asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />--%>
                                                             <asp:BoundField HeaderText="Expected Amount" DataField="ExpectedAmount" />
                                                             <asp:BoundField HeaderText="Proposer Type" DataField="ProposerType" />
-                                                            <asp:BoundField HeaderText="MP/MLA Name" DataField="MPMLAName" />
-                                                            <asp:BoundField HeaderText="Proposer Name" DataField="ProposerName" />
+                                                            <asp:BoundField HeaderText="Proposer" DataField="MPMLAName" />
+                                                            <%--<asp:BoundField HeaderText="Proposer Name" DataField="ProposerName" />--%>
                                                             <asp:BoundField HeaderText="Mobile" DataField="Mobile" />
                                                             <asp:BoundField HeaderText="Designation" DataField="Designation" />
-                                                            <asp:TemplateField HeaderText="Recommendation Letter">
+                                                            <asp:TemplateField HeaderText="Rec. Letter">
                                                                 <ItemTemplate>
-                                                                    <asp:HyperLink ID="hypRecommendationLetter" runat="server" Target="_blank" NavigateUrl='<%# Eval("RecomendationLetter") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("RecomendationLetter").ToString()) %>'>
+                                                                    <asp:HyperLink ID="hypRecommendationLetter" runat="server" Target="_blank" NavigateUrl='<%# Eval("RecomendationLetter") %>' Text="" Visible='<%# !string.IsNullOrEmpty(Eval("RecomendationLetter").ToString()) %>'>
                                                                         <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
                                                                     </asp:HyperLink>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                             <asp:BoundField HeaderText="Status" DataField="ProposalStatus" />
+                                                             <%--<asp:BoundField HeaderText="Status" DataField="ProposalStatus" />--%>
                                                             <asp:BoundField HeaderText="Added On" DataField="AddedOn" DataFormatString="{0:dd/MM/yyyy}" />
                                                         </Columns>
                                                         <EmptyDataTemplate>

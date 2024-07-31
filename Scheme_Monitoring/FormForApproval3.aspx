@@ -88,14 +88,36 @@
                                                         <asp:Label ID="lblProjectMasterValue" runat="server" Text="" CssClass="form-label"></asp:Label>
                                                     </div>
                                                 </div>
+                                                
+                                                <div class="col-xxl-3 col-md-6" runat="server" id="divSubScheme" visible="false">
+                                                    <div class="d-flex">
+                                                        <asp:Label ID="lblSubScheme" runat="server" Text="SubScheme :" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblSubSchemeValue" runat="server" Text="" CssClass="form-label"></asp:Label>
+                                                    </div>
+                                                </div>
 
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-9 col-md-6">
                                                     <div id="divWorkType" class="d-flex" runat="server">
                                                         <asp:Label ID="lblWorkType" runat="server" Text="Work Type :" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:Label ID="lblWorkTypeValue" runat="server" Text="" CssClass="form-label"></asp:Label>
-
                                                     </div>
                                                 </div>
+
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divProposalName" class="d-flex" runat="server">
+                                                        <asp:Label ID="lblProposalName" runat="server" Text="Proposal Name :" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblProposalNameValue" runat="server" Text="" CssClass="form-label"></asp:Label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xxl-6 col-md-6">
+                                                    <div id="divProposalDetail" class="d-flex" runat="server">
+                                                        <asp:Label ID="lblProposalDetail" runat="server" Text="Proposal Detail :" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblProposalDetailValue" runat="server" Text="" CssClass="form-label"></asp:Label>
+                                                    </div>
+                                                </div>
+
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div8" class="d-flex" runat="server">
@@ -107,19 +129,19 @@
                                             <br />
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 d-flex col-md-6">
-                                                    <asp:Label ID="lblRole" runat="server" Text="Proposer :" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                    <asp:Label ID="lblRole" runat="server" Text="Proposer Type :" CssClass="form-label fw-bold me-1"></asp:Label>
                                                     <asp:Label ID="lblRoleValue" runat="server" Text="" CssClass="form-label"></asp:Label>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6 d-flex" id="divMPMLA" style="display: block;" runat="server">
-                                                    <asp:Label ID="lblMPMLA" runat="server" Text="MP/MLA Name :" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                    <asp:Label ID="lblMPMLA" runat="server" Text="Proposer :" CssClass="form-label fw-bold me-1"></asp:Label>
                                                     <asp:Label ID="lblMPMLAValue" runat="server" Text="" CssClass="form-label"></asp:Label>
                                                 </div>
 
-                                                <div class="col-xxl-3 col-md-6 d-flex" id="divOthers" visible="false" runat="server">
+                                                <%--<div class="col-xxl-3 col-md-6 d-flex" id="divOthers" visible="false" runat="server">
                                                     <asp:Label ID="lblOther" runat="server" Text="Name of Proposer :" CssClass="form-label fw-bold me-1"></asp:Label>
                                                     <asp:Label ID="txtOthers" runat="server" CssClass="form-label" Enabled="false"></asp:Label>
-                                                </div>
+                                                </div>--%>
 
                                                 <div class="col-xxl-3 col-md-6 d-flex" id="divParty" style="display: block;" runat="server">
                                                     <asp:Label ID="lblParty" runat="server" Text="Political Party :" CssClass="form-label fw-bold me-1" ></asp:Label>

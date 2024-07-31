@@ -859,6 +859,8 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             reset();
             Load_WorkProposal(WorkProposalId);
+            GetWorkTypeByProposalId(WorkProposalId);
+            
             ToggleFormMode(true); // switch to update mode
         }
         else
@@ -924,15 +926,18 @@ public partial class FormForApproval : System.Web.UI.Page
             }
 
             ddlProjectMaster_SelectedIndexChanged(ddlProjectMaster, new EventArgs());
-            try
+
+            if (ddlProjectMaster.SelectedValue == "16")
             {
-                ddlWorkType.SelectedValue = dt.Rows[0]["WorkType"].ToString();
+                rblSubScheme.SelectedValue= dt.Rows[0]["SubSchemeId"].ToString();
             }
-            catch
+            else
             {
-                ddlWorkType.SelectedValue = "0";
+                rblSubScheme.SelectedIndex = -1;
             }
 
+            txtProposalName.Text = dt.Rows[0]["ProposalName"].ToString();
+            txtProposalDetail.Text = dt.Rows[0]["ProposalDetail"].ToString();
             txtExpectedAmount.Text = dt.Rows[0]["ExpectedAmount"].ToString();
 
             rblRoles.SelectedValue= dt.Rows[0]["ProposerType"].ToString();
@@ -976,12 +981,62 @@ public partial class FormForApproval : System.Web.UI.Page
             MessageBox.Show("Record with Work Proposal id = " + WorkProposalId.ToString() + " does not found please contact administrator.");
         }
     }
+    protected void GetWorkTypeByProposalId(int WorkProposalId)
+    {
+        DataTable dt = new DataTable();
+        dt = objLoan.getWorkTypeByProposal(WorkProposalId);
+
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            // Select all items in the ListBox based on DataTable values
+            foreach (DataRow row in dt.Rows)
+            {
+                string valueToSelect = row["ProjectType_Id"].ToString();
+                ListItem item = ddlWorkType.Items.FindByValue(valueToSelect);
+                if (item != null)
+                {
+                    item.Selected = true;
+                }
+            }
+        }
+        else
+        {
+            foreach (ListItem item in ddlWorkType.Items)
+            {
+                item.Selected = false;
+            }
+        }
+    }
+
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
         if (!ValidateFields())
         {
             return;
         }
+
+        // Create List of Selected Project Work Type
+        List<WorkProposal_ProjectType> objList = new List<WorkProposal_ProjectType>();
+        foreach (ListItem listItem in ddlWorkType.Items)
+        {
+            if (listItem.Selected)
+            {
+                WorkProposal_ProjectType objPT = new WorkProposal_ProjectType();
+                objPT.AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
+                objPT.ProjectType_Id = Convert.ToInt32(listItem.Value);
+                objPT.Status = 1;
+                objList.Add(objPT);
+            }
+        }
+
+        // Check if Project Work Type is empty or not and alert
+        if (objList == null || objList.Count == 0)
+        {
+            MessageBox.Show("Please Provide Work Type!");
+            ddlWorkType.Focus();
+            return;
+        }
+
         string pdfLocation = UploadPDF();
         if (string.IsNullOrEmpty(pdfLocation))
         {
@@ -991,24 +1046,120 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             if (!PDFUploader.DeletePDF(hfPDFUrl.Value))
             {
-                MessageBox.Show("While updating this data, an new recomendation letter was uploaded but failed to be deleted existing recomendation letter.");
+                MessageBox.Show("While updating this data, a new recommendation letter was uploaded but failed to delete the existing recommendation letter.");
             }
         }
+
         int WorkProposalId = Convert.ToInt32(hfWorkProposalId.Value.ToString());
         tbl_WorkProposal obj = CreateWorkProposalObject(pdfLocation);
-        int result = objLoan.UpdateWorkProposal(obj, WorkProposalId);
-        if (result > 0)
+
+        string ConStr = ConfigurationManager.AppSettings.Get("conn").ToString();
+        using (SqlConnection connection = new SqlConnection(ConStr))
         {
-            MessageBox.Show("Record updated successfully!");
-            reset();
-            divData.Visible = false;
-        }
-        else
-        {
-            MessageBox.Show("Something went wrong please try again or contact administrator!");
-            return;
+            connection.Open();
+            SqlTransaction trans = null;
+
+            try
+            {
+                // Begin transaction
+                trans = connection.BeginTransaction();
+
+                // Set transaction for commands
+                SqlCommand command = connection.CreateCommand();
+                command.Transaction = trans;
+
+                // Update WorkProposal
+                int result = objLoan.UpdateWorkProposal(obj, WorkProposalId);
+                if (result > 0)
+                {
+                    // Delete existing Project Types
+                    objLoan.DeleteWorkProposalProjectTypes(WorkProposalId, trans, connection);
+
+                    // Insert new Project Types
+                    foreach (var projectType in objList)
+                    {
+                        projectType.Proposal_Id = WorkProposalId;
+                        objLoan.Insert_WorkProposal_ProjectType(projectType, trans, connection);
+                    }
+
+                    // Commit transaction
+                    trans.Commit();
+                    MessageBox.Show("Record updated successfully!");
+                    reset();
+                    divData.Visible = false;
+                }
+                else
+                {
+                    // Rollback transaction
+                    trans.Rollback();
+                    MessageBox.Show("Something went wrong, please try again or contact the administrator!");
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                MessageBox.Show("Error: " + ex.Message);
+
+                // Rollback transaction on error
+                if (trans != null)
+                {
+                    try
+                    {
+                        trans.Rollback();
+                    }
+                    catch (Exception rollbackEx)
+                    {
+                        MessageBox.Show("Rollback error: " + rollbackEx.Message);
+                    }
+                }
+            }
+            finally
+            {
+                // Ensure the connection is closed and resources are released
+                if (trans != null)
+                {
+                    //trans.Dispose();
+                }
+                connection.Close();
+            }
         }
     }
+
+
+    //protected void btnUpdate_Click(object sender, EventArgs e)
+    //{
+    //    if (!ValidateFields())
+    //    {
+    //        return;
+    //    }
+    //    string pdfLocation = UploadPDF();
+    //    if (string.IsNullOrEmpty(pdfLocation))
+    //    {
+    //        pdfLocation = hfPDFUrl.Value;
+    //    }
+    //    else
+    //    {
+    //        if (!PDFUploader.DeletePDF(hfPDFUrl.Value))
+    //        {
+    //            MessageBox.Show("While updating this data, an new recomendation letter was uploaded but failed to be deleted existing recomendation letter.");
+    //        }
+    //    }
+    //    int WorkProposalId = Convert.ToInt32(hfWorkProposalId.Value.ToString());
+    //    tbl_WorkProposal obj = CreateWorkProposalObject(pdfLocation);
+    //    int result = objLoan.UpdateWorkProposal(obj, WorkProposalId);
+    //    if (result > 0)
+    //    {
+    //        MessageBox.Show("Record updated successfully!");
+    //        reset();
+    //        divData.Visible = false;
+    //    }
+    //    else
+    //    {
+    //        MessageBox.Show("Something went wrong please try again or contact administrator!");
+    //        return;
+    //    }
+    //}
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         reset();

@@ -87,7 +87,7 @@ public partial class FormForApproval : System.Web.UI.Page
        
         lblConstituencyName.Text = "";
         lblParyOfMPMLA.Text = "";
-        txtOthers.Text = "";
+        //txtOthers.Text = "";
         txtMobileNo.Text = "";
         txtDesignation.Text = "";
         hypRecommendationLetterEdit.Visible = false;
@@ -109,34 +109,37 @@ public partial class FormForApproval : System.Web.UI.Page
             lblDivisionValue.Text = dt.Rows[0]["Division_Name"].ToString();
             txtZoneOfULB.Text = dt.Rows[0]["ZoneOfULB"].ToString(); ;
             txtWard.Text = dt.Rows[0]["Ward"].ToString(); ;
-            lblProjectMasterValue.Text = dt.Rows[0]["Project_Name"].ToString();
+            lblProjectMasterValue.Text = dt.Rows[0]["ProjectType_Name"].ToString();
+            lblSubSchemeValue.Text = dt.Rows[0]["SubScheme"].ToString();
             lblWorkTypeValue.Text = dt.Rows[0]["ProjectType_Name"].ToString();
+            lblProposalNameValue.Text = dt.Rows[0]["ProposalName"].ToString();
+            lblProposalDetailValue.Text = dt.Rows[0]["ProposalDetail"].ToString();
             txtExpectedAmount.Text = dt.Rows[0]["ExpectedAmount"].ToString();
             lblRoleValue.Text = dt.Rows[0]["ProposerType"].ToString();
-            if (dt.Rows[0]["ProposerType"].ToString() == "MP" || dt.Rows[0]["ProposerType"].ToString() == "MLA")
-            {
-                txtOthers.Text = "";
+            //if (dt.Rows[0]["ProposerType"].ToString() == "MP" || dt.Rows[0]["ProposerType"].ToString() == "MLA")
+            //{
+                //txtOthers.Text = "";
                 lblMPMLAValue.Text = dt.Rows[0]["MPMLAName"].ToString();
                 lblParyOfMPMLA.Text = dt.Rows[0]["MPMLAParty"].ToString();
                 lblConstituencyName.Text = dt.Rows[0]["MPMLAConstituency"].ToString();
 
-                divOthers.Visible = false;
+                //divOthers.Visible = false;
                 divMPMLA.Visible = true;
                 divParty.Visible = true;
                 divConstituency.Visible = true;
-            }
-            else
-            {
-                txtOthers.Text = dt.Rows[0]["ProposerName"].ToString();
-                lblMPMLAValue.Text = "";
-                lblParyOfMPMLA.Text = "";
-                lblConstituencyName.Text = "";
+            //}
+            //else
+            //{
+            //    txtOthers.Text = dt.Rows[0]["ProposerName"].ToString();
+            //    lblMPMLAValue.Text = "";
+            //    lblParyOfMPMLA.Text = "";
+            //    lblConstituencyName.Text = "";
 
-                divOthers.Visible = true;
-                divMPMLA.Visible = false;
-                divParty.Visible = false;
-                divConstituency.Visible = false;
-            }
+            //    divOthers.Visible = true;
+            //    divMPMLA.Visible = false;
+            //    divParty.Visible = false;
+            //    divConstituency.Visible = false;
+            //}
             txtMobileNo.Text = dt.Rows[0]["Mobile"].ToString();
             txtDesignation.Text = dt.Rows[0]["Designation"].ToString();
             

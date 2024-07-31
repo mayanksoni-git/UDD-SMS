@@ -343,7 +343,7 @@ public partial class WorkPlanReport : System.Web.UI.Page
     {
         Response.Clear();
         Response.Buffer = true;
-        Response.AddHeader("content-disposition", "attachment;filename=GridViewExport.xls");
+        Response.AddHeader("content-disposition", "attachment;filename=WorkProposals.xls");
         Response.Charset = "";
         Response.ContentType = "application/vnd.ms-excel";
         using (StringWriter sw = new StringWriter())
@@ -358,13 +358,13 @@ public partial class WorkPlanReport : System.Web.UI.Page
 
             gvRecords.HeaderRow.Cells[0].Visible = false; // Work Proposal Id
             gvRecords.HeaderRow.Cells[2].Visible = false; // Edit
-            gvRecords.HeaderRow.Cells[18].Visible = false; // Recommendation Letter
+            gvRecords.HeaderRow.Cells[14].Visible = false; // Recommendation Letter
 
             foreach (GridViewRow row in gvRecords.Rows)
             {
                 row.Cells[0].Visible = false; // Work Proposal Id
                 row.Cells[2].Visible = false; // Edit
-                row.Cells[18].Visible = false; // Recommendation Letter
+                row.Cells[12].Visible = false; // Recommendation Letter
             }
 
             gvRecords.HeaderRow.BackColor = System.Drawing.Color.White;

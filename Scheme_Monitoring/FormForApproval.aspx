@@ -269,19 +269,19 @@
                                                             </asp:TemplateField>
                                                             <asp:BoundField HeaderText="Proposal Code" DataField="ProposalCode" />
                                                             <asp:BoundField HeaderText="Financial Year" DataField="FinYear" />
-                                                            <asp:BoundField HeaderText="State" DataField="Zone_Name" />
+                                                            <%--<asp:BoundField HeaderText="State" DataField="Zone_Name" />--%>
                                                             <asp:BoundField HeaderText="District" DataField="Circle_Name" />
                                                             <asp:BoundField HeaderText="ULB" DataField="Division_Name" />
-                                                            <asp:BoundField HeaderText="Zone" DataField="ZoneOfULB" />
-                                                            <asp:BoundField HeaderText="Ward" DataField="Ward" />
+                                                            <%--<asp:BoundField HeaderText="Zone" DataField="ZoneOfULB" />--%>
+                                                            <%--<asp:BoundField HeaderText="Ward" DataField="Ward" />--%>
                                                             <asp:BoundField HeaderText="Scheme" DataField="Project_Name" />
-                                                            <asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />
+                                                            <%--<asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />--%>
                                                             <asp:BoundField HeaderText="Expected Amount" DataField="ExpectedAmount" />
                                                             <asp:BoundField HeaderText="Proposer Type" DataField="ProposerType" />
-                                                            <asp:BoundField HeaderText="MP/MLA Name" DataField="MPMLAName" />
-                                                            <asp:BoundField HeaderText="Proposer Name" DataField="ProposerName" />
+                                                            <asp:BoundField HeaderText="Proposer" DataField="MPMLAName" />
+                                                            <%--<asp:BoundField HeaderText="Proposer Name" DataField="ProposerName" />--%>
                                                             <asp:BoundField HeaderText="Mobile" DataField="Mobile" />
-                                                            <asp:BoundField HeaderText="Designation" DataField="Designation" />
+                                                            <%--<asp:BoundField HeaderText="Designation" DataField="Designation" />--%>
                                                             <asp:TemplateField HeaderText="Recommendation Letter">
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="hypRecommendationLetter" runat="server" Target="_blank" NavigateUrl='<%# Eval("RecomendationLetter") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("RecomendationLetter").ToString()) %>'>
@@ -316,7 +316,7 @@
                 <Triggers>
                     <asp:PostBackTrigger ControlID="btnSave" />
                     <asp:PostBackTrigger ControlID="btnExportToExcel" />
-                    <asp:PostBackTrigger ControlID="btnSearch" />
+                    <%--<asp:PostBackTrigger ControlID="btnSearch" />--%>
                     <asp:PostBackTrigger ControlID="btnUpdate" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />

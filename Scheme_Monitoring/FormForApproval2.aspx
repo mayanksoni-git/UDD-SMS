@@ -14,12 +14,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Work Plan</h4>
+                                    <h4 class="mb-sm-0">Action on Work Proposal</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                            <li class="breadcrumb-item">Work Plan Management System</li>
-                                            <li class="breadcrumb-item active">Work Plan</li>
+                                            <li class="breadcrumb-item">Work Proposal Management</li>
+                                            <li class="breadcrumb-item active">Action on Work Proposal</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -30,7 +30,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Search  Work Plan</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Search  Work Proposals</h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -82,7 +82,7 @@
                                                 </div>
 
                                                 <div class="col-xxl-2 col-md-6" id="divParty">
-                                                    <asp:Label ID="lblStatus" runat="server" Text=" Work Plan Status*" CssClass="form-label"></asp:Label>
+                                                    <asp:Label ID="lblStatus" runat="server" Text=" Work Proposal Status*" CssClass="form-label"></asp:Label>
                                                     <asp:DropDownList ID="ddlProposalStatus" runat="server" CssClass="form-select">
                                                         <asp:ListItem Text="--Select Status--" Value="-1"></asp:ListItem>
                                                         <asp:ListItem Text="Pending" Value="0"></asp:ListItem>
@@ -209,7 +209,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Work Plan Detail</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Work Proposals Detail</h4>
                                  
                                         <a href="#" id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="filter-btn" style="float:right"><i class="icon-download"></i> Export To Excel</a>
                                     </div>
@@ -242,7 +242,7 @@
                                                                     <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>--%>
-                                                            <asp:BoundField HeaderText="Work Plan Proposal Code" DataField="ProposalCode" />
+                                                            <asp:BoundField HeaderText="Proposal Code" DataField="ProposalCode" />
                                                             <asp:BoundField HeaderText="Financial Year" DataField="FinYear" />
                                                             <%--<asp:BoundField HeaderText="State" DataField="Zone_Name" />--%>
                                                             <asp:BoundField HeaderText="District" DataField="Circle_Name" />
@@ -255,9 +255,9 @@
                                                             <%--<asp:BoundField HeaderText="Sanctioned Amount in Last Year" DataField="FY1" />--%>
 
                                                             <asp:BoundField HeaderText="Expected Amount" DataField="ExpectedAmount" />
-                                                            <asp:BoundField HeaderText="Work Plan Proposer Type" DataField="ProposerType" />
-                                                            <asp:BoundField HeaderText="MP/MLA Name" DataField="MPMLAName" />
-                                                            <asp:BoundField HeaderText="Work Plan Proposer Name" DataField="ProposerName" />
+                                                            <asp:BoundField HeaderText="Proposer Type" DataField="ProposerType" />
+                                                            <asp:BoundField HeaderText="Proposer" DataField="MPMLAName" />
+                                                            <%--<asp:BoundField HeaderText="Work Plan Proposer Name" DataField="ProposerName" />--%>
                                                             <asp:BoundField HeaderText="Mobile" DataField="Mobile" />
                                                             <asp:BoundField HeaderText="Designation" DataField="Designation" />
                                                             <asp:TemplateField HeaderText="Recommendation Letter">
@@ -365,7 +365,7 @@
             const day = currentDate.getDate();
 
             // Format the date as desired (e.g., YYYY-MM-DD)
-            const formattedDate = "Work Plan Detail_" + `${year}-${month}-${day}`;
+            const formattedDate = "Work Proposal Detail_" + `${year}-${month}-${day}`;
 
             var elt = document.getElementById('ctl00_ContentPlaceHolder1_gvRecords');
             var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });

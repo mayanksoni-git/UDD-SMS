@@ -437,6 +437,23 @@ public class Loan
         }
     }
 
+    public DataTable getWorkTypeByProposal(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("sp_GetWorkTypeByProposal", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     public DataTable getWorkPlanWiseForChartBySearch(tbl_WorkProposal objSearch)
     {
         try
@@ -494,7 +511,7 @@ public class Loan
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[17];
+            SqlParameter[] param = new SqlParameter[20];
 
             param[0] = new SqlParameter("@FY", obj.FY);
             param[1] = new SqlParameter("@Zone", obj.Zone);
@@ -513,6 +530,9 @@ public class Loan
             param[14] = new SqlParameter("@RecomendationLetter", obj.RecomendationLetter);
             param[15] = new SqlParameter("@AddedBy", obj.AddedBy);
             param[16] = new SqlParameter("@WorkProposalId", WorkProposalId);
+            param[17] = new SqlParameter("@ProposalName", obj.ProposalName);
+            param[18] = new SqlParameter("@ProposalDetail", obj.ProposalDetail);
+            param[19] = new SqlParameter("@SubSchemeId", obj.SubSchemeId);
 
             return objDAL.ExecuteProcedure("sp_UpdateWorkProposal", param);
         }
@@ -522,7 +542,7 @@ public class Loan
         }
     }
 
-    public int ActionOnWorkProposal(string Remark, int Status, DateTime ActionDate,  int WorkProposalId, int UpdatedBy)
+    public int ActionOnWorkProposal(string Remark, int Status, DateTime ActionDate,  int WorkProposalId, int ActionTakenBy)
     {
         try
         {
@@ -532,7 +552,7 @@ public class Loan
             param[1] = new SqlParameter("@Status", Status);
             param[2] = new SqlParameter("@ActionDate", ActionDate);
             param[3] = new SqlParameter("@WorkProposalId", WorkProposalId);
-            param[4] = new SqlParameter("@UpdatedBy", UpdatedBy);
+            param[4] = new SqlParameter("@ActionBy", ActionTakenBy);
 
             return objDAL.ExecuteProcedure("sp_UpdateWorkProposalForAction", param);
         }
@@ -560,9 +580,18 @@ public class Loan
             return "Error executing SQL statement: "+ ex.Message;
         }
     }
+
+    public void DeleteWorkProposalProjectTypes(int workProposalId, SqlTransaction trans, SqlConnection connection)
+    {
+        using (SqlCommand command = new SqlCommand("DELETE FROM WorkProposal_ProjectType WHERE Proposal_Id = @Proposal_Id", connection, trans))
+        {
+            command.Parameters.AddWithValue("@Proposal_Id", workProposalId);
+            command.ExecuteNonQuery();
+        }
+    }
     #endregion
 
-    #region
+    #region Decision Making Page
     public DataTable getFYWiseData(int WorkProposalId)
     {
         try
