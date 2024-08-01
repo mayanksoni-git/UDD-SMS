@@ -629,6 +629,24 @@ public class Loan
             throw new Exception(ex.Message);
         }
     }
+
+    public DataTable getDistrictWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("SpDistrictWiseSchemeAmountReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     public DataTable getWorkPlanWiseData(int WorkProposalId)
     {
         try

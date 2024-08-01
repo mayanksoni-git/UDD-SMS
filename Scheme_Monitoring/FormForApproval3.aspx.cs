@@ -29,7 +29,7 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
-
+        hfWorkProposalId.Value = Request.QueryString["WorkProposalId"].ToString();
         if (!IsPostBack)
         {
             lblZoneH.Text = Session["Default_Zone"].ToString() + " :";
@@ -39,7 +39,7 @@ public partial class FormForApproval : System.Web.UI.Page
             {
                 int WorkProposalId = Convert.ToInt32(Request.QueryString["WorkProposalId"].ToString());
                 WorkProposalIds.Value = WorkProposalId.ToString();
-
+                hfWorkProposalId.Value = Request.QueryString["WorkProposalId"].ToString();
                 Load_WorkProposal(WorkProposalId);
             }
             
@@ -127,7 +127,7 @@ public partial class FormForApproval : System.Web.UI.Page
             }
             else
             {
-                txtOthers.Text = dt.Rows[0]["ProposerName"].ToString();
+                txtOthers.Text = dt.Rows[0]["MPMLAName"].ToString();
                 lblMPMLAValue.Text = "";
                 lblParyOfMPMLA.Text = "";
                 lblConstituencyName.Text = "";
@@ -206,6 +206,7 @@ public partial class FormForApproval : System.Web.UI.Page
         divMLAWise.Visible = false;
         divDivisionWise.Visible = false;
         divWorkPlanWise.Visible = false;
+        divDistrictWise.Visible = false;
         div.Visible = true;
         div.Focus();
     }
@@ -221,7 +222,11 @@ public partial class FormForApproval : System.Web.UI.Page
         LoadFYGrid(Convert.ToInt16(hfWorkProposalId.Value));
     }
 
-
+    protected void GrdDistrictWise_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        GrdDistrictWise.PageIndex = e.NewPageIndex;
+        LoadDistrictGrid(Convert.ToInt16(hfWorkProposalId.Value));
+    }
     protected void btnMPWise_Click(object sender, EventArgs e)
     {
         LoadMPGrid(Convert.ToInt16(hfWorkProposalId.Value));
@@ -243,7 +248,10 @@ public partial class FormForApproval : System.Web.UI.Page
         LoadMLAGrid(Convert.ToInt16(hfWorkProposalId.Value));
     }
 
-
+    protected void BtnDistrictWise_Click(object sender, EventArgs e)
+    {
+        LoadDistrictGrid(Convert.ToInt16(hfWorkProposalId.Value));
+    }
     protected void btnDivisionWise_Click(object sender, EventArgs e)
     {
         LoadDivisionGrid(Convert.ToInt16(hfWorkProposalId.Value));
@@ -333,6 +341,29 @@ public partial class FormForApproval : System.Web.UI.Page
             MessageBox.Show("No Records Found");
         }
     }
+
+    private void LoadDistrictGrid(int WorkProposalId)
+    {
+        DataTable dt = new DataTable();
+        dt = objLoan.getDistrictWiseData(WorkProposalId);
+
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            GrdDistrictWise.DataSource = dt;
+            GrdDistrictWise.DataBind();
+            decimal TotalSactionedAmount = dt.Compute("Sum(total_amount)", "").ToString().ToDecimal();
+            Label lblTotalInstallmentAmount = (Label)GrdDistrictWise.FooterRow.FindControl("lblTotalSactionedAmountOfDistrict");
+            lblTotalInstallmentAmount.Text = TotalSactionedAmount.ToString("0.00");
+            ToggleDiv(divDistrictWise);
+        }
+        else
+        {
+            gridDivisionWise.DataSource = null;
+            gridDivisionWise.DataBind();
+            MessageBox.Show("No Records Found");
+        }
+    }
+
     private void LoadDivisionGrid(int WorkProposalId)
     {
         DataTable dt = new DataTable();
@@ -504,6 +535,10 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             type = "MP";
         }
+        else if (e.CommandName == "Action3")
+        {
+            type = "District";
+        }
         else
         {
             type = "Division";
@@ -528,6 +563,12 @@ public partial class FormForApproval : System.Web.UI.Page
                 {
 
                     MPMLAName.InnerText = "MP Name : " + dt.Rows[0]["MPName"].ToString();
+
+                }
+                else if (e.CommandName == "Action3")
+                {
+
+                    MPMLAName.InnerText = "District : " + dt.Rows[0]["DistName"].ToString();
 
                 }
                 else
@@ -565,6 +606,10 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             type = "MP";
         }
+        else if (e.CommandName == "Action3")
+        {
+            type = "DistrictWise";
+        }
         else
         {
             type = "Division";
@@ -588,6 +633,12 @@ public partial class FormForApproval : System.Web.UI.Page
                 {
 
                     MPMLAName.InnerText = "MP Name : " + dt.Rows[0]["MPName"].ToString();
+
+                }
+                else if (e.CommandName == "Action3")
+                {
+
+                    MPMLAName.InnerText = "District : " + dt.Rows[0]["DistName"].ToString();
 
                 }
                 else
@@ -662,6 +713,10 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             type = "MP";
         }
+        else if (e.CommandName == "Action3")
+        {
+            type = "District";
+        }
         else
         {
             type = "Division";
@@ -687,6 +742,13 @@ public partial class FormForApproval : System.Web.UI.Page
                     MPMLAName.InnerText = "MP Name : " + dt.Rows[0]["MPName"].ToString();
 
                 }
+                else if (e.CommandName == "Action3")
+                {
+
+                    MPMLAName.InnerText = "District : " + dt.Rows[0]["DistName"].ToString();
+
+                }
+
                 else
                 {
                     MPMLAName.InnerText = "Division : " + dt.Rows[0]["DivName"].ToString();
@@ -796,10 +858,15 @@ public partial class FormForApproval : System.Web.UI.Page
             ExcelName = "DivisionWiseDataOf_" + DateTime.Now;
             count = 4;
         }
+        else if (text == "Export to Excel Of District Wise")
+        {
+            ExcelName = "DistrictWiseDataOf_" + DateTime.Now;
+            count = 5;
+        }
         else
         {
             ExcelName = "WorkPlanWiseDataOf_" + DateTime.Now;
-            count = 5;
+            count = 6;
 
         }
         Response.AddHeader("content-disposition", "attachment;filename="+ExcelName+".xls");
@@ -876,7 +943,22 @@ public partial class FormForApproval : System.Web.UI.Page
                     ReplaceButtonsWithText(gridDivisionWise);
                     gridDivisionWise.RenderControl(hw);
                 }
-                if (count == 5)
+                if (count ==5)
+                {
+                    GrdDistrictWise.AllowPaging = false;
+                    dt = objLoan.getDistrictWiseData(WorkProposalID);
+                    bool originalShowFooter = GrdDistrictWise.ShowFooter;
+                    GrdDistrictWise.ShowFooter = false;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        GrdDistrictWise.DataSource = dt;
+                        GrdDistrictWise.DataBind();
+                    }
+                    // Replace buttons with their text
+                    ReplaceButtonsWithText(GrdDistrictWise);
+                    GrdDistrictWise.RenderControl(hw);
+                }
+                if (count == 6)
                 {
                     gridWorkPlanWise.AllowPaging = false;
                     dt = objLoan.getWorkPlanWiseData(WorkProposalID);
@@ -936,4 +1018,8 @@ public partial class FormForApproval : System.Web.UI.Page
         // Confirms that an HtmlForm control is rendered
     }
 
+
+
+
+ 
 }
