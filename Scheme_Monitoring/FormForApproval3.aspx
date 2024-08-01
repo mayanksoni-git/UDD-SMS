@@ -3,7 +3,10 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
+    <asp:HiddenField ID="HiddenField1" runat="server" />
     <asp:HiddenField ID="WorkProposalIds" runat="server" />
+    <asp:HiddenField ID="hfWorkProposalId" runat="server" />
+    
     <div class="main-content">
         <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
@@ -184,7 +187,6 @@
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
                                                         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-                                                        <asp:HiddenField ID="hfWorkProposalId" runat="server" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -265,6 +267,7 @@
                                                 <asp:Button ID="btnFYWise" Text="Financial Year Wise" OnClick="btnFYWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
                                                 <asp:Button ID="btnMPWise" Text="MP Wise" OnClick="btnMPWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
                                                 <asp:Button ID="btnMLAWise" Text="MLA Wise" OnClick="btnMLAWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
+                                                <asp:Button ID="BtnDistrictWise" Text="District Wise" OnClick="BtnDistrictWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
                                                 <asp:Button ID="btnRegionWise" Text="Division Wise" OnClick="btnDivisionWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
                                                 <asp:Button ID="btnProjectWise" OnClick="btnWorkPlanWise_Click" Text="Work Plan Wise" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
                                                </div>
@@ -480,6 +483,62 @@
                                                         </EmptyDataTemplate>
                                                     </asp:GridView>
                                                 </div>
+
+                                                 <div runat="server" id="divDistrictWise" class="tblheader" visible="false" style="overflow: auto">
+                                                   
+                                                      <div class="row">
+                                                    <div class="col-lg-10">  
+                                                    <h3>District Wise Data</h3>
+                                                        </div>
+                                                     <div class="col-lg-2"> <asp:Button ID="Button6" runat="server" Text="Export to Excel Of District Wise"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
+                                                     </div>
+
+                                                    <asp:GridView ID="GrdDistrictWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true" OnPageIndexChanging="GrdDistrictWise_PageIndexChanging" PageSize="20">
+                                                        <Columns>
+                                                            <asp:TemplateField HeaderText="Sr. No.">
+                                                                <ItemTemplate>
+                                                                    <%# Container.DataItemIndex + 1 %>
+                                                                   
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField HeaderText="District Name" DataField="DistName" />
+                                                          
+                                                             <asp:TemplateField HeaderText="No of ULB">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction3" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Action3" OnCommand="GetULBWiseData"  CommandArgument='<%# Eval("DistID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+
+                                                           
+                                                           <asp:TemplateField HeaderText="No of Financial year">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction7" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action3" OnCommand="GetYearWiseData"  CommandArgument='<%# Eval("DistID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lblTotalSactionedAmounttextOfDistrict" Text="Total Sanctioned Amount" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            
+                                                            <asp:TemplateField HeaderText="Total Sactioned Amount (In Lacs)">
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="btnAction6" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action3" OnCommand="GetAmountWiseData"  CommandArgument='<%# Eval("DistID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                </ItemTemplate>
+
+                                                                 <FooterTemplate>
+                                                                    <asp:Label ID="lblTotalSactionedAmountOfDistrict" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField HeaderText="Percent b/w District" DataField="percentage_of_total_amount" />
+                                                        </Columns>
+                                                        <EmptyDataTemplate>
+                                                            <tr>
+                                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                            </tr>
+                                                        </EmptyDataTemplate>
+                                                    </asp:GridView>
+                                                </div>
+
                                                 <div runat="server" id="divWorkPlanWise" class="tblheader" visible="false" style="overflow: auto">
                                                    
                                                     <div class="row">
