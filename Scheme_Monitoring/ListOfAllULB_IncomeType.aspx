@@ -90,14 +90,18 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">List Of ULB Income Type</h4>
-                                        <a href="#" id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="filter-btn" style="float:right"><i class="icon-download"></i> Export To Excel</a>
+                                        <%--<a href="#" id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="filter-btn" style="float:right"><i class="icon-download"></i> Export To Excel</a>--%>
                                         
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
                                         <div class="live-preview">
-                                            <div class="row gy-4">
-                                                  <asp:GridView runat="server" ID="GrdULBFund" CssClass="display table table-bordered" AutoGenerateColumns="False">
+                                            <div class="row gy-12">
+                                                 <div class="clearfix" id="dtOptions" runat="server">
+                                                        <div class="pull-right tableTools-container"></div>
+                                                    </div>
+                                                 <div style="overflow: auto">
+                                                  <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>
@@ -128,6 +132,7 @@
                                                         </tr>
                                                     </EmptyDataTemplate>
                                                 </asp:GridView>
+                                            </div>
                                             </div>
                                             
                                            

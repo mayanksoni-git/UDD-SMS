@@ -18,7 +18,7 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                            <%--<li class="breadcrumb-item">Work Plan Management System</li>--%>
+                                            <li class="breadcrumb-item">MIS</li>
                                             <li class="breadcrumb-item active">ULB Fund</li>
                                         </ol>
                                     </div>
@@ -111,8 +111,7 @@
                     <asp:PostBackTrigger ControlID="ddlDivision" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlZone" />
-                    <asp:PostBackTrigger ControlID="exportToExcel" />
-
+                    
                 </Triggers>
             </asp:UpdatePanel>
              <div class="container-fluid">
@@ -121,14 +120,17 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">ULB Fund</h4>
-                                        <a href="#" id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="filter-btn" style="float:right"><i class="icon-download"></i> Export To Excel</a>
-                                        
+                                      
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
                                         <div class="live-preview">
-                                            <div class="row gy-4">
-                                                <asp:GridView runat="server" ID="GrdULBFund" CssClass="display table table-bordered" AutoGenerateColumns="False">
+                                            <div class="row gy-12">
+                                                   <div class="clearfix" id="dtOptions" runat="server">
+                                                        <div class="pull-right tableTools-container"></div>
+                                                    </div>
+                                                 <div style="overflow: auto">
+                                                <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"  AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>
@@ -165,6 +167,7 @@
                                                     </EmptyDataTemplate>
                                                 </asp:GridView>
                                             </div>
+                                         </div>
                                         </div>
                                     </div>
                                 </div>

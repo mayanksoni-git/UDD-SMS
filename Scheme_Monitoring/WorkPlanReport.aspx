@@ -720,7 +720,7 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Work Proposal Detail</h4>
-                                        <asp:Button ID="btnExportToExcel" runat="server" Text="Export to Excel" OnClick="btnExportToExcel_Click" CssClass="btn btn-primary" />
+                                        <%--<asp:Button ID="btnExportToExcel" runat="server" Text="Export to Excel" OnClick="btnExportToExcel_Click" CssClass="btn btn-primary" />--%>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -734,8 +734,7 @@
                                                 </div>
                                                 <!-- div.dataTables_borderWrap -->
                                                 <div style="overflow: auto">
-                                                    <asp:GridView ID="gvRecords" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
-                                                        OnPageIndexChanging="OnPageIndexChanging" PageSize="10">
+                                                    <asp:GridView  ID="grdPost" runat="server" CssClass="display table table-bordered"  AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                         <Columns>
                                                             <asp:BoundField DataField="WorkProposalId" HeaderText="Work Proposal Id">
                                                                 <HeaderStyle CssClass="displayStyle" />
@@ -791,7 +790,7 @@
 
                 </ContentTemplate>
                 <Triggers>
-                    <asp:PostBackTrigger ControlID="btnExportToExcel" />
+                    <%--<asp:PostBackTrigger ControlID="btnExportToExcel" />--%>
                     <asp:PostBackTrigger ControlID="btnSearch" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />

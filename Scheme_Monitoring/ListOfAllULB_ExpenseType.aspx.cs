@@ -29,7 +29,7 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
             //get_tbl_ULBIncomeType();
             get_tbl_Zone();
             get_tbl_Project();
-            exportToExcel.Visible = false;
+            //exportToExcel.Visible = false;
             get_tbl_FinancialYear();
 
 
@@ -107,13 +107,13 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
         ds = (new DataLayer()).get_tbl_ULBIncomeType();
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
-            GrdULBFund.DataSource = ds.Tables[0];
-            GrdULBFund.DataBind();
+            grdPost.DataSource = ds.Tables[0];
+            grdPost.DataBind();
         }
         else
         {
-            GrdULBFund.DataSource = null;
-            GrdULBFund.DataBind();
+            grdPost.DataSource = null;
+            grdPost.DataBind();
         }
     }
 
@@ -202,19 +202,27 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
         // );
         DataTable dt = new DataTable();
         dt = objLoan.GetULBTbl_ULBExpensesdata(ddlDivision.SelectedValue, ddlFY.SelectedValue);
-        GrdULBFund.DataSource = dt;
-        GrdULBFund.DataBind();
-        if (dt != null && dt.Rows.Count > 0)
+        grdPost.DataSource = dt;
+        grdPost.DataBind();
+      
+    }
+    protected void grdPost_PreRender(object sender, EventArgs e)
+    {
+        GridView gv = (GridView)sender;
+        if (gv.Rows.Count > 0)
         {
-            exportToExcel.Visible = true;
+            //This replaces <td> with <th> and adds the scope attribute
+            gv.UseAccessibleHeader = true;
         }
-        else
+        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
         {
-            exportToExcel.Visible = false;
-
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        if (gv.ShowFooter == true && gv.Rows.Count > 0)
+        {
+            gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
     }
-
     public bool ValidateFields()
     {
 

@@ -29,6 +29,10 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Create DPR </h4>
+                                        </div>
+
                                         <div class="card-body">
                                             <div class="live-preview">
                                                 <div class="row gy-4">
@@ -36,25 +40,25 @@
                                                         <div>
                                                             <%--<label class="control-label no-padding-right">Scheme* </label>--%>
                                                             <asp:Label ID="lblScheme" runat="server" Text="Scheme*" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectMaster_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectMaster_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="divCircle" runat="server">
                                                             <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div id="divDivision" runat="server">
                                                             <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
@@ -80,7 +84,7 @@
                                                         <div>
                                                             <%--<label class="control-label no-padding-right">Project Type* </label>--%>
                                                             <asp:Label ID="lblProjectType" runat="server" Text="Project Type*" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
@@ -111,10 +115,13 @@
                                                             </asp:CheckBoxList>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xxl-3 col-md-6">
+
+
+                                                      <div class="col-xxl-11 col-md-11 flex-grow-1"></div>
+                                                    <div class="col-xxl-1 col-md-6 flex-grow-1">
                                                         <div>
                                                             <br />
-                                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -186,8 +186,8 @@ public partial class WorkPlanReport : System.Web.UI.Page
         ddlCircle.SelectedValue = "0";
         ddlDivision.Items.Clear();
         ddlProjectMaster.SelectedValue = "0";
-        gvRecords.DataSource = null;
-        gvRecords.DataBind();
+        grdPost.DataSource = null;
+        grdPost.DataBind();
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)
@@ -275,16 +275,16 @@ public partial class WorkPlanReport : System.Web.UI.Page
 
         if (dt != null && dt.Rows.Count > 0)
         {
-            gvRecords.DataSource = dt;
-            gvRecords.DataBind();
+            grdPost.DataSource = dt;
+            grdPost.DataBind();
             divData.Visible = true;
 
         }
         else
         {
             divData.Visible = true;
-            gvRecords.DataSource = null;
-            gvRecords.DataBind();
+            grdPost.DataSource = null;
+            grdPost.DataBind();
             MessageBox.Show("No Records Found");
         }
     }
@@ -334,82 +334,100 @@ public partial class WorkPlanReport : System.Web.UI.Page
         JavaScriptSerializer js = new JavaScriptSerializer();
         return js.Serialize(data);
     }
-    protected void btnExportToExcel_Click(object sender, EventArgs e)
+    protected void grdPost_PreRender(object sender, EventArgs e)
     {
-        ExportGridToExcel();
-    }
-
-    private void ExportGridToExcel()
-    {
-        Response.Clear();
-        Response.Buffer = true;
-        Response.AddHeader("content-disposition", "attachment;filename=WorkProposals.xls");
-        Response.Charset = "";
-        Response.ContentType = "application/vnd.ms-excel";
-        using (StringWriter sw = new StringWriter())
+        GridView gv = (GridView)sender;
+        if (gv.Rows.Count > 0)
         {
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-
-            // To export all pages
-            gvRecords.AllowPaging = false;
-            // Rebind your data here if needed
-            tbl_WorkProposal obj = BindWorkProposalGridBySearch();
-            LoadWorkProposalGrid(obj);
-
-            gvRecords.HeaderRow.Cells[0].Visible = false; // Work Proposal Id
-            gvRecords.HeaderRow.Cells[2].Visible = false; // Edit
-            gvRecords.HeaderRow.Cells[14].Visible = false; // Recommendation Letter
-
-            foreach (GridViewRow row in gvRecords.Rows)
-            {
-                row.Cells[0].Visible = false; // Work Proposal Id
-                row.Cells[2].Visible = false; // Edit
-                row.Cells[12].Visible = false; // Recommendation Letter
-            }
-
-            gvRecords.HeaderRow.BackColor = System.Drawing.Color.White;
-            foreach (TableCell cell in gvRecords.HeaderRow.Cells)
-            {
-                cell.BackColor = gvRecords.HeaderStyle.BackColor;
-            }
-            foreach (GridViewRow row in gvRecords.Rows)
-            {
-                row.BackColor = System.Drawing.Color.White;
-                foreach (TableCell cell in row.Cells)
-                {
-                    if (row.RowIndex % 2 == 0)
-                    {
-                        cell.BackColor = gvRecords.AlternatingRowStyle.BackColor;
-                    }
-                    else
-                    {
-                        cell.BackColor = gvRecords.RowStyle.BackColor;
-                    }
-                    cell.CssClass = "textmode";
-                }
-            }
-
-            gvRecords.RenderControl(hw);
-
-            // Style to format numbers to string
-            string style = @"<style> .textmode { mso-number-format:\@; } </style>";
-            Response.Write(style);
-            Response.Output.Write(sw.ToString());
-            Response.Flush();
-            Response.End();
+            //This replaces <td> with <th> and adds the scope attribute
+            gv.UseAccessibleHeader = true;
+        }
+        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
+        {
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        if (gv.ShowFooter == true && gv.Rows.Count > 0)
+        {
+            gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
     }
+
+    //protected void btnExportToExcel_Click(object sender, EventArgs e)
+    //{
+    //    ExportGridToExcel();
+    //}
+
+    //private void ExportGridToExcel()
+    //{
+    //    Response.Clear();
+    //    Response.Buffer = true;
+    //    Response.AddHeader("content-disposition", "attachment;filename=WorkProposals.xls");
+    //    Response.Charset = "";
+    //    Response.ContentType = "application/vnd.ms-excel";
+    //    using (StringWriter sw = new StringWriter())
+    //    {
+    //        HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+    //        // To export all pages
+    //        gvRecords.AllowPaging = false;
+    //        // Rebind your data here if needed
+    //        tbl_WorkProposal obj = BindWorkProposalGridBySearch();
+    //        LoadWorkProposalGrid(obj);
+
+    //        gvRecords.HeaderRow.Cells[0].Visible = false; // Work Proposal Id
+    //        gvRecords.HeaderRow.Cells[2].Visible = false; // Edit
+    //        gvRecords.HeaderRow.Cells[14].Visible = false; // Recommendation Letter
+
+    //        foreach (GridViewRow row in gvRecords.Rows)
+    //        {
+    //            row.Cells[0].Visible = false; // Work Proposal Id
+    //            row.Cells[2].Visible = false; // Edit
+    //            row.Cells[12].Visible = false; // Recommendation Letter
+    //        }
+
+    //        gvRecords.HeaderRow.BackColor = System.Drawing.Color.White;
+    //        foreach (TableCell cell in gvRecords.HeaderRow.Cells)
+    //        {
+    //            cell.BackColor = gvRecords.HeaderStyle.BackColor;
+    //        }
+    //        foreach (GridViewRow row in gvRecords.Rows)
+    //        {
+    //            row.BackColor = System.Drawing.Color.White;
+    //            foreach (TableCell cell in row.Cells)
+    //            {
+    //                if (row.RowIndex % 2 == 0)
+    //                {
+    //                    cell.BackColor = gvRecords.AlternatingRowStyle.BackColor;
+    //                }
+    //                else
+    //                {
+    //                    cell.BackColor = gvRecords.RowStyle.BackColor;
+    //                }
+    //                cell.CssClass = "textmode";
+    //            }
+    //        }
+
+    //        gvRecords.RenderControl(hw);
+
+    //        // Style to format numbers to string
+    //        string style = @"<style> .textmode { mso-number-format:\@; } </style>";
+    //        Response.Write(style);
+    //        Response.Output.Write(sw.ToString());
+    //        Response.Flush();
+    //        Response.End();
+    //    }
+    //}
     public override void VerifyRenderingInServerForm(Control control)
     {
         // Required for exporting to work
     }
 
-    protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
-    {
-        gvRecords.PageIndex = e.NewPageIndex;
-        tbl_WorkProposal obj = BindWorkProposalGridBySearch();
-        LoadWorkProposalGrid(obj);        
-    }
+    //protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+    //{
+    //    gvRecords.PageIndex = e.NewPageIndex;
+    //    tbl_WorkProposal obj = BindWorkProposalGridBySearch();
+    //    LoadWorkProposalGrid(obj);        
+    //}
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {

@@ -26,7 +26,7 @@ public partial class FundRecievedInULB : System.Web.UI.Page
             lblZoneH.Text = Session["Default_Zone"].ToString() + "*";
             lblCircleH.Text = Session["Default_Circle"].ToString() + "*";
             lblDivisionH.Text = Session["Default_Division"].ToString() + "*";
-            exportToExcel.Visible = false;
+            //exportToExcel.Visible = false;
 
             get_tbl_Zone();
             get_tbl_Project();
@@ -258,18 +258,28 @@ public partial class FundRecievedInULB : System.Web.UI.Page
     {
         DataTable dt = new DataTable();
         dt = objLoan.GetULBFundAction("select", ULBID, 0, 0, 0, 0, 0, 0, 0, 0);
-        GrdULBFund.DataSource = dt;
-        GrdULBFund.DataBind();
-        if (dt != null && dt.Rows.Count > 0)
+        grdPost.DataSource = dt;
+        grdPost.DataBind();
+      
+    }
+    protected void grdPost_PreRender(object sender, EventArgs e)
+    {
+        GridView gv = (GridView)sender;
+        if (gv.Rows.Count > 0)
         {
-            exportToExcel.Visible = true;
+            //This replaces <td> with <th> and adds the scope attribute
+            gv.UseAccessibleHeader = true;
         }
-        else
+        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
         {
-            exportToExcel.Visible = false;
-
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        if (gv.ShowFooter == true && gv.Rows.Count > 0)
+        {
+            gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
     }
+
     protected void btnsave_Click(object sender, EventArgs e)
     {
         if (!ValidateFields())
