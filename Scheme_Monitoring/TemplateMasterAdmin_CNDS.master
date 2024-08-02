@@ -103,7 +103,7 @@
                             %>
                             <i>
            
-                                <img src="assets/images/cnds.png" id="ProflePic" runat="server" width="30" height="30" />
+                                <img src="assets/images/cnds.png" id="ProflePic1" runat="server" width="30" height="30" />
                                 ERP System
                             </i>
                             <% }
@@ -111,7 +111,7 @@
                                 {
                             %>
                             <i>
-                                <img src="assets/images/pms_logo.png"  id="ProflePic" runat="server" width="30" height="30" />
+                                <img src="assets/images/pms_logo.png"  id="ProflePic2" runat="server" width="30" height="30" />
                                 ERP System
                             </i>
                             <% }
@@ -119,7 +119,7 @@
                                 {
                             %>
                             <i>
-                                <img src="assets/images/ePayMentimg.png"  id="ProflePic" runat="server" width="30" height="30" />
+                                <img src="assets/images/ePayMentimg.png"  id="ProflePic3" runat="server" width="30" height="30" />
                                 ERP System
                             </i>
                             <%

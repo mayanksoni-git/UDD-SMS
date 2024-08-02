@@ -18,7 +18,9 @@ public partial class TemplateMasterAdmin_CNDS : System.Web.UI.MasterPage
             lblUserHeader.Text = Session["Person_Name"].ToString() + "     " + lastLogin;
             lblUser.Text = Session["Person_Name"].ToString();
             lblUserNameDesig.Text = Session["Person_Name"].ToString() + Environment.NewLine + Session["Designation_DesignationName"].ToString();
-            ProflePic.Src = Session["Profile_Pic"].ToString();
+            ProflePic1.Src = Session["Profile_Pic"].ToString();
+            ProflePic2.Src = Session["Profile_Pic"].ToString();
+            ProflePic3.Src = Session["Profile_Pic"].ToString();
 
             Render_Notification();
         }

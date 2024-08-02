@@ -220,7 +220,15 @@
                                     </ul>
                                 </div>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarProcess" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProcess"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Process Config</span> </a>
+                                <div class="collapse menu-dropdown" id="sidebarProcess">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item"><a href="MasterTradeDocument.aspx" class="nav-link" data-key="t-basic-tables">Upload Document Master</a> </li>
+                                        <li class="nav-item"><a href="MasterApprovalHierarchy_Invoice.aspx?N=DPR" class="nav-link" data-key="t-grid-js">DPR Approval Configuration</a> </li>
+                                    </ul>
+                                </div>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="#sidebarWPMS" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarWPMS"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Work Proposal Management</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarWPMS">
@@ -384,9 +392,9 @@
         var prm = Sys.WebForms.PageRequestManager.getInstance();
 
         prm.add_endRequest(function () {
-        // re-bind your jQuery events here
-        loadscript();
-        initializeTables();
+            // re-bind your jQuery events here
+            loadscript();
+            initializeTables();
         });
 
 

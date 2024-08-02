@@ -63,17 +63,17 @@
                                         <asp:CheckBox ID="chkUpdate" runat="server" CssClass="form-control" Text="Allowed For Updations / Approval"></asp:CheckBox>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <%--<div class="col-md-3">
                                     <div class="form-group">
                                         <asp:CheckBox ID="chkDeductionAllow" runat="server" CssClass="form-control" Text="Allowed For Updation in Deductions"></asp:CheckBox>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
+                                </div>--%>
+                                <%--<div class="col-md-3">
                                     <div class="form-group">
                                         <br />
                                         <asp:CheckBox ID="chkAllowInputTransferAmount" runat="server" CssClass="form-control" Text="Input Transfer Amount Against Invoices"></asp:CheckBox>
                                     </div>
-                                </div>
+                                </div>--%>
                             </div>
                         </div>
                         <div class="row">
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <%--<div class="row">
                             <div class="col-sm-12">
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -101,7 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="table-header">
