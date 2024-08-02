@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 public class Loan
 {
@@ -356,5 +357,399 @@ public class Loan
             throw new Exception(ex.Message);
         }
     }
+    #endregion
+
+    #region WorkProposal
+    public DataTable InsertWorkProposal(tbl_WorkProposal obj)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[19];
+
+            param[0] = new SqlParameter("@FY", obj.FY);
+            param[1] = new SqlParameter("@Zone", obj.Zone);
+            param[2] = new SqlParameter("@Circle", obj.Circle);
+            param[3] = new SqlParameter("@Division", obj.Division);
+            param[4] = new SqlParameter("@ZoneOfULB", obj.ZoneOfULB);
+            param[5] = new SqlParameter("@Ward", obj.Ward);
+            param[6] = new SqlParameter("@Scheme", obj.Scheme);
+            param[7] = new SqlParameter("@WorkType", obj.WorkType);
+            param[8] = new SqlParameter("@ExpectedAmount", obj.ExpectedAmount);
+            param[9] = new SqlParameter("@ProposerType", obj.ProposerType);
+            param[10] = new SqlParameter("@MPMLAid", obj.MPMLAid);
+            param[11] = new SqlParameter("@ProposerName", obj.ProposerName);
+            param[12] = new SqlParameter("@Mobile", obj.Mobile);
+            param[13] = new SqlParameter("@Designation", obj.Designation);
+            param[14] = new SqlParameter("@RecomendationLetter", obj.RecomendationLetter);
+            param[15] = new SqlParameter("@AddedBy", obj.AddedBy);
+            param[16] = new SqlParameter("@ProposalName", obj.ProposalName);
+            param[17] = new SqlParameter("@ProposalDetail", obj.ProposalDetail);
+            param[18] = new SqlParameter("@SubSchemeId", obj.SubSchemeId);
+
+            return objDAL.ExecuteProcedureReturnDataTable("sp_InsertWorkProposal", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public void Insert_WorkProposal_ProjectType(WorkProposal_ProjectType obj, SqlTransaction trans, SqlConnection cn)
+    {
+        string strQuery = "";
+
+        strQuery = " set dateformat dmy; insert into WorkProposal_ProjectType (Proposal_Id, ProjectType_Id, AddedBy, AddedOn,  Status) values ('" + obj.Proposal_Id + "','" + obj.ProjectType_Id + "','" + obj.AddedBy + "', getdate(),'" + obj.Status + "')";
+        if (trans == null)
+        {
+            try
+            {
+                objDAL.ExecuteSelectQuery(strQuery);
+            }
+            catch
+            {
+            }
+        }
+        else
+        {
+            objDAL.ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
+        }
+    }
+
+    public DataTable getWorkProposalBySearch(tbl_WorkProposal objSearch)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[6];
+
+            param[0] = new SqlParameter("@Zone", objSearch.Zone);
+            param[1] = new SqlParameter("@Circle", objSearch.Circle);
+            param[2] = new SqlParameter("@Division", objSearch.Division);
+            param[3] = new SqlParameter("@FY", objSearch.FY);
+            param[4] = new SqlParameter("@Scheme", objSearch.Scheme);
+            param[5] = new SqlParameter("@ProposalStatus", objSearch.ProposalStatus);
+
+            return objDAL.GetDataByProcedure("sp_SelectWorkProposalsBySearch", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getWorkTypeByProposal(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("sp_GetWorkTypeByProposal", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getWorkPlanWiseForChartBySearch(tbl_WorkProposal objSearch)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[6];
+
+            param[0] = new SqlParameter("@Zone", objSearch.Zone);
+            param[1] = new SqlParameter("@Circle", objSearch.Circle);
+            param[2] = new SqlParameter("@Division", objSearch.Division);
+            param[3] = new SqlParameter("@FY", objSearch.FY);
+            param[4] = new SqlParameter("@Scheme", objSearch.Scheme);
+            param[5] = new SqlParameter("@ProposalStatus", objSearch.ProposalStatus);
+
+            return objDAL.GetDataByProcedure("sp_GetWorkPlanWiseForChart", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getWorkProposalById(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("sp_SelectWorkProposalById", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    public DataTable getWorkProposalByIdForAction(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("sp_SelectWorkProposalsBySearch2", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public int UpdateWorkProposal(tbl_WorkProposal obj, Int32 WorkProposalId)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[20];
+
+            param[0] = new SqlParameter("@FY", obj.FY);
+            param[1] = new SqlParameter("@Zone", obj.Zone);
+            param[2] = new SqlParameter("@Circle", obj.Circle);
+            param[3] = new SqlParameter("@Division", obj.Division);
+            param[4] = new SqlParameter("@ZoneOfULB", obj.ZoneOfULB);
+            param[5] = new SqlParameter("@Ward", obj.Ward);
+            param[6] = new SqlParameter("@Scheme", obj.Scheme);
+            param[7] = new SqlParameter("@WorkType", obj.WorkType);
+            param[8] = new SqlParameter("@ExpectedAmount", obj.ExpectedAmount);
+            param[9] = new SqlParameter("@ProposerType", obj.ProposerType);
+            param[10] = new SqlParameter("@MPMLAid", obj.MPMLAid);
+            param[11] = new SqlParameter("@ProposerName", obj.ProposerName);
+            param[12] = new SqlParameter("@Mobile", obj.Mobile);
+            param[13] = new SqlParameter("@Designation", obj.Designation);
+            param[14] = new SqlParameter("@RecomendationLetter", obj.RecomendationLetter);
+            param[15] = new SqlParameter("@AddedBy", obj.AddedBy);
+            param[16] = new SqlParameter("@WorkProposalId", WorkProposalId);
+            param[17] = new SqlParameter("@ProposalName", obj.ProposalName);
+            param[18] = new SqlParameter("@ProposalDetail", obj.ProposalDetail);
+            param[19] = new SqlParameter("@SubSchemeId", obj.SubSchemeId);
+
+            return objDAL.ExecuteProcedure("sp_UpdateWorkProposal", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public int ActionOnWorkProposal(string Remark, int Status, DateTime ActionDate,  int WorkProposalId, int ActionTakenBy)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[5];
+
+            param[0] = new SqlParameter("@Remark", Remark);
+            param[1] = new SqlParameter("@Status", Status);
+            param[2] = new SqlParameter("@ActionDate", ActionDate);
+            param[3] = new SqlParameter("@WorkProposalId", WorkProposalId);
+            param[4] = new SqlParameter("@ActionBy", ActionTakenBy);
+
+            return objDAL.ExecuteProcedure("sp_UpdateWorkProposalForAction", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public string GetWorkProposalCode(int WorkProposalId)
+    {
+        string sqlQuery = "select top 1 ProposalCode from tbl_WorkProposal where WorkProposalId=@WorkProposalId";
+        SqlParameter[] parameters = new SqlParameter[]
+        {
+            new SqlParameter("@WorkProposalId", WorkProposalId)
+        };
+
+        try
+        {
+            string ProposalCode = objDAL.ExecuteSqlReturnString(sqlQuery, parameters);
+            return ProposalCode;
+        }
+        catch (Exception ex)
+        {
+            return "Error executing SQL statement: "+ ex.Message;
+        }
+    }
+
+    public void DeleteWorkProposalProjectTypes(int workProposalId, SqlTransaction trans, SqlConnection connection)
+    {
+        using (SqlCommand command = new SqlCommand("DELETE FROM WorkProposal_ProjectType WHERE Proposal_Id = @Proposal_Id", connection, trans))
+        {
+            command.Parameters.AddWithValue("@Proposal_Id", workProposalId);
+            command.ExecuteNonQuery();
+        }
+    }
+    #endregion
+
+    #region Decision Making Page
+    public DataTable getFYWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("spGetFYWiseData", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getMPWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("SpMPviseSchemeAmountReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getMLAWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("SpMLAviseSchemeAmountReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    public DataTable getDivisionWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("SpDivisionWiseSchemeAmountReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getDistrictWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("SpDistrictWiseSchemeAmountReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getWorkPlanWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("SpFinancialYearWisePropasalReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getYearWiseData(int? WorkProposalId,int? parliamentID,string type)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[3];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+            param[1] = new SqlParameter("@parliament", parliamentID); 
+            param[2] = new SqlParameter("@action", type); 
+
+            return objDAL.GetDataByProcedure("SpYealyFundReportOfMP", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getULBWiseData(int? WorkProposalId, int? parliamentID,string type)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[3];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+            param[1] = new SqlParameter("@parliamentId", parliamentID);
+            param[2] = new SqlParameter("@action", type);
+
+            return objDAL.GetDataByProcedure("SpULBWiseData", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getAmountWiseData(int? WorkProposalId, int? parliamentID, string type)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[3];
+
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+            param[1] = new SqlParameter("@parliamentId", parliamentID);
+            param[2] = new SqlParameter("@action", type);
+
+            return objDAL.GetDataByProcedure("SpAMountWiseFundReportOfMPMLA", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+
     #endregion
 }

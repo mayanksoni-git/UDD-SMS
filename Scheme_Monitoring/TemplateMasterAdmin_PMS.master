@@ -98,7 +98,7 @@
                                 <div class="dropdown ms-sm-3 header-item topbar-user">
                                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="d-flex align-items-center">
-                                            <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
+                                            <img class="rounded-circle header-profile-user" id="ProflePic" runat="server" src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
                                             <span class="text-start ms-xl-2">
                                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text" runat="server" id="lblUserHeader">Anna Adame</span>
                                                 <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text" runat="server" id="lblDesignation">Founder</span>
@@ -109,6 +109,7 @@
 
                                         <h6 class="dropdown-header" runat="server" id="lblUserHeader2">Welcome Anna!</h6>
                                         <a class="dropdown-item" href="ChangePassword.aspx"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i><span class="align-middle">Change Password</span></a>
+                                        <a class="dropdown-item" href="UpdateProfile.aspx"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i><span class="align-middle">Profile</span></a>
                                         <a class="dropdown-item" href="#" runat="server" id="a_Logout" onserverclick="lnkLogOut_Click"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i><span class="align-middle" data-key="t-logout">Logout</span></a>
                                     </div>
                                 </div>
@@ -187,6 +188,8 @@
                                         <li class="nav-item"><a href="MasterLokSabha.aspx" class="nav-link" data-key="t-checkboxs-radios">Lok Sabha</a> </li>
                                         <li class="nav-item"><a href="MasterVidhanSabha.aspx" class="nav-link" data-key="t-checkboxs-radios">Vidhan Sabha</a> </li>
                                         <li class="nav-item"><a href="MasterDivision.aspx" class="nav-link" data-key="t-pickers">ULB</a></li>
+                                        <li class="nav-item"><a href="MasterULBIncome.aspx" class="nav-link" data-key="t-pickers">ULB Income Type</a></li>
+                                        <li class="nav-item"><a href="MasterULBExpense.aspx" class="nav-link" data-key="t-pickers">ULB Expense Type</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -209,7 +212,7 @@
                                         <li class="nav-item"><a href="MasterProject.aspx" class="nav-link" data-key="t-basic-tables">Create Scheme</a> </li>
                                         <li class="nav-item"><a href="MasterDPRStatus.aspx" class="nav-link" data-key="t-basic-tables">DPR Status Master</a> </li>
                                         <li class="nav-item"><a href="PhysicalProgressComponent.aspx" class="nav-link" data-key="t-grid-js">Physical Component</a> </li>
-                                        <li class="nav-item"><a href="MasterFundingPattern.aspx" class="nav-link" data-key="t-list-js">Funding Pattern</a> </li>
+                                        <%--<li class="nav-item"><a href="MasterFundingPattern.aspx" class="nav-link" data-key="t-list-js">Funding Pattern</a> </li>--%>
                                         <li class="nav-item"><a href="MasterProjectType.aspx" class="nav-link" data-key="t-datatables">Project Type</a> </li>
                                         <li class="nav-item"><a href="MasterProjectIssues.aspx" class="nav-link" data-key="t-datatables">Project Issues</a> </li>
                                         <li class="nav-item"><a href="MasterDependency.aspx" class="nav-link" data-key="t-datatables">Project Sub-Issues</a> </li>
@@ -219,12 +222,12 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarWPMS" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarWPMS"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Work Plan Management</span> </a>
+                                <a class="nav-link menu-link" href="#sidebarWPMS" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarWPMS"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Work Proposal Management</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarWPMS">
                                     <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item"><a href="FormForApproval.aspx" class="nav-link" data-key="t-grid-js">Create Work Plan</a> </li>
-                                        <li class="nav-item"><a href="FormForApproval2.aspx" class="nav-link" data-key="t-grid-js">Action on Proposal</a> </li>
-                                        
+                                        <li class="nav-item"><a href="FormForApproval.aspx" class="nav-link" data-key="t-grid-js">Create Work Proposal</a> </li>
+                                        <li class="nav-item"><a href="FormForApproval2.aspx" class="nav-link" data-key="t-grid-js">Action on  Work Proposal</a> </li>
+                                        <li class="nav-item"><a href="WorkPlanReport.aspx" class="nav-link" data-key="t-grid-js">Work Proposal Report</a> </li>
                                     </ul>
                                 </div>
                             </li>
@@ -234,6 +237,7 @@
                                 <div class="collapse menu-dropdown" id="sidebarFund">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="FundSanctionMaster.aspx" class="nav-link" data-key="t-grid-js">Fund Sanction Master</a> </li>
+                                        <li class="nav-item"><a href="AnnualActionPlan.aspx" class="nav-link" data-key="t-grid-js">Annual Action Plan</a> </li>
                                     </ul>
                                 </div>
                             </li>
@@ -261,8 +265,11 @@
                                         <%--<li class="nav-item"><a href="PyersTracker.aspx" class="nav-link" data-key="t-grid-js">Crematorium Tracker</a> </li>--%>
                                         <li class="nav-item"><a href="RptPyresTracker.aspx" class="nav-link" data-key="t-grid-js">Crematorium Main Tracker</a> </li>
                                         <li class="nav-item"><a href="RptCrematoriumDetail.aspx" class="nav-link" data-key="t-grid-js">Crematorium Detail</a> </li>
-                                        <li class="nav-item"><a href="LoanRelease.aspx" class="nav-link" data-key="t-grid-js">Loan Release</a> </li>
+                                        <%--<li class="nav-item"><a href="LoanRelease.aspx" class="nav-link" data-key="t-grid-js">Loan Release</a> </li>--%>
                                         <li class="nav-item"><a href="LoanDeposit.aspx" class="nav-link" data-key="t-grid-js">Loan Recovery</a> </li>
+                                        <li class="nav-item"><a href="AddULBIncomeType.aspx" class="nav-link" data-key="t-grid-js">ULB Income</a> </li>
+                                        <li class="nav-item"><a href="AddExpensesType.aspx" class="nav-link" data-key="t-grid-js">ULB Expense</a> </li>
+                                        <li class="nav-item"><a href="FundRecievedInULB.aspx.aspx" class="nav-link" data-key="t-grid-js">Fund Recieved in ULB</a> </li>
                                     </ul>
                                 </div>
                             </li>
@@ -275,6 +282,7 @@
                                         <li class="nav-item"><a href="MasterProjectDPR.aspx" class="nav-link" data-key="t-grid-js">Create Project DPR</a> </li>
                                         <li class="nav-item"><a href="MasterDPR_Upload.aspx" class="nav-link" data-key="t-list-js">Upload DPR Document</a> </li>
                                         <li class="nav-item"><a href="Report_DPR_Status_Report.aspx" class="nav-link" data-key="t-list-js">DPR Status Report</a> </li>
+                                        <li class="nav-item"><a href="CheckListForDPR.aspx" class="nav-link" data-key="t-list-js">Check List & Upload DPR</a> </li>
                                     </ul>
                                 </div>
                             </li>
