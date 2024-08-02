@@ -1,8 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="MasterTradeDocument.aspx.cs" Inherits="MasterTradeDocument" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-      <div class="main-content">
-        <div class="main-content-inner">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div class="main-content">
+        <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
@@ -11,112 +10,107 @@
                         CancelControlID="btnclose" BackgroundCssClass="modalBackground1">
                     </cc1:ModalPopupExtender>
                     <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
-                    <div class="page-content">
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-12">
-                                <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                            <div class="col-12 ">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">
+                                        Upload DPR Document Master
+                                    </h4>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                            <li class="breadcrumb-item">Process Config</li>
+                                            <li class="breadcrumb-item active">Upload DPR Document Master</li>
+                                        </ol>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="clearfix" id="dtOptions" runat="server">
-                                            <div class="pull-right tableTools-container"></div>
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div class="clearfix">
+                                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="table-header">
-                                            List Of Document
-                                        </div>
 
-                                        <!-- div.table-responsive -->
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
 
-                                        <!-- div.dataTables_borderWrap -->
-                                        <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
-                                                <Columns>
-                                                    <asp:BoundField DataField="TradeDocument_Id" HeaderText="TradeDocument_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:TemplateField HeaderText="S No.">
-                                                        <ItemTemplate>
-                                                            <%# Container.DataItemIndex + 1 %>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="TradeDocument_Name" HeaderText="TradeDocument" />
-                                                    <%-- <asp:TemplateField HeaderText="Department">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="txtDepartmentG" Enabled="false" runat="server" CssClass="form-control" Text='<%# Eval("Department_Name") %>'></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>--%>
-                                                    <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
-                                                    <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
-                                                    <asp:BoundField DataField="ModifyBy" HeaderText="Modified By" />
-                                                    <asp:BoundField DataField="Modify_Date" HeaderText="Modified Date" />
-                                                    <asp:TemplateField HeaderText="View">
-                                                        <ItemTemplate>
-                                                            <asp:ImageButton ID="btnEdit" Width="20px" Height="20px"  OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                            </asp:GridView>
+                                                        <div class="clearfix" id="Div1" runat="server">
+                                                            <div class="pull-right tableTools-container"></div>
+                                                        </div>
 
+
+                                                        <div style="overflow: auto" class="mt-3">
+                                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                                <Columns>
+                                                                    <asp:BoundField DataField="TradeDocument_Id" HeaderText="TradeDocument_Id">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:TemplateField HeaderText="S No.">
+                                                                        <ItemTemplate>
+                                                                            <%# Container.DataItemIndex + 1 %>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:BoundField DataField="TradeDocument_Name" HeaderText="TradeDocument" />
+                                                                    <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
+                                                                    <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
+                                                                    <asp:BoundField DataField="ModifyBy" HeaderText="Modified By" />
+                                                                    <asp:BoundField DataField="Modify_Date" HeaderText="Modified Date" />
+                                                                    <asp:TemplateField HeaderText="View">
+                                                                        <ItemTemplate>
+                                                                            <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                </Columns>
+                                                            </asp:GridView>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-                                <!-- PAGE CONTENT ENDS -->
                             </div>
-                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
-
-                    </div>
-                    <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="table-header">
-                                    List Of Document
+                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="table-header">
+                                        <asp:Label ID="lblHeader" runat="server" Text="List Of Document" CssClass="control-label no-padding-right" Font-Bold="True" Font-Size="Larger"></asp:Label>
+                                        <hr />
+                                    </div>
                                 </div>
-
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4" id="dvPJ" runat="server">
                                     <div class="form-group">
-
                                         <asp:Label ID="lblDepartment" runat="server" Text="List Of Document*" CssClass="control-label no-padding-right"></asp:Label>
                                         <asp:TextBox ID="txtListOfDocument" runat="server" CssClass="form-control"></asp:TextBox>
                                     </div>
                                 </div>
-
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <asp:Button ID="btnSave" Text="Save"  OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
-                                        &nbsp; &nbsp; &nbsp;
-                                         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>&nbsp; &nbsp; &nbsp;
-                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>&nbsp; &nbsp; &nbsp;
-                                         
-                                            <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
+                                <div class="col-md-12">
+                                    <div class="form-group mt-2">
+                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-success"></asp:Button>
+                                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-danger"></asp:Button>
+                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn  bg-info"></asp:Button>
+                                        <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </asp:Panel>
+                        </asp:Panel>
+                    </div>
                     <asp:HiddenField ID="hf_ListOfDocument_Id" runat="server" Value="0" />
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -130,181 +124,7 @@
                 </ProgressTemplate>
             </asp:UpdateProgress>
         </div>
-        <!-- /.main-content -->
-
     </div>
-
-
-
-    <!-- DataTable specific plugin scripts -->
-    <script src="assets/js/jquery-2.1.4.min.js"></script>
-    <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/dataTables.buttons.min.js"></script>
-    <script src="assets/js/buttons.flash.min.js"></script>
-    <script src="assets/js/buttons.html5.min.js"></script>
-    <script src="assets/js/buttons.print.min.js"></script>
-    <script src="assets/js/buttons.colVis.min.js"></script>
-    <script src="assets/js/dataTables.select.min.js"></script>
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
-    <script src="assets/js/dataTables.fixedHeader.min.js"></script>
-    <script src="assets/js/jquery.mark.min.js"></script>
-    <script src="assets/js/datatables.mark.js"></script>
-    <%--<script src="assets/js/dataTables.colReorder.min.js"></script>--%>
-
-    <script type="text/javascript">
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                var DataTableLength = $('#ctl00_ContentPlaceHolder1_grdPost').length;
-                if (DataTableLength > 0) {
-                    var outerHTML = $('#ctl00_ContentPlaceHolder1_grdPost')[0].outerText;
-                    if (outerHTML.trim() !== "No Records Found") {
-                        //initiate dataTables plugin
-                        var myTable =
-                            $('#ctl00_ContentPlaceHolder1_grdPost')
-                                //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                .DataTable({
-                                    mark: true,
-                                    colReorder: false,
-                                    fixedHeader: {
-                                        header: true,
-                                        footer: false
-                                    },
-                                    bAutoWidth: false,
-                                    "aoColumns": [
-                                        { "bSortable": false },
-                                        null, null, null, null, null, null,
-                                        { "bSortable": false }
-                                    ],
-                                    "aaSorting": [],
-                                    "bDestroy": true,
-
-                                    //"bProcessing": true,
-                                    //"bServerSide": true,
-                                    //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-                                    //,
-                                    //"sScrollY": "200px",
-                                    //"bPaginate": false,
-                                    //"sScrollX": "100%",
-                                    //"sScrollXInner": "120%",
-                                    //"bScrollCollapse": true,
-                                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                    "iDisplayLength": 25,
-                                    select: {
-                                        style: 'multi'
-                                    }
-                                });
-                        $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
-                        new $.fn.dataTable.Buttons(myTable, {
-                            buttons: [
-                                {
-                                    "extend": "colvis",
-                                    "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    columns: ':not(:first):not(:last)'
-                                },
-                                {
-                                    "extend": "copy",
-                                    "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "csv",
-                                    "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "excel",
-                                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "pdf",
-                                    "text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "print",
-                                    "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    autoPrint: true,
-                                    message: 'This print was produced using the Print button for DataTables',
-                                    exportOptions: {
-                                        columns: ':visible'
-                                    }
-                                }
-                            ]
-                        });
-                        myTable.buttons().container().appendTo($('.tableTools-container'));
-
-                        //style the message box
-                        var defaultCopyAction = myTable.button(1).action();
-                        myTable.button(1).action(function (e, dt, button, config) {
-                            defaultCopyAction(e, dt, button, config);
-                            $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-                        });
-                        var defaultColvisAction = myTable.button(0).action();
-                        myTable.button(0).action(function (e, dt, button, config) {
-
-                            defaultColvisAction(e, dt, button, config);
-                            if ($('.dt-button-collection > .dropdown-menu').length == 0) {
-                                $('.dt-button-collection')
-                                    .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-                                    .find('a').attr('href', '#').wrap("<li />")
-                            }
-                            $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
-                        });
-                        ////
-                        setTimeout(function () {
-                            $($('.tableTools-container')).find('a.dt-button').each(function () {
-                                var div = $(this).find(' > div').first();
-                                if (div.length == 1) div.tooltip({ container: 'body', title: div.parent().text() });
-                                else $(this).tooltip({ container: 'body', title: $(this).text() });
-                            });
-                        }, 500);
-
-                        $(document).on('click', '#ctl00_ContentPlaceHolder1_grdPost .dropdown-toggle', function (e) {
-                            e.stopImmediatePropagation();
-                            e.stopPropagation();
-                            //e.preventDefault();
-                        });
-                        //And for the first simple table, which doesn't have TableTools or dataTables
-                        //select/deselect all rows according to table header checkbox
-                        var active_class = 'active';
-                        /********************************/
-                        //add tooltip for small view action buttons in dropdown menu
-                        $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
-
-                        //tooltip placement on right or left
-                        function tooltip_placement(context, source) {
-                            var $source = $(source);
-                            var $parent = $source.closest('table')
-                            var off1 = $parent.offset();
-                            var w1 = $parent.width();
-
-                            var off2 = $source.offset();
-                            //var w2 = $source.width();
-
-                            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-                            return 'left';
-                        }
-                        /***************/
-                        $('.show-details-btn').on('click', function (e) {
-                            e.preventDefault();
-                            $(this).closest('tr').next().toggleClass('open');
-                            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-                        });
-                    }
-                }
-            })
-        });
-
-    </script>
-
     <script>
         Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
             jQuery(function ($) {
@@ -316,4 +136,8 @@
         });
     </script>
 </asp:Content>
+
+
+
+
 

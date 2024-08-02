@@ -2,168 +2,163 @@
     CodeFile="MasterApprovalHierarchy_Invoice.aspx.cs" Inherits="MasterApprovalHierarchy_Invoice" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
     <div class="main-content">
-        <div class="main-content-inner">
-            <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
-            </cc1:ToolkitScriptManager>
+        <div class="page-content">
+
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
-                    <div class="page-content">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="table-header">
-                                    Create Dynamic Approval Hierarchy
-                                    <div class="pull-right">
-                                        <asp:DropDownList ID="ddlScheme" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlScheme_SelectedIndexChanged"></asp:DropDownList>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
+                    </cc1:ToolkitScriptManager>
 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="control-label no-padding-right">Organization* </label>
-                                        <asp:DropDownList ID="ddlOrganization" runat="server" CssClass="form-control"></asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <asp:Label ID="lblDistrict" runat="server" Text="Department" CssClass="control-label no-padding-right"></asp:Label>
-                                        <asp:DropDownList ID="ddlDepartment" runat="server" class="form-control"></asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="control-label no-padding-right">Designation*</label>
-                                        <asp:DropDownList ID="ddlDesignation" runat="server" CssClass="form-control"></asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="control-label no-padding-right">Designation</label>
-                                        <asp:DropDownList ID="ddlDesignation1" runat="server" CssClass="form-control"></asp:DropDownList>
-                                    </div>
-                                </div>
 
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">DPR Approval Configuration</h4>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                            <li class="breadcrumb-item">Process Config</li>
+                                            <li class="breadcrumb-item active">DPR Approval Configuration</li>
+                                        </ol>
+                                    </div>
+                                </div>
                             </div>
+                            <!--end col-->
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Fund Sanction Master</h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <label class="control-label no-padding-right">Create Dynamic Approval Hierarchy</label>
+                                                    <asp:DropDownList ID="ddlScheme" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlScheme_SelectedIndexChanged"></asp:DropDownList>
+                                                </div>
 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <asp:CheckBox ID="chkCreate" runat="server" CssClass="form-control" Text="Allowed For Creation / Addition"></asp:CheckBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <asp:CheckBox ID="chkUpdate" runat="server" CssClass="form-control" Text="Allowed For Updations / Approval"></asp:CheckBox>
-                                    </div>
-                                </div>
-                                <%--<div class="col-md-3">
-                                    <div class="form-group">
-                                        <asp:CheckBox ID="chkDeductionAllow" runat="server" CssClass="form-control" Text="Allowed For Updation in Deductions"></asp:CheckBox>
-                                    </div>
-                                </div>--%>
-                                <%--<div class="col-md-3">
-                                    <div class="form-group">
-                                        <br />
-                                        <asp:CheckBox ID="chkAllowInputTransferAmount" runat="server" CssClass="form-control" Text="Input Transfer Amount Against Invoices"></asp:CheckBox>
-                                    </div>
-                                </div>--%>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label no-padding-right">Permission To Change Status* </label>
-                                        <asp:CheckBoxList ID="chkInvoiceStatus" CellSpacing="50" CellPadding="10" Font-Bold="true" runat="server" RepeatDirection="Horizontal"></asp:CheckBoxList>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <%--<div class="row">
-                            <div class="col-sm-12">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <br />
-                                        <asp:CheckBox ID="chkAllowEditingQty" runat="server" CssClass="form-control" Text="Allowed For Editing Qty"></asp:CheckBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <br />
-                                        <asp:CheckBox ID="chkAllowDocumentUpdation" runat="server" CssClass="form-control" Text="Updation Of Documents Uploaded"></asp:CheckBox>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>--%>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="table-header">
-                                    Document Mapping
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <div style="overflow: auto">
-                                        <asp:GridView ID="grdDocumentMaster" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdDocumentMaster_PreRender">
-                                            <Columns>
-                                                <asp:BoundField DataField="TradeDocument_Id" HeaderText="TradeDocument_Id">
-                                                    <HeaderStyle CssClass="displayStyle" />
-                                                    <ItemStyle CssClass="displayStyle" />
-                                                    <FooterStyle CssClass="displayStyle" />
-                                                </asp:BoundField>
-                                                <asp:TemplateField HeaderText="S No.">
-                                                    <ItemTemplate>
-                                                        <%# Container.DataItemIndex + 1 %>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Select">
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkSelect" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:BoundField HeaderText="Document Name" DataField="TradeDocument_Name" />
-                                                <asp:TemplateField HeaderText="Display After Days">
-                                                    <ItemTemplate>
-                                                        <asp:TextBox ID="txtDays" runat="server" CssClass="form-control" Text="0"></asp:TextBox>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                        </asp:GridView>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <asp:Button ID="btnAdd" Text="Add Process" OnClick="btnAdd_Click" runat="server" CssClass="btn btn-info"></asp:Button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div class="clearfix" id="Div1" runat="server">
-                                            <div class="pull-right tableTools-container"></div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <label class="control-label no-padding-right">Organization* </label>
+                                                    <asp:DropDownList ID="ddlOrganization" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:Label ID="lblDistrict" runat="server" Text="Department" CssClass="control-label no-padding-right"></asp:Label>
+                                                    <asp:DropDownList ID="ddlDepartment" runat="server" class="form-select"></asp:DropDownList>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <label class="control-label no-padding-right">Designation*</label>
+                                                    <asp:DropDownList ID="ddlDesignation" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <label class="control-label no-padding-right">Designation</label>
+                                                    <asp:DropDownList ID="ddlDesignation1" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:CheckBox ID="chkCreate" runat="server" CssClass="form-control" Text="Allowed For Creation / Addition"></asp:CheckBox>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:CheckBox ID="chkUpdate" runat="server" CssClass="form-control" Text="Allowed For Updations / Approval"></asp:CheckBox>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-6 col-md-6">
+                                                    <label class="control-label no-padding-right">Permission To Change Status* </label>
+                                                    <asp:CheckBoxList ID="chkInvoiceStatus" CellSpacing="50" CellPadding="10" Font-Bold="true" runat="server" RepeatDirection="Horizontal"></asp:CheckBoxList>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
-                                        <div class="table-header">
-                                            Process Approval Hierarchy
-                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                        <!-- div.dataTables_borderWrap -->
-                                        <div style="overflow: auto">
+                    <div runat="server" visible="true" id="divData">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Document Mapping</h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-12">
+                                                <!-- div.table-responsive -->
+                                                <div class="clearfix" id="dtOptions" runat="server">
+                                                    <div class="pull-right tableTools-container"></div>
+                                                </div>
+                                                <!-- div.dataTables_borderWrap -->
+                                                <div style="overflow: auto">
+                                                    <asp:GridView ID="grdDocumentMaster" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdDocumentMaster_PreRender">
+                                                        <Columns>
+                                                            <asp:BoundField DataField="TradeDocument_Id" HeaderText="TradeDocument_Id">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <asp:TemplateField HeaderText="S No.">
+                                                                <ItemTemplate>
+                                                                    <%# Container.DataItemIndex + 1 %>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Select">
+                                                                <ItemTemplate>
+                                                                    <asp:CheckBox ID="chkSelect" runat="server" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField HeaderText="Document Name" DataField="TradeDocument_Name" />
+                                                            <asp:TemplateField HeaderText="Display After Days">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtDays" runat="server" CssClass="form-control" Text="0"></asp:TextBox>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                    </asp:GridView>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <asp:Button ID="btnAdd" Text="Add Process" OnClick="btnAdd_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
+                        </div>
+                    </div>
+
+                    <div runat="server" visible="true" id="div2">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Process Approval Hierarchy</h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
                                             <asp:GridView ID="grdComiteeMember" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdComiteeMember_PreRender">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProcessConfigMaster_Id" HeaderText="ProcessConfigMaster_Id">
@@ -200,7 +195,7 @@
                                                         <HeaderStyle CssClass="displayStyle" />
                                                         <ItemStyle CssClass="displayStyle" />
                                                         <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>                                                    
+                                                    </asp:BoundField>
                                                     <asp:TemplateField HeaderText="S No.">
                                                         <ItemTemplate>
                                                             <%# Container.DataItemIndex + 1 %>
@@ -227,32 +222,28 @@
                                                 </Columns>
                                             </asp:GridView>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- PAGE CONTENT ENDS -->
-                            </div>
-                            <!-- /.col -->
-                        </div>
 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label no-padding-right">Comments* </label>
-                                        <asp:TextBox ID="txtComments" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <br />
-                                        &nbsp; &nbsp;
-                                        <asp:Button ID="btnUpload" Text="Save Process" OnClick="btnUpload_Click" runat="server" CssClass="btn btn-warning"></asp:Button>
-                                    </div>
-                                </div>
+                                        <div class="col-sm-12">
+                                            <div class="row">
 
+                                                <div class="col-md-4">
+                                                    <label class="control-label no-padding-right">Comments* </label>
+                                                    <asp:TextBox ID="txtComments" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+
+                                                </div>
+                                                <div class="col-md-4 offset-xxl-4">
+                                                    <br />
+                                                    <label class="control-label no-padding-right" style="display:block"></label>
+                                                    <asp:Button ID="btnUpload" Text="Save Process" OnClick="btnUpload_Click" runat="server" CssClass="btn btn-warning"></asp:Button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
