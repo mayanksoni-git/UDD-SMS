@@ -178,6 +178,8 @@
                                         { "bSortable": false }
                                     ],
                                     "aaSorting": [],
+                                    "bDestroy": true,
+
                                     //"bProcessing": true,
                                     //"bServerSide": true,
                                     //"sAjaxSource": "http://127.0.0.1/table.php"	,
