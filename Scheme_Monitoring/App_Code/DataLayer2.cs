@@ -14455,7 +14455,7 @@ public partial class DataLayer : Page, IRequiresSessionState
 	                    Total = count(ProjectDPR_Id) 
                     from tbl_ProjectDPR 
                     left join tbl_ProjectType on ProjectType_Id = ProjectDPR_ProjectTypeId
-                    join M_Jurisdiction on M_Jurisdiction.M_Jurisdiction_Id = ProjectDPR_DistrictId
+                    left join M_Jurisdiction on M_Jurisdiction.M_Jurisdiction_Id = ProjectDPR_DistrictId
                     left join tbl_ULB on ULB_Id = ProjectDPR_ULBId
                     left join tbl_Division on Division_Id = ProjectDPR_DivisionId
                     left join tbl_Circle on Circle_Id = Division_CircleId
