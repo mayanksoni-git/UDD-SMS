@@ -6,8 +6,8 @@
         <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
-            <asp:UpdatePanel ID="up" runat="server">
-                <ContentTemplate>
+            <%--<asp:UpdatePanel ID="up" runat="server">
+                <ContentTemplate>--%>
                     <div class="container-fluid">
                         <div id="divCreate" runat="server">
 
@@ -214,11 +214,11 @@
                     </div>
                     <asp:HiddenField ID="hf_ProjectDPR_Id" runat="server" Value="0" />
                 </ContentTemplate>
-                <Triggers>
+                <%--<Triggers>
                     <asp:PostBackTrigger ControlID="btnSave" />
                 </Triggers>
-            </asp:UpdatePanel>
-            <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
+            </asp:UpdatePanel>--%>
+            <%--<asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
                 <ProgressTemplate>
                     <div style="position: fixed; z-index: 999; height: 100%; width: 100%; top: 0; background-color: Black; filter: alpha(opacity=60); opacity: 0.6; -moz-opacity: 0.8; cursor: not-allowed;">
                         <div style="z-index: 1000; margin: 300px auto; padding: 10px; width: 130px; background-color: transparent; border-radius: 1px; filter: alpha(opacity=100); opacity: 1; -moz-opacity: 1;">
@@ -226,7 +226,7 @@
                         </div>
                     </div>
                 </ProgressTemplate>
-            </asp:UpdateProgress>
+            </asp:UpdateProgress>--%>
         </div>
     </div>
 
