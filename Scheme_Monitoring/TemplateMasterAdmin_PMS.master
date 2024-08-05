@@ -275,6 +275,15 @@
                                         <li class="nav-item"><a href="RptCrematoriumDetail.aspx" class="nav-link" data-key="t-grid-js">Crematorium Detail</a> </li>
                                         <%--<li class="nav-item"><a href="LoanRelease.aspx" class="nav-link" data-key="t-grid-js">Loan Release</a> </li>--%>
                                         <li class="nav-item"><a href="LoanDeposit.aspx" class="nav-link" data-key="t-grid-js">Loan Recovery</a> </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarAAP" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDPR"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Annual Action Plan</span> </a>
+                                <div class="collapse menu-dropdown" id="sidebarAAP">
+                                    <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="AddULBIncomeType.aspx" class="nav-link" data-key="t-grid-js">ULB Income</a> </li>
                                         <li class="nav-item"><a href="AddExpensesType.aspx" class="nav-link" data-key="t-grid-js">ULB Expense</a> </li>
                                         <li class="nav-item"><a href="FundRecievedInULB.aspx.aspx" class="nav-link" data-key="t-grid-js">Fund Recieved in ULB</a> </li>
