@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="AnnualActionplan.aspx.cs" Inherits="AnnualActionplan" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="AnnualActionplanNew.aspx.cs" Inherits="AnnualActionplanNew" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:HiddenField ID="hdnplanId" runat="server" />
@@ -110,12 +110,43 @@
                                                         <asp:TextBox ID="ReasonForSelected" runat="server"  CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                  <div class="col-xxl-3 col-md-6">
+                                                 <%-- <div class="col-xxl-3 col-md-6">
                                                     <div id="div7" runat="server">
                                                         <asp:Label ID="Label5" runat="server" Text="Convergence Detail" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="convergence" runat="server"  CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                                                     </div>
-                                                </div>
+                                                </div>--%>
+                                               
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Convergence Detail <label id="Label5" runat="server" style="float:right;color:red;font-weight:bold"></label></h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                           <div class="row py-4">
+                                               <div class="col-xxl-12 col-md-12">
+                                                   <table>
+                                                       <thead>
+                                                           <tr>
+                                                               <th>Sr</th>
+                                                               <th>Sr</th>
+                                                               <th>Sr</th>
+                                                               <th>Sr</th>
+                                                           </tr>
+                                                       </thead>
+                                                   </table>
+                                               </div>
+
+                                                <div class="col-xxl-9  col-md-6">
+                                                    </div>
                                                 <div class="col-xxl-3  col-md-6">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
@@ -127,12 +158,12 @@
                                                         <asp:HiddenField ID="hfFormApproval_Id" runat="server" />
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!--end row-->
+                                           </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         
                     </div>
@@ -163,7 +194,7 @@
                                                         <div class="pull-right tableTools-container"></div>
                                                     </div>
                                                  <div style="overflow: auto">
-                                                <asp:GridView runat="server" ID="grdPost"  AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                <asp:GridView runat="server" ID="grdPost" CssClass="table table-striped table-responsive"  AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>
