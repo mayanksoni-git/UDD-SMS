@@ -692,7 +692,22 @@ public class Loan
             throw new Exception(ex.Message);
         }
     }
+    public DataTable getRecommendationWiseData(int WorkProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
 
+            param[0] = new SqlParameter("@WorkProposalId", WorkProposalId);
+
+            return objDAL.GetDataByProcedure("SpRecommendationWisePropasalReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
     public DataTable getYearWiseData(int? WorkProposalId,int? parliamentID,string type)
     {
         try

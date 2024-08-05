@@ -270,6 +270,7 @@
                                                 <asp:Button ID="BtnDistrictWise" Text="District Wise" OnClick="BtnDistrictWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
                                                 <asp:Button ID="btnRegionWise" Text="Division Wise" OnClick="btnDivisionWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
                                                 <asp:Button ID="btnProjectWise" OnClick="btnWorkPlanWise_Click" Text="Work Plan Wise" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
+                                                <asp:Button ID="btnRecommendationWise" OnClick="btnRecommendationWise_Click" Text="Recommendation  Wise" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
                                                </div>
                                                 <!-- div.dataTables_borderWrap -->
                                                 <div runat="server" id="divFYWise" class="tblheader" visible="false" style="overflow: auto">
@@ -706,6 +707,176 @@
                                                         </EmptyDataTemplate>
                                                     </asp:GridView>
                                                 </div>
+
+                                                  <div runat="server" id="divRecommendationWise" class="tblheader" visible="false" style="overflow: auto">
+                                                   
+                                                    <div class="row">
+                                                    <div class="col-lg-10">  
+                                                     <h3>Recommendation Wise Data</h3>
+                                                        </div>
+                                                     <div class="col-lg-2"> <asp:Button ID="Button7" runat="server" Text="Export to Excel Of Recommendation"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
+                                                     </div>
+                                                    <asp:GridView ID="GrdRecommendation" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
+                                                    OnPageIndexChanging="GrdRecommendation_PageIndexChanging" PageSize="10">
+                                                        <Columns>
+                                                            <asp:TemplateField HeaderText="Sr. No.">
+                                                                <ItemTemplate>
+                                                                    <%# Container.DataItemIndex + 1 %>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                          <%--  <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />--%>
+                                                             <asp:TemplateField HeaderText="Proposer Type">
+                                                                <ItemTemplate>
+                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("ProposerType") %></span>
+                                                                    <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
+                                                                 </ItemTemplate>
+                                                                 <FooterTemplate>
+                                                                    <asp:Label  Text="Total :" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                              </asp:TemplateField>
+
+                                                            <%--<asp:BoundField HeaderText="No Of Proposals" DataField="NoOfProposals" />--%>
+                                                             <asp:TemplateField HeaderText="No Of Proposals">
+                                                                <ItemTemplate>
+                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("NoOfProposals") %></span>
+                                                                </ItemTemplate>
+                                                                 <FooterTemplate>
+                                                                    <asp:Label ID="lblTotaldProposals2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                              </asp:TemplateField>
+
+
+                                                            <%--<asp:BoundField HeaderText="All Proposals Amount(In Rupees)" DataField="TotalAmount" />--%>
+
+                                                             <asp:TemplateField HeaderText="All Proposals Amount(In Rupees)">
+                                                                <ItemTemplate>
+                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("TotalAmount") %></span>
+                                                                   
+                                                                 </ItemTemplate>
+                                                                 <FooterTemplate>
+                                                                    <asp:Label ID="lblTotaldProposalsAmount2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                              </asp:TemplateField>
+
+
+                                                            <%--<asp:BoundField HeaderText="PendingProposals" DataField="PendingProposals" />--%>
+
+                                                             <asp:TemplateField HeaderText="PendingProposals">
+                                                                <ItemTemplate>
+                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("PendingProposals") %></span>
+                                                                   
+                                                                 </ItemTemplate>
+                                                                 <FooterTemplate>
+                                                                    <asp:Label ID="lblTotaldProposalsPending2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                              </asp:TemplateField>
+
+
+
+                                                            <%--<asp:BoundField HeaderText="Pending Proposals Amount(In Rupees)" DataField="PendingProposalsAmount" />--%>
+
+                                                              <asp:TemplateField HeaderText="Pending Proposals Amount(In Rupees)">
+                                                                <ItemTemplate>
+                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("PendingProposalsAmount") %></span>
+                                                                   
+                                                                 </ItemTemplate>
+                                                                 <FooterTemplate>
+                                                                    <asp:Label ID="lblTotaldProposalsPendingAmount2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                              </asp:TemplateField>
+
+
+
+                                                            <%--<asp:BoundField HeaderText="Approved Proposals" DataField="ApprovedProposals" />--%>
+
+
+                                                               <asp:TemplateField HeaderText="Approved Proposals">
+                                                                <ItemTemplate>
+                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("ApprovedProposals") %></span>
+                                                                   
+                                                                 </ItemTemplate>
+                                                                 <FooterTemplate>
+                                                                    <asp:Label ID="lblTotaldProposalsApproved2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                              </asp:TemplateField>
+
+                                                            <%--<asp:BoundField HeaderText="Approved Proposals Amount(In Rupees)" DataField="ApprovedProposalsAmount" />--%>
+                                                             <asp:TemplateField HeaderText="Approved Proposals Amount(In Rupees)">
+                                                                <ItemTemplate>
+                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("ApprovedProposalsAmount") %></span>
+                                                                   
+                                                                 </ItemTemplate>
+                                                                 <FooterTemplate>
+                                                                    <asp:Label ID="lblTotaldProposalsApprovedAmount2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                              </asp:TemplateField>
+
+                                                            <%--<asp:BoundField HeaderText="Reject Proposals" DataField="RejectProposals" />--%>
+                                                             <asp:TemplateField HeaderText="Reject Proposals">
+                                                                <ItemTemplate>
+                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("RejectProposals") %></span>
+                                                                   
+                                                                 </ItemTemplate>
+                                                                 <FooterTemplate>
+                                                                    <asp:Label ID="lblTotaldProposalsRejected2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                              </asp:TemplateField>
+
+                                                            <%--<asp:BoundField HeaderText="Reject Proposals Amount(In Rupees)" DataField="RejectProposalsAmount" />--%>
+                                                             <asp:TemplateField HeaderText="Reject Proposals Amount(In Rupees)">
+                                                                <ItemTemplate>
+                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("RejectProposalsAmount") %></span>
+                                                                   
+                                                                 </ItemTemplate>
+                                                                 <FooterTemplate>
+                                                                    <asp:Label ID="lblTotaldProposalsRejectedAmount2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                              </asp:TemplateField>
+
+                                                            <%--<asp:BoundField HeaderText="Hold Proposals" DataField="HoldProposals" />--%>
+
+                                                            <asp:TemplateField HeaderText="Hold Proposals">
+                                                                <ItemTemplate>
+                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("HoldProposals") %></span>
+                                                                   
+                                                                 </ItemTemplate>
+                                                                 <FooterTemplate>
+                                                                    <asp:Label ID="lblTotaldProposalsHold2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                              </asp:TemplateField>
+
+                                                            <%--<asp:BoundField HeaderText="Hold Proposals Amount (In Rupees)" DataField="HoldProposalsAmount" />--%>
+                                                            <asp:TemplateField HeaderText="Hold Proposals Amount(In Rupees)">
+                                                                <ItemTemplate>
+                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("HoldProposalsAmount") %></span>
+                                                                   
+                                                                 </ItemTemplate>
+                                                                 <FooterTemplate>
+                                                                    <asp:Label ID="lblTotaldProposalsHoldAmount2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                </FooterTemplate>
+
+                                                              </asp:TemplateField>
+
+                                                        </Columns>
+                                                        <EmptyDataTemplate>
+                                                            <tr>
+                                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                            </tr>
+                                                        </EmptyDataTemplate>
+                                                    </asp:GridView>
+                                                </div>
+
+
                                             </div>
                                             <!--end row-->
                                         </div>

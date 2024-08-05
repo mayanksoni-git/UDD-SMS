@@ -488,4 +488,39 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
 
     #endregion
 
+    #region
+    public DataTable GetAnnualActionPlan(string actions, int? ULBID, int? TaskId, int? stateid,int?schemeId, int? circleId, int? FY, string ProjectName, decimal cost, string ProjectDetail, int? personId, string ReasonForSelected, string ConvergeDetail,string @Documents,string PrivorityNo)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[15];
+            param[0] = new SqlParameter("@action", actions);
+            param[1] = new SqlParameter("@ULBId", ULBID);
+            param[2] = new SqlParameter("@taskId", TaskId);
+            param[3] = new SqlParameter("@stateId", stateid);
+
+            param[4] = new SqlParameter("@DistrictId", circleId);
+            param[5] = new SqlParameter("@FYId", FY);
+            param[6] = new SqlParameter("@ProjectName", ProjectName);
+            param[7] = new SqlParameter("@Cost", cost);
+            param[8] = new SqlParameter("@ProjectDetail", ProjectDetail);
+
+            param[9] = new SqlParameter("@createdBy", personId);
+
+            param[10] = new SqlParameter("@SchemeId", schemeId);
+            param[11] = new SqlParameter("@ReasonForSelected", ReasonForSelected);
+            param[12] = new SqlParameter("@Documents", Documents);
+            param[13] = new SqlParameter("@PrivorityNo", PrivorityNo);
+            param[14] = new SqlParameter("@ConvergeDetail", ConvergeDetail);
+           
+            return objDAL.GetDataByProcedure("SpAnualActionplan", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    #endregion
+
 }
