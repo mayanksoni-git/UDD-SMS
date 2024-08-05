@@ -8,7 +8,7 @@ using System.IO;
 using System.Text;
 using System.Data;
 
-public partial class AnnualActionplan : System.Web.UI.Page
+public partial class AnnualActionplanNew : System.Web.UI.Page
 {
     ULBFund objLoan = new ULBFund();
     protected void Page_PreInit(object sender, EventArgs e)
@@ -323,7 +323,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         var priority = PriorityNo.Value;
         var projDetail = detailOfProject.Text;
         var reaseon = ReasonForSelected.Text;
-        var converge = convergence.Text;
+        var converge = "";// convergence.Text;
         var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
 
 
@@ -384,7 +384,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         ProjectName.Text = "";
         detailOfProject.Text = "";
         ReasonForSelected.Text = "";
-        convergence.Text = "";
+       //convergence.Text = "";
         Cost.Text = "";
         PriorityNo.Value = "";
         hdnplanId.Value = "";
@@ -420,7 +420,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
              PriorityNo.Value = dt.Rows[0]["PrivorityNo"].ToString();
              detailOfProject.Text = dt.Rows[0]["ProjectDetail"].ToString();
             ReasonForSelected.Text = dt.Rows[0]["ReasonForSelected"].ToString();
-            convergence.Text = dt.Rows[0]["ConvergeDetail"].ToString();
+           // convergence.Text = dt.Rows[0]["ConvergeDetail"].ToString();
             var doc = dt.Rows[0]["Documents"].ToString();
             if (doc != null)
             {
@@ -475,7 +475,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         var priority = PriorityNo.Value;
         var projDetail = detailOfProject.Text;
         var reaseon = ReasonForSelected.Text;
-        var converge = convergence.Text;
+        var converge = "";// convergence.Text;
         var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
         var taskid =Convert.ToInt32(hdnplanId.Value);
 
