@@ -458,7 +458,7 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
         get_ProcessConfig_Current(Scheme_Id, Loop.ToString());
         get_tbl_ProjectDPRDocs(DPR_Id);
 
-        if (Convert.ToInt32(Session["PersonJuridiction_DepartmentId"].ToString()) == 8)
+        if (Convert.ToInt32(Session["PersonJuridiction_DesignationId"].ToString()) == 4 || Convert.ToInt32(Session["PersonJuridiction_DesignationId"].ToString()) == 9 || Convert.ToInt32(Session["PersonJuridiction_DesignationId"].ToString()) == 1056)
         {
             DataSet ds = new DataLayer().get_tbl_DPRQuestionnaire(Convert.ToInt32(ddlSearchScheme.SelectedValue), ProjectType_Id);
             if (AllClasses.CheckDataSet(ds))

@@ -5,22 +5,22 @@
         <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
-            <asp:UpdatePanel ID="up" runat="server">
-                <ContentTemplate>
+           <%-- <asp:UpdatePanel ID="up" runat="server">
+                <ContentTemplate>--%>
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
-                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                        <h4 class="mb-sm-0">Create Admin Officers/Staff</h4>
-                                        <div class="page-title-right">
-                                            <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                                <li class="breadcrumb-item">Employee Masters</li>
-                                                <li class="breadcrumb-item active">Create Admin Officers/Staff</li>
-                                            </ol>
-                                        </div>
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Create Admin Officers/Staff</h4>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                            <li class="breadcrumb-item">Employee Masters</li>
+                                            <li class="breadcrumb-item active">Create Admin Officers/Staff</li>
+                                        </ol>
                                     </div>
                                 </div>
+                            </div>
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
@@ -63,7 +63,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <asp:Label ID="Label13" runat="server" Text="Designation" CssClass="control-label no-padding-right"></asp:Label>
-                                                           <asp:ListBox ID="lbDesignationS" runat="server" SelectionMode="Multiple" class="chosen-select form-control multiselect" data-placeholder="Choose a Designation..."></asp:ListBox>
+                                                        <asp:ListBox ID="lbDesignationS" runat="server" SelectionMode="Multiple" class="chosen-select form-control multiselect" data-placeholder="Choose a Designation..."></asp:ListBox>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
@@ -434,7 +434,6 @@
                                                     <!--end col-->
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -622,7 +621,7 @@
                     </div>
                     <asp:HiddenField ID="hf_Person_Id" runat="server" Value="0" />
                     <asp:HiddenField ID="hf_PersonJuridiction_Id" runat="server" Value="0" />
-                </ContentTemplate>
+               <%-- </ContentTemplate>
             </asp:UpdatePanel>
             <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
                 <ProgressTemplate>
@@ -632,7 +631,7 @@
                         </div>
                     </div>
                 </ProgressTemplate>
-            </asp:UpdateProgress>
+            </asp:UpdateProgress>--%>
         </div>
     </div>
 </asp:Content>

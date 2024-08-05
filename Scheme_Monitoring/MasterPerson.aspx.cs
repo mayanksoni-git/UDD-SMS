@@ -1136,7 +1136,6 @@ public partial class MasterPerson : System.Web.UI.Page
         if (ddlZoneS.SelectedValue == "0")
         {
             ddlCircleS.Items.Clear();
-            MessageBox.Show("Please Select Zone");
             return;
         }
         else

@@ -111,18 +111,18 @@ public partial class MasterProjectDPR : System.Web.UI.Page
                 get_tbl_ProjectDPR(Convert.ToInt32(ddlProjectMaster.SelectedValue));
             }
         }
-        if (Session["UserType"].ToString() == "1")
-        {
-            divCreate.Visible = true;
-        }
-        else if(Session["UserType"].ToString() == "9" || Session["PersonJuridiction_DesignationId"].ToString() == "4")
-        {
-            divCreate.Visible = true;
-        }
-        else
-        {
-            divCreate.Visible = false;
-        }
+        //if (Session["UserType"].ToString() == "1")
+        //{
+        //    divCreate.Visible = true;
+        //}
+        //else if(Session["UserType"].ToString() == "9" || Session["PersonJuridiction_DesignationId"].ToString() == "4")
+        //{
+        //    divCreate.Visible = true;
+        //}
+        //else
+        //{
+        //    divCreate.Visible = false;
+        //}
     }
     
     protected void grdPost_PreRender(object sender, EventArgs e)
@@ -386,8 +386,18 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             obj_tbl_ProjectDPR.ProjectDPR_LandTransfered = 0;
         }
         obj_tbl_ProjectDPR.ProjectDPR_Status = 1;
-        
-        if ((new DataLayer()).Insert_tbl_ProjectDPR(obj_tbl_ProjectDPR, null, null, null, null, null, chkSkip.Checked))
+
+        tbl_ProjectDPRApproval obj_tbl_ProjectDPRApproval = new tbl_ProjectDPRApproval();
+        obj_tbl_ProjectDPRApproval.ProjectDPRApproval_Status = 1;
+        obj_tbl_ProjectDPRApproval.ProjectDPRApproval_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
+        obj_tbl_ProjectDPRApproval.ProjectDPRApproval_Comments = "";
+        obj_tbl_ProjectDPRApproval.ProjectDPRApproval_Date = DateTime.Now.ToString("dd/MM/yyyy");
+        obj_tbl_ProjectDPRApproval.ProjectDPRApproval_Status_Id = 1;
+        obj_tbl_ProjectDPRApproval.ProjectDPRApproval_Loop = 1;
+        obj_tbl_ProjectDPRApproval.ProjectDPRApproval_SchemeId = Convert.ToInt32(ddlProjectMaster.SelectedValue);
+        obj_tbl_ProjectDPRApproval.ProjectDPRApproval_ProjectDPR_Id = Convert.ToInt32(hf_ProjectDPR_Id.Value);
+
+        if ((new DataLayer()).Insert_tbl_ProjectDPR(obj_tbl_ProjectDPR, null, null, null, null, null, chkSkip.Checked, obj_tbl_ProjectDPRApproval, Convert.ToInt32(Session["PersonJuridiction_DepartmentId"].ToString()), Convert.ToInt32(Session["PersonJuridiction_DesignationId"].ToString())))
         {
             MessageBox.Show("Project Created Successfully!");
             reset();

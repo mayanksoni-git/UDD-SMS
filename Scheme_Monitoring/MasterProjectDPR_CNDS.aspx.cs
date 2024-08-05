@@ -1045,7 +1045,7 @@ public partial class MasterProjectDPR_CNDS : System.Web.UI.Page
                 obj_tbl_ProjectDPRBidder_Li.Add(obj_tbl_ProjectDPRBidder);
             }
         }
-        if ((new DataLayer()).Insert_tbl_ProjectDPR(obj_tbl_ProjectDPR, obj_tbl_ProjectDPRTender, obj_tbl_ProjectDPR_Other, obj_tbl_ProjectDPRBidder_Li, obj_tbl_ProjectDPR_Form, obj_tbl_PersonDetail, true))
+        if ((new DataLayer()).Insert_tbl_ProjectDPR(obj_tbl_ProjectDPR, obj_tbl_ProjectDPRTender, obj_tbl_ProjectDPR_Other, obj_tbl_ProjectDPRBidder_Li, obj_tbl_ProjectDPR_Form, obj_tbl_PersonDetail, true, null, 0, 0))
         {
             MessageBox.Show("Project Created Successfully!");
             reset();
