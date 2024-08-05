@@ -320,7 +320,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         int fy = Convert.ToInt32(ddlFY.SelectedValue);
         var  project = ProjectName.Text;
         decimal costs = Convert.ToDecimal(Cost.Text);
-        var priority = PriorityNo.Value;
+        var priority = PriorityNo.Text;
         var projDetail = detailOfProject.Text;
         var reaseon = ReasonForSelected.Text;
         var converge = convergence.Text;
@@ -386,7 +386,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         ReasonForSelected.Text = "";
         convergence.Text = "";
         Cost.Text = "";
-        PriorityNo.Value = "";
+        PriorityNo.Text = "";
         hdnplanId.Value = "";
     }
 
@@ -417,7 +417,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
             ddlProjectMaster.SelectedValue = dt.Rows[0]["SchemeId"].ToString();
             ProjectName.Text= dt.Rows[0]["ProjectName"].ToString();
             Cost.Text = dt.Rows[0]["Cost"].ToString();
-             PriorityNo.Value = dt.Rows[0]["PrivorityNo"].ToString();
+             PriorityNo.Text = dt.Rows[0]["PrivorityNo"].ToString();
              detailOfProject.Text = dt.Rows[0]["ProjectDetail"].ToString();
             ReasonForSelected.Text = dt.Rows[0]["ReasonForSelected"].ToString();
             convergence.Text = dt.Rows[0]["ConvergeDetail"].ToString();
@@ -472,7 +472,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         int fy = Convert.ToInt32(ddlFY.SelectedValue);
         var project = ProjectName.Text;
         decimal costs = Convert.ToDecimal(Cost.Text);
-        var priority = PriorityNo.Value;
+        var priority = PriorityNo.Text;
         var projDetail = detailOfProject.Text;
         var reaseon = ReasonForSelected.Text;
         var converge = convergence.Text;

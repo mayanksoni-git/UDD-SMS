@@ -86,7 +86,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div2" runat="server">
                                                         <asp:Label ID="Label2" runat="server" Text="Priority No" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <input type="number" ID="PriorityNo" runat="server"  class="form-control"/>
+                                                        <asp:TextBox ID="PriorityNo" runat="server"  CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                  
@@ -163,7 +163,7 @@
                                                         <div class="pull-right tableTools-container"></div>
                                                     </div>
                                                  <div style="overflow: auto">
-                                                <asp:GridView runat="server" ID="grdPost"  AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                <asp:GridView runat="server" ID="grdPost" CssClass="table table-striped table-responsive"  AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>
