@@ -1,0 +1,810 @@
+<div>
+	<table class="display&#32;table&#32;table-bordered&#32;reportGrid" cellspacing="0" rules="all" border="1" id="ctl00_ContentPlaceHolder1_GrdDistrictWise" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">Sr. No.</th><th scope="col">District Name</th><th scope="col">No of ULB</th><th scope="col">No of Financial year</th><th scope="col">Total Sactioned Amount (In Lacs)</th><th scope="col">Percent b/w District</th>
+		</tr><tr>
+			<td>
+                                                                    1
+                                                                   
+                                                                </td><td>Gorakhpur</td><td>
+                                                                    10
+                                                                </td><td>
+                                                                    6
+                                                                </td><td>
+                                                                    17800.36
+                                                                </td><td>11.34</td>
+		</tr><tr>
+			<td>
+                                                                    2
+                                                                   
+                                                                </td><td>Varanasi</td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    15915.00
+                                                                </td><td>10.14</td>
+		</tr><tr>
+			<td>
+                                                                    3
+                                                                   
+                                                                </td><td>Shahjahanpur</td><td>
+                                                                    7
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    11654.09
+                                                                </td><td>7.43</td>
+		</tr><tr>
+			<td>
+                                                                    4
+                                                                   
+                                                                </td><td>Meerut</td><td>
+                                                                    8
+                                                                </td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    9627.35
+                                                                </td><td>6.14</td>
+		</tr><tr>
+			<td>
+                                                                    5
+                                                                   
+                                                                </td><td>Ayodhya</td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    6543.76
+                                                                </td><td>4.17</td>
+		</tr><tr>
+			<td>
+                                                                    6
+                                                                   
+                                                                </td><td>Siddharthnagar</td><td>
+                                                                    11
+                                                                </td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    5744.41
+                                                                </td><td>3.66</td>
+		</tr><tr>
+			<td>
+                                                                    7
+                                                                   
+                                                                </td><td>Sant Kabir Nagar</td><td>
+                                                                    8
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    5560.62
+                                                                </td><td>3.54</td>
+		</tr><tr>
+			<td>
+                                                                    8
+                                                                   
+                                                                </td><td>Deoria</td><td>
+                                                                    12
+                                                                </td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    4951.71
+                                                                </td><td>3.16</td>
+		</tr><tr>
+			<td>
+                                                                    9
+                                                                   
+                                                                </td><td>Muzaffarnagar</td><td>
+                                                                    7
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    4220.65
+                                                                </td><td>2.69</td>
+		</tr><tr>
+			<td>
+                                                                    10
+                                                                   
+                                                                </td><td>Jaunpur</td><td>
+                                                                    6
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    4097.80
+                                                                </td><td>2.61</td>
+		</tr><tr>
+			<td>
+                                                                    11
+                                                                   
+                                                                </td><td>Unnao</td><td>
+                                                                    13
+                                                                </td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    3927.43
+                                                                </td><td>2.50</td>
+		</tr><tr>
+			<td>
+                                                                    12
+                                                                   
+                                                                </td><td>Kushinagar</td><td>
+                                                                    11
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    3718.97
+                                                                </td><td>2.37</td>
+		</tr><tr>
+			<td>
+                                                                    13
+                                                                   
+                                                                </td><td>Ballia</td><td>
+                                                                    11
+                                                                </td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    3220.02
+                                                                </td><td>2.05</td>
+		</tr><tr>
+			<td>
+                                                                    14
+                                                                   
+                                                                </td><td>Ghaziabad</td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    3127.40
+                                                                </td><td>1.99</td>
+		</tr><tr>
+			<td>
+                                                                    15
+                                                                   
+                                                                </td><td>Maharajganj</td><td>
+                                                                    8
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    3092.84
+                                                                </td><td>1.97</td>
+		</tr><tr>
+			<td>
+                                                                    16
+                                                                   
+                                                                </td><td>Mau</td><td>
+                                                                    7
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    2881.35
+                                                                </td><td>1.84</td>
+		</tr><tr>
+			<td>
+                                                                    17
+                                                                   
+                                                                </td><td>Badaun</td><td>
+                                                                    8
+                                                                </td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    2629.80
+                                                                </td><td>1.68</td>
+		</tr><tr>
+			<td>
+                                                                    18
+                                                                   
+                                                                </td><td>Lucknow</td><td>
+                                                                    7
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    2546.10
+                                                                </td><td>1.62</td>
+		</tr><tr>
+			<td>
+                                                                    19
+                                                                   
+                                                                </td><td>Mathura</td><td>
+                                                                    10
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    2344.79
+                                                                </td><td>1.49</td>
+		</tr><tr>
+			<td>
+                                                                    20
+                                                                   
+                                                                </td><td>Amroha</td><td>
+                                                                    7
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    2109.77
+                                                                </td><td>1.34</td>
+		</tr><tr>
+			<td>
+                                                                    21
+                                                                   
+                                                                </td><td>Sitapur</td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    2035.65
+                                                                </td><td>1.30</td>
+		</tr><tr>
+			<td>
+                                                                    22
+                                                                   
+                                                                </td><td>Baghpat</td><td>
+                                                                    6
+                                                                </td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    1998.47
+                                                                </td><td>1.27</td>
+		</tr><tr>
+			<td>
+                                                                    23
+                                                                   
+                                                                </td><td>Bareilly</td><td>
+                                                                    8
+                                                                </td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    1994.66
+                                                                </td><td>1.27</td>
+		</tr><tr>
+			<td>
+                                                                    24
+                                                                   
+                                                                </td><td>Raebareli</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    1558.60
+                                                                </td><td>0.99</td>
+		</tr><tr>
+			<td>
+                                                                    25
+                                                                   
+                                                                </td><td>Barabanki</td><td>
+                                                                    8
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    1511.49
+                                                                </td><td>0.96</td>
+		</tr><tr>
+			<td>
+                                                                    26
+                                                                   
+                                                                </td><td>Kaushambi</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    1489.33
+                                                                </td><td>0.95</td>
+		</tr><tr>
+			<td>
+                                                                    27
+                                                                   
+                                                                </td><td>Agra</td><td>
+                                                                    7
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    1451.31
+                                                                </td><td>0.92</td>
+		</tr><tr>
+			<td>
+                                                                    28
+                                                                   
+                                                                </td><td>Prayagraj</td><td>
+                                                                    6
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    1341.21
+                                                                </td><td>0.85</td>
+		</tr><tr>
+			<td>
+                                                                    29
+                                                                   
+                                                                </td><td>Mirzapur-Cum-Vindhyachal</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    1249.49
+                                                                </td><td>0.80</td>
+		</tr><tr>
+			<td>
+                                                                    30
+                                                                   
+                                                                </td><td>Gonda</td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    1097.26
+                                                                </td><td>0.70</td>
+		</tr><tr>
+			<td>
+                                                                    31
+                                                                   
+                                                                </td><td>Balrampur</td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    1056.01
+                                                                </td><td>0.67</td>
+		</tr><tr>
+			<td>
+                                                                    32
+                                                                   
+                                                                </td><td>Bulandsahar</td><td>
+                                                                    7
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    1046.99
+                                                                </td><td>0.67</td>
+		</tr><tr>
+			<td>
+                                                                    33
+                                                                   
+                                                                </td><td>Amethi</td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    1034.82
+                                                                </td><td>0.66</td>
+		</tr><tr>
+			<td>
+                                                                    34
+                                                                   
+                                                                </td><td>Kasganj</td><td>
+                                                                    6
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    1022.85
+                                                                </td><td>0.65</td>
+		</tr><tr>
+			<td>
+                                                                    35
+                                                                   
+                                                                </td><td>Basti</td><td>
+                                                                    7
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    1017.11
+                                                                </td><td>0.65</td>
+		</tr><tr>
+			<td>
+                                                                    36
+                                                                   
+                                                                </td><td>Chandauli</td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    997.54
+                                                                </td><td>0.64</td>
+		</tr><tr>
+			<td>
+                                                                    37
+                                                                   
+                                                                </td><td>Hardoi</td><td>
+                                                                    6
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    955.79
+                                                                </td><td>0.61</td>
+		</tr><tr>
+			<td>
+                                                                    38
+                                                                   
+                                                                </td><td>Jalaun</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    912.79
+                                                                </td><td>0.58</td>
+		</tr><tr>
+			<td>
+                                                                    39
+                                                                   
+                                                                </td><td>Ambedkar Nagar</td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    898.23
+                                                                </td><td>0.57</td>
+		</tr><tr>
+			<td>
+                                                                    40
+                                                                   
+                                                                </td><td>Gautam Buddh Nagar</td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    849.78
+                                                                </td><td>0.54</td>
+		</tr><tr>
+			<td>
+                                                                    41
+                                                                   
+                                                                </td><td>Bahraich</td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    844.28
+                                                                </td><td>0.54</td>
+		</tr><tr>
+			<td>
+                                                                    42
+                                                                   
+                                                                </td><td>Pilibhit</td><td>
+                                                                    8
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    844.23
+                                                                </td><td>0.54</td>
+		</tr><tr>
+			<td>
+                                                                    43
+                                                                   
+                                                                </td><td>Kheri</td><td>
+                                                                    6
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    781.72
+                                                                </td><td>0.50</td>
+		</tr><tr>
+			<td>
+                                                                    44
+                                                                   
+                                                                </td><td>Bijnor</td><td>
+                                                                    6
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    768.17
+                                                                </td><td>0.49</td>
+		</tr><tr>
+			<td>
+                                                                    45
+                                                                   
+                                                                </td><td>Mahoba</td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    762.63
+                                                                </td><td>0.49</td>
+		</tr><tr>
+			<td>
+                                                                    46
+                                                                   
+                                                                </td><td>Saharanpur</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    690.57
+                                                                </td><td>0.44</td>
+		</tr><tr>
+			<td>
+                                                                    47
+                                                                   
+                                                                </td><td>Pratapgarh</td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    635.00
+                                                                </td><td>0.40</td>
+		</tr><tr>
+			<td>
+                                                                    48
+                                                                   
+                                                                </td><td>Kanpur Dehat</td><td>
+                                                                    6
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    630.29
+                                                                </td><td>0.40</td>
+		</tr><tr>
+			<td>
+                                                                    49
+                                                                   
+                                                                </td><td>Fatehpur</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    621.40
+                                                                </td><td>0.40</td>
+		</tr><tr>
+			<td>
+                                                                    50
+                                                                   
+                                                                </td><td>Mainpuri</td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    616.44
+                                                                </td><td>0.39</td>
+		</tr><tr>
+			<td>
+                                                                    51
+                                                                   
+                                                                </td><td>Etah</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    575.09
+                                                                </td><td>0.37</td>
+		</tr><tr>
+			<td>
+                                                                    52
+                                                                   
+                                                                </td><td>Aligarh</td><td>
+                                                                    5
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    573.85
+                                                                </td><td>0.37</td>
+		</tr><tr>
+			<td>
+                                                                    53
+                                                                   
+                                                                </td><td>Chitrakoot</td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    559.44
+                                                                </td><td>0.36</td>
+		</tr><tr>
+			<td>
+                                                                    54
+                                                                   
+                                                                </td><td>Firozabad</td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    554.71
+                                                                </td><td>0.35</td>
+		</tr><tr>
+			<td>
+                                                                    55
+                                                                   
+                                                                </td><td>Shamli</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    527.42
+                                                                </td><td>0.34</td>
+		</tr><tr>
+			<td>
+                                                                    56
+                                                                   
+                                                                </td><td>Rampur</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    520.89
+                                                                </td><td>0.33</td>
+		</tr><tr>
+			<td>
+                                                                    57
+                                                                   
+                                                                </td><td>Kannauj</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    498.63
+                                                                </td><td>0.32</td>
+		</tr><tr>
+			<td>
+                                                                    58
+                                                                   
+                                                                </td><td>Moradabad</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    460.69
+                                                                </td><td>0.29</td>
+		</tr><tr>
+			<td>
+                                                                    59
+                                                                   
+                                                                </td><td>Hapur</td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    460.57
+                                                                </td><td>0.29</td>
+		</tr><tr>
+			<td>
+                                                                    60
+                                                                   
+                                                                </td><td>Lalitpur</td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    450.09
+                                                                </td><td>0.29</td>
+		</tr><tr>
+			<td>
+                                                                    61
+                                                                   
+                                                                </td><td>Sonbhadra</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    449.87
+                                                                </td><td>0.29</td>
+		</tr><tr>
+			<td>
+                                                                    62
+                                                                   
+                                                                </td><td>Bhadohi</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    447.76
+                                                                </td><td>0.29</td>
+		</tr><tr>
+			<td>
+                                                                    63
+                                                                   
+                                                                </td><td>Banda</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    400.18
+                                                                </td><td>0.26</td>
+		</tr><tr>
+			<td>
+                                                                    64
+                                                                   
+                                                                </td><td>Hamirpur</td><td>
+                                                                    4
+                                                                </td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    344.43
+                                                                </td><td>0.22</td>
+		</tr><tr>
+			<td>
+                                                                    65
+                                                                   
+                                                                </td><td>Azamgarh</td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    312.70
+                                                                </td><td>0.20</td>
+		</tr><tr>
+			<td>
+                                                                    66
+                                                                   
+                                                                </td><td>Ghazipur</td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    299.69
+                                                                </td><td>0.19</td>
+		</tr><tr>
+			<td>
+                                                                    67
+                                                                   
+                                                                </td><td>Jhansi</td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    292.22
+                                                                </td><td>0.19</td>
+		</tr><tr>
+			<td>
+                                                                    68
+                                                                   
+                                                                </td><td>Farrukhabad</td><td>
+                                                                    3
+                                                                </td><td>
+                                                                    2
+                                                                </td><td>
+                                                                    274.42
+                                                                </td><td>0.17</td>
+		</tr><tr>
+			<td>
+                                                                    69
+                                                                   
+                                                                </td><td>Hathras</td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    200.00
+                                                                </td><td>0.13</td>
+		</tr><tr>
+			<td>
+                                                                    70
+                                                                   
+                                                                </td><td>Sultanpur</td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    100.00
+                                                                </td><td>0.06</td>
+		</tr><tr>
+			<td>
+                                                                    71
+                                                                   
+                                                                </td><td>Srawasti</td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    99.48
+                                                                </td><td>0.06</td>
+		</tr><tr>
+			<td>
+                                                                    72
+                                                                   
+                                                                </td><td>Etawah</td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    50.00
+                                                                </td><td>0.03</td>
+		</tr><tr>
+			<td>
+                                                                    73
+                                                                   
+                                                                </td><td>Kanpur Nagar</td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    1
+                                                                </td><td>
+                                                                    25.00
+                                                                </td><td>0.02</td>
+		</tr>
+	</table>
+</div>

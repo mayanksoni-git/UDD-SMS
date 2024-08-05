@@ -8,7 +8,7 @@ using System.IO;
 using System.Text;
 using System.Data;
 
-public partial class FundRecievedInULB : System.Web.UI.Page
+public partial class AnnualActionplanNew : System.Web.UI.Page
 {
     ULBFund objLoan = new ULBFund();
     protected void Page_PreInit(object sender, EventArgs e)
@@ -27,12 +27,12 @@ public partial class FundRecievedInULB : System.Web.UI.Page
             lblCircleH.Text = Session["Default_Circle"].ToString() + "*";
             lblDivisionH.Text = Session["Default_Division"].ToString() + "*";
             //exportToExcel.Visible = false;
-
+            message.InnerText = "";
             get_tbl_Zone();
             get_tbl_Project();
             //get_tbl_WorkType();
             get_tbl_FinancialYear();
-            
+            GetAllData(0);
             //LoadDataInForm(1);
             SetDropdownsBasedOnUserType();
         }
@@ -109,7 +109,7 @@ public partial class FundRecievedInULB : System.Web.UI.Page
     private void get_tbl_Project()
     {
         DataSet ds = (new DataLayer()).get_tbl_Project(0);
-        //FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
+       FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
     }
     private void get_tbl_WorkType(int ProjectId)
     {
@@ -256,8 +256,9 @@ public partial class FundRecievedInULB : System.Web.UI.Page
     }
     protected void GetAllData(int? ULBID)
     {
+        ULBID = 0;
         DataTable dt = new DataTable();
-        dt = objLoan.GetULBFundAction("select", ULBID, 0, 0, 0, 0, 0, 0, 0, 0);
+        dt = objLoan.GetAnnualActionPlan("select", ULBID, 0, 0, 0, 0, 0, "", 0, "",0,"","","","");
         grdPost.DataSource = dt;
         grdPost.DataBind();
       
@@ -286,14 +287,43 @@ public partial class FundRecievedInULB : System.Web.UI.Page
         {
             return;
         }
+        var doc = "";
+        var pathProfile = "";
+        if (fileupload.HasFile)
+        {
+            int fileSize = fileupload.PostedFile.ContentLength;
 
+            // path = FileUpload1.FileName;
+            //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
+            string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
+            int fileappent = 0;
+            while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename)))
+            {
+                fileappent++;
+                sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
+                + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
+            }
+            doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename);
+
+            //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
+
+            fileupload.SaveAs(doc);
+
+            pathProfile = "/PDFs/AnualActionPlanPDF/" + sFilename;
+        }
+
+      
         int zone = Convert.ToInt32(ddlZone.SelectedValue);
         int circle = Convert.ToInt32(ddlCircle.SelectedValue);
         int division = Convert.ToInt32(ddlDivision.SelectedValue);
+        int scheme = Convert.ToInt32(ddlProjectMaster.SelectedValue);
         int fy = Convert.ToInt32(ddlFY.SelectedValue);
-        decimal SFCs = Convert.ToDecimal(SFC.Text);
-        decimal CFCs = Convert.ToDecimal(CFC.Text);
-        decimal TotalTaxs = Convert.ToDecimal(TotalTax.Text);
+        var  project = ProjectName.Text;
+        decimal costs = Convert.ToDecimal(Cost.Text);
+        var priority = PriorityNo.Value;
+        var projDetail = detailOfProject.Text;
+        var reaseon = ReasonForSelected.Text;
+        var converge = "";// convergence.Text;
         var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
 
 
@@ -301,21 +331,27 @@ public partial class FundRecievedInULB : System.Web.UI.Page
         Button clickedButton = sender as Button;
         string text = clickedButton.Text;
         DataTable dt = new DataTable();
-        dt = objLoan.GetULBFundAction(
+        dt = objLoan.GetAnnualActionPlan(
              "Insert",
               division,
                0,
             zone,
+            scheme,
             circle,
              fy,
-            SFCs,
-             CFCs,
-             TotalTaxs,
-             Person_Id
+            project,
+             costs,
+             projDetail,
+             Person_Id,
+             reaseon,
+             converge
+             , pathProfile
+             , priority
              );
         if (dt != null && dt.Rows.Count > 0)
         {
-            MessageBox.Show(dt.Rows[0]["remark"].ToString());
+
+            message.InnerText= dt.Rows[0]["remark"].ToString();
         }
         GetAllData(division);
 
@@ -332,12 +368,26 @@ public partial class FundRecievedInULB : System.Web.UI.Page
 
         ddlZone.SelectedValue = "0";
         ddlCircle.SelectedValue = "0";
-        ddlDivision.SelectedValue = "0";
+        get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
+        ddlCircle_SelectedIndexChanged(ddlCircle, new EventArgs());
+        try
+        {
+            ddlDivision.SelectedValue = "0";
+        }
+        catch
+        {
+            ddlDivision.SelectedValue = "0";
+        }
+        ddlProjectMaster.SelectedValue = "0";
+        ddlFY.SelectedValue = "0";
         btnSave.Visible = true;
-        SFC.Text = "";
-        CFC.Text = "";
-        TotalTax.Text = "";
-        ULBFundId.Value = "";
+        ProjectName.Text = "";
+        detailOfProject.Text = "";
+        ReasonForSelected.Text = "";
+       //convergence.Text = "";
+        Cost.Text = "";
+        PriorityNo.Value = "";
+        hdnplanId.Value = "";
     }
 
     protected void Edit_Command(object sender, CommandEventArgs e)
@@ -345,29 +395,42 @@ public partial class FundRecievedInULB : System.Web.UI.Page
         var id = Convert.ToInt32(e.CommandArgument.ToString());
 
         DataTable dt = new DataTable();
-        dt = objLoan.GetULBFundAction("selectById", 0, id, 0, 0, 0, 0, 0, 0, 0);
+
+       // objLoan.GetAnnualActionPlan("select", ULBID, 0, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
+        dt = objLoan.GetAnnualActionPlan("selectById", 0, id, 0, 0, 0,0, "", 0, "", 0, "", "", "", "");
         btnSave.Visible = false;
         BtnUpdate.Visible = true;
         if (dt != null && dt.Rows.Count > 0)
         {
-            ddlZone.SelectedValue = dt.Rows[0]["statetId"].ToString();
+            ddlZone.SelectedValue = dt.Rows[0]["stateId"].ToString();
             ddlCircle.SelectedValue = dt.Rows[0]["DistrictId"].ToString();
             ddlCircle_SelectedIndexChanged(ddlCircle, new EventArgs());
             try
             {
-                ddlDivision.SelectedValue = dt.Rows[0]["ULBId"].ToString();
+                ddlDivision.SelectedValue = dt.Rows[0]["ULBID"].ToString();
             }
             catch
             {
                 ddlDivision.SelectedValue = "0";
             }
-            ddlFY.SelectedValue = dt.Rows[0]["FYId"].ToString();
-            //ddlDivision.SelectedValue = dt.Rows[0]["ULBId"].ToString();
-
-            SFC.Text = dt.Rows[0]["SFCFund"].ToString();
-            CFC.Text = dt.Rows[0]["CFCFund"].ToString();
-            TotalTax.Text = dt.Rows[0]["TotalTaxtCollection"].ToString();
-            ULBFundId.Value = dt.Rows[0]["ULBFundId"].ToString();
+            ddlFY.SelectedValue = dt.Rows[0]["FYID"].ToString();
+            ddlProjectMaster.SelectedValue = dt.Rows[0]["SchemeId"].ToString();
+            ProjectName.Text= dt.Rows[0]["ProjectName"].ToString();
+            Cost.Text = dt.Rows[0]["Cost"].ToString();
+             PriorityNo.Value = dt.Rows[0]["PrivorityNo"].ToString();
+             detailOfProject.Text = dt.Rows[0]["ProjectDetail"].ToString();
+            ReasonForSelected.Text = dt.Rows[0]["ReasonForSelected"].ToString();
+           // convergence.Text = dt.Rows[0]["ConvergeDetail"].ToString();
+            var doc = dt.Rows[0]["Documents"].ToString();
+            if (doc != null)
+            {
+                UpladedDoc.HRef = dt.Rows[0]["Documents"].ToString();
+                UpladedDoc.InnerText = "Uploaded Docs";
+            }
+            //SFC.Text = dt.Rows[0]["SFCFund"].ToString();, , , ,, ,Documents
+            //CFC.Text = dt.Rows[0]["CFCFund"].ToString();
+            //TotalTax.Text = dt.Rows[0]["TotalTaxtCollection"].ToString();
+            hdnplanId.Value = dt.Rows[0]["planId"].ToString();
 
         }
 
@@ -376,36 +439,76 @@ public partial class FundRecievedInULB : System.Web.UI.Page
    
     protected void BtnUpdate_Click(object sender, EventArgs e)
     {
-        int id = Convert.ToInt32(ULBFundId.Value);
+        var doc = "";
+        var pathProfile = "";
+        if (fileupload.HasFile)
+        {
+            int fileSize = fileupload.PostedFile.ContentLength;
+
+            // path = FileUpload1.FileName;
+            //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
+            string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
+            int fileappent = 0;
+            while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename)))
+            {
+                fileappent++;
+                sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
+                + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
+            }
+            doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename);
+
+            //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
+
+            fileupload.SaveAs(doc);
+
+            pathProfile = "/PDFs/AnualActionPlanPDF/" + sFilename;
+        }
+
+
         int zone = Convert.ToInt32(ddlZone.SelectedValue);
         int circle = Convert.ToInt32(ddlCircle.SelectedValue);
         int division = Convert.ToInt32(ddlDivision.SelectedValue);
+        int scheme = Convert.ToInt32(ddlProjectMaster.SelectedValue);
         int fy = Convert.ToInt32(ddlFY.SelectedValue);
-        decimal SFCs = Convert.ToDecimal(SFC.Text);
-        decimal CFCs = Convert.ToDecimal(CFC.Text);
-        decimal TotalTaxs = Convert.ToDecimal(TotalTax.Text);
+        var project = ProjectName.Text;
+        decimal costs = Convert.ToDecimal(Cost.Text);
+        var priority = PriorityNo.Value;
+        var projDetail = detailOfProject.Text;
+        var reaseon = ReasonForSelected.Text;
+        var converge = "";// convergence.Text;
         var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
+        var taskid =Convert.ToInt32(hdnplanId.Value);
+
+        //var sfc = Convert.ToDecimal();
+        Button clickedButton = sender as Button;
+        string text = clickedButton.Text;
         DataTable dt = new DataTable();
-        dt = objLoan.GetULBFundAction(
-             "edit",
-              division,
-               id,
-            zone,
-            circle,
-             fy,
-            SFCs,
-             CFCs,
-             TotalTaxs,
-             Person_Id
-             );
+        dt = objLoan.GetAnnualActionPlan(
+              "Update",
+               division,
+                taskid,
+             zone,
+             scheme,
+             circle,
+              fy,
+             project,
+              costs,
+              projDetail,
+              Person_Id,
+              reaseon,
+              converge
+              , pathProfile
+              , priority
+              );
         if (dt != null && dt.Rows.Count > 0)
         {
-           
-            MessageBox.Show(dt.Rows[0]["remark"].ToString());
+
+            message.InnerText = dt.Rows[0]["remark"].ToString();
         }
         GetAllData(division);
-        reset();
+
         //GetULBFundAction
+        reset();
     }
 
     protected void btnDelete_Command(object sender, CommandEventArgs e)
@@ -413,12 +516,13 @@ public partial class FundRecievedInULB : System.Web.UI.Page
         var id = Convert.ToInt32(e.CommandArgument.ToString());
 
         DataTable dt = new DataTable();
-        dt = objLoan.GetULBFundAction("Delete", 0, id, 0, 0, 0, 0, 0, 0, 0);
+        dt = objLoan.GetAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
         if (dt != null && dt.Rows.Count > 0)
         {
-            MessageBox.Show(dt.Rows[0]["remark"].ToString());
+            message.InnerText = dt.Rows[0]["remark"].ToString();
+
         }
 
-        GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
+        GetAllData(0);
     }
 }

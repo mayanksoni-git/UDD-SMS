@@ -21,7 +21,7 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                            <%--<li class="breadcrumb-item">Work Plan Management System</li>--%>
+                                            <li class="breadcrumb-item">MIS</li>
                                             <li class="breadcrumb-item active">Add Income Type</li>
                                         </ol>
                                     </div>

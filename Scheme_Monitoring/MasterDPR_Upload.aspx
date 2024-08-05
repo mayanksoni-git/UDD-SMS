@@ -31,6 +31,10 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Upload DPR Document </h4>
+                                    </div>
+
                                     <div class="card-body">
                                         <div class="live-preview">
                                             <div class="row gy-4">
@@ -59,10 +63,12 @@
                                                         <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
-                                                <div class="col-xxl-3 col-md-6">
+
+                                                <div class="col-xxl-11 col-md-11"></div>
+                                                <div class="col-xxl-1 col-md-6">
                                                     <div>
                                                         <br />
-                                                        <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" runat="server" CssClass="btn btn-warning"></asp:Button>
+                                                        <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                     </div>
                                                 </div>
                                             </div>

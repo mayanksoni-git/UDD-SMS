@@ -210,6 +210,7 @@ public partial class FormForApproval : System.Web.UI.Page
         divDivisionWise.Visible = false;
         divWorkPlanWise.Visible = false;
         divDistrictWise.Visible = false;
+        divRecommendationWise.Visible = false;
         div.Visible = true;
         div.Focus();
     }
@@ -269,6 +270,8 @@ public partial class FormForApproval : System.Web.UI.Page
     {
         LoadWorkPlanGrid(Convert.ToInt16(hfWorkProposalId.Value));
     }
+
+   
     protected void OnPageIndexChangingWorkPlanWise(object sender, GridViewPageEventArgs e)
     {
         gridFyWise.PageIndex = e.NewPageIndex;
@@ -276,6 +279,16 @@ public partial class FormForApproval : System.Web.UI.Page
     }
 
 
+    protected void btnRecommendationWise_Click(object sender, EventArgs e)
+    {
+        LoadRecommendationGrid(Convert.ToInt16(hfWorkProposalId.Value));
+
+    }
+    protected void GrdRecommendation_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        GrdRecommendation.PageIndex = e.NewPageIndex;
+        LoadRecommendationGrid(Convert.ToInt16(hfWorkProposalId.Value));
+    }
     private void LoadFYGrid(int WorkProposalId)
     {
         DataTable dt = new DataTable();
@@ -447,6 +460,66 @@ public partial class FormForApproval : System.Web.UI.Page
         }
     }
 
+    private void LoadRecommendationGrid(int WorkProposalId)
+    {
+        DataTable dt = new DataTable();
+        dt = objLoan.getRecommendationWiseData(WorkProposalId);
+
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            GrdRecommendation.DataSource = dt;
+            GrdRecommendation.DataBind();
+
+            //-- Footer  content ---//
+
+            decimal TotalPropsal = dt.Compute("Sum(NoOfProposals)", "").ToString().ToDecimal();
+            decimal TotalPropsalAmount = dt.Compute("Sum(TotalAmount)", "").ToString().ToDecimal();
+            decimal TotalPending = dt.Compute("Sum(PendingProposals)", "").ToString().ToDecimal();
+            decimal TotalPendingAmount = dt.Compute("Sum(PendingProposalsAmount)", "").ToString().ToDecimal();
+            decimal TotalApproved = dt.Compute("Sum(ApprovedProposals)", "").ToString().ToDecimal();
+            decimal TotalApprovedAmount = dt.Compute("Sum(ApprovedProposalsAmount)", "").ToString().ToDecimal();
+            decimal TotalReject = dt.Compute("Sum(RejectProposals)", "").ToString().ToDecimal();
+            decimal TotalRejectAmount = dt.Compute("Sum(RejectProposalsAmount)", "").ToString().ToDecimal();
+            decimal TotalHold = dt.Compute("Sum(HoldProposals)", "").ToString().ToDecimal();
+            decimal TotalHoldAmount = dt.Compute("Sum(HoldProposalsAmount)", "").ToString().ToDecimal();
+
+
+            Label lblTotalPropsal = (Label)GrdRecommendation.FooterRow.FindControl("lblTotaldProposals2");
+            Label lblTotalPropsalAmount = (Label)GrdRecommendation.FooterRow.FindControl("lblTotaldProposalsAmount2");
+            Label lblTotalPending = (Label)GrdRecommendation.FooterRow.FindControl("lblTotaldProposalsPending2");
+            Label lblTotalPendingAmount = (Label)GrdRecommendation.FooterRow.FindControl("lblTotaldProposalsPendingAmount2");
+            Label lblTotalApproved = (Label)GrdRecommendation.FooterRow.FindControl("lblTotaldProposalsApproved2");
+            Label lblTotalApprovedAmount = (Label)GrdRecommendation.FooterRow.FindControl("lblTotaldProposalsApprovedAmount2");
+            Label lblTotalReject = (Label)GrdRecommendation.FooterRow.FindControl("lblTotaldProposalsRejected2");
+            Label lblTotalRejectedAmount = (Label)GrdRecommendation.FooterRow.FindControl("lblTotaldProposalsRejectedAmount2");
+            Label lblTotalHold = (Label)GrdRecommendation.FooterRow.FindControl("lblTotaldProposalsHold2");
+            Label lblTotalHoldAmount = (Label)GrdRecommendation.FooterRow.FindControl("lblTotaldProposalsHoldAmount2");
+
+
+            lblTotalPropsal.Text = TotalPropsal.ToString("0.00");
+            lblTotalPropsalAmount.Text = TotalPropsalAmount.ToString("0.00");
+            lblTotalPending.Text = TotalPending.ToString("0.00");
+            lblTotalPendingAmount.Text = TotalPendingAmount.ToString("0.00");
+            lblTotalApproved.Text = TotalApproved.ToString("0.00");
+            lblTotalApprovedAmount.Text = TotalApprovedAmount.ToString("0.00");
+            lblTotalReject.Text = TotalReject.ToString("0.00");
+            lblTotalRejectedAmount.Text = TotalRejectAmount.ToString("0.00");
+            lblTotalHold.Text = TotalHold.ToString("0.00");
+            lblTotalHoldAmount.Text = TotalHoldAmount.ToString("0.00");
+
+            ToggleDiv(divRecommendationWise);
+
+
+        }
+        else
+        {
+            gridWorkPlanWise.DataSource = null;
+            gridWorkPlanWise.DataBind();
+            MessageBox.Show("No Records Found");
+        }
+    }
+
+
     //public void GetDataYearWise(int? workProposalId, int? ParliamentId)
     //{
     //    DataTable dt = new DataTable();
@@ -515,13 +588,13 @@ public partial class FormForApproval : System.Web.UI.Page
 
     //                gridULBCount.DataSource = dt;
     //                gridULBCount.DataBind();
-                   
+
     //                mp1.Show();
     //            }
     //        }
     //        else
     //        {
-               
+
     //        }
     //    }
     //}
@@ -1024,5 +1097,9 @@ public partial class FormForApproval : System.Web.UI.Page
 
 
 
- 
+
+
+
+
+   
 }
