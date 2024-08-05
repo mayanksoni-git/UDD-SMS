@@ -298,7 +298,7 @@
                                                                     <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldAmountOfFY" Text="Total Sanctioned Amount" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldAmountOfFY" Text="Total Sanctioned Amount" runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -308,7 +308,7 @@
                                                                     <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmountOfFY" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotalSactionedAmountOfFY" runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -357,7 +357,7 @@
                                                                     <asp:Button ID="btnAction2" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action2" OnCommand="GetYearWiseData"  CommandArgument='<%# Eval("ParliamentaryConstID") %>'  CssClass="btn btn-primary drill_btn" />
                                                                 </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalAmountOfMp" Text="Total Sanctioned Amount" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotalAmountOfMp" Text="Total Sanctioned Amount" runat="server" ></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Total Sactioned Amount(In Lacs)">
@@ -365,7 +365,7 @@
                                                                     <asp:Button ID="btnAction6" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action2" OnCommand="GetAmountWiseData"  CommandArgument='<%# Eval("ParliamentaryConstID") %>'  CssClass="btn btn-primary drill_btn" />
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmountOfMp" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotalSactionedAmountOfMp" runat="server" ></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -378,13 +378,19 @@
                                                 </div>
                                                 <div runat="server" id="divMLAWise" class="tblheader" visible="false" style="overflow: auto">
                                                     <div class="row">
-                                                    <div class="col-lg-10">  
-                                                    <h3>MLA Wise Data</h3>
+                                                        <div class="col-lg-10">
+                                                            <h3>MLA Wise Data</h3>
                                                         </div>
-                                                     <div class="col-lg-2"> <asp:Button ID="Button2" runat="server" Text="Export to Excel Of MLA"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
-                                                     </div>
+                                                        <div class="col-lg-2">
+                                                            <asp:Button ID="Button2" runat="server" Text="Export to Excel Of MLA" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
+                                                    </div>
+
+                                                     <div class="clearfix" id="dtOptions" runat="server">
+                                                        <div class="pull-right tableTools-container"></div>
+                                                    </div>
+
                                                     <asp:GridView ID="gridMLAWise" runat="server" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" ShowFooter="true" EmptyDataText="No Records Found" AllowPaging="true"
-                                                    OnPageIndexChanging="OnPageIndexChangingMLAWise" PageSize="10">
+                                                        OnPageIndexChanging="OnPageIndexChangingMLAWise" PageSize="10">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
                                                                 <ItemTemplate>
@@ -392,35 +398,35 @@
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:BoundField HeaderText="MLA Name" DataField="MLAName" />
-                                                             <asp:BoundField HeaderText=" Constituency  " DataField="AssemblyConstName" />
+                                                            <asp:BoundField HeaderText=" Constituency  " DataField="AssemblyConstName" />
                                                             <asp:BoundField HeaderText="Party Name" DataField="PartyName" />
-                                                          
 
-                                                             <asp:TemplateField HeaderText="No of ULB">
+
+                                                            <asp:TemplateField HeaderText="No of ULB">
                                                                 <ItemTemplate>
-                                                                    <asp:Button ID="btnAction3" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Action" OnCommand="GetULBWiseData"  CommandArgument='<%# Eval("AssemblyConstID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                    <asp:Button ID="btnAction3" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Action" OnCommand="GetULBWiseData" CommandArgument='<%# Eval("AssemblyConstID") %>' CssClass="btn btn-primary drill_btn" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
 
-                                                             <asp:TemplateField HeaderText="No of Financial year">
+                                                            <asp:TemplateField HeaderText="No of Financial year">
                                                                 <ItemTemplate>
-                                                                    <asp:Button ID="btnAction4" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action" OnCommand="GetYearWiseData"  CommandArgument='<%# Eval("AssemblyConstID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                    <asp:Button ID="btnAction4" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action" OnCommand="GetYearWiseData" CommandArgument='<%# Eval("AssemblyConstID") %>' CssClass="btn btn-primary drill_btn" />
                                                                 </ItemTemplate>
-                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmounttextOfMLA" Text="Total Sanctioned Amount" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lblTotalSactionedAmounttextOfMLA" Text="Total Sanctioned Amount" runat="server"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
 
-                                                          
+
                                                             <asp:TemplateField HeaderText="Total Sactioned Amount (In Lacs)">
                                                                 <ItemTemplate>
-                                                                    <asp:Button ID="btnAction5" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action" OnCommand="GetAmountWiseData"  CommandArgument='<%# Eval("AssemblyConstID") %>'  CssClass="btn btn-primary drill_btn" />
+                                                                    <asp:Button ID="btnAction5" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action" OnCommand="GetAmountWiseData" CommandArgument='<%# Eval("AssemblyConstID") %>' CssClass="btn btn-primary drill_btn" />
                                                                 </ItemTemplate>
-                                                           
-                                                               <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmountOfMLA" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lblTotalSactionedAmountOfMLA" runat="server"></asp:Label>
                                                                 </FooterTemplate>
-                                                             </asp:TemplateField>
+                                                            </asp:TemplateField>
                                                         </Columns>
                                                         <EmptyDataTemplate>
                                                             <tr>
@@ -461,7 +467,7 @@
                                                                     <asp:Button ID="btnAction7" runat="server" Text='<%# Eval("session_count") %>' CommandName="Division" OnCommand="GetYearWiseData"  CommandArgument='<%# Eval("DivisionID") %>'  CssClass="btn btn-primary drill_btn" />
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmounttextOfDvision" Text="Total Sanctioned Amount" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotalSactionedAmounttextOfDvision" Text="Total Sanctioned Amount" runat="server" ></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
                                                             
@@ -471,7 +477,7 @@
                                                                 </ItemTemplate>
 
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmountOfDivision" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotalSactionedAmountOfDivision" runat="server"></asp:Label>
                                                                 </FooterTemplate>
 
                                                             </asp:TemplateField>
@@ -516,7 +522,7 @@
                                                                     <asp:Button ID="btnAction7" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action3" OnCommand="GetYearWiseData"  CommandArgument='<%# Eval("DistID") %>'  CssClass="btn btn-primary drill_btn" />
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmounttextOfDistrict" Text="Total Sanctioned Amount" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotalSactionedAmounttextOfDistrict" Text="Total Sanctioned Amount" runat="server"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
                                                             
@@ -526,7 +532,7 @@
                                                                 </ItemTemplate>
 
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmountOfDistrict" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotalSactionedAmountOfDistrict" runat="server" ></asp:Label>
                                                                 </FooterTemplate>
 
                                                             </asp:TemplateField>
@@ -563,7 +569,7 @@
                                                                     <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label  Text="Total :" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label  Text="Total :" runat="server" ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -574,7 +580,7 @@
                                                                     <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("NoOfProposals") %></span>
                                                                 </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposals"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposals"  runat="server" ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -588,7 +594,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsAmount"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsAmount"  runat="server" ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -602,7 +608,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsPending"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsPending"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -617,7 +623,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsPendingAmount"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsPendingAmount"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -633,7 +639,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsApproved"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsApproved"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -645,7 +651,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsApprovedAmount"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsApprovedAmount"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -657,7 +663,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsRejected"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsRejected"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -669,7 +675,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsRejectedAmount"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsRejectedAmount"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -682,7 +688,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsHold"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsHold"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -694,7 +700,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsHoldAmount"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsHoldAmount"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -731,7 +737,7 @@
                                                                     <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label  Text="Total :" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label  Text="Total :" runat="server" ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -742,7 +748,7 @@
                                                                     <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("NoOfProposals") %></span>
                                                                 </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposals2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposals2"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -756,7 +762,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsAmount2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsAmount2"  runat="server" ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -770,7 +776,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsPending2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsPending2"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -785,7 +791,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsPendingAmount2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsPendingAmount2"  runat="server" ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -801,7 +807,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsApproved2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsApproved2"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -813,7 +819,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsApprovedAmount2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsApprovedAmount2"  runat="server"   ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -825,7 +831,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsRejected2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsRejected2"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -837,7 +843,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsRejectedAmount2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsRejectedAmount2"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -850,7 +856,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsHold2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsHold2"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
@@ -862,7 +868,7 @@
                                                                    
                                                                  </ItemTemplate>
                                                                  <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsHoldAmount2"  runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
+                                                                    <asp:Label ID="lblTotaldProposalsHoldAmount2"  runat="server"  ></asp:Label>
                                                                 </FooterTemplate>
 
                                                               </asp:TemplateField>
