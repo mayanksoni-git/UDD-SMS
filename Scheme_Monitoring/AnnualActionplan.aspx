@@ -160,7 +160,7 @@
                                         <div class="live-preview">
                                             <div class="row gy-12">
                                                    <div class="clearfix" id="dtOptions" runat="server">
-                                                       <%-- <div class="pull-right tableTools-container"></div>--%>
+                                                        <div class="pull-right tableTools-container"></div>
                                                     </div>
                                                  <div style="overflow: auto">
                                                 <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">

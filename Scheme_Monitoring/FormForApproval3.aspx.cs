@@ -437,15 +437,15 @@ public partial class FormForApproval : System.Web.UI.Page
             Label lblTotalHoldAmount = (Label)gridWorkPlanWise.FooterRow.FindControl("lblTotaldProposalsHoldAmount");
             
             
-            lblTotalPropsal.Text = TotalPropsal.ToString("0.00");
+            lblTotalPropsal.Text = TotalPropsal.ToString("0");
             lblTotalPropsalAmount.Text = TotalPropsalAmount.ToString("0.00");
-            lblTotalPending.Text = TotalPending.ToString("0.00");
+            lblTotalPending.Text = TotalPending.ToString("0");
             lblTotalPendingAmount.Text = TotalPendingAmount.ToString("0.00");
-            lblTotalApproved.Text = TotalApproved.ToString("0.00");
+            lblTotalApproved.Text = TotalApproved.ToString("0");
             lblTotalApprovedAmount.Text = TotalApprovedAmount.ToString("0.00");
-            lblTotalReject.Text = TotalReject.ToString("0.00");
+            lblTotalReject.Text = TotalReject.ToString("0");
             lblTotalRejectedAmount.Text = TotalRejectAmount.ToString("0.00");
-            lblTotalHold.Text = TotalHold.ToString("0.00");
+            lblTotalHold.Text = TotalHold.ToString("0");
             lblTotalHoldAmount.Text = TotalHoldAmount.ToString("0.00");
 
             ToggleDiv(divWorkPlanWise);
@@ -496,15 +496,15 @@ public partial class FormForApproval : System.Web.UI.Page
             Label lblTotalHoldAmount = (Label)GrdRecommendation.FooterRow.FindControl("lblTotaldProposalsHoldAmount2");
 
 
-            lblTotalPropsal.Text = TotalPropsal.ToString("0.00");
+            lblTotalPropsal.Text = TotalPropsal.ToString("0");
             lblTotalPropsalAmount.Text = TotalPropsalAmount.ToString("0.00");
-            lblTotalPending.Text = TotalPending.ToString("0.00");
+            lblTotalPending.Text = TotalPending.ToString("0");
             lblTotalPendingAmount.Text = TotalPendingAmount.ToString("0.00");
-            lblTotalApproved.Text = TotalApproved.ToString("0.00");
+            lblTotalApproved.Text = TotalApproved.ToString("0");
             lblTotalApprovedAmount.Text = TotalApprovedAmount.ToString("0.00");
-            lblTotalReject.Text = TotalReject.ToString("0.00");
+            lblTotalReject.Text = TotalReject.ToString("0");
             lblTotalRejectedAmount.Text = TotalRejectAmount.ToString("0.00");
-            lblTotalHold.Text = TotalHold.ToString("0.00");
+            lblTotalHold.Text = TotalHold.ToString("0");
             lblTotalHoldAmount.Text = TotalHoldAmount.ToString("0.00");
 
             ToggleDiv(divRecommendationWise);
