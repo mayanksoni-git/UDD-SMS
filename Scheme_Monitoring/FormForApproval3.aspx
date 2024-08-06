@@ -281,8 +281,7 @@
                                                         </div>
                                                      <div class="col-lg-2"> <asp:Button ID="Button5" runat="server" Text="Export to Excel Of Financial Year Wise"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
                                                      </div>
-                                                    <asp:GridView ID="gridFyWise" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
-                                                    OnPageIndexChanging="OnPageIndexChangingFyWise" PageSize="10">
+                                                    <asp:GridView ID="gridFyWise" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
                                                                 <ItemTemplate>
@@ -326,8 +325,10 @@
                                                     <div class="col-lg-10">  <h3>MP Wise Data</h3></div>
                                         <div class="col-lg-2"> <asp:Button ID="Button1" runat="server" Text="Export to Excel Of MP"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
                                                      </div>
-                                                    <asp:GridView ID="gridMPWise" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
-                                                        OnPageIndexChanging="OnPageIndexChangingMPWise" PageSize="10">
+                                                     <div class="clearfix" id="Div5" runat="server">
+                                                        <div class="pull-right tableTools-container"></div>
+                                                    </div>
+                                                    <asp:GridView ID="gridMPWise" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
                                                                 <ItemTemplate>
@@ -389,8 +390,7 @@
                                                         <div class="pull-right tableTools-container"></div>
                                                     </div>
 
-                                                    <asp:GridView ID="gridMLAWise" runat="server" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" ShowFooter="true" EmptyDataText="No Records Found" AllowPaging="true"
-                                                        OnPageIndexChanging="OnPageIndexChangingMLAWise" PageSize="10">
+                                                    <asp:GridView ID="gridMLAWise" runat="server" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" ShowFooter="true" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
                                                                 <ItemTemplate>
@@ -444,8 +444,7 @@
                                                      <div class="col-lg-2"> <asp:Button ID="Button3" runat="server" Text="Export to Excel Of Division Wise"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
                                                      </div>
 
-                                                    <asp:GridView ID="gridDivisionWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
-                                                    OnPageIndexChanging="OnPageIndexChangingDivisionWise" PageSize="18">
+                                                    <asp:GridView ID="gridDivisionWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
                                                                 <ItemTemplate>
@@ -500,7 +499,7 @@
                                                      <div class="col-lg-2"> <asp:Button ID="Button6" runat="server" Text="Export to Excel Of District Wise"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
                                                      </div>
 
-                                                    <asp:GridView ID="GrdDistrictWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true" OnPageIndexChanging="GrdDistrictWise_PageIndexChanging" PageSize="20">
+                                                    <asp:GridView ID="GrdDistrictWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
                                                                 <ItemTemplate>
@@ -554,8 +553,7 @@
                                                         </div>
                                                      <div class="col-lg-2"> <asp:Button ID="Button4" runat="server" Text="Export to Excel Of Work Plan"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
                                                      </div>
-                                                    <asp:GridView ID="gridWorkPlanWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
-                                                    OnPageIndexChanging="OnPageIndexChangingWorkPlanWise" PageSize="10">
+                                                    <asp:GridView ID="gridWorkPlanWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
                                                                 <ItemTemplate>
@@ -722,8 +720,7 @@
                                                         </div>
                                                      <div class="col-lg-2"> <asp:Button ID="Button7" runat="server" Text="Export to Excel Of Recommendation"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
                                                      </div>
-                                                    <asp:GridView ID="GrdRecommendation" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
-                                                    OnPageIndexChanging="GrdRecommendation_PageIndexChanging" PageSize="10">
+                                                    <asp:GridView ID="GrdRecommendation" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sr. No.">
                                                                 <ItemTemplate>
@@ -1068,7 +1065,7 @@
                 </asp:UpdateProgress>--%>
         </div>
     </div>
-    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
 
     <script>
@@ -1083,7 +1080,16 @@
     </script>
      <script type="text/javascript">
 
-
+         $(document).ready(function () {
+             $("#ctl00_ContentPlaceHolder1_gridMPWise").DataTable();
+             $("#ctl00_ContentPlaceHolder1_gridMLAWise").DataTable();
+             $("#ctl00_ContentPlaceHolder1_gridDivisionWise").DataTable();
+             $("#ctl00_ContentPlaceHolder1_GrdDistrictWise").DataTable();
+             $("#ctl00_ContentPlaceHolder1_gridWorkPlanWise").DataTable();
+             $("#ctl00_ContentPlaceHolder1_GrdRecommendation").DataTable();
+             $("#ctl00_ContentPlaceHolder1_gridFyWise").DataTable();
+             
+         })
 
          function ExportToExcel(type, fn, dl) {
              debugger

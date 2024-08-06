@@ -521,6 +521,66 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             throw new Exception(ex.Message);
         }
     }
+
+    public DataTable GetExistPlan(string actions, int? ULBID, int? TaskId, int? stateid, int? schemeId, int? circleId, int? FY, string ProjectName, decimal cost, string ProjectDetail, int? personId, string Remark,string recievedAmn, string Documents)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[14];
+            param[0] = new SqlParameter("@action", actions);
+            param[1] = new SqlParameter("@ULBId", ULBID);
+            param[2] = new SqlParameter("@taskId", TaskId);
+            param[3] = new SqlParameter("@stateId", stateid);
+            param[4] = new SqlParameter("@DistrictId", circleId);
+            param[5] = new SqlParameter("@FYId", FY);
+            param[6] = new SqlParameter("@SchemeId", schemeId);
+            param[7] = new SqlParameter("@ProjectName", ProjectName);
+            param[8] = new SqlParameter("@Cost", cost);
+            param[9] = new SqlParameter("@ProjectDetail", ProjectDetail);
+            param[10] = new SqlParameter("@Wstatus", recievedAmn);
+            param[11] = new SqlParameter("@Remark", Remark);
+            param[12] = new SqlParameter("@Documents", Documents);
+            param[13] = new SqlParameter("@createdBy", personId);
+          
+
+            return objDAL.GetDataByProcedure("SpExistplan", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    public DataTable GetOnGoingPlan(string actions, int? ULBID, int? TaskId, int? stateid, int? schemeId, int? circleId, int? FY, string ProjectName, decimal cost, string ProjectDetail, int? personId, string Remark, decimal recievedAmn, string Documents, DateTime EstDate, string PhysicalPrg)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[16];
+            param[0] = new SqlParameter("@action", actions);
+            param[1] = new SqlParameter("@ULBId", ULBID);
+            param[2] = new SqlParameter("@taskId", TaskId);
+            param[3] = new SqlParameter("@stateId", stateid);
+            param[4] = new SqlParameter("@DistrictId", circleId);
+            param[5] = new SqlParameter("@FYId", FY);
+            param[6] = new SqlParameter("@SchemeId", schemeId);
+            param[7] = new SqlParameter("@ProjectName", ProjectName);
+            param[8] = new SqlParameter("@Cost", cost);
+            param[9] = new SqlParameter("@ProjectDetail", ProjectDetail);
+            param[10] = new SqlParameter("@RecievedAmount", recievedAmn);
+            param[11] = new SqlParameter("@Remark", Remark);
+            param[12] = new SqlParameter("@Documents", Documents);
+            param[13] = new SqlParameter("@createdBy", personId);
+            param[14] = new SqlParameter("@PhysicalPrg", PhysicalPrg);
+            param[15] = new SqlParameter("@estimateDate", EstDate);
+
+            return objDAL.GetDataByProcedure("SpOnGoingplan", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
     #endregion
 
 }

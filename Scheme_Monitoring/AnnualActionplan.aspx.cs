@@ -381,6 +381,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         ddlProjectMaster.SelectedValue = "0";
         ddlFY.SelectedValue = "0";
         btnSave.Visible = true;
+        BtnUpdate.Visible = false;
         ProjectName.Text = "";
         detailOfProject.Text = "";
         ReasonForSelected.Text = "";

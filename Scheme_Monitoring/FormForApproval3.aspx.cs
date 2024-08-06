@@ -1101,5 +1101,23 @@ public partial class FormForApproval : System.Web.UI.Page
 
 
 
-   
+
+
+    protected void gridMPWise_PreRender(object sender, EventArgs e)
+    {
+        GridView gv = (GridView)sender;
+        if (gv.Rows.Count > 0)
+        {
+            //This replaces <td> with <th> and adds the scope attribute
+            gv.UseAccessibleHeader = true;
+        }
+        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
+        {
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        if (gv.ShowFooter == true && gv.Rows.Count > 0)
+        {
+            gv.FooterRow.TableSection = TableRowSection.TableFooter;
+        }
+    }
 }
