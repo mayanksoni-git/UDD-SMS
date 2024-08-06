@@ -86,7 +86,12 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div2" runat="server">
                                                         <asp:Label ID="Label2" runat="server" Text="Priority No" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <input type="number" ID="PriorityNo" runat="server"  class="form-control"/>
+                                                        <input type="text" id="PriorityNo" runat="server" class="form-control" oninput="validateNumber(this)" />
+                                                        <script>
+                                                            function validateNumber(input) {
+                                                                input.value = input.value.replace(/[^0-9]/g, '');
+                                                            }
+                                                        </script>
                                                     </div>
                                                 </div>
                                                  
