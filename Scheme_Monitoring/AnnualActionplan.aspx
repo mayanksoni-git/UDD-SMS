@@ -163,7 +163,7 @@
                                                         <div class="pull-right tableTools-container"></div>
                                                     </div>
                                                  <div style="overflow: auto">
-                                                <asp:GridView runat="server" ID="grdPost"  AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>
@@ -174,37 +174,26 @@
                                                         <asp:BoundField HeaderText="District" DataField="Circle_Name" />
                                                         <asp:BoundField HeaderText="ULBName" DataField="Division_Name" />
                                                         <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
-                                                       <%-- <asp:BoundField HeaderText="SFC FUnd" DataField="SFCFund" />
-                                                        <asp:BoundField HeaderText="CFC Fund" DataField="CFCFund" />--%>
                                                         <asp:BoundField HeaderText="Project Name" DataField="ProjectName" />
                                                         <asp:BoundField HeaderText="Project Detail" DataField="ProjectDetail" />
                                                         <asp:BoundField HeaderText="Cost (in lacs)" DataField="costinlacks" />
                                                         <asp:BoundField HeaderText="Priority No" DataField="PrivorityNo" />
                                                         <asp:BoundField HeaderText="Reason For Selected" DataField="ReasonForSelected" />
-                                                        <asp:BoundField HeaderText="Convergence Detail " DataField="ConvergeDetail" />
-                                            
+                                                        <asp:BoundField HeaderText="Convergence Detail " DataField="ConvergeDetail" />                                            
                                                          <asp:TemplateField HeaderText="Docs">
                                                             <ItemTemplate>
-                                                                <%--<asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditULBFund" OnCommand="Edit_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-primary drill_btn" />--%>
-                                                                <a href="<%# Eval("Documents") %>" target="_blank">Doc</a>
+                                                                 <a href="<%# Eval("Documents") %>" target="_blank">Doc</a>
                                                             </ItemTemplate>
-
-                                                             
                                                         </asp:TemplateField>
-
                                                         <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>
                                                                 <asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditAnnualAction" OnCommand="Edit_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-primary drill_btn" />
-                                                            </ItemTemplate>
-
-                                                             
+                                                            </ItemTemplate>                                                             
                                                         </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Delete">
-                                                           
-
-                                                             <ItemTemplate>
-                                                                <asp:Button ID="btnDelete" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-danger drill_btn" />
-                                                            </ItemTemplate>
+                                                       <asp:TemplateField HeaderText="Delete">
+                                                        <ItemTemplate>
+                                                             <asp:Button ID="btnDelete" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-danger drill_btn" />
+                                                         </ItemTemplate>
 
                                                         </asp:TemplateField>
                                                     </Columns>
@@ -225,69 +214,5 @@
         </div>
     </div>
    
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-    $(function () {
-        $("[id*=GrdULBFund]").DataTable(
-            {
-                bLengthChange: true,
-                lengthMenu: [[5, 10, -1], [5, 10, "All"]],
-                bFilter: true,
-                bSort: true,
-                bPaginate: true
-            });
-    });
-</script>
-
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
-
-  
-
-    <script>
-      
-            $(document).ready(function () {
-                $('#ctl00_ContentPlaceHolder1_GrdULBFund').DataTable();
-            }); 
-
-      
-
-        function ExportToExcel(type, fn, dl) {
-            debugger
-            const currentDate = new Date();
-
-            // Get the current date
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth() + 1; // Months are zero-based
-            const day = currentDate.getDate();
-
-            // Format the date as desired (e.g., YYYY-MM-DD)
-            const formattedDate = "ULB Fund Detail_" + `${year}-${month}-${day}`;
-
-            var elt = document.getElementById('ctl00_ContentPlaceHolder1_GrdULBFund');
-
-            // Clone the table to avoid modifying the original
-            var clonedTable = elt.cloneNode(true);
-
-            // Get all rows
-            var rows = clonedTable.rows;
-
-            // Remove the last two columns from each row
-            for (var i = 0; i < rows.length; i++) {
-                if (rows[i].cells.length > 2) {
-                    rows[i].deleteCell(-1); // Remove last cell
-                    rows[i].deleteCell(-1); // Remove second to last cell
-                }
-            }
-
-            var wb = XLSX.utils.table_to_book(clonedTable, { sheet: "sheet1" });
-            return dl ?
-                XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
-                XLSX.writeFile(wb, fn || (formattedDate + "." + (type || 'xlsx')));
-        }
-
-
-    </script>
 
 </asp:Content>
