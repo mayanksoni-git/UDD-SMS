@@ -360,10 +360,10 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
         {
             string _Designation_Id = Session["PersonJuridiction_DesignationId"].ToString();
 
-            //if (Session["PersonJuridiction_DesignationId"].ToString() == "4" || Session["PersonJuridiction_DesignationId"].ToString() == "9" || Session["PersonJuridiction_DesignationId"].ToString() == "1056")
-            //{
-            //    _Designation_Id = "4, 9, 1056";
-            //}
+            if (Session["PersonJuridiction_DesignationId"].ToString() == "4" || Session["PersonJuridiction_DesignationId"].ToString() == "9" || Session["PersonJuridiction_DesignationId"].ToString() == "1056")
+            {
+                _Designation_Id = "4, 9, 1056";
+            }
             if (Session["PersonJuridiction_DesignationId"].ToString() == "1035" || Session["PersonJuridiction_DesignationId"].ToString() == "1040")
             {
                 _Designation_Id = "1035, 1040";
