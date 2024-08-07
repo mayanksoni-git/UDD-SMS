@@ -104,7 +104,7 @@ public partial class FundSanctionMaster : System.Web.UI.Page
         }
         else
         {
-            //BindLoanReleaseGridByULB();
+            BindFundSactionGrid();
         }
     }
     protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
@@ -207,16 +207,34 @@ public partial class FundSanctionMaster : System.Web.UI.Page
         if (dt != null && dt.Rows.Count > 0)
         {
             //Session["GridViewData"] = dt;
-            gvRecords.DataSource = dt;
-            gvRecords.DataBind();
+            grdPost.DataSource = dt;
+            grdPost.DataBind();
             divData.Visible = true;
         }
         else
         {
             divData.Visible = true;
-            gvRecords.DataSource = null;
-            gvRecords.DataBind();
+            grdPost.DataSource = null;
+            grdPost.DataBind();
             MessageBox.Show("No Records Found");
+        }
+    }
+
+    protected void grdPost_PreRender(object sender, EventArgs e)
+    {
+        GridView gv = (GridView)sender;
+        if (gv.Rows.Count > 0)
+        {
+            //This replaces <td> with <th> and adds the scope attribute
+            gv.UseAccessibleHeader = true;
+        }
+        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
+        {
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        if (gv.ShowFooter == true && gv.Rows.Count > 0)
+        {
+            gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
     }
 

@@ -117,7 +117,7 @@
                                                 <!-- div.dataTables_borderWrap -->
                                                 <div style="overflow: auto">
 
-                                                    <asp:GridView ID="gvRecords" runat="server" CssClass="table table-bordered mt-4" AutoGenerateColumns="false" >
+                                                    <asp:GridView ID="grdPost" runat="server" CssClass="table table-bordered mt-4" AutoGenerateColumns="false" OnPreRender="grdPost_PreRender">
                                                         <Columns>
                                                             <asp:BoundField DataField="ID" HeaderText="Fund Sanctioned Id">
                                                                     <HeaderStyle CssClass="displayStyle" />
@@ -161,6 +161,7 @@
                     <asp:PostBackTrigger ControlID="btnSave" />
                 </Triggers>
             </asp:UpdatePanel>
+
         </div>
     </div>
 </asp:Content>
