@@ -32,7 +32,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
             get_tbl_Project();
             //get_tbl_WorkType();
             get_tbl_FinancialYear();
-            GetAllData(0);
+            GetAllData(Convert.ToInt32(ddlDivision.SelectedItem));
             //LoadDataInForm(1);
             SetDropdownsBasedOnUserType();
         }
@@ -276,7 +276,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
     }
     protected void GetAllData(int? ULBID)
     {
-        ULBID = 0;
+        //ULBID = 0;
         DataTable dt = new DataTable();
         dt = objLoan.GetAnnualActionPlan("select", ULBID, 0, 0, 0, 0, 0, "", 0, "",0,"","","","");
         grdPost.DataSource = dt;

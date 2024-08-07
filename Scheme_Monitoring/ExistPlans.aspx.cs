@@ -277,7 +277,7 @@ public partial class ExistPlans : System.Web.UI.Page
     }
     protected void GetAllData(int? ULBID)
     {
-        ULBID = 0;
+       // ULBID = 0;
         DataTable dt = new DataTable();
         dt = objLoan.GetExistPlan("select", ULBID, 0, 0, 0, 0, 0, "", 0, "",0,"","","");
         grdPost.DataSource = dt;

@@ -31,7 +31,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
             get_tbl_Zone();
            
             get_tbl_FinancialYear();
-            GetAllData(0);
+            GetAllData(Convert.ToInt32(ddlDivision.SelectedItem));
            
             SetDropdownsBasedOnUserType();
         }
@@ -227,7 +227,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
     }
     protected void GetAllData(int? ULBID)
     {
-        ULBID = 0;
+       // ULBID = 0;
         DataTable dt = new DataTable();
         dt = objLoan.GetDocOfAnnualActionPlan("select", ULBID, 0, 0,  0, 0,  0, "");
         grdPost.DataSource = dt;
