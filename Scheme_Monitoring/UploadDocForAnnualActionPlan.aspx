@@ -132,7 +132,7 @@
                                                         <asp:BoundField HeaderText="ULBName" DataField="Division_Name" />
                                                         <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
                                                                                               
-                                                         <asp:TemplateField HeaderText="Docs">
+                                                         <asp:TemplateField HeaderText="Action Plan Doc.">
                                                              <ItemTemplate>
                                                                  <asp:Label ID="lblNoDocument" runat="server" Text="No Document" Visible='<%# string.IsNullOrEmpty(Eval("Documents") as string) %>'></asp:Label>
                                                                  <asp:HyperLink ID="hlDocument" runat="server" NavigateUrl='<%# Eval("Documents") %>' Text="Doc" Visible='<%# !string.IsNullOrEmpty(Eval("Documents") as string) %>' Target="_blank"></asp:HyperLink>
