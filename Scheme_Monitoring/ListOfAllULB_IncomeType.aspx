@@ -16,13 +16,13 @@
                          <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">ULB Income Type</h4>
+                                    <h4 class="mb-sm-0">ULB Income </h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                               <li class="breadcrumb-item">Annual Action Plan</li>
 
-                                            <li class="breadcrumb-item active">ULB Income Type</li>
+                                            <li class="breadcrumb-item active">ULB Income </li>
                                         </ol>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">ULB Income Type</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">ULB Income </h4>
                                          <a href="AddULBIncomeType.aspx"  class="filter-btn" style="float:right"><i class="icon-download"></i> Create New</a>
 
                                     </div>
@@ -91,7 +91,7 @@
                                 <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">List Of ULB Income Type</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">List Of ULB Income </h4>
                                         <%--<a href="#" id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="filter-btn" style="float:right"><i class="icon-download"></i> Export To Excel</a>--%>
                                         
                                     </div>
