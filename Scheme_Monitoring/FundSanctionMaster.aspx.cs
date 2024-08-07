@@ -104,7 +104,7 @@ public partial class FundSanctionMaster : System.Web.UI.Page
         }
         else
         {
-            BindFundSactionGrid();
+            //BindFundSactionGrid();
         }
     }
     protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
@@ -117,7 +117,7 @@ public partial class FundSanctionMaster : System.Web.UI.Page
         else
         {
             BindULB(Convert.ToInt32(ddlDistrict.SelectedValue), Convert.ToInt32(ddlULBType.SelectedValue));
-            BindFundSactionGrid();
+            //BindFundSactionGrid();
         }
     }
     protected void ddlULBType_SelectedIndexChanged(object sender, EventArgs e)
@@ -125,15 +125,26 @@ public partial class FundSanctionMaster : System.Web.UI.Page
         if (ddlDistrict.SelectedValue!="0")
         {
             BindULB(Convert.ToInt32(ddlDistrict.SelectedValue), Convert.ToInt32(ddlULBType.SelectedValue));
-            BindFundSactionGrid();
+            //BindFundSactionGrid();
         }
     }
     protected void ddlScheme_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlDistrict.SelectedValue!="0")
         {
-            BindFundSactionGrid();
+            //BindFundSactionGrid();
         }
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        if (ddlFY.SelectedValue == "0")
+        {
+            MessageBox.Show("Please Select A Financial Year");
+            ddlFY.Focus();
+            return;
+        }
+        BindFundSactionGrid();
     }
 
     protected void BindFundSactionGrid()

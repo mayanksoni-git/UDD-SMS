@@ -31,6 +31,7 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Fund Sanction Master</h4>
+                                        <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click"  runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
