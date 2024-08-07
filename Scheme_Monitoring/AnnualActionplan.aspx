@@ -85,7 +85,7 @@
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div2" runat="server">
-                                                        <asp:Label ID="Label2" runat="server" Text="Priority No" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="Label2" runat="server" Text="Priority No (In range 1-5)" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <input type="text" id="PriorityNo" runat="server" class="form-control" oninput="validateNumber(this)" />
                                                         <script>
                                                             function validateNumber(input) {
@@ -97,8 +97,8 @@
                                                  
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="div8" runat="server">
-                                                        <asp:Label ID="Label6" runat="server" Text="Upload Doc" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:FileUpload ID="fileupload" runat="server" CssClass="form-control"  /> 
+                                                        <asp:Label ID="Label6" runat="server" Text="Upload Doc  (PDF)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:FileUpload ID="fileupload" runat="server" CssClass="form-control" Accept=".pdf" /> 
                                                          <a href="" target="_blank" id="UpladedDoc" runat="server"></a>
                                                     </div>
                                                 </div>
@@ -186,10 +186,11 @@
                                                         <asp:BoundField HeaderText="Reason For Selected" DataField="ReasonForSelected" />
                                                         <asp:BoundField HeaderText="Convergence Detail " DataField="ConvergeDetail" />                                            
                                                          <asp:TemplateField HeaderText="Docs">
-                                                            <ItemTemplate>
-                                                                 <a href="<%# Eval("Documents") %>" target="_blank">Doc</a>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
+                                                             <ItemTemplate>
+                                                                 <asp:Label ID="lblNoDocument" runat="server" Text="No Document" Visible='<%# string.IsNullOrEmpty(Eval("Documents") as string) %>'></asp:Label>
+                                                                 <asp:HyperLink ID="hlDocument" runat="server" NavigateUrl='<%# Eval("Documents") %>' Text="Doc" Visible='<%# !string.IsNullOrEmpty(Eval("Documents") as string) %>' Target="_blank"></asp:HyperLink>
+                                                             </ItemTemplate>
+                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>
                                                                 <asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditAnnualAction" OnCommand="Edit_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-primary drill_btn" />

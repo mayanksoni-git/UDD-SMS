@@ -14,6 +14,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
 {
     ULBFund objLoan = new ULBFund();
     string ConStr = ConfigurationManager.AppSettings.Get("conn");
+    int totalRow = 0;
     protected void Page_PreInit(object sender, EventArgs e)
     {
         this.MasterPageFile = SetMasterPage.ReturnPage();
@@ -113,6 +114,8 @@ public partial class AddULBIncomeType : System.Web.UI.Page
     {
         DataSet ds = new DataSet();
         ds = (new DataLayer()).get_tbl_ULBIncomeType();
+        totalRow = ds.Tables[0].Rows.Count;
+
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             GrdULBFund.DataSource = ds.Tables[0];
@@ -123,6 +126,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             GrdULBFund.DataSource = null;
             GrdULBFund.DataBind();
         }
+       
     }
 
 
@@ -305,8 +309,15 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
                     (GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text = "";
+                    var validator2 = GrdULBFund.Rows[i].FindControl("rfvAmounts") as RequiredFieldValidator;
+
+                    if (validator2 != null)
+                    {
+
+                        validator2.Enabled = false;
+                    }
                 }
-                Response.Redirect("ListOfAllULB_IncomeType.aspx");
+               // Response.Redirect("ListOfAllULB_IncomeType.aspx");
 
                 get_tbl_Project();
                 return;
@@ -344,6 +355,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                 return;
             }
             List<Tbl_ULBIncomeTypeChild> ulbexp = new List<Tbl_ULBIncomeTypeChild>();
+            var checkinsert = 0;
             for (int i = 0; i < GrdULBFund.Rows.Count; i++)
             {
                 var check = (GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text.Trim();
@@ -362,15 +374,28 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                     ul.updateOn = DateTime.Now.ToString();
                    
                     ulbexp.Add(ul);
+                    checkinsert++;
                 }
             }
-
+             if(checkinsert==0)
+            {
+                MessageBox.Show("Can Not Insert 0 data !!1");
+                return;
+            }
+           
             if (new ULBFund().UpdateULBFundIncome(ulbexp, msg))
             {
                 MessageBox.Show("Income Type data Update Successfully ! ");
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
-                    (GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text = "";
+                    //(GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text = "";
+                    var validator2 = GrdULBFund.Rows[i].FindControl("rfvAmounts") as RequiredFieldValidator;
+
+                    if (validator2 != null)
+                    {
+                        
+                        validator2.Enabled = false;
+                    }
                 }
                 get_tbl_Project();
                 return;
@@ -397,6 +422,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
 
     protected void GrdULBFund_RowDataBound(object sender, GridViewRowEventArgs e)
     {
+        var chec = GrdULBFund.Rows.Count;
         if (ULBID.Value != null && FYID.Value != null)
         {
             DataTable dt = new DataTable();
@@ -406,19 +432,24 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             {
 
                 //GrdULBFund_RowDataBound(, GrdULBFund)
-                int i = 0;
+                int i = 1;
                 foreach (GridViewRow row in GrdULBFund.Rows)
                 {
 
                     // Find the TextBox control in the current row
 
                     TextBox txtName = (TextBox)row.FindControl("Amounts");
-                   
 
-                    if (txtName != null)
+                    //var check= dt.Rows[i]["Amount"].ToString();
+                    if (txtName != null && totalRow >= dt.Rows.Count)
                     {
-                        txtName.Text = dt.Rows[i]["Amount"].ToString(); // You can use a dynamic value based on your logic
+                        if (dt.Rows.Count >= i)
+                        {
+                            txtName.Text = dt.Rows[(i-1)]["Amount"].ToString(); // You can use a dynamic value based on your logic
+                        }
+                       
                     }
+                   
                  
                     i++;
 

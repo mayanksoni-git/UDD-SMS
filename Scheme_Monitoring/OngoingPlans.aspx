@@ -14,12 +14,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">On Going Plan</h4>
+                                    <h4 class="mb-sm-0">Ongoing Project</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">Annual Action Plan</li>
-                                            <li class="breadcrumb-item active">On Going Plan</li>
+                                            <li class="breadcrumb-item active">Ongoing Project</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -30,7 +30,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">On Going Plan <label id="message" runat="server" style="float:right;color:red;font-weight:bold"></label></h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Ongoing Project <label id="message" runat="server" style="float:right;color:red;font-weight:bold"></label></h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -79,7 +79,7 @@
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div1" runat="server">
-                                                        <asp:Label ID="Label1" runat="server" Text="sanctioned amount(in Rupees)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="Label1" runat="server" Text="Sanctioned Amount(in Rupees)" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="Cost" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
 
@@ -101,15 +101,15 @@
                                                  
                                                   <div class="col-xxl-3 col-md-6">
                                                     <div id="div10" runat="server">
-                                                        <asp:Label ID="Label8" runat="server" Text="Estimate Complition Date" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="Label8" runat="server" Text="Estimate Complete Date" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="EstimateDate" runat="server"  CssClass="form-control" TextMode="Date"></asp:TextBox>
                                                     </div>
                                                 </div>
 
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="div8" runat="server">
-                                                        <asp:Label ID="Label6" runat="server" Text="Upload Doc" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:FileUpload ID="fileupload" runat="server" CssClass="form-control"  /> 
+                                                        <asp:Label ID="Label6" runat="server" Text="Upload Doc (PDF)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:FileUpload ID="fileupload" runat="server" CssClass="form-control" Accept=".pdf" /> 
                                                          <a href="" target="_blank" id="UpladedDoc" runat="server"></a>
                                                     </div>
                                                 </div>
@@ -168,7 +168,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">On Going Plan List</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Ongoing Project List</h4>
                                       
                                     </div>
                                     <!-- end card header -->
@@ -195,12 +195,18 @@
                                                         <asp:BoundField HeaderText="Sanctioned Cost(in lacs)" DataField="costinlacks" />
                                                         <asp:BoundField HeaderText="Recieced Amount(in lacs)" DataField="RecievedAmnInLac" />
                                                         <asp:BoundField HeaderText="Physical Progress" DataField="PhysicalProgress" />
-                                                        <asp:BoundField HeaderText="Estimated Completion Date" DataField="EstimatedCompletionOnlyDate" />
+                                                        <asp:BoundField HeaderText="Estimated Complete Date" DataField="EstimatedCompletionOnlyDate" />
                                                         <asp:BoundField HeaderText="Remark" DataField="Remark" />                                            
                                                          <asp:TemplateField HeaderText="Docs">
+
+                                                                <ItemTemplate>
+                                                                 <asp:Label ID="lblNoDocument" runat="server" Text="No Document" Visible='<%# string.IsNullOrEmpty(Eval("Documents") as string) %>'></asp:Label>
+                                                                 <asp:HyperLink ID="hlDocument" runat="server" NavigateUrl='<%# Eval("Documents") %>' Text="Doc" Visible='<%# !string.IsNullOrEmpty(Eval("Documents") as string) %>' Target="_blank"></asp:HyperLink>
+                                                             </ItemTemplate>
+                                                        <%-- </asp:TemplateField>
                                                             <ItemTemplate>
                                                                  <a href="<%# Eval("Documents") %>" target="_blank">Doc</a>
-                                                            </ItemTemplate>
+                                                            </ItemTemplate>--%>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>

@@ -14,12 +14,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Exist Plan</h4>
+                                    <h4 class="mb-sm-0">Existing Project</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">Annual Action Plan</li>
-                                            <li class="breadcrumb-item active">Exist Plan</li>
+                                            <li class="breadcrumb-item active">Existing Project</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -30,7 +30,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Exist Plan<label id="message" runat="server" style="float:right;color:red;font-weight:bold"></label></h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Existing Project<label id="message" runat="server" style="float:right;color:red;font-weight:bold"></label></h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -87,8 +87,8 @@
                                                  
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="div8" runat="server">
-                                                        <asp:Label ID="Label6" runat="server" Text="Upload Doc" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:FileUpload ID="fileupload" runat="server" CssClass="form-control"  /> 
+                                                        <asp:Label ID="Label6" runat="server" Text="Upload Doc(PdF)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:FileUpload ID="fileupload" runat="server"  CssClass="form-control" Accept=".pdf"  /> 
                                                          <a href="" target="_blank" id="UpladedDoc" runat="server"></a>
                                                     </div>
                                                 </div>
@@ -148,7 +148,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Exist Plan List</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Existing Project List</h4>
                                       
                                     </div>
                                     <!-- end card header -->
@@ -177,9 +177,11 @@
                                                        <%-- <asp:BoundField HeaderText="Reason For Selected" DataField="ReasonForSelected" />--%>
                                                         <asp:BoundField HeaderText="Remark" DataField="Remark" />                                            
                                                          <asp:TemplateField HeaderText="Docs">
-                                                            <ItemTemplate>
-                                                                 <a href="<%# Eval("Documents") %>" target="_blank">Doc</a>
-                                                            </ItemTemplate>
+                                                              <ItemTemplate>
+                                                                 <asp:Label ID="lblNoDocument" runat="server" Text="No Document" Visible='<%# string.IsNullOrEmpty(Eval("Documents") as string) %>'></asp:Label>
+                                                                 <asp:HyperLink ID="hlDocument" runat="server" NavigateUrl='<%# Eval("Documents") %>' Text="Doc" Visible='<%# !string.IsNullOrEmpty(Eval("Documents") as string) %>' Target="_blank"></asp:HyperLink>
+                                                             </ItemTemplate>
+                                                        
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>

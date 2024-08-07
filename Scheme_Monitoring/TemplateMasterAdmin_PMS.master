@@ -284,11 +284,11 @@
                                 <a class="nav-link menu-link" href="#sidebarAAP" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDPR"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Annual Action Plan</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarAAP">
                                     <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item"><a href="AddULBIncomeType.aspx" class="nav-link" data-key="t-grid-js">ULB Income</a> </li>
-                                        <li class="nav-item"><a href="AddExpensesType.aspx" class="nav-link" data-key="t-grid-js">ULB Expense</a> </li>
+                                        <li class="nav-item"><a href="ListOfAllULB_IncomeType.aspx" class="nav-link" data-key="t-grid-js">Add ULB Income</a> </li>
+                                        <li class="nav-item"><a href="ListOfAllULB_ExpenseType.aspx" class="nav-link" data-key="t-grid-js">Add ULB Expense</a> </li>
                                         <li class="nav-item"><a href="FundRecievedInULB.aspx.aspx" class="nav-link" data-key="t-grid-js">Fund Recieved in ULB</a> </li>
-                                        <li class="nav-item"><a href="ExistPlans.aspx" class="nav-link" data-key="t-grid-js">Exist Plans</a> </li>
-                                        <li class="nav-item"><a href="OngoingPlans.aspx" class="nav-link" data-key="t-grid-js">On Going Plans</a> </li>
+                                        <li class="nav-item"><a href="ExistPlans.aspx" class="nav-link" data-key="t-grid-js">Existing Project</a> </li>
+                                        <li class="nav-item"><a href="OngoingPlans.aspx" class="nav-link" data-key="t-grid-js">Ongoing Project</a> </li>
                                         <li class="nav-item"><a href="AnnualActionplan.aspx" class="nav-link" data-key="t-grid-js">Annual Action Plan</a> </li>
                                     </ul>
                                 </div>

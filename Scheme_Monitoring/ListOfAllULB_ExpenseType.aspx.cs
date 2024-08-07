@@ -26,6 +26,7 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
+            //var chek = Request.QueryString["query"];
             //get_tbl_ULBIncomeType();
             get_tbl_Zone();
             get_tbl_Project();

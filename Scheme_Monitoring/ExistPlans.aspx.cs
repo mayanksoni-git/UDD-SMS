@@ -230,6 +230,27 @@ public partial class ExistPlans : System.Web.UI.Page
             ddlFY.Focus();
             return false;
         }
+
+        if (ddlProjectMaster.SelectedValue == "0")
+        {
+            MessageBox.Show("Please Select a Financial. ");
+            ddlProjectMaster.Focus();
+            return false;
+        }
+        if (ProjectName.Text == "")
+        {
+            MessageBox.Show("Please Enter Project Name ");
+            ProjectName.Focus();
+            return false;
+        }
+
+        if ((Cost.Text == "" || Cost.Text == "0"))
+        {
+            MessageBox.Show("Please Enter Cost Of Project  ");
+            Cost.Focus();
+           
+            return false;
+        }
         //if (ddlProject.SelectedValue == "0")
         //{
         //    MessageBox.Show("Please Select a Project. ");
@@ -291,6 +312,12 @@ public partial class ExistPlans : System.Web.UI.Page
         var pathProfile = "";
         if (fileupload.HasFile)
         {
+            string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
+            if (fileExtension != ".pdf")
+            {
+                MessageBox.Show("Only PDF files are allowed.");
+                return;
+            }
             int fileSize = fileupload.PostedFile.ContentLength;
 
             // path = FileUpload1.FileName;
@@ -328,6 +355,13 @@ public partial class ExistPlans : System.Web.UI.Page
         if(rdoNo.Checked)
         {
             status = "0";
+        }
+        if(status=="")
+        {
+            MessageBox.Show("Please Select Status !!!");
+            rdoNo.Focus();
+            rdoYes.Focus();
+            return ;
         }
         //var priority = PriorityNo.Value;
         var projDetail = detailOfProject.Text;
@@ -460,6 +494,12 @@ public partial class ExistPlans : System.Web.UI.Page
         var pathProfile = "";
         if (fileupload.HasFile)
         {
+            string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
+            if (fileExtension != ".pdf")
+            {
+                MessageBox.Show("Only PDF files are allowed.");
+                return;
+            }
             int fileSize = fileupload.PostedFile.ContentLength;
 
             // path = FileUpload1.FileName;

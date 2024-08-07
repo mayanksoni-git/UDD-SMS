@@ -34,6 +34,8 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">ULB Expense Type</h4>
+                                         <a href="AddExpensesType.aspx"  class="filter-btn" style="float:right"><i class="icon-download"></i> Create New</a>
+
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -70,6 +72,7 @@
                                                
                                                 <div class="col-xxl-12  col-md-12">
                                                     <div>
+                                                        
                                                         <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" style="float:right"  CssClass="btn bg-success text-white"></asp:Button>
 
                                                         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>

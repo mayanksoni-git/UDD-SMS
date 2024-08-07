@@ -178,20 +178,6 @@
     </div>
    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-    $(function () {
-        $("[id*=GrdULBFund]").DataTable(
-            {
-                bLengthChange: true,
-                lengthMenu: [[5, 10, -1], [5, 10, "All"]],
-                bFilter: true,
-                bSort: true,
-                bPaginate: true
-            });
-    });
-</script>
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
 
@@ -199,9 +185,7 @@
 
     <script>
       
-            $(document).ready(function () {
-                $('#ctl00_ContentPlaceHolder1_GrdULBFund').DataTable();
-            }); 
+           
 
       
 

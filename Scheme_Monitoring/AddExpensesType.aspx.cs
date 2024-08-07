@@ -30,8 +30,11 @@ public partial class AddExpensesType : System.Web.UI.Page
 
             if (Request.QueryString.Count > 0)
             {
+               
                 ULBID.Value = Request.QueryString["ULBID"].ToString() ;
                 FYID.Value = Request.QueryString["FYID"].ToString();
+                
+                
                 GetEditExpenseList(ULBID.Value, FYID.Value);
                 HeadingSec.InnerText = "UPDATE Expense TYPE";
                 HeadingSec2.InnerText = "Update Expense Type";
@@ -282,12 +285,16 @@ public partial class AddExpensesType : System.Web.UI.Page
                 return;
             }
             List<Tbl_ULBExpenses> ulbexp = new List<Tbl_ULBExpenses>();
+            var checkinsert = 0;
             for (int i = 0; i < GrdULBFund.Rows.Count; i++)
             {
                 //var check = (GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text.Trim();
                 //if (check != null && check != "")
                 //{
-
+                var txt = (GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text.Trim();
+                var txt2 = (GrdULBFund.Rows[i].FindControl("MaintenanceAmount") as TextBox).Text.Trim();
+                if ( txt != ""||txt2!="")
+                {
                     Tbl_ULBExpenses ul = new Tbl_ULBExpenses();
                     ul.Action = "Insert";
                     ul.stateId = Convert.ToInt32(ddlZone.SelectedValue);
@@ -295,16 +302,31 @@ public partial class AddExpensesType : System.Web.UI.Page
                     ul.ULBID = Convert.ToInt32(ddlDivision.SelectedValue);
                     ul.FYID = Convert.ToInt32(ddlFY.SelectedValue);
                     ul.HeadID = Convert.ToInt32(GrdULBFund.Rows[i].Cells[0].Text.ToString());
+                    //ul.Amount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text.Trim());
+                    if(txt!=null&&txt!="")
+                    { 
                     ul.NewAmount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text.Trim());
-                    ul.MaintenanceAmount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("MaintenanceAmount") as TextBox).Text.Trim());
-                    ul.createdBy= Convert.ToInt32(Session["Person_Id"].ToString());
+                    }
+                    if (txt2 != null && txt2 != "")
+                    {
+                        ul.MaintenanceAmount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("MaintenanceAmount") as TextBox).Text.Trim());
+                    }
+
+                    ul.createdBy = Convert.ToInt32(Session["Person_Id"].ToString());
                     ul.createdOn = DateTime.Now.ToString();
                     ul.updateOn = null;
                     ul.IsActive = true;
+
                     ulbexp.Add(ul);
+                    checkinsert++;
+                }
                 //}
             }
-
+            if(checkinsert==0)
+            {
+                MessageBox.Show("Can Not Insert 0 data !!1");
+                return;
+            }
             if (new ULBFund().InsertULBFundExpense(ulbexp, Msg))
             {
                 MessageBox.Show("Income Type data Created Successfully ! ");
@@ -312,6 +334,14 @@ public partial class AddExpensesType : System.Web.UI.Page
                 {
                     (GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text = "";
                     (GrdULBFund.Rows[i].FindControl("MaintenanceAmount") as TextBox).Text = "";
+                    var validator = GrdULBFund.Rows[i].FindControl("rfvMaintenanceAmount") as RequiredFieldValidator;
+                    var validator2 = GrdULBFund.Rows[i].FindControl("rfvNewWorkAmount") as RequiredFieldValidator;
+
+                    if (validator != null)
+                    {
+                        validator.Enabled = false;
+                        validator2.Enabled = false;
+                    }
                 }
                 get_tbl_Project();
                 return;
@@ -353,28 +383,35 @@ public partial class AddExpensesType : System.Web.UI.Page
             List<Tbl_ULBExpenses> ulbexp = new List<Tbl_ULBExpenses>();
             for (int i = 0; i < GrdULBFund.Rows.Count; i++)
             {
-                //var check = (GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text.Trim();
-                //if (check != null && check != "")
-                //{
                 
-                Tbl_ULBExpenses ul = new Tbl_ULBExpenses();
-                ul.Action = "Update";
-                ul.stateId = Convert.ToInt32(ddlZone.SelectedValue);
-                ul.CircleId = Convert.ToInt32(ddlCircle.SelectedValue);
-                ul.ULBID = Convert.ToInt32(ddlDivision.SelectedValue);
-                ul.FYID = Convert.ToInt32(ddlFY.SelectedValue);
-                ul.HeadID = Convert.ToInt32(GrdULBFund.Rows[i].Cells[0].Text.ToString());
+                var txt = (GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text.Trim();
+                var txt2 = (GrdULBFund.Rows[i].FindControl("MaintenanceAmount") as TextBox).Text.Trim();
+                if (txt != "" || txt2 != "")
+                {
+                    Tbl_ULBExpenses ul = new Tbl_ULBExpenses();
+                    ul.Action = "Update";
+                    ul.stateId = Convert.ToInt32(ddlZone.SelectedValue);
+                    ul.CircleId = Convert.ToInt32(ddlCircle.SelectedValue);
+                    ul.ULBID = Convert.ToInt32(ddlDivision.SelectedValue);
+                    ul.FYID = Convert.ToInt32(ddlFY.SelectedValue);
+                    ul.HeadID = Convert.ToInt32(GrdULBFund.Rows[i].Cells[0].Text.ToString());
 
-                
-               
-                ul.NewAmount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text.Trim());
-                ul.MaintenanceAmount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("MaintenanceAmount") as TextBox).Text.Trim());
-                ul.updateBy = Convert.ToInt32(Session["Person_Id"].ToString());
-                ul.updateOn = DateTime.Now.ToString();
-               
-                ul.IsActive = true;
-                ulbexp.Add(ul);
-                //}
+
+
+                    if (txt != null && txt != "")
+                    {
+                        ul.NewAmount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text.Trim());
+                    }
+                    if (txt2 != null && txt2 != "")
+                    {
+                        ul.MaintenanceAmount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("MaintenanceAmount") as TextBox).Text.Trim());
+                    }
+                    ul.updateBy = Convert.ToInt32(Session["Person_Id"].ToString());
+                    ul.updateOn = DateTime.Now.ToString();
+
+                    ul.IsActive = true;
+                    ulbexp.Add(ul);
+                }
             }
 
             if (new ULBFund().UpdateULBFundExpense(ulbexp, Msg))
@@ -382,12 +419,22 @@ public partial class AddExpensesType : System.Web.UI.Page
                 MessageBox.Show("Income Type data Update Successfully ! ");
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
-                    (GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text = "";
-                    (GrdULBFund.Rows[i].FindControl("MaintenanceAmount") as TextBox).Text = "";
+                    //(GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text = "";
+                   
+                    //(GrdULBFund.Rows[i].FindControl("MaintenanceAmount") as TextBox).Text = "";
+                    var validator = GrdULBFund.Rows[i].FindControl("rfvMaintenanceAmount") as RequiredFieldValidator;
+                    var validator2 = GrdULBFund.Rows[i].FindControl("rfvNewWorkAmount") as RequiredFieldValidator;
+                    
+                    if (validator != null)
+                    {
+                        validator.Enabled = false;
+                        validator2.Enabled = false;
+                    }
                 }
-                Response.Redirect("ListOfAllULB_ExpenseType.aspx");
                 get_tbl_Project();
-                return;
+
+               return;
+               // Response.Redirect("AddExpensesType.aspx?query=Income Type data Update Successfully");
             }
             else
             {
@@ -422,7 +469,7 @@ public partial class AddExpensesType : System.Web.UI.Page
             {
                
                 //GrdULBFund_RowDataBound(, GrdULBFund)
-                int i = 0;
+                int i = 1;
                 foreach (GridViewRow row in GrdULBFund.Rows)
                 {
                     
@@ -433,13 +480,21 @@ public partial class AddExpensesType : System.Web.UI.Page
                    
                     if (txtName != null)
                     {
-                        txtName.Text = dt.Rows[i]["NewAmount"].ToString(); // You can use a dynamic value based on your logic
+                        if (dt.Rows.Count >= i)
+                        {
+                            txtName.Text = dt.Rows[(i-1)]["NewAmount"].ToString(); // You can use a dynamic value based on your logic
+                        }
+                       
                     }
                     if (MaintenanceAmount != null)
                     {
-                        MaintenanceAmount.Text = dt.Rows[i]["MaintenanceAmount"].ToString(); // You can use a dynamic value based on your logic
+                        if (dt.Rows.Count >= i)
+                        {
+                            MaintenanceAmount.Text = dt.Rows[(i - 1)]["MaintenanceAmount"].ToString(); // You can use a dynamic value based on your logic
+                        }
+                       
                     }
-                    i++;
+                        i++;
 
 
                 }
