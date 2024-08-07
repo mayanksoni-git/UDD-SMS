@@ -522,6 +522,30 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         }
     }
 
+    public DataTable GetDocOfAnnualActionPlan(string actions, int? ULBID, int? TaskId, int? stateid,  int? circleId, int? FY, int? personId, string @Documents)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[8];
+            param[0] = new SqlParameter("@action", actions);
+            param[1] = new SqlParameter("@ULBId", ULBID);
+            param[2] = new SqlParameter("@taskId", TaskId);
+            param[3] = new SqlParameter("@stateId", stateid);
+            param[4] = new SqlParameter("@DistrictId", circleId);
+            param[5] = new SqlParameter("@FYId", FY); 
+            param[6] = new SqlParameter("@createdBy", personId);
+            param[7] = new SqlParameter("@Documents", Documents);
+           
+
+            return objDAL.GetDataByProcedure("AnnualActionPlanDOC", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     public DataTable GetExistPlan(string actions, int? ULBID, int? TaskId, int? stateid, int? schemeId, int? circleId, int? FY, string ProjectName, decimal cost, string ProjectDetail, int? personId, string Remark,string recievedAmn, string Documents)
     {
         try

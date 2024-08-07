@@ -14,12 +14,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Annual Action Plan</h4>
+                                    <h4 class="mb-sm-0">Projects for Annual Action Plan</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">Annual Action Plan</li>
-                                            <li class="breadcrumb-item active">Annual Action Plan</li>
+                                            <li class="breadcrumb-item active">Project for Annual Action Plan</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -30,7 +30,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Annual Action Plan <label id="message" runat="server" style="float:right;color:red;font-weight:bold"></label></h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Project For Annual Action Plan </h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -95,7 +95,7 @@
                                                     </div>
                                                 </div>
                                                  
-                                                 <div class="col-xxl-3 col-md-6">
+                                                 <div class="col-xxl-3 col-md-6" runat="server" visible="false">
                                                     <div id="div8" runat="server">
                                                         <asp:Label ID="Label6" runat="server" Text="Upload Doc  (PDF)" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:FileUpload ID="fileupload" runat="server" CssClass="form-control" Accept=".pdf" /> 
@@ -121,9 +121,10 @@
                                                         <asp:TextBox ID="convergence" runat="server"  CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                <div class="col-xxl-3  col-md-6">
+                                                <div class="col-xxl-6  col-md-6">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
+                                                        <label id="message" runat="server" style="color:red;font-weight:bold"></label>
                                                         <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnsave_Click"  convergence/>--%>
                                                         <asp:Button ID="BtnUpdate" Text="Update" OnClick="BtnUpdate_Click" runat="server" Visible="false" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="btnSave" Text="Save" OnClick="btnsave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
@@ -157,7 +158,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Annual Action Plan</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Projects For Annual Action Plan</h4>
                                       
                                     </div>
                                     <!-- end card header -->
@@ -185,12 +186,12 @@
                                                         <asp:BoundField HeaderText="Priority No" DataField="PrivorityNo" />
                                                         <asp:BoundField HeaderText="Reason For Selected" DataField="ReasonForSelected" />
                                                         <asp:BoundField HeaderText="Convergence Detail " DataField="ConvergeDetail" />                                            
-                                                         <asp:TemplateField HeaderText="Docs">
+                                                        <%-- <asp:TemplateField HeaderText="Docs">
                                                              <ItemTemplate>
                                                                  <asp:Label ID="lblNoDocument" runat="server" Text="No Document" Visible='<%# string.IsNullOrEmpty(Eval("Documents") as string) %>'></asp:Label>
                                                                  <asp:HyperLink ID="hlDocument" runat="server" NavigateUrl='<%# Eval("Documents") %>' Text="Doc" Visible='<%# !string.IsNullOrEmpty(Eval("Documents") as string) %>' Target="_blank"></asp:HyperLink>
                                                              </ItemTemplate>
-                                                         </asp:TemplateField>
+                                                         </asp:TemplateField>--%>
                                                         <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>
                                                                 <asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditAnnualAction" OnCommand="Edit_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-primary drill_btn" />

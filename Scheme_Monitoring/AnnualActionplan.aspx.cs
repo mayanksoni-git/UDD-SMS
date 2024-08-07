@@ -382,7 +382,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         if (dt != null && dt.Rows.Count > 0)
         {
 
-            message.InnerText= dt.Rows[0]["remark"].ToString();
+            MessageBox.Show( dt.Rows[0]["remark"].ToString()+ " ! After Inserting All The Projects For Annual Action Plan Please Upload Annual Action plans Document Which Is  Under Annual Action Plan Menu");
         }
         GetAllData(division);
 
@@ -541,7 +541,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         if (dt != null && dt.Rows.Count > 0)
         {
 
-            message.InnerText = dt.Rows[0]["remark"].ToString();
+            MessageBox.Show(dt.Rows[0]["remark"].ToString());
         }
         GetAllData(division);
 
@@ -557,7 +557,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         dt = objLoan.GetAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
         if (dt != null && dt.Rows.Count > 0)
         {
-            message.InnerText = dt.Rows[0]["remark"].ToString();
+            MessageBox.Show(dt.Rows[0]["remark"].ToString());
 
         }
 
