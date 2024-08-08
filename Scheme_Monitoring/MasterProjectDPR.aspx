@@ -100,16 +100,17 @@
                                                                 data-date-format="dd/mm/yyyy"></asp:TextBox>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <br />
-                                                            <asp:CheckBox ID="chkSkip" runat="server" Text="Create DPR and Skip To Bid Process Management Module"></asp:CheckBox>
-                                                        </div>
-                                                    </div>
+                                                   
                                                      <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label4" runat="server" Text="Enter Ward" CssClass="control-label no-padding-right"></asp:Label>
                                                             <asp:TextBox ID="TxtWard" runat="server" CssClass="form-control"  ></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <br />
+                                                            <asp:CheckBox ID="chkSkip" runat="server" Text="Create DPR and Skip To Bid Process Management Module"></asp:CheckBox>
                                                         </div>
                                                     </div>
                                                      <div class="col-xxl-3 col-md-6">
