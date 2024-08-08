@@ -369,6 +369,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                     ul.Amount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text.Trim());
                     ul.updateBy = Convert.ToInt32(Session["Person_Id"].ToString());
                     ul.updateOn = DateTime.Now.ToString();
+                    ul.IsActive = true;
                    
                     ulbexp.Add(ul);
                     checkinsert++;

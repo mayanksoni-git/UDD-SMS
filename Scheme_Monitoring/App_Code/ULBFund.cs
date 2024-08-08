@@ -133,7 +133,7 @@ public class ULBFund
     public void Insert_Tbl_ULBIncome(Tbl_ULBIncomeTypeChild obj, SqlTransaction trans, SqlConnection cn)
     {
         string strQuery = "";
-
+       
 
 
         strQuery = " set dateformat dmy;insert into Tbl_ULBIncomeTypeChild ( [stateId],[CircleId],[ULBID],[FYID],[HeadID],[Amount],[createdBy],[createdOn],[IsActive] ) values ('" + obj.stateId + "','" + obj.CircleId + "','" + obj.ULBID + "','" + obj.FYID + "','" + obj.HeadID + "','" + obj.Amount + "' ,'" + obj.createdBy + "','" + obj.createdOn + "','" + obj.IsActive + "');Select @@Identity";
@@ -239,8 +239,16 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
 
                 for (int i = 0; i < li.Count; i++)
                 {
-
-                    Update_Tbl_ULBIncome(li[i], trans, cn);
+                    if (AllClasses.CheckDataSet(CheckDuplicacyData2(li[i].HeadID, li[0].ULBID, li[0].FYID, trans, cn)))
+                    {
+                        Update_Tbl_ULBIncome(li[i], trans, cn);
+                    }
+                    else
+                    {
+                        li[i].createdBy = li[i].updateBy;
+                        li[i].createdOn = DateTime.Now.ToString();
+                        Insert_Tbl_ULBIncome(li[i], trans, cn);
+                    }
                 }
                 trans.Commit();
                 flag = true;
@@ -255,6 +263,25 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         return flag;
 
     }
+
+    public DataSet CheckDuplicacyData2(int?incId,int? ULBID, int? FYID, SqlTransaction trans, SqlConnection cn)
+    {
+
+        string strQuery = "";
+        DataSet ds = new DataSet();
+        strQuery = " set dateformat dmy; Select  * from Tbl_ULBIncomeTypeChild  where isactive = 'true' and HeadID='" + incId+"' and  ULBID = '" + ULBID + "' and FYID='" + FYID + "' ";
+
+        if (trans == null)
+        {
+            ds = ExecuteSelectQuery(strQuery);
+        }
+        else
+        {
+            ds = ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
+        }
+        return ds;
+    }
+
     public void Update_Tbl_ULBIncome(Tbl_ULBIncomeTypeChild obj, SqlTransaction trans, SqlConnection cn)
     {
         string strQuery = "";
@@ -371,8 +398,17 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
                 
                 for (int i = 0; i < li.Count; i++)
                 {
-
-                    Update_Tbl_ULBExpense(li[i], trans, cn);
+                    if (AllClasses.CheckDataSet(CheckDuplicacyDataOfExpense2(li[i].HeadID, li[0].ULBID, li[0].FYID, trans, cn)))
+                    {
+                        Update_Tbl_ULBExpense(li[i], trans, cn);
+                    }
+                    else
+                    {
+                        li[i].createdBy = li[i].updateBy;
+                        li[i].createdOn = DateTime.Now.ToString();
+                        Insert_Tbl_ULBExpense(li[i], trans, cn);
+                    }
+                    
                 }
                 trans.Commit();
                 flag = true;
@@ -427,6 +463,25 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         }
         return ds;
     }
+
+    public DataSet CheckDuplicacyDataOfExpense2(int? incId, int? ULBID, int? FYID, SqlTransaction trans, SqlConnection cn)
+    {
+
+        string strQuery = "";
+        DataSet ds = new DataSet();
+        strQuery = " set dateformat dmy; Select  * from Tbl_ULBExpenses  where isactive = 'true' and HeadId='" + incId + "' and  ULBID = '" + ULBID + "' and FYID='" + FYID + "' ";
+
+        if (trans == null)
+        {
+            ds = ExecuteSelectQuery(strQuery);
+        }
+        else
+        {
+            ds = ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
+        }
+        return ds;
+    }
+
 
     public DataTable GetULBTbl_ULBExpensesdata(string ULBID, string FYID)
     {

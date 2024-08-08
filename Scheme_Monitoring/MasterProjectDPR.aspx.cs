@@ -514,7 +514,9 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             txtProjectWorkName.Text = ds.Tables[0].Rows[0]["ProjectDPR_Name"].ToString();
             txtCapexCost.Text = ds.Tables[0].Rows[0]["ProjectDPR_CapexCost"].ToString();
             txtOMCost.Text = ds.Tables[0].Rows[0]["ProjectDPR_OandM_Cost"].ToString();
-            txtProjectCost.Text = ds.Tables[0].Rows[0]["ProjectDPR_Project_Cost"].ToString();
+            TxtWard.Text = ds.Tables[0].Rows[0]["Ward"].ToString();
+            TxtZone.Text = ds.Tables[0].Rows[0]["Zones"].ToString();
+            ORemark.Text = ds.Tables[0].Rows[0]["ProjectDPR_Land_StatusRemark"].ToString();
         }
     }
 
