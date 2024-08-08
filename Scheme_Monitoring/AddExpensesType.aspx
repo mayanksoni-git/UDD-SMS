@@ -122,14 +122,14 @@
                                                            
                                                             <ItemTemplate>
                                                                 
-                                                               <asp:TextBox ID="NewWorkAmount" runat="server" CssClass="form-control"></asp:TextBox>
+                                                               <asp:TextBox ID="NewWorkAmount" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                             <asp:RequiredFieldValidator  ID="rfvNewWorkAmount"  runat="server" ControlToValidate="NewWorkAmount"  ErrorMessage="Amount is required" CssClass="text-danger" Display="Dynamic">
                                                                 </asp:RequiredFieldValidator>
                                                                 </ItemTemplate>
                                                         </asp:TemplateField>
                                                        <asp:TemplateField HeaderText="Maintenance Work(Amount in lacs)">
                                                             <ItemTemplate>
-                                                               <asp:TextBox ID="MaintenanceAmount" runat="server" CssClass="form-control"></asp:TextBox>
+                                                               <asp:TextBox ID="MaintenanceAmount" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                             <asp:RequiredFieldValidator  ID="rfvMaintenanceAmount"  runat="server" ControlToValidate="MaintenanceAmount"  ErrorMessage="Amount is required" CssClass="text-danger" Display="Dynamic">
                                                                 </asp:RequiredFieldValidator>
                                                             
