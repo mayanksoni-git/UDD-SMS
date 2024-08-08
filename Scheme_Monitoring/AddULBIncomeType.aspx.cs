@@ -406,7 +406,8 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                 }
                 else
                 {
-                    MessageBox.Show("Error ! ");
+                    MessageBox.Show("This Expense Type data Already Exist. Give another!  ");
+
                 }
                 return;
             }

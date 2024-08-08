@@ -440,11 +440,11 @@ public partial class AddExpensesType : System.Web.UI.Page
             {
                 if (Msg == "A")
                 {
-                    MessageBox.Show("This Income Type data Already Exist. Give another! ");
+                    MessageBox.Show("This Expense Type data Already Exist. Give another! ");
                 }
                 else
                 {
-                    MessageBox.Show("Error ! ");
+                    MessageBox.Show("This Expense Type data Already Exist. Give another!  ");
                 }
                 return;
             }
