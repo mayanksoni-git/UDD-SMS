@@ -114,7 +114,7 @@
                                                         <asp:BoundField DataField="ULBIncomeType_Name" HeaderText="Income Type" />
                                                        
                                                       
-                                                        <asp:TemplateField HeaderText="Amount">
+                                                        <asp:TemplateField HeaderText="Amount (Amount in lacs)">
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="Amounts" runat="server" CssClass="form-control"></asp:TextBox>
                                                                 <asp:RequiredFieldValidator  ID="rfvAmounts"  runat="server" ControlToValidate="Amounts"  ErrorMessage="Amount is required" CssClass="text-danger" Display="Dynamic">
