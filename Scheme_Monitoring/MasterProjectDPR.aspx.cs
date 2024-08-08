@@ -372,6 +372,9 @@ public partial class MasterProjectDPR : System.Web.UI.Page
         obj_tbl_ProjectDPR.ProjectDPR_DivisionId = Convert.ToInt32(ddlDivision.SelectedValue);
         obj_tbl_ProjectDPR.ProjectDPR_ModifiedBy = Convert.ToInt32(Session["Person_Id"].ToString());
         obj_tbl_ProjectDPR.ProjectDPR_TentitiveDate = txtTentitiveDate.Text.Trim();
+        obj_tbl_ProjectDPR.Ward = TxtWard.Text;
+        obj_tbl_ProjectDPR.Zones = TxtZone.Text;
+        obj_tbl_ProjectDPR.ProjectDPR_Land_StatusRemark = ORemark.Text;
         if (chkLandStatus.Items[0].Selected)
         {
             obj_tbl_ProjectDPR.ProjectDPR_LandIdentified = 1;
@@ -416,6 +419,9 @@ public partial class MasterProjectDPR : System.Web.UI.Page
         txtProjectWorkName.Text = "";
         txtCapexCost.Text = "";
         txtProjectWorkName.Text = "";
+        TxtWard.Text = "";
+        TxtZone.Text = "";
+        ORemark.Text = "";
     }
         
     protected void btnEdit_Click(object sender, ImageClickEventArgs e)

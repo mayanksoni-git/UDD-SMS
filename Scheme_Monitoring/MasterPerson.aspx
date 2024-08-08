@@ -584,6 +584,7 @@
                                                             <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
                                                             <asp:BoundField HeaderText="Division" DataField="Division_Name" />
                                                             <asp:BoundField HeaderText="User Name" DataField="Login_UserName" />
+                                                            <%--<asp:BoundField HeaderText="Password" DataField="Login_password" />--%>
                                                             <asp:BoundField HeaderText="List_AdditionZone" DataField="List_AdditionZone">
                                                                 <HeaderStyle CssClass="displayStyle" />
                                                                 <ItemStyle CssClass="displayStyle" />

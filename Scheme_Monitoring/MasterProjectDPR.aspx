@@ -70,14 +70,14 @@
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <asp:Label ID="Label3" runat="server" Text="Total CAPEX Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:TextBox ID="txtCapexCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                            <asp:Label ID="Label3" runat="server" Text="Total Capital Expenditures Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="txtCapexCost" runat="server" CssClass="form-control" onkeyup="TotalAmount()"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <asp:Label ID="Label6" runat="server" Text="Total O & M Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:TextBox ID="txtOMCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                            <asp:Label ID="Label6" runat="server" Text="Total Operational & Maintenance Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="txtOMCost" runat="server" CssClass="form-control" onkeyup="TotalAmount()"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
@@ -90,7 +90,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label2" runat="server" Text="Total Project Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                            <asp:TextBox ID="txtProjectCost" runat="server" ReadOnly="true" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
@@ -106,16 +106,38 @@
                                                             <asp:CheckBox ID="chkSkip" runat="server" Text="Create DPR and Skip To Bid Process Management Module"></asp:CheckBox>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xxl-3 col-md-6">
+                                                     <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label4" runat="server" Text="Enter Ward" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="TxtWard" runat="server" CssClass="form-control"  ></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label7" runat="server" Text="Enter Zone" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="TxtZone" runat="server" CssClass="form-control"  ></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label8" runat="server" Text="Land Status: " CssClass="control-label no-padding-right"></asp:Label>
                                                             <asp:CheckBoxList ID="chkLandStatus" runat="server" RepeatDirection="Horizontal">
                                                                 <asp:ListItem Text="Land Identified" Value="I"></asp:ListItem>
                                                                 <asp:ListItem Text="Land Transffered" Value="T"></asp:ListItem>
+                                                               
                                                             </asp:CheckBoxList>
                                                         </div>
                                                     </div>
 
+                                                     <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label1" runat="server" Text="Project DPR Land Status Remark" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="ORemark" runat="server" CssClass="form-control" TextMode="MultiLine" ></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                   
 
                                                       <div class="col-xxl-11 col-md-11 flex-grow-1"></div>
                                                     <div class="col-xxl-1 col-md-6 flex-grow-1">
@@ -220,7 +242,7 @@
                         </div>
                     </div>
                     <asp:HiddenField ID="hf_ProjectDPR_Id" runat="server" Value="0" />
-                </ContentTemplate>
+               
                 <%--<Triggers>
                     <asp:PostBackTrigger ControlID="btnSave" />
                 </Triggers>
@@ -238,6 +260,17 @@
     </div>
 
     <script>
+
+        function TotalAmount() {
+            var cap = document.getElementById("ctl00_ContentPlaceHolder1_txtOMCost").value;
+            var om = document.getElementById("ctl00_ContentPlaceHolder1_txtCapexCost").value;
+            
+            cap = cap ? cap : 0;
+            om = om ? om : 0;
+            document.getElementById("ctl00_ContentPlaceHolder1_txtProjectCost").value = (Number(om) + Number(cap));
+            
+        }
+
         Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
             jQuery(function ($) {
                 $('.modalBackground1').click(function () {
