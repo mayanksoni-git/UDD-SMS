@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="ListOfAllULB_IncomeType.aspx.cs" Inherits="ListOfAllULB_IncomeType" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:HiddenField ID="ULBFundId" runat="server" />
@@ -60,6 +60,7 @@
                                                     <div id="divDivision" runat="server">
                                                         <asp:Label ID="lblDivisionH" runat="server" Text="ULB*" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>
+                                                        <%--<asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>--%>
                                                     </div>
                                                 </div>
 
@@ -147,6 +148,14 @@
                       
                         </div>
                     </ContentTemplate>
+                 <Triggers>
+                   
+                    <asp:PostBackTrigger ControlID="ddlDivision" />
+                    <asp:PostBackTrigger ControlID="ddlFY" />
+                    <asp:PostBackTrigger ControlID="ddlCircle" />
+                    <asp:PostBackTrigger ControlID="ddlZone" />
+                    
+                </Triggers>
                 </asp:UpdatePanel>
             <div class="container-fluid">
                

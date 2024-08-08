@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="ListOfAllULB_ExpenseType.aspx.cs" Inherits="ListOfAllULB_ExpenseType" %>
-
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:HiddenField ID="ULBFundId" runat="server" />
 
@@ -105,7 +104,7 @@
                                                         <div class="pull-right tableTools-container"></div>
                                                     </div>
                                                  <div style="overflow: auto">
-                                                  <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                  <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost2_PreRender">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>
@@ -153,6 +152,14 @@
                             </div>
                         </div>
                     </ContentTemplate>
+                  <Triggers>
+                   
+                    <asp:PostBackTrigger ControlID="ddlDivision" />
+                    <asp:PostBackTrigger ControlID="ddlFY" />
+                    <asp:PostBackTrigger ControlID="ddlCircle" />
+                    <asp:PostBackTrigger ControlID="ddlZone" />
+                    
+                </Triggers>
                 </asp:UpdatePanel>
             <div class="container-fluid">
                

@@ -38,6 +38,7 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
+
     private void get_tbl_Zone()
     {
         DataSet ds = (new DataLayer()).get_tbl_Zone();
@@ -75,11 +76,10 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
                 if (divisionId > 0)
                 {
                     SetDropdownValueAndDisable(ddlDivision, divisionId);
-                    GetAllData();
+
                 }
             }
         }
-       
     }
     private void SetDropdownValueAndDisable(DropDownList ddl, int value)
     {
@@ -102,21 +102,7 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
         }
     }
 
-    private void get_tbl_ULBIncomeType()
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_ULBIncomeType();
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            grdPost.DataSource = ds.Tables[0];
-            grdPost.DataBind();
-        }
-        else
-        {
-            grdPost.DataSource = null;
-            grdPost.DataBind();
-        }
-    }
+
 
 
     private void get_tbl_Project()
@@ -124,11 +110,7 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
         DataSet ds = (new DataLayer()).get_tbl_Project(0);
         //FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
     }
-    private void get_tbl_WorkType(int ProjectId)
-    {
-        DataSet ds = (new DataLayer()).get_tbl_ProjectType(ProjectId, 0);
-        // FillDropDown(ds, ddlWorkType, "ProjectType_Name", "ProjectType_Id");
-    }
+
     private void get_tbl_FinancialYear()
     {
         DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
@@ -193,11 +175,8 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
         {
             // GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
             //BindLoanReleaseGridByULB();
-            ULBFundId.Value = ddlDivision.SelectedValue;
-            GetAllData();
         }
     }
-  
     protected void GetAllData()
     {
         // );
@@ -207,7 +186,7 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
         grdPost.DataBind();
       
     }
-    protected void grdPost_PreRender(object sender, EventArgs e)
+    protected void grdPost2_PreRender(object sender, EventArgs e)
     {
         GridView gv = (GridView)sender;
         if (gv.Rows.Count > 0)

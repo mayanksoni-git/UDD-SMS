@@ -110,24 +110,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
         }
     }
 
-    private void get_tbl_ULBIncomeType()
-    {
-        DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_ULBIncomeType();
-        totalRow = ds.Tables[0].Rows.Count;
-
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            GrdULBFund.DataSource = ds.Tables[0];
-            GrdULBFund.DataBind();
-        }
-        else
-        {
-            GrdULBFund.DataSource = null;
-            GrdULBFund.DataBind();
-        }
-       
-    }
+   
 
 
     private void get_tbl_Project()
@@ -135,11 +118,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
         DataSet ds = (new DataLayer()).get_tbl_Project(0);
         //FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
     }
-    private void get_tbl_WorkType(int ProjectId)
-    {
-        DataSet ds = (new DataLayer()).get_tbl_ProjectType(ProjectId, 0);
-        // FillDropDown(ds, ddlWorkType, "ProjectType_Name", "ProjectType_Id");
-    }
+
     private void get_tbl_FinancialYear()
     {
         DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
@@ -206,7 +185,25 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             //BindLoanReleaseGridByULB();
         }
     }
-  
+
+    private void get_tbl_ULBIncomeType()
+    {
+        DataSet ds = new DataSet();
+        ds = (new DataLayer()).get_tbl_ULBIncomeType();
+        totalRow = ds.Tables[0].Rows.Count;
+
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            GrdULBFund.DataSource = ds.Tables[0];
+            GrdULBFund.DataBind();
+        }
+        else
+        {
+            GrdULBFund.DataSource = null;
+            GrdULBFund.DataBind();
+        }
+
+    }
     protected void GetEditIncomeList(string ULBID, string FYID)
     {
         DataTable dt = new DataTable();
