@@ -662,4 +662,30 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     }
     #endregion
 
+    #region ULB Report
+
+    public DataTable GetReportOfULBIncomeExpense(int? stateid, int? circleId, int? ULBID, string ulbType,  int? FY)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[5];
+            param[0] = new SqlParameter("@stateid", stateid);
+            param[1] = new SqlParameter("@distId", circleId);
+            param[2] = new SqlParameter("@ulbType", ulbType);
+            param[3] = new SqlParameter("@ULBId", ULBID);         
+            param[4] = new SqlParameter("@FYId", FY);
+       
+
+
+            return objDAL.GetDataByProcedure("SpULBIncomeExpenseReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    #endregion
+
 }

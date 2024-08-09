@@ -294,7 +294,15 @@
                                     </ul>
                                 </div>
                             </li>
-
+                             <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarAAPR" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDPR"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Annual Action Plan Report</span> </a>
+                                <div class="collapse menu-dropdown" id="sidebarAAPR">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item"><a href="ULBIncomeExpenseReport.aspx" class="nav-link" data-key="t-grid-js"> ULB Income Expense Reports</a> </li>
+                                       
+                                    </ul>
+                                </div>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="#sidebarDPR" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDPR"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">DPR</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarDPR">

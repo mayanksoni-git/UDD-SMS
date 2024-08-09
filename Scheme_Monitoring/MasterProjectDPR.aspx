@@ -80,7 +80,14 @@
                                                             <asp:TextBox ID="txtOMCost" runat="server" CssClass="form-control" onkeyup="TotalAmount()"></asp:TextBox>
                                                         </div>
                                                     </div>
+                                                  
                                                     <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label2" runat="server" Text="Total Project Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="txtProjectCost" runat="server" ReadOnly="true" Enabled="false" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <%--<label class="control-label no-padding-right">Project Type* </label>--%>
                                                             <asp:Label ID="lblProjectType" runat="server" Text="Project Type*" CssClass="control-label no-padding-right"></asp:Label>
@@ -89,15 +96,9 @@
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <asp:Label ID="Label2" runat="server" Text="Total Project Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
-                                                            <asp:TextBox ID="txtProjectCost" runat="server" ReadOnly="true" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
                                                             <asp:Label ID="Label5" runat="server" Text="Tentitive Date of DPR Submission" CssClass="control-label no-padding-right"></asp:Label>
                                                             <asp:TextBox ID="txtTentitiveDate" runat="server" CssClass="form-control date-picker" autocomplete="off"
-                                                                data-date-format="dd/mm/yyyy"></asp:TextBox>
+                                                                TextMode="Date"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                    

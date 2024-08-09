@@ -28,6 +28,7 @@ public partial class MasterProjectDPR : System.Web.UI.Page
 
             get_tbl_Zone();
             get_tbl_ProjectType(0);
+            get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
             get_tbl_Project();
             string Client = ConfigurationManager.AppSettings.Get("Client");
             if (Client == "CNDS")
@@ -404,6 +405,7 @@ public partial class MasterProjectDPR : System.Web.UI.Page
         {
             MessageBox.Show("Project Created Successfully!");
             reset();
+            get_tbl_Project();
             return;
         }
         else
@@ -510,12 +512,22 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             {
                 chkLandStatus.Items[1].Selected = false;
             }
+            decimal total = 0;
+            if (ds.Tables[0].Rows[0]["ProjectDPR_CapexCost"].ToString()!=null&& ds.Tables[0].Rows[0]["ProjectDPR_CapexCost"].ToString()!="")
+            {
+                 total += Convert.ToDecimal(ds.Tables[0].Rows[0]["ProjectDPR_CapexCost"]);
+            }
+            if (ds.Tables[0].Rows[0]["ProjectDPR_OandM_Cost"].ToString() != null && ds.Tables[0].Rows[0]["ProjectDPR_OandM_Cost"].ToString() != "")
+            {
+                total += Convert.ToDecimal(ds.Tables[0].Rows[0]["ProjectDPR_OandM_Cost"]);
+            }
             txtTentitiveDate.Text = ds.Tables[0].Rows[0]["ProjectDPR_TentitiveDate"].ToString();
             txtProjectWorkName.Text = ds.Tables[0].Rows[0]["ProjectDPR_Name"].ToString();
             txtCapexCost.Text = ds.Tables[0].Rows[0]["ProjectDPR_CapexCost"].ToString();
             txtOMCost.Text = ds.Tables[0].Rows[0]["ProjectDPR_OandM_Cost"].ToString();
             TxtWard.Text = ds.Tables[0].Rows[0]["Ward"].ToString();
             TxtZone.Text = ds.Tables[0].Rows[0]["Zones"].ToString();
+            txtProjectCost.Text = total.ToString(); ;
             ORemark.Text = ds.Tables[0].Rows[0]["ProjectDPR_Land_StatusRemark"].ToString();
         }
     }
