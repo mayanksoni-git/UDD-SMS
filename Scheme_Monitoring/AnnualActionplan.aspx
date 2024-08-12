@@ -199,7 +199,7 @@
                                                         </asp:TemplateField>
                                                        <asp:TemplateField HeaderText="Delete">
                                                         <ItemTemplate>
-                                                             <asp:Button ID="btnDelete" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-danger drill_btn" />
+                                                             <asp:Button ID="btnDelete" OnClientClick="return confirm('Are You Sure !!!')" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-danger drill_btn" />
                                                          </ItemTemplate>
 
                                                         </asp:TemplateField>

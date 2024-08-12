@@ -40,14 +40,14 @@
                                     <div class="mt-4">
                                         <div class="mb-3">
                                             <label for="username" class="form-label">Username</label>
-                                            <asp:TextBox ID="txtUserName" runat="server" CssClass="form-control" placeholder="User Name" autocomplete="off">
+                                            <asp:TextBox ID="txtUserName" runat="server" TabIndex="1" CssClass="form-control" placeholder="User Name" autocomplete="off" onkeydown="return submitOnEnter(event);">
                                             </asp:TextBox>
                                         </div>
                                         <div class="mb-3">
                                             <div class="float-end"><a href="auth-pass-reset-cover.html" class="text-muted">Forgot password?</a> </div>
                                             <label class="form-label" for="password-input">Password</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <asp:TextBox ID="txtPassowrd" runat="server" CssClass="form-control pe-5 password-input" placeholder="Password" autocomplete="off" TextMode="Password">
+                                                <asp:TextBox ID="txtPassowrd" TabIndex="2" runat="server" CssClass="form-control pe-5 password-input" placeholder="Password" onkeydown="return submitOnEnter(event);" autocomplete="off" TextMode="Password">
                                                 </asp:TextBox>
                                                 <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                             </div>
@@ -57,7 +57,7 @@
                                             <label class="form-check-label" for="auth-remember-check">Remember me</label>
                                         </div>
                                         <div class="mt-4">
-                                            <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn btn-success w-100" OnClick="btnLogin_Click" />
+                                            <asp:Button ID="btnLogin" TabIndex="3" runat="server" Text="Login" CssClass="btn btn-success w-100" OnClick="btnLogin_Click" onkeydown="return submitOnEnter(event);" />
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +148,15 @@
             return true;
         }
     </script>
-
+    <script type="text/javascript">
+        function submitOnEnter(event) {
+            if (event.keyCode === 13) { // 13 is the Enter key
+                event.preventDefault(); // Prevent the default action of Enter key
+                document.getElementById('<%=btnLogin.ClientID%>').click(); // Trigger form submission
+                return false; // Return false to ensure no other actions are triggered
+            }
+        }
+    </script>
     <script type="text/javascript">
         //Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
         //    jQuery(function ($) {

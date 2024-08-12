@@ -232,7 +232,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         }
         if (ddlProjectMaster.SelectedValue == "0")
         {
-            MessageBox.Show("Please Select a Financial. ");
+            MessageBox.Show("Please Select a Scheme. ");
             ddlProjectMaster.Focus();
             return false;
         }
@@ -303,6 +303,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
 
     protected void btnsave_Click(object sender, EventArgs e)
     {
+        try { 
         if (!ValidateFields())
         {
             return;
@@ -389,6 +390,12 @@ public partial class AnnualActionplan : System.Web.UI.Page
         //GetULBFundAction
         reset();
     }
+        catch(Exception ex)
+        {
+            MessageBox.Show("Error : "+ex.Message);
+
+        }
+    }
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
@@ -471,82 +478,94 @@ public partial class AnnualActionplan : System.Web.UI.Page
    
     protected void BtnUpdate_Click(object sender, EventArgs e)
     {
-        var doc = "";
-        var pathProfile = "";
-        if (fileupload.HasFile)
+        try
         {
-            string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
-            if (fileExtension != ".pdf")
+            if (!ValidateFields())
             {
-                MessageBox.Show("Only PDF files are allowed.");
                 return;
             }
-            int fileSize = fileupload.PostedFile.ContentLength;
-
-            // path = FileUpload1.FileName;
-            //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
-            string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
-            int fileappent = 0;
-            while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename)))
+            var doc = "";
+            var pathProfile = "";
+            if (fileupload.HasFile)
             {
-                fileappent++;
-                sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
-                + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
+                string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
+                if (fileExtension != ".pdf")
+                {
+                    MessageBox.Show("Only PDF files are allowed.");
+                    return;
+                }
+                int fileSize = fileupload.PostedFile.ContentLength;
+
+                // path = FileUpload1.FileName;
+                //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
+                string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
+                int fileappent = 0;
+                while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename)))
+                {
+                    fileappent++;
+                    sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
+                    + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
+                }
+                doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename);
+
+                //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
+
+                fileupload.SaveAs(doc);
+
+                pathProfile = "/PDFs/AnualActionPlanPDF/" + sFilename;
             }
-            doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename);
 
-            //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
 
-            fileupload.SaveAs(doc);
+            int zone = Convert.ToInt32(ddlZone.SelectedValue);
+            int circle = Convert.ToInt32(ddlCircle.SelectedValue);
+            int division = Convert.ToInt32(ddlDivision.SelectedValue);
+            int scheme = Convert.ToInt32(ddlProjectMaster.SelectedValue);
+            int fy = Convert.ToInt32(ddlFY.SelectedValue);
+            var project = ProjectName.Text;
+            decimal costs = Convert.ToDecimal(Cost.Text);
+            var priority = PriorityNo.Value;
+            var projDetail = detailOfProject.Text;
+            var reaseon = ReasonForSelected.Text;
+            var converge = convergence.Text;
+            var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
+            var taskid = Convert.ToInt32(hdnplanId.Value);
 
-            pathProfile = "/PDFs/AnualActionPlanPDF/" + sFilename;
+            //var sfc = Convert.ToDecimal();
+            Button clickedButton = sender as Button;
+            string text = clickedButton.Text;
+            DataTable dt = new DataTable();
+            dt = objLoan.GetAnnualActionPlan(
+                  "Update",
+                   division,
+                    taskid,
+                 zone,
+                 scheme,
+                 circle,
+                  fy,
+                 project,
+                  costs,
+                  projDetail,
+                  Person_Id,
+                  reaseon,
+                  converge
+                  , pathProfile
+                  , priority
+                  );
+            if (dt != null && dt.Rows.Count > 0)
+            {
+
+                MessageBox.Show(dt.Rows[0]["remark"].ToString());
+            }
+            GetAllData(division);
+
+            //GetULBFundAction
+            reset();
         }
-
-
-        int zone = Convert.ToInt32(ddlZone.SelectedValue);
-        int circle = Convert.ToInt32(ddlCircle.SelectedValue);
-        int division = Convert.ToInt32(ddlDivision.SelectedValue);
-        int scheme = Convert.ToInt32(ddlProjectMaster.SelectedValue);
-        int fy = Convert.ToInt32(ddlFY.SelectedValue);
-        var project = ProjectName.Text;
-        decimal costs = Convert.ToDecimal(Cost.Text);
-        var priority = PriorityNo.Value;
-        var projDetail = detailOfProject.Text;
-        var reaseon = ReasonForSelected.Text;
-        var converge = convergence.Text;
-        var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
-        var taskid =Convert.ToInt32(hdnplanId.Value);
-
-        //var sfc = Convert.ToDecimal();
-        Button clickedButton = sender as Button;
-        string text = clickedButton.Text;
-        DataTable dt = new DataTable();
-        dt = objLoan.GetAnnualActionPlan(
-              "Update",
-               division,
-                taskid,
-             zone,
-             scheme,
-             circle,
-              fy,
-             project,
-              costs,
-              projDetail,
-              Person_Id,
-              reaseon,
-              converge
-              , pathProfile
-              , priority
-              );
-        if (dt != null && dt.Rows.Count > 0)
+        catch(Exception ex)
         {
+            MessageBox.Show("Error : "+ex.Message);
 
-            MessageBox.Show(dt.Rows[0]["remark"].ToString());
         }
-        GetAllData(division);
-
-        //GetULBFundAction
-        reset();
     }
 
     protected void btnDelete_Command(object sender, CommandEventArgs e)

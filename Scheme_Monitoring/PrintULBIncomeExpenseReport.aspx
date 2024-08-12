@@ -89,82 +89,76 @@
             </div>
             <%--Same grid is used on Page RptPyresTracker.aspx and ExportToExcel.aspx page also, please change there as well if needed--%>
             <div class="form_center">
-          <asp:Repeater ID="rptSearchResult" runat="server" >
-                                                        <HeaderTemplate>
-                                                         
-                                                            <table id="sample-table-2" class="mt-5 table table-striped table-bordered table-hover">
+                <asp:Repeater ID="rptSearchResult" runat="server">
+                    <HeaderTemplate>
 
-                                                                <thead style="background:#f28a2b;">
-                                                                    <tr class="table-primary">
-                                                                       <th style="text-align:left"  rowspan="2">Sr</th>
-                                                                        <th style="text-align:left"  rowspan="2">
-                                                                           District
-                                                                        </th>
-                                                                        <th style="text-align:left"  rowspan="2">
-                                                                            ULB Type
-                                                                        </th>
-                                                                        <th style="text-align:left" rowspan="2">
-                                                                            ULB Name
-                                                                        </th>
-                                                                        <th style="text-align:right"  rowspan="2">
-                                                                           Income (in Lacs)
-                                                                        </th>
-                                                                        <th align="center" colspan="3">
-                                                                            Expenditure  
+                        <table id="sample-table-2" class="mt-5 table table-striped table-bordered table-hover">
+
+                            <thead style="background: #f28a2b;">
+                                <tr class="table-primary">
+                                    <th style="text-align: left" rowspan="2">Sr</th>
+                                    <th style="text-align: left" rowspan="2">District
+                                    </th>
+                                    <th style="text-align: left" rowspan="2">ULB Type
+                                    </th>
+                                    <th style="text-align: left" rowspan="2">ULB Name
+                                    </th>
+                                    <th style="text-align: right" rowspan="2">Income (in Lacs)
+                                    </th>
+                                    <th align="center" colspan="3">Expenditure  
                                                                               
-                                                                        </th>
-                                                                        <th style="text-align:right"  rowspan="2">
-                                                                           Balance Amount(in Lacs)
-                                                                        </th>
+                                    </th>
+                                    <th style="text-align: right" rowspan="2">Balance Amount(in Lacs)
+                                    </th>
 
-                                                                    </tr>
-                                                            <tr class=" table-primary">
-                                                                <th style="text-align:right" >New Expense(in Lacs)</th>
-                                                                <th style="text-align:right" >Maintenance Expense(in Lacs)</th>
-                                                                 <th style="text-align:right" >Total Expense(in Lacs)</th>
-                                                            </tr>
-                                                                </thead>
-                                                        </HeaderTemplate>
-                                                        <ItemTemplate>
-                                                            <tr>
-                                                              <td>
-    <span>1</span> 
-</td>
-                                                                <td align="left">
-                                                                    <%--.HindiName,d.EnglishName as distEng,d.HindiName as distHindi--%>
-                                                                    <%#DataBinder.Eval(Container,"DataItem.Circle_Name")%>
-                                                                </td>
-                                                                <td align="left">
-                                                                    <%#DataBinder.Eval(Container,"DataItem.Division_Type")%>
-                                                                </td>
-                                                                <td align="left">
-                                                                    <%#DataBinder.Eval(Container,"DataItem.ULBNAme")%>
-                                                                </td>
-                                                                <td style="text-align:right" >
-                                                                    <%#DataBinder.Eval(Container,"DataItem.TotalIncome")%>
-                                                                </td>
-                                                                <td style="text-align:right" >
-                                                                    <%#DataBinder.Eval(Container,"DataItem.NewExpense")%>
-                                                                </td>
-                                                                <td style="text-align:right" >
-                                                                    <%#DataBinder.Eval(Container,"DataItem.MaintenanceExpense")%>
-                                                                </td>
-                                                                <td style="text-align:right" >
-                                                                    <%#DataBinder.Eval(Container,"DataItem.TotalExpense")%>
-                                                                </td>
-                                                                <td style="text-align:right" >
-                                                                    <%#DataBinder.Eval(Container,"DataItem.BalanceAmn")%>
-                                                                </td>
-
+                                </tr>
+                                <tr class=" table-primary">
+                                    <th style="text-align: right">New Expense(in Lacs)</th>
+                                    <th style="text-align: right">Maintenance Expense(in Lacs)</th>
+                                    <th style="text-align: right">Total Expense(in Lacs)</th>
+                                </tr>
+                            </thead>
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <tr>
+                            <td>
+                                <span>  <%#DataBinder.Eval(Container,"DataItem.SrNo")%></span>
+                            </td>
+                            <td align="left">
+                                <%--.HindiName,d.EnglishName as distEng,d.HindiName as distHindi--%>
+                                <%#DataBinder.Eval(Container,"DataItem.Circle_Name")%>
+                            </td>
+                            <td align="left">
+                                <%#DataBinder.Eval(Container,"DataItem.Division_Type")%>
+                            </td>
+                            <td align="left">
+                                <%#DataBinder.Eval(Container,"DataItem.ULBNAme")%>
+                            </td>
+                            <td style="text-align: right">
+                                <%#DataBinder.Eval(Container,"DataItem.TotalIncome")%>
+                            </td>
+                            <td style="text-align: right">
+                                <%#DataBinder.Eval(Container,"DataItem.NewExpense")%>
+                            </td>
+                            <td style="text-align: right">
+                                <%#DataBinder.Eval(Container,"DataItem.MaintenanceExpense")%>
+                            </td>
+                            <td style="text-align: right">
+                                <%#DataBinder.Eval(Container,"DataItem.TotalExpense")%>
+                            </td>
+                            <td style="text-align: right">
+                                <%#DataBinder.Eval(Container,"DataItem.BalanceAmn")%>
+                            </td>
 
 
 
-                                                            </tr>
-                                                        </ItemTemplate>
-                                                        <FooterTemplate>
-                                                            </table>
-                                                        </FooterTemplate>
-                                                    </asp:Repeater>
+
+                        </tr>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                        </table>
+                    </FooterTemplate>
+                </asp:Repeater>
      <%--       <asp:Button ID="Button1" runat="server" Text="Print" CssClass="btn-print" OnClientClick="printPage()" />--%>
                 </div>
         </div>

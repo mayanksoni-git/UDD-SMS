@@ -254,6 +254,8 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
 
     protected void btnsave_Click(object sender, EventArgs e)
     {
+        try
+        { 
         if (!ValidateFields())
         {
             return;
@@ -288,8 +290,11 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
 
             pathProfile = "/PDFs/AnualActionPlanPDF/" + sFilename;
         }
-
-      
+        else
+        {
+            MessageBox.Show("Please Select A PDF File");
+            return;
+        }
         int zone = Convert.ToInt32(ddlZone.SelectedValue);
         int circle = Convert.ToInt32(ddlCircle.SelectedValue);
         int division = Convert.ToInt32(ddlDivision.SelectedValue);
@@ -315,6 +320,11 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
 
         //GetULBFundAction
         reset();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error : " + ex.Message);
+        }
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -388,63 +398,76 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
    
     protected void BtnUpdate_Click(object sender, EventArgs e)
     {
-        var doc = "";
-        var pathProfile = "";
-        if (fileupload.HasFile)
+        try
         {
-            string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
-            if (fileExtension != ".pdf")
+
+
+            var doc = "";
+            var pathProfile = "";
+            if (fileupload.HasFile)
             {
-                MessageBox.Show("Only PDF files are allowed.");
+                string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
+                if (fileExtension != ".pdf")
+                {
+                    MessageBox.Show("Only PDF files are allowed.");
+                    return;
+                }
+                int fileSize = fileupload.PostedFile.ContentLength;
+
+                // path = FileUpload1.FileName;
+                //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
+                string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
+                int fileappent = 0;
+                while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename)))
+                {
+                    fileappent++;
+                    sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
+                    + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
+                }
+                doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename);
+
+                //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
+
+                fileupload.SaveAs(doc);
+
+                pathProfile = "/PDFs/AnualActionPlanPDF/" + sFilename;
+            }
+            else
+            {
+                MessageBox.Show("Please Select A PDF File");
                 return;
             }
-            int fileSize = fileupload.PostedFile.ContentLength;
 
-            // path = FileUpload1.FileName;
-            //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
-            string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
-            int fileappent = 0;
-            while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename)))
+            int zone = Convert.ToInt32(ddlZone.SelectedValue);
+            int circle = Convert.ToInt32(ddlCircle.SelectedValue);
+            int division = Convert.ToInt32(ddlDivision.SelectedValue);
+
+            int fy = Convert.ToInt32(ddlFY.SelectedValue);
+
+
+            var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
+            var taskid = Convert.ToInt32(hdnplanId.Value);
+
+            //var sfc = Convert.ToDecimal();
+            Button clickedButton = sender as Button;
+            string text = clickedButton.Text;
+            DataTable dt = new DataTable();
+            dt = objLoan.GetDocOfAnnualActionPlan("Update", division, taskid, zone, circle, fy, Person_Id, pathProfile);
+
+            if (dt != null && dt.Rows.Count > 0)
             {
-                fileappent++;
-                sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
-                + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
+
+                MessageBox.Show(dt.Rows[0]["remark"].ToString());
             }
-            doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename);
+            GetAllData(division);
 
-            //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
-
-            fileupload.SaveAs(doc);
-
-            pathProfile = "/PDFs/AnualActionPlanPDF/" + sFilename;
+            //GetULBFundAction
+            reset();
         }
-
-
-        int zone = Convert.ToInt32(ddlZone.SelectedValue);
-        int circle = Convert.ToInt32(ddlCircle.SelectedValue);
-        int division = Convert.ToInt32(ddlDivision.SelectedValue);
-      
-        int fy = Convert.ToInt32(ddlFY.SelectedValue);
-      
-       
-        var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
-        var taskid =Convert.ToInt32(hdnplanId.Value);
-
-        //var sfc = Convert.ToDecimal();
-        Button clickedButton = sender as Button;
-        string text = clickedButton.Text;
-        DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("Update", division, taskid, zone, circle, fy, Person_Id, pathProfile);
-       
-        if (dt != null && dt.Rows.Count > 0)
+        catch(Exception ex)
         {
-
-            MessageBox.Show(dt.Rows[0]["remark"].ToString());
+            MessageBox.Show("Error : " + ex.Message);
         }
-        GetAllData(division);
-
-        //GetULBFundAction
-        reset();
     }
 
     protected void btnDelete_Command(object sender, CommandEventArgs e)

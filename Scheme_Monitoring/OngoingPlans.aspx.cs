@@ -209,7 +209,7 @@ public partial class OngoingPlans : System.Web.UI.Page
         }
         if (ddlProjectMaster.SelectedValue == "0")
         {
-            MessageBox.Show("Please Select a Financial. ");
+            MessageBox.Show("Please Select a Scheme. ");
             ddlProjectMaster.Focus();
             return false;
         }
@@ -287,89 +287,97 @@ public partial class OngoingPlans : System.Web.UI.Page
 
     protected void btnsave_Click(object sender, EventArgs e)
     {
-        if (!ValidateFields())
+        try
         {
-            return;
-        }
-        var doc = "";
-        var pathProfile = "";
-        if (fileupload.HasFile)
-        {
-            string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
-            if (fileExtension != ".pdf")
+            if (!ValidateFields())
             {
-                MessageBox.Show("Only PDF files are allowed.");
                 return;
             }
+            var doc = "";
+            var pathProfile = "";
+            if (fileupload.HasFile)
+            {
+                string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
+                if (fileExtension != ".pdf")
+                {
+                    MessageBox.Show("Only PDF files are allowed.");
+                    return;
+                }
                 int fileSize = fileupload.PostedFile.ContentLength;
 
-            // path = FileUpload1.FileName;
-            //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
-            string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
-            int fileappent = 0;
-            var newFileName = "OnGoingDoc_" + sFilename;
-            while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + newFileName)))
-            {
-                fileappent++;
-                sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
-                + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
+                // path = FileUpload1.FileName;
+                //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
+                string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
+                int fileappent = 0;
+                var newFileName = "OnGoingDoc_" + sFilename;
+                while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + newFileName)))
+                {
+                    fileappent++;
+                    sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
+                    + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
+                }
+                doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + newFileName);
+
+                //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
+
+                fileupload.SaveAs(doc);
+
+                pathProfile = "/PDFs/AnualActionPlanPDF/" + newFileName;
             }
-            doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + newFileName);
 
-            //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
+            int zone = Convert.ToInt32(ddlZone.SelectedValue);
+            int circle = Convert.ToInt32(ddlCircle.SelectedValue);
+            int division = Convert.ToInt32(ddlDivision.SelectedValue);
+            int scheme = Convert.ToInt32(ddlProjectMaster.SelectedValue);
+            int fy = Convert.ToInt32(ddlFY.SelectedValue);
+            var project = ProjectName.Text;
+            decimal costs = Convert.ToDecimal(Cost.Text);
+            decimal recieved = Convert.ToDecimal(ReceivedAmn.Text);
+            var progress = prgPhysical.Text;
+            var projDetail = detailOfProject.Text;
+            var reaseon = Remarks.Text;
+            var estmate = Convert.ToDateTime(EstimateDate.Text);
+            // var converge = convergence.Text;
+            var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
 
-            fileupload.SaveAs(doc);
 
-            pathProfile = "/PDFs/AnualActionPlanPDF/" + newFileName;
+            //var sfc = Convert.ToDecimal();
+            Button clickedButton = sender as Button;
+            string text = clickedButton.Text;
+            DataTable dt = new DataTable();
+            dt = objLoan.GetOnGoingPlan(
+                 "Insert",
+                  division,
+                   0,
+                zone,
+                scheme,
+                circle,
+                 fy,
+                project,
+                 costs,
+                 projDetail,
+                 Person_Id,
+                 reaseon,
+                 recieved
+                 , pathProfile,
+                 estmate
+                 , progress
+                 );
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                MessageBox.Show(dt.Rows[0]["Remarks"].ToString());
+                //message.InnerText = ;
+            }
+            GetAllData(division);
+
+            //GetULBFundAction
+            reset();
         }
-
-        int zone = Convert.ToInt32(ddlZone.SelectedValue);
-        int circle = Convert.ToInt32(ddlCircle.SelectedValue);
-        int division = Convert.ToInt32(ddlDivision.SelectedValue);
-        int scheme = Convert.ToInt32(ddlProjectMaster.SelectedValue);
-        int fy = Convert.ToInt32(ddlFY.SelectedValue);
-        var  project = ProjectName.Text;
-        decimal costs = Convert.ToDecimal(Cost.Text);
-        decimal recieved = Convert.ToDecimal(ReceivedAmn.Text);
-        var progress = prgPhysical.Text;
-        var projDetail = detailOfProject.Text;
-        var reaseon = Remarks.Text;
-        var estmate = Convert.ToDateTime(EstimateDate.Text);
-       // var converge = convergence.Text;
-        var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
-
-
-        //var sfc = Convert.ToDecimal();
-        Button clickedButton = sender as Button;
-        string text = clickedButton.Text;
-        DataTable dt = new DataTable();
-        dt = objLoan.GetOnGoingPlan(
-             "Insert",
-              division,
-               0,
-            zone,
-            scheme,
-            circle,
-             fy,
-            project,
-             costs,
-             projDetail,
-             Person_Id,
-             reaseon,
-             recieved
-             , pathProfile,
-             estmate
-             , progress
-             );
-        if (dt != null && dt.Rows.Count > 0)
+        catch (Exception ex)
         {
+            MessageBox.Show("Error : " + ex.Message);
 
-            message.InnerText= dt.Rows[0]["Remarks"].ToString();
         }
-        GetAllData(division);
-
-        //GetULBFundAction
-        reset();
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -456,6 +464,7 @@ public partial class OngoingPlans : System.Web.UI.Page
    
     protected void BtnUpdate_Click(object sender, EventArgs e)
     {
+        try { 
         if (!ValidateFields())
         {
             return;
@@ -531,12 +540,18 @@ public partial class OngoingPlans : System.Web.UI.Page
         if (dt != null && dt.Rows.Count > 0)
         {
 
-            message.InnerText = dt.Rows[0]["Remarks"].ToString();
+            MessageBox.Show(dt.Rows[0]["Remarks"].ToString());
         }
         GetAllData(division);
 
         //GetULBFundAction
         reset();
+    }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error : " + ex.Message);
+
+        }
     }
 
     protected void btnDelete_Command(object sender, CommandEventArgs e)
@@ -544,10 +559,14 @@ public partial class OngoingPlans : System.Web.UI.Page
         var id = Convert.ToInt32(e.CommandArgument.ToString());
 
         DataTable dt = new DataTable();
-        dt = objLoan.GetAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
+        //dt = objLoan.GetOnGoingPlan("select", ULBID, 0, 0, 0, 0, 0, "", 0, "", 0, "", 0, "", DateTime.Now, "");
+
+        dt = objLoan.GetOnGoingPlan("Delete", 0, id, 0, 0, 0, 0, "", 0, "", 0, "", 0, "", DateTime.Now, "");
         if (dt != null && dt.Rows.Count > 0)
         {
-            message.InnerText = dt.Rows[0]["Remark"].ToString();
+            MessageBox.Show(dt.Rows[0]["Remark"].ToString());
+
+           // message.InnerText = dt.Rows[0]["Remark"].ToString();
 
         }
 

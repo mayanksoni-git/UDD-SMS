@@ -66,7 +66,7 @@
                                                     <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
                                                     <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
                                                     <asp:BoundField DataField="ModifiedBy" HeaderText="Modified By" />
-                                                    <asp:BoundField DataField="Mdified_Date" HeaderText="Modified Date" />
+                                                    <asp:BoundField DataField="Modified_Date" HeaderText="Modified Date" />
                                                     <asp:TemplateField HeaderText="View">
                                                         <ItemTemplate>
                                                             <asp:ImageButton ID="btnDelete" Width="20px" Height="20px"  OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />

@@ -155,7 +155,7 @@
                                                            
 
                                                              <ItemTemplate>
-                                                                <asp:Button ID="btnDelete" runat="server" Text='Delete' CommandName="DeleteULBFund" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("ULBFundId") %>' CssClass="btn btn-danger drill_btn" />
+                                                                <asp:Button ID="btnDelete" runat="server" Text='Delete' CommandName="DeleteULBFund" OnClientClick="return confirm('Are You Sure !!!')" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("ULBFundId") %>' CssClass="btn btn-danger drill_btn" />
                                                             </ItemTemplate>
 
                                                         </asp:TemplateField>

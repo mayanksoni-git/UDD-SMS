@@ -282,45 +282,53 @@ public partial class FundRecievedInULB : System.Web.UI.Page
 
     protected void btnsave_Click(object sender, EventArgs e)
     {
-        if (!ValidateFields())
+        try
         {
-            return;
+            if (!ValidateFields())
+            {
+                return;
+            }
+
+            int zone = Convert.ToInt32(ddlZone.SelectedValue);
+            int circle = Convert.ToInt32(ddlCircle.SelectedValue);
+            int division = Convert.ToInt32(ddlDivision.SelectedValue);
+            int fy = Convert.ToInt32(ddlFY.SelectedValue);
+            decimal SFCs = Convert.ToDecimal(SFC.Text);
+            decimal CFCs = Convert.ToDecimal(CFC.Text);
+            decimal TotalTaxs = Convert.ToDecimal(TotalTax.Text);
+            var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
+
+
+            //var sfc = Convert.ToDecimal();
+            Button clickedButton = sender as Button;
+            string text = clickedButton.Text;
+            DataTable dt = new DataTable();
+            dt = objLoan.GetULBFundAction(
+                 "Insert",
+                  division,
+                   0,
+                zone,
+                circle,
+                 fy,
+                SFCs,
+                 CFCs,
+                 TotalTaxs,
+                 Person_Id
+                 );
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                MessageBox.Show(dt.Rows[0]["remark"].ToString());
+            }
+            GetAllData(division);
+
+            //GetULBFundAction
+            reset();
         }
-
-        int zone = Convert.ToInt32(ddlZone.SelectedValue);
-        int circle = Convert.ToInt32(ddlCircle.SelectedValue);
-        int division = Convert.ToInt32(ddlDivision.SelectedValue);
-        int fy = Convert.ToInt32(ddlFY.SelectedValue);
-        decimal SFCs = Convert.ToDecimal(SFC.Text);
-        decimal CFCs = Convert.ToDecimal(CFC.Text);
-        decimal TotalTaxs = Convert.ToDecimal(TotalTax.Text);
-        var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
-
-
-        //var sfc = Convert.ToDecimal();
-        Button clickedButton = sender as Button;
-        string text = clickedButton.Text;
-        DataTable dt = new DataTable();
-        dt = objLoan.GetULBFundAction(
-             "Insert",
-              division,
-               0,
-            zone,
-            circle,
-             fy,
-            SFCs,
-             CFCs,
-             TotalTaxs,
-             Person_Id
-             );
-        if (dt != null && dt.Rows.Count > 0)
+        catch(Exception ex)
         {
-            MessageBox.Show(dt.Rows[0]["remark"].ToString());
-        }
-        GetAllData(division);
+            MessageBox.Show("Error : "+ex.Message);
 
-        //GetULBFundAction
-        reset();
+        }
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -376,6 +384,7 @@ public partial class FundRecievedInULB : System.Web.UI.Page
    
     protected void BtnUpdate_Click(object sender, EventArgs e)
     {
+        try { 
         int id = Convert.ToInt32(ULBFundId.Value);
         int zone = Convert.ToInt32(ddlZone.SelectedValue);
         int circle = Convert.ToInt32(ddlCircle.SelectedValue);
@@ -406,6 +415,12 @@ public partial class FundRecievedInULB : System.Web.UI.Page
         GetAllData(division);
         reset();
         //GetULBFundAction
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error : " + ex.Message);
+
+        }
     }
 
     protected void btnDelete_Command(object sender, CommandEventArgs e)
