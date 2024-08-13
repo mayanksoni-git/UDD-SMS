@@ -336,7 +336,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
         }
         catch(Exception ex)
         {
-            MessageBox.Show("Error : " + ex.Message);
+            MessageBox.Show( ex.Message);
         }
     }
 
@@ -416,7 +416,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Error : " + ex.Message);
+            MessageBox.Show(ex.Message);
         }
     }
 

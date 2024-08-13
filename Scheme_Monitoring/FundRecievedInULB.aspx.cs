@@ -326,7 +326,7 @@ public partial class FundRecievedInULB : System.Web.UI.Page
         }
         catch(Exception ex)
         {
-            MessageBox.Show("Error : "+ex.Message);
+            MessageBox.Show(ex.Message);
 
         }
     }
