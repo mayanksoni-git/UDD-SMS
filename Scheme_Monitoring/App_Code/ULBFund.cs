@@ -525,7 +525,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
 
 
 
-        strQuery = "Update Tbl_ULBExpenses  set  stateId='" + obj.stateId + "',CircleId='" + obj.CircleId + "',ULBID='" + obj.ULBID + "',FYID='" + obj.FYID + "',NewAmount='" + obj.NewAmount + "',MaintenanceAmount='" + obj.MaintenanceAmount + "',updateBy='"+obj.updateBy+ "',updateOn='"+DateTime.Now+ "' where HeadID='" + obj.HeadID+ "' and FYID='"+obj.FYID+ "' and ULBID='" + obj.ULBID + "'";
+        strQuery = "Update Tbl_ULBExpenses  set  stateId='" + obj.stateId + "',CircleId='" + obj.CircleId + "',ULBID='" + obj.ULBID + "',FYID='" + obj.FYID + "',NewAmount='" + obj.NewAmount + "',MaintenanceAmount='" + obj.MaintenanceAmount + "',updateBy='"+obj.updateBy+ "',updateOn=GETDATE() where HeadID='" + obj.HeadID+ "' and FYID='"+obj.FYID+ "' and ULBID='" + obj.ULBID + "'";
         if (trans == null)
         {
             try
