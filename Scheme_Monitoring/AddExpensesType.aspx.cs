@@ -354,7 +354,7 @@ public partial class AddExpensesType : System.Web.UI.Page
                 }
                 else
                 {
-                    MessageBox.Show("This Expense Type data Already Exist. Give another!  ");
+                    MessageBox.Show("something went wrong please contact administrator ! ");
                 }
                 return;
             }
@@ -444,7 +444,7 @@ public partial class AddExpensesType : System.Web.UI.Page
                 }
                 else
                 {
-                    MessageBox.Show("This Expense Type data Already Exist. Give another!  ");
+                    MessageBox.Show("something went wrong please contact administrator !  ");
                 }
                 return;
             }

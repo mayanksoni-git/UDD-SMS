@@ -328,7 +328,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                 }
                 else
                 {
-                    MessageBox.Show("Error ! ");
+                    MessageBox.Show("Something went wrong please contact administrator ! ");
                 }
                 return;
             }
@@ -407,7 +407,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                 }
                 else
                 {
-                    MessageBox.Show("This Expense Type data Already Exist. Give another!  ");
+                    MessageBox.Show("something went wrong please contact administrator !");
 
                 }
                 return;
