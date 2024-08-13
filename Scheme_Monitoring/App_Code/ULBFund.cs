@@ -359,7 +359,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
 
 
 
-        strQuery = " set dateformat dmy;Update Tbl_ULBIncomeTypeChild  set  stateId='" + obj.stateId + "',CircleId='" + obj.CircleId + "',ULBID='" + obj.ULBID + "',FYID='" + obj.FYID + "',Amount='" + obj.Amount + "',updateBy='" + obj.updateBy + "',updateOn='" + DateTime.Now + "' where HeadID='" + obj.HeadID + "' and FYID='" + obj.FYID + "' and ULBID='" + obj.ULBID + "';Select @@Identity";
+        strQuery = "Update Tbl_ULBIncomeTypeChild  set  stateId='" + obj.stateId + "',CircleId='" + obj.CircleId + "',ULBID='" + obj.ULBID + "',FYID='" + obj.FYID + "',Amount='" + obj.Amount + "',updateBy='" + obj.updateBy + "',updateOn=GETDATE() where HeadID='" + obj.HeadID + "' and FYID='" + obj.FYID + "' and ULBID='" + obj.ULBID + "'";
         if (trans == null)
         {
             try
@@ -433,22 +433,47 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         string strQuery = "";
 
 
+         strQuery = "INSERT INTO Tbl_ULBExpenses ([stateId],[CircleId],[ULBID],[FYID],[HeadID],[NewAmount],[MaintenanceAmount],[createdBy],[createdOn],[IsActive]) " +
+                        "VALUES (@stateId, @CircleId, @ULBID, @FYID, @HeadID, @NewAmount,@MaintenanceAmount, @createdBy, getdate(), @IsActive); ";
 
-        strQuery = " set dateformat dmy;insert into Tbl_ULBExpenses ( [stateId],[CircleId],[ULBID],[FYID],[HeadID],[NewAmount],[MaintenanceAmount],[createdBy],[createdOn],[IsActive] ) values ('" + obj.stateId + "','" + obj.CircleId + "','" + obj.ULBID + "','" + obj.FYID + "','" + obj.HeadID + "','" + obj.NewAmount + "' ,'" + obj.MaintenanceAmount + "' ,'" + obj.createdBy + "','" + obj.createdOn + "','" + obj.IsActive + "');Select @@Identity";
-        if (trans == null)
+        using (SqlCommand cmd = new SqlCommand(strQuery, cn, trans))
         {
+            cmd.Parameters.AddWithValue("@stateId", obj.stateId);
+            cmd.Parameters.AddWithValue("@CircleId", obj.CircleId);
+            cmd.Parameters.AddWithValue("@ULBID", obj.ULBID);
+            cmd.Parameters.AddWithValue("@FYID", obj.FYID);
+            cmd.Parameters.AddWithValue("@HeadID", obj.HeadID);
+            cmd.Parameters.AddWithValue("@NewAmount", obj.NewAmount);
+            cmd.Parameters.AddWithValue("@MaintenanceAmount", obj.MaintenanceAmount);
+            cmd.Parameters.AddWithValue("@createdBy", obj.createdBy);
+            cmd.Parameters.AddWithValue("@IsActive", obj.IsActive);
+
             try
             {
-                ExecuteSelectQuery(strQuery);
+                cmd.ExecuteScalar(); // Assuming you need the inserted ID
             }
-            catch
+            catch (Exception ex)
             {
+                throw new Exception("Error inserting ULB Enpense", ex);
             }
         }
-        else
-        {
-            ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
-        }
+
+
+        //strQuery = " set dateformat dmy;insert into Tbl_ULBExpenses ( [stateId],[CircleId],[ULBID],[FYID],[HeadID],[NewAmount],[MaintenanceAmount],[createdBy],[createdOn],[IsActive] ) values ('" + obj.stateId + "','" + obj.CircleId + "','" + obj.ULBID + "','" + obj.FYID + "','" + obj.HeadID + "','" + obj.NewAmount + "' ,'" + obj.MaintenanceAmount + "' ,'" + obj.createdBy + "','" + obj.createdOn + "','" + obj.IsActive + "');Select @@Identity";
+        //if (trans == null)
+        //{
+        //    try
+        //    {
+        //        ExecuteSelectQuery(strQuery);
+        //    }
+        //    catch
+        //    {
+        //    }
+        //}
+        //else
+        //{
+        //    ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
+        //}
     }
 
 
@@ -500,7 +525,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
 
 
 
-        strQuery = " set dateformat dmy;Update Tbl_ULBExpenses  set  stateId='" + obj.stateId + "',CircleId='" + obj.CircleId + "',ULBID='" + obj.ULBID + "',FYID='" + obj.FYID + "',NewAmount='" + obj.NewAmount + "',MaintenanceAmount='" + obj.MaintenanceAmount + "',updateBy='"+obj.updateBy+ "',updateOn='"+DateTime.Now+ "' where HeadID='" + obj.HeadID+ "' and FYID='"+obj.FYID+ "' and ULBID='" + obj.ULBID + "';Select @@Identity";
+        strQuery = "Update Tbl_ULBExpenses  set  stateId='" + obj.stateId + "',CircleId='" + obj.CircleId + "',ULBID='" + obj.ULBID + "',FYID='" + obj.FYID + "',NewAmount='" + obj.NewAmount + "',MaintenanceAmount='" + obj.MaintenanceAmount + "',updateBy='"+obj.updateBy+ "',updateOn='"+DateTime.Now+ "' where HeadID='" + obj.HeadID+ "' and FYID='"+obj.FYID+ "' and ULBID='" + obj.ULBID + "'";
         if (trans == null)
         {
             try

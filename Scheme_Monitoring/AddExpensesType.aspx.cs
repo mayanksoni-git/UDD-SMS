@@ -329,7 +329,7 @@ public partial class AddExpensesType : System.Web.UI.Page
             }
             if (new ULBFund().InsertULBFundExpense(ulbexp, Msg))
             {
-                MessageBox.Show("Income Type data Created Successfully ! ");
+                MessageBox.Show("Expenditure Type data Created Successfully ! ");
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
                     (GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text = "";
@@ -350,7 +350,7 @@ public partial class AddExpensesType : System.Web.UI.Page
             {
                 if (Msg == "A")
                 {
-                    MessageBox.Show("This Income Type data Already Exist. Give another! ");
+                    MessageBox.Show("This  data Already Exist. Give another! ");
                 }
                 else
                 {
@@ -416,7 +416,7 @@ public partial class AddExpensesType : System.Web.UI.Page
 
             if (new ULBFund().UpdateULBFundExpense(ulbexp, Msg))
             {
-                MessageBox.Show("Income Type data Update Successfully ! ");
+                MessageBox.Show("Expenditure data Update Successfully ! ");
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
                     //(GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text = "";
@@ -440,7 +440,7 @@ public partial class AddExpensesType : System.Web.UI.Page
             {
                 if (Msg == "A")
                 {
-                    MessageBox.Show("This Expense Type data Already Exist. Give another! ");
+                    MessageBox.Show("This data Already Exist. Give another! ");
                 }
                 else
                 {
