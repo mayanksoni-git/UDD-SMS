@@ -291,6 +291,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                     ul.ULBID = Convert.ToInt32(ddlDivision.SelectedValue);
                     ul.FYID = Convert.ToInt32(ddlFY.SelectedValue);
                     ul.HeadID = Convert.ToInt32(GrdULBFund.Rows[i].Cells[0].Text.ToString());
+
                     ul.Amount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text.Trim());
                     ul.createdBy= Convert.ToInt32(Session["Person_Id"].ToString());
                     ul.createdOn = DateTime.Now.ToString();

@@ -116,9 +116,9 @@
                                                         <asp:BoundField HeaderText="ULBName" DataField="ULBName" />
                                                         <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
                                                         <asp:BoundField HeaderText="Total Head" DataField="TotalHead" />
-                                                        <asp:BoundField HeaderText="New Expense Amount" DataField="NewTotalAmount" />
-                                                        <asp:BoundField HeaderText="Maintenance  Amount" DataField="MaintenanceTotalAmount" />
-                                                        <asp:BoundField HeaderText="Total Amount" DataField="ToatalAmount" />
+                                                        <asp:BoundField HeaderText="New Expense Amount (In Lancs)" DataField="NewTotalAmount" />
+                                                        <asp:BoundField HeaderText="Maintenance  Amount (In Lancs)" DataField="MaintenanceTotalAmount" />
+                                                        <asp:BoundField HeaderText="Total Amount  (In Lancs)" DataField="ToatalAmount" />
                                                     
                                                         
                                                         <asp:TemplateField HeaderText="Edit">

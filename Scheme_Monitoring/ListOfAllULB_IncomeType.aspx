@@ -116,7 +116,7 @@
                                                         <asp:BoundField HeaderText="ULBName" DataField="ULBName" />
                                                         <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
                                                         <asp:BoundField HeaderText="Total Head" DataField="TotalHead" />
-                                                        <asp:BoundField HeaderText="Total Amount" DataField="TotalAmount" />
+                                                        <asp:BoundField HeaderText="Total Amount (In Lancs)" DataField="TotalAmount" />
                                                       
                                                          <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>                                                               

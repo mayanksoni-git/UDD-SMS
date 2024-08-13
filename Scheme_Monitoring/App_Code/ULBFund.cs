@@ -688,4 +688,87 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
 
     #endregion
 
+
+    public DataTable GetULBIncExpHead(string ULBID, string FYID, string stateId, string DisId,string Action)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[5];
+
+            param[0] = new SqlParameter("@action", Action);
+            param[1] = new SqlParameter("@stateId", stateId);
+            param[2] = new SqlParameter("@ULBId", ULBID);
+            param[3] = new SqlParameter("@distId", DisId);
+            param[4] = new SqlParameter("@FYID", FYID);
+           
+            return objDAL.GetDataByProcedure("UlBExpIncHeadReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    #region Vision Plan
+    public DataSet GetAllCMVNYProject()
+    {
+        string strQuery = "";
+        DataSet ds = new DataSet();
+        strQuery = @"set dateformat dmy;select CMVNY_PID,ProjectName from tbl_CMVNYProjectType where IsActive=1";
+        try
+        {
+            ds = ExecuteSelectQuery(strQuery);
+        }
+        catch (Exception e)
+        {
+            var msg = e.Message;
+            ds = null;
+        }
+        return ds;
+    }
+
+    public DataTable GetVisionPlan(string actions,int? CMVNYId, int? ULBID, int? TaskId, int? stateid, string IsConstructed, int? circleId, int? FY, string constructedYear, string Conditionof, bool IsUserCharger, int? personId, bool IsOwnerNagarNigamOrULB, decimal AmountOfUserCharge, string OtherOwner, string selfPriority, string NoOfSameProjInCity,string Loactions)
+    {
+        try
+        {
+
+
+//@IsOwnerNagarNigamOrULB bit = null,
+//@OtherOwner nvarchar(100) = null,
+//@NoOfSameProjInCity nvarchar(10)= null,
+//@Loactions nvarchar(500)= null,
+//@selfPriority nvarchar(5)= null,
+//@createdBy int= null
+
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[18];
+            param[0] = new SqlParameter("@action", actions);
+            param[1] = new SqlParameter("@taskId", TaskId);
+            param[2] = new SqlParameter("@CMVNYId", CMVNYId);
+            param[3] = new SqlParameter("@stateId", stateid);
+            param[4] = new SqlParameter("@distId", circleId);
+            param[5] = new SqlParameter("@ULBId", ULBID);          
+            param[6] = new SqlParameter("@FYID", FY);
+            param[7] = new SqlParameter("@IsConstructed", IsConstructed);
+            param[8] = new SqlParameter("@constructedYear", constructedYear);
+            param[9] = new SqlParameter("@Conditionof", Conditionof);
+            param[10] = new SqlParameter("@IsUserCharger", IsUserCharger);
+            param[11] = new SqlParameter("@AmountOfUserCharge", AmountOfUserCharge);
+            param[12] = new SqlParameter("@IsOwnerNagarNigamOrULB", IsOwnerNagarNigamOrULB);
+            param[13] = new SqlParameter("@OtherOwner", OtherOwner);
+            param[14] = new SqlParameter("@NoOfSameProjInCity", NoOfSameProjInCity);
+            param[15] = new SqlParameter("@Loactions", Loactions);
+            param[16] = new SqlParameter("@selfPriority", selfPriority);
+            param[17] = new SqlParameter("@createdBy", personId);
+           
+
+            return objDAL.GetDataByProcedure("SPVisionPlan", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    #endregion
 }

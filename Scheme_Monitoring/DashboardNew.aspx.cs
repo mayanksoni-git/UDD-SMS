@@ -25,6 +25,7 @@ public partial class DashboardNew : System.Web.UI.Page
             lblCircleH.Text = Session["Default_Circle"].ToString();
             lblDivisionH.Text = Session["Default_Division"].ToString();
             get_tbl_Zone();
+            
             if (Session["SearchStorage"] != null)
             {
                 SearchStorage obj_SearchStorage = (SearchStorage)Session["SearchStorage"];
@@ -410,9 +411,14 @@ public partial class DashboardNew : System.Web.UI.Page
         {
             AllClasses.FillDropDown(ds.Tables[0], ddlZone, "Zone_Name", "Zone_Id");
         }
+
         else
         {
             ddlZone.Items.Clear();
+        }
+        if (ddlZone.SelectedItem.Value != "0")
+        {
+            get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
         }
     }
     private void get_tbl_Circle(int Zone_Id)
