@@ -91,67 +91,138 @@ public class ULBFund
 
 
     #region ULB Income
-    public bool InsertULBFundIncome(List<Tbl_ULBIncomeTypeChild> li, string Msg)
+
+    public bool InsertULBFundIncome(List<Tbl_ULBIncomeTypeChild> li, out string Msg)
     {
         bool flag = false;
+        Msg = string.Empty;
 
-        DataSet ds = new DataSet();
         using (SqlConnection cn = new SqlConnection(ConStr))
         {
             if (cn.State == ConnectionState.Closed)
             {
                 cn.Open();
             }
+
             SqlTransaction trans = cn.BeginTransaction();
             try
             {
-                if (AllClasses.CheckDataSet(CheckDuplicacyData(li[0].ULBID,li[0].FYID, trans, cn)))
+                if (AllClasses.CheckDataSet(CheckDuplicacyData(li[0].ULBID, li[0].FYID, trans, cn)))
                 {
-                    Msg = "A";
-                    trans.Commit();
-                    cn.Close();
+                    Msg = "Duplicate record found";
+                    trans.Rollback();
                     return false;
                 }
+
                 for (int i = 0; i < li.Count; i++)
                 {
-                   
                     Insert_Tbl_ULBIncome(li[i], trans, cn);
                 }
+
                 trans.Commit();
                 flag = true;
+                Msg = "Insert successful";
             }
             catch (Exception ex)
             {
                 trans.Rollback();
+                Msg = ex.Message;
                 flag = false;
             }
         }
 
-                return flag;
-
+        return flag;
     }
+
+    //public bool InsertULBFundIncome(List<Tbl_ULBIncomeTypeChild> li, string Msg)
+    //{
+    //    bool flag = false;
+
+    //    DataSet ds = new DataSet();
+    //    using (SqlConnection cn = new SqlConnection(ConStr))
+    //    {
+    //        if (cn.State == ConnectionState.Closed)
+    //        {
+    //            cn.Open();
+    //        }
+    //        SqlTransaction trans = cn.BeginTransaction();
+    //        try
+    //        {
+    //            if (AllClasses.CheckDataSet(CheckDuplicacyData(li[0].ULBID,li[0].FYID, trans, cn)))
+    //            {
+    //                Msg = "A";
+    //                //trans.Commit();
+    //                cn.Close();
+    //                return false;
+    //            }
+    //            for (int i = 0; i < li.Count; i++)
+    //            {
+
+    //                Insert_Tbl_ULBIncome(li[i], trans, cn);
+    //            }
+    //            trans.Commit();
+    //            flag = true;
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            trans.Rollback();
+    //            flag = false;
+    //        }
+    //    }
+
+    //     return flag;
+
+    //}
+    //public void Insert_Tbl_ULBIncome(Tbl_ULBIncomeTypeChild obj, SqlTransaction trans, SqlConnection cn)
+    //{
+    //    string strQuery = "";
+
+
+
+    //    strQuery = " set dateformat dmy;insert into Tbl_ULBIncomeTypeChild ( [stateId],[CircleId],[ULBID],[FYID],[HeadID],[Amount],[createdBy],[createdOn],[IsActive] ) values ('" + obj.stateId + "','" + obj.CircleId + "','" + obj.ULBID + "','" + obj.FYID + "','" + obj.HeadID + "','" + obj.Amount + "' ,'" + obj.createdBy + "','" + obj.createdOn + "','" + obj.IsActive + "');Select @@Identity";
+    //    if (trans == null)
+    //    {
+    //        try
+    //        {
+    //            ExecuteSelectQuery(strQuery);
+    //        }
+    //        catch
+    //        {
+    //        }
+    //    }
+    //    else
+    //    {
+    //        ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
+    //    }
+    //}
+
     public void Insert_Tbl_ULBIncome(Tbl_ULBIncomeTypeChild obj, SqlTransaction trans, SqlConnection cn)
     {
-        string strQuery = "";
-       
+        string strQuery = "INSERT INTO Tbl_ULBIncomeTypeChild ([stateId], [CircleId], [ULBID], [FYID], [HeadID], [Amount], [createdBy], [createdOn], [IsActive]) " +
+                          "VALUES (@stateId, @CircleId, @ULBID, @FYID, @HeadID, @Amount, @createdBy, getdate(), @IsActive); ";
 
-
-        strQuery = " set dateformat dmy;insert into Tbl_ULBIncomeTypeChild ( [stateId],[CircleId],[ULBID],[FYID],[HeadID],[Amount],[createdBy],[createdOn],[IsActive] ) values ('" + obj.stateId + "','" + obj.CircleId + "','" + obj.ULBID + "','" + obj.FYID + "','" + obj.HeadID + "','" + obj.Amount + "' ,'" + obj.createdBy + "','" + obj.createdOn + "','" + obj.IsActive + "');Select @@Identity";
-        if (trans == null)
+        using (SqlCommand cmd = new SqlCommand(strQuery, cn, trans))
         {
+            cmd.Parameters.AddWithValue("@stateId", obj.stateId);
+            cmd.Parameters.AddWithValue("@CircleId", obj.CircleId);
+            cmd.Parameters.AddWithValue("@ULBID", obj.ULBID);
+            cmd.Parameters.AddWithValue("@FYID", obj.FYID);
+            cmd.Parameters.AddWithValue("@HeadID", obj.HeadID);
+            cmd.Parameters.AddWithValue("@Amount", obj.Amount);
+            cmd.Parameters.AddWithValue("@createdBy", obj.createdBy);
+            cmd.Parameters.AddWithValue("@IsActive", obj.IsActive);
+
             try
             {
-                ExecuteSelectQuery(strQuery);
+                cmd.ExecuteScalar(); // Assuming you need the inserted ID
             }
-            catch
+            catch (Exception ex)
             {
+                throw new Exception("Error inserting ULB Income", ex);
             }
-        }
-        else
-        {
-            ExecuteSelectQuerywithTransaction(cn, strQuery, trans);
         }
     }
+
 
     public DataSet CheckDuplicacyData(int?ULBID,int?FYID, SqlTransaction trans, SqlConnection cn)
     {

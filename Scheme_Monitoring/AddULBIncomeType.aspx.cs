@@ -267,12 +267,10 @@ public partial class AddULBIncomeType : System.Web.UI.Page
     protected void BtnSubmit_Command(object sender, CommandEventArgs e)
     {
         // var transac str
-        string msg = "";
+        string msg = "Default";
   
         try
         {
-
-
             if (!ValidateFields())
             {
                 return;
@@ -301,7 +299,13 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                 }
             }
 
-            if (new ULBFund().InsertULBFundIncome(ulbexp, msg))
+            bool test =  new ULBFund().InsertULBFundIncome(ulbexp,out msg);
+            MessageBox.Show("Insert Status :" + test.ToString() + ";Msg: " + msg.ToString());
+            //MessageBox.Show(msg.ToString());
+
+
+
+            if (test)
             {
                 MessageBox.Show("Income Type data Created Successfully ! ");
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
@@ -328,7 +332,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                 }
                 else
                 {
-                    MessageBox.Show("Something went wrong please contact administrator ! ");
+                    MessageBox.Show("Error ! ");
                 }
                 return;
             }
@@ -407,7 +411,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                 }
                 else
                 {
-                    MessageBox.Show("something went wrong please contact administrator !");
+                    MessageBox.Show("This Expense Type data Already Exist. Give another!  ");
 
                 }
                 return;
