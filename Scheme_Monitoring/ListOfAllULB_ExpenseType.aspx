@@ -111,14 +111,14 @@
                                                                 <%# Container.DataItemIndex + 1 %>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:BoundField HeaderText="State" DataField="Zone_Name" />
+                                                      
                                                         <asp:BoundField HeaderText="District" DataField="Circle_Name" />
                                                         <asp:BoundField HeaderText="ULBName" DataField="ULBName" />
                                                         <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
                                                         <asp:BoundField HeaderText="Total Head" DataField="TotalHead" />
-                                                        <asp:BoundField HeaderText="New Expense Amount (In Lancs)" DataField="NewTotalAmount" />
-                                                        <asp:BoundField HeaderText="Maintenance  Amount (In Lancs)" DataField="MaintenanceTotalAmount" />
-                                                        <asp:BoundField HeaderText="Total Amount  (In Lancs)" DataField="ToatalAmount" />
+                                                        <asp:BoundField HeaderText="New Expense Amount (In Lakhs)" DataField="NewTotalAmount" />
+                                                        <asp:BoundField HeaderText="Maintenance  Amount (In Lakhs)" DataField="MaintenanceTotalAmount" />
+                                                        <asp:BoundField HeaderText="Total Amount  (In Lakhs)" DataField="ToatalAmount" />
                                                     
                                                         
                                                         <asp:TemplateField HeaderText="Edit">

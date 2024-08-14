@@ -242,14 +242,15 @@ public class ULBFund
         return ds;
     }
 
-    public DataTable GetULBIncomedata(string ULBID,string FYID)
+    public DataTable GetULBIncomedata(string dist, string ULBID,string FYID)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[2];
+            SqlParameter[] param = new SqlParameter[3];
             param[0] = new SqlParameter("@ULBId", ULBID);
             param[1] = new SqlParameter("@FYID", FYID);
+            param[2] = new SqlParameter("@Dist", dist);
 
             return objDAL.GetDataByProcedure("SpAllULBIncomeData", param);
         }
@@ -579,14 +580,15 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     }
 
 
-    public DataTable GetULBTbl_ULBExpensesdata(string ULBID, string FYID)
+    public DataTable GetULBTbl_ULBExpensesdata(string dist, string ULBID, string FYID)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[2];
+            SqlParameter[] param = new SqlParameter[3];
             param[0] = new SqlParameter("@ULBId", ULBID);
             param[1] = new SqlParameter("@FYID", FYID);
+            param[2] = new SqlParameter("@Dist", dist);
 
             return objDAL.GetDataByProcedure("SpAllULBExpenseData", param);
         }

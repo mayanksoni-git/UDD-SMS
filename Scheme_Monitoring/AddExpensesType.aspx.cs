@@ -36,8 +36,8 @@ public partial class AddExpensesType : System.Web.UI.Page
                 
                 
                 GetEditExpenseList(ULBID.Value, FYID.Value);
-                HeadingSec.InnerText = "UPDATE Expense TYPE";
-                HeadingSec2.InnerText = "Update Expense Type";
+                HeadingSec.InnerText = "UPDATE Expense ";
+                HeadingSec2.InnerText = "Update Expense ";
                 //AddSection.Visible = false;
             }
        else
@@ -226,7 +226,10 @@ public partial class AddExpensesType : System.Web.UI.Page
             ddlDivision.SelectedValue = dt.Rows[0]["ULBID"].ToString();
 
             ddlFY.SelectedValue = dt.Rows[0]["FYId"].ToString();
-
+            ddlZone.Enabled = false;
+            ddlCircle.Enabled = false;
+            ddlDivision.Enabled = false;
+            ddlFY.Enabled = false;
             GrdULBFund.DataSource = dt;
             GrdULBFund.DataBind();
             ButtonUpdate.Visible=true;
@@ -262,7 +265,7 @@ public partial class AddExpensesType : System.Web.UI.Page
         }
         if (ddlFY.SelectedValue == "0")
         {
-            MessageBox.Show("Please Select a Financial. ");
+            MessageBox.Show("Please Select a Financial Year. ");
             ddlFY.Focus();
             return false;
         }
@@ -324,7 +327,7 @@ public partial class AddExpensesType : System.Web.UI.Page
             }
             if (sum == 0)
             {
-                MessageBox.Show("Please Enter Any Head's Value");
+                MessageBox.Show("Please enter amount at least in any Expense type");
                 return;
             }
             if (new ULBFund().InsertULBFundExpense(ulbexp, Msg))

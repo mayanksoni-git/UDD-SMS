@@ -118,7 +118,7 @@
                                                         <asp:BoundField DataField="ULBExpenseType_Name" HeaderText="Expense Type" />
                                                       
                                                       
-                                                        <asp:TemplateField HeaderText="New Work (Amount in lacs) ">
+                                                        <asp:TemplateField HeaderText="New Work Amount(In Lakhs) ">
                                                            
                                                             <ItemTemplate>
                                                                 
@@ -127,7 +127,7 @@
                                                                 </asp:RequiredFieldValidator>
                                                                 </ItemTemplate>
                                                         </asp:TemplateField>
-                                                       <asp:TemplateField HeaderText="Maintenance Work(Amount in lacs)">
+                                                       <asp:TemplateField HeaderText="Maintenance Work Amount (In Lakhs)">
                                                             <ItemTemplate>
                                                                <asp:TextBox ID="MaintenanceAmount" runat="server" value="0.00" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                             <asp:RequiredFieldValidator  ID="rfvMaintenanceAmount"  runat="server" ControlToValidate="MaintenanceAmount"  ErrorMessage="Amount is required" CssClass="text-danger" Display="Dynamic">

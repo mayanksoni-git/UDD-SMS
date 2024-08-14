@@ -143,53 +143,66 @@
 
                                                         <th style="text-align:center;font-size:18px" >Sr No</th>
                                                         <th  style="text-align:center;font-size:18px">Project Name</th>
-                                                       <th  style="text-align:center;font-size:18px" colspan="2">Existing</th>
-                                                        <th  style="text-align:center;font-size:18px" colspan="2">Condition</th>
+                                                       <th  style="text-align:center;font-size:18px" colspan="3">Existing</th>
+                                                        <th  style="text-align:center;font-size:18px" colspan="3">Condition</th>
                                                        
                                                         <th  style="text-align:center;font-size:18px">User Charge</th>
-                                                        <th  style="text-align:center;font-size:18px" colspan="2">Ownership</th>
+                                                        <th  style="text-align:center;font-size:18px" colspan="3">Ownership</th>
                                                       
                                                         <th  style="text-align:center;font-size:18px">Location</th>
                                                         <th  style="text-align:center;font-size:18px">Priority</th>
+                                                         <th style="text-align:center;font-size:18px">Action</th>
                                                     </tr>
                                                      <tr class="table-primary">
 
                                                        <th>#</th>
-                                                        <th  style="text-align:center"></th>
+                                                        <th  style="text-align:center">Project name</th>
                                                         <th  style="text-align:center">Year of Construction for Constructed Building</th>
                                                         <th  style="text-align:center">Under Construction(Y/N)</th>
                                                         <th  style="text-align:center">Under Sanction</th>
-                                                        <th  style="text-align:center">Condition</th>
+                                                        <th  style="text-align:center">Good</th>
+                                                        <th  style="text-align:center">Need Renovaton</th>
+                                                        <th  style="text-align:center">Need Redevelopement</th>
                                                         <th  style="text-align:center">User Charge</th>
                                                         <th  style="text-align:center">Ownership</th>
+                                                        <th  style="text-align:center">Other Department</th>
                                                         <th  style="text-align:center">No Of Similar Project</th>
                                                         <th  style="text-align:center">Ward Name (Ward No.)</th>
                                                         <th  style="text-align:center">Priority</th>
+                                                         <th></th>
                                                     </tr>
                                                 </thead>
                                        
                                      <asp:Repeater ID="rptSearchResult" runat="server" OnItemCommand="rptSearchResult_ItemCommand">
                                         <ItemTemplate>
                                             <tr>
-                                               <td>
-                                                 <asp:LinkButton ID="btnDelete" Text="Delete" runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
-                                                OnClientClick="return ConfirmDeletion();" />
-                                            <asp:LinkButton ID="btnEdit"  Text="Edit" runat="server" ToolTip="Click to Edit Record" CommandName="edit"
+                                                <td><%# Container.ItemIndex + 1 %></td>
+                                              
+                                             
+
+                                              
+                                                <td><%# DataBinder.Eval(Container.DataItem, "ProjectName") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "constructedYear") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "Constructed") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "UnderConstruction") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "Sanction") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "GoodCondition") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "NeedRenovation") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "needredevelopement") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "NNownerShips") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "OtherOwner") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "NoOfSameProjInCity") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "Loactions") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "selfPriority") %></td>
+                                               
+
+                                                 <td>
+                                                      <asp:LinkButton ID="btnEdit"  Text="Edit" CssClass="btn bg-warning" runat="server" ToolTip="Click to Edit Record" CommandName="edit"
                                                 class="icon-pencil bigger-130 green" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>' />
+                                                 <asp:LinkButton ID="btnDelete" CssClass="btn bg-danger" Text="Delete" runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
+                                                OnClientClick="return ConfirmDeletion();" />
+                                           
                                               </td>
-
-                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
-
-
                                             </tr>
                                         </ItemTemplate>
                                         <FooterTemplate>

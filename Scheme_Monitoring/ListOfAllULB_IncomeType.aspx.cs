@@ -195,9 +195,14 @@ public partial class ListOfAllULB_IncomeType : System.Web.UI.Page
     }
     protected void GetAllData()
     {
+        var div = "0";
+        if (ddlDivision.SelectedValue != "")
+        {
+            div = ddlDivision.SelectedValue;
+        }
         // );
         DataTable dt = new DataTable();
-        dt = objLoan.GetULBIncomedata(ddlDivision.SelectedValue, ddlFY.SelectedValue);
+        dt = objLoan.GetULBIncomedata(ddlCircle.SelectedValue,div, ddlFY.SelectedValue);
         grdPost.DataSource = dt;
         grdPost.DataBind();
        

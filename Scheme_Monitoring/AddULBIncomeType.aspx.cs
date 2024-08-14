@@ -32,8 +32,8 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                 ULBID.Value = Request.QueryString["ULBID"].ToString();
                 FYID.Value = Request.QueryString["FYID"].ToString();
                 GetEditIncomeList(ULBID.Value, FYID.Value);
-                HeadingSec.InnerText = "UPDATE INCOME TYPE";
-                HeadingSec2.InnerText = "Update Income Type";
+                HeadingSec.InnerText = "UPDATE INCOME ";
+                HeadingSec2.InnerText = "Update Income ";
                 //AddSection.Visible = false;
             }
             get_tbl_ULBIncomeType();
@@ -214,11 +214,14 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             ddlZone.SelectedValue = dt.Rows[0]["stateId"].ToString();
             ddlCircle.SelectedValue = dt.Rows[0]["CircleId"].ToString();
             get_tbl_Division(Convert.ToInt32(dt.Rows[0]["CircleId"].ToString()));
-
+            
             ddlDivision.SelectedValue = dt.Rows[0]["ULBID"].ToString();
 
             ddlFY.SelectedValue = dt.Rows[0]["FYId"].ToString();
-
+            ddlZone.Enabled = false;
+            ddlCircle.Enabled = false;
+            ddlDivision.Enabled = false;
+            ddlFY.Enabled = false;
             GrdULBFund.DataSource = dt;
             GrdULBFund.DataBind();
             ButtonUpdate.Visible = true;
@@ -254,7 +257,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
         }
         if (ddlFY.SelectedValue == "0")
         {
-            MessageBox.Show("Please Select a Financial. ");
+            MessageBox.Show("Please Select a Financial Year. ");
             ddlFY.Focus();
             return false;
         }
@@ -306,7 +309,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             }
             if(sum==0)
             {
-                MessageBox.Show("Please Enter Any Head's Value");
+                MessageBox.Show("Please enter amount at least in any income type");
                 return;
             }
 

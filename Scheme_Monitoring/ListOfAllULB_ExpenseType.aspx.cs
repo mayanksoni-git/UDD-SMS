@@ -180,8 +180,13 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
     protected void GetAllData()
     {
         // );
+        var div = "0";
+        if(ddlDivision.SelectedValue!="")
+        {
+            div = ddlDivision.SelectedValue;
+        }
         DataTable dt = new DataTable();
-        dt = objLoan.GetULBTbl_ULBExpensesdata(ddlDivision.SelectedValue, ddlFY.SelectedValue);
+        dt = objLoan.GetULBTbl_ULBExpensesdata(ddlCircle.SelectedValue,div, ddlFY.SelectedValue);
         grdPost.DataSource = dt;
         grdPost.DataBind();
       

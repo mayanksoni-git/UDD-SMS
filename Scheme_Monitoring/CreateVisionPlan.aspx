@@ -79,7 +79,7 @@
                                                         <asp:DropDownList ID="DDLProj" runat="server" CssClass="form-select" ></asp:DropDownList>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 validsec" id="" <%--style="display:none"--%>>
+                                                 <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
                                                     <div id="div8" runat="server">
                                                         <asp:Label ID="Label11" runat="server" Text="Enter Population*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="TxtPopulation" runat="server" CssClass="form-control"></asp:TextBox>
