@@ -258,11 +258,112 @@ public partial class CreateVisionPlan: System.Web.UI.Page
 
     protected void BtnSearch_Click(object sender, EventArgs e)
     {
-        if(!ValidateFields())
+        try
         {
-            MessageBox.Show("All Fields required");
-            return ;
+            if (!ValidateFields())
+            {
+                MessageBox.Show("All Fields required");
+                return;
+            }
+            var constructed = "";
+            var constructedyear = "";
+            var condition = "";
+            var UserCharg = "";
+            decimal Amount = 0;
+            var owner = "";
+            var IsOwnerShip = "";
+
+            if (RadioButton1.Checked)
+            {
+                //---- Check That Condition Radion Button Checked or Not-----
+                if (RadioButton4.Checked)
+                { condition = "1"; }
+                else if (RadioButton5.Checked)
+                { condition = "2"; }
+                else if (RadioButton6.Checked)
+                { condition = "3"; }
+                else
+                {
+                    MessageBox.Show("Please Select Condition ");
+                    RadioButton4.Focus();
+                    return;
+                }
+                //---- Check That User Charge Radion Button Checked or Not-----
+
+                if (RadioButton7.Checked)
+                {
+                    UserCharg = "1";
+                    Amount = Convert.ToDecimal(Amounts.Text);
+                }
+                else if (RadioButton8.Checked)
+                {
+                    UserCharg = "0";
+                }
+                else
+                {
+                    MessageBox.Show("Please Select User Charge ");
+                    RadioButton7.Focus();
+                    return;
+                }
+                //---- Check That OwnerShip Radion Button Checked or Not-----
+                if (RadioButton9.Checked)
+                {
+                    IsOwnerShip = "1";
+                    
+                }
+                else if (RadioButton10.Checked)
+                {
+                    IsOwnerShip = "0";
+                    owner = OtherDepartment.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Please Select OwnerShip ");
+                    RadioButton9.Focus();
+                    return;
+                }
+                constructedyear = TxtYear.Text;
+                constructed = "1";
+            }
+            else if (RadioButton2.Checked)
+            {
+                constructed = "2";
+            }
+            else if (RadioButton3.Checked)
+            {
+                constructed = "3";
+            }
+            else
+            {
+                MessageBox.Show("Please Select Construction ");
+                RadioButton1.Focus();
+                return;
+            }
+            var cmvny = Convert.ToInt32(DDLProj.SelectedValue);
+            var ULB = Convert.ToInt32(ddlDivision.SelectedValue);
+            var State = Convert.ToInt32(ddlZone.SelectedValue);
+            var Dis = Convert.ToInt32(ddlCircle.SelectedValue);
+            var Fy = Convert.ToInt32(ddlFY.SelectedValue);
+            var SameProj = similarProj.Text;
+            var location = Location.Text;
+            // var person=Convert.ToInt32(se)
+            var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
+            DataTable dt = new DataTable();
+            dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location,TxtPopulation.Text);
+            //GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
+       if(dt.Rows.Count>0)
+            {
+                MessageBox.Show(dt.Rows[0]["Remark"].ToString());
+            }
+        
         }
-        GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
-    }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+
+        }
+
+
 }

@@ -268,7 +268,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
     {
         // var transac str
         string msg = "Default";
-  
+        decimal sum = 0;
         try
         {
             if (!ValidateFields())
@@ -278,9 +278,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             List<Tbl_ULBIncomeTypeChild> ulbexp = new List<Tbl_ULBIncomeTypeChild>();
             for (int i = 0; i < GrdULBFund.Rows.Count; i++)
             {
-                var check = (GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text.Trim();
-                if (check != null && check != "")
-                {
+               
 
                     Tbl_ULBIncomeTypeChild ul = new Tbl_ULBIncomeTypeChild();
                     ul.Action = "Insert";
@@ -289,25 +287,41 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                     ul.ULBID = Convert.ToInt32(ddlDivision.SelectedValue);
                     ul.FYID = Convert.ToInt32(ddlFY.SelectedValue);
                     ul.HeadID = Convert.ToInt32(GrdULBFund.Rows[i].Cells[0].Text.ToString());
-
+                var check = (GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text.Trim();
+                if (check != null && check != "")
+                {
                     ul.Amount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text.Trim());
+                }
+                else
+                {
+                    ul.Amount = Convert.ToDecimal(0.00);
+                }
                     ul.createdBy= Convert.ToInt32(Session["Person_Id"].ToString());
                     ul.createdOn = DateTime.Now.ToString();
                     ul.updateOn = null;
                     ul.IsActive = true;
                     ulbexp.Add(ul);
-                }
+                    sum += ul.Amount;
+               
+            }
+            if(sum==0)
+            {
+                MessageBox.Show("Please Enter Any Head's Value");
+                return;
             }
 
             bool test =  new ULBFund().InsertULBFundIncome(ulbexp,out msg);
-            MessageBox.Show("Insert Status :" + test.ToString() + ";Msg: " + msg.ToString());
+            // MessageBox.Show("Insert Status :" + test.ToString() + ";Msg: " + msg.ToString());
+            MessageBox.Show("Income  data Created Successfully ! ");
+           
             //MessageBox.Show(msg.ToString());
 
 
 
             if (test)
             {
-                MessageBox.Show("Income Type data Created Successfully ! ");
+                MessageBox.Show("Income  data Created Successfully ! ");
+                ddlFY.Focus();
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
                     (GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text = "";
@@ -328,7 +342,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             {
                 if (msg == "A")
                 {
-                    MessageBox.Show("This Income Type data Already Exist. Give another! ");
+                    MessageBox.Show("This Income  data Already Exist. Give another! ");
                 }
                 else
                 {
@@ -350,19 +364,18 @@ public partial class AddULBIncomeType : System.Web.UI.Page
 
         try
         {
-
+            decimal sum = 0;
 
             if (!ValidateFields())
             {
                 return;
             }
             List<Tbl_ULBIncomeTypeChild> ulbexp = new List<Tbl_ULBIncomeTypeChild>();
-            var checkinsert = 0;
+           
             for (int i = 0; i < GrdULBFund.Rows.Count; i++)
             {
                 var check = (GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text.Trim();
-                if (check != null && check != "")
-                {
+               
 
                     Tbl_ULBIncomeTypeChild ul = new Tbl_ULBIncomeTypeChild();
                     ul.Action = "Insert";
@@ -371,25 +384,33 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                     ul.ULBID = Convert.ToInt32(ddlDivision.SelectedValue);
                     ul.FYID = Convert.ToInt32(ddlFY.SelectedValue);
                     ul.HeadID = Convert.ToInt32(GrdULBFund.Rows[i].Cells[0].Text.ToString());
+                if (check != null && check != "")
+                {
                     ul.Amount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text.Trim());
+                }
+                else
+                {
+                    ul.Amount = Convert.ToDecimal(0.00);
+                }
                     ul.updateBy = Convert.ToInt32(Session["Person_Id"].ToString());
                     ul.updateOn = DateTime.Now.ToString();
                     ul.IsActive = true;
                    
                     ulbexp.Add(ul);
-                    checkinsert++;
+                    sum+=ul.Amount;
                 }
-            }
-             if(checkinsert==0)
+            
+            if (sum == 0)
             {
-                MessageBox.Show("Can Not Insert 0 data !!1");
+                MessageBox.Show("Please Enter Any Head's Value");
                 return;
             }
-           
+
             if (new ULBFund().UpdateULBFundIncome(ulbexp, msg))
             {
-                MessageBox.Show("Income Type data Update Successfully ! ");
-                for (int i = 0; i < GrdULBFund.Rows.Count; i++)
+                MessageBox.Show("Income  data Update Successfully ! ");
+            ddlFY.Focus();
+            for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
                     //(GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text = "";
                     var validator2 = GrdULBFund.Rows[i].FindControl("rfvAmounts") as RequiredFieldValidator;
@@ -411,7 +432,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                 }
                 else
                 {
-                    MessageBox.Show("This Expense Type data Already Exist. Give another!  ");
+                    MessageBox.Show("This Expense  data Already Exist. Give another!  ");
 
                 }
                 return;

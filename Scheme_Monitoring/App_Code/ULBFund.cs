@@ -823,7 +823,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         return ds;
     }
 
-    public DataTable GetVisionPlan(string actions,int? CMVNYId, int? ULBID, int? TaskId, int? stateid, string IsConstructed, int? circleId, int? FY, string constructedYear, string Conditionof, bool IsUserCharger, int? personId, bool IsOwnerNagarNigamOrULB, decimal AmountOfUserCharge, string OtherOwner, string selfPriority, string NoOfSameProjInCity,string Loactions)
+    public DataTable GetVisionPlan(string actions,int? CMVNYId, int? ULBID, int? TaskId, int? stateid, string IsConstructed, int? circleId, int? FY, string constructedYear, string Conditionof, string IsUserCharger, int? personId, string  IsOwnerNagarNigamOrULB, decimal AmountOfUserCharge, string OtherOwner, string selfPriority, string NoOfSameProjInCity,string Loactions,string Population)
     {
         try
         {
@@ -837,7 +837,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
 //@createdBy int= null
 
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[18];
+            SqlParameter[] param = new SqlParameter[19];
             param[0] = new SqlParameter("@action", actions);
             param[1] = new SqlParameter("@taskId", TaskId);
             param[2] = new SqlParameter("@CMVNYId", CMVNYId);
@@ -856,6 +856,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[15] = new SqlParameter("@Loactions", Loactions);
             param[16] = new SqlParameter("@selfPriority", selfPriority);
             param[17] = new SqlParameter("@createdBy", personId);
+            param[18] = new SqlParameter("@population", Population);
            
 
             return objDAL.GetDataByProcedure("SPVisionPlan", param);

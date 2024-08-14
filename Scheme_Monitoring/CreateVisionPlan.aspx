@@ -79,33 +79,89 @@
                                                         <asp:DropDownList ID="DDLProj" runat="server" CssClass="form-select" ></asp:DropDownList>
                                                     </div>
                                                 </div>
-                                              
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div  runat="server" id="NewConstruction">
-                                                        <asp:Label ID="Label1" runat="server" Text="Is Constructed ?*" CssClass="form-label"></asp:Label>
-                                                        <asp:RadioButton ID="RadioButton3" runat="server" GroupName="IsConstructed" Text="Constructed " Value="1" />
-                                                        <asp:RadioButton ID="RadioButton1" runat="server" GroupName="IsConstructed" Text="Under Construction " Value="2" /><br />
-                                                        <asp:RadioButton ID="RadioButton2" runat="server" GroupName="IsConstructed" Text="Under Sanction " Value="3" />
+                                                 <div class="col-xxl-3 col-md-6 validsec" id="" <%--style="display:none"--%>>
+                                                    <div id="div8" runat="server">
+                                                        <asp:Label ID="Label11" runat="server" Text="Enter Population*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="TxtPopulation" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                <div class="col-xxl-3 col-md-6" id="sectionyear" style="display:none">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div runat="server" id="NewConstruction">
+                                                        <asp:Label ID="Label1" runat="server" Text="Is Constructed ?*" CssClass="form-label"></asp:Label>
+                                                        <asp:RadioButton ID="RadioButton1" runat="server" GroupName="IsConstructed" Text="Constructed " Value="1"  />
+                                                        <asp:RadioButton ID="RadioButton2" runat="server" GroupName="IsConstructed" Text="Under Construction " Value="2"  />
+                                                        <asp:RadioButton ID="RadioButton3" runat="server" GroupName="IsConstructed" Text="Under Sanction " Value="3"  />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6 validsec" id="sectionyear" <%--style="display:none"--%>>
                                                     <div id="div2" runat="server">
                                                         <asp:Label ID="Label2" runat="server" Text="Enter year*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="TxtYear" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                        <asp:TextBox ID="TxtYear" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                              <div class="col-xxl-3 col-md-6">
+                                              <div class="col-xxl-3 col-md-6 validsec" id="sectionCond">
                                                     <div id="condition" runat="server">
                                                         <asp:Label ID="Label3" runat="server" Text="Condition *" CssClass="form-label"></asp:Label>
-                                                        <asp:RadioButton ID="RadioButton4" runat="server" GroupName="IsConstructed" Text="Good " Value="1" />
-                                                        <asp:RadioButton ID="RadioButton5" runat="server" GroupName="IsConstructed" Text="Need Renovation" Value="2" /><br />
-                                                        <asp:RadioButton ID="RadioButton6" runat="server" GroupName="IsConstructed" Text="Need Redevelopement" Value="3" />
+                                                        <asp:RadioButton ID="RadioButton4" runat="server" GroupName="Condition" Text="Good " Value="1" />
+                                                        <asp:RadioButton ID="RadioButton5" runat="server" GroupName="Condition" Text="Need Renovation" Value="2" /><br />
+                                                        <asp:RadioButton ID="RadioButton6" runat="server" GroupName="Condition" Text="Need Redevelopement" Value="3" />
                                                     </div>
                                                 </div>
-
+                                                 <div class="col-xxl-3 col-md-6 validsec" id="secUser">
+                                                    <div id="UserCharge" runat="server">
+                                                        <asp:Label ID="Label4" runat="server" Text="User Charge *" CssClass="form-label"></asp:Label>
+                                                        <asp:RadioButton ID="RadioButton7" runat="server" GroupName="usercharge" Text="Yes " Value="1" />
+                                                        <asp:RadioButton ID="RadioButton8" runat="server" GroupName="usercharge" Text="No" Value="0" /><br />
+                                                       
+                                                    </div>
+                                                </div>
+                                                 <div class="col-xxl-3 col-md-6 validsec" id="sectionusercharge" <%--style="display:none"--%>>
+                                                    <div id="div1" runat="server">
+                                                        <asp:Label ID="Label5" runat="server" Text="Amount(in rupees)*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="Amounts" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-xxl-3 col-md-6 validsec" id="sectionuOwner">
+                                                    <div id="Div3" runat="server">
+                                                        <asp:Label ID="Label6" runat="server" Text="Is Owner Nagar Nigam or ULB *" CssClass="form-label"></asp:Label>
+                                                        <asp:RadioButton ID="RadioButton9" runat="server" GroupName="Owner" Text="Yes " Value="1" />
+                                                        <asp:RadioButton ID="RadioButton10" runat="server" GroupName="Owner" Text="No" Value="0" /><br />
+                                                       
+                                                    </div>
+                                                </div>
+                                                 <div class="col-xxl-3 col-md-6 validsec"  id="secOtherown" <%--style="display:none"--%>>
+                                                    <div id="div4" runat="server">
+                                                        <asp:Label ID="Label7" runat="server" Text="Other Department" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="OtherDepartment" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-xxl-3 col-md-6" id="sectionSimilar" <%--style="display:none"--%>>
+                                                    <div id="div5" runat="server">
+                                                        <asp:Label ID="Label8" runat="server" Text="Number Of Similar project in city" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="similarProj" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-xxl-3 col-md-6" id="sectionLocation" <%--style="display:none"--%>>
+                                                    <div id="div6" runat="server">
+                                                        <asp:Label ID="Label9" runat="server" Text="Location (Ward Name)" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="Location" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-xxl-3 col-md-6" id="sectionpriority" <%--style="display:none"--%>>
+                                                    <div id="div7" runat="server">
+                                                        <asp:Label ID="Label10" runat="server" Text="Selft Priority" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-control" >
+                                                            <asp:ListItem Value="1">1</asp:ListItem>
+                                                            <asp:ListItem Value="2">2</asp:ListItem>
+                                                            <asp:ListItem Value="3">3</asp:ListItem>
+                                                            <asp:ListItem Value="4">4</asp:ListItem>
+                                                            <asp:ListItem Value="5">5</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
                                                 <div class="col-xxl-12  col-md-12">
                                                     <div>
-                                                        <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" Style="float: right" CssClass="btn bg-success text-white"></asp:Button>
+                                                        <asp:Button ID="BtnSearch" Text="Save" OnClick="BtnSearch_Click" runat="server" Style="float: right" CssClass="btn bg-success text-white"></asp:Button>
 
                                                     </div>
                                                 </div>
@@ -190,6 +246,9 @@
                     </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="BtnSearch" />
+                    <asp:PostBackTrigger ControlID="ddlCircle" />
+                    <asp:PostBackTrigger ControlID="ddlDivision" />
+                    <asp:PostBackTrigger ControlID="ddlFY" />
                 </Triggers>
 
                 </asp:UpdatePanel>
@@ -200,21 +259,56 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
    <script type="text/javascript">
        $(document).ready(function () {
-           $('#NewConstruction input[type=checkbox]').click(function () {
+           $('input[name$="IsConstructed"]').change(function () {
                debugger
                var selectedValue = $(this).val();
                if (selectedValue == 1) {
                    $("#sectionyear").slideDown();
-               }
-               else {
+                   $("#sectionCond").slideDown();
+                   $("#secUser").slideDown();
+                  $("#sectionuOwner").slideDown();
+
+               } else {
                    $("#sectionyear").slideUp();
+                   $("#sectionCond").slideUp();
+                   $("#secUser").slideUp();
+                   $("#sectionuOwner").slideUp();
+                   $("#sectionusercharge").slideUp();
+                   $("#secOtherown").slideUp();
+               }
+               //alert("You selected: " + selectedValue);
+           });
+           $('input[name$="usercharge"]').change(function () {
+               var selectedValue = $(this).val();
+               if (selectedValue == 1) {
+                   $("#sectionusercharge").slideDown();
 
                }
-             alert("You selected: " + selectedValue);
-           });
+               else {
+                   $("#sectionusercharge").slideUp();
+
+               }
+           })
+
+           $('input[name$="Owner"]').change(function () {
+               var selectedValue = $(this).val();
+               if (selectedValue == 0) {
+                   $("#secOtherown").slideDown();
+
+               }
+               else {
+                   $("#secOtherown").slideUp();
+
+               }
+           })
+           //
        });
-    </script>
+   </script>
         <style>
+            .validsec{
+                display:none;
+            }
+
         .filter-btn {
     display: flex;
     padding: 8px 10px;

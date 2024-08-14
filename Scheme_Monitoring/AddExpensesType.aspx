@@ -26,7 +26,7 @@
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">Annual Action Plan</li>
-                                            <li class="breadcrumb-item active">Add ULB Expense </li>
+                                            <li class="breadcrumb-item active">ULB Expense </li>
                                         </ol>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Add ULB Expense</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">ULB Expense</h4>
                                          <a href="ListOfAllULB_ExpenseType.aspx"  class="filter-btn" style="float:right"><i class="icon-download"></i>  ULB Expense List</a>
 
                                     </div>
@@ -122,14 +122,14 @@
                                                            
                                                             <ItemTemplate>
                                                                 
-                                                               <asp:TextBox ID="NewWorkAmount" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                               <asp:TextBox ID="NewWorkAmount" runat="server" value="0.00" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                             <asp:RequiredFieldValidator  ID="rfvNewWorkAmount"  runat="server" ControlToValidate="NewWorkAmount"  ErrorMessage="Amount is required" CssClass="text-danger" Display="Dynamic">
                                                                 </asp:RequiredFieldValidator>
                                                                 </ItemTemplate>
                                                         </asp:TemplateField>
                                                        <asp:TemplateField HeaderText="Maintenance Work(Amount in lacs)">
                                                             <ItemTemplate>
-                                                               <asp:TextBox ID="MaintenanceAmount" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                               <asp:TextBox ID="MaintenanceAmount" runat="server" value="0.00" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                             <asp:RequiredFieldValidator  ID="rfvMaintenanceAmount"  runat="server" ControlToValidate="MaintenanceAmount"  ErrorMessage="Amount is required" CssClass="text-danger" Display="Dynamic">
                                                                 </asp:RequiredFieldValidator>
                                                             
@@ -150,7 +150,7 @@
 
                                             </div>
                                             
-                                             <div class="col-md-12  col-xxl-12">
+                                             <div class="col-md-10  col-xxl-10">
                                                  <asp:Button ID="ButtonUpdate" runat="server" style="float:right" CommandName="UpdateData" Text="Update" Visible="false" OnCommand="ButtonUpdate_Command" CssClass="btn btn-success" OnClientClick="return confirm('Are you sure you want to Update the data?');"  />
                                                  <asp:Button ID="BtnSubmit" runat="server" style="float:right" CommandName="SaveData" Text="Save Data" OnCommand="BtnSubmit_Command" CssClass="btn btn-success" OnClientClick="return confirm('Are you sure you want to Save the data?');"  />
                                              </div>

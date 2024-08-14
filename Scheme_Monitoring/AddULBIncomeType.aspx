@@ -22,7 +22,7 @@
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">Annual Action Plan</li>
-                                            <li class="breadcrumb-item active">Add ULB Income </li>
+                                            <li class="breadcrumb-item active">ULB Income </li>
                                         </ol>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Add ULB Income </h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">ULB Income </h4>
                                         <a href="ListOfAllULB_IncomeType.aspx"  class="filter-btn" style="float:right"><i class="icon-download"></i>  ULB Income List</a>
 
                                     </div>
@@ -116,7 +116,7 @@
                                                       
                                                         <asp:TemplateField HeaderText="Amount (Amount in lacs)">
                                                             <ItemTemplate>
-                                                                <asp:TextBox ID="Amounts" runat="server" CssClass="form-control"></asp:TextBox>
+                                                                <asp:TextBox ID="Amounts" runat="server" value="0.00" CssClass="form-control"></asp:TextBox>
                                                                 <asp:RequiredFieldValidator  ID="rfvAmounts"  runat="server" ControlToValidate="Amounts"  ErrorMessage="Amount is required" CssClass="text-danger" Display="Dynamic">
                                                                 </asp:RequiredFieldValidator>
                                                             </ItemTemplate>
@@ -131,7 +131,7 @@
                                                 </asp:GridView>
                                             </div>
                                             
-                                             <div class="col-md-12  col-xxl-12">
+                                             <div class="col-md-10  col-xxl-10">
                                                  <asp:Button ID="ButtonUpdate" runat="server" style="float:right" CommandName="UpdateData" Text="Update" Visible="false" OnCommand="ButtonUpdate_Command" CssClass="btn btn-success" OnClientClick="return confirm('Are you sure you want to Update the data?');" />
                                                  <asp:Button ID="BtnSubmit" runat="server" style="float:right" CommandName="SaveData" Text="Save Data" OnCommand="BtnSubmit_Command" CssClass="btn btn-success" OnClientClick="return confirm('Are you sure you want to save the data?');" />
                                              </div>

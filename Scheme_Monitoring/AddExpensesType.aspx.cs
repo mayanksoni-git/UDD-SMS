@@ -275,7 +275,7 @@ public partial class AddExpensesType : System.Web.UI.Page
     protected void BtnSubmit_Command(object sender, CommandEventArgs e)
     {
         string Msg = "";
-     
+        decimal sum = 0;
         try
         {
 
@@ -318,18 +318,19 @@ public partial class AddExpensesType : System.Web.UI.Page
                     ul.IsActive = true;
 
                     ulbexp.Add(ul);
-                    checkinsert++;
+                    sum += (ul.MaintenanceAmount + ul.NewAmount);
                 }
                 //}
             }
-            if(checkinsert==0)
+            if (sum == 0)
             {
-                MessageBox.Show("Can Not Insert 0 data !!1");
+                MessageBox.Show("Please Enter Any Head's Value");
                 return;
             }
             if (new ULBFund().InsertULBFundExpense(ulbexp, Msg))
             {
-                MessageBox.Show("Expenditure Type data Created Successfully ! ");
+                MessageBox.Show("Expenditure  data Created Successfully ! ");
+                ddlFY.Focus();
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
                     (GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text = "";
@@ -363,7 +364,7 @@ public partial class AddExpensesType : System.Web.UI.Page
         catch(Exception ex)
         {
            
-            MessageBox.Show(ex.Message);
+            MessageBox.Show(ex.Message + "! Please enter only numeric value!");
         }
     }
 
@@ -371,7 +372,7 @@ public partial class AddExpensesType : System.Web.UI.Page
     {
 
         string Msg = "";
-
+        decimal sum = 0;
         try
         {
 
@@ -402,21 +403,38 @@ public partial class AddExpensesType : System.Web.UI.Page
                     {
                         ul.NewAmount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text.Trim());
                     }
+                    else
+                    {
+                        ul.NewAmount =Convert.ToDecimal(0.00);
+                    }
                     if (txt2 != null && txt2 != "")
                     {
                         ul.MaintenanceAmount = Convert.ToDecimal((GrdULBFund.Rows[i].FindControl("MaintenanceAmount") as TextBox).Text.Trim());
+                    }
+                    else
+                    {
+                        ul.MaintenanceAmount = Convert.ToDecimal(0.00);
+
+                       
                     }
                     ul.updateBy = Convert.ToInt32(Session["Person_Id"].ToString());
                     ul.updateOn = DateTime.Now.ToString();
 
                     ul.IsActive = true;
                     ulbexp.Add(ul);
+                    sum += (ul.MaintenanceAmount + ul.NewAmount);
                 }
+                //}
             }
-
+            if (sum == 0)
+            {
+                MessageBox.Show("Please Enter Any Head's Value");
+                return;
+            }
             if (new ULBFund().UpdateULBFundExpense(ulbexp, Msg))
             {
                 MessageBox.Show("Expenditure data Update Successfully ! ");
+                ddlFY.Focus();
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
                     //(GrdULBFund.Rows[i].FindControl("NewWorkAmount") as TextBox).Text = "";
@@ -453,7 +471,7 @@ public partial class AddExpensesType : System.Web.UI.Page
         catch (Exception ex)
         {
 
-            MessageBox.Show(ex.Message);
+            MessageBox.Show(ex.Message+"! Please enter only numeric value!");
         }
 
     }

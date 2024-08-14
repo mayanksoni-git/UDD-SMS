@@ -26,8 +26,7 @@ public partial class VisionPlan : System.Web.UI.Page
             Response.Redirect("Index.aspx");
         }
 
-        sectionFilter.Visible = true;
-        sectionData.Visible = false;
+        
         if (!IsPostBack)
         {
            
@@ -50,7 +49,7 @@ public partial class VisionPlan : System.Web.UI.Page
 
             get_tbl_FinancialYear();
 
-
+            GetEditExpenseList();
             SetDropdownsBasedOnUserType();
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
@@ -186,21 +185,16 @@ public partial class VisionPlan : System.Web.UI.Page
             //BindLoanReleaseGridByULB();
         }
     }
-   protected void GetEditExpenseList( string stateId, string DisId, string ulbid,string Fyid)
+   protected void GetEditExpenseList()
     {
         DataTable dt = new DataTable();
-        dt = objLoan.GetULBIncExpHead(ulbid, Fyid,stateId,DisId,"Income");
+        dt = objLoan.GetVisionPlan("select", 0,0,0,0,"",0,0,"","","",0,"",0,"","","","","");
       
         if (dt != null && dt.Rows.Count > 0)
         {
             rptSearchResult.DataSource = dt;
             rptSearchResult.DataBind ();
-            sectionFilter.Visible = false;
-            sectionData.Visible = true;
-                AnnualULB.InnerText = dt.Rows[0]["ULBNAme"].ToString();
-            District.InnerText = dt.Rows[0]["Circle_Name"].ToString();
-               ULBType.InnerText = dt.Rows[0]["ULBType"].ToString();          
-               year.InnerText = dt.Rows[0]["FinancialYear_Comments"].ToString();
+            
            
 
 
@@ -246,15 +240,35 @@ public partial class VisionPlan : System.Web.UI.Page
         }
     }
 
+    protected void rptSearchResult_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        try
+        {
+            if (e.CommandName == "delete")
+            {
+                var pk = Convert.ToInt16(e.CommandArgument.ToString());
+                DataTable dt = new DataTable();
+                dt = objLoan.GetVisionPlan("delete", 0, 0,pk, 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "");
 
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    MessageBox.Show(dt.Rows[0]["Remark"].ToString());
+                }
 
-    protected void BtnSearch_Click(object sender, EventArgs e)
+            }
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        }
+      protected void BtnSearch_Click(object sender, EventArgs e)
     {
         if(!ValidateFields())
         {
             MessageBox.Show("All Fields required");
             return ;
         }
-        GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
+       // GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
     }
 }

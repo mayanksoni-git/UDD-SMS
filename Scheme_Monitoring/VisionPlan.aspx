@@ -21,12 +21,12 @@
                          <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0" id="HeadingSec" runat="server">ULB Income Report</h4>
+                                    <h4 class="mb-sm-0" id="HeadingSec" runat="server">Vision Plan</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">Annual Action Plan Report</li>
-                                            <li class="breadcrumb-item active">ULB Income Report</li>
+                                            <li class="breadcrumb-item active">Vision Plan</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -101,10 +101,10 @@
                                     </div>
                                 </div>
 
-                                <div class="card" id="sectionData" runat="server">
+                                <div class="card"  runat="server">
                                             <table id="sample-table-2" class="mt-5 table table-striped table-bordered table-hover">
 
-                                                <thead >
+                                             <%--   <thead >
                                                     <tr class="table-success">
                                                         <th style="text-align: center;font-size:26px"  colspan="4" rowspan="1"> Annual Income :
                                                             <label id="AnnualULB" runat="server"></label>
@@ -136,26 +136,58 @@
                                                         </th>
                                                     </tr>
                                                    
+                                                </thead>--%>
+
+                                                <thead>
+                                                    <tr class="table-primary">
+
+                                                        <th style="text-align:center;font-size:18px" >Sr No</th>
+                                                        <th  style="text-align:center;font-size:18px">Project Name</th>
+                                                       <th  style="text-align:center;font-size:18px" colspan="2">Existing</th>
+                                                        <th  style="text-align:center;font-size:18px" colspan="2">Condition</th>
+                                                       
+                                                        <th  style="text-align:center;font-size:18px">User Charge</th>
+                                                        <th  style="text-align:center;font-size:18px" colspan="2">Ownership</th>
+                                                      
+                                                        <th  style="text-align:center;font-size:18px">Location</th>
+                                                        <th  style="text-align:center;font-size:18px">Priority</th>
+                                                    </tr>
+                                                     <tr class="table-primary">
+
+                                                       <th>#</th>
+                                                        <th  style="text-align:center"></th>
+                                                        <th  style="text-align:center">Year of Construction for Constructed Building</th>
+                                                        <th  style="text-align:center">Under Construction(Y/N)</th>
+                                                        <th  style="text-align:center">Under Sanction</th>
+                                                        <th  style="text-align:center">Condition</th>
+                                                        <th  style="text-align:center">User Charge</th>
+                                                        <th  style="text-align:center">Ownership</th>
+                                                        <th  style="text-align:center">No Of Similar Project</th>
+                                                        <th  style="text-align:center">Ward Name (Ward No.)</th>
+                                                        <th  style="text-align:center">Priority</th>
+                                                    </tr>
                                                 </thead>
                                        
-                                     <asp:Repeater ID="rptSearchResult" runat="server">
+                                     <asp:Repeater ID="rptSearchResult" runat="server" OnItemCommand="rptSearchResult_ItemCommand">
                                         <ItemTemplate>
                                             <tr>
-                                                <td>
-                                                 
-                                                     <%#DataBinder.Eval(Container,"DataItem.SrNo")%>
-                                                </td>
-                                                <td align="left">
-                                                 
-                                                    <%#DataBinder.Eval(Container,"DataItem.ULBIncomeType_Name")%>
-                                                </td>
-                                                <td style="text-align: right">
-                                                    <%#DataBinder.Eval(Container,"DataItem.Amount")%>
-                                                </td>
-                                                
-                                              
+                                               <td>
+                                                 <asp:LinkButton ID="btnDelete" Text="Delete" runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
+                                                OnClientClick="return ConfirmDeletion();" />
+                                            <asp:LinkButton ID="btnEdit"  Text="Edit" runat="server" ToolTip="Click to Edit Record" CommandName="edit"
+                                                class="icon-pencil bigger-130 green" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>' />
+                                              </td>
 
-
+                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %></td>
 
 
                                             </tr>
@@ -184,6 +216,9 @@
         </div>
     
         <style>
+            tbale thead tr th{
+                text-align:center;
+            }
         .filter-btn {
     display: flex;
     padding: 8px 10px;
