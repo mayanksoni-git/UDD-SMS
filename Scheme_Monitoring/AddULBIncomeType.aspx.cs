@@ -309,13 +309,13 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             }
             if(sum==0)
             {
-                MessageBox.Show("Please enter amount at least in any income type");
+                MessageBox.Show("Please enter amount at least in any income type !");
                 return;
             }
 
             bool test =  new ULBFund().InsertULBFundIncome(ulbexp,out msg);
             // MessageBox.Show("Insert Status :" + test.ToString() + ";Msg: " + msg.ToString());
-            MessageBox.Show("Income  data Created Successfully ! ");
+           // MessageBox.Show("Income  data Created Successfully ! ");
            
             //MessageBox.Show(msg.ToString());
 
@@ -323,7 +323,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
 
             if (test)
             {
-                MessageBox.Show("Income  data Created Successfully ! ");
+                MessageBox.Show("Income  Data Created Successfully ! ");
                 ddlFY.Focus();
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
@@ -343,14 +343,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             }
             else
             {
-                if (msg == "A")
-                {
-                    MessageBox.Show("This Income  data Already Exist. Give another! ");
-                }
-                else
-                {
-                    MessageBox.Show("Error ! ");
-                }
+                MessageBox.Show(msg+ ". This  Data Already Exist. Give another!");
                 return;
             }
            
@@ -405,7 +398,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             
             if (sum == 0)
             {
-                MessageBox.Show("Please Enter Any Head's Value");
+                MessageBox.Show("Please enter amount at least in any income type !");
                 return;
             }
 

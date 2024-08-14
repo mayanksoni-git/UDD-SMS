@@ -825,6 +825,23 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         return ds;
     }
 
+
+    public DataTable GetPopulation(string dist,string ulb,string fy)
+    {
+        string strQuery = "";
+        DataTable ds = new DataTable();
+        strQuery = "select population from Tbl_VisionPopulation where ULBID='"+ulb+"' and FYID='"+fy+"' and distid='"+dist+ "' and isactive=1 ";
+        try
+        {
+            ds = ExecuteSelectQuerywithDatatable(strQuery);
+        }
+        catch (Exception e)
+        {
+            var msg = e.Message;
+            ds = null;
+        }
+        return ds;
+    }
     public DataTable GetVisionPlan(string actions,int? CMVNYId, int? ULBID, int? TaskId, int? stateid, string IsConstructed, int? circleId, int? FY, string constructedYear, string Conditionof, string IsUserCharger, int? personId, string  IsOwnerNagarNigamOrULB, decimal AmountOfUserCharge, string OtherOwner, string selfPriority, string NoOfSameProjInCity,string Loactions,string Population)
     {
         try

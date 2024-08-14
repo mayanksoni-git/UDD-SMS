@@ -327,12 +327,12 @@ public partial class AddExpensesType : System.Web.UI.Page
             }
             if (sum == 0)
             {
-                MessageBox.Show("Please enter amount at least in any Expense type");
+                MessageBox.Show("Please enter amount at least in any Expense type !");
                 return;
             }
             if (new ULBFund().InsertULBFundExpense(ulbexp, Msg))
             {
-                MessageBox.Show("Expenditure  data Created Successfully ! ");
+                MessageBox.Show("Expenditure  Data Created Successfully ! ");
                 ddlFY.Focus();
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
@@ -352,14 +352,7 @@ public partial class AddExpensesType : System.Web.UI.Page
             }
             else
             {
-                if (Msg == "A")
-                {
-                    MessageBox.Show("This  data Already Exist. Give another! ");
-                }
-                else
-                {
-                    MessageBox.Show("something went wrong please contact administrator ! ");
-                }
+                MessageBox.Show(Msg + " : This  Data Already Exist. Give another!");
                 return;
             }
 
@@ -431,7 +424,7 @@ public partial class AddExpensesType : System.Web.UI.Page
             }
             if (sum == 0)
             {
-                MessageBox.Show("Please Enter Any Head's Value");
+                MessageBox.Show("Please enter amount at least in any income type !");
                 return;
             }
             if (new ULBFund().UpdateULBFundExpense(ulbexp, Msg))

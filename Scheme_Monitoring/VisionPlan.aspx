@@ -25,7 +25,7 @@
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                            <li class="breadcrumb-item">Annual Action Plan Report</li>
+                                            <li class="breadcrumb-item">CMVNY Scheme</li>
                                             <li class="breadcrumb-item active">Vision Plan</li>
                                         </ol>
                                     </div>
@@ -39,7 +39,7 @@
                                 <div class="card" id="sectionFilter" runat="server">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Filter :</h4>
-                                         <a href="CreateVisionPlan .aspx"  class="filter-btn" style="float:right;width:155px"><i class="icon-download"></i> Create Vision Plan</a>
+                                         <a href="CreateVisionPlan.aspx"  class="filter-btn" style="float:right;width:155px"><i class="icon-download"></i> Create Vision Plan</a>
 
                                     </div>
                                     <!-- end card header -->
@@ -74,7 +74,19 @@
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true" ></asp:DropDownList>
                                                     </div>
                                                 </div>
-
+                                                 <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
+                                                    <div id="div7" runat="server">
+                                                        <asp:Label ID="Label10" runat="server" Text="Selft Priority" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-control" >
+                                                            <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                                            <asp:ListItem Value="1">1</asp:ListItem>
+                                                            <asp:ListItem Value="2">2</asp:ListItem>
+                                                            <asp:ListItem Value="3">3</asp:ListItem>
+                                                            <asp:ListItem Value="4">4</asp:ListItem>
+                                                            <asp:ListItem Value="5">5</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
                                                <%-- <div class="col-xxl-3 col-md-6">
                                                     <div id="divULBType" runat="server">
                                                         <asp:Label ID="Label1" runat="server" Text="ULB Type" CssClass="form-label"></asp:Label>
@@ -87,8 +99,9 @@
                                                     </div>
                                                 </div>--%>
 
-                                                <div class="col-xxl-12  col-md-12">
+                                                <div class="col-xxl-3  col-md-6">
                                                     <div>
+                                                        <br />
                                                         <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" style="float:right"  CssClass="btn bg-success text-white"></asp:Button>
 
                                                        
@@ -102,48 +115,16 @@
                                 </div>
 
                                 <div class="card"  runat="server">
-                                            <table id="sample-table-2" class="mt-5 table table-striped table-bordered table-hover">
+                                            <table id="sample-table-2" class="mt-5 table table-striped table-bordered table-hover table-responsive">
 
-                                             <%--   <thead >
-                                                    <tr class="table-success">
-                                                        <th style="text-align: center;font-size:26px"  colspan="4" rowspan="1"> Annual Income :
-                                                            <label id="AnnualULB" runat="server"></label>
-                                                        </th>
-                                                        </tr>
-                                                    <tr>
-                                                        <th style="font-size:18px" colspan="2">District :
-                                                             <label id="District" runat="server"></label>
-                                                        </th>
-                                                        <th style="font-size:18px" colspan="1" >ULB Type (Category) :
-                                                            
-                                                        </th>
-                                                        </tr>
-                                                    <tr>
-                                                        <th style="font-size:18px" colspan="2">Year :
-                                                             <label id="year" runat="server"></label>
-                                                        </th>
-                                                       <th style="font-size:18px"> <label id="ULBType" runat="server"></label></th>
-                                                        </tr>
-                                                    <tr class="table-primary">
-                                                        <th align="center" >Sr No.  
-                                                                              
-                                                        </th>
-                                                        <th rowspan="2">Name Of Head
-                                                        </th>
-                                                         <th style="text-align: right" rowspan="2">Amount
-                                                        </th>
-                                                         <th style="text-align: right" rowspan="2">
-                                                        </th>
-                                                    </tr>
-                                                   
-                                                </thead>--%>
 
                                                 <thead>
                                                     <tr class="table-primary">
 
                                                         <th style="text-align:center;font-size:18px" >Sr No</th>
+                                                       <th  style="text-align:center;font-size:18px" colspan="3">ULB Details</th>
                                                         <th  style="text-align:center;font-size:18px">Project Name</th>
-                                                       <th  style="text-align:center;font-size:18px" colspan="3">Existing</th>
+                                                       <th  style="text-align:center;font-size:18px" colspan="4">Existing</th>
                                                         <th  style="text-align:center;font-size:18px" colspan="3">Condition</th>
                                                        
                                                         <th  style="text-align:center;font-size:18px">User Charge</th>
@@ -156,19 +137,23 @@
                                                      <tr class="table-primary">
 
                                                        <th>#</th>
+                                                        <th  style="text-align:center">District</th>
+                                                        <th  style="text-align:center">ULB Name</th>
+                                                        <th  style="text-align:center">Population</th>
                                                         <th  style="text-align:center">Project name</th>
                                                         <th  style="text-align:center">Year of Construction for Constructed Building</th>
+                                                        <th  style="text-align:center">Constructed (Y/N)</th>
                                                         <th  style="text-align:center">Under Construction(Y/N)</th>
-                                                        <th  style="text-align:center">Under Sanction</th>
-                                                        <th  style="text-align:center">Good</th>
+                                                        <th  style="text-align:center">Under Sanction (Y/N)</th>
+                                                        <th  style="text-align:center">Good </th>
                                                         <th  style="text-align:center">Need Renovaton</th>
                                                         <th  style="text-align:center">Need Redevelopement</th>
                                                         <th  style="text-align:center">User Charge</th>
-                                                        <th  style="text-align:center">Ownership</th>
+                                                        <th  style="text-align:center">Nagar Nigam</th>
                                                         <th  style="text-align:center">Other Department</th>
                                                         <th  style="text-align:center">No Of Similar Project</th>
                                                         <th  style="text-align:center">Ward Name (Ward No.)</th>
-                                                        <th  style="text-align:center">Priority</th>
+                                                        <th  style="text-align:center">(on a scale of 1 to 5, 5 being the highest)</th>
                                                          <th></th>
                                                     </tr>
                                                 </thead>
@@ -181,6 +166,9 @@
                                              
 
                                               
+                                                <td><%# DataBinder.Eval(Container.DataItem, "Circle_Name") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "Division_Name") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "population") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "ProjectName") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "constructedYear") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "Constructed") %></td>
@@ -189,20 +177,23 @@
                                                 <td><%# DataBinder.Eval(Container.DataItem, "GoodCondition") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "NeedRenovation") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "needredevelopement") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "IsUsercharge") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "NNownerShips") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "OtherOwner") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "NoOfSameProjInCity") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "Loactions") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "selfPriority") %></td>
-                                               
 
-                                                 <td>
-                                                      <asp:LinkButton ID="btnEdit"  Text="Edit" CssClass="btn bg-warning" runat="server" ToolTip="Click to Edit Record" CommandName="edit"
-                                                class="icon-pencil bigger-130 green" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>' />
-                                                 <asp:LinkButton ID="btnDelete" CssClass="btn bg-danger" Text="Delete" runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
-                                                OnClientClick="return ConfirmDeletion();" />
-                                           
-                                              </td>
+
+                                                <td>
+                                                    <%--  <asp:LinkButton ID="btnEdit"  Text="Edit" CssClass="btn bg-warning" runat="server" ToolTip="Click to Edit Record" CommandName="edit"
+                                                class="icon-pencil bigger-130 green" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "PlanName") %>' />--%>
+                                                    <asp:LinkButton ID="btnEdit" runat="server" Text="Edit" CssClass="btn bg-warning icon-pencil bigger-130 green" ToolTip="Click to Edit Record" CommandName="edit"
+                                                        CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
+                                                    <asp:LinkButton ID="btnDelete" CssClass="btn bg-danger" Text="Delete" runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
+                                                        OnClientClick="return ConfirmDeletion();" />
+
+                                                </td>
                                             </tr>
                                         </ItemTemplate>
                                         <FooterTemplate>
@@ -252,4 +243,10 @@
     transition: all .35s ease-Out;
 }
     </style>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#sample-table-2").DataTable();
+        })
+    </script>
     </asp:Content>

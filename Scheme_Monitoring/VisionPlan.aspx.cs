@@ -188,7 +188,7 @@ public partial class VisionPlan : System.Web.UI.Page
    protected void GetEditExpenseList()
     {
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("select", 0,0,0,0,"",0,0,"","","",0,"",0,"","","","","");
+        dt = objLoan.GetVisionPlan("select",0,0,0,0,"",0,0,"","","",0,"",0,"","","","","");
       
         if (dt != null && dt.Rows.Count > 0)
         {
@@ -248,13 +248,24 @@ public partial class VisionPlan : System.Web.UI.Page
             {
                 var pk = Convert.ToInt16(e.CommandArgument.ToString());
                 DataTable dt = new DataTable();
-                dt = objLoan.GetVisionPlan("delete", 0, 0,pk, 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "");
+                dt = objLoan.GetVisionPlan("delete", 0, 0, pk, 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "");
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     MessageBox.Show(dt.Rows[0]["Remark"].ToString());
                 }
 
+            }
+            if (e.CommandName == "edit")
+            {
+
+                string[] args = e.CommandArgument.ToString().Split('|');
+                string PlanID = args[0];
+                string Distid = args[1];
+                string ULBID = args[2];
+                string FYID = args[3];
+                //var pk = Convert.ToInt16(e.CommandArgument.ToString());
+                Response.Redirect("CreateVisionPlan.aspx?id=" + PlanID+"&&Dist="+Distid+"&&ULBID="+ULBID+"&&FYID="+FYID+"");
             }
         }
         catch(Exception ex)
@@ -264,11 +275,34 @@ public partial class VisionPlan : System.Web.UI.Page
         }
       protected void BtnSearch_Click(object sender, EventArgs e)
     {
-        if(!ValidateFields())
+        var state = Convert.ToInt32(ddlZone.SelectedValue);
+        var dist = Convert.ToInt32(ddlCircle.SelectedValue);
+        var ulb = 0;
+        if(ddlDivision.SelectedValue!="")
         {
-            MessageBox.Show("All Fields required");
-            return ;
+            ulb =Convert.ToInt32(ddlDivision.SelectedValue);
         }
-       // GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
+       
+        var fy = Convert.ToInt32(ddlFY.SelectedValue);
+        var priority = DdlPriority.SelectedValue;
+        DataTable dt = new DataTable();
+        dt = objLoan.GetVisionPlan("select", 0, ulb, 0, state, "", dist, fy, "", "", "", 0, "", 0, "", priority, "", "", "");
+
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            rptSearchResult.DataSource = dt;
+            rptSearchResult.DataBind();
+
+
+
+
+        }
+        else
+        {
+            // exportToExcel.Visible = false;
+            MessageBox.Show("Record Not Found");
+            GetEditExpenseList();
+        }
+
     }
 }
