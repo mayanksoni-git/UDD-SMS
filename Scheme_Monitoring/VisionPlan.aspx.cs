@@ -194,16 +194,11 @@ public partial class VisionPlan : System.Web.UI.Page
         {
             rptSearchResult.DataSource = dt;
             rptSearchResult.DataBind ();
-            
-           
-
-
         }
         else
         {
             // exportToExcel.Visible = false;
             MessageBox.Show("Record Not Found");
-
         }
     }
     public bool ValidateFields()
