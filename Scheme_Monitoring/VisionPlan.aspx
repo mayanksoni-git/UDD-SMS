@@ -76,7 +76,7 @@
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
                                                     <div id="div7" runat="server">
-                                                        <asp:Label ID="Label10" runat="server" Text="Selft Priority" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="Label10" runat="server" Text="Self Priority" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-select" >
                                                             <asp:ListItem value="0">--Select--</asp:ListItem>
                                                             <asp:ListItem Value="1">1</asp:ListItem>
@@ -115,23 +115,24 @@
                                 </div>
 
                                 <div class="card"  runat="server">
-                                            <table id="sample-table-2" class="mt-5 table table-striped table-bordered table-hover table-responsive">
+                                <div class="card-body"  runat="server" style="">
+                                            <table id="sample-table-2" class="table table-striped table-bordered table-hover table-responsive">
 
 
                                                 <thead>
                                                     <tr class="table-primary">
 
-                                                        <th style="text-align:center;font-size:18px" >Sr No</th>
+                                                        <th style="text-align:center;font-size:18px" >Sr. No.</th>
                                                        <th  style="text-align:center;font-size:18px" colspan="3">ULB Details</th>
                                                         <th  style="text-align:center;font-size:18px">Project Name</th>
-                                                       <th  style="text-align:center;font-size:18px" colspan="4">Existing</th>
-                                                        <th  style="text-align:center;font-size:18px" colspan="3">Condition</th>
+                                                       <th  style="text-align:center;font-size:18px" colspan="2">Existing</th>
+                                                        <th  style="text-align:center;font-size:18px" ">Condition</th>
                                                        
                                                         <th  style="text-align:center;font-size:18px">User Charge</th>
-                                                        <th  style="text-align:center;font-size:18px" colspan="3">Ownership</th>
+                                                        <th  style="text-align:center;font-size:18px" >Ownership</th>
                                                       
-                                                        <th  style="text-align:center;font-size:18px">Location</th>
-                                                        <th  style="text-align:center;font-size:18px">Priority</th>
+                                                        <th  style="text-align:center;font-size:18px" colspan="2">Location</th>
+                                                        <th  style="text-align:center;font-size:18px" >Priority</th>
                                                          <th style="text-align:center;font-size:18px">Action</th>
                                                     </tr>
                                                      <tr class="table-primary">
@@ -140,17 +141,18 @@
                                                         <th  style="text-align:center">District</th>
                                                         <th  style="text-align:center">ULB Name</th>
                                                         <th  style="text-align:center">Population</th>
-                                                        <th  style="text-align:center">Project name</th>
+                                                        <th  style="text-align:center">Project Name</th>
+                                                        <th  style="text-align:center">Construction </th>
+                                                      <%--  <th  style="text-align:center">Under Construction(Y/N)</th>
+                                                        <th  style="text-align:center">Under Sanction (Y/N)</th>--%>
                                                         <th  style="text-align:center">Year of Construction for Constructed Building</th>
-                                                        <th  style="text-align:center">Constructed (Y/N)</th>
-                                                        <th  style="text-align:center">Under Construction(Y/N)</th>
-                                                        <th  style="text-align:center">Under Sanction (Y/N)</th>
-                                                        <th  style="text-align:center">Good </th>
+                                                       <%-- <th  style='text-align:center">Good </th>
                                                         <th  style="text-align:center">Need Renovaton</th>
-                                                        <th  style="text-align:center">Need Redevelopement</th>
+                                                        <th  style="text-align:center">Need Redevelopement</th>--%>
+                                                        <th  style="text-align:center">Condition</th>
                                                         <th  style="text-align:center">User Charge</th>
-                                                        <th  style="text-align:center">Nagar Nigam</th>
-                                                        <th  style="text-align:center">Other Department</th>
+                                                        <%--<th  style="text-align:center">Nagar Nigam</th>--%>
+                                                        <th  style="text-align:center">Ownership</th>
                                                         <th  style="text-align:center">No Of Similar Project</th>
                                                         <th  style="text-align:center">Ward Name (Ward No.)</th>
                                                         <th  style="text-align:center">(on a scale of 1 to 5, 5 being the highest)</th>
@@ -170,16 +172,22 @@
                                                 <td><%# DataBinder.Eval(Container.DataItem, "Division_Name") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "population") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "ProjectName") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "constructedYear") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "Constructed") %></td>
+                                               <%-- <td><%# DataBinder.Eval(Container.DataItem, "Constructed") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "UnderConstruction") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "Sanction") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "GoodCondition") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "Sanction") %></td>--%>
+                                               
+
+                                                <td><%# DataBinder.Eval(Container.DataItem, "Construction") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "constructedYear") %></td>
+                                               <%-- <td><%# DataBinder.Eval(Container.DataItem, "GoodCondition") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "NeedRenovation") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "needredevelopement") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "IsUsercharge") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "NNownerShips") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "OtherOwner") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "needredevelopement") %></td>--%>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "Condition") %></td>
+
+                                               
+                                                <td><%# DataBinder.Eval(Container.DataItem, "Usercharge") %></td>
+                                                <td><%# DataBinder.Eval(Container.DataItem, "OwnerShips") %></td>
+                                                <%--<td><%# DataBinder.Eval(Container.DataItem, "OtherOwner") %></td>--%>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "NoOfSameProjInCity") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "Loactions") %></td>
                                                 <td><%# DataBinder.Eval(Container.DataItem, "selfPriority") %></td>
@@ -205,6 +213,7 @@
                                                     <p style="color:red;">Record Not Found</p>
                                                 </asp:Panel>
                                    </table>
+                                </div>
                                 </div>
 
                             </div>

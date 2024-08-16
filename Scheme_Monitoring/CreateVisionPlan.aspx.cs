@@ -290,17 +290,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                         RadioButton8.Checked = true;
                     sectionusercharge.Visible = false;
                 }
-                    if (dt.Rows[0]["IsOwnerNagarNigamOrULB"].ToString() == "True")
-                    {
-                        RadioButton9.Checked = true;
-                    secOtherown.Visible = false;
-                }
-                    else
-                    {
-                        RadioButton10.Checked = true;
-                        OtherDepartment.Text = dt.Rows[0]["OtherOwner"].ToString();
-                    secOtherown.Visible = true;
-                }
+                   
 
                 }
                else if (dt.Rows[0]["IsConstructed"].ToString() == "2")
@@ -321,13 +311,23 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 sectionCond.Visible = false;
                 secUser.Visible = false;
                 sectionusercharge.Visible = false;
-                secOtherown.Visible = false;
-                sectionuOwner.Visible = false;
+                //secOtherown.Visible = false;
+                //sectionuOwner.Visible = false;
             }
 
+            if (dt.Rows[0]["IsOwnerNagarNigamOrULB"].ToString() == "True")
+            {
+                RadioButton9.Checked = true;
+                secOtherown.Visible = false;
+            }
+            else
+            {
+                RadioButton10.Checked = true;
+                OtherDepartment.Text = dt.Rows[0]["OtherOwner"].ToString();
+                secOtherown.Visible = true;
+            }
 
-
-                DDLProj.SelectedValue = dt.Rows[0]["CMVNYId"].ToString();
+            DDLProj.SelectedValue = dt.Rows[0]["CMVNYId"].ToString();
                 ddlDivision.SelectedValue = dt.Rows[0]["ULBID"].ToString();
                 ddlZone.SelectedValue = dt.Rows[0]["stateId"].ToString();
                 ddlCircle.SelectedValue = dt.Rows[0]["distId"].ToString();
@@ -509,22 +509,8 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                     return;
                 }
                 //---- Check That OwnerShip Radion Button Checked or Not-----
-                if (RadioButton9.Checked)
-                {
-                    IsOwnerShip = "1";
-                    owner = "";
-                }
-                else if (RadioButton10.Checked)
-                {
-                    IsOwnerShip = "0";
-                    owner = OtherDepartment.Text;
-                }
-                else
-                {
-                    MessageBox.Show("Please Select OwnerShip ");
-                    RadioButton9.Focus();
-                    return;
-                }
+               
+              
                 constructedyear = TxtYear.Text;
                 constructed = "1";
             }
@@ -542,6 +528,24 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 RadioButton1.Focus();
                 return;
             }
+
+            if (RadioButton9.Checked)
+            {
+                IsOwnerShip = "1";
+                owner = "";
+            }
+            else if (RadioButton10.Checked)
+            {
+                IsOwnerShip = "0";
+                owner = OtherDepartment.Text;
+            }
+            else
+            {
+                MessageBox.Show("Please Select OwnerShip ");
+                RadioButton9.Focus();
+                return;
+            }
+
             var pk = Convert.ToInt32(VisionPlanID.Value);
             var cmvny = Convert.ToInt32(DDLProj.SelectedValue);
             var ULB = Convert.ToInt32(ddlDivision.SelectedValue);
@@ -730,15 +734,15 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 sectionusercharge.Visible = false;
                 sectionuOwner.Visible = true;
                 secOtherown.Visible = false;
-                RadioButton1.Checked = false;
+                //RadioButton1.Checked = false;
                
-                RadioButton4.Checked = false;
-                RadioButton5.Checked = false;
-                RadioButton6.Checked = false;
-                RadioButton7.Checked = false;
-                RadioButton8.Checked = false;
-                RadioButton9.Checked = false;
-                RadioButton10.Checked = false;
+                //RadioButton4.Checked = false;
+                //RadioButton5.Checked = false;
+                //RadioButton6.Checked = false;
+                //RadioButton7.Checked = false;
+                //RadioButton8.Checked = false;
+                //RadioButton9.Checked = false;
+                //RadioButton10.Checked = false;
             }
             if (RadioButton7.Checked == true)
             {
