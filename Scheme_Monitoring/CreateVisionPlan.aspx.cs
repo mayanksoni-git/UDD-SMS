@@ -182,10 +182,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             {
                 divi = ddlDivision.SelectedValue;
             }
-            if (divi != "" && ddlCircle.SelectedValue != "0" && ddlFY.SelectedValue != "0")
-            {
-                GetPopulationdata(ddlCircle.SelectedValue, divi, ddlFY.SelectedValue);
-            }
+            
         }
     }
     private void get_tbl_Division(int circleId)
@@ -215,7 +212,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             }
             if (divi != "" && ddlCircle.SelectedValue != "0" && ddlFY.SelectedValue != "0")
             {
-                GetPopulationdata(ddlCircle.SelectedValue, divi, ddlFY.SelectedValue);
+                GetPopulationdata(divi, ddlFY.SelectedValue);
             }
         }
     }
@@ -371,7 +368,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
         }
         if (ddlFY.SelectedValue == "0")
         {
-            MessageBox.Show("Please Select a Financial. ");
+            MessageBox.Show("Please Select a Financial year. ");
             ddlFY.Focus();
             return false;
         }
@@ -424,20 +421,22 @@ public partial class CreateVisionPlan: System.Web.UI.Page
        
     }
 
-    protected void GetPopulationdata(string dist,string ulb,string fy)
+    protected void GetPopulationdata(string ulb,string fy)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.GetPopulation(dist,ulb,fy);
+        dt = objLoan.GetPopulation(ulb,fy);
 
         if (dt != null && dt.Rows.Count > 0)
         {
             TxtPopulation.Text = dt.Rows[0]["population"].ToString();
+            TxtPopulation.Enabled = false;
         }
         else
         {
             TxtPopulation.Text = "";
+            TxtPopulation.Enabled = true;
         }
-     }
+    }
 
     protected void ddlFY_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -452,7 +451,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
         }
         if (divi != "" && ddlCircle.SelectedValue != "0" && ddlFY.SelectedValue != "0")
         {
-            GetPopulationdata(ddlCircle.SelectedValue, divi, ddlFY.SelectedValue);
+            GetPopulationdata(divi, ddlFY.SelectedValue);
         }
 
 
@@ -720,6 +719,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 sectionyear.Visible = true;
                 sectionCond.Visible = true;
                 secUser.Visible = true;
+                sectionusercharge.Visible = true;
 
                 sectionuOwner.Visible = true;
                 RadioButton1.Checked = true;
@@ -735,7 +735,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 sectionuOwner.Visible = true;
                 secOtherown.Visible = false;
                 //RadioButton1.Checked = false;
-               
+
                 //RadioButton4.Checked = false;
                 //RadioButton5.Checked = false;
                 //RadioButton6.Checked = false;
@@ -743,16 +743,25 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 //RadioButton8.Checked = false;
                 //RadioButton9.Checked = false;
                 //RadioButton10.Checked = false;
-            }
-            if (RadioButton7.Checked == true)
-            {
 
-                sectionusercharge.Visible = true;
+
+             
+
+                  //  sectionusercharge.Visible = true;
+
+               
+              
+
             }
-            else
-            {
-                sectionusercharge.Visible = false;
-            }
+            //if (RadioButton7.Checked == true)
+            //{
+
+            //    sectionusercharge.Visible = true;
+            //}
+            //else
+            //{
+            //    sectionusercharge.Visible = false;
+            //}
             if (RadioButton10.Checked == true)
             {
                 secOtherown.Visible = true;
@@ -764,5 +773,23 @@ public partial class CreateVisionPlan: System.Web.UI.Page
 
             }
         }
+    }
+
+    protected void ddlDivision_SelectedIndexChanged1(object sender, EventArgs e)
+    {
+        var divi = "";
+        if (ddlDivision.SelectedValue == "")
+        {
+            divi = "0";
+        }
+        else
+        {
+            divi = ddlDivision.SelectedValue;
+        }
+        if (divi != ""  && ddlFY.SelectedValue != "0")
+        {
+            GetPopulationdata(divi, ddlFY.SelectedValue);
+        }
+       
     }
 }

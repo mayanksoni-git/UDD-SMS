@@ -826,11 +826,11 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     }
 
 
-    public DataTable GetPopulation(string dist,string ulb,string fy)
+    public DataTable GetPopulation(string ulb,string fy)
     {
         string strQuery = "";
         DataTable ds = new DataTable();
-        strQuery = "select population from Tbl_VisionPopulation where ULBID='"+ulb+"' and FYID='"+fy+"' and distid='"+dist+ "' and isactive=1 ";
+        strQuery = "select population from Tbl_VisionPopulation where ULBID='"+ulb+"' and FYID='"+fy+"'  and isactive=1 ";
         try
         {
             ds = ExecuteSelectQuerywithDatatable(strQuery);
