@@ -298,8 +298,8 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 secUser.Visible = false;
                 sectionusercharge.Visible = false;
                 secOtherown.Visible = false;
-
-                sectionuOwner.Visible = false;
+                
+                sectionuOwner.Visible = true;
             }
             else
                 {
@@ -567,8 +567,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             //GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
             if (dt.Rows.Count > 0)
             {
-                if (dt.Rows[0]["Remark"].ToString() == "Record Updated")
-                {
+               
                     BtnSave.Visible = true;
                     BtnUpdate.Visible = false;
                     ddlZone.Enabled = true;
@@ -576,8 +575,9 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                     ddlDivision.Enabled = true;
                     ddlFY.Enabled = true;
                     VisionPlanID.Value = "";
-                    reset();
-                }
+                    TxtPopulation.Text = "";
+                reset();
+               
                 MessageBox.Show(dt.Rows[0]["Remark"].ToString());
             }
 
@@ -638,22 +638,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                     return;
                 }
                 //---- Check That OwnerShip Radion Button Checked or Not-----
-                if (RadioButton9.Checked)
-                {
-                    IsOwnerShip = "1";
-
-                }
-                else if (RadioButton10.Checked)
-                {
-                    IsOwnerShip = "0";
-                    owner = OtherDepartment.Text;
-                }
-                else
-                {
-                    MessageBox.Show("Please Select OwnerShip ");
-                    RadioButton9.Focus();
-                    return;
-                }
+             
                 constructedyear = TxtYear.Text;
                 constructed = "1";
             }
@@ -671,6 +656,24 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 RadioButton1.Focus();
                 return;
             }
+
+            if (RadioButton9.Checked)
+            {
+                IsOwnerShip = "1";
+
+            }
+            else if (RadioButton10.Checked)
+            {
+                IsOwnerShip = "0";
+                owner = OtherDepartment.Text;
+            }
+            else
+            {
+                MessageBox.Show("Please Select OwnerShip ");
+                RadioButton9.Focus();
+                return;
+            }
+
             var cmvny = Convert.ToInt32(DDLProj.SelectedValue);
             var ULB = Convert.ToInt32(ddlDivision.SelectedValue);
             var State = Convert.ToInt32(ddlZone.SelectedValue);
@@ -753,15 +756,15 @@ public partial class CreateVisionPlan: System.Web.UI.Page
               
 
             }
-            //if (RadioButton7.Checked == true)
-            //{
+            if (RadioButton7.Checked == true&&txt=="Yes")
+            {
 
-            //    sectionusercharge.Visible = true;
-            //}
-            //else
-            //{
-            //    sectionusercharge.Visible = false;
-            //}
+                sectionusercharge.Visible = true;
+            }
+            else
+            {
+                sectionusercharge.Visible = false;
+            }
             if (RadioButton10.Checked == true)
             {
                 secOtherown.Visible = true;
