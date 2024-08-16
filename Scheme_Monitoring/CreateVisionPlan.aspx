@@ -150,7 +150,7 @@
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
                                                     <div id="div7" runat="server">
-                                                        <asp:Label ID="Label10" runat="server" Text="Selft Priority" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="Label10" runat="server" Text="Self Priority" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-select" >
                                                             <asp:ListItem Value="0">--Select--</asp:ListItem>
                                                             <asp:ListItem Value="1">1</asp:ListItem>
@@ -176,7 +176,7 @@
                                     </div>
                                 </div>
 
-                                <div class="card" id="sectionData" runat="server">
+                               <%-- <div class="card" id="sectionData" runat="server">
                                             <table id="sample-table-2" class="mt-5 table table-striped table-bordered table-hover">
 
                                                 <thead >
@@ -240,7 +240,7 @@
                                         </FooterTemplate>
                                     </asp:Repeater>
                                      </table>
-                                </div>
+                                </div>--%>
 
                             </div>
                         </div>

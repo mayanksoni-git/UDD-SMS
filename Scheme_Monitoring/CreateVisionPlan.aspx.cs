@@ -54,7 +54,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
         }
 
         sectionFilter.Visible = true;
-        sectionData.Visible = false;
+       // sectionData.Visible = false;
         
             //GetEditExpenseList(ULBID.Value, FYID.Value);
 
