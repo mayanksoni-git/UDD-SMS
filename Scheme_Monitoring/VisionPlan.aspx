@@ -122,18 +122,18 @@
                                                 <thead>
                                                     <tr class="table-primary">
 
-                                                        <th style="text-align:center;font-size:18px" >Sr. No.</th>
-                                                       <th  style="text-align:center;font-size:18px" colspan="3">ULB Details</th>
-                                                        <th  style="text-align:center;font-size:18px">Project Name</th>
-                                                       <th  style="text-align:center;font-size:18px" colspan="2">Existing</th>
-                                                        <th  style="text-align:center;font-size:18px" ">Condition</th>
+                                                        <th style="text-align:center;font-size:15px" >Sr. No.</th>
+                                                       <th  style="text-align:center;font-size:15px" colspan="3">ULB Details</th>
+                                                        <th  style="text-align:center;font-size:15px">Project Name</th>
+                                                       <th  style="text-align:center;font-size:15px" colspan="2">Existing</th>
+                                                        <th  style="text-align:center;font-size:15px" ">Condition</th>
                                                        
-                                                        <th  style="text-align:center;font-size:18px">User Charge</th>
-                                                        <th  style="text-align:center;font-size:18px" >Ownership</th>
+                                                        <th  style="text-align:center;font-size:15px">User Charge</th>
+                                                        <th  style="text-align:center;font-size:15px" >Ownership</th>
                                                       
-                                                        <th  style="text-align:center;font-size:18px" colspan="2">Location</th>
-                                                        <th  style="text-align:center;font-size:18px" >Priority</th>
-                                                         <th style="text-align:center;font-size:18px">Action</th>
+                                                        <th  style="text-align:center;font-size:15px" colspan="2">Location</th>
+                                                        <th  style="text-align:center;font-size:15px" >Priority</th>
+                                                         <th style="text-align:center;font-size:15px">Action</th>
                                                     </tr>
                                                      <tr class="table-primary">
 
@@ -142,7 +142,7 @@
                                                         <th  style="text-align:center">ULB Name</th>
                                                         <th  style="text-align:center">Population</th>
                                                         <th  style="text-align:center">Project Name</th>
-                                                        <th  style="text-align:center">Construction </th>
+                                                        <th  style="text-align:center">Is Constructed?</th>
                                                       <%--  <th  style="text-align:center">Under Construction(Y/N)</th>
                                                         <th  style="text-align:center">Under Sanction (Y/N)</th>--%>
                                                         <th  style="text-align:center">Year of Construction for Constructed Building</th>
