@@ -48,21 +48,21 @@
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divZone" runat="server">
-                                                        <asp:Label ID="lblZoneH" runat="server" Text="State*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblZoneH" runat="server" Text="State" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divCircle" runat="server">
-                                                        <asp:Label ID="lblCircleH" runat="server" Text="District*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblCircleH" runat="server" Text="District" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divDivision" runat="server">
-                                                        <asp:Label ID="lblDivisionH" runat="server" Text="ULB*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblDivisionH" runat="server" Text="ULB" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         <%--<asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>--%>
                                                     </div>
@@ -70,15 +70,15 @@
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
-                                                        <asp:Label ID="lblFY" runat="server" Text="Select Financial Year*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblFY" runat="server" Text="Financial Year" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true" ></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
                                                     <div id="div7" runat="server">
                                                         <asp:Label ID="Label10" runat="server" Text="Selft Priority" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-control" >
-                                                            <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                                        <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-select" >
+                                                            <asp:ListItem value="0">--Select--</asp:ListItem>
                                                             <asp:ListItem Value="1">1</asp:ListItem>
                                                             <asp:ListItem Value="2">2</asp:ListItem>
                                                             <asp:ListItem Value="3">3</asp:ListItem>
@@ -199,8 +199,12 @@
                                         <FooterTemplate>
                                            
                                         </FooterTemplate>
+                                        
                                     </asp:Repeater>
-                                     </table>
+                                                <asp:Panel ID="NoRecordsPanel" runat="server" Visible="False">
+                                                    <p style="color:red;">Record Not Found</p>
+                                                </asp:Panel>
+                                   </table>
                                 </div>
 
                             </div>

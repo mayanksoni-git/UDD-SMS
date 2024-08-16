@@ -35,7 +35,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             sectionyear.Visible = false;
             sectionCond.Visible = false;
             secUser.Visible = false;
-            sectionuOwner.Visible = false;
+            sectionuOwner.Visible = true;
             secOtherown.Visible = false;
             sectionusercharge.Visible = false;
             if (Request.QueryString.Count > 0)
@@ -257,7 +257,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             var checkuser = dt.Rows[0]["IsUserCharger"].ToString();
                 //---- Check That Condition Radion Button Checked or Not-----
                 if (dt.Rows[0]["IsConstructed"].ToString()=="1")
-            {
+              {
                 sectionyear.Visible = true;
                 sectionCond.Visible = true;
                 secUser.Visible = true;
@@ -728,7 +728,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 sectionCond.Visible = false;
                 secUser.Visible = false;
                 sectionusercharge.Visible = false;
-                sectionuOwner.Visible = false;
+                sectionuOwner.Visible = true;
                 secOtherown.Visible = false;
                 RadioButton1.Checked = false;
                

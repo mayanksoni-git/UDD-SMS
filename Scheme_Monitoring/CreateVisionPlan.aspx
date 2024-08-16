@@ -70,19 +70,19 @@
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
-                                                        <asp:Label ID="lblFY" runat="server" Text="Select Financial Year*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblFY" runat="server" Text=" Financial Year*" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlFY_SelectedIndexChanged" ></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="divProj" runat="server">
-                                                        <asp:Label ID="lblProj" runat="server" Text="CMVNY Project*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblProj" runat="server" Text="Project type*" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="DDLProj" runat="server" CssClass="form-select" ></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
                                                     <div id="div8" runat="server">
-                                                        <asp:Label ID="Label11" runat="server" Text="Enter Population*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="Label11" runat="server" Text="Population*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="TxtPopulation" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
@@ -97,7 +97,7 @@
                                                 <div class="col-xxl-3 col-md-6 validsec" id="sectionyear" runat="server">
                                                     <div id="div2" runat="server">
                                                         <asp:Label ID="Label2" runat="server" Text="Enter year*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="TxtYear" placeholder="-yyyy-" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        <asp:TextBox ID="TxtYear" placeholder="yyyy" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
                                               <div class="col-xxl-3 col-md-6 validsec" id="sectionCond" runat="server">
@@ -132,7 +132,7 @@
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6 validsec" runat="server"  id="secOtherown" >
                                                     <div id="div4" runat="server">
-                                                        <asp:Label ID="Label7" runat="server" Text="Other Department" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="Label7" runat="server" Text="Owner Department" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="OtherDepartment" runat="server" CssClass="form-control" ></asp:TextBox>
                                                     </div>
                                                 </div>
@@ -151,7 +151,7 @@
                                                  <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
                                                     <div id="div7" runat="server">
                                                         <asp:Label ID="Label10" runat="server" Text="Selft Priority" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-control" >
+                                                        <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-select" >
                                                             <asp:ListItem Value="0">--Select--</asp:ListItem>
                                                             <asp:ListItem Value="1">1</asp:ListItem>
                                                             <asp:ListItem Value="2">2</asp:ListItem>
@@ -253,6 +253,8 @@
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />
                     <asp:PostBackTrigger ControlID="ddlFY" />
+                    <asp:PostBackTrigger ControlID="BtnUpdate" />
+                    <asp:PostBackTrigger ControlID="BtnSave" />
                     <asp:PostBackTrigger ControlID="RadioButton1" />
                     <asp:PostBackTrigger ControlID="RadioButton2" />
                     <asp:PostBackTrigger ControlID="RadioButton3" />

@@ -142,7 +142,7 @@
                                             <tr>
                                                 <td>
                                                  
-                                                     <%#DataBinder.Eval(Container,"DataItem.SrNo")%>
+                                                   <%# Container.ItemIndex + 1 %>
                                                 </td>
                                                 <td align="left">
                                                  

@@ -301,7 +301,9 @@ public partial class VisionPlan : System.Web.UI.Page
         {
             // exportToExcel.Visible = false;
             MessageBox.Show("Record Not Found");
-            GetEditExpenseList();
+            rptSearchResult.DataSource = dt;
+            rptSearchResult.DataBind();
+           // NoRecordsPanel.Visible = true;
         }
 
     }
