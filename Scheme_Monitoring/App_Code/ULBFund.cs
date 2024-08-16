@@ -812,7 +812,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     {
         string strQuery = "";
         DataSet ds = new DataSet();
-        strQuery = @"set dateformat dmy;select CMVNY_PID,ProjectName from tbl_CMVNYProjectType where IsActive=1";
+        strQuery = @"set dateformat dmy;select ProjectType_Id, ProjectType_Name from tbl_ProjectType where ProjectType_ProjectId=1019 and ProjectType_Status=1";
         try
         {
             ds = ExecuteSelectQuery(strQuery);

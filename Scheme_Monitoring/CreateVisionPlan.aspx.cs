@@ -223,7 +223,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
     {
         DataSet dt = new DataSet();
         dt = objLoan.GetAllCMVNYProject();
-       FillDropDown(dt, DDLProj, "ProjectName", "CMVNY_PID");
+       FillDropDown(dt, DDLProj, "ProjectType_Name", "ProjectType_Id");
         
     }
 
