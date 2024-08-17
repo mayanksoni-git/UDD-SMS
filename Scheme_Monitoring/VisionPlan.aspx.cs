@@ -10,6 +10,7 @@ using System.IO;
 using System.Text;
 using System.Data.SqlClient;
 using System.Web.UI.HtmlControls;
+using ClosedXML.Excel;
 
 public partial class VisionPlan : System.Web.UI.Page
 {
@@ -300,24 +301,7 @@ public partial class VisionPlan : System.Web.UI.Page
         }
         }
 
-    protected void grdPost_PreRender(object sender, EventArgs e)
-    {
-        GridView gv = (GridView)sender;
-        if (gv.Rows.Count > 0)
-        {
-            //This replaces <td> with <th> and adds the scope attribute
-            gv.UseAccessibleHeader = true;
-        }
-        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
-        {
-            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
-        }
-        if (gv.ShowFooter == true && gv.Rows.Count > 0)
-        {
-            gv.FooterRow.TableSection = TableRowSection.TableFooter;
-        }
-    }
-
+    
     protected void BtnSearch_Click(object sender, EventArgs e)
     {
         var state = Convert.ToInt32(ddlZone.SelectedValue);
@@ -352,4 +336,133 @@ public partial class VisionPlan : System.Web.UI.Page
         }
 
     }
+
+    protected void ExportToExcel_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            // Fetch all data from the DataTable
+            var dist = 0;
+            var ULB = 0;
+            var FY = 0;
+            var state = Convert.ToInt32(ddlZone.SelectedValue);
+            if (ddlCircle.SelectedValue == "0" || ddlCircle.SelectedValue == "")
+            {
+                dist = 0;
+            }
+            else
+            {
+                dist = Convert.ToInt32(ddlCircle.SelectedValue);// == "0"
+            }
+            if (ddlDivision.SelectedValue == "0" || ddlDivision.SelectedValue == "")
+            {
+                ULB = 0;
+            }
+            else
+            {
+                ULB = Convert.ToInt32(ddlDivision.SelectedValue);// == "0"
+            }
+            if (ddlFY.SelectedValue == "0" || ddlFY.SelectedValue == "")
+            {
+                FY = 0;
+            }
+            else
+            {
+                FY = Convert.ToInt32(ddlFY.SelectedValue);// == "0"
+            }
+            DataTable dt = new DataTable();
+            dt = objLoan.GetVisionPlan("select", 0, ULB, 0, state, "", dist, FY, "", "", "", 0, "", 0, "", "", "", "", "");
+            if (dt == null || dt.Columns.Count == 0)
+            {
+                Response.Write("No data available for export.");
+                return;
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt, "Work Plan Detail");
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment;filename=VisionPlan.xlsx");
+
+                using (MemoryStream MyMemoryStream = new MemoryStream())
+                {
+                    wb.SaveAs(MyMemoryStream);
+                    MyMemoryStream.WriteTo(Response.OutputStream);
+                    Response.Flush(); // Ensure all data is sent to the client
+                }
+
+                // Properly complete the request to avoid ThreadAbortException
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+            }
+        }
+        catch (Exception ex)
+        {
+            Response.Write("Error: " + ex.Message);
+        }
+        Response.End();
+    }
+       
+
+
+    //protected void ExportExcel_Click(object sender, EventArgs e)
+    //{
+    //    try
+    //    {
+
+    //                // Disable paging and rebind the GridView to include all data
+    //                //gridMPWise.AllowPaging = false;
+
+    //                var dist = 0;
+    //                var ULB = 0;
+    //                var FY = 0;
+    //                var state = Convert.ToInt32(ddlZone.SelectedValue);
+    //                if (ddlCircle.SelectedValue == "0" || ddlCircle.SelectedValue == "")
+    //                {
+    //                    dist = 0;
+    //                }
+    //                else
+    //                {
+    //                    dist = Convert.ToInt32(ddlCircle.SelectedValue);// == "0"
+    //                }
+    //                if (ddlDivision.SelectedValue == "0" || ddlDivision.SelectedValue == "")
+    //                {
+    //                    ULB = 0;
+    //                }
+    //                else
+    //                {
+    //                    ULB = Convert.ToInt32(ddlDivision.SelectedValue);// == "0"
+    //                }
+    //                if (ddlFY.SelectedValue == "0" || ddlFY.SelectedValue == "")
+    //                {
+    //                    FY = 0;
+    //                }
+    //                else
+    //                {
+    //                    FY = Convert.ToInt32(ddlFY.SelectedValue);// == "0"
+    //                }
+    //                DataTable dt = new DataTable();
+    //                dt = objLoan.GetVisionPlan("select", 0, ULB, 0, state, "", dist, FY, "", "", "", 0, "", 0, "", "", "", "", "");
+
+    //                //dt = objLoan.getFYWiseData(WorkProposalID);
+    //                //grdPost.AllowPaging = false;
+
+
+    //                if (dt != null && dt.Rows.Count > 0)
+    //                {
+    //                    grdPost.DataSource = dt;
+    //                    grdPost.DataBind();
+    //            //ExportToExcel();
+
+    //        }
+
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        MessageBox.Show(ex.Message);
+    //        return;
+    //    }
+    //}
 }

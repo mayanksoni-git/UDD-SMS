@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="VisionPlan.aspx.cs" Inherits="VisionPlan" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="VisionPlan.aspx.cs" Inherits="VisionPlan" EnableEventValidation="false" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -115,6 +115,12 @@
                                 </div>
 
                                 <div class="card"  runat="server">
+                                     <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Vision Plan</h4>
+                                      <%--<asp:Button ID="ExportExcel" runat="server" Text="Export to Excel"  CommandName="Export Data" OnClick="ExportToExcel_Click" CssClass="btn btn-success" />--%>
+                                        <a href="#" id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="filter-btn" style="float:right"><i class="icon-download"></i> Export To Excel</a>
+
+                                    </div>
                                 <div class="card-body"  runat="server" style="">
                                      <div class="clearfix" id="dtOptions" runat="server">
                                                         <div class="pull-right tableTools-container"></div>
@@ -163,9 +169,10 @@
                                                     </tr>
                                                 </thead>
                                        
-                                     <asp:Repeater ID="grdPost" runat="server" OnItemCommand="grdPost_ItemCommand" OnPreRender="grdPost_PreRender">
+                                     <asp:Repeater ID="grdPost" runat="server" OnItemCommand="grdPost_ItemCommand" >
                                         <ItemTemplate>
                                             <tr>
+                                               
                                                 <td><%# Container.ItemIndex + 1 %></td>
                                               
                                              
@@ -261,10 +268,71 @@
     transition: all .35s ease-Out;
 }
     </style>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#sample-table-2").DataTable();
         })
+  function ExportToExcel(type, fn, dl) {
+    // Get the current date
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1; // Months are zero-based
+    const day = currentDate.getDate();
+
+    var h2Element = document.querySelector('.tblheader h3');
+    var h2Value = h2Element ? h2Element.innerText : 'DefaultHeader';
+
+    // Format the date as desired (e.g., YYYY-MM-DD)
+    const formattedDate = "Vision Plan Detail_" + `${year}-${month}-${day}`;
+
+    var elt = document.getElementById('sample-table-2');
+
+    // Remove the last column from the table before export
+    removeLastColumn(elt);
+
+    // Convert the table to an Excel workbook
+    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+
+    // Set the width of each column
+    var ws = wb.Sheets["sheet1"];
+    
+    // Define column widths (e.g., 20 characters wide for each column)
+    var columnWidths = [
+        { wch: 10 }, // Width of the first column
+        { wch: 20 }, // Width of the second column
+        { wch: 20 }, // Continue for each column as needed
+        { wch: 10 }, // Continue for each column as needed
+        { wch: 50 }, // Continue for each column as needed
+        { wch: 18 }, // Continue for each column as needed
+        { wch: 30 }, // Continue for each column as needed
+        { wch: 20 }, // Continue for each column as needed
+        { wch: 10 }, // Continue for each column as needed
+        { wch: 20 }, // Continue for each column as needed
+        { wch: 20 }, // Continue for each column as needed
+        { wch: 20 }, // Continue for each column as needed
+        { wch: 20 }, // Continue for each column as needed
+        // You can add more columns depending on the number of columns in your table
+    ];
+    
+    ws['!cols'] = columnWidths;
+
+    return dl ?
+        XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+        XLSX.writeFile(wb, fn || (formattedDate + "." + (type || 'xlsx')));
+}
+
+// Function to remove the last column from the table
+function removeLastColumn(table) {
+    const rows = table.rows;
+    for (let i = 0; i < rows.length; i++) {
+        const lastCell = rows[i].cells.length - 1;
+        if (lastCell >= 0) {
+            rows[i].deleteCell(lastCell);
+        }
+    }
+}
+
     </script>
     </asp:Content>
