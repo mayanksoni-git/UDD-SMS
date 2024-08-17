@@ -229,7 +229,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
     {
        // ULBID = 0;
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("select", ULBID, 0, 0,  0, 0,  0, "");
+        dt = objLoan.GetDocOfAnnualActionPlan("select", ULBID, 0, 0,  0, 0,  0, "", "VisionPlan");
         grdPost.DataSource = dt;
         grdPost.DataBind();
       
@@ -309,17 +309,21 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         Button clickedButton = sender as Button;
         string text = clickedButton.Text;
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan(  "Insert",     division,   0,  zone,circle,  fy, Person_Id, pathProfile );
+        dt = objLoan.GetDocOfAnnualActionPlan(  "Insert",     division,   0,  zone,circle,  fy, Person_Id, pathProfile, "VisionPlan");
         if (dt != null && dt.Rows.Count > 0)
         {
-           
+                if (dt.Rows[0]["remark"].ToString() != "Record already exists for this ULBID and FYID")
+                {
+
+                    reset();
+                }
                 MessageBox.Show(dt.Rows[0]["remark"].ToString());
-           
-        }
+
+            }
         GetAllData(division);
 
         //GetULBFundAction
-        reset();
+        //reset();
         }
         catch (Exception ex)
         {
@@ -363,7 +367,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         DataTable dt = new DataTable();
 
        // objLoan.GetAnnualActionPlan("select", ULBID, 0, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
-        dt = objLoan.GetDocOfAnnualActionPlan("selectById", 0, id, 0, 0, 0,  0,  "");
+        dt = objLoan.GetDocOfAnnualActionPlan("selectById", 0, id, 0, 0, 0,  0,  "", "VisionPlan");
         btnSave.Visible = false;
         BtnUpdate.Visible = true;
         if (dt != null && dt.Rows.Count > 0)
@@ -380,8 +384,11 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
                 ddlDivision.SelectedValue = "0";
             }
             ddlFY.SelectedValue = dt.Rows[0]["FYID"].ToString();
-          
-           
+            ddlCircle.Enabled = false;
+            ddlZone.Enabled = false;
+            ddlDivision.Enabled = false;
+            //ddlFY.Enabled = false;
+
             var doc = dt.Rows[0]["Documents"].ToString();
             if (doc != null)
             {
@@ -452,12 +459,23 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
             Button clickedButton = sender as Button;
             string text = clickedButton.Text;
             DataTable dt = new DataTable();
-            dt = objLoan.GetDocOfAnnualActionPlan("Update", division, taskid, zone, circle, fy, Person_Id, pathProfile);
+            dt = objLoan.GetDocOfAnnualActionPlan("Update", division, taskid, zone, circle, fy, Person_Id, pathProfile, "VisionPlan");
 
             if (dt != null && dt.Rows.Count > 0)
             {
 
+                if (dt.Rows[0]["remark"].ToString() != "Record already exists for this ULBID and FYID")
+                {
+
+                    reset();
+                }
                 MessageBox.Show(dt.Rows[0]["remark"].ToString());
+                ddlCircle.Enabled = true;
+                ddlZone.Enabled = true;
+                ddlDivision.Enabled = true;
+                ddlFY.Enabled = true;
+                UpladedDoc.InnerText = "";
+
             }
             GetAllData(division);
 
@@ -475,7 +493,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         var id = Convert.ToInt32(e.CommandArgument.ToString());
 
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "");
+        dt = objLoan.GetDocOfAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "", "VisionPlan");
         //dt = objLoan.GetAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
         if (dt != null && dt.Rows.Count > 0)
         {

@@ -325,6 +325,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             {
                 MessageBox.Show("Income  Data Created Successfully ! ");
                 ddlFY.Focus();
+                reset();
                 for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
                     (GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text = "";
@@ -405,10 +406,11 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             if (new ULBFund().UpdateULBFundIncome(ulbexp, msg))
             {
                 MessageBox.Show("Income  data Update Successfully ! ");
-            ddlFY.Focus();
+                reset();
+                ddlFY.Focus();
             for (int i = 0; i < GrdULBFund.Rows.Count; i++)
                 {
-                    //(GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text = "";
+                    (GrdULBFund.Rows[i].FindControl("Amounts") as TextBox).Text = "";
                     var validator2 = GrdULBFund.Rows[i].FindControl("rfvAmounts") as RequiredFieldValidator;
 
                     if (validator2 != null)
@@ -418,6 +420,7 @@ public partial class AddULBIncomeType : System.Web.UI.Page
                     }
                 }
                 get_tbl_Project();
+               
                 return;
             }
             else
@@ -440,7 +443,32 @@ public partial class AddULBIncomeType : System.Web.UI.Page
             MessageBox.Show(ex.Message);
         }
     }
+    private void reset()
+    {
 
+        ddlZone.SelectedValue = "0";
+        ddlCircle.SelectedValue = "0";
+        get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
+        ddlCircle_SelectedIndexChanged(ddlCircle, new EventArgs());
+        try
+        {
+            ddlDivision.SelectedValue = "0";
+        }
+        catch
+        {
+            ddlDivision.SelectedValue = "0";
+        }
+
+        ddlFY.SelectedValue = "0";
+        BtnSubmit.Visible = true;
+        ButtonUpdate.Visible = false;
+        ddlZone.Enabled = true;
+        ddlCircle.Enabled = true;
+        ddlDivision.Enabled = true;
+        ddlFY.Enabled = true;
+        SetDropdownsBasedOnUserType();
+
+    }
     protected void GrdULBFund_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         var chec = GrdULBFund.Rows.Count;

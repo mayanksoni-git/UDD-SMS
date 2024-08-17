@@ -402,12 +402,13 @@ public partial class CreateVisionPlan: System.Web.UI.Page
         }
         DDLProj.SelectedValue = "0";
         ddlFY.SelectedValue = "0";
-        DdlPriority.SelectedValue = "1";
+        DdlPriority.SelectedValue = "0";
         BtnSave.Visible = true;
         BtnUpdate.Visible = false;
         TxtPopulation.Text = "";
         Location.Text = "";
         similarProj.Text = "";
+        TxtPopulation.Enabled = true;
         RadioButton1.Checked = false;
         RadioButton2.Checked = false;
         RadioButton3.Checked = false;
@@ -418,7 +419,8 @@ public partial class CreateVisionPlan: System.Web.UI.Page
         RadioButton8.Checked = false;
         RadioButton9.Checked = false;
         RadioButton10.Checked = false;
-       
+        SetDropdownsBasedOnUserType();
+
     }
 
     protected void GetPopulationdata(string ulb,string fy)
@@ -695,11 +697,13 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             //GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
             if (dt.Rows.Count > 0)
             {
-                if (dt.Rows[0]["Remark"].ToString() == "Record Saved")
+                var check = dt.Rows[0]["Remark"].ToString();
+                if (check == "Record Saved.")
                 {
                     reset();
                 }
                 MessageBox.Show(dt.Rows[0]["Remark"].ToString());
+               
             }
 
         }

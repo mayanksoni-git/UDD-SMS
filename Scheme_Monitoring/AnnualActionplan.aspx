@@ -59,33 +59,33 @@
                                                 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
-                                                        <asp:Label ID="lblFY" runat="server" Text="Select Financial Year*" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblFY" runat="server" Text="Financial Year*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="div4" runat="server">
-                                                        <asp:Label ID="ProjectMaster" runat="server" Text="Select  Scheme *" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="ProjectMaster" runat="server" Text="Scheme *" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div3" runat="server">
-                                                        <asp:Label ID="lblRemark" runat="server" Text="Project Name" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblRemark" runat="server" Text="Project Name*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="ProjectName" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div1" runat="server">
-                                                        <asp:Label ID="Label1" runat="server" Text="Cost(in Rupees)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="Label1" runat="server" Text="Cost(in Rupees)*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="Cost" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div2" runat="server">
-                                                        <asp:Label ID="Label2" runat="server" Text="Priority No (In range 1-5)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="Label2" runat="server" Text="Priority No (In range 1-5,5 is highest)*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <input type="text" id="PriorityNo" runat="server" class="form-control" oninput="validateNumber(this)" />
                                                         <script>
                                                             function validateNumber(input) {
@@ -97,7 +97,7 @@
                                                  
                                                  <div class="col-xxl-3 col-md-6" runat="server" visible="false">
                                                     <div id="div8" runat="server">
-                                                        <asp:Label ID="Label6" runat="server" Text="Upload Doc  (PDF)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="Label6" runat="server" Text="Upload Doc (PDF)" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:FileUpload ID="fileupload" runat="server" CssClass="form-control" Accept=".pdf" /> 
                                                          <a href="" target="_blank" id="UpladedDoc" runat="server"></a>
                                                     </div>
@@ -176,13 +176,13 @@
                                                                 <%# Container.DataItemIndex + 1 %>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:BoundField HeaderText="State" DataField="Zone_Name" />
+                                                        <asp:BoundField HeaderText="Scheme" DataField="Project_Name" />
                                                         <asp:BoundField HeaderText="District" DataField="Circle_Name" />
-                                                        <asp:BoundField HeaderText="ULBName" DataField="Division_Name" />
+                                                        <asp:BoundField HeaderText="ULB Name" DataField="Division_Name" />
                                                         <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
                                                         <asp:BoundField HeaderText="Project Name" DataField="ProjectName" />
                                                         <asp:BoundField HeaderText="Project Detail" DataField="ProjectDetail" />
-                                                        <asp:BoundField HeaderText="Cost (in lacs)" DataField="costinlacks" />
+                                                        <asp:BoundField HeaderText="Cost (in Lakhs)" DataField="costinlacks" />
                                                         <asp:BoundField HeaderText="Priority No" DataField="PrivorityNo" />
                                                         <asp:BoundField HeaderText="Reason For Selected" DataField="ReasonForSelected" />
                                                         <asp:BoundField HeaderText="Convergence Detail " DataField="ConvergeDetail" />                                            
@@ -199,7 +199,7 @@
                                                         </asp:TemplateField>
                                                        <asp:TemplateField HeaderText="Delete">
                                                         <ItemTemplate>
-                                                             <asp:Button ID="btnDelete" OnClientClick="return confirm('Are You Sure !!!')" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-danger drill_btn" />
+                                                             <asp:Button ID="btnDelete" OnClientClick="return confirm('Are You Sure You Want to Delete this Item?')" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-danger drill_btn" />
                                                          </ItemTemplate>
 
                                                         </asp:TemplateField>

@@ -59,7 +59,7 @@
                                                 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
-                                                        <asp:Label ID="lblFY" runat="server" Text="Select Financial Year*" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblFY" runat="server" Text="Financial Year*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
@@ -127,9 +127,9 @@
                                                                 <%# Container.DataItemIndex + 1 %>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:BoundField HeaderText="State" DataField="Zone_Name" />
+                                                        <%--<asp:BoundField HeaderText="State" DataField="Zone_Name" />--%>
                                                         <asp:BoundField HeaderText="District" DataField="Circle_Name" />
-                                                        <asp:BoundField HeaderText="ULBName" DataField="Division_Name" />
+                                                        <asp:BoundField HeaderText="ULB Name" DataField="Division_Name" />
                                                         <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
                                                                                               
                                                          <asp:TemplateField HeaderText="Action Plan Doc.">

@@ -675,7 +675,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         }
     }
 
-    public DataTable GetDocOfAnnualActionPlan(string actions, int? ULBID, int? TaskId, int? stateid,  int? circleId, int? FY, int? personId, string @Documents)
+    public DataTable GetDocOfAnnualActionPlan(string actions, int? ULBID, int? TaskId, int? stateid,  int? circleId, int? FY, int? personId, string Documents,string from)
     {
         try
         {
@@ -689,9 +689,16 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[5] = new SqlParameter("@FYId", FY); 
             param[6] = new SqlParameter("@createdBy", personId);
             param[7] = new SqlParameter("@Documents", Documents);
-           
+           if(from=="VisionPlan")
+            {
+                return objDAL.GetDataByProcedure("SpVisionPlanDOC", param);
 
-            return objDAL.GetDataByProcedure("AnnualActionPlanDOC", param);
+            }
+            else
+            {
+                return objDAL.GetDataByProcedure("AnnualActionPlanDOC", param);
+
+            }
         }
         catch (Exception ex)
         {

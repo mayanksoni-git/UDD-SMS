@@ -49,9 +49,10 @@ public partial class VisionPlan : System.Web.UI.Page
 
             get_tbl_FinancialYear();
 
-            GetEditExpenseList();
+           
             SetDropdownsBasedOnUserType();
         }
+        GetEditExpenseList();
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
     private void get_tbl_Zone()
@@ -181,14 +182,43 @@ public partial class VisionPlan : System.Web.UI.Page
         }
         else
         {
-           // GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
+            // GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
             //BindLoanReleaseGridByULB();
+            GetEditExpenseList();
         }
     }
    protected void GetEditExpenseList()
     {
+        var dist = 0;
+        var ULB = 0;
+        var FY = 0;
+        var state = Convert.ToInt32(ddlZone.SelectedValue);
+        if (ddlCircle.SelectedValue=="0"|| ddlCircle.SelectedValue == "")
+        {
+            dist = 0;
+        }
+        else
+        {
+            dist = Convert.ToInt32(ddlCircle.SelectedValue);// == "0"
+        }
+        if (ddlDivision.SelectedValue == "0" || ddlDivision.SelectedValue == "")
+        {
+            ULB = 0;
+        }
+        else
+        {
+            ULB = Convert.ToInt32(ddlDivision.SelectedValue);// == "0"
+        }
+        if (ddlFY.SelectedValue == "0" || ddlFY.SelectedValue == "")
+        {
+            FY = 0;
+        }
+        else
+        {
+            FY = Convert.ToInt32(ddlFY.SelectedValue);// == "0"
+        }
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("select",0,0,0,0,"",0,0,"","","",0,"",0,"","","","","");
+        dt = objLoan.GetVisionPlan("select",0,ULB,0,state,"",dist,FY,"","","",0,"",0,"","","","","");
       
         if (dt != null && dt.Rows.Count > 0)
         {
@@ -198,7 +228,7 @@ public partial class VisionPlan : System.Web.UI.Page
         else
         {
             // exportToExcel.Visible = false;
-            MessageBox.Show("Record Not Found");
+           // MessageBox.Show("Record Not Found");
         }
     }
     public bool ValidateFields()
@@ -248,6 +278,7 @@ public partial class VisionPlan : System.Web.UI.Page
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     MessageBox.Show(dt.Rows[0]["Remark"].ToString());
+                    GetEditExpenseList();
                 }
 
             }

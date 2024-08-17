@@ -63,7 +63,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divDivision" runat="server">
                                                         <asp:Label ID="lblDivisionH" runat="server" Text="ULB" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>
                                                         <%--<asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>--%>
                                                     </div>
                                                 </div>
@@ -199,7 +199,7 @@
                                                     <asp:LinkButton ID="btnEdit" runat="server" Text="Edit" CssClass="btn bg-warning icon-pencil bigger-130 green" ToolTip="Click to Edit Record" CommandName="edit"
                                                         CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
                                                     <asp:LinkButton ID="btnDelete" CssClass="btn bg-danger" Text="Delete" runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
-                                                        OnClientClick="return ConfirmDeletion();" />
+                                                        OnClientClick="return confirm('Are you sure !');" />
 
                                                 </td>
                                             </tr>
@@ -224,6 +224,8 @@
                     </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="BtnSearch" />
+                    <asp:PostBackTrigger ControlID="ddlDivision" />
+                    <%--<asp:PostBackTrigger ControlID="btnDelete" />--%>
                 </Triggers>
 
                 </asp:UpdatePanel>

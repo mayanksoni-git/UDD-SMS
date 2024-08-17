@@ -59,27 +59,28 @@
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
-                                                        <asp:Label ID="lblFY" runat="server" Text="Select Financial Year*" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                        <asp:Label ID="lblFY" runat="server" Text="Financial Year*" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlFY_SelectedIndexChanged" ></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div3" runat="server">
-                                                        <asp:Label ID="lblRemark" runat="server" Text="SFC Fund(in Cr)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblRemark" runat="server" Text="SFC Fund(in Crore)" CssClass="form-label  me-1"></asp:Label>
                                                         <asp:TextBox ID="SFC" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
+                                              
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div1" runat="server">
-                                                        <asp:Label ID="Label1" runat="server" Text="CFC Fund(in Cr)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="Label1" runat="server" Text="CFC Fund(in Crore)" CssClass="form-label  me-1"></asp:Label>
                                                         <asp:TextBox ID="CFC" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div2" runat="server">
-                                                        <asp:Label ID="Label2" runat="server" Text="Total Taxt Collection(in Cr)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="Label2" runat="server" Text="Total Taxt Collection(in Crore)" CssClass="form-label  me-1"></asp:Label>
                                                         <asp:TextBox ID="TotalTax" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
@@ -111,6 +112,7 @@
                     <asp:PostBackTrigger ControlID="ddlDivision" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlZone" />
+                    <asp:PostBackTrigger ControlID="ddlFY" />
                     
                 </Triggers>
             </asp:UpdatePanel>
@@ -139,11 +141,11 @@
                                                         </asp:TemplateField>
                                                         <asp:BoundField HeaderText="State" DataField="Zone_Name" />
                                                         <asp:BoundField HeaderText="District" DataField="Circle_Name" />
-                                                        <asp:BoundField HeaderText="ULBName" DataField="Division_Name" />
+                                                        <asp:BoundField HeaderText="ULB Name" DataField="Division_Name" />
                                                         <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
-                                                        <asp:BoundField HeaderText="SFC FUnd" DataField="SFCFund" />
-                                                        <asp:BoundField HeaderText="CFC Fund" DataField="CFCFund" />
-                                                        <asp:BoundField HeaderText="Total Taxt Collection" DataField="TotalTaxtCollection" />
+                                                        <asp:BoundField HeaderText="SFC Fund (in Crore)" DataField="SFCFund" />
+                                                        <asp:BoundField HeaderText="CFC Fund (in Crore)" DataField="CFCFund" />
+                                                        <asp:BoundField HeaderText="Total Taxt Collection (in Crore)" DataField="TotalTaxtCollection" />
                                                         <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>
                                                                 <asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditULBFund" OnCommand="Edit_Command" CommandArgument='<%# Eval("ULBFundId") %>' CssClass="btn btn-primary drill_btn" />

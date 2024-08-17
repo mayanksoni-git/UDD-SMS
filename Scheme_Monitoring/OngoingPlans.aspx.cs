@@ -401,7 +401,12 @@ public partial class OngoingPlans : System.Web.UI.Page
         }
         ddlProjectMaster.SelectedValue = "0";
         ddlFY.SelectedValue = "0";
+        ddlZone.Enabled = true;
+        ddlCircle.Enabled = true;
+        ddlDivision.Enabled = true;
+        ddlFY.Enabled = true;
         btnSave.Visible = true;
+        BtnUpdate.Visible = false;
         ProjectName.Text = "";
         detailOfProject.Text = "";
         Remarks.Text = "";
@@ -410,6 +415,7 @@ public partial class OngoingPlans : System.Web.UI.Page
         Cost.Text = "";
         prgPhysical.Text = "";
         hdnplanId.Value = "";
+        SetDropdownsBasedOnUserType();
     }
 
     protected void Edit_Command(object sender, CommandEventArgs e)
@@ -456,7 +462,10 @@ public partial class OngoingPlans : System.Web.UI.Page
             //CFC.Text = dt.Rows[0]["CFCFund"].ToString();
             //TotalTax.Text = dt.Rows[0]["TotalTaxtCollection"].ToString();
             hdnplanId.Value = dt.Rows[0]["OnplanId"].ToString();
-
+            ddlZone.Enabled = false;
+            ddlCircle.Enabled = false;
+            ddlDivision.Enabled = false;
+            ddlFY.Enabled = false;
         }
 
     }
@@ -543,9 +552,12 @@ public partial class OngoingPlans : System.Web.UI.Page
             MessageBox.Show(dt.Rows[0]["Remarks"].ToString());
         }
         GetAllData(division);
-
-        //GetULBFundAction
-        reset();
+            ddlZone.Enabled = true;
+            ddlCircle.Enabled = true;
+            ddlDivision.Enabled = true;
+            ddlFY.Enabled = true;
+            //GetULBFundAction
+            reset();
     }
         catch (Exception ex)
         {

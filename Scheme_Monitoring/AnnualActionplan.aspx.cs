@@ -226,7 +226,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         }
         if (ddlFY.SelectedValue == "0")
         {
-            MessageBox.Show("Please Select a Financial. ");
+            MessageBox.Show("Please Select a Financial Year. ");
             ddlFY.Focus();
             return false;
         }
@@ -248,6 +248,13 @@ public partial class AnnualActionplan : System.Web.UI.Page
             MessageBox.Show("Please Enter Cost Of Project  ");
             Cost.Focus();
            
+            return false;
+        }
+        if(PriorityNo.Value=="")
+        {
+            MessageBox.Show("Please Enter Priority Number.");
+            PriorityNo.Focus();
+
             return false;
         }
         //if (ddlProject.SelectedValue == "0")
@@ -392,7 +399,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
     }
         catch(Exception ex)
         {
-            MessageBox.Show(ex.Message);
+            MessageBox.Show(ex.Message+"Please Enter Cost in Numeric Or Priority In 1 to 5.");
 
         }
     }
@@ -427,6 +434,11 @@ public partial class AnnualActionplan : System.Web.UI.Page
         Cost.Text = "";
         PriorityNo.Value = "";
         hdnplanId.Value = "";
+        ddlZone.Enabled = true;
+        ddlCircle.Enabled = true;
+        ddlDivision.Enabled = true;
+        ddlFY.Enabled = true;
+        SetDropdownsBasedOnUserType();
     }
 
     protected void Edit_Command(object sender, CommandEventArgs e)
@@ -470,7 +482,10 @@ public partial class AnnualActionplan : System.Web.UI.Page
             //CFC.Text = dt.Rows[0]["CFCFund"].ToString();
             //TotalTax.Text = dt.Rows[0]["TotalTaxtCollection"].ToString();
             hdnplanId.Value = dt.Rows[0]["planId"].ToString();
-
+            ddlZone.Enabled = false;
+            ddlCircle.Enabled = false;
+            ddlDivision.Enabled = false;
+            ddlFY.Enabled = false;
         }
 
     }

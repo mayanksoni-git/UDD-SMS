@@ -226,7 +226,7 @@ public partial class ExistPlans : System.Web.UI.Page
         }
         if (ddlFY.SelectedValue == "0")
         {
-            MessageBox.Show("Please Select a Financial. ");
+            MessageBox.Show("Please Select a Financial Year.");
             ddlFY.Focus();
             return false;
         }
@@ -437,11 +437,16 @@ public partial class ExistPlans : System.Web.UI.Page
         ProjectName.Text = "";
         detailOfProject.Text = "";
         Remarks.Text = "";
-       
+        ddlZone.Enabled = true;
+        ddlCircle.Enabled = true;
+        ddlDivision.Enabled = true;
+        ddlFY.Enabled = true;
         Cost.Text = "";
         rdoNo.Checked =false;
         rdoYes.Checked =false;
         hdnplanId.Value = "";
+        SetDropdownsBasedOnUserType();
+
     }
 
     protected void Edit_Command(object sender, CommandEventArgs e)
@@ -491,7 +496,10 @@ public partial class ExistPlans : System.Web.UI.Page
             //CFC.Text = dt.Rows[0]["CFCFund"].ToString();
             //TotalTax.Text = dt.Rows[0]["TotalTaxtCollection"].ToString();
             hdnplanId.Value = dt.Rows[0]["exPlanId"].ToString();
-
+            ddlZone.Enabled = false;
+            ddlCircle.Enabled = false;
+            ddlDivision.Enabled = false;
+            ddlFY.Enabled = false;
         }
 
     }

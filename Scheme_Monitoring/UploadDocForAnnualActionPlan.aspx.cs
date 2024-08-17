@@ -34,9 +34,11 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
             GetAllData(Convert.ToInt32(ddlDivision.SelectedItem));
            
             SetDropdownsBasedOnUserType();
+
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
+
 
 
     private void get_tbl_Zone()
@@ -48,7 +50,6 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
             get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
         }
     }
-
     private void SetDropdownsBasedOnUserType()
     {
         int userType = Convert.ToInt32(Session["UserType"]);
@@ -77,12 +78,11 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
                 if (divisionId > 0)
                 {
                     SetDropdownValueAndDisable(ddlDivision, divisionId);
-                    GetAllData(divisionId);
+
                 }
             }
         }
     }
-
     private void SetDropdownValueAndDisable(DropDownList ddl, int value)
     {
         try
@@ -105,7 +105,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
     }
 
 
-  
+
     private void get_tbl_FinancialYear()
     {
         DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
@@ -163,16 +163,17 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
     {
         if (ddlDivision.SelectedValue == "0")
         {
-            lblMessage.Text = "Please Select a ULB.";
+
             ddlDivision.Focus();
         }
         else
         {
-            GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
+            // GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
             //BindLoanReleaseGridByULB();
+            GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
         }
     }
- 
+
     public bool ValidateFields()
     {
 
@@ -196,7 +197,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
         }
         if (ddlFY.SelectedValue == "0")
         {
-            MessageBox.Show("Please Select a Financial. ");
+            MessageBox.Show("Please Select a Financial Year. ");
             ddlFY.Focus();
             return false;
         }
@@ -229,7 +230,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
     {
        // ULBID = 0;
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("select", ULBID, 0, 0,  0, 0,  0, "");
+        dt = objLoan.GetDocOfAnnualActionPlan("select", ULBID, 0, 0,  0, 0,  0, "","");
         grdPost.DataSource = dt;
         grdPost.DataBind();
       
@@ -292,7 +293,9 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
         }
         else
         {
-            MessageBox.Show("Please Select A PDF File");
+               // Please Select A PDF File Change to "Please choose the Annual Action Plan document to upload. It should be in PDF format."
+
+            MessageBox.Show("Please choose the Annual Action Plan document to upload. It should be in PDF format.");
             return;
         }
         int zone = Convert.ToInt32(ddlZone.SelectedValue);
@@ -309,17 +312,19 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
         Button clickedButton = sender as Button;
         string text = clickedButton.Text;
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan(  "Insert",     division,   0,  zone,circle,  fy, Person_Id, pathProfile );
+        dt = objLoan.GetDocOfAnnualActionPlan(  "Insert",     division,   0,  zone,circle,  fy, Person_Id, pathProfile,"" );
         if (dt != null && dt.Rows.Count > 0)
         {
-           
+                if (dt.Rows[0]["remark"].ToString() != "Record already exists for this ULBID and FYID")
+                {
+                    reset();
+                }
                 MessageBox.Show(dt.Rows[0]["remark"].ToString());
-           
-        }
-        GetAllData(division);
+
+            }
+            GetAllData(division);
 
         //GetULBFundAction
-        reset();
         }
         catch (Exception ex)
         {
@@ -346,13 +351,17 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
         {
             ddlDivision.SelectedValue = "0";
         }
-      
+        ddlZone.Enabled = true;
+        ddlCircle.Enabled = true;
+        ddlDivision.Enabled = true;
+        ddlFY.Enabled = true;
+        UpladedDoc.InnerText = "";
         ddlFY.SelectedValue = "0";
         btnSave.Visible = true;
         BtnUpdate.Visible = false;
-      
-       
-      
+
+        SetDropdownsBasedOnUserType();
+
         hdnplanId.Value = "";
     }
 
@@ -363,7 +372,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
         DataTable dt = new DataTable();
 
        // objLoan.GetAnnualActionPlan("select", ULBID, 0, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
-        dt = objLoan.GetDocOfAnnualActionPlan("selectById", 0, id, 0, 0, 0,  0,  "");
+        dt = objLoan.GetDocOfAnnualActionPlan("selectById", 0, id, 0, 0, 0,  0,  "","");
         btnSave.Visible = false;
         BtnUpdate.Visible = true;
         if (dt != null && dt.Rows.Count > 0)
@@ -380,8 +389,12 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
                 ddlDivision.SelectedValue = "0";
             }
             ddlFY.SelectedValue = dt.Rows[0]["FYID"].ToString();
-          
-           
+
+            ddlCircle.Enabled = false;
+            ddlZone.Enabled = false;
+            ddlDivision.Enabled = false;
+            //ddlFY.Enabled = false;
+
             var doc = dt.Rows[0]["Documents"].ToString();
             if (doc != null)
             {
@@ -434,7 +447,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
             }
             else
             {
-                MessageBox.Show("Please Select A PDF File");
+                MessageBox.Show("Please choose the Annual Action Plan document to upload. It should be in PDF format.");
                 return;
             }
 
@@ -452,11 +465,20 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
             Button clickedButton = sender as Button;
             string text = clickedButton.Text;
             DataTable dt = new DataTable();
-            dt = objLoan.GetDocOfAnnualActionPlan("Update", division, taskid, zone, circle, fy, Person_Id, pathProfile);
+            dt = objLoan.GetDocOfAnnualActionPlan("Update", division, taskid, zone, circle, fy, Person_Id, pathProfile,"");
 
             if (dt != null && dt.Rows.Count > 0)
             {
+                ddlCircle.Enabled = true;
+                ddlZone.Enabled = true;
+                ddlDivision.Enabled = true;
+                ddlFY.Enabled = true;
+                UpladedDoc.InnerText = "";
+                if (dt.Rows[0]["remark"].ToString() != "Record already exists for this ULBID and FYID")
+                {
 
+                    reset();
+                }
                 MessageBox.Show(dt.Rows[0]["remark"].ToString());
             }
             GetAllData(division);
@@ -475,7 +497,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
         var id = Convert.ToInt32(e.CommandArgument.ToString());
 
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "");
+        dt = objLoan.GetDocOfAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "","");
         //dt = objLoan.GetAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
         if (dt != null && dt.Rows.Count > 0)
         {

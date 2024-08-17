@@ -59,34 +59,34 @@
                                                 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
-                                                        <asp:Label ID="lblFY" runat="server" Text="Select Financial Year*" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblFY" runat="server" Text="Financial Year*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="div4" runat="server">
-                                                        <asp:Label ID="ProjectMaster" runat="server" Text="Select  Scheme *" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="ProjectMaster" runat="server" Text="Scheme *" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div3" runat="server">
-                                                        <asp:Label ID="lblRemark" runat="server" Text="Project Name" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblRemark" runat="server" Text="Project Name*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="ProjectName" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div1" runat="server">
-                                                        <asp:Label ID="Label1" runat="server" Text="Sanctioned Amount(in Rupees)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="Label1" runat="server" Text="Sanctioned Amount(in Rupees)*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="Cost" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
 
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div9" runat="server">
-                                                        <asp:Label ID="Label7" runat="server" Text="Received amount(in Rupees)" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="Label7" runat="server" Text="Received Amount(in Rupees)*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="ReceivedAmn" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
 
@@ -101,7 +101,7 @@
                                                  
                                                   <div class="col-xxl-3 col-md-6">
                                                     <div id="div10" runat="server">
-                                                        <asp:Label ID="Label8" runat="server" Text="Estimate Complete Date" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="Label8" runat="server" Text="Estimate Completion Date*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="EstimateDate" runat="server"  CssClass="form-control" TextMode="Date"></asp:TextBox>
                                                     </div>
                                                 </div>
@@ -186,16 +186,16 @@
                                                                 <%# Container.DataItemIndex + 1 %>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:BoundField HeaderText="State" DataField="Zone_Name" />
+                                                        <asp:BoundField HeaderText="Scheme" DataField="Project_Name" />
                                                         <asp:BoundField HeaderText="District" DataField="Circle_Name" />
-                                                        <asp:BoundField HeaderText="ULBName" DataField="Division_Name" />
+                                                        <asp:BoundField HeaderText="ULB Name" DataField="Division_Name" />
                                                         <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
                                                         <asp:BoundField HeaderText="Project Name" DataField="ProjectName" />
                                                         <asp:BoundField HeaderText="Project Detail" DataField="ProjectDetail" />
-                                                        <asp:BoundField HeaderText="Sanctioned Cost(in lacs)" DataField="costinlacks" />
-                                                        <asp:BoundField HeaderText="Recieced Amount(in lacs)" DataField="RecievedAmnInLac" />
+                                                        <asp:BoundField HeaderText="Sanctioned Cost(in Lakhs)" DataField="costinlacks" />
+                                                        <asp:BoundField HeaderText="Recieced Amount(in Lakhs)" DataField="RecievedAmnInLac" />
                                                         <asp:BoundField HeaderText="Physical Progress" DataField="PhysicalProgress" />
-                                                        <asp:BoundField HeaderText="Estimated Complete Date" DataField="EstimatedCompletionOnlyDate" />
+                                                        <asp:BoundField HeaderText="Estimated Completion Date" DataField="EstimatedCompletionOnlyDate" />
                                                         <asp:BoundField HeaderText="Remark" DataField="Remark" />                                            
                                                          <asp:TemplateField HeaderText="Docs">
 
@@ -215,7 +215,7 @@
                                                         </asp:TemplateField>
                                                        <asp:TemplateField HeaderText="Delete">
                                                         <ItemTemplate>
-                                                             <asp:Button ID="btnDelete" OnClientClick="return confirm('Are You Sure !!!')" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("OnPlanId") %>' CssClass="btn btn-danger drill_btn" />
+                                                             <asp:Button ID="btnDelete" OnClientClick="return confirm('Are You Sure You Want To Delete This Item?')" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("OnPlanId") %>' CssClass="btn btn-danger drill_btn" />
                                                          </ItemTemplate>
 
                                                         </asp:TemplateField>

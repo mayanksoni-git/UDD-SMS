@@ -59,13 +59,13 @@
                                                 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
-                                                        <asp:Label ID="lblFY" runat="server" Text="Select Financial Year*" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblFY" runat="server" Text="Financial Year*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="div4" runat="server">
-                                                        <asp:Label ID="ProjectMaster" runat="server" Text="Select  Scheme *" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="ProjectMaster" runat="server" Text="Scheme *" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
@@ -166,13 +166,13 @@
                                                                 <%# Container.DataItemIndex + 1 %>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:BoundField HeaderText="State" DataField="Zone_Name" />
+                                                        <asp:BoundField HeaderText="Scheme" DataField="Project_Name" />
                                                         <asp:BoundField HeaderText="District" DataField="Circle_Name" />
-                                                        <asp:BoundField HeaderText="ULBName" DataField="Division_Name" />
+                                                        <asp:BoundField HeaderText="ULB Name" DataField="Division_Name" />
                                                         <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
                                                         <asp:BoundField HeaderText="Project Name" DataField="ProjectName" />
                                                         <asp:BoundField HeaderText="Project Detail" DataField="ProjectDetail" />
-                                                        <asp:BoundField HeaderText="Cost (in lacs)" DataField="costinlacks" />
+                                                        <asp:BoundField HeaderText="Cost (in Lakhs)" DataField="costinlacks" />
                                                         <asp:BoundField HeaderText="Status" DataField="Statuss" />
                                                        <%-- <asp:BoundField HeaderText="Reason For Selected" DataField="ReasonForSelected" />--%>
                                                         <asp:BoundField HeaderText="Remark" DataField="Remark" />                                            
@@ -190,7 +190,7 @@
                                                         </asp:TemplateField>
                                                        <asp:TemplateField HeaderText="Delete">
                                                         <ItemTemplate>
-                                                             <asp:Button ID="btnDelete" runat="server" Text='Delete' OnClientClick="return confirm('Are You Sure !!!')" CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("exPlanId") %>' CssClass="btn btn-danger drill_btn" />
+                                                             <asp:Button ID="btnDelete" runat="server" Text='Delete' OnClientClick="return confirm('Are You Sure You Want To Delete This Item?')" CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("exPlanId") %>' CssClass="btn btn-danger drill_btn" />
                                                          </ItemTemplate>
 
                                                         </asp:TemplateField>
