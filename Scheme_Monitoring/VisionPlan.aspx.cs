@@ -188,7 +188,21 @@ public partial class VisionPlan : System.Web.UI.Page
             GetEditExpenseList();
         }
     }
-   protected void GetEditExpenseList()
+    protected void ddlFY_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlFY.SelectedValue == "0")
+        {
+
+            ddlFY.Focus();
+        }
+        else
+        {
+            // GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
+            //BindLoanReleaseGridByULB();
+            GetEditExpenseList();
+        }
+    }
+    protected void GetEditExpenseList()
     {
         var dist = 0;
         var ULB = 0;
@@ -228,8 +242,10 @@ public partial class VisionPlan : System.Web.UI.Page
         }
         else
         {
+            grdPost.DataSource = dt;
+            grdPost.DataBind();
             // exportToExcel.Visible = false;
-           // MessageBox.Show("Record Not Found");
+            // MessageBox.Show("Record Not Found");
         }
     }
     public bool ValidateFields()
@@ -329,7 +345,7 @@ public partial class VisionPlan : System.Web.UI.Page
         else
         {
             // exportToExcel.Visible = false;
-            MessageBox.Show("Record Not Found");
+            //MessageBox.Show("Record Not Found");
             grdPost.DataSource = dt;
             grdPost.DataBind();
            // NoRecordsPanel.Visible = true;
@@ -404,7 +420,7 @@ public partial class VisionPlan : System.Web.UI.Page
         }
         Response.End();
     }
-       
+
 
 
     //protected void ExportExcel_Click(object sender, EventArgs e)
@@ -465,4 +481,6 @@ public partial class VisionPlan : System.Web.UI.Page
     //        return;
     //    }
     //}
+
+    
 }

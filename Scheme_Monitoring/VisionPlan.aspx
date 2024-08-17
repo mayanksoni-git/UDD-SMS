@@ -71,7 +71,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
                                                         <asp:Label ID="lblFY" runat="server" Text="Financial Year" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true" ></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlFY_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
@@ -234,6 +234,8 @@
                     </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="BtnSearch" />
+                    <asp:PostBackTrigger ControlID="ddlCircle" />
+                    <asp:PostBackTrigger ControlID="ddlFY" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />
                     <%--<asp:PostBackTrigger ControlID="btnDelete" />--%>
                 </Triggers>
