@@ -129,7 +129,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
  
     private void get_tbl_FinancialYear()
     {
-        DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
+        DataSet ds = (new ULBFund()).getFYDetail();
         FillDropDown(ds, ddlFY, "FinancialYear_Comments", "FinancialYear_Id");
         //FillDropDown(ds, ddlFY1, "FinancialYear_Comments", "FinancialYear_Id");
         //FillDropDown(ds, ddlFY2, "FinancialYear_Comments", "FinancialYear_Id");
