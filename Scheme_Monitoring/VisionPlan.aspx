@@ -116,6 +116,9 @@
 
                                 <div class="card"  runat="server">
                                 <div class="card-body"  runat="server" style="">
+                                     <div class="clearfix" id="dtOptions" runat="server">
+                                                        <div class="pull-right tableTools-container"></div>
+                                                    </div>
                                             <table id="sample-table-2" class="table table-striped table-bordered table-hover table-responsive">
 
 
@@ -160,7 +163,7 @@
                                                     </tr>
                                                 </thead>
                                        
-                                     <asp:Repeater ID="rptSearchResult" runat="server" OnItemCommand="rptSearchResult_ItemCommand">
+                                     <asp:Repeater ID="grdPost" runat="server" OnItemCommand="grdPost_ItemCommand" OnPreRender="grdPost_PreRender">
                                         <ItemTemplate>
                                             <tr>
                                                 <td><%# Container.ItemIndex + 1 %></td>

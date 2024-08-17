@@ -222,8 +222,8 @@ public partial class VisionPlan : System.Web.UI.Page
       
         if (dt != null && dt.Rows.Count > 0)
         {
-            rptSearchResult.DataSource = dt;
-            rptSearchResult.DataBind ();
+            grdPost.DataSource = dt;
+            grdPost.DataBind ();
         }
         else
         {
@@ -265,7 +265,7 @@ public partial class VisionPlan : System.Web.UI.Page
         }
     }
 
-    protected void rptSearchResult_ItemCommand(object source, RepeaterCommandEventArgs e)
+    protected void grdPost_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
         try
         {
@@ -299,7 +299,26 @@ public partial class VisionPlan : System.Web.UI.Page
             MessageBox.Show(ex.Message);
         }
         }
-      protected void BtnSearch_Click(object sender, EventArgs e)
+
+    protected void grdPost_PreRender(object sender, EventArgs e)
+    {
+        GridView gv = (GridView)sender;
+        if (gv.Rows.Count > 0)
+        {
+            //This replaces <td> with <th> and adds the scope attribute
+            gv.UseAccessibleHeader = true;
+        }
+        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
+        {
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        if (gv.ShowFooter == true && gv.Rows.Count > 0)
+        {
+            gv.FooterRow.TableSection = TableRowSection.TableFooter;
+        }
+    }
+
+    protected void BtnSearch_Click(object sender, EventArgs e)
     {
         var state = Convert.ToInt32(ddlZone.SelectedValue);
         var dist = Convert.ToInt32(ddlCircle.SelectedValue);
@@ -316,8 +335,8 @@ public partial class VisionPlan : System.Web.UI.Page
 
         if (dt != null && dt.Rows.Count > 0)
         {
-            rptSearchResult.DataSource = dt;
-            rptSearchResult.DataBind();
+            grdPost.DataSource = dt;
+            grdPost.DataBind();
 
 
 
@@ -327,8 +346,8 @@ public partial class VisionPlan : System.Web.UI.Page
         {
             // exportToExcel.Visible = false;
             MessageBox.Show("Record Not Found");
-            rptSearchResult.DataSource = dt;
-            rptSearchResult.DataBind();
+            grdPost.DataSource = dt;
+            grdPost.DataBind();
            // NoRecordsPanel.Visible = true;
         }
 
