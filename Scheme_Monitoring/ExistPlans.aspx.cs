@@ -32,7 +32,7 @@ public partial class ExistPlans : System.Web.UI.Page
             get_tbl_Project();
             //get_tbl_WorkType();
             get_tbl_FinancialYear();
-            GetAllData(0);
+            //GetAllData(0);
             //LoadDataInForm(1);
             SetDropdownsBasedOnUserType();
         }
@@ -78,7 +78,7 @@ public partial class ExistPlans : System.Web.UI.Page
                 if (divisionId > 0)
                 {
                     SetDropdownValueAndDisable(ddlDivision, divisionId);
-                    GetAllData(divisionId);
+                   // GetAllData(divisionId);
                 }
             }
         }
@@ -173,113 +173,61 @@ public partial class ExistPlans : System.Web.UI.Page
     {
         if (ddlDivision.SelectedValue == "0")
         {
-            lblMessage.Text = "Please Select a ULB.";
+           // lblMessage.Text = "Please Select a ULB.";
             ddlDivision.Focus();
         }
         else
         {
-            GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
+            //GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
             //BindLoanReleaseGridByULB();
         }
     }
-    //protected void ddlProjectMaster_SelectedIndexChanged(object sender, EventArgs e)
-    //{
-    //    //if (ddlProjectMaster.SelectedValue == "0")
-    //    //{
-    //    //  //  ddlWorkType.Items.Clear();
-    //    //}
-    //    else
-    //    {
-    //        int ProjectId = 0;
-    //        try
-    //        {
-    //            ProjectId = Convert.ToInt32(ddlProjectMaster.SelectedValue);
-    //        }
-    //        catch
-    //        {
-    //            ProjectId = 0;
-    //        }
-    //        get_tbl_WorkType(ProjectId);
-    //    }
-    //}
+   
 
-    public bool ValidateFields()
+  
+    protected void GetAllData()
     {
 
-        if (ddlZone.SelectedValue == "0")
+        var dist = 0;
+        var ULB = 0;
+        var FY = 0;
+        var scheme = 0;
+        var state = Convert.ToInt32(ddlZone.SelectedValue);
+        if (ddlCircle.SelectedValue == "0" || ddlCircle.SelectedValue == "")
         {
-            MessageBox.Show("Please Select a State. ");
-            ddlZone.Focus();
-            return false;
+            dist = 0;
         }
-        if (ddlCircle.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select a District. ");
-            ddlCircle.Focus();
-            return false;
-        }
-        if (ddlDivision.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select a ULB. ");
-            ddlDivision.Focus();
-            return false;
-        }
-        if (ddlFY.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select a Financial Year.");
-            ddlFY.Focus();
-            return false;
-        }
-
-        if (ddlProjectMaster.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select a Scheme. ");
-            ddlProjectMaster.Focus();
-            return false;
-        }
-        if (ProjectName.Text == "")
-        {
-            MessageBox.Show("Please Enter Project Name ");
-            ProjectName.Focus();
-            return false;
-        }
-
-        if ((Cost.Text == "" || Cost.Text == "0"))
-        {
-            MessageBox.Show("Please Enter Cost Of Project  ");
-            Cost.Focus();
-           
-            return false;
-        }
-        //if (ddlProject.SelectedValue == "0")
-        //{
-        //    MessageBox.Show("Please Select a Project. ");
-        //    ddlDivision.Focus();
-        //    return false;
-        //}
-        //if (string.IsNullOrWhiteSpace(txtDepositAmount.Text))
-        //{
-        //    MessageBox.Show("Please enter Deposit Amount!");
-        //    txtDepositAmount.Focus();
-        //    return false;
-        //}
-
-        //if (string.IsNullOrWhiteSpace(txtDepositDate.Text))
-        //{
-        //    MessageBox.Show("Please enter Deposit Date!");
-        //    txtDepositDate.Focus();
-        //    return false;
-        //}
         else
         {
-            return true;
+            dist = Convert.ToInt32(ddlCircle.SelectedValue);// == "0"
         }
-    }
-    protected void GetAllData(int? ULBID)
-    {
-       // ULBID = 0;
+        if (ddlDivision.SelectedValue == "0" || ddlDivision.SelectedValue == "")
+        {
+            ULB = 0;
+        }
+        else
+        {
+            ULB = Convert.ToInt32(ddlDivision.SelectedValue);// == "0"
+        }
+        if (ddlFY.SelectedValue == "0" || ddlFY.SelectedValue == "")
+        {
+            FY = 0;
+        }
+        else
+        {
+            FY = Convert.ToInt32(ddlFY.SelectedValue);// == "0"
+        }
+        if (ddlProjectMaster.SelectedValue == "0" || ddlProjectMaster.SelectedValue == "")
+        {
+            scheme = 0;
+        }
+        else
+        {
+            scheme = Convert.ToInt32(ddlProjectMaster.SelectedValue);// == "0"
+        }
+        // ULBID = 0;
         DataTable dt = new DataTable();
-        dt = objLoan.GetExistPlan("select", ULBID, 0, 0, 0, 0, 0, "", 0, "",0,"","","");
+        dt = objLoan.GetExistPlan("select", ULB, 0, 0, scheme, dist,FY, "", 0, "",0,"","","");
         grdPost.DataSource = dt;
         grdPost.DataBind();
       
@@ -302,310 +250,19 @@ public partial class ExistPlans : System.Web.UI.Page
         }
     }
 
-    protected void btnsave_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            if (!ValidateFields())
-            {
-                return;
-            }
-            var doc = "";
-            var pathProfile = "";
-            if (fileupload.HasFile)
-            {
-                string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
-                if (fileExtension != ".pdf")
-                {
-                    MessageBox.Show("Only PDF files are allowed.");
-                    return;
-                }
-                int fileSize = fileupload.PostedFile.ContentLength;
-
-                // path = FileUpload1.FileName;
-                //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
-                string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
-                int fileappent = 0;
-                var newFileName = "ExitPlanDoc_" + sFilename;
-                while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + newFileName)))
-                {
-                    fileappent++;
-                    sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
-                    + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
-                }
-                doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + newFileName);
-
-                //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
-
-                fileupload.SaveAs(doc);
-
-                pathProfile = "/PDFs/AnualActionPlanPDF/" + newFileName;
-            }
-
-            var status = "";
-            int zone = Convert.ToInt32(ddlZone.SelectedValue);
-            int circle = Convert.ToInt32(ddlCircle.SelectedValue);
-            int division = Convert.ToInt32(ddlDivision.SelectedValue);
-            int scheme = Convert.ToInt32(ddlProjectMaster.SelectedValue);
-            int fy = Convert.ToInt32(ddlFY.SelectedValue);
-            var project = ProjectName.Text;
-            decimal costs = Convert.ToDecimal(Cost.Text);
-            if (rdoYes.Checked)
-            {
-                status = "1";
-            }
-            if (rdoNo.Checked)
-            {
-                status = "0";
-            }
-            if (status == "")
-            {
-                MessageBox.Show("Please Select Status !!!");
-                rdoNo.Focus();
-                rdoYes.Focus();
-                return;
-            }
-            //var priority = PriorityNo.Value;
-            var projDetail = detailOfProject.Text;
-            var Remark = Remarks.Text;
-            // var converge = convergence.Text;
-            var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
-
-
-            //var sfc = Convert.ToDecimal();
-            Button clickedButton = sender as Button;
-            string text = clickedButton.Text;
-            DataTable dt = new DataTable();
-            dt = objLoan.GetExistPlan(
-                 "Insert",
-                  division,
-                   0,
-                zone,
-                scheme,
-                circle,
-                 fy,
-                project,
-                 costs,
-                 projDetail,
-                 Person_Id,
-                 Remark,
-                 status
-                 , pathProfile
-
-                 );
-            if (dt != null && dt.Rows.Count > 0)
-            {
-
-                MessageBox.Show(dt.Rows[0]["Remarks"].ToString());
-
-            }
-            GetAllData(division);
-
-            //GetULBFundAction
-            reset();
-        }
-        catch(Exception ex)
-        {
-            MessageBox.Show(ex.Message);
-
-        }
-    }
-
-    protected void btnCancel_Click(object sender, EventArgs e)
-    {
-        reset();
-    }
-    private void reset()
-    {
-
-        ddlZone.SelectedValue = "0";
-        ddlCircle.SelectedValue = "0";
-        get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
-        ddlCircle_SelectedIndexChanged(ddlCircle, new EventArgs());
-        try
-        {
-            ddlDivision.SelectedValue = "0";
-        }
-        catch
-        {
-            ddlDivision.SelectedValue = "0";
-        }
-        ddlProjectMaster.SelectedValue = "0";
-        ddlFY.SelectedValue = "0";
-        btnSave.Visible = true;
-        BtnUpdate.Visible = false;
-        ProjectName.Text = "";
-        detailOfProject.Text = "";
-        Remarks.Text = "";
-        ddlZone.Enabled = true;
-        ddlCircle.Enabled = true;
-        ddlDivision.Enabled = true;
-        ddlFY.Enabled = true;
-        Cost.Text = "";
-        rdoNo.Checked =false;
-        rdoYes.Checked =false;
-        hdnplanId.Value = "";
-        SetDropdownsBasedOnUserType();
-
-    }
-
+  
+  
     protected void Edit_Command(object sender, CommandEventArgs e)
     {
-        reset();
+       
         var id = Convert.ToInt32(e.CommandArgument.ToString());
-
-        DataTable dt = new DataTable();
-
-       // objLoan.GetAnnualActionPlan("select", ULBID, 0, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
-        dt = objLoan.GetExistPlan("selectById", 0, id, 0, 0, 0,0, "", 0, "", 0, "",  "", "");
-        btnSave.Visible = false;
-        BtnUpdate.Visible = true;
-        if (dt != null && dt.Rows.Count > 0)
-        {
-            ddlZone.SelectedValue = dt.Rows[0]["stateId"].ToString();
-            ddlCircle.SelectedValue = dt.Rows[0]["DistrictId"].ToString();
-            ddlCircle_SelectedIndexChanged(ddlCircle, new EventArgs());
-            try
-            {
-                ddlDivision.SelectedValue = dt.Rows[0]["ULBID"].ToString();
-            }
-            catch
-            {
-                ddlDivision.SelectedValue = "0";
-            }
-            ddlFY.SelectedValue = dt.Rows[0]["FYID"].ToString();
-            ddlProjectMaster.SelectedValue = dt.Rows[0]["SchemeId"].ToString();
-            ProjectName.Text= dt.Rows[0]["ProjectName"].ToString();
-            Cost.Text = dt.Rows[0]["acceptedCost"].ToString();
-             //PriorityNo.Value = dt.Rows[0]["PrivorityNo"].ToString();
-             detailOfProject.Text = dt.Rows[0]["ProjectDetail"].ToString();
-            Remarks.Text = dt.Rows[0]["Remark"].ToString();
-            if (dt.Rows[0]["WStatus"].ToString() == "1")
-              { rdoYes.Checked = true; }
-            else
-            {
-                rdoNo.Checked = true;
-            }
-            var doc = dt.Rows[0]["Documents"].ToString();
-            if (doc != null)
-            {
-                UpladedDoc.HRef = dt.Rows[0]["Documents"].ToString();
-                UpladedDoc.InnerText = "Uploaded Docs";
-            }
-            //SFC.Text = dt.Rows[0]["SFCFund"].ToString();, , , ,, ,Documents
-            //CFC.Text = dt.Rows[0]["CFCFund"].ToString();
-            //TotalTax.Text = dt.Rows[0]["TotalTaxtCollection"].ToString();
-            hdnplanId.Value = dt.Rows[0]["exPlanId"].ToString();
-            ddlZone.Enabled = false;
-            ddlCircle.Enabled = false;
-            ddlDivision.Enabled = false;
-            ddlFY.Enabled = false;
-        }
+        Response.Redirect("CreateExistPlans.aspx?id=" + id);
+       
 
     }
 
    
-    protected void BtnUpdate_Click(object sender, EventArgs e)
-    {
-        try
-        {
-
-
-            var doc = "";
-            var pathProfile = "";
-            if (fileupload.HasFile)
-            {
-                string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
-                if (fileExtension != ".pdf")
-                {
-                    MessageBox.Show("Only PDF files are allowed.");
-                    return;
-                }
-                int fileSize = fileupload.PostedFile.ContentLength;
-
-                // path = FileUpload1.FileName;
-                //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
-                string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
-                int fileappent = 0;
-                var newFileName = "ExitPlanDoc_" + sFilename;
-                while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + newFileName)))
-                {
-                    fileappent++;
-                    sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
-                    + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
-                }
-                doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + newFileName);
-
-                //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
-
-                fileupload.SaveAs(doc);
-
-                pathProfile = "/PDFs/AnualActionPlanPDF/" + newFileName;
-            }
-
-            var status = "";
-            int zone = Convert.ToInt32(ddlZone.SelectedValue);
-            int circle = Convert.ToInt32(ddlCircle.SelectedValue);
-            int division = Convert.ToInt32(ddlDivision.SelectedValue);
-            int scheme = Convert.ToInt32(ddlProjectMaster.SelectedValue);
-            int fy = Convert.ToInt32(ddlFY.SelectedValue);
-            var project = ProjectName.Text;
-            decimal costs = Convert.ToDecimal(Cost.Text);
-            if (rdoYes.Checked)
-            {
-                status = "1";
-            }
-            if (rdoNo.Checked)
-            {
-                status = "0";
-            }
-            //var priority = PriorityNo.Value;
-            var projDetail = detailOfProject.Text;
-            var Remark = Remarks.Text;
-            // var converge = convergence.Text;
-            var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
-
-
-            var taskid = Convert.ToInt32(hdnplanId.Value);
-
-            //var sfc = Convert.ToDecimal();
-            Button clickedButton = sender as Button;
-            string text = clickedButton.Text;
-            DataTable dt = new DataTable();
-            dt = objLoan.GetExistPlan(
-                  "Update",
-                   division,
-                    taskid,
-                 zone,
-                 scheme,
-                 circle,
-                  fy,
-                 project,
-                  costs,
-                  projDetail,
-                  Person_Id,
-                  Remark,
-                  status
-                  , pathProfile
-
-                  );
-            if (dt != null && dt.Rows.Count > 0)
-            {
-
-                MessageBox.Show(dt.Rows[0]["Remarks"].ToString());
-            }
-            GetAllData(division);
-
-            //GetULBFundAction
-            reset();
-        }
-        catch(Exception ex)
-        {
-            MessageBox.Show(ex.Message);
-
-        }
-    }
-
+  
     protected void btnDelete_Command(object sender, CommandEventArgs e)
     {
         var id = Convert.ToInt32(e.CommandArgument.ToString());
@@ -618,7 +275,14 @@ public partial class ExistPlans : System.Web.UI.Page
 
 
         }
+        GetAllData();
 
-        GetAllData(0);
+    }
+
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+      
+
+        GetAllData();
     }
 }

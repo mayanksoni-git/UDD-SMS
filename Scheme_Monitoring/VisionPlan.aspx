@@ -74,6 +74,14 @@
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlFY_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
+                                                 <div class="col-xxl-3 col-md-6">
+                                                    <div id="div1" runat="server">
+                                                        <asp:Label ID="Label1" runat="server" Text="Year" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtYear" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+
                                                  <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
                                                     <div id="div7" runat="server">
                                                         <asp:Label ID="Label10" runat="server" Text="Self Priority" CssClass="form-label"></asp:Label>
@@ -115,11 +123,11 @@
                                 </div>
 
                                 <div class="card"  runat="server">
-                                     <div class="card-header align-items-center d-flex">
+                                    <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Vision Plan</h4>
-                                      <%--<asp:Button ID="ExportExcel" runat="server" Text="Export to Excel"  CommandName="Export Data" OnClick="ExportToExcel_Click" CssClass="btn btn-success" />--%>
-                                        <a href="#" id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="filter-btn" style="float:right"><i class="icon-download"></i> Export To Excel</a>
-
+                                        <%--<asp:Button ID="ExportExcel" runat="server" Text="Export to Excel"  CommandName="Export Data" OnClick="ExportToExcel_Click" CssClass="btn btn-success" />--%>
+                                        <button  id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="smallsBtn">Excel</button>
+                                        <button  text="" style="float: right" onclick="exportTableToPDF()" class="smallsBtn">PDF</button>
                                     </div>
                                 <div class="card-body"  runat="server" style="">
                                      <div class="clearfix" id="dtOptions" runat="server">
@@ -133,7 +141,7 @@
 
                                                         <th style="text-align:center;font-size:15px" >Sr. No.</th>
                                                        <th  style="text-align:center;font-size:15px" colspan="3">ULB Details</th>
-                                                        <th  style="text-align:center;font-size:15px">Project Name</th>
+                                                        <th  style="text-align:center;font-size:15px" colspan="2">Project Name</th>
                                                        <th  style="text-align:center;font-size:15px" colspan="2">Existing</th>
                                                         <th  style="text-align:center;font-size:15px" ">Condition</th>
                                                        
@@ -151,6 +159,7 @@
                                                         <th  style="text-align:center">ULB Name</th>
                                                         <th  style="text-align:center">Population</th>
                                                         <th  style="text-align:center">Project Name</th>
+                                                        <th  style="text-align:center">Financial Year</th>
                                                         <th  style="text-align:center">Is Constructed?</th>
                                                       <%--  <th  style="text-align:center">Under Construction(Y/N)</th>
                                                         <th  style="text-align:center">Under Sanction (Y/N)</th>--%>
@@ -173,39 +182,32 @@
                                         <ItemTemplate>
                                             <tr>
                                                
-                                                <td><%# Container.ItemIndex + 1 %></td>
+                                                <td><asp:Label id="lblSr" runat="server"><%# Container.ItemIndex + 1 %></asp:Label> </td>
                                               
                                              
 
                                               
-                                                <td><%# DataBinder.Eval(Container.DataItem, "Circle_Name") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "Division_Name") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "population") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "ProjectName") %></td>
-                                               <%-- <td><%# DataBinder.Eval(Container.DataItem, "Constructed") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "UnderConstruction") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "Sanction") %></td>--%>
-                                               
+                                                <td><asp:Label id="lblDistrict" runat="server"><%# DataBinder.Eval(Container.DataItem, "Circle_Name") %></asp:Label></td>
+                                                <td><asp:Label id="lblULBName" runat="server"><%# DataBinder.Eval(Container.DataItem, "Division_Name") %></asp:Label></td>
+                                                <td><asp:Label id="lblPopulation" runat="server"><%# DataBinder.Eval(Container.DataItem, "population") %></asp:Label></td>
+                                                <td><asp:Label id="Label2" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectName") %></asp:Label></td>
+                                                <td><asp:Label id="fy" runat="server"><%# DataBinder.Eval(Container.DataItem, "FinancialYear_Comments") %></asp:Label></td>
+                                             
 
-                                                <td><%# DataBinder.Eval(Container.DataItem, "Construction") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "constructedYear") %></td>
-                                               <%-- <td><%# DataBinder.Eval(Container.DataItem, "GoodCondition") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "NeedRenovation") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "needredevelopement") %></td>--%>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "Condition") %></td>
+                                                <td><asp:Label id="lblConstruction" runat="server"><%# DataBinder.Eval(Container.DataItem, "Construction") %></asp:Label></td>
+                                                <td><asp:Label id="lblConstructedYear" runat="server"><%# DataBinder.Eval(Container.DataItem, "constructedYear") %></asp:Label></td>
+                                                 <td><asp:Label id="lblCondition" runat="server"><%# DataBinder.Eval(Container.DataItem, "Condition") %></asp:Label></td>
 
                                                
-                                                <td><%# DataBinder.Eval(Container.DataItem, "Usercharge") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "OwnerShips") %></td>
-                                                <%--<td><%# DataBinder.Eval(Container.DataItem, "OtherOwner") %></td>--%>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "NoOfSameProjInCity") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "Loactions") %></td>
-                                                <td><%# DataBinder.Eval(Container.DataItem, "selfPriority") %></td>
+                                                <td><asp:Label id="lblUserCharge" runat="server"><%# DataBinder.Eval(Container.DataItem, "Usercharge") %></asp:Label></td>
+                                                <td><asp:Label id="lblOwnership" runat="server"><%# DataBinder.Eval(Container.DataItem, "OwnerShips") %></asp:Label></td>
+                                                <td><asp:Label id="lblNoOfSameProjInCity" runat="server"><%# DataBinder.Eval(Container.DataItem, "NoOfSameProjInCity") %></asp:Label></td>
+                                                <td><asp:Label id="lblLoactions" runat="server"><%# DataBinder.Eval(Container.DataItem, "Loactions") %></asp:Label></td>
+                                                <td><asp:Label id="lblSelfPriority" runat="server"><%# DataBinder.Eval(Container.DataItem, "selfPriority") %></asp:Label></td>
 
 
                                                 <td>
-                                                    <%--  <asp:LinkButton ID="btnEdit"  Text="Edit" CssClass="btn bg-warning" runat="server" ToolTip="Click to Edit Record" CommandName="edit"
-                                                class="icon-pencil bigger-130 green" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "PlanName") %>' />--%>
+                                                  
                                                     <asp:LinkButton ID="btnEdit" runat="server" Text="Edit" CssClass="btn bg-warning icon-pencil bigger-130 green" ToolTip="Click to Edit Record" CommandName="edit"
                                                         CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
                                                     <asp:LinkButton ID="btnDelete" CssClass="btn bg-danger" Text="Delete" runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
@@ -269,13 +271,82 @@
     line-height: 22px;
     transition: all .35s ease-Out;
 }
+        .smallsBtn{
+                float: right;
+    height: 36px;
+    padding: 8px;
+    border: 1px solid #d6d6d2;
+    background: white;
+    margin: 3px;
+        }
     </style>
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+
     <script>
+
+        function exportTableToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('landscape', 'pt', 'a3');
+
+            //doc.addFileToVFS('NotoSansDevanagari-Regular.ttf', "");
+            //doc.addFont('NotoSansDevanagari-Regular.ttf', 'NotoSansDevanagari', 'normal');
+            //doc.setFont('NotoSansDevanagari');
+
+            doc.autoTable({
+                html: '#sample-table-2',
+                startY: 20,
+                margin: { horizontal: 10 },
+                styles: {
+                    fontSize: 6,
+                    cellPadding: 1,
+                    overflow: 'linebreak',
+                    minCellHeight: 10,
+                    font: 'NotoSansDevanagari',
+                },
+                headStyles: {
+                    fillColor: [40, 40, 40],
+                    textColor: [255, 255, 255],
+                },
+                bodyStyles: {
+                    cellWidth: 'wrap',
+                },
+                columnStyles: {
+                    0: { cellWidth: 'auto' },
+                    1: { cellWidth: 'auto' },
+                },
+                rowPageBreak: 'auto',
+            });
+
+            doc.save('VisionPlan.pdf');
+        }
+
+        function printTable() {
+            debugger
+            var tableHtml = document.getElementById('sample-table-2') ? document.getElementById('sample-table-2').outerHTML : '';
+            if (tableHtml) {
+                var printWindow = window.open();
+                printWindow.document.write('<html><head><title>Print Table</title></head><body >');
+                printWindow.document.write(tableHtml);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.focus();
+                printWindow.print();
+            } else {
+                console.error('Table not found for printing');
+            }
+        }
+
         $(document).ready(function () {
-            $("#sample-table-2").DataTable();
-        })
+            $("#sample-table-2").DataTable({
+                "lengthMenu": [
+                    [25, 50, 100, -1], // Page length options
+                    [25, 50, 100, "All"] // Labels for each option
+                ]
+            });
+        });
   function ExportToExcel(type, fn, dl) {
     // Get the current date
     const currentDate = new Date();

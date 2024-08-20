@@ -11,6 +11,8 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Web.UI.HtmlControls;
 using ClosedXML.Excel;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 public partial class VisionPlan : System.Web.UI.Page
 {
@@ -53,7 +55,7 @@ public partial class VisionPlan : System.Web.UI.Page
            
             SetDropdownsBasedOnUserType();
         }
-        GetEditExpenseList();
+       // GetEditExpenseList();
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
     private void get_tbl_Zone()
@@ -167,6 +169,7 @@ public partial class VisionPlan : System.Web.UI.Page
         else
         {
             get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue));
+            GetEditExpenseList();
         }
     }
     private void get_tbl_Division(int circleId)
@@ -327,11 +330,11 @@ public partial class VisionPlan : System.Web.UI.Page
         {
             ulb =Convert.ToInt32(ddlDivision.SelectedValue);
         }
-       
+        var year = txtYear.Text;
         var fy = Convert.ToInt32(ddlFY.SelectedValue);
         var priority = DdlPriority.SelectedValue;
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("select", 0, ulb, 0, state, "", dist, fy, "", "", "", 0, "", 0, "", priority, "", "", "");
+        dt = objLoan.GetVisionPlan("select", 0, ulb, 0, state, "", dist, fy, year, "", "", 0, "", 0, "", priority, "", "", "");
 
         if (dt != null && dt.Rows.Count > 0)
         {
@@ -422,6 +425,75 @@ public partial class VisionPlan : System.Web.UI.Page
     }
 
 
+    protected void ExportToPdf(object sender, EventArgs e)
+    {
+        // Create a new PDF document
+        Document pdfDoc = new Document(PageSize.A4.Rotate(), 10, 10, 10, 10);
+        PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+
+        // Open the document to write
+        pdfDoc.Open();
+
+        // Add a font
+        Font font = FontFactory.GetFont("Arial", 12, Font.NORMAL);
+
+        // Create a table with the same number of columns as your Repeater
+        PdfPTable table = new PdfPTable(14); // 14 columns as per your table structure
+        table.WidthPercentage = 100;
+
+        // Add header row to the PDF table
+        AddHeaderRow(table);
+
+        // Iterate through the repeater items and add rows to the PDF table
+        foreach (RepeaterItem item in grdPost.Items)
+        {
+            table.AddCell(new PdfPCell(new Phrase((item.ItemIndex + 1).ToString(), font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblDistrict")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblULBName")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblPopulation")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblProjectName")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblConstruction")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblConstructedYear")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblCondition")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblUserCharge")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblOwnership")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblNoOfSameProjInCity")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblLoactions")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            table.AddCell(new PdfPCell(new Phrase(((Label)item.FindControl("lblSelfPriority")).Text, font)) { HorizontalAlignment = Element.ALIGN_CENTER });
+            //table.AddCell(new PdfPCell(new Phrase("Actions", font)) { HorizontalAlignment = Element.ALIGN_CENTER });  // Placeholder for actions
+        }
+
+        // Add table to the PDF document
+        pdfDoc.Add(table);
+
+        // Close the document
+        pdfDoc.Close();
+
+        // Output the document to the browser
+        Response.ContentType = "application/pdf";
+        Response.AddHeader("content-disposition", "attachment;filename=RepeaterExport.pdf");
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        Response.Write(pdfDoc);
+        Response.End();
+    }
+
+    // Method to add header row to the PDF table
+    private void AddHeaderRow(PdfPTable table)
+    {
+        Font headerFont = FontFactory.GetFont("Arial", 12, Font.BOLD);
+        string[] headers = { "Sr. No.", "District", "ULB Name", "Population", "Project Name", "Is Constructed?", "Year of Construction", "Condition", "User Charge", "Ownership", "No Of Similar Project", "Ward Name", "Priority", "Action" };
+
+        foreach (string header in headers)
+        {
+            PdfPCell cell = new PdfPCell(new Phrase(header, headerFont))
+            {
+                HorizontalAlignment = Element.ALIGN_CENTER,
+                BackgroundColor = BaseColor.LIGHT_GRAY
+            };
+            table.AddCell(cell);
+        }
+    }
 
     //protected void ExportExcel_Click(object sender, EventArgs e)
     //{
@@ -482,5 +554,5 @@ public partial class VisionPlan : System.Web.UI.Page
     //    }
     //}
 
-    
+
 }

@@ -30,7 +30,8 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Project For Annual Action Plan </h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Filter : </h4>
+                                         <a href="CreateAnnualActionplan.aspx"  class="filter-btn" style="float:right"><i class="icon-download"></i> Create New</a>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -70,67 +71,12 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div id="div3" runat="server">
-                                                        <asp:Label ID="lblRemark" runat="server" Text="Project Name*" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:TextBox ID="ProjectName" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div id="div1" runat="server">
-                                                        <asp:Label ID="Label1" runat="server" Text="Cost(in Rupees)*" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:TextBox ID="Cost" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div id="div2" runat="server">
-                                                        <asp:Label ID="Label2" runat="server" Text="Priority No (In range 1-5,5 is highest)*" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <input type="text" id="PriorityNo" runat="server" class="form-control" oninput="validateNumber(this)" />
-                                                        <script>
-                                                            function validateNumber(input) {
-                                                                input.value = input.value.replace(/[^0-9]/g, '');
-                                                            }
-                                                        </script>
-                                                    </div>
-                                                </div>
-                                                 
-                                                 <div class="col-xxl-3 col-md-6" runat="server" visible="false">
-                                                    <div id="div8" runat="server">
-                                                        <asp:Label ID="Label6" runat="server" Text="Upload Doc (PDF)" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:FileUpload ID="fileupload" runat="server" CssClass="form-control" Accept=".pdf" /> 
-                                                         <a href="" target="_blank" id="UpladedDoc" runat="server"></a>
-                                                    </div>
-                                                </div>
-                                                 <div class="col-xxl-3 col-md-6">
-                                                    <div id="div5" runat="server">
-                                                        <asp:Label ID="Label3" runat="server" Text="Detail Of Project" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:TextBox ID="detailOfProject" runat="server"  CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                                                    </div>
-                                                </div>
-
-                                                  <div class="col-xxl-3 col-md-6">
-                                                    <div id="div6" runat="server">
-                                                        <asp:Label ID="Label4" runat="server" Text="Reason For Selected" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:TextBox ID="ReasonForSelected" runat="server"  CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                                  <div class="col-xxl-3 col-md-6">
-                                                    <div id="div7" runat="server">
-                                                        <asp:Label ID="Label5" runat="server" Text="Convergence Detail" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:TextBox ID="convergence" runat="server"  CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-6  col-md-6">
+                                               
+                                                <div class="col-xxl-11  col-md-11">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
-                                                        <label id="message" runat="server" style="color:red;font-weight:bold"></label>
-                                                        <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnsave_Click"  convergence/>--%>
-                                                        <asp:Button ID="BtnUpdate" Text="Update" OnClick="BtnUpdate_Click" runat="server" Visible="false" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnsave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
-                                                        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-                                                        <asp:HiddenField ID="hfFormApproval_Id" runat="server" />
+                                                           <asp:Button ID="BtnSearch" Text="Search" style="float:right" OnClick="BtnSearch_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -144,9 +90,7 @@
                     </div>
                 </ContentTemplate>
                 <Triggers>
-                    <asp:PostBackTrigger ControlID="btnCancel" />
-                    <asp:PostBackTrigger ControlID="btnSave" />
-                    <asp:PostBackTrigger ControlID="BtnUpdate" />
+                    <asp:PostBackTrigger ControlID="BtnSearch" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlZone" />

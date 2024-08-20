@@ -34,7 +34,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">ULB Income </h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Filter : </h4>
                                          <a href="AddULBIncomeType.aspx"  class="filter-btn" style="float:right"><i class="icon-download"></i> Create New</a>
 
                                     </div>

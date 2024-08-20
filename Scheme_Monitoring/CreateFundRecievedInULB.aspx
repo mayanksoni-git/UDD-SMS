@@ -1,6 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="FundRecievedInULB.aspx.cs" Inherits="FundRecievedInULB" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="CreateFundRecievedInULB.aspx.cs" Inherits="CreateFundRecievedInULB" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <asp:HiddenField ID="editId" runat="server" />
     <asp:HiddenField ID="ULBFundId" runat="server" />
 
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
@@ -14,12 +15,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">ULB Fund</h4>
+                                    <h4 class="mb-sm-0" id="head1" runat="server">Create ULB Fund</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">Annual Action Plan</li>
-                                            <li class="breadcrumb-item active">ULB Fund</li>
+                                            <li class="breadcrumb-item active">Create ULB Fund</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -30,8 +31,8 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Filter :</h4>
-                                         <a href="CreateFundRecievedInULB.aspx"  class="filter-btn" style="float:right"><i class="icon-download"></i> Create New</a>
+                                        <h4 class="card-title mb-0 flex-grow-1" id="head2" runat="server">Create ULB Fund</h4>
+                                         <a href="FundRecievedInULB.aspx"  class="filter-btn" style="float:right"><i class="icon-download"></i> ULB Fund List</a>
 
                                     </div>
                                     <!-- end card header -->
@@ -66,76 +67,39 @@
                                                     </div>
                                                 </div>
 
-                                               
-                                               
-                                                <div class="col-xxl-11  col-md-11">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="div3" runat="server">
+                                                        <asp:Label ID="lblRemark" runat="server" Text="SFC Fund(in Crore)" CssClass="form-label  me-1"></asp:Label>
+                                                        <asp:TextBox ID="SFC" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                              
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="div1" runat="server">
+                                                        <asp:Label ID="Label1" runat="server" Text="CFC Fund(in Crore)" CssClass="form-label  me-1"></asp:Label>
+                                                        <asp:TextBox ID="CFC" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="div2" runat="server">
+                                                        <asp:Label ID="Label2" runat="server" Text="Total Taxt Collection(in Crore)" CssClass="form-label  me-1"></asp:Label>
+                                                        <asp:TextBox ID="TotalTax" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3  col-md-6">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
                                                         <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnsave_Click" />--%>
-                                                         <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" style="float:right" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
-                                                         <asp:Label Visible="false" ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+                                                        <asp:Button ID="BtnUpdate" Text="Update" OnClick="BtnUpdate_Click" runat="server" Visible="false" CssClass="btn bg-success text-white"></asp:Button>
+                                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnsave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
+                                                        <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
+                                                        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
                                                         <asp:HiddenField ID="hfFormApproval_Id" runat="server" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <!--end row-->
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                  <div class="card">
-                                    <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">List</h4>
-                                      
-                                    </div>
-                                    <!-- end card header -->
-                                    <div class="card-body">
-                                        <div class="live-preview">
-                                            <div class="row gy-12">
-                                                   <div class="clearfix" id="dtOptions" runat="server">
-                                                        <div class="pull-right tableTools-container"></div>
-                                                    </div>
-                                                 <div style="overflow: auto">
-                                                <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"  AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
-                                                    <Columns>
-                                                        <asp:TemplateField HeaderText="Sr. No.">
-                                                            <ItemTemplate>
-                                                                <%# Container.DataItemIndex + 1 %>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:BoundField HeaderText="State" DataField="Zone_Name" />
-                                                        <asp:BoundField HeaderText="District" DataField="Circle_Name" />
-                                                        <asp:BoundField HeaderText="ULB Name" DataField="Division_Name" />
-                                                        <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
-                                                        <asp:BoundField HeaderText="SFC Fund (in Crore)" DataField="SFCFund" />
-                                                        <asp:BoundField HeaderText="CFC Fund (in Crore)" DataField="CFCFund" />
-                                                        <asp:BoundField HeaderText="Total Taxt Collection (in Crore)" DataField="TotalTaxtCollection" />
-                                                        <asp:TemplateField HeaderText="Edit">
-                                                            <ItemTemplate>
-                                                                <asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditULBFund" OnCommand="Edit_Command" CommandArgument='<%# Eval("ULBFundId") %>' CssClass="btn btn-primary drill_btn" />
-                                                            </ItemTemplate>
-
-                                                             
-                                                        </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Delete">
-                                                           
-
-                                                             <ItemTemplate>
-                                                                <asp:Button ID="btnDelete" runat="server" Text='Delete' CommandName="DeleteULBFund" OnClientClick="return confirm('Are You Sure !!!')" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("ULBFundId") %>' CssClass="btn btn-danger drill_btn" />
-                                                            </ItemTemplate>
-
-                                                        </asp:TemplateField>
-                                                    </Columns>
-                                                    <EmptyDataTemplate>
-                                                        <tr>
-                                                            <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
-                                                        </tr>
-                                                    </EmptyDataTemplate>
-                                                </asp:GridView>
-                                            </div>
-                                         </div>
                                         </div>
                                     </div>
                                 </div>
@@ -145,14 +109,17 @@
                     </div>
                 </ContentTemplate>
                 <Triggers>
-                    <asp:PostBackTrigger ControlID="btnSearch" />
+                    <asp:PostBackTrigger ControlID="btnCancel" />
+                    <asp:PostBackTrigger ControlID="btnSave" />
+                    <asp:PostBackTrigger ControlID="BtnUpdate" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlZone" />
                     <asp:PostBackTrigger ControlID="ddlFY" />
+                    
                 </Triggers>
             </asp:UpdatePanel>
-            
+ 
         </div>
     </div>
    
