@@ -885,7 +885,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[18] = new SqlParameter("@population", Population);
            
 
-            return objDAL.GetDataByProcedure("SPVisionPlan1", param);
+            return objDAL.GetDataByProcedure("SPVisionPlan", param);
         }
         catch (Exception ex)
         {

@@ -323,6 +323,19 @@ public partial class VisionPlan : System.Web.UI.Page
     
     protected void BtnSearch_Click(object sender, EventArgs e)
     {
+        var check = "";
+        if(RadioButton1.Checked==true)
+        {
+            check = "1";
+        }
+        if (RadioButton2.Checked == true)
+        {
+            check = "2";
+        }
+        if (RadioButton3.Checked == true)
+        {
+            check = "3";
+        }
         var state = Convert.ToInt32(ddlZone.SelectedValue);
         var dist = Convert.ToInt32(ddlCircle.SelectedValue);
         var ulb = 0;
@@ -334,7 +347,7 @@ public partial class VisionPlan : System.Web.UI.Page
         var fy = Convert.ToInt32(ddlFY.SelectedValue);
         var priority = DdlPriority.SelectedValue;
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("select", 0, ulb, 0, state, "", dist, fy, year, "", "", 0, "", 0, "", priority, "", "", "");
+        dt = objLoan.GetVisionPlan("select", 0, ulb, 0, state, check, dist, fy, year, "", "", 0, "", 0, "", priority, "", "", "");
 
         if (dt != null && dt.Rows.Count > 0)
         {
