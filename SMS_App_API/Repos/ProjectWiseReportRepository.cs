@@ -1,0 +1,191 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Threading.Tasks;
+using ePayment_API.Models;
+
+namespace ePayment_API.Repos
+{
+    public class ProjectWiseReportRepository : RepositoryAsyn
+    {
+        public ProjectWiseReportRepository(string connectionString) : base(connectionString) { }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="deviceTokens">List of all devices assigned to a user</param>
+        /// <param name="title">Title of notification</param>
+        /// <param name="body">Description of notification</param>
+        /// <param name="data">Object with all extra information you want to send hidden in the notification</param>
+        /// <returns></returns>
+        public async Task<List<tbl_ProjectDPR_JalNigam>> get_ProjectDPR(SearchCriteria obj_SearchCriteria)
+        {
+            List<tbl_ProjectDPR_JalNigam> obj_tbl_ProjectDPR_JalNigam_Li = get_tbl_ProjectDPR_JalNigam(obj_SearchCriteria);
+            return obj_tbl_ProjectDPR_JalNigam_Li;
+        }
+        private List<tbl_ProjectDPR_JalNigam> get_tbl_ProjectDPR_JalNigam(SearchCriteria obj_SearchCriteria)
+        {
+            List<tbl_ProjectDPR_JalNigam> obj_tbl_ProjectDPR_JalNigam_Li = new List<tbl_ProjectDPR_JalNigam>();
+            try
+            {
+                if (obj_SearchCriteria.Role_ULB > 0)
+                {
+                    obj_SearchCriteria.Reporting_Mode = "ULB";
+                }
+                else if (obj_SearchCriteria.Role_Vendor > 0)
+                {
+                    obj_SearchCriteria.Reporting_Mode = "Vendor";
+                }
+                else if (obj_SearchCriteria.Role_Inspection > 0)
+                {
+                    obj_SearchCriteria.Reporting_Mode = "Inspection";
+                }
+                else
+                {
+                    obj_SearchCriteria.Reporting_Mode = "ULB";
+                }
+                DataSet ds = new DataLayer().get_tbl_ProjectDPR_JalNigam_Upload(obj_SearchCriteria, obj_SearchCriteria.FinancialYear_Id);
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                    {
+                        tbl_ProjectDPR_JalNigam obj_tbl_ProjectDPR_JalNigam = new tbl_ProjectDPR_JalNigam();
+
+                        obj_tbl_ProjectDPR_JalNigam.Zone_Name = ds.Tables[0].Rows[i]["Zone_Name"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.Circle_Name = ds.Tables[0].Rows[i]["Circle_Name"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.Division_Name = ds.Tables[0].Rows[i]["Division_Name"].ToString();
+
+                        try
+                        {
+                            obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_Work_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["ProjectWork_Id"].ToString());
+                        }
+                        catch
+                        {
+
+                        }
+                        try
+                        {
+                            obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_Id = obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_Work_Id;
+                        }
+                        catch
+                        {
+
+                        }
+                        obj_tbl_ProjectDPR_JalNigam.ProjectDPR_Id = obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_Id;
+                        obj_tbl_ProjectDPR_JalNigam.ProjectWork_Id = obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_Id;
+                        obj_tbl_ProjectDPR_JalNigam.ProjectDPR_Project_Id = obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_Id;
+
+                        try
+                        {
+                            obj_tbl_ProjectDPR_JalNigam.Fund_Allocated_Total = Convert.ToDecimal(ds.Tables[0].Rows[i]["tender_cost"].ToString());
+                        }
+                        catch
+                        {
+
+                        }
+                        try
+                        {
+                            obj_tbl_ProjectDPR_JalNigam.Fund_Expenditure_Total = Convert.ToDecimal(ds.Tables[0].Rows[i]["Expenditure"].ToString());
+                        }
+                        catch
+                        {
+
+                        }
+
+                        try
+                        {
+                            obj_tbl_ProjectDPR_JalNigam.Fund_Remaining = 0;
+                        }
+                        catch
+                        {
+
+                        }
+
+                        try
+                        {
+                            obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_AgreementAmount = Convert.ToDecimal(ds.Tables[0].Rows[i]["tender_cost"].ToString());
+                        }
+                        catch
+                        {
+
+                        }
+                        try
+                        {
+                            obj_tbl_ProjectDPR_JalNigam.ProjectWork_Budget = Convert.ToDecimal(ds.Tables[0].Rows[i]["ProjectWork_Budget"].ToString());
+                        }
+                        catch
+                        {
+
+                        }
+                        try
+                        {
+                            obj_tbl_ProjectDPR_JalNigam.Zone_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Zone_Id"].ToString());
+                        }
+                        catch
+                        {
+
+                        }
+                        obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_Agreement_Date = ds.Tables[0].Rows[i]["ProjectWorkPkg_Agreement_Date"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_Due_Date = ds.Tables[0].Rows[i]["Target_Date_Agreement_Extended"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_Agreement_No = ds.Tables[0].Rows[i]["ProjectWork_GO_No"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.ProjectWork_GO_Date = ds.Tables[0].Rows[i]["ProjectWork_GO_Date"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.ProjectWork_GO_No = ds.Tables[0].Rows[i]["ProjectWork_GO_No"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.ReportingStaff_JEAPE_Name = "";
+                        obj_tbl_ProjectDPR_JalNigam.ReportingStaff_AEPE_Name = "";
+
+                        obj_tbl_ProjectDPR_JalNigam.ProjectWork_ProjectCode = ds.Tables[0].Rows[i]["ProjectWork_ProjectCode"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.ProjectWork_Name = ds.Tables[0].Rows[i]["ProjectWork_Name"].ToString() + " [" + obj_tbl_ProjectDPR_JalNigam.ProjectWork_ProjectCode + "]";
+                        obj_tbl_ProjectDPR_JalNigam.ProjectWork_GO_Path = ds.Tables[0].Rows[i]["ProjectWork_GO_Path"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_Code = ds.Tables[0].Rows[i]["ProjectWork_ProjectCode"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.ProjectWorkPkg_Name = obj_tbl_ProjectDPR_JalNigam.ProjectWork_Name;
+                        obj_tbl_ProjectDPR_JalNigam.Vendor_Name = "";
+                        obj_tbl_ProjectDPR_JalNigam.Vendor_Mobile = "";
+                        obj_tbl_ProjectDPR_JalNigam.ProjectUC_SubmitionDate = "";
+                        obj_tbl_ProjectDPR_JalNigam.Physical_Progress = ds.Tables[0].Rows[i]["Physical_Progress"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.Financial_Progress = ds.Tables[0].Rows[i]["Financial_Progress"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.Financial_Progress_Per = ds.Tables[0].Rows[i]["Financial_Progress"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.ULB_Name = ds.Tables[0].Rows[i]["ULB_Name"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.District_Name = ds.Tables[0].Rows[i]["Jurisdiction_Name_Eng"].ToString();
+
+                        try
+                        {
+                            obj_tbl_ProjectDPR_JalNigam.Circle_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Circle_Id"].ToString());
+                        }
+                        catch
+                        {
+
+                        }
+                        try
+                        {
+                            obj_tbl_ProjectDPR_JalNigam.Division_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Division_Id"].ToString());
+                        }
+                        catch
+                        {
+
+                        }
+                        obj_tbl_ProjectDPR_JalNigam.ProjectDPR_NP_JurisdictionId = obj_tbl_ProjectDPR_JalNigam.Division_Id;
+                        try
+                        {
+                            obj_tbl_ProjectDPR_JalNigam.ProjectWork_Project_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["ProjectWork_Project_Id"].ToString());
+                        }
+                        catch
+                        {
+
+                        }
+                        obj_tbl_ProjectDPR_JalNigam.Project_Name = ds.Tables[0].Rows[i]["Project_Name"].ToString();
+                        obj_tbl_ProjectDPR_JalNigam.Project_Name = obj_tbl_ProjectDPR_JalNigam.ProjectWork_Name;
+                        obj_tbl_ProjectDPR_JalNigam_Li.Add(obj_tbl_ProjectDPR_JalNigam);
+                    }
+                }
+                else
+                {
+                    obj_tbl_ProjectDPR_JalNigam_Li = null;
+                }
+            }
+            catch (Exception)
+            {
+                obj_tbl_ProjectDPR_JalNigam_Li = null;
+            }
+            return obj_tbl_ProjectDPR_JalNigam_Li;
+        }
+    }
+}

@@ -8,106 +8,148 @@
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
                     <div class="page-content">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Project Progress Analysis (Physical and Financial)</h4>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-light-subtle shadow-none bg-opacity-40">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
-                                                <img src="assets/Analysis/Physical_Progress.png" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_ProjectWork_Physical_Statement.aspx" class="blue">Physical Progress Monthly Statement</a>
-                                                </h4>
-                                            </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Project Progress Analysis (Physical and Financial)</h4>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                                <li class="breadcrumb-item active">Analysis</li>
+                                            </ol>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-dark-subtle shadow-none bg-opacity-10">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
-                                                <img src="assets/Analysis/Stagnant_Physical_Progress.png" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_ProjectWork_Physical_Progress_NoChange.aspx" class="blue">Stagnant Physical Progress</a>
-                                                </h4>
-                                            </div>
+
+
+                            <div class="row">
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Physical Progress Monthly Statement</span></h3>
+                                            <span class="avatar-title bg-danger bg-gradient rounded-circle fs-4">
+                                                <img src="assets/images/menu_analysis_icon/Physical-progress-monthly-statement.png" />
+                                            </span>
                                         </div>
+                                        <a href="Report_ProjectWork_Physical_Statement.aspx" class="">View More  </a>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Stagnant Physical Progress</span></h3>
+                                            <span class="avatar-title bg-primary bg-gradient rounded-circle fs-4">
+                                                <img src="assets/images/menu_analysis_icon/Stagnant-physical-progress.png" />
+                                            </span>
+                                        </div>
+                                        <a href="Report_ProjectWork_Physical_Progress_NoChange.aspx" class="">View More  </a>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Financial Progress Monthly Statement</span></h3>
+                                            <span class="avatar-title bg-success bg-gradient rounded-circle fs-4">
+                                                <img src="assets/images/menu_analysis_icon/Financial-progress-monthly-statement.png" />
+                                            </span>
+                                        </div>
+                                        <a href="Report_Project_Financial_Progress.aspx" class="">View More  </a>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Financial Progress Statement</span></h3>
+                                            <span class="avatar-title bg-info bg-gradient rounded-circle fs-4">
+                                                <img src="assets/images/menu_analysis_icon/Financial-progress-statement.png" />
+                                            </span>
+                                        </div>
+                                        <a href="Report_ProjectWork_Physical_Statement.aspx" class="">View More  </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-primary-subtle shadow-none bg-opacity-10">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
-                                                <img src="assets/Analysis/Financial_Progress.png" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_Project_Financial_Progress.aspx" class="blue">Financial Progress Monthly Statement</a>
-                                                </h4>
-                                            </div>
+
+
+
+                            <div class="row mt-5">
+                                <div class="col-12">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Project Gallary and Other Reports</h4>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Project Wise Photo & Videos</span></h3>
+                                            <span class="avatar-title bg-warning bg-gradient rounded-circle fs-4">
+                                                <img src="assets/images/menu_analysis_icon/Project-wise-photos-videos.png" />
+                                            </span>
                                         </div>
+                                        <a href="Report_ProjectWork_Gallery_Pic.aspx" class="">View More  </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Field Visit and Inspection Report</span></h3>
+                                            <span class="avatar-title bg-warning bg-gradient rounded-circle fs-4">
+                                                <img src="assets/Analysis/Inspection.jpg" />
+                                            </span>
+                                        </div>
+                                        <a href="Report_ProjectWork_Visit_Pic.aspx" class="">View More  </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Component Wise Progress</span></h3>
+                                            <span class="avatar-title bg-warning bg-gradient rounded-circle fs-4">
+                                                <img src="assets/Analysis/Physical_components.png" />
+                                            </span>
+                                        </div>
+                                        <a href="Report_Component_Details.aspx" class="">View More  </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Project Wise Issue Analysis</span></h3>
+                                            <span class="avatar-title bg-warning bg-gradient rounded-circle fs-4">
+                                                <img src="assets/Analysis/Issue_Analysis.png" />
+                                            </span>
+                                        </div>
+                                        <a href="Report_Issue_Details.aspx" class="">View More  </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-info-subtle shadow-none bg-opacity-10">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
-                                                <img src="assets/Analysis/Financial_Progress.png" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_ProjectWork_Physical_Statement.aspx" class="blue">Financial Progress Statement</a>
-                                                </h4>
-                                            </div>
-                                        </div>
+
+
+
+
+                            <div class="row mt-5">
+                                <div class="col-12">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Other Analysis and Details</h4>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Project Gallary and Other Details</h4>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-height-100 bg-light-subtle shadow-none bg-opacity-40">
-                                    <div class="card-body">
-                                        <div class="row gy-4">
-                                            <div class="col-md-6">
-                                                <img src="assets/Analysis/Gallery.png" width="60px" height="60px" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4 class="fs-4 mb-3">
-                                                    <a href="Report_ProjectWork_Gallery_Pic.aspx" class="blue">Project Wise Photo & Videos</a>
-                                                </h4>
-                                            </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-animate anal-btn-details">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="ff-secondary fw-semibold"><span>Download SMS Project Wise Data</span></h3>
+                                            <span class="avatar-title bg-warning bg-gradient rounded-circle fs-4">
+                                                <img src="assets/Analysis/PMIS_Download.jpg" />
+                                            </span>
                                         </div>
+                                        <a href="Report_PMIS_Dump.aspx" class="">View More  </a>
                                     </div>
                                 </div>
                             </div>

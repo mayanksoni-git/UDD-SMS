@@ -7,12 +7,8 @@
             </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
-                    <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="btnShowPopup"
-                        CancelControlID="btnclose" BackgroundCssClass="modalBackground1">
-                    </cc1:ModalPopupExtender>
-                    <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
                     <div class="page-content">
-                        <div class="page-content">
+                        <div class="container-fluid">
                             <div class="row">
                                 <div style="overflow: auto">
                                     <asp:GridView ID="grdPost1" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost1_PreRender" OnRowDataBound="grdPost1_RowDataBound">
@@ -62,39 +58,6 @@
                                     </asp:GridView>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="table-header">
-                                        Component Wise Breakup 
-                                   
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div style="overflow: auto">
-                                    <asp:GridView ID="grdPhysicalProgress" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPhysicalProgress_PreRender">
-                                        <Columns>
-                                            <asp:BoundField DataField="Component_Id" HeaderText="Component_Id">
-                                                <HeaderStyle CssClass="displayStyle" />
-                                                <ItemStyle CssClass="displayStyle" />
-                                                <FooterStyle CssClass="displayStyle" />
-                                            </asp:BoundField>
-                                            <asp:TemplateField HeaderText="S No.">
-                                                <ItemTemplate>
-                                                    <%# Container.DataItemIndex + 1 %>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="Component_Unit" HeaderText="Component" />
-                                            <asp:BoundField DataField="Proposed" HeaderText="Proposed" />
-                                            <asp:BoundField DataField="PhysicalProgress" HeaderText="Completed" />
-                                            <asp:BoundField DataField="Functional" HeaderText="Functional" />
-                                            <asp:BoundField DataField="NonFunctional" HeaderText="Non Functional" />
-                                            <asp:BoundField DataField="Percentage_Cpmpleted" HeaderText="Completed Percentage" />
-                                            <asp:BoundField DataField="Percentage_Cpmpleted_Functional" HeaderText="Completed Percentage (Functional)" />
-                                        </Columns>
-                                    </asp:GridView>
-                                </div>
-                            </div>
 
                             <div class="row">
                                 <div class="col-sm-12">
@@ -109,14 +72,6 @@
                                         <div class="form-group">
                                             <br />
                                             <asp:Button ID="btnGetVisitData" Text="Get Visit Details" OnClick="btnGetVisitData_Click" runat="server" CssClass="btn btn-purple"></asp:Button>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <br />
-                                            <asp:ImageButton ID="btnAddComments" runat="server" ImageUrl="~/assets/images/comments.png" Width="80px" Height="80px" OnClick="btnAddComments_Click" Visible="false" ToolTip="Click To Add Comments.............">
-                                            </asp:ImageButton>
                                         </div>
                                     </div>
 
@@ -155,7 +110,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div id="divVisitPics" class="row" runat="server" visible="false">
                                 <div class="row">
                                     <table class="display table table-bordered no-margin-bottom no-border-top">
@@ -279,96 +234,7 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
-                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 950px; margin-left: -32px" Height="700px">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="table-header">
-                                        Previous Comments and Reply..............
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="col-md-12">
-                                        <div style="overflow: auto">
-                                            <asp:GridView ID="grdComments" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdComments_PreRender">
-                                                <Columns>
-                                                    <asp:BoundField DataField="ProjectVisitComment_Id" HeaderText="ProjectVisitComment_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:TemplateField HeaderText="S No.">
-                                                        <ItemTemplate>
-                                                            <%# Container.DataItemIndex + 1 %>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="FeildVisitL1_Name" HeaderText="Category L1" />
-                                                    <asp:BoundField DataField="FeildVisitL2_Name" HeaderText="Category L2" />
-                                                    <asp:BoundField DataField="ProjectVisitComment_Comments" HeaderText="Comment / Reply" />
-                                                    <asp:BoundField DataField="Designation_DesignationName" HeaderText="Designation" />
-                                                    <asp:BoundField DataField="ProjectVisitComment_AddedOn" HeaderText="Added On" />
-                                                </Columns>
-                                            </asp:GridView>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="table-header">
-                                        Add New Comment or Reply..............
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label no-padding-right">Field Visit L1* </label>
-                                            <asp:DropDownList ID="ddlFeildVisitL1" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlFeildVisitL1_SelectedIndexChanged"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="control-label no-padding-right">Field Visit L1* </label>
-                                            <asp:DropDownList ID="ddlFeildVisitL2" runat="server" CssClass="form-control"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="col-md-9">
-                                        <div class="form-group">
-                                            <br />
-                                            <asp:TextBox ID="txtComments" runat="server" CssClass="form-control" TextMode="MultiLine">
-                                            </asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <br />
-                                            <asp:Button ID="btnSaveComments" Text="Add Comments" OnClick="btnSaveComments_Click" runat="server" CssClass="btn btn-inverse"></asp:Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </asp:Panel>
 
                         <div id="UpdatePopup" class="modal fade" tabindex="-1" style="padding-left: 0px;">
                             <div class="modal-dialog" style="margin-top: 0px; margin-left: 150px; width: 1000px;">

@@ -2,6 +2,10 @@
     CodeFile="ProjectWorkGalleryView.aspx.cs" Inherits="ProjectWorkGalleryView" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js" rel="stylesheet" type="text/css">
+
+
     <div class="main-content">
         <div class="main-content-inner">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
@@ -10,6 +14,18 @@
                 <ContentTemplate>
                     <div class="page-content">
                         <div class="row">
+                            <div class="col-12 mb-3">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Project Gallary</h4>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                                <li class="breadcrumb-item">Project Master</li>
+                                                <li class="breadcrumb-item active">Project Gallary</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="col-xs-12">
                                 <div class="table-header">
                                     Date Wise Bifurcation (Click A Date To View Its Photographs) 
@@ -73,19 +89,23 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="table-header">
-                                    View Project Gallery
+
+
+                        <div class="card" id="gallaryCard">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">View Project Gallery</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-sm-12">
+                                    <div class="gallerycontainer" id="divGallery" runat="server">
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="col-md-12" id="divGallery" runat="server">
-                                </div>
-                            </div>
-                        </div>
+
+
+
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -102,84 +122,10 @@
         <!-- /.main-content -->
     </div>
 
-    <!-- DataTable specific plugin scripts -->
-    <script src="assets/js/jquery-2.1.4.min.js"></script>
-    <%--<script src="assets/js/bootstrap.min.js"></script>--%>
-    <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/dataTables.buttons.min.js"></script>
-    <script src="assets/js/buttons.flash.min.js"></script>
-    <script src="assets/js/buttons.html5.min.js"></script>
-    <script src="assets/js/buttons.print.min.js"></script>
-    <script src="assets/js/buttons.colVis.min.js"></script>
-    <script src="assets/js/dataTables.select.min.js"></script>
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
-    <script src="assets/js/dataTables.fixedHeader.min.js"></script>
-    <script src="assets/js/jquery.mark.min.js"></script>
-    <script src="assets/js/datatables.mark.js"></script>
-    <script src="assets/js/dataTables.colReorder.min.js"></script>
-    <script src="assets/js/jquery.colorbox.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.js"></script>
 
-    <script type="text/javascript">
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                var $overflow = '';
-                var colorbox_params = {
-                    rel: 'colorbox',
-                    reposition: true,
-                    scalePhotos: true,
-                    scrolling: false,
-                    previous: '<i class="ace-icon fa fa-arrow-left"></i>',
-                    next: '<i class="ace-icon fa fa-arrow-right"></i>',
-                    close: '&times;',
-                    current: '{current} of {total}',
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    onOpen: function () {
-                        $overflow = document.body.style.overflow;
-                        document.body.style.overflow = 'hidden';
-                    },
-                    onClosed: function () {
-                        document.body.style.overflow = $overflow;
-                    },
-                    onComplete: function () {
-                        $.colorbox.resize();
-                    }
-                };
-
-                $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
-                $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange fa-spin'></i>");//let's add a custom loading icon
-
-
-                $(document).one('ajaxloadstart.page', function (e) {
-                    $('#colorbox, #cboxOverlay').remove();
-                });
-            })
-        });
-
-        function Poppuplose() {
-            $find('details').hide();
-        }
-    </script>
-
-    <style type="text/css">
-        .MyColr-tooltip + .tooltip > .tooltip-inner {
-            width: 200px;
-            max-width: 300px !important;
-            background-color: blue;
-            color: white;
-            text-align: center;
-            font-weight: 600;
-            text-transform: capitalize;
-            opacity: 1;
-            filter: alpha(opacity=100);
-            -moz-box-shadow: 0 0 5px 2px black;
-            -webkit-box-shadow: 0 0 5px 2px black;
-            box-shadow: 0 0 5px 2px black;
-        }
-    </style>
 </asp:Content>
 
 

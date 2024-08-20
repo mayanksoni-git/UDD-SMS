@@ -1,9 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="MasterProjectWorkMIS_4.aspx.cs" Inherits="MasterProjectWorkMIS_4" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
     <div class="main-content">
-        <div class="main-content-inner">
+        <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
@@ -18,278 +17,149 @@
                     </cc1:ModalPopupExtender>
                     <asp:Button ID="btnShowPopup2" Text="Show" runat="server" Style="display: none;"></asp:Button>
 
-                    <div class="page-content">
-                        <div>
-                            <ul class="steps" style="margin-left: 0">
-                                <li data-step="1" class="active">
-                                    <span class="step">1</span>
-                                    <span class="title">Basic Details</span>
-                                </li>
-
-                                <li data-step="2" class="active">
-                                    <span class="step">2</span>
-                                    <span class="title">GO Release Details</span>
-                                </li>
-
-                                <li data-step="3" class="active">
-                                    <span class="step">3</span>
-                                    <span class="title">Target & Achivments</span>
-                                </li>
-
-                                <li data-step="4" class="active">
-                                    <span class="step">4</span>
-                                    <span class="title">Physical Components</span>
-                                </li>
-
-                                <li data-step="5">
-                                    <span class="step">5</span>
-                                    <span class="title">Document Vault</span>
-                                </li>
-
-                                <li data-step="6">
-                                    <span class="step">6</span>
-                                    <span class="title">UC Details and Issues</span>
-                                </li>
-
-                                <li data-step="7">
-                                    <span class="step">7</span>
-                                    <span class="title">Variation Details</span>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-12">
-                                <div class="table-header">
-                                    Physical Progress Component
+                            <div class="col-12 mb-3">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Update Physical & Financial Progress</h4>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                                <li class="breadcrumb-item">Project Master</li>
+                                                <li class="breadcrumb-item active">Update Physical & Financial Progress</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Physical Progress Component
                                         <div style="float: right">
                                             <asp:Button runat="server" ID="btnExport" Text="Export" CssClass="btn btn-info" OnClick="btnExport_Click" />
                                         </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <span class="label label-danger arrowed">Work Should be mentioned in Comments for Withheld / Blocked Due to Other Work</span>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <div style="overflow: auto">
-                                            <asp:GridView ID="grdPhysicalProgress" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdPhysicalProgress_RowDataBound">
-                                                <Columns>
-                                                    <asp:BoundField DataField="PhysicalProgressComponent_Id" HeaderText="PhysicalProgressComponent_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="ProjectPkg_PhysicalProgress_Id" HeaderText="ProjectPkg_PhysicalProgress_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="PhysicalProgressComponent_EnableList" HeaderText="PhysicalProgressComponent_EnableList">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:TemplateField HeaderText="S No.">
-                                                        <ItemTemplate>
-                                                            <%# Container.DataItemIndex + 1 %>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Select">
-                                                        <HeaderTemplate>
-                                                            <asp:CheckBox ID="chkSelectAllApproveH" runat="server" Text="Select" AutoPostBack="True" OnCheckedChanged="chkSelectAllApproveH_CheckedChanged" />
-                                                        </HeaderTemplate>
-                                                        <ItemTemplate>
-                                                            <asp:CheckBox ID="chkPostPhysicalProgress" runat="server" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="PhysicalProgressComponent_Component" HeaderText="Component" />
-                                                    <asp:BoundField DataField="Unit_Name" HeaderText="Unit" />
-                                                    <asp:TemplateField HeaderText="Proposed (Number) As Per Origional">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="txtProposedNumberO" runat="server" CssClass="form-control " Text='<%# Eval("ProjectPkg_PhysicalProgress_MasterValueF") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Proposed (Number) As Per Actual">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="txtProposedNumber" runat="server" CssClass="form-control " Text='<%# Eval("ProjectPkg_PhysicalProgress_MasterValue") %>' onkeyup="isNumericVal(this);" ToolTip='<%# Eval("ProjectPkg_PhysicalProgress_MasterValue") %>'></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Completed (Number)">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="txtProgressNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_PhysicalProgress") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Withheld / Blocked Due to Other Work (Number)">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="txtWithheldNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_WithheldProgress") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Functional (Number)">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="txtFunctionalNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_PhysicalFunctional") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Non-Functional (Number)">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="txtNonFunctionalNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_PhysicalNonFunctional") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Remarks">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="txtRemarks" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_Remarks") %>' TextMode="MultiLine"></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Fill Beneficiary Details">
-                                                        <ItemTemplate>
-                                                            <asp:LinkButton ID="btnBeneficiary" runat="server" Text="Add Beneficiary" OnClick="btnBeneficiary_Click" Font-Bold="true" ForeColor="Black"></asp:LinkButton>
-                                                            <br />
-                                                            <asp:LinkButton ID="btnViewBeneficiary" runat="server" Text="View Beneficiary" OnClick="btnViewBeneficiary_Click" Bold="true" ForeColor="Maroon"></asp:LinkButton>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                            </asp:GridView>
-                                        </div>
+                                        </h4>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br></br>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <asp:Button ID="btnSave" Text="Save and Next >>" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <asp:Button ID="btnSkip" Text="Skip and Next >>" OnClick="btnSkip_Click" runat="server" CssClass="btn btn-warning"></asp:Button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="table-header">
-                                        Fill Beneficiary Details
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Label ID="lblName" runat="server" Text="Beneficiary Name*" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:TextBox ID="txtBeneficiaryName" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Label ID="Label1" runat="server" Text="Beneficiary Mobile No*" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:TextBox ID="txtBeneficiaryMobile" runat="server" CssClass="form-control" MaxLength="10" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Label ID="Label2" runat="server" Text="Beneficiary Aadhar No*" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:TextBox ID="txtBeneficiaryAadhar" runat="server" CssClass="form-control" MaxLength="12" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Label ID="Label3" runat="server" Text="Upload Beneficiary Photo*" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:FileUpload ID="flBeneficiaryPhoto" runat="server"></asp:FileUpload>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Button ID="btnSaveBeneficiary" Text="Save Beneficiary" OnClick="btnSaveBeneficiary_Click" runat="server" CssClass="btn btn-info"></asp:Button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Button ID="btnclose" Text="Close" runat="server" CssClass="btn btn-danger"></asp:Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </asp:Panel>
-
-                        <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup1" Style="display: none; width: 900px; height: 400px; margin-left: -32px">
-                            <div class="row">
-                                <div class="col-xs-12">
-
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <div class="clearfix" id="dtOptions" runat="server">
-                                                <div class="pull-right tableTools-container"></div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-12">
+                                                <!-- div.table-responsive -->
+                                                <!-- div.dataTables_borderWrap -->
+                                                <div style="overflow: auto">
+                                                    <asp:GridView ID="grdPhysicalProgress" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdPhysicalProgress_RowDataBound">
+                                                        <Columns>
+                                                            <asp:BoundField DataField="PhysicalProgressComponent_Id" HeaderText="PhysicalProgressComponent_Id">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <asp:BoundField DataField="ProjectPkg_PhysicalProgress_Id" HeaderText="ProjectPkg_PhysicalProgress_Id">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <asp:BoundField DataField="PhysicalProgressComponent_EnableList" HeaderText="PhysicalProgressComponent_EnableList">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <asp:TemplateField HeaderText="S No.">
+                                                                <ItemTemplate>
+                                                                    <%# Container.DataItemIndex + 1 %>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Select">
+                                                                <HeaderTemplate>
+                                                                    <asp:CheckBox ID="chkSelectAllApproveH" runat="server" Text="Select" AutoPostBack="True" OnCheckedChanged="chkSelectAllApproveH_CheckedChanged" />
+                                                                </HeaderTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:CheckBox ID="chkPostPhysicalProgress" runat="server" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="PhysicalProgressComponent_Component" HeaderText="Component" />
+                                                            <asp:BoundField DataField="Unit_Name" HeaderText="Unit" />
+                                                            <asp:TemplateField HeaderText="Proposed (Number) As Per Origional">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtProposedNumberO" runat="server" CssClass="form-control " Text='<%# Eval("ProjectPkg_PhysicalProgress_MasterValueF") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Proposed (Number) As Per Actual">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtProposedNumber" runat="server" CssClass="form-control " Text='<%# Eval("ProjectPkg_PhysicalProgress_MasterValue") %>' onkeyup="isNumericVal(this);" ToolTip='<%# Eval("ProjectPkg_PhysicalProgress_MasterValue") %>'></asp:TextBox>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Completed (Number)">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtProgressNumber" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_PhysicalProgress") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Remarks">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtRemarks" runat="server" CssClass="form-control" Text='<%# Eval("ProjectUC_PhysicalProgress_Remarks") %>' TextMode="MultiLine"></asp:TextBox>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                </div>
                                             </div>
-                                            <div class="table-header">
-                                                View Beneficiary Details
-                                            </div>
-                                            <div style="overflow: auto">
-                                                <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
-                                                    <Columns>
-                                                        <asp:BoundField DataField="ProjectWorkComponentBenfDtls_Id" HeaderText="ProjectWorkComponentBenfDtls_Id">
-                                                            <HeaderStyle CssClass="displayStyle" />
-                                                            <ItemStyle CssClass="displayStyle" />
-                                                            <FooterStyle CssClass="displayStyle" />
-                                                        </asp:BoundField>
-                                                        <asp:BoundField DataField="ProjectWorkComponentBenfDtls_Component_Id" HeaderText="ProjectWorkComponentBenfDtls_Component_Id">
-                                                            <HeaderStyle CssClass="displayStyle" />
-                                                            <ItemStyle CssClass="displayStyle" />
-                                                            <FooterStyle CssClass="displayStyle" />
-                                                        </asp:BoundField>
-                                                         <asp:BoundField DataField="ProjectWorkComponentBenfDtls_Path" HeaderText="ProjectWorkComponentBenfDtls_Path">
-                                                            <HeaderStyle CssClass="displayStyle" />
-                                                            <ItemStyle CssClass="displayStyle" />
-                                                            <FooterStyle CssClass="displayStyle" />
-                                                        </asp:BoundField>
-                                                        <asp:TemplateField HeaderText="S No.">
-                                                            <ItemTemplate>
-                                                                <%# Container.DataItemIndex + 1 %>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:BoundField DataField="ProjectWorkComponentBenfDtls_Name" HeaderText="Beneficiary Name" />
-                                                        <asp:BoundField DataField="ProjectWorkComponentBenfDtls_MobileNo" HeaderText="Beneficiary Mobile" />
-                                                        <asp:BoundField DataField="ProjectWorkComponentBenfDtls_AadharNo" HeaderText="Beneficiary Aadhar" />
-                                                        <asp:TemplateField HeaderText="Photo">
-                                                            <ItemTemplate>
-                                                                <asp:Image ID="imgPhoto" Width="100px" Height="140px" ImageUrl='<%# Eval("ProjectWorkComponentBenfDtls_Path") %>' runat="server" />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Delete">
-                                                            <ItemTemplate>
-                                                                <asp:ImageButton ID="btnDelete" Width="20px" Height="20px" OnClick="btnDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                    </Columns>
-                                                </asp:GridView>
+                                            <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
+                        </div>
 
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Over all Physical & Financial Progress 
+                                        </h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <asp:Label ID="Label15" runat="server" Text="Physical Progress (%)" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtPhysicalTarget" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <asp:Label ID="Label16" runat="server" Text="Total Expenditure Till Date In Lakhs [Including GST]*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtExpenditureRABill" onkeyup="isNumericVal(this);" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <!--end row-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Button ID="btnclose2" Text="Close" runat="server" CssClass="btn btn-danger"></asp:Button>
-                                        </div>
-                                    </div>
+                            <!--end col-->
+                        </div>
+
+
+
+
+
+
+                        <div class="row">
+
+                            <div class="col-xxl-12 col-md-12 text-center">
+                                <div>
+                                    <asp:Button ID="btnSave" Text="Update" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
                                 </div>
                             </div>
-                        </asp:Panel>
+
+                        </div>
+
                     </div>
                     <asp:HiddenField ID="hf_Project_Id" runat="server" Value="0" />
                     <asp:HiddenField ID="hf_Scheme_Id" runat="server" Value="0" />
@@ -299,7 +169,6 @@
                 </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="btnExport" />
-                    <asp:PostBackTrigger ControlID="btnSaveBeneficiary" />
                 </Triggers>
             </asp:UpdatePanel>
             <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">

@@ -15,9 +15,21 @@
                     <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
                     <div class="page-content">
                         <div class="row">
+                            <div class="col-12">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Funding Pattern Master</h4>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                                <li class="breadcrumb-item">Basic Masters</li>
+                                                <li class="breadcrumb-item active">Funding Pattern Master</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="col-xs-12">
                                 <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning mb-2"></asp:Button>
                                 </div>
                             </div>
                         </div>
@@ -28,9 +40,6 @@
                                     <div class="col-xs-12">
                                         <div class="clearfix" id="dtOptions" runat="server">
                                             <div class="pull-right tableTools-container"></div>
-                                        </div>
-                                        <div class="table-header">
-                                            Funding Pattern Master
                                         </div>
                                         <!-- div.table-responsive -->
                                         <!-- div.dataTables_borderWrap -->
@@ -69,41 +78,58 @@
                         </div>
 
                     </div>
-                    <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
+
+
+
+                    
+                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
 
                         <div class="row">
-                            <div class="col-xs-12">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Funding Pattern</h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <asp:Label ID="lblFundingPattern" runat="server" Text="Funding Pattern*" CssClass="control-label no-padding-right"></asp:Label>
+                                                        <asp:TextBox ID="txtFundingPattern" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
 
-                                <div class="table-header">
-                                    Funding Pattern
-                                </div>
 
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <div class="form-group">
+                                                <!--end col-->
 
-                                        <asp:Label ID="lblFundingPattern" runat="server" Text="Funding Pattern*" CssClass="control-label no-padding-right"></asp:Label>
-                                        <asp:TextBox ID="txtFundingPattern" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <!--end col-->
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <br />
+                                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>
+                                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning"></asp:Button>
+                                                        <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end row-->
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
-                                        &nbsp; &nbsp; &nbsp;
-                                             <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>&nbsp; &nbsp; &nbsp;
-                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>
-                                        <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--end col-->
                         </div>
                     </asp:Panel>
                     <asp:HiddenField ID="hf_FundingPattern_Id" runat="server" Value="0" />
@@ -122,172 +148,6 @@
         </div>
     </div>
 
-    <!-- DataTable specific plugin scripts -->
-    <script src="assets/js/jquery-2.1.4.min.js"></script>
-    <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/dataTables.buttons.min.js"></script>
-    <script src="assets/js/buttons.flash.min.js"></script>
-    <script src="assets/js/buttons.html5.min.js"></script>
-    <script src="assets/js/buttons.print.min.js"></script>
-    <script src="assets/js/buttons.colVis.min.js"></script>
-    <script src="assets/js/dataTables.select.min.js"></script>
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
-    <script src="assets/js/dataTables.fixedHeader.min.js"></script>
-    <script src="assets/js/jquery.mark.min.js"></script>
-    <script src="assets/js/datatables.mark.js"></script>
-    <%--<script src="assets/js/dataTables.colReorder.min.js"></script>--%>
-
-    <script type="text/javascript">
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                var DataTableLength = $('#ctl00_ContentPlaceHolder1_grdPost').length;
-                if (DataTableLength > 0) {
-                    var outerHTML = $('#ctl00_ContentPlaceHolder1_grdPost')[0].outerText;
-                    if (outerHTML.trim() !== "No Records Found") {
-                        //initiate dataTables plugin
-                        var myTable =
-                            $('#ctl00_ContentPlaceHolder1_grdPost')
-                                //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                .DataTable({
-                                    mark: true,
-                                    colReorder: false,
-                                    fixedHeader: {
-                                        header: true,
-                                        footer: false
-                                    },
-                                    bAutoWidth: false,
-                                    "aoColumns": [
-                                        { "bSortable": false },
-                                        null, null, null, null, null, null,
-                                        { "bSortable": false }
-                                    ],
-                                    "aaSorting": [],
-                                    //"bProcessing": true,
-                                    //"bServerSide": true,
-                                    //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-                                    //,
-                                    //"sScrollY": "200px",
-                                    //"bPaginate": false,
-                                    //"sScrollX": "100%",
-                                    //"sScrollXInner": "120%",
-                                    //"bScrollCollapse": true,
-                                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                    "iDisplayLength": 25,
-                                    select: {
-                                        style: 'multi'
-                                    }
-                                });
-                        $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
-                        new $.fn.dataTable.Buttons(myTable, {
-                            buttons: [
-                                {
-                                    "extend": "colvis",
-                                    "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    columns: ':not(:first):not(:last)'
-                                },
-                                {
-                                    "extend": "copy",
-                                    "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "csv",
-                                    "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "excel",
-                                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "pdf",
-                                    "text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "print",
-                                    "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    autoPrint: true,
-                                    message: 'This print was produced using the Print button for DataTables',
-                                    exportOptions: {
-                                        columns: ':visible'
-                                    }
-                                }
-                            ]
-                        });
-                        myTable.buttons().container().appendTo($('.tableTools-container'));
-
-                        //style the message box
-                        var defaultCopyAction = myTable.button(1).action();
-                        myTable.button(1).action(function (e, dt, button, config) {
-                            defaultCopyAction(e, dt, button, config);
-                            $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-                        });
-                        var defaultColvisAction = myTable.button(0).action();
-                        myTable.button(0).action(function (e, dt, button, config) {
-
-                            defaultColvisAction(e, dt, button, config);
-                            if ($('.dt-button-collection > .dropdown-menu').length == 0) {
-                                $('.dt-button-collection')
-                                    .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-                                    .find('a').attr('href', '#').wrap("<li />")
-                            }
-                            $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
-                        });
-                        ////
-                        setTimeout(function () {
-                            $($('.tableTools-container')).find('a.dt-button').each(function () {
-                                var div = $(this).find(' > div').first();
-                                if (div.length == 1) div.tooltip({ container: 'body', title: div.parent().text() });
-                                else $(this).tooltip({ container: 'body', title: $(this).text() });
-                            });
-                        }, 500);
-
-                        $(document).on('click', '#ctl00_ContentPlaceHolder1_grdPost .dropdown-toggle', function (e) {
-                            e.stopImmediatePropagation();
-                            e.stopPropagation();
-                            //e.preventDefault();
-                        });
-                        //And for the first simple table, which doesn't have TableTools or dataTables
-                        //select/deselect all rows according to table header checkbox
-                        var active_class = 'active';
-                        /********************************/
-                        //add tooltip for small view action buttons in dropdown menu
-                        $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
-
-                        //tooltip placement on right or left
-                        function tooltip_placement(context, source) {
-                            var $source = $(source);
-                            var $parent = $source.closest('table')
-                            var off1 = $parent.offset();
-                            var w1 = $parent.width();
-
-                            var off2 = $source.offset();
-                            //var w2 = $source.width();
-
-                            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-                            return 'left';
-                        }
-                        /***************/
-                        $('.show-details-btn').on('click', function (e) {
-                            e.preventDefault();
-                            $(this).closest('tr').next().toggleClass('open');
-                            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-                        });
-                    }
-                }
-            })
-        });
-
-    </script>
     <script>
         Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
             jQuery(function ($) {

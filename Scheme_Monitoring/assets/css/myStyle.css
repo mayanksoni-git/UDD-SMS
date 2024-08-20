@@ -10,10 +10,10 @@
 
 .modalPopup1 {
     background-color: #fff;
-    border: 3px solid #ccc;
-    padding: 10px;
+    border: 0px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
 }
-
 
 .GlassPanel {
     background: #000000;

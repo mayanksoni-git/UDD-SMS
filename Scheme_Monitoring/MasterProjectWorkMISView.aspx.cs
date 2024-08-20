@@ -884,7 +884,7 @@ public partial class MasterProjectWorkMISView : System.Web.UI.Page
 
     protected void btnCreateNew_Click(object sender, EventArgs e)
     {
-        Response.Redirect("MasterProjectWork_DataEntry.aspx");
+        Response.Redirect("MasterProjectWork_DataEntry2.aspx");
     }
 
     protected void btnDownload_Click(object sender, ImageClickEventArgs e)

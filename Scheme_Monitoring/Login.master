@@ -2,9 +2,10 @@
     Inherits="TemplateMasterAdmin" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 <head runat="server">
     <meta charset="utf-8" />
+    
     <title>Sign In | Schemes Monitoring System |
     Urban Development Department, Government of Uttar Pradesh</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

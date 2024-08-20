@@ -354,22 +354,24 @@ public partial class MasterApprovalHierarchy_Invoice : System.Web.UI.Page
         {
             obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Creation_Allowed = 0;
         }
-        if (chkAllowEditingQty.Checked)
-        {
-            obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Qty_Editing_Allowed = 1;
-        }
-        else
-        {
-            obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Qty_Editing_Allowed = 0;
-        }
-        if (chkAllowDocumentUpdation.Checked)
-        {
-            obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Document_Updation_Allowed = 1;
-        }
-        else
-        {
-            obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Document_Updation_Allowed = 0;
-        }
+        //if (chkAllowEditingQty.Checked)
+        //{
+        //    obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Qty_Editing_Allowed = 1;
+        //}
+        //else
+        //{
+        //    obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Qty_Editing_Allowed = 0;
+        //}
+        obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Qty_Editing_Allowed = 0;
+        //if (chkAllowDocumentUpdation.Checked)
+        //{
+        //    obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Document_Updation_Allowed = 1;
+        //}
+        //else
+        //{
+        //    obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Document_Updation_Allowed = 0;
+        //}
+        obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Document_Updation_Allowed = 0;
         if (chkUpdate.Checked)
         {
             obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Updation_Allowed = 1;
@@ -378,22 +380,24 @@ public partial class MasterApprovalHierarchy_Invoice : System.Web.UI.Page
         {
             obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Updation_Allowed = 0;
         }
-        if (chkDeductionAllow.Checked)
-        {
-            obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Deduction_Allowed = 1;
-        }
-        else
-        {
-            obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Deduction_Allowed = 0;
-        }
-        if (chkAllowInputTransferAmount.Checked)
-        {
-            obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Transfer_Allowed = 1;
-        }
-        else
-        {
-            obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Transfer_Allowed = 0;
-        }
+        //if (chkDeductionAllow.Checked)
+        //{
+        //    obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Deduction_Allowed = 1;
+        //}
+        //else
+        //{
+        //    obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Deduction_Allowed = 0;
+        //}
+        obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Deduction_Allowed = 0;
+        //if (chkAllowInputTransferAmount.Checked)
+        //{
+        //    obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Transfer_Allowed = 1;
+        //}
+        //else
+        //{
+        //    obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Transfer_Allowed = 0;
+        //}
+        obj_tbl_ProcessConfigMaster.ProcessConfigMaster_Transfer_Allowed = 0;
         string InvoiceStatus_Id = "";
         string InvoiceStatus_Name = "";
         for (int i = 0; i < chkInvoiceStatus.Items.Count; i++)

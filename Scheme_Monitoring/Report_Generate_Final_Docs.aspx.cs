@@ -4,7 +4,7 @@ using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Device.Location;
+//using System.Device.Location;
 using System.IO;
 using System.Web;
 using System.Web.UI;

@@ -1,19 +1,30 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="MasterDivision.aspx.cs" Inherits="MasterDivision" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
     <div class="main-content">
-        <div class="main-content-inner">
+        <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
-                    <div class="page-content">
+                    <div class="container-fluid">
 
                         <div class="row">
+                            <div class="col-12">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Division Master</h4>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                                <li class="breadcrumb-item">Jurisdiction Masters</li>
+                                                <li class="breadcrumb-item active">ULB</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="col-xs-12">
                                 <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning mb-2"></asp:Button>
                                 </div>
                             </div>
                         </div>
@@ -23,8 +34,9 @@
                             <div class="row">
                                 <div class="col-xs-12">
 
-                                    <div class="table-header">
-                                        Create / Update Division
+                                    <div class="table-header col-lg-6">
+                                        <h3 style="font-weight:bold; font-size:large">Create / Update Division</h3>
+                                            <hr />
                                     </div>
                                 </div>
                             </div>
@@ -34,13 +46,41 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:DropDownList ID="ddlZoneMaster" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlZoneMaster" runat="server" CssClass="form-select mb-2"></asp:DropDownList>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <asp:Label ID="lblDivisionH" CssClass="control-label no-padding-right" Text="Division" runat="server"></asp:Label>
-                                            <asp:TextBox ID="txtDivisionName" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txtDivisionName" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblUrbanPopulation" CssClass="control-label no-padding-right" Text="Total urban population*" runat="server"></asp:Label>
+                                            <asp:TextBox ID="txtUrbanPopulation" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblUrbanPopulationSource" CssClass="control-label no-padding-right" Text="Source of Urban Population*" runat="server"></asp:Label>
+                                            <asp:TextBox ID="txtUrbanPopulationSource" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblDeathPer1000" runat="server" Text="Death rate per 1000 per year*" CssClass="form-label"></asp:Label>
+                                            <asp:TextBox ID="txtDeathPer1000" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblDeathPer1000Source" CssClass="control-label no-padding-right" Text="Source of Death rate per 1000 per year*" runat="server"></asp:Label>
+                                            <asp:TextBox ID="txtDeathPer1000Source" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
@@ -48,12 +88,11 @@
 
 
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-6">
+                                <div class="col-md-12">       
+                                    <div class="col-md-6">   
                                         <div class="form-group">
-                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
-                                            &nbsp; &nbsp; &nbsp;
-                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn"></asp:Button>
+                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
+                                            <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning mb-2"></asp:Button>
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +104,6 @@
                             <div class="col-xs-12">
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <h3 class="header smaller lighter blue">Division Master</h3>
                                         <div class="clearfix" id="dtOptions" runat="server">
                                             <div class="pull-right tableTools-container"></div>
                                         </div>
@@ -97,6 +135,10 @@
                                                     </asp:TemplateField>
                                                     <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
                                                     <asp:BoundField HeaderText="Division" DataField="Division_Name" />
+                                                    <asp:BoundField HeaderText="Urban Population" DataField="UrbanPopulation" />
+                                                    <asp:BoundField HeaderText="Urban Population Source" DataField="UrbanPopulationSource" />
+                                                    <asp:BoundField HeaderText="Death Per 1000" DataField="DeathPer1000" />
+                                                    <asp:BoundField HeaderText="Death Per 1000 Source" DataField="DeathPer1000Source" />
                                                      <asp:TemplateField HeaderText="Delete">
                                                         <ItemTemplate>
                                                             <asp:ImageButton ID="btnDelete" Width="20px" Height="20px" OnClick="btnDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
@@ -127,170 +169,6 @@
         </div>
     </div>
 
-    <!-- DataTable specific plugin scripts -->
-    <script src="assets/js/jquery-2.1.4.min.js"></script>
-    <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/dataTables.buttons.min.js"></script>
-    <script src="assets/js/buttons.flash.min.js"></script>
-    <script src="assets/js/buttons.html5.min.js"></script>
-    <script src="assets/js/buttons.print.min.js"></script>
-    <script src="assets/js/buttons.colVis.min.js"></script>
-    <script src="assets/js/dataTables.select.min.js"></script>
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
-    <script src="assets/js/dataTables.fixedHeader.min.js"></script>
-    <script src="assets/js/jquery.mark.min.js"></script>
-    <script src="assets/js/datatables.mark.js"></script>
-    <%--<script src="assets/js/dataTables.colReorder.min.js"></script>--%>
-
-    <script type="text/javascript">
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                var DataTableLength = $('#ctl00_ContentPlaceHolder1_grdPost').length;
-                if (DataTableLength > 0) {
-                    var outerHTML = $('#ctl00_ContentPlaceHolder1_grdPost')[0].outerText;
-                    if (outerHTML.trim() !== "No Records Found") {
-                        //initiate dataTables plugin
-                        var myTable =
-                            $('#ctl00_ContentPlaceHolder1_grdPost')
-                                //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                .DataTable({
-                                    mark: true,
-                                    colReorder: false,
-                                    fixedHeader: {
-                                        header: true,
-                                        footer: false
-                                    },
-                                    bAutoWidth: false,
-                                    "aoColumns": [
-                                        null, null, null, null, null, null, null
-                                    ],
-                                    "aaSorting": [],
-                                    //"bProcessing": true,
-                                    //"bServerSide": true,
-                                    //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-                                    //,
-                                    //"sScrollY": "200px",
-                                    //"bPaginate": false,
-                                    //"sScrollX": "100%",
-                                    //"sScrollXInner": "120%",
-                                    //"bScrollCollapse": true,
-                                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                    "iDisplayLength": 25,
-                                    select: {
-                                        style: 'multi'
-                                    }
-                                });
-                        $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
-                        new $.fn.dataTable.Buttons(myTable, {
-                            buttons: [
-                                {
-                                    "extend": "colvis",
-                                    "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    columns: ':not(:first):not(:last)'
-                                },
-                                {
-                                    "extend": "copy",
-                                    "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "csv",
-                                    "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "excel",
-                                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "pdf",
-                                    "text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "print",
-                                    "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    autoPrint: true,
-                                    message: 'This print was produced using the Print button for DataTables',
-                                    exportOptions: {
-                                        columns: ':visible'
-                                    }
-                                }
-                            ]
-                        });
-                        myTable.buttons().container().appendTo($('.tableTools-container'));
-
-                        //style the message box
-                        var defaultCopyAction = myTable.button(1).action();
-                        myTable.button(1).action(function (e, dt, button, config) {
-                            defaultCopyAction(e, dt, button, config);
-                            $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-                        });
-                        var defaultColvisAction = myTable.button(0).action();
-                        myTable.button(0).action(function (e, dt, button, config) {
-
-                            defaultColvisAction(e, dt, button, config);
-                            if ($('.dt-button-collection > .dropdown-menu').length == 0) {
-                                $('.dt-button-collection')
-                                    .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-                                    .find('a').attr('href', '#').wrap("<li />")
-                            }
-                            $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
-                        });
-                        ////
-                        setTimeout(function () {
-                            $($('.tableTools-container')).find('a.dt-button').each(function () {
-                                var div = $(this).find(' > div').first();
-                                if (div.length == 1) div.tooltip({ container: 'body', title: div.parent().text() });
-                                else $(this).tooltip({ container: 'body', title: $(this).text() });
-                            });
-                        }, 500);
-
-                        $(document).on('click', '#ctl00_ContentPlaceHolder1_grdPost .dropdown-toggle', function (e) {
-                            e.stopImmediatePropagation();
-                            e.stopPropagation();
-                            //e.preventDefault();
-                        });
-                        //And for the first simple table, which doesn't have TableTools or dataTables
-                        //select/deselect all rows according to table header checkbox
-                        var active_class = 'active';
-                        /********************************/
-                        //add tooltip for small view action buttons in dropdown menu
-                        $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
-
-                        //tooltip placement on right or left
-                        function tooltip_placement(context, source) {
-                            var $source = $(source);
-                            var $parent = $source.closest('table')
-                            var off1 = $parent.offset();
-                            var w1 = $parent.width();
-
-                            var off2 = $source.offset();
-                            //var w2 = $source.width();
-
-                            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-                            return 'left';
-                        }
-                        /***************/
-                        $('.show-details-btn').on('click', function (e) {
-                            e.preventDefault();
-                            $(this).closest('tr').next().toggleClass('open');
-                            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-                        });
-                    }
-                }
-            })
-        });
-
-    </script>
 </asp:Content>
 
 

@@ -28,54 +28,53 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
             lblZoneH.Text = Session["Default_Zone"].ToString();
             lblCircleH.Text = Session["Default_Circle"].ToString();
             lblDivisionH.Text = Session["Default_Division"].ToString();
-
-            //if (Session["UserType"].ToString() != "1")
-            //{
-            //    try
-            //    {
-            //        if (Session["PersonJuridiction_Project_Id"].ToString() != "" && Session["PersonJuridiction_Project_Id"].ToString() != "0")
-            //        {
-            //            ddlSearchScheme.SelectedValue = Session["PersonJuridiction_Project_Id"].ToString();
-            //            ddlSearchScheme.Enabled = false;
-            //        }
-            //    }
-            //    catch
-            //    {
-
-            //    }
-
-            //}
-            if (Session["UserType"].ToString() == "2" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
-            {//District
-                try
-                {
-                    //ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    //ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    //ddlDistrict.Enabled = false;
-                }
-                catch
-                { }
-            }
-            if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["District_Id"].ToString()) > 0)
+            string Mode = "";
+            if (Request.QueryString.Count > 0)
             {
                 try
                 {
-                    //ddlDistrict.SelectedValue = Session["District_Id"].ToString();
-                    //ddlDistrict_SelectedIndexChanged(ddlDistrict, e);
-                    //ddlDistrict.Enabled = false;
-                    if (Session["UserType"].ToString() == "3" && Convert.ToInt32(Session["ULB_Id"].ToString()) > 0)
-                    {//ULB
-                        try
-                        {
-                            ddlULB.SelectedValue = Session["ULB_Id"].ToString();
-                            ddlULB.Enabled = false;
-                        }
-                        catch
-                        { }
-                    }
+                    Mode = Request.QueryString[0].ToString();
                 }
                 catch
-                { }
+                {
+                    Mode = "";
+                }
+                if (Mode == "GO")
+                {
+                    btnCreateNew.Visible = false;
+                }
+                else if (Mode == "UC")
+                {
+                    btnCreateNew.Visible = false;
+                }
+                else if (Mode == "Issue")
+                {
+                    btnCreateNew.Visible = false;
+                }
+                else if (Mode == "Comp")
+                {
+                    btnCreateNew.Visible = false;
+                }
+                else if (Mode == "SO")
+                {
+                    btnCreateNew.Visible = true;
+                }
+                else if (Mode == "PMU")
+                {
+                    btnCreateNew.Visible = true;
+                }
+                else if (Mode == "G")
+                {
+                    btnCreateNew.Visible = false;
+                }
+                else
+                {
+                    btnCreateNew.Visible = false;
+                }
+            }
+            else
+            {
+                btnCreateNew.Visible = true;
             }
             if (Session["UserType"].ToString() == "4" && Convert.ToInt32(Session["PersonJuridiction_ZoneId"].ToString()) > 0)
             {//Zone
@@ -148,7 +147,6 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
             if (Session["SearchStorage"] != null)
             {
                 SearchStorage obj_SearchStorage = (SearchStorage)Session["SearchStorage"];
-                txtGONoSearch.Text = obj_SearchStorage.FromDate;
                 try
                 {
                     ddlSearchScheme.SelectedValue = obj_SearchStorage.Scheme_Id;
@@ -345,7 +343,6 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         obj_SearchStorage.Circle_Id = Circle_Id;
         obj_SearchStorage.District_Id = 0;
         obj_SearchStorage.Division_Id = Division_Id;
-        obj_SearchStorage.FromDate = txtGONoSearch.Text.Trim();
         obj_SearchStorage.Scheme_Id = Project_Id;
         obj_SearchStorage.Search_By = "2";
         obj_SearchStorage.TillDate = "";
@@ -353,7 +350,44 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         obj_SearchStorage.Zone_Id = Zone_Id;
         Session["SearchStorage"] = obj_SearchStorage;
         DataSet ds = new DataSet();
-        ds = (new DataLayer()).get_tbl_ProjectWork_DataEntry(Project_Id, 0, Zone_Id, Circle_Id, Division_Id, 0, AllClasses.re_Organize_GO_No(txtGONoSearch.Text.Trim(), true), "");
+        ds = (new DataLayer().get_Custom_Dashboard_View(Zone_Id, Circle_Id, Division_Id, Project_Id, 0, 0, txtProjectCode.Text.Trim()));
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            lnkTotal.Text = ds.Tables[0].Rows[0]["Total_Projects"].ToString();
+            lnkPhyCompleted.Text = ds.Tables[0].Rows[0]["Projects_Physical_Completed"].ToString();
+            lnkPhyNotCompleted.Text = ds.Tables[0].Rows[0]["Projects_Physical_Not_Completed"].ToString();
+            lnkFinCompleted.Text = ds.Tables[0].Rows[0]["Projects_Financial_Completed"].ToString();
+            lnkFinNotCompleted.Text = ds.Tables[0].Rows[0]["Projects_Financial_Not_Completed"].ToString();
+            lnkGalleryUpdated.Text = ds.Tables[0].Rows[0]["Gallery_Available"].ToString();
+            lnkGalleryNotUpdated.Text = ds.Tables[0].Rows[0]["Gallery_Not_Available"].ToString();
+            lnkInspectionUpdated.Text = ds.Tables[0].Rows[0]["Inspection_Available"].ToString();
+            lnkInspectionNotUpdated.Text = ds.Tables[0].Rows[0]["Inspection_Not_Available"].ToString();
+            lnkAgreementUpdated.Text = ds.Tables[0].Rows[0]["Agreement_Available"].ToString();
+            lnkAgreementNotUpdated.Text = ds.Tables[0].Rows[0]["Agreement_Not_Available"].ToString();
+            lnkUCUpload.Text = ds.Tables[0].Rows[0]["UC_Available"].ToString();
+            lnkUCNotUpload.Text = ds.Tables[0].Rows[0]["UC_Not_Available"].ToString();
+            lnkUCApproved.Text = ds.Tables[0].Rows[0]["UC_Approved"].ToString();
+            lnkUCNotApproved.Text = ds.Tables[0].Rows[0]["UC_Not_Approved"].ToString();
+        }
+        else
+        {
+            lnkTotal.Text = "0";
+            lnkPhyCompleted.Text = "0";
+            lnkPhyNotCompleted.Text = "0";
+            lnkFinCompleted.Text = "0";
+            lnkFinNotCompleted.Text = "0";
+            lnkGalleryUpdated.Text = "0";
+            lnkGalleryNotUpdated.Text = "0";
+            lnkInspectionUpdated.Text = "0";
+            lnkInspectionNotUpdated.Text = "0";
+            lnkAgreementUpdated.Text = "0";
+            lnkAgreementNotUpdated.Text = "0";
+            lnkUCUpload.Text = "0";
+            lnkUCNotUpload.Text = "0";
+            lnkUCApproved.Text = "0";
+            lnkUCNotApproved.Text = "0";
+        }
+        ds = (new DataLayer()).get_tbl_ProjectWork(Project_Id, 0, Zone_Id, Circle_Id, Division_Id, 0, "", 0, txtProjectCode.Text.Trim(), 0);
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             grdPost.DataSource = ds.Tables[0];
@@ -374,6 +408,7 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
         int ProjectWork_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
         int Project_Id = Convert.ToInt32(gr.Cells[1].Text.Trim());
+        int District_Id = Convert.ToInt32(gr.Cells[2].Text.Trim());
         string Client = ConfigurationManager.AppSettings.Get("Client");
         if (Client == "CNDS")
         {
@@ -381,13 +416,73 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
+            string Mode = "";
+            if (Request.QueryString.Count > 0)
+            {
+                try
+                {
+                    Mode = Request.QueryString[0].ToString();
+                }
+                catch
+                {
+                    Mode = "";
+                }
+                if (Mode == "GO")
+                {
+                    Response.Redirect("MasterProjectWorkMIS_2_CNDS.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&District_Id=" + District_Id + "&Id=" + Project_Id.ToString());
+                }
+                else if (Mode == "UC")
+                {
+                    Response.Redirect("MasterProjectWorkMIS_6.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
+                }
+                else if (Mode == "Issue")
+                {
+                    Response.Redirect("MasterProjectWorkMIS_8.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
+                }
+                else if (Mode == "Comp")
+                {
+                    Response.Redirect("MasterProjectWorkMIS_4.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
+                }
+                else if (Mode == "SO")
+                {
+                    Response.Redirect("MasterProjectWork_DataEntrySection.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
+                }
+                else if (Mode == "PMU")
+                {
+                    Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
+                }
+                else if (Mode == "G")
+                {
+                    Response.Redirect("ProjectWorkGalleryView.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Mode=P&App=false");
+                }
+                else
+                {
+                    Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
+                }
+            }
+            else
+            {
+                Response.Redirect("MasterProjectWork_DataEntry2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Scheme_Id=" + Project_Id.ToString());
+            }
+
         }
     }
 
 
     protected void btnCreateNew_Click(object sender, EventArgs e)
     {
+        string Mode = "";
+        if (Request.QueryString.Count > 0)
+        {
+            try
+            {
+                Mode = Request.QueryString[0].ToString();
+            }
+            catch
+            {
+                Mode = "";
+            }
+        }
         string Client = ConfigurationManager.AppSettings.Get("Client");
         if (Client == "CNDS")
         {
@@ -395,7 +490,81 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("MasterProjectWork_DataEntry2.aspx");
+            if (Mode == "SO")
+            {
+                Response.Redirect("MasterProjectWork_DataEntrySO.aspx");
+            }
+            else
+            {
+                Response.Redirect("MasterProjectWork_DataEntry2.aspx");
+            }
         }
+    }
+
+    protected void lnkTotal_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkPhyCompleted_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkPhyNotCompleted_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkFinCompleted_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkFinNotCompleted_Click(object sender, EventArgs e)
+    {
+
+    }
+
+
+
+    protected void lnkGalleryUpdated_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkGalleryNotUpdated_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkAgreementUpdated_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkAgreementNotUpdated_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkUCNotUpload_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkUCUpload_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkUCApproved_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lnkUCNotApproved_Click(object sender, EventArgs e)
+    {
+
     }
 }

@@ -18,6 +18,8 @@ public partial class TemplateMasterAdmin : System.Web.UI.MasterPage
             //lblUserHeader.Text = Session["Person_Name"].ToString() + "     " + lastLogin;
             //lblUser.Text = Session["Person_Name"].ToString();
             //lblUserNameDesig.Text = Session["Person_Name"].ToString() + Environment.NewLine + Session["Designation_DesignationName"].ToString();
+            ProflePic.Src = Session["Profile_Pic"].ToString();
+           
         }
         obj_tbl_ePaymentModules = (tbl_ePaymentModules)Session["tbl_ePaymentModules"];
     }

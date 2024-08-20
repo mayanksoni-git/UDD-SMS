@@ -17,6 +17,7 @@ public partial class Index : System.Web.UI.Page
     public tbl_ePaymentModules obj_tbl_ePaymentModules = new tbl_ePaymentModules();
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         string Client = ConfigurationManager.AppSettings.Get("Client");
         if (Session["Module_Id"] != null && Session["Module_Id"].ToString() == "1")
         {
@@ -233,6 +234,30 @@ public partial class Index : System.Web.UI.Page
                 else
                     Response.Redirect("ChangePassword.aspx");
             }
+            else if (Session["UserType"] != null && Session["UserType"].ToString() == "14")//Operator
+            {
+                if (Session["Login_IsDefault"].ToString() == "1")
+                {
+                    if (Client == "CNDS")
+                    {
+                        Response.Redirect("Dashboard_PMIS_CNDS.aspx");
+                    }
+                    else if (Client == "SAR")
+                    {
+                        Response.Redirect("Dashboard_Sarovar.aspx");
+                    }
+                    else if (Client == "JNUP")
+                    {
+                        Response.Redirect("Dashboard_PMIS.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("DashboardNew.aspx");
+                    }
+                }
+                else
+                    Response.Redirect("ChangePassword.aspx");
+            }
             else
             {
                 //Response.Redirect("Index.aspx");
@@ -292,6 +317,13 @@ public partial class Index : System.Web.UI.Page
                         Response.Redirect("ChangePassword.aspx");
                 }
             }
+            else if (Session["UserType"] != null && Session["UserType"].ToString() == "14")//Division Officer
+            {
+                if (Session["Login_IsDefault"].ToString() == "1")
+                    Response.Redirect("DashboardFinance.aspx");
+                else
+                    Response.Redirect("ChangePassword.aspx");
+            }
             else
             {
                 //Response.Redirect("Index.aspx");
@@ -329,19 +361,7 @@ public partial class Index : System.Web.UI.Page
         return FormsAuthentication.HashPasswordForStoringInConfigFile((randomNo + strPassword), "MD5");
 #pragma warning restore 618
     }
-    protected void ValidateCaptcha(object sender, ServerValidateEventArgs e)
-    {
-        Captcha1.ValidateCaptcha(txtCaptcha.Text.Trim());
-        e.IsValid = Captcha1.UserValidated;
-        if (e.IsValid)
-        {
-            ViewState["IsValid"] = "true";
-        }
-        else
-        {
-            ViewState["IsValid"] = "false";
-        }
-    }
+
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         if (txtUserName.Text.Trim().Replace("'", "") == "")
@@ -354,18 +374,6 @@ public partial class Index : System.Web.UI.Page
         {
             MessageBox.Show("Please Provide Password!!");
             txtPassowrd.Focus();
-            return;
-        }
-        if (txtCaptcha.Text.Trim() == "")
-        {
-            MessageBox.Show("Please Solve Captcha Puzzle..!!");
-            txtCaptcha.Focus();
-            return;
-        }
-        if (ViewState["IsValid"].ToString() == "false")
-        {
-            MessageBox.Show("Please Solve Captcha Puzzle..!!");
-            txtCaptcha.Focus();
             return;
         }
         DataSet ds = new DataSet();
@@ -430,10 +438,22 @@ public partial class Index : System.Web.UI.Page
         string Client = ConfigurationManager.AppSettings.Get("Client");
         Session["LoginHistory_Id"] = (new DataLayer()).Insert_tbl_LoginHistory(ds.Tables[0].Rows[0]["Person_Id"].ToString());
         Session["User_Permission"] = (new DataLayer()).get_User_Permission(ds.Tables[0].Rows[0]["Person_BranchOffice_Id"].ToString().Trim(), ds.Tables[0].Rows[0]["PersonJuridiction_DesignationId"].ToString());
+        
+        if((ds.Tables[0].Rows[0]["Person_Id"].ToString())!=null)
+        {
+            Session["Profile_Pic"] = ds.Tables[0].Rows[0]["Person_ProfilePIC"].ToString();
+        }
+        else
+        {
+           
+                Session["Profile_Pic"] = "assets/images/users/avatar-1.jpg";
+           
+        }
         Session["Module_Id"] = "1";
         Session["Login_Id"] = ds.Tables[0].Rows[0]["Login_Id"].ToString().Trim();
         Session["Person_BranchOffice_Id"] = ds.Tables[0].Rows[0]["Person_BranchOffice_Id"].ToString().Trim();
         Session["UserName"] = ds.Tables[0].Rows[0]["Login_UserName"].ToString().Trim();
+
         Session["UserType"] = ds.Tables[0].Rows[0]["PersonJuridiction_UserTypeId"].ToString();
         Session["UserTypeName"] = ds.Tables[0].Rows[0]["UserType_Desc_E"].ToString();
         Session["Person_Id"] = ds.Tables[0].Rows[0]["Person_Id"].ToString();
@@ -713,6 +733,30 @@ public partial class Index : System.Web.UI.Page
                 else
                     Response.Redirect("ChangePassword.aspx");
             }
+            else if (Session["UserType"].ToString() == "14")//Inspection
+            {
+                if (Session["Login_IsDefault"].ToString() == "1")
+                {
+                    if (Client == "CNDS")
+                    {
+                        Response.Redirect("Dashboard_PMIS_CNDS.aspx");
+                    }
+                    else if (Client == "SAR")
+                    {
+                        Response.Redirect("Dashboard_Sarovar.aspx");
+                    }
+                    else if (Client == "JNUP")
+                    {
+                        Response.Redirect("Dashboard_PMIS.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("DashboardNew.aspx");
+                    }
+                }
+                else
+                    Response.Redirect("ChangePassword.aspx");
+            }
             else
             {
                 MessageBox.Show("Not Authorized To Login...!!");
@@ -774,6 +818,13 @@ public partial class Index : System.Web.UI.Page
                 }
             }
             else if (Session["UserType"].ToString() == "9")//Operator
+            {
+                if (Session["Login_IsDefault"].ToString() == "1")
+                    Response.Redirect("DashboardFinance.aspx");
+                else
+                    Response.Redirect("ChangePassword.aspx");
+            }
+            else if (Session["UserType"].ToString() == "14")//Operator
             {
                 if (Session["Login_IsDefault"].ToString() == "1")
                     Response.Redirect("DashboardFinance.aspx");

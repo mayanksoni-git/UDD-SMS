@@ -3,256 +3,253 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <div class="main-content">
-        <div class="main-content-inner">
+        <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
-            <asp:UpdatePanel ID="up" runat="server">
-                <ContentTemplate>
-
-                    <div class="page-content">
+            <%--<asp:UpdatePanel ID="up" runat="server">
+                <ContentTemplate>--%>
+                    <div class="container-fluid">
                         <div id="divCreate" runat="server">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="table-header">
-                                        Create Project DPR
-                                   
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="control-label no-padding-right">Scheme* </label>
-                                            <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectMaster_SelectedIndexChanged"></asp:DropDownList>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="control-label no-padding-right">District* </label>
-                                            <asp:DropDownList ID="ddlDistrict" runat="server" class="chosen-select form-control" data-placeholder="Choose a District..." AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Label ID="lblULB" runat="server" Text="ULB" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:DropDownList ID="ddlULB" runat="server" CssClass="form-control"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4" id="divCircle" runat="server">
-                                        <div class="form-group">
-                                            <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4" id="divDivision" runat="server">
-                                        <div class="form-group">
-                                            <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                <div class="col-12 mb-4">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Create DPR</h4>
+                                        <div class="page-title-right">
+                                            <ol class="breadcrumb m-0">
+                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                                <li class="breadcrumb-item">DPR</li>
+                                                <li class="breadcrumb-item active">Create Project DPR</li>
+                                            </ol>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="control-label no-padding-right">Project Name* </label>
-                                            <asp:TextBox ID="txtProjectWorkName" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Create DPR </h4>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-sm-12">
-                                                                        
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Label ID="Label3" runat="server" Text="Total CAPEX Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:TextBox ID="txtCapexCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Label ID="Label1" runat="server" Text="Total ACA Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:TextBox ID="txtACACost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Label ID="Label6" runat="server" Text="Total O & M Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:TextBox ID="txtOMCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <%--<label class="control-label no-padding-right">Scheme* </label>--%>
+                                                            <asp:Label ID="lblScheme" runat="server" Text="Scheme*" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectMaster_SelectedIndexChanged"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div id="divCircle" runat="server">
+                                                            <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div id="divDivision" runat="server">
+                                                            <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <%--<label class="control-label no-padding-right">Project Name* </label>--%>
+                                                            <asp:Label ID="lblProjectName" runat="server" Text="Project Name* " CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="txtProjectWorkName" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label3" runat="server" Text="Total Capital Expenditures Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="txtCapexCost" runat="server" CssClass="form-control" onkeyup="TotalAmount()"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label6" runat="server" Text="Total Operational & Maintenance Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="txtOMCost" runat="server" CssClass="form-control" onkeyup="TotalAmount()"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                  
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label2" runat="server" Text="Total Project Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="txtProjectCost" runat="server" ReadOnly="true" Enabled="false" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <%--<label class="control-label no-padding-right">Project Type* </label>--%>
+                                                            <asp:Label ID="lblProjectType" runat="server" Text="Project Type*" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label5" runat="server" Text="Tentitive Date of DPR Submission" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="txtTentitiveDate" runat="server" CssClass="form-control date-picker" autocomplete="off"
+                                                                TextMode="Date"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                     <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label4" runat="server" Text="Enter Ward" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="TxtWard" runat="server" CssClass="form-control"  ></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <br />
+                                                            <asp:CheckBox ID="chkSkip" runat="server" Text="Create DPR and Skip To Bid Process Management Module"></asp:CheckBox>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label7" runat="server" Text="Enter Zone" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="TxtZone" runat="server" CssClass="form-control"  ></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label8" runat="server" Text="Land Status: " CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:CheckBoxList ID="chkLandStatus" runat="server" RepeatDirection="Horizontal">
+                                                                <asp:ListItem Text="Land Identified" Value="I"></asp:ListItem>
+                                                                <asp:ListItem Text="Land Transffered" Value="T"></asp:ListItem>
+                                                               
+                                                            </asp:CheckBoxList>
+                                                        </div>
+                                                    </div>
 
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="control-label no-padding-right">Project Type* </label>
-                                            <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-control"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Label ID="Label2" runat="server" Text="Total Project Cost (In Lakhs)" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4" runat="server" id="divTranche">
-                                        <div class="form-group">
-                                            <asp:Label ID="Label4" runat="server" Text="Tranche" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:DropDownList ID="ddlTranche" runat="server" CssClass="form-control"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <asp:Label ID="Label5" runat="server" Text="Tentitive Date of DPR Submission" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:TextBox ID="txtTentitiveDate" runat="server" CssClass="form-control date-picker" autocomplete="off"
-                                            data-date-format="dd/mm/yyyy"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4" id="divNodal" runat="server">
-                                        <div class="form-group">
-                                            <asp:Label ID="Label7" runat="server" Text="Nodal Department" CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:DropDownList ID="ddlNodalDepartment" runat="server" CssClass="form-control"></asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <br />
-                                            <asp:CheckBox ID="chkSkip" runat="server" Text="Create DPR and Skip To Bid Process Management Module"></asp:CheckBox>
+                                                     <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label1" runat="server" Text="Project DPR Land Status Remark" CssClass="control-label no-padding-right"></asp:Label>
+                                                            <asp:TextBox ID="ORemark" runat="server" CssClass="form-control" TextMode="MultiLine" ></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                   
+
+                                                      <div class="col-xxl-11 col-md-11 flex-grow-1"></div>
+                                                    <div class="col-xxl-1 col-md-6 flex-grow-1">
+                                                        <div>
+                                                            <br />
+                                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end row-->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <asp:Label ID="Label8" runat="server" Text="Land Status: " CssClass="control-label no-padding-right"></asp:Label>
-                                            <asp:CheckBoxList ID="chkLandStatus" runat="server" RepeatDirection="Horizontal">
-                                                <asp:ListItem Text="Land Identified" Value="I"></asp:ListItem>
-                                                <asp:ListItem Text="Land Transffered" Value="T"></asp:ListItem>
-                                            </asp:CheckBoxList>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--end col-->
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <h3 class="header smaller lighter blue">Project List</h3>
 
-                                        <!-- div.table-responsive -->
-                                        <div class="clearfix" id="dtOptions" runat="server">
-                                            <div class="pull-right tableTools-container"></div>
-                                        </div>
-                                        <!-- div.dataTables_borderWrap -->
-                                        <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
-                                                <Columns>
-                                                    <asp:BoundField DataField="ProjectDPR_Id" HeaderText="ProjectDPR_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="ProjectDPR_ProjectTypeId" HeaderText="ProjectDPR_ProjectTypeId">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="ProjectDPR_Project_Id" HeaderText="ProjectDPR_Project_Id">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="ProjectDPR_DistrictId" HeaderText="ProjectDPR_DistrictId">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="ProjectDPR_ULBId" HeaderText="ProjectDPR_ULBId">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="ProjectDPR_DivisionId" HeaderText="ProjectDPR_DivisionId">
-                                                        <HeaderStyle CssClass="displayStyle" />
-                                                        <ItemStyle CssClass="displayStyle" />
-                                                        <FooterStyle CssClass="displayStyle" />
-                                                    </asp:BoundField>
-                                                    <asp:TemplateField HeaderText="S No.">
-                                                        <ItemTemplate>
-                                                            <%# Container.DataItemIndex + 1 %>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Select">
-                                                        <ItemTemplate>
-                                                            <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />
-                                                    <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
-                                                    <asp:BoundField HeaderText="Division" DataField="Division_Name" />
-                                                    <asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />
-                                                    <asp:BoundField HeaderText="Work" DataField="ProjectDPR_Name" />
-                                                    <asp:BoundField HeaderText="Capex Cost (In Lakhs)" DataField="ProjectDPR_CapexCost" />
-                                                    <asp:BoundField HeaderText="O & M  (In Lakhs)" DataField="ProjectDPR_OandM_Cost" />
-                                                    <asp:BoundField HeaderText="ACA Cost  (In Lakhs)" DataField="ProjectDPR_ACA_Cost" />
-                                                    <asp:BoundField HeaderText="Project Cost  (In Lakhs)" DataField="ProjectDPR_Project_Cost" />
-                                                    <asp:BoundField HeaderText="Project Code" DataField="ProjectDPR_Code" />
-                                                    <asp:TemplateField HeaderText="Delete">
-                                                        <ItemTemplate>
-                                                            <asp:ImageButton ID="btnDelete" Width="20px" Height="30px" OnClick="btnDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                </Columns>
-                                            </asp:GridView>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">DPR List</h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-12">
+                                                <!-- div.table-responsive -->
+                                                <div class="clearfix" id="Div2" runat="server">
+                                                    <div class="pull-right tableTools-container"></div>
+                                                </div>
+                                                <!-- div.dataTables_borderWrap -->
+                                                <div style="overflow: auto">
+                                                    <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
+                                                        <Columns>
+                                                            <asp:BoundField DataField="ProjectDPR_Id" HeaderText="ProjectDPR_Id">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <asp:BoundField DataField="ProjectDPR_ProjectTypeId" HeaderText="ProjectDPR_ProjectTypeId">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <asp:BoundField DataField="ProjectDPR_Project_Id" HeaderText="ProjectDPR_Project_Id">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <asp:BoundField DataField="ProjectDPR_DistrictId" HeaderText="ProjectDPR_DistrictId">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <asp:BoundField DataField="ProjectDPR_ULBId" HeaderText="ProjectDPR_ULBId">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <asp:BoundField DataField="ProjectDPR_DivisionId" HeaderText="ProjectDPR_DivisionId">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <asp:TemplateField HeaderText="S No.">
+                                                                <ItemTemplate>
+                                                                    <%# Container.DataItemIndex + 1 %>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Select">
+                                                                <ItemTemplate>
+                                                                    <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />
+                                                            <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
+                                                            <asp:BoundField HeaderText="Division" DataField="Division_Name" />
+                                                            <asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />
+                                                            <asp:BoundField HeaderText="Work" DataField="ProjectDPR_Name" />
+                                                            <asp:BoundField HeaderText="Capex Cost (In Lakhs)" DataField="ProjectDPR_CapexCost" />
+                                                            <asp:BoundField HeaderText="O & M  (In Lakhs)" DataField="ProjectDPR_OandM_Cost" />
+                                                            <asp:BoundField HeaderText="ACA Cost  (In Lakhs)" DataField="ProjectDPR_ACA_Cost" />
+                                                            <asp:BoundField HeaderText="Project Cost  (In Lakhs)" DataField="ProjectDPR_Project_Cost" />
+                                                            <asp:BoundField HeaderText="Project Code" DataField="ProjectDPR_Code" />
+                                                            <asp:TemplateField HeaderText="Delete">
+                                                                <ItemTemplate>
+                                                                    <asp:ImageButton ID="btnDelete" Width="20px" Height="30px" OnClick="btnDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                </div>
+                                            </div>
+                                            <!--end row-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--end col-->
                         </div>
                     </div>
                     <asp:HiddenField ID="hf_ProjectDPR_Id" runat="server" Value="0" />
-                </ContentTemplate>
-                <Triggers>
+               
+                <%--<Triggers>
                     <asp:PostBackTrigger ControlID="btnSave" />
                 </Triggers>
-            </asp:UpdatePanel>
-            <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
+            </asp:UpdatePanel>--%>
+            <%--<asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
                 <ProgressTemplate>
                     <div style="position: fixed; z-index: 999; height: 100%; width: 100%; top: 0; background-color: Black; filter: alpha(opacity=60); opacity: 0.6; -moz-opacity: 0.8; cursor: not-allowed;">
                         <div style="z-index: 1000; margin: 300px auto; padding: 10px; width: 130px; background-color: transparent; border-radius: 1px; filter: alpha(opacity=100); opacity: 1; -moz-opacity: 1;">
@@ -260,176 +257,22 @@
                         </div>
                     </div>
                 </ProgressTemplate>
-            </asp:UpdateProgress>
+            </asp:UpdateProgress>--%>
         </div>
     </div>
 
-    <!-- DataTable specific plugin scripts -->
-    <script src="assets/js/jquery-2.1.4.min.js"></script>
-    <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/dataTables.buttons.min.js"></script>
-    <script src="assets/js/buttons.flash.min.js"></script>
-    <script src="assets/js/buttons.html5.min.js"></script>
-    <script src="assets/js/buttons.print.min.js"></script>
-    <script src="assets/js/buttons.colVis.min.js"></script>
-    <script src="assets/js/dataTables.select.min.js"></script>
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
-    <script src="assets/js/dataTables.fixedHeader.min.js"></script>
-    <script src="assets/js/jquery.mark.min.js"></script>
-    <script src="assets/js/datatables.mark.js"></script>
-    <%--<script src="assets/js/dataTables.colReorder.min.js"></script>--%>
-
-    <script type="text/javascript">
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                var DataTableLength = $('#ctl00_ContentPlaceHolder1_grdPost').length;
-                if (DataTableLength > 0) {
-                    var outerHTML = $('#ctl00_ContentPlaceHolder1_grdPost')[0].outerText;
-                    if (outerHTML.trim() !== "No Records Found") {
-                        //initiate dataTables plugin
-                        var myTable =
-                            $('#ctl00_ContentPlaceHolder1_grdPost')
-                                //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                .DataTable({
-                                    mark: true,
-                                    colReorder: false,
-                                    fixedHeader: {
-                                        header: true,
-                                        footer: false
-                                    },
-                                    bAutoWidth: false,
-                                    "aoColumns": [
-                                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
-                                    ],
-                                    "aaSorting": [],
-                                    //"bProcessing": true,
-                                    //"bServerSide": true,
-                                    //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-                                    //,
-                                    //"sScrollY": "200px",
-                                    //"bPaginate": false,
-                                    //"sScrollX": "100%",
-                                    //"sScrollXInner": "120%",
-                                    //"bScrollCollapse": true,
-                                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                    "iDisplayLength": 25,
-                                    select: {
-                                        style: 'multi'
-                                    }
-                                });
-                        $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
-                        new $.fn.dataTable.Buttons(myTable, {
-                            buttons: [
-                                {
-                                    "extend": "colvis",
-                                    "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    columns: ':not(:first):not(:last)'
-                                },
-                                {
-                                    "extend": "copy",
-                                    "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "csv",
-                                    "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "excel",
-                                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "pdf",
-                                    "text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "print",
-                                    "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    autoPrint: true,
-                                    message: 'This print was produced using the Print button for DataTables',
-                                    exportOptions: {
-                                        columns: ':visible'
-                                    }
-                                }
-                            ]
-                        });
-                        myTable.buttons().container().appendTo($('.tableTools-container'));
-
-                        //style the message box
-                        var defaultCopyAction = myTable.button(1).action();
-                        myTable.button(1).action(function (e, dt, button, config) {
-                            defaultCopyAction(e, dt, button, config);
-                            $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-                        });
-                        var defaultColvisAction = myTable.button(0).action();
-                        myTable.button(0).action(function (e, dt, button, config) {
-
-                            defaultColvisAction(e, dt, button, config);
-                            if ($('.dt-button-collection > .dropdown-menu').length == 0) {
-                                $('.dt-button-collection')
-                                    .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-                                    .find('a').attr('href', '#').wrap("<li />")
-                            }
-                            $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
-                        });
-                        ////
-                        setTimeout(function () {
-                            $($('.tableTools-container')).find('a.dt-button').each(function () {
-                                var div = $(this).find(' > div').first();
-                                if (div.length == 1) div.tooltip({ container: 'body', title: div.parent().text() });
-                                else $(this).tooltip({ container: 'body', title: $(this).text() });
-                            });
-                        }, 500);
-
-                        $(document).on('click', '#ctl00_ContentPlaceHolder1_grdPost .dropdown-toggle', function (e) {
-                            e.stopImmediatePropagation();
-                            e.stopPropagation();
-                            //e.preventDefault();
-                        });
-                        //And for the first simple table, which doesn't have TableTools or dataTables
-                        //select/deselect all rows according to table header checkbox
-                        var active_class = 'active';
-                        /********************************/
-                        //add tooltip for small view action buttons in dropdown menu
-                        $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
-
-                        //tooltip placement on right or left
-                        function tooltip_placement(context, source) {
-                            var $source = $(source);
-                            var $parent = $source.closest('table')
-                            var off1 = $parent.offset();
-                            var w1 = $parent.width();
-
-                            var off2 = $source.offset();
-                            //var w2 = $source.width();
-
-                            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-                            return 'left';
-                        }
-                        /***************/
-                        $('.show-details-btn').on('click', function (e) {
-                            e.preventDefault();
-                            $(this).closest('tr').next().toggleClass('open');
-                            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-                        });
-                    }
-                }
-            })
-        });
-
-    </script>
-
     <script>
+
+        function TotalAmount() {
+            var cap = document.getElementById("ctl00_ContentPlaceHolder1_txtOMCost").value;
+            var om = document.getElementById("ctl00_ContentPlaceHolder1_txtCapexCost").value;
+            
+            cap = cap ? cap : 0;
+            om = om ? om : 0;
+            document.getElementById("ctl00_ContentPlaceHolder1_txtProjectCost").value = (Number(om) + Number(cap));
+            
+        }
+
         Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
             jQuery(function ($) {
                 $('.modalBackground1').click(function () {

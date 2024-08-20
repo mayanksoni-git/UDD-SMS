@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Scheme_Monitoring/vwd.webinfo
+/Scheme_Monitoring/vwd.webinfo
+/Scheme_Monitoring/web.config
+/Scheme_Monitoring/packages.config
+/Scheme_Monitoring/vwd.webinfo

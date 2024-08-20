@@ -118,6 +118,8 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
                 get_tbl_ProjectWorkGO_Blank();
                 get_tbl_ProjectWorkIssueDetails(0);
                 get_UC_Details(0);
+                get_tbl_FundingPattern();
+                get_tbl_PhysicalProgressComponent();
             }
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
@@ -145,6 +147,10 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             AllClasses.FillDropDown(ds.Tables[0], ddlZone, "Zone_Name", "Zone_Id");
+            if (ddlZone.SelectedItem.Value != "0")
+            {
+                get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
+            }
         }
         else
         {
@@ -210,6 +216,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             try
             {
                 ddlProjectMaster.SelectedValue = Session["Default_Scheme"].ToString();
+                ddlProjectMaster_SelectedIndexChanged(ddlProjectMaster, new EventArgs());
             }
             catch
             {
@@ -230,10 +237,10 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             txtProjectWorkName.Focus();
             return;
         }
-        if (txtGODate1.Text.Trim() == "")
+        if (txtGODate2.Text.Trim() == "")
         {
             MessageBox.Show("Please Provide GO Date");
-            txtGODate1.Focus();
+            txtGODate2.Focus();
             return;
         }
         if (txtBudget.Text.Trim() == "" || txtBudget.Text.Trim() == "0")
@@ -326,7 +333,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             }
         }
         
-        obj_tbl_ProjectWork.ProjectWork_GO_Date = txtGODate1.Text.Trim();
+        obj_tbl_ProjectWork.ProjectWork_GO_Date = txtGODate2.Text.Trim();
         obj_tbl_ProjectWork.ProjectWork_GO_No = txtGONo.Text.Trim();
         obj_tbl_ProjectWorkPkg_Li = (List<tbl_ProjectWorkPkgTemp>)ViewState["tbl_ProjectWorkPkgTemp"];
         tbl_ProjectWorkPkgTemp obj_tbl_ProjectWorkPkgTemp = new tbl_ProjectWorkPkgTemp();
@@ -514,7 +521,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             {
                 obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_PreviousRA = 0;
             }
-            obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_ExtendDate = txtextenddate.Text;
+            obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_ExtendDate = txtextenddate.Text.Trim();
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Lead_Vendor_PAN = txtLeadContractorPAN.Text.Replace("PAN:", "");
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Lead_Vendor_Name = txtLeadContractorName.Text;
             obj_tbl_ProjectWorkPkgTemp.ProjectWorkPkg_Status = 1;
@@ -604,7 +611,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             string[] _fname = flUploadGO.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
             extGO = _fname[_fname.Length - 1];
         }
-        obj_tbl_ProjectWork.ProjectWork_GO_Date = txtGODate1.Text.Trim();
+        obj_tbl_ProjectWork.ProjectWork_GO_Date = txtGODate2.Text.Trim();
         obj_tbl_ProjectWork.ProjectWork_GO_No = txtGONo.Text.Trim();
         try
         {
@@ -796,6 +803,112 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             }
         }
 
+        List<tbl_ProjectPkg_PhysicalProgress> obj_tbl_ProjectPkg_PhysicalProgress = new List<tbl_ProjectPkg_PhysicalProgress>();
+        for (int i = 0; i < grdPhysicalProgress.Rows.Count; i++)
+        {
+            CheckBox checkBox = grdPhysicalProgress.Rows[i].FindControl("chkPostPhysicalProgress") as CheckBox;
+            TextBox txtProposedNumber = grdPhysicalProgress.Rows[i].FindControl("txtProposedNumber") as TextBox;
+            TextBox txtProgressNumber = grdPhysicalProgress.Rows[i].FindControl("txtProgressNumber") as TextBox;
+            TextBox txtRemarks = grdPhysicalProgress.Rows[i].FindControl("txtRemarks") as TextBox;
+            TextBox txtProposedNumberO = grdPhysicalProgress.Rows[i].FindControl("txtProposedNumberO") as TextBox;
+            decimal ProposedNumber_Prev = 0;
+            if (checkBox.Checked == true)
+            {
+                tbl_ProjectPkg_PhysicalProgress obj_tbl_ProjectPkg_PhysicalProgress1 = new tbl_ProjectPkg_PhysicalProgress();
+                obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
+                try
+                {
+                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_MasterValue = Convert.ToDecimal(txtProposedNumber.Text.Trim());
+                }
+                catch
+                {
+                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_MasterValue = 0;
+                }
+                try
+                {
+                    ProposedNumber_Prev = Convert.ToDecimal(txtProposedNumber.ToolTip.Trim());
+                }
+                catch
+                {
+                    ProposedNumber_Prev = 0;
+                }
+                try
+                {
+                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_MasterValueF = Convert.ToDecimal(txtProposedNumberO.Text.Trim());
+                }
+                catch
+                {
+                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_MasterValueF = 0;
+                }
+                try
+                {
+                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Value = Convert.ToDecimal(txtProgressNumber.Text.Trim());
+                }
+                catch
+                {
+                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Value = 0;
+                }
+                obj_tbl_ProjectPkg_PhysicalProgress1.ProjectUC_PhysicalProgress_WithheldProgress = 0;
+                obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Functional = obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Value;
+                obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_NonFunctional = 0;
+                obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Remarks = txtRemarks.Text.Trim();
+                obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_PhysicalProgressComponent_Id = Convert.ToInt32(grdPhysicalProgress.Rows[i].Cells[0].Text.Trim());
+                if (Request.QueryString.Count > 0)
+                {
+                    try
+                    {
+                        obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_PrjectWork_Id = Convert.ToInt32(Request.QueryString[0].ToString());
+                    }
+                    catch
+                    {
+                        obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_PrjectWork_Id = 0;
+                    }
+                }
+                else
+                {
+                    obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_PrjectWork_Id = 0;
+                }
+                obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Status = 1;
+
+                //if (obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Value > obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_MasterValue)
+                //{
+                //    MessageBox.Show("Completed (Number) Should Not Be More Than Proposed (Number) ar Sr No " + (i + 1).ToString());
+                //    return;
+                //}
+                if (obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_MasterValueF == 0)
+                {
+                    MessageBox.Show("Proposed (Number) As Per Origional Should Not Be 0 at Sr No " + (i + 1).ToString());
+                    return;
+                }
+                //if (obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_MasterValueF < obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_MasterValue)
+                //{
+                //    MessageBox.Show("Proposed (Number) As Per Origional Should Be More Than Or Equal To Proposed (Number) As Per Actual at Sr No " + (i + 1).ToString());
+                //    return;
+                //}
+                //if (Session["UserType"].ToString() != "1")
+                //{
+                //    if (obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_MasterValue < ProposedNumber_Prev)
+                //    {
+                //        MessageBox.Show("Proposed (Number) As Per Actual Should Be More Than Or Equal To Proposed (Number) As Per Actual Previously Filled. You can Not Reduce This Figure at Sr No " + (i + 1).ToString());
+                //        return;
+                //    }
+                //}
+                if ((obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_NonFunctional + obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Functional) > obj_tbl_ProjectPkg_PhysicalProgress1.ProjectPkg_PhysicalProgress_Value)
+                {
+                    MessageBox.Show("Functional (Number) + Non Functional (Number) Should Not Be More Than Completed (Number) at Sr No " + (i + 1).ToString());
+                    return;
+                }
+                obj_tbl_ProjectPkg_PhysicalProgress.Add(obj_tbl_ProjectPkg_PhysicalProgress1);
+            }
+        }
+        //if (grdPhysicalProgress.Rows.Count > 0 && obj_tbl_ProjectPkg_PhysicalProgress.Count == 0)
+        //{
+        //    MessageBox.Show("Please Fill Component Proposed Data");
+        //    return;
+        //}
+
+
+
         List<tbl_ProjectWorkIssueDetails> obj_tbl_ProjectWorkIssueDetails_Li = new List<tbl_ProjectWorkIssueDetails>();
         obj_tbl_ProjectWorkIssueDetails_Li = (List<tbl_ProjectWorkIssueDetails>)(ViewState["dtIssue"]);
         for (int i = 0; i < obj_tbl_ProjectWorkIssueDetails_Li.Count; i++)
@@ -986,7 +1099,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             physicalTarget = 0;
         }
         string Msg = "";
-        if ((new DataLayer()).Insert_tbl_ProjectWork_Data_Entry(obj_tbl_ProjectWork, obj_tbl_ProjectWorkGO_Li, obj_tbl_ProjectWorkFundingPattern_Li, obj_tbl_ProjectWorkIssueDetails_Li, physicalTarget, obj_tbl_ProjectWorkPkg_Li, Client, obj_tbl_ProjectUC_Li, null, null, null, extGO, ref Msg))
+        if ((new DataLayer()).Insert_tbl_ProjectWork_Data_Entry(obj_tbl_ProjectWork, obj_tbl_ProjectWorkGO_Li, obj_tbl_ProjectWorkFundingPattern_Li, obj_tbl_ProjectWorkIssueDetails_Li, physicalTarget, obj_tbl_ProjectWorkPkg_Li, Client, obj_tbl_ProjectUC_Li, null, obj_tbl_ProjectPkg_PhysicalProgress, null, extGO, ref Msg))
         {
             if (Msg == "")
             {
@@ -1168,7 +1281,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         }
         obj_tbl_ProjectWork.ProjectWorkPkg_Lead_Vendor_PAN = txtLeadContractorPAN.Text;
         obj_tbl_ProjectWork.ProjectWorkPkg_Lead_Vendor_Name = txtLeadContractorName.Text;
-        obj_tbl_ProjectWork.ProjectWorkPkg_ExtendDate = txtextenddate.Text;
+        obj_tbl_ProjectWork.ProjectWorkPkg_ExtendDate = txtextenddate.Text.Trim();
         obj_tbl_ProjectWork.ProjectWorkPkg_Status = 1;
         obj_tbl_ProjectWorkPkg_Li = (List<tbl_ProjectWorkPkgTemp>)ViewState["tbl_ProjectWorkPkgTemp"];
         if (obj_tbl_ProjectWorkPkg_Li == null)
@@ -1366,7 +1479,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
 
             try
             {
-                ddlLokSabha.SelectedValue = ds.Tables[0].Rows[0]["VidhanSabha_LokSabha_Id"].ToString();
+                ddlLokSabha.SelectedValue = ds.Tables[0].Rows[0]["VidhanSabha_LokSabhaId"].ToString();
             }
             catch
             {
@@ -1400,7 +1513,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             txtProjectWorkName.Text = ds.Tables[0].Rows[0]["ProjectWork_Name"].ToString();
             txtBudget.Text = ds.Tables[0].Rows[0]["ProjectWork_Budget"].ToString();
             txtGONo.Text = ds.Tables[0].Rows[0]["ProjectWork_GO_No"].ToString();
-            txtGODate1.Text = ds.Tables[0].Rows[0]["ProjectWork_GO_Date"].ToString();
+            txtGODate2.Text = ds.Tables[0].Rows[0]["ProjectWork_GO_Date"].ToString();
             hf_GO_Path.Value = ds.Tables[0].Rows[0]["ProjectWork_GO_Path"].ToString();
             if (hf_GO_Path.Value == "")
             {
@@ -1417,7 +1530,40 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             grdFundingPattern.DataSource = null;
             grdFundingPattern.DataBind();
         }
+        if (ds != null && ds.Tables.Count > 3 && ds.Tables[3].Rows.Count > 0)
+        {
+            grdPhysicalProgress.DataSource = ds.Tables[3];
+            grdPhysicalProgress.DataBind();
+
+            ViewState["Component"] = ds.Tables[3];
+        }
+        else
+        {
+            grdPhysicalProgress.DataSource = null;
+            grdPhysicalProgress.DataBind();
+            ViewState["Component"] = null;
+        }
     }
+    private void get_tbl_PhysicalProgressComponent()
+    {
+        int ProjectId = Convert.ToInt32(ddlProjectMaster.SelectedValue);
+
+        DataSet ds = new DataSet();
+        ds = (new DataLayer()).get_tbl_PhysicalProgressComponent(ProjectId, 0);
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            grdPhysicalProgress.DataSource = ds.Tables[0];
+            grdPhysicalProgress.DataBind();
+            ViewState["Component"] = ds.Tables[0];
+        }
+        else
+        {
+            grdPhysicalProgress.DataSource = null;
+            grdPhysicalProgress.DataBind();
+            ViewState["Component"] = null;
+        }
+    }
+    
     protected void get_ProjectWork_Physical_Progress(int ProjectWork_Id)
     {
         DataSet ds = new DataSet();
@@ -1601,7 +1747,7 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             MessageBox.Show("Please Input Issue Resolved Date");
             return;
         }
-        if (new DataLayer().Delete_tbl_ProjectWorkIssueDetails(ProjectWorkIssueDetails_Id, txtResolvedDate.Text, Convert.ToInt32(Session["Person_Id"].ToString())))
+        if (new DataLayer().Delete_tbl_ProjectWorkIssueDetails(ProjectWorkIssueDetails_Id, txtResolvedDate.Text.Trim(), Convert.ToInt32(Session["Person_Id"].ToString())))
         {
             int ProjectWork_Id = Convert.ToInt32(Request.QueryString[0].Trim());
             get_tbl_ProjectWorkIssueDetails(ProjectWork_Id);
@@ -2086,7 +2232,9 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
 
     protected void btnDeleteUC_Click(object sender, ImageClickEventArgs e)
     {
+        int indx = -1;
         GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
+        indx = gr.RowIndex;
         int ProjectUC_Id = 0;
         try
         {
@@ -2098,8 +2246,29 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         }
         if (ProjectUC_Id == 0)
         {
-            MessageBox.Show("Nothing To Delete");
-            return;
+            DataTable dtUC;
+            if (ViewState["dtUC"] != null)
+            {
+                if (indx > 0)
+                {
+                    dtUC = (DataTable)(ViewState["dtUC"]);
+                    dtUC.Rows.RemoveAt(indx);
+                    ViewState["dtUC"] = dtUC;
+
+                    grdUC.DataSource = dtUC;
+                    grdUC.DataBind();
+                }
+                else
+                {
+                    MessageBox.Show("Nothing To Delete");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Nothing To Delete");
+                return;
+            }
         }
         if (new DataLayer().Delete_tbl_ProjectUC(ProjectUC_Id, Convert.ToInt32(Session["Person_Id"].ToString())))
         {
@@ -2156,6 +2325,59 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
             ViewState["dtUC"] = dt;
             grdUC.DataSource = dt;
             grdUC.DataBind();
+        }
+    }
+
+    protected void chkSelectAllApproveH_CheckedChanged(object sender, EventArgs e)
+    {
+        CheckBox chkSelectAllApproveH1 = (sender as CheckBox);
+        for (int i = 0; i < grdPhysicalProgress.Rows.Count; i++)
+        {
+            CheckBox chkSelectAllApprove = grdPhysicalProgress.Rows[i].FindControl("chkPostPhysicalProgress") as CheckBox;
+            chkSelectAllApprove.Checked = chkSelectAllApproveH1.Checked;
+        }
+    }
+    protected void grdPhysicalProgress_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            string EnableList = e.Row.Cells[2].Text.Trim();
+            CheckBox chkPostPhysicalProgress = (e.Row.FindControl("chkPostPhysicalProgress") as CheckBox);
+            LinkButton btnBeneficiary = (e.Row.FindControl("btnBeneficiary") as LinkButton);
+            LinkButton btnViewBeneficiary = (e.Row.FindControl("btnViewBeneficiary") as LinkButton);
+            TextBox txtProgressNumber = (e.Row.FindControl("txtProgressNumber") as TextBox);
+            txtProgressNumber.Enabled = true;
+            if (Convert.ToInt32(e.Row.Cells[1].Text.Trim().Replace("&nbsp;", "")) > 0)
+            {
+                chkPostPhysicalProgress.Checked = true;
+            }
+            else
+            {
+                chkPostPhysicalProgress.Checked = false;
+            }
+
+            TextBox txtProposedNumberO = e.Row.FindControl("txtProposedNumberO") as TextBox;
+            decimal Praposed = 0;
+            try
+            {
+                Praposed = decimal.Parse(txtProposedNumberO.Text.ToString().Trim());
+            }
+            catch
+            {
+                Praposed = 0;
+            }
+            if (Praposed == 0)
+            {
+                txtProposedNumberO.ReadOnly = false;
+            }
+            else
+            {
+                txtProposedNumberO.ReadOnly = true;
+            }
+            if (Session["UserType"].ToString() == "1")
+            {
+                txtProposedNumberO.ReadOnly = false;
+            }
         }
     }
 }

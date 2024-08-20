@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Device.Location;
+//using System.Device.Location;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;

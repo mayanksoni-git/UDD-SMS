@@ -79,6 +79,33 @@ public partial class MasterDivision : System.Web.UI.Page
             txtDivisionName.Focus();
             return;
         }
+
+        if (txtUrbanPopulation.Text.Trim() == "")
+        {
+            MessageBox.Show("Please Provide Urban Population");
+            txtUrbanPopulation.Text = "0";
+            return;
+        }
+        if (txtDeathPer1000.Text.Trim() == "")
+        {
+            MessageBox.Show("Please Provide Death rate per 1000 per year");
+            txtDeathPer1000.Text = "0";
+            return;
+        }
+        if (txtUrbanPopulationSource.Text.Trim() == "")
+        {
+            MessageBox.Show("Please Provide Source Urban Population");
+            txtUrbanPopulationSource.Text = "";
+            return;
+        }
+        if (txtDeathPer1000Source.Text.Trim() == "")
+        {
+            MessageBox.Show("Please Provide Death rate per 1000 per year");
+            txtDeathPer1000Source.Text = "";
+            return;
+        }
+
+
         obj_tbl_Division.Division_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
         try
         {
@@ -89,7 +116,12 @@ public partial class MasterDivision : System.Web.UI.Page
             obj_tbl_Division.Division_Id = 0;
         }
         obj_tbl_Division.Division_Name= txtDivisionName.Text.Trim();
-        obj_tbl_Division.Division_CircleId= Convert.ToInt32(ddlZoneMaster.SelectedValue);        
+        obj_tbl_Division.Division_CircleId= Convert.ToInt32(ddlZoneMaster.SelectedValue);
+        obj_tbl_Division.UrbanPopulation = Int32.Parse(txtUrbanPopulation.Text);
+        obj_tbl_Division.UrbanPopulationSource = txtUrbanPopulationSource.Text.ToString();
+        obj_tbl_Division.DeathPer1000 = double.Parse(txtDeathPer1000.Text);
+        obj_tbl_Division.DeathPer1000Source = txtDeathPer1000Source.Text.ToString();
+
         obj_tbl_Division.Division_ModifiedBy = Convert.ToInt32(Session["Person_Id"].ToString());
         obj_tbl_Division.Division_Status = 1;
         string Msg = "";
@@ -110,6 +142,10 @@ public partial class MasterDivision : System.Web.UI.Page
     {
         hf_Division_Id.Value = "0";
         txtDivisionName.Text = "";
+        txtUrbanPopulation.Text = "0";
+        txtUrbanPopulationSource.Text = "";
+        txtDeathPer1000.Text = "0";
+        txtDeathPer1000Source.Text = "";
         ddlZoneMaster.SelectedValue = "0";
         get_tbl_Division();
         divCreateNew.Visible = false;
@@ -127,6 +163,11 @@ public partial class MasterDivision : System.Web.UI.Page
         GridViewRow grd = chk.Parent.Parent as GridViewRow;
         ddlZoneMaster.SelectedValue = grd.Cells[1].Text.Replace("&nbsp;", "").Trim();
         txtDivisionName.Text = grd.Cells[5].Text.Replace("&nbsp;", "").Trim();
+        txtUrbanPopulation.Text = grd.Cells[6].Text.Replace("&nbsp;", "").Trim();
+        txtUrbanPopulationSource.Text = grd.Cells[7].Text.Replace("&nbsp;", "").Trim();
+        txtDeathPer1000.Text = grd.Cells[8].Text.Replace("&nbsp;", "").Trim();
+        txtDeathPer1000Source.Text = grd.Cells[9].Text.Replace("&nbsp;", "").Trim();
+        
         divCreateNew.Focus();
     }
     protected void btnReset_Click(object sender, EventArgs e)

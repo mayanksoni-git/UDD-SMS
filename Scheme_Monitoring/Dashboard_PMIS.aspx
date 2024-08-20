@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <div class="main-content">
-        <div class="main-content-inner">
+        <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
@@ -18,228 +18,280 @@
                     </cc1:ModalPopupExtender>
                     <asp:Button ID="btnShowPopup2" Text="Show" runat="server" Style="display: none;"></asp:Button>
 
-                    <div class="page-content">
-                        <!-- /.ace-settings-container -->
-                        <div class="page-header">
-                            <div class="col-md-12">
-                                <div class="col-md-6">
-                                    <h1>PMIS Dashboard							
-                                       
-                                        <small>
-                                            <i class="ace-icon fa fa-angle-double-right"></i>
-                                            Overview &amp; Stats
-                                        </small>
-                                    </h1>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.page-header -->
+                    <div class="container-fluid">
+                        <!-- start page title -->
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label class="control-label no-padding-right">Scheme</label>
-                                    <asp:DropDownList ID="ddlScheme" runat="server" CssClass="form-control"></asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-md-3" id="divZone" runat="server">
-                                <div class="form-group">
-                                    <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
-                                    <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-md-3" id="divCircle" runat="server">
-                                <div class="form-group">
-                                    <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
-                                    <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-md-3" id="divDivision" runat="server">
-                                <div class="form-group">
-                                    <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
-                                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <br />
-                                    <asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-info" OnClick="btnSearch_Click"></asp:Button>
+                            <div class="col-12 mb-4">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Dashboard</h4>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                            <li class="breadcrumb-item active">Dashboard</li>
+                                        </ol>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <h3 class="header smaller red">Projects Physical & Financial Progress Status
-                        </h3>
+
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-12">
-                                    <asp:GridView ID="grdPMISUpdation" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdPMISUpdation_PreRender">
-                                        <Columns>
-                                            <asp:BoundField DataField="Data_Type" HeaderText="Project Status" />
-                                            <asp:BoundField DataField="Total_Projects" HeaderText="Total Projects" />
-                                            <asp:TemplateField HeaderText="Progress 0%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdation0" runat="server" OnClick="lblUpdation0_Click" Font-Bold="true" Text='<%# Eval("Zero") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfo0" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo0_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Create / Update Project</h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <%--<label class="control-label no-padding-right">Scheme</label>--%>
+                                                        <asp:Label ID="lblScheme" runat="server" Text="Scheme" CssClass="control-label no-padding-right"></asp:Label>
+                                                        <asp:DropDownList ID="ddlScheme" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Progress BW 0 to 10%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdation10" runat="server" OnClick="lblUpdation10_Click" Font-Bold="true" Text='<%# Eval("Less_10") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfo10" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo10_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divZone" runat="server">
+                                                        <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
+                                                        <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Progress BW 10% to 20%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdation20" runat="server" OnClick="lblUpdation20_Click" Font-Bold="true" Text='<%# Eval("BW_10_20") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfo20" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo20_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divCircle" runat="server">
+                                                        <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
+                                                        <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Progress BW 20% to 30%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdation30" runat="server" OnClick="lblUpdation30_Click" Font-Bold="true" Text='<%# Eval("BW_20_30") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfo30" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo30_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divDivision" runat="server">
+                                                        <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
+                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Progress BW 30% to 40%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdation40" runat="server" OnClick="lblUpdation40_Click" Font-Bold="true" Text='<%# Eval("BW_30_40") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfo40" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo40_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
+                                                </div>
+                                                <!--end col-->
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn btn-primary" OnClick="btnSearch_Click"></asp:Button>
                                                     </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Progress BW 40% to 50%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdation50" runat="server" OnClick="lblUpdation50_Click" Font-Bold="true" Text='<%# Eval("BW_40_50") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfo50" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo50_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Projects Physical & Financial Progress Status</h4>
+                                    </div>
+                                    <!-- end card header -->
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-12">
+                                                <div class="col-xxl-12 col-md-12">
+                                                    <div style="overflow: auto">
+                                                        <asp:GridView ID="grdPMISUpdation" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdPMISUpdation_PreRender">
+                                                            <Columns>
+                                                                <asp:BoundField DataField="Data_Type" HeaderText="Project Status" />
+                                                                <asp:BoundField DataField="Total_Projects" HeaderText="Total Projects" />
+                                                                <asp:TemplateField HeaderText="Progress 0%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdation0" runat="server" OnClick="lblUpdation0_Click" Font-Bold="true" Text='<%# Eval("Zero") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfo0" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo0_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Progress BW 0 to 10%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdation10" runat="server" OnClick="lblUpdation10_Click" Font-Bold="true" Text='<%# Eval("Less_10") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfo10" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo10_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Progress BW 10% to 20%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdation20" runat="server" OnClick="lblUpdation20_Click" Font-Bold="true" Text='<%# Eval("BW_10_20") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfo20" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo20_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Progress BW 20% to 30%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdation30" runat="server" OnClick="lblUpdation30_Click" Font-Bold="true" Text='<%# Eval("BW_20_30") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfo30" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo30_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Progress BW 30% to 40%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdation40" runat="server" OnClick="lblUpdation40_Click" Font-Bold="true" Text='<%# Eval("BW_30_40") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfo40" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo40_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Progress BW 40% to 50%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdation50" runat="server" OnClick="lblUpdation50_Click" Font-Bold="true" Text='<%# Eval("BW_40_50") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfo50" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo50_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Progress BW 50% to 60%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdation60" runat="server" OnClick="lblUpdation60_Click" Font-Bold="true" Text='<%# Eval("BW_50_60") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfo60" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo60_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Progress BW 60% to 70%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdation70" runat="server" OnClick="lblUpdation70_Click" Font-Bold="true" Text='<%# Eval("BW_60_70") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfo70" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo70_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Progress BW 70% to 80%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdation80" runat="server" OnClick="lblUpdation80_Click" Font-Bold="true" Text='<%# Eval("BW_70_80") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfo80" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo80_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Progress BW 80% to 90%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdation90" runat="server" OnClick="lblUpdation90_Click" Font-Bold="true" Text='<%# Eval("BW_80_90") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfo90" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo90_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Progress More Than 90% and Less Than 100%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdationMore90" runat="server" OnClick="lblUpdationMore90_Click" Font-Bold="true" Text='<%# Eval("More_90") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfoMore90" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfoMore90_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Progress 100%">
+                                                                    <ItemTemplate>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6 pull-left">
+                                                                                <asp:LinkButton ID="lblUpdation100" runat="server" OnClick="lblUpdation100_Click" Font-Bold="true" Text='<%# Eval("More_100") %>'></asp:LinkButton>
+                                                                            </div>
+                                                                            <div class="col-md-6 pull-right">
+                                                                                <asp:ImageButton ID="btnInfo100" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo100_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
+                                                                            </div>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                            </Columns>
+                                                        </asp:GridView>
                                                     </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Progress BW 50% to 60%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdation60" runat="server" OnClick="lblUpdation60_Click" Font-Bold="true" Text='<%# Eval("BW_50_60") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfo60" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo60_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
-                                                    </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Progress BW 60% to 70%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdation70" runat="server" OnClick="lblUpdation70_Click" Font-Bold="true" Text='<%# Eval("BW_60_70") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfo70" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo70_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
-                                                    </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Progress BW 70% to 80%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdation80" runat="server" OnClick="lblUpdation80_Click" Font-Bold="true" Text='<%# Eval("BW_70_80") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfo80" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo80_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
-                                                    </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Progress BW 80% to 90%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdation90" runat="server" OnClick="lblUpdation90_Click" Font-Bold="true" Text='<%# Eval("BW_80_90") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfo90" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo90_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
-                                                    </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Progress More Than 90% and Less Than 100%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdationMore90" runat="server" OnClick="lblUpdationMore90_Click" Font-Bold="true" Text='<%# Eval("More_90") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfoMore90" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfoMore90_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
-                                                    </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Progress 100%">
-                                                <ItemTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-6 pull-left">
-                                                            <asp:LinkButton ID="lblUpdation100" runat="server" OnClick="lblUpdation100_Click" Font-Bold="true" Text='<%# Eval("More_100") %>'></asp:LinkButton>
-                                                        </div>
-                                                        <div class="col-md-6 pull-right">
-                                                            <asp:ImageButton ID="btnInfo100" runat="server" ImageUrl="~/assets/images/info.png" Width="20px" Height="20px" OnClick="btnInfo100_Click" ToolTip="Click Here To View Details Of Sanctioned Cost, Release, Expenditure and Remaining Amount To Be Released."></asp:ImageButton>
-                                                        </div>
-                                                    </div>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                    </asp:GridView>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="live-preview">
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-6 col-md-6">
+                                                    <div id="chartContainerPhysical" style="height: 500px; width: 100%; margin: 0px auto;"></div>
+                                                </div>
+                                                <div class="col-xxl-6 col-md-6">
+                                                    <div id="chartContainerFinancial" style="height: 500px; width: 100%; margin: 0px auto;"></div>
+                                                </div>
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 mb-4">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Projects Completion Status According To Target Month</h4>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div id="chartContainerPhysical" style="height: 500px; width: 100%; margin: 0px auto;"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <div id="chartContainerFinancial" style="height: 500px; width: 100%; margin: 0px auto;"></div>
-                            </div>
-                        </div>
-
-                        <div class="space-6"></div>
-                        <h3 class="header smaller red">Projects Completion Status According To Target Month
-                        </h3>
-
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card card-height-100 bg-light-subtle shadow-none bg-opacity-40">
@@ -331,36 +383,40 @@
                             </div>
                         </div>
 
-                        <div class="space-6"></div>
-                        <h3 class="header smaller red">Issue Analysis
-                        </h3>
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="col-md-6">
-                                    <asp:GridView ID="grdIssueReportedGlobal" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdIssueReportedGlobal_PreRender">
-                                        <Columns>
-                                            <asp:BoundField DataField="ProjectWorkIssueDetails_Issue_Id" HeaderText="ProjectWorkIssueDetails_Issue_Id">
-                                                <HeaderStyle CssClass="displayStyle" />
-                                                <ItemStyle CssClass="displayStyle" />
-                                                <FooterStyle CssClass="displayStyle" />
-                                            </asp:BoundField>
-                                            <asp:TemplateField HeaderText="S No.">
-                                                <ItemTemplate>
-                                                    <%# Container.DataItemIndex + 1 %>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="ProjectIssue_Name" HeaderText="Issue" />
-                                            <asp:TemplateField HeaderText="Total Issues">
-                                                <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkTotalIssuesGlobal" runat="server" OnClick="lnkTotalIssuesGlobal_Click" Font-Bold="true" Text='<%# Eval("Total_Isues") %>'></asp:LinkButton>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                    </asp:GridView>
+                            <div class="col-12 mb-4">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Issue Analysis</h4>
                                 </div>
-                                <div class="col-md-6">
-                                    <div id="chartContainerIssue" style="height: 500px; width: 100%; margin: 0px auto;"></div>
-                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6">
+                                <asp:GridView ID="grdIssueReportedGlobal" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdIssueReportedGlobal_PreRender">
+                                    <Columns>
+                                        <asp:BoundField DataField="ProjectWorkIssueDetails_Issue_Id" HeaderText="ProjectWorkIssueDetails_Issue_Id">
+                                            <HeaderStyle CssClass="displayStyle" />
+                                            <ItemStyle CssClass="displayStyle" />
+                                            <FooterStyle CssClass="displayStyle" />
+                                        </asp:BoundField>
+                                        <asp:TemplateField HeaderText="S No.">
+                                            <ItemTemplate>
+                                                <%# Container.DataItemIndex + 1 %>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="ProjectIssue_Name" HeaderText="Issue" />
+                                        <asp:TemplateField HeaderText="Total Issues">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lnkTotalIssuesGlobal" runat="server" OnClick="lnkTotalIssuesGlobal_Click" Font-Bold="true" Text='<%# Eval("Total_Isues") %>'></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div id="chartContainerIssue" style="height: 500px; width: 100%; margin: 0px auto;"></div>
                             </div>
                         </div>
 
@@ -371,121 +427,85 @@
                                 <asp:LinkButton ID="lnkProjectStatusPopup" runat="server" Font-Bold="true" Text="Project Status" OnClick="lnkProjectStatusPopup_Click"></asp:LinkButton>
                             </h3>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-xs-6 col-sm-3 pricing-box">
-                                        <div class="widget-box widget-color-red">
-                                            <div class="widget-header">
-                                                <h5 class="widget-title bigger lighter">Completed Projects</h5>
-                                            </div>
-
-                                            <div class="widget-body">
-                                                <div class="widget-main">
-                                                    <ul class="list-unstyled spaced2">
-                                                        <li>
-                                                            <div class="infobox infobox-blue">
-                                                                <div class="infobox-icon">
-                                                                    <i>
-                                                                        <img src="assets/images/pmis/Completed.jpg" width="60px" height="60px" />
-                                                                    </i>
-                                                                </div>
-                                                                <div class="infobox-data">
-                                                                    <span class="infobox-data-number" style="margin-left: 15px;">
-                                                                        <asp:LinkButton ID="lnkCompletedP" runat="server" Font-Bold="true" Text="0" OnClick="lnkCompletedP_Click"></asp:LinkButton></span>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-height-100 bg-light-subtle shadow-none bg-opacity-40">
+                                        <div class="card-body">
+                                            <div class="row gy-4">
+                                                <div class="col-md-6">
+                                                    <img src="assets/images/pmis/Completed.jpg" width="60px" height="60px" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="fs-4 mb-3">
+                                                        <asp:LinkButton ID="lnkCompletedP" runat="server" Font-Bold="true" Text="0" OnClick="lnkCompletedP_Click"></asp:LinkButton>
+                                                    </h4>
                                                 </div>
                                             </div>
+                                            <h6 class="fs-15 fw-semibold">Completed Projects</h6>
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-sm-3 pricing-box">
-                                        <div class="widget-box widget-color-grey">
-                                            <div class="widget-header">
-                                                <h5 class="widget-title bigger lighter">Ongoing Projects</h5>
-                                            </div>
-
-                                            <div class="widget-body">
-                                                <div class="widget-main">
-                                                    <ul class="list-unstyled spaced2">
-                                                        <li>
-                                                            <div class="infobox infobox-blue">
-                                                                <div class="infobox-icon">
-                                                                    <i>
-                                                                        <img src="assets/images/pmis/ongoing.jpg" width="60px" height="60px" />
-                                                                    </i>
-                                                                </div>
-                                                                <div class="infobox-data">
-                                                                    <span class="infobox-data-number" style="margin-left: 15px;">
-                                                                        <asp:LinkButton ID="lnkOnGoingP" runat="server" Font-Bold="true" Text="0" OnClick="lnkOnGoingP_Click"></asp:LinkButton></span>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-height-100 bg-dark-subtle shadow-none bg-opacity-10">
+                                        <div class="card-body">
+                                            <div class="row gy-4">
+                                                <div class="col-md-6">
+                                                    <img src="assets/images/pmis/ongoing.jpg" width="60px" height="60px" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="fs-4 mb-3">
+                                                        <asp:LinkButton ID="lnkOnGoingP" runat="server" Font-Bold="true" Text="0" OnClick="lnkOnGoingP_Click"></asp:LinkButton>
+                                                    </h4>
                                                 </div>
                                             </div>
+                                            <h6 class="fs-15 fw-semibold">Ongoing Projects</h6>
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-sm-3 pricing-box">
-                                        <div class="widget-box widget-color-green">
-                                            <div class="widget-header">
-                                                <h5 class="widget-title bigger lighter">Completing In Current Month</h5>
-                                            </div>
-
-                                            <div class="widget-body">
-                                                <div class="widget-main">
-                                                    <ul class="list-unstyled spaced2">
-                                                        <li>
-                                                            <div class="infobox infobox-blue">
-                                                                <div class="infobox-icon">
-                                                                    <i>
-                                                                        <img src="assets/images/pmis/Progress_C.png" width="60px" height="60px" />
-                                                                    </i>
-                                                                </div>
-                                                                <div class="infobox-data">
-                                                                    <span class="infobox-data-number" style="margin-left: 15px;">
-                                                                        <asp:LinkButton ID="lnkTargetP_C" runat="server" Font-Bold="true" Text="0" OnClick="lnkTargetP_C_Click"></asp:LinkButton></span>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-height-100 bg-primary-subtle shadow-none bg-opacity-10">
+                                        <div class="card-body">
+                                            <div class="row gy-4">
+                                                <div class="col-md-6">
+                                                    <img src="assets/images/pmis/Progress_C.png" width="60px" height="60px" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="fs-4 mb-3">
+                                                        <asp:LinkButton ID="lnkTargetP_C" runat="server" Font-Bold="true" Text="0" OnClick="lnkTargetP_C_Click"></asp:LinkButton>
+                                                    </h4>
                                                 </div>
                                             </div>
+                                            <h6 class="fs-15 fw-semibold">Completing In Current Month</h6>
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-sm-3 pricing-box">
-                                        <div class="widget-box widget-color-blue">
-                                            <div class="widget-header">
-                                                <h5 class="widget-title bigger lighter">Completing In Next Month</h5>
-                                            </div>
-
-                                            <div class="widget-body">
-                                                <div class="widget-main">
-                                                    <ul class="list-unstyled spaced2">
-                                                        <li>
-                                                            <div class="infobox infobox-blue">
-                                                                <div class="infobox-icon">
-                                                                    <i>
-                                                                        <img src="assets/images/pmis/Progress_N.png" width="60px" height="60px" />
-                                                                    </i>
-                                                                </div>
-                                                                <div class="infobox-data">
-                                                                    <span class="infobox-data-number" style="margin-left: 15px;">
-                                                                        <asp:LinkButton ID="lnkTargetP_N" runat="server" OnClick="lnkTargetP_N_Click"></asp:LinkButton></span>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="card card-height-100 bg-info-subtle shadow-none bg-opacity-10">
+                                        <div class="card-body">
+                                            <div class="row gy-4">
+                                                <div class="col-md-6">
+                                                    <img src="assets/images/pmis/Progress_N.png" width="60px" height="60px" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="fs-4 mb-3">
+                                                        <asp:LinkButton ID="lnkTargetP_N" runat="server" OnClick="lnkTargetP_N_Click"></asp:LinkButton>
+                                                    </h4>
                                                 </div>
                                             </div>
+                                            <h6 class="fs-15 fw-semibold">Completing In Next Month</h6>
                                         </div>
+                                    </div>
+                                </div>
+                                <!-- end col-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                        <h4 class="mb-sm-0">Issue Reported Analysis</h4>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="space-6"></div>
-                            <h3 class="header smaller red">Issue Reported
-                            </h3>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
@@ -534,78 +554,62 @@
                         <asp:Panel ID="Panel2" runat="server" CssClass="modalPopup1" Style="display: none; width: 1000px; height: 200px; margin-left: -32px" ScrollBars="Auto">
 
                             <div class="space-6"></div>
+
+
+
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-xs-6 col-sm-4 pricing-box">
-                                        <div class="widget-box widget-color-red">
-                                            <div class="widget-header">
-                                                <h5 class="widget-title bigger lighter">Sanctioned Cost</h5>
-                                            </div>
-
-                                            <div class="widget-body">
-                                                <div class="widget-main">
-                                                    <ul class="list-unstyled spaced2">
-                                                        <li>
-                                                            <div class="infobox infobox-blue">
-                                                                <div class="infobox-data">
-                                                                    <span class="infobox-data-number" style="margin-left: 15px;">
-                                                                        <asp:Label ID="lblSanctionedCost" runat="server" Font-Bold="true" Text="0"></asp:Label></span>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="card card-height-100 bg-light-subtle shadow-none bg-opacity-40">
+                                        <div class="card-body">
+                                            <div class="row gy-4">
+                                                <div class="col-md-6">
+                                                    <img src="assets/images/pmis/Expenditure_C.png" width="60px" height="60px" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="fs-4 mb-3">
+                                                        <asp:Label ID="lblSanctionedCost" runat="server" Font-Bold="true" Text="0"></asp:Label>
+                                                    </h4>
                                                 </div>
                                             </div>
+                                            <h6 class="fs-15 fw-semibold">Sanctioned Cost</h6>
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-sm-4 pricing-box">
-                                        <div class="widget-box widget-color-grey">
-                                            <div class="widget-header">
-                                                <h5 class="widget-title bigger lighter">Total Released Till Date</h5>
-                                            </div>
-
-                                            <div class="widget-body">
-                                                <div class="widget-main">
-                                                    <ul class="list-unstyled spaced2">
-                                                        <li>
-                                                            <div class="infobox infobox-blue">
-                                                                <div class="infobox-data">
-                                                                    <span class="infobox-data-number" style="margin-left: 15px;">
-                                                                        <asp:Label ID="lblTotalReleased" runat="server" Font-Bold="true" Text="0"></asp:Label></span>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                </div>
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="card card-height-100 bg-dark-subtle shadow-none bg-opacity-10">
+                                        <div class="card-body">
+                                            <div class="row gy-4">
+                                                <div class="col-md-6">
+                                                    <img src="assets/images/pmis/Expenditure_P.jpg" width="60px" height="60px" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="fs-4 mb-3">
+                                                        <asp:Label ID="lblTotalReleased" runat="server" Font-Bold="true" Text="0"></asp:Label>
+                                                    </h4>
                                                 </div>
                                             </div>
+                                            <h6 class="fs-15 fw-semibold">Total Released Till Date</h6>
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-sm-4 pricing-box">
-                                        <div class="widget-box widget-color-green">
-                                            <div class="widget-header">
-                                                <h5 class="widget-title bigger lighter">Total Expenditure Till Date</h5>
-                                            </div>
-
-                                            <div class="widget-body">
-                                                <div class="widget-main">
-                                                    <ul class="list-unstyled spaced2">
-                                                        <li>
-                                                            <div class="infobox infobox-blue">
-                                                                <div class="infobox-data">
-                                                                    <span class="infobox-data-number" style="margin-left: 15px;">
-                                                                        <asp:Label ID="lblTotalExpenditure" runat="server" Font-Bold="true" Text="0"></asp:Label></span>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                </div>
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="card card-height-100 bg-primary-subtle shadow-none bg-opacity-10">
+                                        <div class="card-body">
+                                            <div class="row gy-4">
+                                                <div class="col-md-6">
+                                                    <img src="assets/images/pmis/Financial_Completed.png" width="60px" height="60px" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="fs-4 mb-3">
+                                                        <asp:Label ID="lblTotalExpenditure" runat="server" Font-Bold="true" Text="0"></asp:Label>
+                                                    </h4>
                                                 </div>
                                             </div>
+                                            <h6 class="fs-15 fw-semibold">Total Expenditure Till Date</h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-12">
@@ -634,316 +638,6 @@
             </asp:UpdateProgress>
         </div>
     </div>
-    <!-- DataTable specific plugin scripts -->
-    <script src="assets/js/jquery-2.1.4.min.js"></script>
-    <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/dataTables.buttons.min.js"></script>
-    <script src="assets/js/buttons.flash.min.js"></script>
-    <script src="assets/js/buttons.html5.min.js"></script>
-    <script src="assets/js/buttons.print.min.js"></script>
-    <script src="assets/js/buttons.colVis.min.js"></script>
-    <script src="assets/js/dataTables.select.min.js"></script>
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
-    <script src="assets/js/dataTables.fixedHeader.min.js"></script>
-    <script src="assets/js/jquery.mark.min.js"></script>
-    <script src="assets/js/datatables.mark.js"></script>
-    <%--<script src="assets/js/dataTables.colReorder.min.js"></script>--%>
-
-    <script type="text/javascript">
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                var DataTableLength = $('#ctl00_ContentPlaceHolder1_grdPhysicalComponent').length;
-                if (DataTableLength > 0) {
-                    var outerHTML = $('#ctl00_ContentPlaceHolder1_grdPhysicalComponent')[0].outerText;
-                    if (outerHTML.trim() !== "No Records Found") {
-                        //initiate dataTables plugin
-                        var myTable =
-                            $('#ctl00_ContentPlaceHolder1_grdPhysicalComponent')
-                                //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                .DataTable({
-                                    mark: true,
-                                    colReorder: false,
-                                    fixedHeader: {
-                                        header: true,
-                                        footer: false
-                                    },
-                                    bAutoWidth: false,
-                                    "aoColumns": [
-                                        null, null, null, null, null, null, null, null, null, null
-                                    ],
-                                    "aaSorting": [],
-                                    //"bProcessing": true,
-                                    //"bServerSide": true,
-                                    //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-                                    //,
-                                    //"sScrollY": "200px",
-                                    //"bPaginate": false,
-                                    //"sScrollX": "100%",
-                                    //"sScrollXInner": "120%",
-                                    //"bScrollCollapse": true,
-                                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                    "iDisplayLength": 100,
-                                    select: {
-                                        style: 'multi'
-                                    }
-                                });
-                        $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
-                        new $.fn.dataTable.Buttons(myTable, {
-                            buttons: [
-                                {
-                                    "extend": "colvis",
-                                    "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    columns: ':not(:first):not(:last)'
-                                },
-                                {
-                                    "extend": "copy",
-                                    "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "csv",
-                                    "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "excel",
-                                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "pdf",
-                                    "text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "print",
-                                    "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    autoPrint: true,
-                                    message: 'This print was produced using the Print button for DataTables',
-                                    exportOptions: {
-                                        columns: ':visible'
-                                    }
-                                }
-                            ]
-                        });
-                        myTable.buttons().container().appendTo($('.grdPhysicalComponenttableTools-container'));
-
-                        //style the message box
-                        var defaultCopyAction = myTable.button(1).action();
-                        myTable.button(1).action(function (e, dt, button, config) {
-                            defaultCopyAction(e, dt, button, config);
-                            $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-                        });
-                        var defaultColvisAction = myTable.button(0).action();
-                        myTable.button(0).action(function (e, dt, button, config) {
-
-                            defaultColvisAction(e, dt, button, config);
-                            if ($('.dt-button-collection > .dropdown-menu').length == 0) {
-                                $('.dt-button-collection')
-                                    .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-                                    .find('a').attr('href', '#').wrap("<li />")
-                            }
-                            $('.dt-button-collection').appendTo('.grdPhysicalComponenttableTools-container .dt-buttons')
-                        });
-                        ////
-                        setTimeout(function () {
-                            $($('.grdPhysicalComponenttableTools-container')).find('a.dt-button').each(function () {
-                                var div = $(this).find(' > div').first();
-                                if (div.length == 1) div.tooltip({ container: 'body', title: div.parent().text() });
-                                else $(this).tooltip({ container: 'body', title: $(this).text() });
-                            });
-                        }, 500);
-
-                        $(document).on('click', '#ctl00_ContentPlaceHolder1_grdPhysicalComponent .dropdown-toggle', function (e) {
-                            e.stopImmediatePropagation();
-                            e.stopPropagation();
-                            //e.preventDefault();
-                        });
-                        //And for the first simple table, which doesn't have TableTools or dataTables
-                        //select/deselect all rows according to table header checkbox
-                        var active_class = 'active';
-                        /********************************/
-                        //add tooltip for small view action buttons in dropdown menu
-                        $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
-
-                        //tooltip placement on right or left
-                        function tooltip_placement(context, source) {
-                            var $source = $(source);
-                            var $parent = $source.closest('table')
-                            var off1 = $parent.offset();
-                            var w1 = $parent.width();
-
-                            var off2 = $source.offset();
-                            //var w2 = $source.width();
-
-                            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-                            return 'left';
-                        }
-                        /***************/
-                        $('.show-details-btn').on('click', function (e) {
-                            e.preventDefault();
-                            $(this).closest('tr').next().toggleClass('open');
-                            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-                        });
-                    }
-                }
-            })
-        });
-    </script>
-
-    <script type="text/javascript">
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                var DataTableLength = $('#ctl00_ContentPlaceHolder1_grdNodalDept').length;
-                if (DataTableLength > 0) {
-                    var outerHTML = $('#ctl00_ContentPlaceHolder1_grdNodalDept')[0].outerText;
-                    if (outerHTML.trim() !== "No Records Found") {
-                        //initiate dataTables plugin
-                        var myTable =
-                            $('#ctl00_ContentPlaceHolder1_grdNodalDept')
-                                //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                .DataTable({
-                                    mark: true,
-                                    colReorder: true,
-                                    fixedHeader: {
-                                        header: true,
-                                        footer: false
-                                    },
-                                    bAutoWidth: false,
-                                    "aoColumns": [
-                                        null, null, null, null, null, null
-                                    ],
-                                    "aaSorting": [],
-                                    //"bProcessing": true,
-                                    //"bServerSide": true,
-                                    //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-                                    //,
-                                    //"sScrollY": "200px",
-                                    //"bPaginate": false,
-                                    //"sScrollX": "100%",
-                                    //"sScrollXInner": "120%",
-                                    //"bScrollCollapse": true,
-                                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                    "iDisplayLength": 100,
-                                    select: {
-                                        style: 'multi'
-                                    }
-                                });
-                        $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
-                        new $.fn.dataTable.Buttons(myTable, {
-                            buttons: [
-                                {
-                                    "extend": "colvis",
-                                    "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    columns: ':not(:first):not(:last)'
-                                },
-                                {
-                                    "extend": "copy",
-                                    "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "csv",
-                                    "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "excel",
-                                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "pdf",
-                                    "text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "print",
-                                    "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    autoPrint: true,
-                                    message: 'This print was produced using the Print button for DataTables',
-                                    exportOptions: {
-                                        columns: ':visible'
-                                    }
-                                }
-                            ]
-                        });
-                        myTable.buttons().container().appendTo($('.grdNodalDepttableTools-container'));
-
-                        //style the message box
-                        var defaultCopyAction = myTable.button(1).action();
-                        myTable.button(1).action(function (e, dt, button, config) {
-                            defaultCopyAction(e, dt, button, config);
-                            $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-                        });
-                        var defaultColvisAction = myTable.button(0).action();
-                        myTable.button(0).action(function (e, dt, button, config) {
-
-                            defaultColvisAction(e, dt, button, config);
-                            if ($('.dt-button-collection > .dropdown-menu').length == 0) {
-                                $('.dt-button-collection')
-                                    .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-                                    .find('a').attr('href', '#').wrap("<li />")
-                            }
-                            $('.dt-button-collection').appendTo('.grdNodalDepttableTools-container .dt-buttons')
-                        });
-                        ////
-                        setTimeout(function () {
-                            $($('.grdNodalDepttableTools-container')).find('a.dt-button').each(function () {
-                                var div = $(this).find(' > div').first();
-                                if (div.length == 1) div.tooltip({ container: 'body', title: div.parent().text() });
-                                else $(this).tooltip({ container: 'body', title: $(this).text() });
-                            });
-                        }, 500);
-
-                        $(document).on('click', '#ctl00_ContentPlaceHolder1_grdNodalDept .dropdown-toggle', function (e) {
-                            e.stopImmediatePropagation();
-                            e.stopPropagation();
-                            //e.preventDefault();
-                        });
-                        //And for the first simple table, which doesn't have TableTools or dataTables
-                        //select/deselect all rows according to table header checkbox
-                        var active_class = 'active';
-                        /********************************/
-                        //add tooltip for small view action buttons in dropdown menu
-                        $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
-
-                        //tooltip placement on right or left
-                        function tooltip_placement(context, source) {
-                            var $source = $(source);
-                            var $parent = $source.closest('table')
-                            var off1 = $parent.offset();
-                            var w1 = $parent.width();
-
-                            var off2 = $source.offset();
-                            //var w2 = $source.width();
-
-                            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-                            return 'left';
-                        }
-                        /***************/
-                        $('.show-details-btn').on('click', function (e) {
-                            e.preventDefault();
-                            $(this).closest('tr').next().toggleClass('open');
-                            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-                        });
-                    }
-                }
-            })
-        });
-    </script>
 
     <script>
         Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {

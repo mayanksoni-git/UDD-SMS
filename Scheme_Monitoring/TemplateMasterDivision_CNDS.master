@@ -2,7 +2,7 @@
     Inherits="TemplateMasterDivision_CNDS" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="light" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 <head runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
@@ -191,6 +191,12 @@
                                 <li>
                                     <asp:LinkButton CssClass="ace-icon fa fa-cog" ID="lnkSettings" runat="server" Text="Settings"
                                         CausesValidation="false"></asp:LinkButton>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                      
+                                    <a class="dropdown-item" href="UpdateProfile.aspx"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i><span class="align-middle">Profile</span></a>
+
                                 </li>
                                 <li class="divider"></li>
                                 <li>

@@ -1,56 +1,66 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="MasterProjectWorkDataEntry.aspx.cs" Inherits="MasterProjectWorkDataEntry" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
     <div class="main-content">
-        <div class="main-content-inner">
+        <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
-                    <div class="page-content">
+                    <div class="container-fluid">
                         <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Create/Update Project</h4>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                            <li class="breadcrumb-item">Project Master</li>
+                                            <li class="breadcrumb-item active">Create/Update Project</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Create Project - Data Entry Mode</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Create/Update Project</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="live-preview">
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <label class="control-label no-padding-right">Scheme </label>
-                                                        <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                        <%--<label class="control-label no-padding-right">Scheme </label>--%>
+                                                        <asp:Label ID="lblScheme" runat="server" Text="Scheme" CssClass="control-label no-padding-right"></asp:Label>
+                                                        <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
-
-                                                        <asp:Label ID="lblULB" runat="server" Text="ULB" CssClass="control-label no-padding-right" Visible="false"></asp:Label>
-                                                        <asp:DropDownList ID="ddlULB" runat="server" CssClass="form-control" Visible="false"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6" id="divCircle" runat="server">
                                                     <div>
                                                         <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6" id="divDivision" runat="server">
                                                     <div>
                                                         <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <label class="control-label no-padding-right">GO Number</label>
-                                                        <asp:TextBox ID="txtGONoSearch" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        <%--<label class="control-label no-padding-right">Project Code</label>--%>
+                                                        <asp:Label ID="lblProjectCode" runat="server" Text="Project Code" CssClass="control-label no-padding-right"></asp:Label>
+                                                        <asp:TextBox ID="txtProjectCode" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
 
@@ -77,6 +87,298 @@
                         </div>
 
                         <div runat="server" visible="false" id="divData">
+
+                            <div class="row" runat="server" visible="false">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Project Summery</h4>
+                                        </div>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-4 col-md-6">
+                                                        <div>
+                                                            <ul class="list-group list-group-flush border-dashed">
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <h5 class="mb-0">
+                                                                                        <asp:LinkButton ID="lnkTotal" runat="server" OnClick="lnkTotal_Click"></asp:LinkButton></h5>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Total Projects</h5>
+                                                                            <p class="text-reset fs-14 mb-0">Total No Of Projects Under Searched Criteria</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <h5 class="mb-0"></h5>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkPhyCompleted" runat="server" OnClick="lnkPhyCompleted_Click"></asp:LinkButton></h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Physically Completed / Not completed</h5>
+                                                                            <p class="text-reset fs-14 mb-0 pull-right">Projects With Phisical Progress is 100 will be assumed as Physically Completed.</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkPhyNotCompleted" runat="server" OnClick="lnkPhyNotCompleted_Click"></asp:LinkButton></h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkFinCompleted" runat="server" OnClick="lnkFinCompleted_Click"></asp:LinkButton></h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Financially Completed / Not completed</h5>
+                                                                            <p class="text-reset fs-14 mb-0 pull-right">Projects With financial Progress is 100 will be assumed as Financially Completed.</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkFinNotCompleted" runat="server" OnClick="lnkFinNotCompleted_Click"></asp:LinkButton></h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-4 col-md-6">
+                                                        <div>
+                                                            <ul class="list-group list-group-flush border-dashed">
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkGalleryUpdated" runat="server" OnClick="lnkGalleryUpdated_Click"></asp:LinkButton></h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Gallery Available</h5>
+                                                                            <p class="text-reset fs-14 mb-0">Total No Of Projects where Photo Gallery is Uploaded</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkGalleryNotUpdated" runat="server" OnClick="lnkGalleryNotUpdated_Click"></asp:LinkButton></h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkInspectionUpdated" runat="server" OnClick="lnkGalleryNotUpdated_Click"></asp:LinkButton></h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Site Inspection Completed / Not completed</h5>
+                                                                            <p class="text-reset fs-14 mb-0 pull-right">Projects For With Site Visit / Inspection Has Been Done.</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkInspectionNotUpdated" runat="server" OnClick="lnkGalleryNotUpdated_Click"></asp:LinkButton></h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkAgreementUpdated" runat="server" OnClick="lnkAgreementUpdated_Click"></asp:LinkButton>
+                                                                                        </h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">Agreement Details Updated / Not Updated</h5>
+                                                                            <p class="text-reset fs-14 mb-0 pull-right">Projects With Details of Agreement With Vendor Has Been Updated.</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkAgreementNotUpdated" runat="server" OnClick="lnkAgreementNotUpdated_Click"></asp:LinkButton>
+                                                                                        </h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-4 col-md-6">
+                                                        <div>
+                                                            <ul class="list-group list-group-flush border-dashed">
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkUCUpload" runat="server" OnClick="lnkUCUpload_Click"></asp:LinkButton>
+                                                                                        </h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">UC Uploaded / UC Not Uploaded</h5>
+                                                                            <p class="text-reset fs-14 mb-0">Total Projects With Financial Progress More Than 60 and UC Uploaded</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkUCNotUpload" runat="server" OnClick="lnkUCNotUpload_Click"></asp:LinkButton>
+                                                                                        </h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                                <li class="list-group-item ps-0">
+                                                                    <div class="row align-items-center g-3">
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #e0f7ff !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkUCApproved" runat="server" OnClick="lnkUCApproved_Click"></asp:LinkButton>
+                                                                                        </h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                            <h5 class="text-muted mt-0 mb-1 fs-13">UC Status (Approved / Not Approved)</h5>
+                                                                            <p class="text-reset fs-14 mb-0">Total No UC and Its Approval Status</p>
+                                                                        </div>
+                                                                        <div class="col-auto">
+                                                                            <div class="avatar-sm p-1 py-2 h-auto bg-light rounded-3" style="background-color: #ffe2d8 !important;">
+                                                                                <div class="text-center">
+                                                                                    <a href="#">
+                                                                                        <h5 class="mb-0">
+                                                                                            <asp:LinkButton ID="lnkUCNotApproved" runat="server" OnClick="lnkUCNotApproved_Click"></asp:LinkButton>
+                                                                                        </h5>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end row -->
+                                                                </li>
+                                                                <!-- end -->
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end row-->
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card">
@@ -127,18 +429,37 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Select">
                                                                     <ItemTemplate>
-                                                                        <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
+                                                                        <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" />
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
-                                                                <asp:BoundField HeaderText="District" DataField="Jurisdiction_Name_Eng" />
+                                                                <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />
                                                                 <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
                                                                 <asp:BoundField HeaderText="Division" DataField="Division_Name" />
-                                                                <asp:BoundField HeaderText="Project" DataField="Project_Name" />
-                                                                <asp:BoundField HeaderText="Project Code" DataField="ProjectWork_ProjectCode" />
                                                                 <asp:BoundField HeaderText="Work" DataField="ProjectWork_Name" />
-                                                                <asp:BoundField HeaderText="GO Date" DataField="ProjectWork_GO_Date" />
-                                                                <asp:BoundField HeaderText="GO No" DataField="ProjectWork_GO_No" />
-                                                                <asp:BoundField HeaderText="Budget (In Lakhs)" DataField="ProjectWork_Budget" />
+                                                                <asp:BoundField HeaderText="Sanctioned Cost (In Lakhs)" DataField="ProjectWork_Budget" />
+                                                                <asp:BoundField HeaderText="Agreement Cost (In Lakhs)" DataField="tender_cost" />
+                                                                <asp:BoundField HeaderText="Released Amount (In Lakhs)" DataField="Total_Release" />
+                                                                <asp:BoundField HeaderText="Total Expenditure (In Lakhs)" DataField="Total_Expenditure" />
+                                                                <asp:BoundField HeaderText="Physical Progress" DataField="Physical_Progress" />
+                                                                <asp:BoundField HeaderText="Financial Progress" DataField="Financial_Progress" />
+                                                                <asp:BoundField HeaderText="Start Date As Per Agreement" DataField="ProjectWorkPkg_Agreement_Date" />
+                                                                <asp:BoundField HeaderText="End Date As Per Agreement" DataField="ProjectWorkPkg_Due_Date" />
+                                                                <asp:BoundField HeaderText="Issue" DataField="Issue" />
+                                                                <asp:TemplateField HeaderText="Importent Timeline (Specific To This Project)">
+                                                                    <ItemTemplate>
+                                                                        <div class="list-group">
+                                                                            <a href="#" class="list-group-item list-group-item-action">Last Updated On (Data): <%# Eval("ProjectWork_ModifiedOn") %></a>
+                                                                            <a href="ProjectWorkGalleryView.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>" class="list-group-item list-group-item-action list-group-item-primary">Last Updated On (Gallery Photo): <%# Eval("Last_Updated") %></a>
+                                                                            <a href="ProjectWorkInspectionUpdate.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>" class="list-group-item list-group-item-action list-group-item-secondary">Last Inspection / Field Visit: <%# Eval("Inspection_Submitted_Date") %></a>
+                                                                            <a href="MasterProjectWorkMIS_6.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="list-group-item list-group-item-action list-group-item-success">Last UC Submitted On: <%# Eval("UC_Submitted_Date") %></a>
+                                                                            <a href="MasterProjectWorkMIS_4.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="list-group-item list-group-item-action list-group-item-danger">Physical Progress As On: <%# Eval("Physical_As_On") %></a>
+                                                                            <a href="MasterProjectWorkMIS_4.aspx?ProjectWork_Id=<%# Eval("ProjectWork_Id") %>&Id=<%# Eval("ProjectWork_Project_Id") %>" class="list-group-item list-group-item-action list-group-item-warning">Financial Progress As On: <%# Eval("Financial_As_On") %></a>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                    <HeaderStyle Width="200" />
+                                                                    <ItemStyle Width="200" />
+                                                                    <FooterStyle Width="200" />
+                                                                </asp:TemplateField>
                                                             </Columns>
                                                         </asp:GridView>
                                                     </div>
@@ -166,184 +487,7 @@
         </div>
     </div>
 
-    <!-- DataTable specific plugin scripts -->
-    <script src="assets/js/jquery-2.1.4.min.js"></script>
-    <script src="assets/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/dataTables.buttons.min.js"></script>
-    <script src="assets/js/buttons.flash.min.js"></script>
-    <script src="assets/js/buttons.html5.min.js"></script>
-    <script src="assets/js/buttons.print.min.js"></script>
-    <script src="assets/js/buttons.colVis.min.js"></script>
-    <script src="assets/js/dataTables.select.min.js"></script>
-    <script src="assets/js/ace-elements.min.js"></script>
-    <script src="assets/js/ace.min.js"></script>
-    <script src="assets/js/dataTables.fixedHeader.min.js"></script>
-    <script src="assets/js/jquery.mark.min.js"></script>
-    <script src="assets/js/datatables.mark.js"></script>
-    <%--<script src="assets/js/dataTables.colReorder.min.js"></script>--%>
 
-    <script type="text/javascript">
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                var DataTableLength = $('#ctl00_ContentPlaceHolder1_grdPost').length;
-                if (DataTableLength > 0) {
-                    var outerHTML = $('#ctl00_ContentPlaceHolder1_grdPost')[0].outerText;
-                    if (outerHTML.trim() !== "No Records Found") {
-                        //initiate dataTables plugin
-                        var myTable =
-                            $('#ctl00_ContentPlaceHolder1_grdPost')
-                                //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                .DataTable({
-                                    mark: true,
-                                    colReorder: false,
-                                    fixedHeader: {
-                                        header: true,
-                                        footer: false
-                                    },
-                                    bAutoWidth: false,
-                                    "aoColumns": [
-                                        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
-                                    ],
-                                    "aaSorting": [],
-                                    //"bProcessing": true,
-                                    //"bServerSide": true,
-                                    //"sAjaxSource": "http://127.0.0.1/table.php"	,
-
-                                    //,
-                                    //"sScrollY": "200px",
-                                    //"bPaginate": false,
-                                    //"sScrollX": "100%",
-                                    //"sScrollXInner": "120%",
-                                    //"bScrollCollapse": true,
-                                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                    "iDisplayLength": 25,
-                                    select: {
-                                        style: 'multi'
-                                    }
-                                });
-                        $.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
-                        new $.fn.dataTable.Buttons(myTable, {
-                            buttons: [
-                                {
-                                    "extend": "colvis",
-                                    "text": "<i class='fa fa-search bigger-110 blue'></i> <span class='hidden'>Show/hide columns</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    columns: ':not(:first):not(:last)'
-                                },
-                                {
-                                    "extend": "copy",
-                                    "text": "<i class='fa fa-copy bigger-110 pink'></i> <span class='hidden'>Copy to clipboard</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "csv",
-                                    "text": "<i class='fa fa-database bigger-110 orange'></i> <span class='hidden'>Export to CSV</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "excel",
-                                    "text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "pdf",
-                                    "text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
-                                    "className": "btn btn-white btn-primary btn-bold"
-                                },
-                                {
-                                    "extend": "print",
-                                    "text": "<i class='fa fa-print bigger-110 grey'></i> <span class='hidden'>Print</span>",
-                                    "className": "btn btn-white btn-primary btn-bold",
-                                    autoPrint: true,
-                                    message: 'This print was produced using the Print button for DataTables',
-                                    exportOptions: {
-                                        columns: ':visible'
-                                    }
-                                }
-                            ]
-                        });
-                        myTable.buttons().container().appendTo($('.tableTools-container'));
-
-                        //style the message box
-                        var defaultCopyAction = myTable.button(1).action();
-                        myTable.button(1).action(function (e, dt, button, config) {
-                            defaultCopyAction(e, dt, button, config);
-                            $('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-                        });
-                        var defaultColvisAction = myTable.button(0).action();
-                        myTable.button(0).action(function (e, dt, button, config) {
-
-                            defaultColvisAction(e, dt, button, config);
-                            if ($('.dt-button-collection > .dropdown-menu').length == 0) {
-                                $('.dt-button-collection')
-                                    .wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-                                    .find('a').attr('href', '#').wrap("<li />")
-                            }
-                            $('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
-                        });
-                        ////
-                        setTimeout(function () {
-                            $($('.tableTools-container')).find('a.dt-button').each(function () {
-                                var div = $(this).find(' > div').first();
-                                if (div.length == 1) div.tooltip({ container: 'body', title: div.parent().text() });
-                                else $(this).tooltip({ container: 'body', title: $(this).text() });
-                            });
-                        }, 500);
-
-                        $(document).on('click', '#ctl00_ContentPlaceHolder1_grdPost .dropdown-toggle', function (e) {
-                            e.stopImmediatePropagation();
-                            e.stopPropagation();
-                            //e.preventDefault();
-                        });
-                        //And for the first simple table, which doesn't have TableTools or dataTables
-                        //select/deselect all rows according to table header checkbox
-                        var active_class = 'active';
-                        /********************************/
-                        //add tooltip for small view action buttons in dropdown menu
-                        $('[data-rel="tooltip"]').tooltip({ placement: tooltip_placement });
-
-                        //tooltip placement on right or left
-                        function tooltip_placement(context, source) {
-                            var $source = $(source);
-                            var $parent = $source.closest('table')
-                            var off1 = $parent.offset();
-                            var w1 = $parent.width();
-
-                            var off2 = $source.offset();
-                            //var w2 = $source.width();
-
-                            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-                            return 'left';
-                        }
-                        /***************/
-                        $('.show-details-btn').on('click', function (e) {
-                            e.preventDefault();
-                            $(this).closest('tr').next().toggleClass('open');
-                            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-                        });
-                    }
-                }
-            })
-        });
-
-    </script>
-
-    <script>
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                $('.modalBackground1').click(function () {
-                    var id = $(this).attr('id').replace('_backgroundElement', '');
-                    $find(id).hide();
-                });
-
-
-            })
-        });
-
-    </script>
 
 </asp:Content>
 

@@ -226,7 +226,7 @@ public partial class MasterPerson : System.Web.UI.Page
     }
     private void get_Employee(int Zone_Id, int Circle_Id, int Division_Id)
     {
-        string UserTypeId = "1, 2, 4, 6, 7, 8, 9, 11, 3, 13";
+        string UserTypeId = "1, 2, 4, 6, 7, 8, 9, 11, 3, 13, 14";
         int District_Id = 0;
         int Project_Id = 0;
         //try
@@ -332,6 +332,10 @@ public partial class MasterPerson : System.Web.UI.Page
         {
             AllClasses.FillDropDown(ds.Tables[0], ddlZone, "Zone_Name", "Zone_Id");
             AllClasses.FillDropDown_WithOutSelect(ds.Tables[0], ddlZoneS, "Zone_Name", "Zone_Id");
+            if (ddlZone.SelectedItem.Value != "0")
+            {
+                get_tbl_Circle(Convert.ToInt32(ddlZoneS.SelectedValue), ddlCircleS);
+            }
         }
         else
         {
@@ -346,7 +350,7 @@ public partial class MasterPerson : System.Web.UI.Page
 
         if (Session["UserType"].ToString() == "1")
         {
-            UserTypeId = "1, 2, 4, 6, 7, 8, 9, 11, 3, 13";
+            UserTypeId = "1, 2, 4, 6, 7, 8, 9, 11, 3, 13, 14";
         }
         else
         {
@@ -1132,7 +1136,6 @@ public partial class MasterPerson : System.Web.UI.Page
         if (ddlZoneS.SelectedValue == "0")
         {
             ddlCircleS.Items.Clear();
-            MessageBox.Show("Please Select Zone");
             return;
         }
         else
