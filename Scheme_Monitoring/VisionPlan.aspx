@@ -80,7 +80,14 @@
                                                         <asp:TextBox ID="txtYear" runat="server" CssClass="form-control" ></asp:TextBox>
                                                     </div>
                                                 </div>
-
+                                                 <div class="col-xxl-3 col-md-6">
+                                                    <div runat="server" id="NewConstruction">
+                                                        <asp:Label ID="Label3" runat="server" Text="Is Constructed ?*" CssClass="form-label"></asp:Label>
+                                                        <asp:RadioButton ID="RadioButton1" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Constructed " Value="1"  />
+                                                        <asp:RadioButton ID="RadioButton2" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Construction " Value="2"  />
+                                                        <asp:RadioButton ID="RadioButton3" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Sanction " Value="3"  />
+                                                    </div>
+                                                </div>
 
                                                  <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
                                                     <div id="div7" runat="server">
