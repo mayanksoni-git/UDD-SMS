@@ -488,6 +488,16 @@ public partial class CreateVisionPlan: System.Web.UI.Page
 
             if (RadioButton1.Checked)
             {
+                if (TxtYear.Text != "")
+                {
+                    constructedyear = TxtYear.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Please Enter Constructed Year.");
+                    TxtYear.Focus();
+                    return;
+                }
                 //---- Check That Condition Radion Button Checked or Not-----
                 if (RadioButton4.Checked)
                 { condition = "1"; }
@@ -556,7 +566,19 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 RadioButton9.Focus();
                 return;
             }
+            if (similarProj.Text == "")
+            {
+                MessageBox.Show("Please Enter Number Of Similar project In City.");
+                similarProj.Focus();
+                return;
+            }
+            if (Location.Text == "")
+            {
 
+                MessageBox.Show("Please Enter Location.");
+                Location.Focus();
+                return;
+            }
             var pk = Convert.ToInt32(VisionPlanID.Value);
             var cmvny = Convert.ToInt32(DDLProj.SelectedValue);
             var ULB = Convert.ToInt32(ddlDivision.SelectedValue);
@@ -620,6 +642,17 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             if (RadioButton1.Checked)
             {
                 //---- Check That Condition Radion Button Checked or Not-----
+                if (TxtYear.Text != "")
+                {
+                    constructedyear = TxtYear.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Please Enter Constructed Year.");
+                    TxtYear.Focus();
+                    return;
+                }
+
                 if (RadioButton4.Checked)
                 { condition = "1"; }
                 else if (RadioButton5.Checked)
@@ -650,16 +683,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                     return;
                 }
                 //---- Check That OwnerShip Radion Button Checked or Not-----
-                if (TxtYear.Text != "")
-                {
-                    constructedyear = TxtYear.Text;
-                }
-                else
-                {
-                    MessageBox.Show("Please Enter Constructed Year.");
-                    TxtYear.Focus();
-                    return;
-                }
+               
                 constructed = "1";
             }
             else if (RadioButton2.Checked)
@@ -685,12 +709,24 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             else if (RadioButton10.Checked)
             {
                 IsOwnerShip = "0";
+                if(OtherDepartment.Text=="")
+                {
+                    MessageBox.Show("Please Enter Other Department.");
+                    OtherDepartment.Focus();
+                    return;
+                }
                 owner = OtherDepartment.Text;
             }
             else
             {
                 MessageBox.Show("Please Select OwnerShip.");
                 RadioButton9.Focus();
+                return;
+            }
+            if (similarProj.Text == "")
+            {
+                MessageBox.Show("Please Enter Number Of Similar project In City.");
+                similarProj.Focus();
                 return;
             }
             if (Location.Text == "")
@@ -705,6 +741,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             var State = Convert.ToInt32(ddlZone.SelectedValue);
             var Dis = Convert.ToInt32(ddlCircle.SelectedValue);
             var Fy = Convert.ToInt32(ddlFY.SelectedValue);
+            
             var SameProj = similarProj.Text;
             var location = Location.Text;
             var prt = Convert.ToInt32(DdlPriority.SelectedValue);
@@ -715,12 +752,12 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 MessageBox.Show("Please select  priority.");
                 return;
             }
-            // var person=Convert.ToInt32(se)
+       
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
-            dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location,TxtPopulation.Text);
-            //GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
+           // dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
+               // Amount, owner, DdlPriority.SelectedValue, SameProj, location,TxtPopulation.Text);
+            
             if (dt.Rows.Count > 0)
             {
                 var check = dt.Rows[0]["Remark"].ToString();
@@ -786,7 +823,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
               
 
             }
-            if (RadioButton7.Checked == true&&txt=="Yes")
+            if (RadioButton7.Checked == true)
             {
 
                 sectionusercharge.Visible = true;

@@ -132,13 +132,13 @@
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6 validsec" runat="server"  id="secOtherown" >
                                                     <div id="div4" runat="server">
-                                                        <asp:Label ID="Label7" runat="server" Text="Owner Department" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="Label7" runat="server" Text="Owner Department*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="OtherDepartment" runat="server" CssClass="form-control" ></asp:TextBox>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6" id="sectionSimilar" runat="server" >
                                                     <div id="div5" runat="server">
-                                                        <asp:Label ID="Label8" runat="server" Text="Number Of Similar project in city" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="Label8" runat="server" Text="Number Of Similar project in city*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="similarProj" runat="server" CssClass="form-control" ></asp:TextBox>
                                                     </div>
                                                 </div>
