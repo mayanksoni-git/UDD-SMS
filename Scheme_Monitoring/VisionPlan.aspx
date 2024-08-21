@@ -148,7 +148,7 @@
 
                                                         <th style="text-align:center;font-size:15px" >Sr. No.</th>
                                                        <th  style="text-align:center;font-size:15px" colspan="3">ULB Details</th>
-                                                        <th  style="text-align:center;font-size:15px" colspan="2">Project Name</th>
+                                                        <th  style="text-align:center;font-size:15px" colspan="3">Project Name</th>
                                                        <th  style="text-align:center;font-size:15px" colspan="2">Existing</th>
                                                         <th  style="text-align:center;font-size:15px" ">Condition</th>
                                                        
@@ -165,7 +165,8 @@
                                                         <th  style="text-align:center">District</th>
                                                         <th  style="text-align:center">ULB Name</th>
                                                         <th  style="text-align:center">Population</th>
-                                                        <th  style="text-align:center">Project Name</th>
+                                                        <th  style="text-align:center">Project Type</th>
+                                                         <th  style="text-align:center">Project Name</th>
                                                         <th  style="text-align:center">Financial Year</th>
                                                         <th  style="text-align:center">Is Constructed?</th>
                                                       <%--  <th  style="text-align:center">Under Construction(Y/N)</th>
@@ -197,6 +198,7 @@
                                                 <td><asp:Label id="lblDistrict" runat="server"><%# DataBinder.Eval(Container.DataItem, "Circle_Name") %></asp:Label></td>
                                                 <td><asp:Label id="lblULBName" runat="server"><%# DataBinder.Eval(Container.DataItem, "Division_Name") %></asp:Label></td>
                                                 <td><asp:Label id="lblPopulation" runat="server"><%# DataBinder.Eval(Container.DataItem, "population") %></asp:Label></td>
+                                                <td><asp:Label id="Label4" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectType_Name") %></asp:Label></td>
                                                 <td><asp:Label id="Label2" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectName") %></asp:Label></td>
                                                 <td><asp:Label id="fy" runat="server"><%# DataBinder.Eval(Container.DataItem, "FinancialYear_Comments") %></asp:Label></td>
                                              

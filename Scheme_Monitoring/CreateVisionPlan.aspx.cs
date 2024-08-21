@@ -227,7 +227,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
     protected void GetEditList(string taskid)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "");
+        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "","");
 
         if (dt != null && dt.Rows.Count > 0)
         {
@@ -250,7 +250,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             ddlFY.SelectedValue = dt.Rows[0]["FYID"].ToString();
             DDLProj.SelectedValue = dt.Rows[0]["CMVNYId"].ToString();
             DdlPriority.SelectedValue = dt.Rows[0]["selfPriority"].ToString();
-
+            TxtProject.Text=dt.Rows[0]["ProjectName"].ToString();
             var checkuser = dt.Rows[0]["IsUserCharger"].ToString();
                 //---- Check That Condition Radion Button Checked or Not-----
                 if (dt.Rows[0]["IsConstructed"].ToString()=="1")
@@ -597,7 +597,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
             dt = objLoan.GetVisionPlan("update", cmvny, ULB, pk, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text);
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text,TxtProject.Text);
             //GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
             if (dt.Rows.Count > 0)
             {
@@ -755,8 +755,8 @@ public partial class CreateVisionPlan: System.Web.UI.Page
        
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
-           // dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-               // Amount, owner, DdlPriority.SelectedValue, SameProj, location,TxtPopulation.Text);
+            dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location,TxtPopulation.Text,TxtProject.Text);
             
             if (dt.Rows.Count > 0)
             {
