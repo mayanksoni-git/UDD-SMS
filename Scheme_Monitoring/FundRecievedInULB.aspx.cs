@@ -85,7 +85,7 @@ public partial class FundRecievedInULB : System.Web.UI.Page
                         fy = Convert.ToInt32(ddlFY.SelectedValue);
                     }
                     
-                    GetAllData(circleId, divisionId, fy);
+                   // GetAllData(circleId, divisionId, fy);
                 }
             }
         }
@@ -170,22 +170,22 @@ public partial class FundRecievedInULB : System.Web.UI.Page
         {
             get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue));
 
-            int dist = 0;
-            int fy = 0;
-            int ULB = 0;
-            if (ddlCircle.SelectedValue != "0" && ddlCircle.SelectedValue != "")
-            {
-                dist = Convert.ToInt32(ddlCircle.SelectedValue);
-            }
-            if (ddlFY.SelectedValue != "0" && ddlFY.SelectedValue != "")
-            {
-                fy = Convert.ToInt32(ddlFY.SelectedValue);
-            }
-            if (ddlDivision.SelectedValue != "0" && ddlDivision.SelectedValue != "")
-            {
-                ULB = Convert.ToInt32(ddlDivision.SelectedValue);
-            }
-            GetAllData(dist, ULB, fy);
+            //int dist = 0;
+            //int fy = 0;
+            //int ULB = 0;
+            //if (ddlCircle.SelectedValue != "0" && ddlCircle.SelectedValue != "")
+            //{
+            //    dist = Convert.ToInt32(ddlCircle.SelectedValue);
+            //}
+            //if (ddlFY.SelectedValue != "0" && ddlFY.SelectedValue != "")
+            //{
+            //    fy = Convert.ToInt32(ddlFY.SelectedValue);
+            //}
+            //if (ddlDivision.SelectedValue != "0" && ddlDivision.SelectedValue != "")
+            //{
+            //    ULB = Convert.ToInt32(ddlDivision.SelectedValue);
+            //}
+           // GetAllData(dist, ULB, fy);
         }
     }
     private void get_tbl_Division(int circleId)
@@ -202,44 +202,44 @@ public partial class FundRecievedInULB : System.Web.UI.Page
         }
         else
         {
-            int dist = 0;
-            int fy = 0;
-            int ULB = 0;
-            if (ddlCircle.SelectedValue != "0" && ddlCircle.SelectedValue != "")
-            {
-                dist = Convert.ToInt32(ddlCircle.SelectedValue);
-            }
-            if (ddlFY.SelectedValue != "0" && ddlFY.SelectedValue != "")
-            {
-                fy = Convert.ToInt32(ddlFY.SelectedValue);
-            }
-            if (ddlDivision.SelectedValue != "0" && ddlDivision.SelectedValue != "")
-            {
-                ULB = Convert.ToInt32(ddlDivision.SelectedValue);
-            }
-            GetAllData(dist,ULB,fy);
+            //int dist = 0;
+            //int fy = 0;
+            //int ULB = 0;
+            //if (ddlCircle.SelectedValue != "0" && ddlCircle.SelectedValue != "")
+            //{
+            //    dist = Convert.ToInt32(ddlCircle.SelectedValue);
+            //}
+            //if (ddlFY.SelectedValue != "0" && ddlFY.SelectedValue != "")
+            //{
+            //    fy = Convert.ToInt32(ddlFY.SelectedValue);
+            //}
+            //if (ddlDivision.SelectedValue != "0" && ddlDivision.SelectedValue != "")
+            //{
+            //    ULB = Convert.ToInt32(ddlDivision.SelectedValue);
+            //}
+            //GetAllData(dist,ULB,fy);
             //BindLoanReleaseGridByULB();
         }
     }
 
     protected void ddlFY_SelectedIndexChanged(object sender, EventArgs e)
     {
-        int dist = 0;
-        int fy = 0;
-        int ULB = 0;
-        if (ddlCircle.SelectedValue != "0" && ddlCircle.SelectedValue != "")
-        {
-            dist = Convert.ToInt32(ddlCircle.SelectedValue);
-        }
-        if (ddlFY.SelectedValue != "0" && ddlFY.SelectedValue != "")
-        {
-            fy = Convert.ToInt32(ddlFY.SelectedValue);
-        }
-        if (ddlDivision.SelectedValue != "0" && ddlDivision.SelectedValue != "")
-        {
-            ULB = Convert.ToInt32(ddlDivision.SelectedValue);
-        }
-        GetAllData(dist, ULB, fy);
+        //int dist = 0;
+        //int fy = 0;
+        //int ULB = 0;
+        //if (ddlCircle.SelectedValue != "0" && ddlCircle.SelectedValue != "")
+        //{
+        //    dist = Convert.ToInt32(ddlCircle.SelectedValue);
+        //}
+        //if (ddlFY.SelectedValue != "0" && ddlFY.SelectedValue != "")
+        //{
+        //    fy = Convert.ToInt32(ddlFY.SelectedValue);
+        //}
+        //if (ddlDivision.SelectedValue != "0" && ddlDivision.SelectedValue != "")
+        //{
+        //    ULB = Convert.ToInt32(ddlDivision.SelectedValue);
+        //}
+        //GetAllData(dist, ULB, fy);
     }
 
 
@@ -296,6 +296,7 @@ public partial class FundRecievedInULB : System.Web.UI.Page
     }
     protected void GetAllData(int?dist,int? ULBID,int?fy)
     {
+        
         DataTable dt = new DataTable();
         dt = objLoan.GetULBFundAction("select", ULBID, 0, 0, dist, fy, 0, 0, 0, 0);
         grdPost.DataSource = dt;

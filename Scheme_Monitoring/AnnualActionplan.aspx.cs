@@ -178,7 +178,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
         }
         else
         {
-            GetAllData();
+            //GetAllData();
             //BindLoanReleaseGridByULB();
         }
     }

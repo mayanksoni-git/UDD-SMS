@@ -77,7 +77,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
                 if (divisionId > 0)
                 {
                     SetDropdownValueAndDisable(ddlDivision, divisionId);
-                    GetAllData();
+                   // GetAllData();
                 }
             }
         }
@@ -168,7 +168,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         }
         else
         {
-            GetAllData();
+           // GetAllData();
             //BindLoanReleaseGridByULB();
         }
     }

@@ -169,7 +169,7 @@ public partial class VisionPlan : System.Web.UI.Page
         else
         {
             get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue));
-            GetEditExpenseList();
+           // GetEditExpenseList();
         }
     }
     private void get_tbl_Division(int circleId)
@@ -188,7 +188,7 @@ public partial class VisionPlan : System.Web.UI.Page
         {
             // GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
             //BindLoanReleaseGridByULB();
-            GetEditExpenseList();
+            //GetEditExpenseList();
         }
     }
     protected void ddlFY_SelectedIndexChanged(object sender, EventArgs e)
@@ -202,7 +202,7 @@ public partial class VisionPlan : System.Web.UI.Page
         {
             // GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
             //BindLoanReleaseGridByULB();
-            GetEditExpenseList();
+           // GetEditExpenseList();
         }
     }
     protected void GetEditExpenseList()
@@ -362,75 +362,6 @@ public partial class VisionPlan : System.Web.UI.Page
         }
 
     }
-
-    protected void ExportToExcel_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            // Fetch all data from the DataTable
-            var dist = 0;
-            var ULB = 0;
-            var FY = 0;
-            var state = Convert.ToInt32(ddlZone.SelectedValue);
-            if (ddlCircle.SelectedValue == "0" || ddlCircle.SelectedValue == "")
-            {
-                dist = 0;
-            }
-            else
-            {
-                dist = Convert.ToInt32(ddlCircle.SelectedValue);// == "0"
-            }
-            if (ddlDivision.SelectedValue == "0" || ddlDivision.SelectedValue == "")
-            {
-                ULB = 0;
-            }
-            else
-            {
-                ULB = Convert.ToInt32(ddlDivision.SelectedValue);// == "0"
-            }
-            if (ddlFY.SelectedValue == "0" || ddlFY.SelectedValue == "")
-            {
-                FY = 0;
-            }
-            else
-            {
-                FY = Convert.ToInt32(ddlFY.SelectedValue);// == "0"
-            }
-            DataTable dt = new DataTable();
-            dt = objLoan.GetVisionPlan("select", 0, ULB, 0, state, "", dist, FY, "", "", "", 0, "", 0, "", "", "", "", "");
-            if (dt == null || dt.Columns.Count == 0)
-            {
-                Response.Write("No data available for export.");
-                return;
-            }
-
-            using (XLWorkbook wb = new XLWorkbook())
-            {
-                wb.Worksheets.Add(dt, "Work Plan Detail");
-
-                Response.Clear();
-                Response.Buffer = true;
-                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-                Response.AddHeader("content-disposition", "attachment;filename=VisionPlan.xlsx");
-
-                using (MemoryStream MyMemoryStream = new MemoryStream())
-                {
-                    wb.SaveAs(MyMemoryStream);
-                    MyMemoryStream.WriteTo(Response.OutputStream);
-                    Response.Flush(); // Ensure all data is sent to the client
-                }
-
-                // Properly complete the request to avoid ThreadAbortException
-                HttpContext.Current.ApplicationInstance.CompleteRequest();
-            }
-        }
-        catch (Exception ex)
-        {
-            Response.Write("Error: " + ex.Message);
-        }
-        Response.End();
-    }
-
 
   
 

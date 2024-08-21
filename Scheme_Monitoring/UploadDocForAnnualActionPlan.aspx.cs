@@ -170,7 +170,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
         {
             // GetAllData(Convert.ToInt32(ddlDivision.SelectedValue));
             //BindLoanReleaseGridByULB();
-            GetAllData();
+           // GetAllData();
         }
     }
 

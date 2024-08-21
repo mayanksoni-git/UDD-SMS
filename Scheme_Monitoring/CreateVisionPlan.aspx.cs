@@ -372,7 +372,12 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             ddlFY.Focus();
             return false;
         }
-       
+        if (TxtPopulation.Text == ""||TxtPopulation.Text==null)
+        {
+            MessageBox.Show("Please Enter Population. ");
+            TxtPopulation.Focus();
+            return false;
+        }
         else
         {
             return true;
@@ -454,9 +459,14 @@ public partial class CreateVisionPlan: System.Web.UI.Page
         if (divi != "" && ddlCircle.SelectedValue != "0" && ddlFY.SelectedValue != "0")
         {
             GetPopulationdata(divi, ddlFY.SelectedValue);
+            lblpop.Text = "Projected population for financial year(" + ddlFY.SelectedItem + ")";
         }
 
-
+        if (ddlFY.SelectedValue != "0")
+        {
+            
+            lblpop.Text = "Projected population for financial year(" + ddlFY.SelectedItem + ")*";
+        }
     }
 
     protected void BtnUpdate_Click(object sender, EventArgs e)
@@ -596,7 +606,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
         {
             if (!ValidateFields())
             {
-                MessageBox.Show("All Fields required");
+                MessageBox.Show("All Fields required.");
                 return;
             }
             var constructed = "";
@@ -618,7 +628,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 { condition = "3"; }
                 else
                 {
-                    MessageBox.Show("Please Select Condition ");
+                    MessageBox.Show("Please Select Condition. ");
                     RadioButton4.Focus();
                     return;
                 }
@@ -635,13 +645,21 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 }
                 else
                 {
-                    MessageBox.Show("Please Select User Charge ");
+                    MessageBox.Show("Please Select User Charge. ");
                     RadioButton7.Focus();
                     return;
                 }
                 //---- Check That OwnerShip Radion Button Checked or Not-----
-             
-                constructedyear = TxtYear.Text;
+                if (TxtYear.Text != "")
+                {
+                    constructedyear = TxtYear.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Please Enter Constructed Year.");
+                    TxtYear.Focus();
+                    return;
+                }
                 constructed = "1";
             }
             else if (RadioButton2.Checked)
@@ -671,11 +689,17 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             }
             else
             {
-                MessageBox.Show("Please Select OwnerShip ");
+                MessageBox.Show("Please Select OwnerShip.");
                 RadioButton9.Focus();
                 return;
             }
-
+            if (Location.Text == "")
+            {
+              
+                MessageBox.Show("Please Enter Location.");
+                Location.Focus();
+                return;
+            }
             var cmvny = Convert.ToInt32(DDLProj.SelectedValue);
             var ULB = Convert.ToInt32(ddlDivision.SelectedValue);
             var State = Convert.ToInt32(ddlZone.SelectedValue);
@@ -684,16 +708,18 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             var SameProj = similarProj.Text;
             var location = Location.Text;
             var prt = Convert.ToInt32(DdlPriority.SelectedValue);
+            //var population = TxtPopulation.Text;
+          
             if(prt==0)
             {
-                MessageBox.Show("Please select  priority");
+                MessageBox.Show("Please select  priority.");
                 return;
             }
             // var person=Convert.ToInt32(se)
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
             dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text);
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location,TxtPopulation.Text);
             //GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
             if (dt.Rows.Count > 0)
             {

@@ -82,7 +82,7 @@
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
                                                     <div id="div8" runat="server">
-                                                        <asp:Label ID="Label11" runat="server" Text="Population*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblpop" runat="server" Text="Population*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="TxtPopulation" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
@@ -144,7 +144,7 @@
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server" >
                                                     <div id="div6" runat="server">
-                                                        <asp:Label ID="Label9" runat="server" Text="Location (Ward Name)" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="Label9" runat="server" Text="Location (Ward Name)*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="Location" runat="server" CssClass="form-control" ></asp:TextBox>
                                                     </div>
                                                 </div>
