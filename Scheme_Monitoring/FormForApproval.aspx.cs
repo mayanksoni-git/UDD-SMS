@@ -288,6 +288,13 @@ public partial class FormForApproval : System.Web.UI.Page
             return;
         }
 
+        if (!fileUploadRecommendationLetter.HasFile)
+        {
+            MessageBox.Show("Please choose recomendation letter.");
+            fileUploadRecommendationLetter.Focus();
+            return;
+        }
+
         //Create List of Selected Project Work Type
         List<WorkProposal_ProjectType> objList = new List<WorkProposal_ProjectType>();
         foreach (ListItem listItem in ddlWorkType.Items)
@@ -338,18 +345,28 @@ public partial class FormForApproval : System.Web.UI.Page
                 if (dt.Rows.Count>0)
                 {
                     int result = Convert.ToInt32(dt.Rows[0]["WorkProposalId"].ToString());
-                    if (objList != null && objList.Count > 0)
+                    string ProposalCode = dt.Rows[0]["ProposalCode"].ToString();
+                    if(result!=0 && ProposalCode !="0")
                     {
-                        objList[0].Proposal_Id = result;
-                        for (int i = 0; i < objList.Count; i++)
+                        if (objList != null && objList.Count > 0)
                         {
-                            objList[i].Proposal_Id = result;
-                            objLoan.Insert_WorkProposal_ProjectType(objList[i], trans, connection);
+                            objList[0].Proposal_Id = result;
+                            for (int i = 0; i < objList.Count; i++)
+                            {
+                                objList[i].Proposal_Id = result;
+                                objLoan.Insert_WorkProposal_ProjectType(objList[i], trans, connection);
+                            }
                         }
+                        trans.Commit();
+                        MessageBox.Show("Record with Work Proposal Code \"" + dt.Rows[0]["ProposalCode"].ToString() + "\" saved successfully.");
+                        reset();
+                        btnSearch_Click(null, EventArgs.Empty);
                     }
-                    trans.Commit();
-                    MessageBox.Show("Record with Work Proposal Code \""+ dt.Rows[0]["ProposalCode"].ToString()+ "\" saved successfully.");
-                    reset();
+                    else
+                    {
+                        MessageBox.Show("We found duplicate record with the same Proposal Name, Financial Year, ULB and Scheme!");
+                    }
+                    
                 }
                 else
                 {
@@ -497,7 +514,6 @@ public partial class FormForApproval : System.Web.UI.Page
                 IsValid = false;
             }
         }
-
         return IsValid;
     }
     private string UploadPDF()
@@ -662,7 +678,7 @@ public partial class FormForApproval : System.Web.UI.Page
         ddlDivision.Items.Clear();
         txtZoneOfULB.Text = "";
         txtWard.Text = "";
-        ddlProjectMaster.SelectedValue = "0";
+        //ddlProjectMaster.SelectedValue = "0";
         ddlWorkType.Items.Clear();
         txtExpectedAmount.Text = "";
         rblRoles.SelectedIndex = -1;
@@ -799,13 +815,13 @@ public partial class FormForApproval : System.Web.UI.Page
 
             gvRecords.HeaderRow.Cells[0].Visible = false; // Work Proposal Id
             gvRecords.HeaderRow.Cells[2].Visible = false; // Edit
-            gvRecords.HeaderRow.Cells[18].Visible = false; // Recommendation Letter
+            gvRecords.HeaderRow.Cells[12].Visible = false; // Recommendation Letter
 
             foreach (GridViewRow row in gvRecords.Rows)
             {
                 row.Cells[0].Visible = false; // Work Proposal Id
                 row.Cells[2].Visible = false; // Edit
-                row.Cells[18].Visible = false; // Recommendation Letter
+                row.Cells[12].Visible = false; // Recommendation Letter
             }
 
             gvRecords.HeaderRow.BackColor = System.Drawing.Color.White;
@@ -942,7 +958,16 @@ public partial class FormForApproval : System.Web.UI.Page
 
             rblRoles.SelectedValue= dt.Rows[0]["ProposerType"].ToString();
             rblRoles_SelectedIndexChanged(rblRoles, new EventArgs());
-            if (rblRoles.SelectedValue.ToString()=="MP" || rblRoles.SelectedValue.ToString()=="MLA")
+            if (rblRoles.SelectedValue.ToString()== "Others")
+            {
+                
+
+                ddlMPMLA.Items.Clear();
+                lblConstituencyName.Text = "";
+                lblParyOfMPMLA.Text = "";
+                txtOthers.Text = dt.Rows[0]["ProposerName"].ToString();
+            }
+            else
             {
                 txtOthers.Text = "";
                 try
@@ -954,13 +979,6 @@ public partial class FormForApproval : System.Web.UI.Page
                 {
                     ddlMPMLA.SelectedValue = "0";
                 }
-            }
-            else
-            {
-                ddlMPMLA.Items.Clear();
-                lblConstituencyName.Text = "";
-                lblParyOfMPMLA.Text = "";
-                txtOthers.Text= dt.Rows[0]["ProposerName"].ToString();
             }
             txtMobileNo.Text = dt.Rows[0]["Mobile"].ToString();
             txtDesignation.Text = dt.Rows[0]["Designation"].ToString();

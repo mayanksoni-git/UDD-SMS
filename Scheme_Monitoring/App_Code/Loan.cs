@@ -386,7 +386,7 @@ public class Loan
             param[17] = new SqlParameter("@ProposalDetail", obj.ProposalDetail);
             param[18] = new SqlParameter("@SubSchemeId", obj.SubSchemeId);
 
-            return objDAL.ExecuteProcedureReturnDataTable("sp_InsertWorkProposal", param);
+            return objDAL.ExecuteProcedureReturnDataTable("sp_InsertWorkProposalTest", param);
         }
         catch (Exception ex)
         {
