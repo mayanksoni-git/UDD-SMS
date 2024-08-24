@@ -30,7 +30,8 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Ongoing Project <label id="message" runat="server" style="float:right;color:red;font-weight:bold"></label></h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Filter : <label id="message" runat="server" style="float:right;color:red;font-weight:bold"></label></h4>
+                                         <a href="CreateOngoingPlans.aspx"  class="filter-btn" style="float:right"><i class="icon-download"></i> Create New</a>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -70,7 +71,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xxl-3 col-md-6">
+                                               <%-- <div class="col-xxl-3 col-md-6">
                                                     <div id="div3" runat="server">
                                                         <asp:Label ID="lblRemark" runat="server" Text="Project Name*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="ProjectName" runat="server" CssClass="form-control"></asp:TextBox>
@@ -126,23 +127,15 @@
                                                         <asp:TextBox ID="Remarks" runat="server"  CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <%-- <div class="col-xxl-3 col-md-6">
-                                                    <div id="div7" runat="server">
-                                                        <asp:Label ID="Label5" runat="server" Text="Convergence Detail" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:TextBox ID="convergence" runat="server"  CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                                                    </div>
-                                                </div>--%>
-                                                <div class="col-xxl-3  col-md-6">
+                                                 --%>
+                                                <div class="col-xxl-8 col-md-8">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
-                                                        <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnsave_Click"  convergence/>--%>
-                                                        <asp:Button ID="BtnUpdate" Text="Update" OnClick="BtnUpdate_Click" runat="server" Visible="false" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnsave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
-                                                        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-                                                        <asp:HiddenField ID="hfFormApproval_Id" runat="server" />
+                                                        <asp:Button ID="btnSearch" style="float:right" runat="server"  CssClass="btn bg-success text-white" Text="Search" OnClick="btnSearch_Click"  />
+                                                        
+
+
                                                     </div>
-                                                </div>
                                             </div>
                                             <!--end row-->
                                         </div>
@@ -154,9 +147,7 @@
                     </div>
                 </ContentTemplate>
                 <Triggers>
-                    <asp:PostBackTrigger ControlID="btnCancel" />
-                    <asp:PostBackTrigger ControlID="btnSave" />
-                    <asp:PostBackTrigger ControlID="BtnUpdate" />
+                    <asp:PostBackTrigger ControlID="btnSearch" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlZone" />

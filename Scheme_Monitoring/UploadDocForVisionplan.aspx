@@ -14,12 +14,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Upload Documents for Vision Plan</h4>
+                                    <h4 class="mb-sm-0">Documents for Vision Plan</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">CMVNY Scheme</li>
-                                            <li class="breadcrumb-item active">Upload Document for Vision Plan</li>
+                                            <li class="breadcrumb-item active">Documents for Vision Plan</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -30,7 +30,8 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Upload Document For Vision Plan <label id="message" runat="server" style="float:right;color:red;font-weight:bold"></label></h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Filter : <label id="message" runat="server" style="float:right;color:red;font-weight:bold"></label></h4>
+                                         <a href="CreateDocForVisionPlan.aspx"  class="filter-btn" style="float:right"><i class="icon-download"></i> Create New</a>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -65,23 +66,14 @@
                                                 </div>
                                                
                                                  
-                                                 <div class="col-xxl-3 col-md-6">
-                                                    <div id="div8" runat="server">
-                                                        <asp:Label ID="Label6" runat="server" Text="Upload Doc  (PDF)" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:FileUpload ID="fileupload" runat="server" CssClass="form-control" Accept=".pdf" /> 
-                                                         <a href="" target="_blank" id="UpladedDoc" runat="server"></a>
-                                                    </div>
-                                                </div>
+                                               
                                                  
-                                                <div class="col-xxl-3  col-md-6">
+                                                <div class="col-xxl-11  col-md-11">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
                                                         <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnsave_Click"  convergence/>--%>
-                                                        <asp:Button ID="BtnUpdate" Text="Update" OnClick="BtnUpdate_Click" runat="server" Visible="false" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnsave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
-                                                        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-                                                        <asp:HiddenField ID="hfFormApproval_Id" runat="server" />
+                                                        <asp:Button ID="BtnSearch" Text="Search" style="float:right" OnClick="BtnSearch_Click" runat="server"   CssClass="btn bg-success text-white"></asp:Button>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -95,9 +87,8 @@
                     </div>
                 </ContentTemplate>
                 <Triggers>
-                    <asp:PostBackTrigger ControlID="btnCancel" />
-                    <asp:PostBackTrigger ControlID="btnSave" />
-                    <asp:PostBackTrigger ControlID="BtnUpdate" />
+                    
+                    <asp:PostBackTrigger ControlID="BtnSearch" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlZone" />

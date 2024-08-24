@@ -74,6 +74,12 @@
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlFY_SelectedIndexChanged" ></asp:DropDownList>
                                                     </div>
                                                 </div>
+                                                 <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
+                                                    <div id="div8" runat="server">
+                                                        <asp:Label ID="lblpop" runat="server" Text="Population*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="TxtPopulation" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="divProj" runat="server">
                                                         <asp:Label ID="lblProj" runat="server" Text="Project type*" CssClass="form-label"></asp:Label>
@@ -81,11 +87,18 @@
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
-                                                    <div id="div8" runat="server">
-                                                        <asp:Label ID="Label11" runat="server" Text="Population*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="TxtPopulation" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <div id="div9" runat="server">
+                                                        <asp:Label ID="Label11" runat="server" Text="Project Name" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="TxtProject" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
+                                                 <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server" >
+                                                    <div id="div6" runat="server">
+                                                        <asp:Label ID="Label9" runat="server" Text="Location (Ward Name)*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="Location" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div runat="server" id="NewConstruction">
                                                         <asp:Label ID="Label1" runat="server" Text="Is Constructed ?*" CssClass="form-label"></asp:Label>
@@ -132,22 +145,12 @@
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6 validsec" runat="server"  id="secOtherown" >
                                                     <div id="div4" runat="server">
-                                                        <asp:Label ID="Label7" runat="server" Text="Owner Department" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="Label7" runat="server" Text="Owner Department*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="OtherDepartment" runat="server" CssClass="form-control" ></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6" id="sectionSimilar" runat="server" >
-                                                    <div id="div5" runat="server">
-                                                        <asp:Label ID="Label8" runat="server" Text="Number Of Similar project in city" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="similarProj" runat="server" CssClass="form-control" ></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                                 <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server" >
-                                                    <div id="div6" runat="server">
-                                                        <asp:Label ID="Label9" runat="server" Text="Location (Ward Name)" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="Location" runat="server" CssClass="form-control" ></asp:TextBox>
-                                                    </div>
-                                                </div>
+                                                
+                                                
                                                  <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
                                                     <div id="div7" runat="server">
                                                         <asp:Label ID="Label10" runat="server" Text="Self Priority" CssClass="form-label"></asp:Label>
@@ -159,6 +162,12 @@
                                                             <asp:ListItem Value="4">4</asp:ListItem>
                                                             <asp:ListItem Value="5">5</asp:ListItem>
                                                         </asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-xxl-3 col-md-6" id="sectionSimilar" runat="server" >
+                                                    <div id="div5" runat="server">
+                                                        <asp:Label ID="Label8" runat="server" Text="Number Of Similar project in city*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="similarProj" runat="server" CssClass="form-control" ></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-10  col-md-10">

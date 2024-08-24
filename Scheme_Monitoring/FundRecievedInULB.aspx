@@ -30,7 +30,9 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">ULB Fund</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Filter :</h4>
+                                         <a href="CreateFundRecievedInULB.aspx"  class="filter-btn" style="float:right"><i class="icon-download"></i> Create New</a>
+
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -64,34 +66,14 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div id="div3" runat="server">
-                                                        <asp:Label ID="lblRemark" runat="server" Text="SFC Fund(in Crore)" CssClass="form-label  me-1"></asp:Label>
-                                                        <asp:TextBox ID="SFC" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                              
-
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div id="div1" runat="server">
-                                                        <asp:Label ID="Label1" runat="server" Text="CFC Fund(in Crore)" CssClass="form-label  me-1"></asp:Label>
-                                                        <asp:TextBox ID="CFC" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div id="div2" runat="server">
-                                                        <asp:Label ID="Label2" runat="server" Text="Total Taxt Collection(in Crore)" CssClass="form-label  me-1"></asp:Label>
-                                                        <asp:TextBox ID="TotalTax" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-3  col-md-6">
+                                               
+                                               
+                                                <div class="col-xxl-11  col-md-11">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
                                                         <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnsave_Click" />--%>
-                                                        <asp:Button ID="BtnUpdate" Text="Update" OnClick="BtnUpdate_Click" runat="server" Visible="false" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnsave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
-                                                        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+                                                         <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" style="float:right" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
+                                                         <asp:Label Visible="false" ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
                                                         <asp:HiddenField ID="hfFormApproval_Id" runat="server" />
                                                     </div>
                                                 </div>
@@ -100,28 +82,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </ContentTemplate>
-                <Triggers>
-                    <asp:PostBackTrigger ControlID="btnCancel" />
-                    <asp:PostBackTrigger ControlID="btnSave" />
-                    <asp:PostBackTrigger ControlID="BtnUpdate" />
-                    <asp:PostBackTrigger ControlID="ddlDivision" />
-                    <asp:PostBackTrigger ControlID="ddlCircle" />
-                    <asp:PostBackTrigger ControlID="ddlZone" />
-                    <asp:PostBackTrigger ControlID="ddlFY" />
-                    
-                </Triggers>
-            </asp:UpdatePanel>
-             <div class="container-fluid">
-                 <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
+
+
+
+                                  <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">ULB Fund</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">List</h4>
                                       
                                     </div>
                                     <!-- end card header -->
@@ -175,7 +141,18 @@
                                 </div>
                             </div>
                         </div>
-             </div>
+                        
+                    </div>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="btnSearch" />
+                    <asp:PostBackTrigger ControlID="ddlDivision" />
+                    <asp:PostBackTrigger ControlID="ddlCircle" />
+                    <asp:PostBackTrigger ControlID="ddlZone" />
+                    <asp:PostBackTrigger ControlID="ddlFY" />
+                </Triggers>
+            </asp:UpdatePanel>
+            
         </div>
     </div>
    
