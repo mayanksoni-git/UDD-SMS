@@ -912,4 +912,57 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     }
 
     #endregion
+
+    #region ULBPopulation
+
+    public DataTable ULBPopulation(string actions, int? ULBID, int? TaskId, int? FY, int? personId, string population, int? dist)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[7];
+            param[0] = new SqlParameter("@action", actions);
+            param[1] = new SqlParameter("@ULBId", ULBID);
+            param[2] = new SqlParameter("@taskId", TaskId);
+            param[3] = new SqlParameter("@FYId", FY);
+            param[4] = new SqlParameter("@createdBy", personId);
+            param[5] = new SqlParameter("@population", population);
+            param[6] = new SqlParameter("@dist", dist);
+
+            return objDAL.GetDataByProcedure("SPULBPopulation", param);
+
+
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+
+    #endregion
+
+
+    public DataTable ActionOnVisionPlan(string actions, int pk, int person, string status, DateTime APdate, string Remark)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[6];
+            param[0] = new SqlParameter("@action", actions);
+            param[1] = new SqlParameter("@taskId", pk);
+            param[2] = new SqlParameter("@status", status);
+            param[3] = new SqlParameter("@appDate", APdate);
+            param[4] = new SqlParameter("@Remark", Remark);
+            param[5] = new SqlParameter("@pesronId", person);
+            //
+            return objDAL.GetDataByProcedure("SPActionOnVisionPlan", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+
 }

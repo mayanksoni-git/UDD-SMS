@@ -313,8 +313,22 @@ public partial class VisionPlan : System.Web.UI.Page
                 //var pk = Convert.ToInt16(e.CommandArgument.ToString());
                 Response.Redirect("CreateVisionPlan.aspx?id=" + PlanID+"&&Dist="+Distid+"&&ULBID="+ULBID+"&&FYID="+FYID+"");
             }
+
+            if (e.CommandName == "Action")
+            {
+                string[] args = e.CommandArgument.ToString().Split('|');
+                string PlanID = args[0];
+                string Distid = args[1];
+                string ULBID = args[2];
+                string FYID = args[3];
+                //var pk = Convert.ToInt16(e.CommandArgument.ToString());
+                Response.Redirect("ActionOnVisionPlan.aspx?id=" + PlanID + "&&Dist=" + Distid + "&&ULBID=" + ULBID + "&&FYID=" + FYID + "");
+
+
+            }
+
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
         }
