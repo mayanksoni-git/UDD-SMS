@@ -226,6 +226,7 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:BoundField DataField="Project_Name" HeaderText="Scheme" />
+                                                        <asp:BoundField DataField="ShortNameCode" HeaderText="Short Name" />
                                                         <asp:BoundField DataField="Project_Budget" HeaderText="Scheme Budget (In Lakhs)" />
                                                         <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
                                                         <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
