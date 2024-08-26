@@ -752,14 +752,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 MessageBox.Show("Please select  priority.");
                 return;
             }
-            try
-            {
-                var pop = Convert.ToInt32(TxtPopulation.Text);
-            }
-            catch(Exception ed)
-            {
-                MessageBox.Show(ed.Message+"Please Enter Population In Number.");
-            }
+       
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
             dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,

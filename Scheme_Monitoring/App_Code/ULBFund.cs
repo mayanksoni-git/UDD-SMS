@@ -894,26 +894,6 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         }
     }
 
-    public DataTable ActionOnVisionPlan(string actions, int pk, int person, string status, DateTime APdate, string Remark)
-    {
-        try { 
-        DataTable dt = new DataTable();
-        SqlParameter[] param = new SqlParameter[6];
-        param[0] = new SqlParameter("@action", actions);
-        param[1] = new SqlParameter("@taskId", pk);
-        param[2] = new SqlParameter("@status", status);
-        param[3] = new SqlParameter("@appDate", APdate);
-        param[4] = new SqlParameter("@Remark", Remark);
-        param[5] = new SqlParameter("@pesronId", person);
-            //
-            return objDAL.GetDataByProcedure("SPActionOnVisionPlan", param);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception(ex.Message);
-        }
-    }
-
     public DataSet getFYDetail()
     {
         DataSet ds = new DataSet();

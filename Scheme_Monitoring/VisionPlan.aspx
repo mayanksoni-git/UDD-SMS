@@ -221,9 +221,7 @@
                                                         CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
                                                     <asp:LinkButton ID="btnDelete" CssClass="btn bg-danger" Text="Delete" runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
                                                         OnClientClick="return confirm('Are you sure !');" />
-                                                    
-                                                    <asp:LinkButton ID="BtnAction" runat="server" Text="Action" CssClass="btn bg-primary icon-pencil bigger-130 green" ToolTip="Click to Action on  Record" CommandName="Action"
-                                                        CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
+
                                                 </td>
                                             </tr>
                                         </ItemTemplate>
@@ -295,7 +293,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
->
+
     <script>
 
         function exportTableToPDF() {
