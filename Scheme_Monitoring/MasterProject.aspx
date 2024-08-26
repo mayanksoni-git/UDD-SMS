@@ -70,12 +70,6 @@
                                                                 <asp:TextBox ID="txtPhysicalTarget" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-xxl-3 col-md-6">
-                                                            <div>
-                                                                
-                                                            </div>
-                                                        </div>
                                                         <!--end col-->
 
                                                         <div class="col-xxl-3 col-md-6">
