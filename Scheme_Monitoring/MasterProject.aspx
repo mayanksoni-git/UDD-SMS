@@ -52,6 +52,12 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-xxl-3 col-md-6">
+                                                            <div>
+                                                                <asp:Label ID="lblShortName" runat="server" Text="Short Name*" CssClass="control-label no-padding-right"></asp:Label>
+                                                                <asp:TextBox ID="txtShortName" runat="server" CssClass="form-control"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xxl-3 col-md-6">
                                                             <div id="divZone" runat="server">
                                                                 <asp:Label ID="Label3" runat="server" Text="Total Budget Allocated (In Lakhs)*" CssClass="control-label no-padding-right"></asp:Label>
                                                                 <asp:TextBox ID="txtBudget" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
@@ -62,12 +68,6 @@
                                                             <div>
                                                                 <asp:Label ID="Label15" runat="server" Text="Physical Progress (%)" CssClass="form-label"></asp:Label>
                                                                 <asp:TextBox ID="txtPhysicalTarget" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-xxl-3 col-md-6">
-                                                            <div>
-                                                                
                                                             </div>
                                                         </div>
                                                         <!--end col-->
@@ -226,6 +226,7 @@
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:BoundField DataField="Project_Name" HeaderText="Scheme" />
+                                                        <asp:BoundField DataField="ShortNameCode" HeaderText="Short Name" />
                                                         <asp:BoundField DataField="Project_Budget" HeaderText="Scheme Budget (In Lakhs)" />
                                                         <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
                                                         <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
