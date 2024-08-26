@@ -71,6 +71,12 @@ public partial class MasterProject : System.Web.UI.Page
             txtProject.Focus();
             return;
         }
+        if (txtShortName.Text.Trim() == string.Empty)
+        {
+            Msg = "Give Scheme Short Name";
+            txtShortName.Focus();
+            return;
+        }
         tbl_Project obj_tbl_Project = new tbl_Project();
         if (hf_Project_Id.Value == "0" || hf_Project_Id.Value == "")
         {
@@ -82,6 +88,7 @@ public partial class MasterProject : System.Web.UI.Page
         }
         obj_tbl_Project.Project_AddedBy = Convert.ToInt32(Session["Person_Id"].ToString());
         obj_tbl_Project.Project_Name = txtProject.Text.Trim();
+        obj_tbl_Project.ShortName = txtShortName.Text.Trim();
         string ext1 = "";
         if (flUploadGO.HasFile)
         {
@@ -195,6 +202,7 @@ public partial class MasterProject : System.Web.UI.Page
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             txtProject.Text = ds.Tables[0].Rows[0]["Project_Name"].ToString();
+            txtShortName.Text = ds.Tables[0].Rows[0]["ShortNameCode"].ToString();
             try
             {
                 txtBudget.Text = ds.Tables[0].Rows[0]["Project_Budget"].ToString().Replace("&nbsp;", "");

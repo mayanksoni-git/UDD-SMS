@@ -278,7 +278,7 @@
                                                             <asp:BoundField HeaderText="ULB" DataField="Division_Name" />
                                                             <%--<asp:BoundField HeaderText="Zone" DataField="ZoneOfULB" />--%>
                                                             <%--<asp:BoundField HeaderText="Ward" DataField="Ward" />--%>
-                                                            <asp:BoundField HeaderText="Scheme" DataField="Project_Name" />
+                                                            <asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />
                                                             <%--<asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />--%>
                                                             <asp:BoundField HeaderText="Expected Amount" DataField="ExpectedAmount" />
                                                             <asp:BoundField HeaderText="Proposer Type" DataField="ProposerType" />
