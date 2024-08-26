@@ -82,7 +82,7 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-danger bg-gradient rounded-circle fs-2"><i class="bx bx-spreadsheet text-white"></i></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-danger bg-gradient rounded-circle fs-2"><%--<i class="bx bx-spreadsheet text-white"></i>--%><img src="<%# Eval("Project_Icon_Path") %>" /></span></div>
 
                                                             </div>
 
@@ -130,7 +130,7 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-warning bg-gradient rounded-circle fs-2"><i class="bx bx-spreadsheet text-white"></i></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-warning bg-gradient rounded-circle fs-2"><img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid" /></span></div>
 
                                                             </div>
                                                             <div class="px-0 py-2 mt-1">
@@ -175,7 +175,7 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary bg-gradient rounded-circle fs-2"><i class="bx bx-spreadsheet text-white"></i></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary bg-gradient rounded-circle fs-2"><img src="<%# Eval("Project_Icon_Path") %>" /></span></div>
 
                                                             </div>
                                                             <div class="px-0 py-2 mt-1">
@@ -220,7 +220,7 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-success bg-gradient rounded-circle fs-2"><i class="bx bx-spreadsheet text-white"></i></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-success bg-gradient rounded-circle fs-2"><img src="<%# Eval("Project_Icon_Path") %>" /></span></div>
 
                                                             </div>
                                                             <div class="px-0 py-2 mt-1">
