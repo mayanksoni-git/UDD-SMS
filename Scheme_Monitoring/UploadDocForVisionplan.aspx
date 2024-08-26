@@ -120,10 +120,10 @@
                                                         </asp:TemplateField>
                                                         <asp:BoundField HeaderText="State" DataField="Zone_Name" />
                                                         <asp:BoundField HeaderText="District" DataField="Circle_Name" />
-                                                        <asp:BoundField HeaderText="ULBName" DataField="Division_Name" />
+                                                        <asp:BoundField HeaderText="ULB Name" DataField="Division_Name" />
                                                         <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
                                                                                               
-                                                         <asp:TemplateField HeaderText="Action Plan Doc.">
+                                                         <asp:TemplateField HeaderText="Vision Plan Doc.">
                                                              <ItemTemplate>
                                                                  <asp:Label ID="lblNoDocument" runat="server" Text="No Document" Visible='<%# string.IsNullOrEmpty(Eval("Documents") as string) %>'></asp:Label>
                                                                  <asp:HyperLink ID="hlDocument" runat="server" NavigateUrl='<%# Eval("Documents") %>' Text="Doc" Visible='<%# !string.IsNullOrEmpty(Eval("Documents") as string) %>' Target="_blank"></asp:HyperLink>

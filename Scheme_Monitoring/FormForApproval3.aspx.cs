@@ -109,7 +109,7 @@ public partial class FormForApproval : System.Web.UI.Page
             lblDivisionValue.Text = dt.Rows[0]["Division_Name"].ToString();
             txtZoneOfULB.Text = dt.Rows[0]["ZoneOfULB"].ToString(); ;
             txtWard.Text = dt.Rows[0]["Ward"].ToString(); ;
-            lblProjectMasterValue.Text = dt.Rows[0]["ProjectType_Name"].ToString();
+            lblProjectMasterValue.Text = dt.Rows[0]["Project_Name"].ToString();
             lblSubSchemeValue.Text = dt.Rows[0]["SubScheme"].ToString();
             lblWorkTypeValue.Text = dt.Rows[0]["ProjectType_Name"].ToString();
             lblProposalNameValue.Text = dt.Rows[0]["ProposalName"].ToString();

@@ -3,6 +3,10 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <div class="main-content">
         <div class="page-content">
             <asp:UpdatePanel ID="up" runat="server">
@@ -141,8 +145,8 @@
                                                         <asp:ListItem Text="Municipal Commissioner" Value="Municipal Commissioner"></asp:ListItem>
                                                         <asp:ListItem Text="District Magistrate" Value="District Magistrate"></asp:ListItem>
                                                         <asp:ListItem Text="Divisional Commissioner" Value="Divisional Commissioner"></asp:ListItem>
-                                                        <asp:ListItem Text="President Nagar Palika" Value="President Nagar Palika"></asp:ListItem>
-                                                        <asp:ListItem Text="EO Nagar Palika" Value="EO Nagar Palika"></asp:ListItem>
+                                                        <asp:ListItem Text="President Nagar Panchayat" Value="President Nagar Panchayat"></asp:ListItem>
+                                                        <asp:ListItem Text="EO Nagar Panchayat" Value="EO Nagar Panchayat"></asp:ListItem>
                                                         <asp:ListItem Text="President Nagar Palika Parishad" Value="President Nagar Palika Parishad"></asp:ListItem>
                                                         <asp:ListItem Text="EO Nagar Palika Parishad" Value="EO Nagar Palika Parishad"></asp:ListItem>
                                                         <asp:ListItem Text="Others" Value="Others"></asp:ListItem>
@@ -327,6 +331,14 @@
            
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#<%= ddlMPMLA.ClientID %>').select2({
+                placeholder: "Search...",
+                allowClear: true
+            });
+        });
+    </script>
     <style>
         .form-control img {
             height: 20px;
