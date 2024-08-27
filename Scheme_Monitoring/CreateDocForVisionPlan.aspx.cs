@@ -274,25 +274,25 @@ public partial class CreateDocForVisionPlan : System.Web.UI.Page
             //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
             string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
             int fileappent = 0;
-            while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename)))
+            while (File.Exists(Server.MapPath("/PDFs/VisionPlanPDF/" + sFilename)))
             {
                 fileappent++;
                 sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
                 + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
             }
-            doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename);
+            doc = Server.MapPath("/PDFs/VisionPlanPDF/" + sFilename);
 
             //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
 
             fileupload.SaveAs(doc);
 
-            pathProfile = "/PDFs/AnualActionPlanPDF/" + sFilename;
+            pathProfile = "/PDFs/VisionPlanPDF/" + sFilename;
         }
         else
         {
-               // Please Select A PDF File Change to "Please choose the Annual Action Plan document to upload. It should be in PDF format."
+               // Please Select A PDF File Change to "Please choose the Vision Plan document to upload. It should be in PDF format."
 
-            MessageBox.Show("Please choose the Annual Action Plan document to upload. It should be in PDF format.");
+            MessageBox.Show("Please choose the Vision Plan document to upload. It should be in PDF format.");
             return;
         }
         int zone = Convert.ToInt32(ddlZone.SelectedValue);
@@ -428,23 +428,23 @@ public partial class CreateDocForVisionPlan : System.Web.UI.Page
                 //FileUpload1.SaveAs(Server.MapPath(("Images"+path)));
                 string sFilename = Path.GetFileName(fileupload.PostedFile.FileName);
                 int fileappent = 0;
-                while (File.Exists(Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename)))
+                while (File.Exists(Server.MapPath("/PDFs/VisionPlanPDF/" + sFilename)))
                 {
                     fileappent++;
                     sFilename = Path.GetFileNameWithoutExtension(fileupload.PostedFile.FileName)
                     + fileappent.ToString() + Path.GetExtension(fileupload.PostedFile.FileName).ToLower();
                 }
-                doc = Server.MapPath("/PDFs/AnualActionPlanPDF/" + sFilename);
+                doc = Server.MapPath("/PDFs/VisionPlanPDF/" + sFilename);
 
                 //string pathProfiles = Path.Combine(pathProfileRoot, sFilename);nn
 
                 fileupload.SaveAs(doc);
 
-                pathProfile = "/PDFs/AnualActionPlanPDF/" + sFilename;
+                pathProfile = "/PDFs/VisionPlanPDF/" + sFilename;
             }
             else
             {
-                MessageBox.Show("Please choose the Annual Action Plan document to upload. It should be in PDF format.");
+                MessageBox.Show("Please choose the Vision Plan document to upload. It should be in PDF format.");
                 return;
             }
 
