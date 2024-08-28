@@ -14,7 +14,7 @@ using ClosedXML.Excel;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
-public partial class VisionPlan : System.Web.UI.Page
+public partial class VisionPlanActionFirst : System.Web.UI.Page
 {
     ULBFund objLoan = new ULBFund();
     string ConStr = ConfigurationManager.AppSettings.Get("conn");
@@ -337,6 +337,7 @@ public partial class VisionPlan : System.Web.UI.Page
     
     protected void BtnSearch_Click(object sender, EventArgs e)
     {
+        int VisionStatus = 0;
         var check = "";
         if(RadioButton1.Checked==true)
         {
@@ -352,6 +353,14 @@ public partial class VisionPlan : System.Web.UI.Page
         }
         var state = Convert.ToInt32(ddlZone.SelectedValue);
         var dist = Convert.ToInt32(ddlCircle.SelectedValue);
+        try
+        {
+            VisionStatus = Convert.ToInt32(DdlStatus.SelectedValue);
+        }
+        catch
+        {
+            VisionStatus = -1;
+        }
         var ulb = 0;
         if(ddlDivision.SelectedValue!="")
         {
@@ -361,7 +370,7 @@ public partial class VisionPlan : System.Web.UI.Page
         var fy = Convert.ToInt32(ddlFY.SelectedValue);
         var priority = DdlPriority.SelectedValue;
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("select", 0, ulb, 0, state, check, dist, fy, year, "", "", 0, "", 0, "", priority, "", "", "","",0,0);
+        dt = objLoan.GetVisionPlan("select", 0, ulb, 0, state, check, dist, fy, year, "", "", 0, "", 0, "", priority, "", "", "","",0, VisionStatus);
 
         if (dt != null && dt.Rows.Count > 0)
         {

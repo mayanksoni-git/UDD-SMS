@@ -92,6 +92,12 @@
                                                         <asp:TextBox ID="TxtProject" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
+                                                 <div class="col-xxl-3 col-md-6">
+                                                    <div id="div10" runat="server">
+                                                        <asp:Label ID="lblProjectCost" runat="server" Text="Project Cost(In Rupees)*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                    </div>
+                                                </div>
                                                  <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server" >
                                                     <div id="div6" runat="server">
                                                         <asp:Label ID="Label9" runat="server" Text="Location (Ward Name)*" CssClass="form-label"></asp:Label>

@@ -227,19 +227,17 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
     protected void GetEditList(string taskid)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "", "");
+        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "", "",0,0);
 
-        if (dt.Rows[0]["Ap_remark"].ToString() == "This record is currently being processed and cannot be edited at this time.")
-        {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + dt.Rows[0]["Ap_remark"].ToString() + "');window.location='VisionPlan'", true);
-            //            Response.Redirect("VisionPlan");
-            return;
-        }
+        //if (dt.Rows[0]["Ap_remark"].ToString() == "This record is currently being processed and cannot be edited at this time.")
+        //{
+        //    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + dt.Rows[0]["Ap_remark"].ToString() + "');window.location='VisionPlanActionFirst'", true);
+        //    //            Response.Redirect("VisionPlan");
+        //    return;
+        //}
 
         if (dt != null && dt.Rows.Count > 0)
         {
-
-
             ddlZone.SelectedValue = dt.Rows[0]["stateId"].ToString();
             ddlZone.Enabled = false;
             ddlCircle.Enabled = false;
@@ -422,6 +420,12 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
             TxtPopulation.Focus();
             return false;
         }
+        if(DdlStatus.SelectedItem.Value=="-1")
+        {
+            MessageBox.Show("Please select status for the vision plan. ");
+            DdlStatus.Focus();
+            return false;
+        }
         else
         {
             return true;
@@ -548,7 +552,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
                 TxtPopulation.Text = "";
                 reset();
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + dt.Rows[0]["Remarks"].ToString() + "');window.location='VisionPlan'", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + dt.Rows[0]["Remarks"].ToString() + "');window.location='VisionPlanActionFirst'", true);
 
                 return;
             }
@@ -702,7 +706,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
             dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text, TxtProject.Text);
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text, TxtProject.Text,0,0);
 
             if (dt.Rows.Count > 0)
             {

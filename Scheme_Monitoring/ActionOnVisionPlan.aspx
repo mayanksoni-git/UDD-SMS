@@ -39,7 +39,7 @@
                                 <div class="card" id="sectionFilter" runat="server">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Action On Vision Plan</h4>
-                                         <a href="VisionPlan.aspx"  class="filter-btn" style="float:right;width:155px"><i class="icon-download"></i> Vision Plan List</a>
+                                         <a href="VisionPlanActionFirst.aspx"  class="filter-btn" style="float:right;width:155px"><i class="icon-download"></i> Vision Plan List</a>
                                         
                                     </div>
                                     <!-- end card header -->
@@ -175,12 +175,11 @@
                                                     <div >
                                                         <asp:Label ID="Label12" runat="server" Text="Status" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="DdlStatus" runat="server" CssClass="form-select" >
-                                                            <asp:ListItem Value="0">--Select--</asp:ListItem>
-                                                            <asp:ListItem Value="Pending">Pending</asp:ListItem>
-                                                            <asp:ListItem Value="Approved">Approved</asp:ListItem>
-                                                            <asp:ListItem Value="Reject">Reject</asp:ListItem>
-                                                            <asp:ListItem Value="Hold/Archive">Hold/Archive</asp:ListItem>
-                                                           
+                                                            <asp:ListItem Text="--Select Status--" Value="-1"></asp:ListItem>
+                                                            <asp:ListItem Text="Pending" Value="0"></asp:ListItem>
+                                                            <asp:ListItem Text="Approved" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="Reject" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="Hold/Archive" Value="3"></asp:ListItem>
                                                         </asp:DropDownList>
                                                     </div>
                                                     </div>
