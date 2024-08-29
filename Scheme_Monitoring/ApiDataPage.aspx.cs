@@ -12,6 +12,11 @@ public partial class ApiDataPage : System.Web.UI.Page
 
     protected async void btnFetchData_Click(object sender, EventArgs e)
     {
+        await FetchAndBindDataAsync();
+    }
+
+    private async Task FetchAndBindDataAsync()
+    {
         string apiUrl = "https://jeet.net.in/Service/JeetService.svc/JeetVRDetail";
         string jsonBody = @"
         {

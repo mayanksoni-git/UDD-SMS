@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ApiDataPage.aspx.cs" Inherits="ApiDataPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ApiDataPage.aspx.cs" Inherits="ApiDataPage" Async="true" %>
+
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
