@@ -361,7 +361,7 @@ public partial class VisionPlan : System.Web.UI.Page
         var fy = Convert.ToInt32(ddlFY.SelectedValue);
         var priority = DdlPriority.SelectedValue;
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("select", 0, ulb, 0, state, check, dist, fy, year, "", "", 0, "", 0, "", priority, "", "", "","",0,0);
+        dt = objLoan.GetVisionPlan("select", 0, ulb, 0, state, check, dist, fy, year, "", "", 0, "", 0, "", priority, "", "", "","",0,-1);
 
         if (dt != null && dt.Rows.Count > 0)
         {
