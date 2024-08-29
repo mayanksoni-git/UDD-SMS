@@ -126,7 +126,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div8" runat="server">
                                                         <asp:Label ID="lblExpectedAmount" runat="server" Text="Expected Amount(In Lakhs)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtExpectedAmount" runat="server" placeholder="hint" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                        <asp:TextBox ID="txtExpectedAmount" runat="server" placeholder="31.89" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
