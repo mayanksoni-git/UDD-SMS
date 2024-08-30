@@ -679,7 +679,7 @@ public partial class FormForApproval : System.Web.UI.Page
         txtZoneOfULB.Text = "";
         txtWard.Text = "";
         //ddlProjectMaster.SelectedValue = "0";
-        ddlWorkType.Items.Clear();
+        //ddlWorkType.Items.Clear();
         txtExpectedAmount.Text = "";
         rblRoles.SelectedIndex = -1;
         ddlMPMLA.Items.Clear();

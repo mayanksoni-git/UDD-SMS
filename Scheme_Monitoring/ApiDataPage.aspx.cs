@@ -61,11 +61,14 @@ public partial class ApiDataPage : System.Web.UI.Page
             // Read the response as a string
             var jsonResponse = await response.Content.ReadAsStringAsync();
 
-            // Log or display the JSON response for debugging
-            Response.Write("<script>console.log(" + jsonResponse + ");</script>");
+            // Deserialize the outer JSON object
+            var outerJsonObject = Newtonsoft.Json.Linq.JObject.Parse(jsonResponse);
 
-            // Deserialize the JSON response to a DataTable (this might fail if not in array format)
-            var dataTable = Newtonsoft.Json.JsonConvert.DeserializeObject<DataTable>(jsonResponse);
+            // Extract the "Data" field (which is a JSON string)
+            var dataJsonString = outerJsonObject["Data"].ToString();
+
+            // Deserialize the "Data" JSON string into a DataTable
+            var dataTable = Newtonsoft.Json.JsonConvert.DeserializeObject<DataTable>(dataJsonString);
 
             return dataTable;
         }
