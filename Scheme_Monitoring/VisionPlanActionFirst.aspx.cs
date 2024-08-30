@@ -386,7 +386,24 @@ public partial class VisionPlanActionFirst : System.Web.UI.Page
 
     }
 
-  
+    protected void grdPost_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            // Check if the session variable "ReadOnly" is set to 1
+            if (Session["Person_Id"] != null && Session["Person_Id"].ToString() == "2289")
+            {
+                // Find the last column (in this case, it's the <td> containing the LinkButtons)
+                HtmlTableCell lastColumn = e.Item.FindControl("LastColumn") as HtmlTableCell;
+
+                if (lastColumn != null)
+                {
+                    // Hide the last column
+                    lastColumn.Visible = false;
+                }
+            }
+        }
+    }
 
     //protected void ExportExcel_Click(object sender, EventArgs e)
     //{

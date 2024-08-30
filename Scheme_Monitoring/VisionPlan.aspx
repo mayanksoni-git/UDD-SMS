@@ -186,44 +186,31 @@
                                                     </tr>
                                                 </thead>
                                        
-                                     <asp:Repeater ID="grdPost" runat="server" OnItemCommand="grdPost_ItemCommand" >
+                                     <asp:Repeater ID="grdPost" runat="server" OnItemCommand="grdPost_ItemCommand" OnItemDataBound="grdPost_ItemDataBound">
                                         <ItemTemplate>
                                             <tr>
-                                               
                                                 <td><asp:Label id="lblSr" runat="server"><%# Container.ItemIndex + 1 %></asp:Label> </td>
-                                              
-                                             
-
-                                              
                                                 <td><asp:Label id="lblDistrict" runat="server"><%# DataBinder.Eval(Container.DataItem, "Circle_Name") %></asp:Label></td>
                                                 <td><asp:Label id="lblULBName" runat="server"><%# DataBinder.Eval(Container.DataItem, "Division_Name") %></asp:Label></td>
                                                 <td><asp:Label id="lblPopulation" runat="server"><%# DataBinder.Eval(Container.DataItem, "population") %></asp:Label></td>
                                                 <td><asp:Label id="Label4" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectType_Name") %></asp:Label></td>
                                                 <td><asp:Label id="Label2" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectName") %></asp:Label></td>
                                                 <td><asp:Label id="fy" runat="server"><%# DataBinder.Eval(Container.DataItem, "FinancialYear_Comments") %></asp:Label></td>
-                                             
-
                                                 <td><asp:Label id="lblConstruction" runat="server"><%# DataBinder.Eval(Container.DataItem, "Construction") %></asp:Label></td>
                                                 <td><asp:Label id="lblConstructedYear" runat="server"><%# DataBinder.Eval(Container.DataItem, "constructedYear") %></asp:Label></td>
                                                  <td><asp:Label id="lblCondition" runat="server"><%# DataBinder.Eval(Container.DataItem, "Condition") %></asp:Label></td>
-
-                                               
                                                 <td><asp:Label id="lblUserCharge" runat="server"><%# DataBinder.Eval(Container.DataItem, "Usercharge") %></asp:Label></td>
                                                 <td><asp:Label id="lblOwnership" runat="server"><%# DataBinder.Eval(Container.DataItem, "OwnerShips") %></asp:Label></td>
                                                 <td><asp:Label id="lblNoOfSameProjInCity" runat="server"><%# DataBinder.Eval(Container.DataItem, "NoOfSameProjInCity") %></asp:Label></td>
                                                 <td><asp:Label id="lblLoactions" runat="server"><%# DataBinder.Eval(Container.DataItem, "Loactions") %></asp:Label></td>
                                                 <td><asp:Label id="lblSelfPriority" runat="server"><%# DataBinder.Eval(Container.DataItem, "selfPriority") %></asp:Label></td>
-
-
-                                                <td>
-                                                  
+                                                <td id="LastColumn" runat="server">
                                                     <asp:LinkButton ID="btnEdit" runat="server" Text="Edit" CssClass="btn bg-warning icon-pencil bigger-130 green" ToolTip="Click to Edit Record" CommandName="edit"
                                                         CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
                                                     <asp:LinkButton ID="btnDelete" CssClass="btn bg-danger" Text="Delete" runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
                                                         OnClientClick="return confirm('Are you sure !');" />
                                                     <asp:LinkButton ID="BtnAction" runat="server" Visible="false" Text="Action" CssClass="btn bg-primary icon-pencil bigger-130 green" ToolTip="Click to Action on  Record" CommandName="Action"
                                                         CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
-                                               
                                                 </td>
                                             </tr>
                                         </ItemTemplate>
