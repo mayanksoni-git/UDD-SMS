@@ -899,7 +899,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     public DataSet getFYDetail()
     {
         DataSet ds = new DataSet();
-        string qr = @"select * from tbl_FinancialYear where FinancialYear_Order>18 order by FinancialYear_Order";
+        string qr = @"select * from tbl_FinancialYear where FinancialYear_Order>18 and FinancialYear_Order<=24 order by FinancialYear_Order";
         try
         {
             ds = ExecuteSelectQuery(qr);

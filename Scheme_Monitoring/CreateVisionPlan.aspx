@@ -159,7 +159,7 @@
                                                 
                                                  <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
                                                     <div id="div7" runat="server">
-                                                        <asp:Label ID="Label10" runat="server" Text="Self Priority" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="Label10" runat="server" Text="Self-Priority (5 is the highest, 1 is the lowest)" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-select" >
                                                             <asp:ListItem Value="0">--Select--</asp:ListItem>
                                                             <asp:ListItem Value="1">1</asp:ListItem>
@@ -172,7 +172,7 @@
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6" id="sectionSimilar" runat="server" >
                                                     <div id="div5" runat="server">
-                                                        <asp:Label ID="Label8" runat="server" Text="Number Of Similar project in city*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="Label8" runat="server" Text="Number Of Similar Existing Projects in City*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="similarProj" runat="server" CssClass="form-control" ></asp:TextBox>
                                                     </div>
                                                 </div>
