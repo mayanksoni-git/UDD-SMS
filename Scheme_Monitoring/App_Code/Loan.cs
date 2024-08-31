@@ -442,13 +442,15 @@ public class Loan
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[5];
+            SqlParameter[] param = new SqlParameter[7];
 
             param[0] = new SqlParameter("@Zone", objSearch.Zone);
             param[1] = new SqlParameter("@Circle", objSearch.Circle);
             param[2] = new SqlParameter("@Division", objSearch.Division);
             param[3] = new SqlParameter("@FY", objSearch.FY);
             param[4] = new SqlParameter("@Scheme", objSearch.Scheme);
+            param[5] = new SqlParameter("@Section", objSearch.Section);
+            param[6] = new SqlParameter("@ProposerType", objSearch.ProposerType);
 
             return objDAL.GetDataByProcedure("sp_WorkProposalsReport2", param);
         }

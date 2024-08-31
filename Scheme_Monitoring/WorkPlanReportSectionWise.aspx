@@ -39,7 +39,7 @@
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
-                                                        <asp:Label ID="lblFY" runat="server" Text="Select Financial Year*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblFY" runat="server" Text="Financial Year*" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
@@ -66,13 +66,40 @@
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
+                                                    <div id="divSection" runat="server">
+                                                        <asp:Label ID="lblSectin" runat="server" Text="Section" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="ddlSection" runat="server" CssClass="form-select" AutoPostBack="true"></asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
                                                     <div id="divScheme" runat="server">
                                                         <asp:Label ID="lblScheme" runat="server" Text="Scheme" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-select" AutoPostBack="true"></asp:DropDownList>
                                                     </div>
                                                 </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divRole" runat="server">
+                                                        <asp:Label ID="lblRole" runat="server" Text="Proposer Type*" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="rblRoles" runat="server" CssClass="form-select" RepeatDirection="Horizontal">
+                                                            <asp:ListItem Text="-Select-" Value="-1" Selected="True"></asp:ListItem>
+                                                            <asp:ListItem Text="Central Minister" Value="Central Minister"></asp:ListItem>
+                                                            <asp:ListItem Text="Minister" Value="Minister"></asp:ListItem>
+                                                            <asp:ListItem Text="MP" Value="MP"></asp:ListItem>
+                                                            <asp:ListItem Text="MLA" Value="MLA"></asp:ListItem>
+                                                            <asp:ListItem Text="MLC" Value="MLC"></asp:ListItem>
+                                                            <asp:ListItem Text="Mayor" Value="Mayor"></asp:ListItem>
+                                                            <asp:ListItem Text="Municipal Commissioner" Value="Municipal Commissioner"></asp:ListItem>
+                                                            <asp:ListItem Text="District Magistrate" Value="District Magistrate"></asp:ListItem>
+                                                            <asp:ListItem Text="Divisional Commissioner" Value="Divisional Commissioner"></asp:ListItem>
+                                                            <asp:ListItem Text="President Nagar Panchayat" Value="President Nagar Panchayat"></asp:ListItem>
+                                                            <asp:ListItem Text="EO Nagar Panchayat" Value="EO Nagar Panchayat"></asp:ListItem>
+                                                            <asp:ListItem Text="President Nagar Palika Parishad" Value="President Nagar Palika Parishad"></asp:ListItem>
+                                                            <asp:ListItem Text="EO Nagar Palika Parishad" Value="EO Nagar Palika Parishad"></asp:ListItem>
+                                                            <asp:ListItem Text="Others" Value="Others"></asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <br />
                                             <div class="row gy-4">
                                                 <div class="col-xxl-2 offset-xxl-10 col-md-6">
                                                     <div>
@@ -123,10 +150,16 @@
                                                             <asp:BoundField HeaderText="District" DataField="Circle_Name" />
                                                             <asp:BoundField HeaderText="ULB" DataField="Division_Name" />
                                                             <asp:BoundField HeaderText="Proposer Type" DataField="ProposerType" />
+                                                            <asp:BoundField HeaderText="Proposer" DataField="ProposerName" />
+                                                            <asp:BoundField DataField="Project_Name" HeaderText="Scheme">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
+                                                            <%--<asp:BoundField HeaderText="Scheme Short Name" DataField="Project_Name"/>--%>
                                                             <asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />
                                                             <asp:BoundField HeaderText="Designation" DataField="Designation" />
-                                                            <asp:BoundField HeaderText="Expected Amount" DataField="ExpectedAmount" />
-                                                            <asp:BoundField HeaderText="Proposer" DataField="MPMLAName" />
+                                                            <asp:BoundField HeaderText="Expected Amount()" DataField="ExpectedAmount" />
                                                             <asp:TemplateField HeaderText="Rec. Letter">
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="hypRecommendationLetter" runat="server" Target="_blank" NavigateUrl='<%# Eval("RecomendationLetter") %>' Text="" Visible='<%# !string.IsNullOrEmpty(Eval("RecomendationLetter").ToString()) %>'>

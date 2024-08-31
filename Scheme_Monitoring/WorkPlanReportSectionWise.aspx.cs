@@ -35,6 +35,7 @@ public partial class WorkPlanReportSectionWise : System.Web.UI.Page
 
             get_tbl_FinancialYear();
             get_tbl_Zone();
+            get_tbl_Section();
             get_tbl_Project();
             
             SetDropdownsBasedOnUserType();
@@ -46,6 +47,11 @@ public partial class WorkPlanReportSectionWise : System.Web.UI.Page
     {
         DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
         FillDropDown(ds, ddlFY, "FinancialYear_Comments", "FinancialYear_Id");
+    }
+    private void get_tbl_Section()
+    {
+        DataSet ds = (new DataLayer()).get_tbl_Section();
+        FillDropDown(ds, ddlSection, "Section_Name", "Section_Id");
     }
     private void get_tbl_Zone()
     {
@@ -211,7 +217,8 @@ public partial class WorkPlanReportSectionWise : System.Web.UI.Page
 
     protected tbl_WorkProposal BindWorkProposalGridBySearch()
     {
-        int Fy=0, Zone_Id = 0, Circle_Id = 0, Division_Id = 0, Scheme=0;
+        int Fy=0, Zone_Id = 0, Circle_Id = 0, Division_Id = 0, Scheme=0, Section=0;
+        string Role;
 
         try
         {
@@ -258,12 +265,32 @@ public partial class WorkPlanReportSectionWise : System.Web.UI.Page
             Scheme = 0;
         }
 
+        try
+        {
+            Section = Convert.ToInt32(ddlSection.SelectedValue);
+        }
+        catch
+        {
+            Section = 0;
+        }
+
+        try
+        {
+            Role = rblRoles.SelectedValue.ToString();
+        }
+        catch
+        {
+            Role = "";
+        }
+
         tbl_WorkProposal obj = new tbl_WorkProposal();
         obj.FY = Fy;
         obj.Zone = Zone_Id;
         obj.Circle = Circle_Id;
         obj.Division = Division_Id;
         obj.Scheme = Scheme;
+        obj.ProposerType = Role;
+        obj.Section = Section;
         obj.ProposalStatus = -1;
 
         return obj;
@@ -278,7 +305,6 @@ public partial class WorkPlanReportSectionWise : System.Web.UI.Page
             grdPost.DataSource = dt;
             grdPost.DataBind();
             divData.Visible = true;
-
         }
         else
         {
@@ -289,51 +315,7 @@ public partial class WorkPlanReportSectionWise : System.Web.UI.Page
         }
     }
 
-    [WebMethod]
-    public static string GetProposalData(string Fy, string Zone_Id, string Circle_Id, string Division_Id, string Scheme)
-    {
-        WorkPlanReport obj1 = new WorkPlanReport();
 
-        tbl_WorkProposal obj = new tbl_WorkProposal();
-        obj.FY = Convert.ToInt16(Fy);
-        obj.Zone = Convert.ToInt16(Zone_Id);
-        obj.Circle = Convert.ToInt16(Circle_Id);
-        obj.Division = (Division_Id == null || Division_Id == "null") ? 0 : Convert.ToInt32(Division_Id);
-        obj.Scheme = Convert.ToInt16(Scheme);
-        obj.ProposalStatus = -1;
-
-        DataTable dt = new DataTable();
-        dt = obj1.objLoan.getWorkPlanWiseForChartBySearch(obj);
-
-        var data = new
-        {
-            totalProposals = dt.Rows[0]["totalProposals"].ToString(),
-            pendingProposals = dt.Rows[0]["pendingProposals"].ToString(),
-            approvedProposals = dt.Rows[0]["approvedProposals"].ToString(),
-            rejectedProposals = dt.Rows[0]["rejectedProposals"].ToString(),
-            holdProposals = dt.Rows[0]["holdProposals"].ToString(),
-
-            pendingProposalsPercentage = dt.Rows[0]["pendingProposalsPercentage"].ToString(),
-            approvedProposalsPercentage = dt.Rows[0]["approvedProposalsPercentage"].ToString(),
-            rejectedProposalsPercentage = dt.Rows[0]["rejectedProposalsPercentage"].ToString(),
-            holdProposalsPercentage = dt.Rows[0]["holdProposalsPercentage"].ToString(),
-
-            TotalAmount = dt.Rows[0]["TotalAmount"].ToString(),
-            PendingProposalsAmount = dt.Rows[0]["PendingProposalsAmount"].ToString(),
-            ApprovedProposalsAmount = dt.Rows[0]["ApprovedProposalsAmount"].ToString(),
-            RejectProposalsAmount = dt.Rows[0]["RejectProposalsAmount"].ToString(),
-            HoldProposalsAmount = dt.Rows[0]["HoldProposalsAmount"].ToString(),
-
-            PendingProposalsAmountPercentage = dt.Rows[0]["PendingProposalsAmountPercentage"].ToString(),
-            ApprovedProposalsAmountPercentage = dt.Rows[0]["ApprovedProposalsAmountPercentage"].ToString(),
-            RejectProposalsAmountPercentage = dt.Rows[0]["RejectProposalsAmountPercentage"].ToString(),
-            HoldProposalsAmountPercentage = dt.Rows[0]["HoldProposalsAmountPercentage"].ToString(),
-
-        };
-
-        JavaScriptSerializer js = new JavaScriptSerializer();
-        return js.Serialize(data);
-    }
     protected void grdPost_PreRender(object sender, EventArgs e)
     {
         GridView gv = (GridView)sender;
