@@ -754,6 +754,7 @@
                                                             <asp:BoundField HeaderText="Zone" DataField="ZoneOfULB" />
                                                             <asp:BoundField HeaderText="Ward" DataField="Ward" />
                                                             <asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />
+                                                            <asp:BoundField HeaderText="Sub Scheme" DataField="SubScheme" />
                                                             <%--<asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />--%>
                                                             <asp:BoundField HeaderText="Expected Amount" DataField="ExpectedAmount" />
                                                             <asp:BoundField HeaderText="Proposer Type" DataField="ProposerType" />
