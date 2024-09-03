@@ -769,8 +769,13 @@
                                                                     </asp:HyperLink>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
+                                                            <asp:BoundField DataField="ProposalDate" HeaderText="Proposal Date" DataFormatString="{0:dd/MM/yyyy}">
+                                                                <HeaderStyle CssClass="displayStyle" />
+                                                                <ItemStyle CssClass="displayStyle" />
+                                                                <FooterStyle CssClass="displayStyle" />
+                                                            </asp:BoundField>
                                                              <%--<asp:BoundField HeaderText="Status" DataField="ProposalStatus" />--%>
-                                                            <asp:BoundField HeaderText="Added On" DataField="AddedOn" DataFormatString="{0:dd/MM/yyyy}" />
+                                                            <%--<asp:BoundField HeaderText="Added On" DataField="AddedOn" DataFormatString="{0:dd/MM/yyyy}" />--%>
                                                         </Columns>
                                                         <EmptyDataTemplate>
                                                             <tr>
