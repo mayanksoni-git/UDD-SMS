@@ -122,7 +122,12 @@
                                                     <asp:TextBox ID="txtProposalDetail" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divProposalDate" runat="server">
+                                                        <asp:Label ID="lblProposalDate" runat="server" Text="Proposal Date" CssClass="form-label"></asp:Label>
+                                                    <asp:TextBox ID="txtProposalDate" type="Date" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div8" runat="server">
                                                         <asp:Label ID="lblExpectedAmount" runat="server" Text="Expected Amount(In Lakhs)*" CssClass="form-label"></asp:Label>
