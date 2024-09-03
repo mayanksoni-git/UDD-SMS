@@ -544,7 +544,7 @@ public partial class FormForApproval : System.Web.UI.Page
         int SchemeId, WorkType=0, SubSchemeId=0;
         double ExpectedAmount = 0.00;
 
-        string ProposerType = "", ProposerName = "", MobileNo = "", Designation = "";
+        string ProposerType = "", ProposerName = "",ProposalDate="", MobileNo = "", Designation = "";
         int MPMLAid;
 
 
@@ -615,7 +615,14 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             ProposalDetail = txtProposalDetail.Text.ToString();
         }
-
+        if (txtProposalDate.Text != "")
+        {
+            ProposalDate = txtProposalDate.Text.ToString();
+        }
+        else
+        {
+            ProposalDate = null;
+        }
         if (string.IsNullOrEmpty(rblRoles.SelectedValue))
         {
             throw new FormatException("Invalid proposer type value.");
@@ -666,6 +673,7 @@ public partial class FormForApproval : System.Web.UI.Page
             AddedBy = personId,
             ProposalName = ProposalName,
             ProposalDetail = ProposalDetail,
+            ProposalDate=ProposalDate,
             SubSchemeId=SubSchemeId
 
         };
@@ -954,6 +962,26 @@ public partial class FormForApproval : System.Web.UI.Page
 
             txtProposalName.Text = dt.Rows[0]["ProposalName"].ToString();
             txtProposalDetail.Text = dt.Rows[0]["ProposalDetail"].ToString();
+            string date = dt.Rows[0]["ProposalDate"].ToString();
+
+            if(date!="")
+            {
+                txtProposalDate.Text = DateTime.Parse(dt.Rows[0]["ProposalDate"].ToString()).ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                txtProposalDate.Text = "";
+            }
+
+;
+            //if (dt.Rows[0]["ProposalDate"]!=null || dt.Rows[0]["ProposalDate"].ToString()!=string.Empty)
+            //{
+            //    txtProposalDate.Text=DateTime.Parse(dt.Rows[0]["ProposalDate"].ToString()).ToString("yyyy-MM-dd");
+            //}
+            //else
+            //{
+            //    txtProposalDate.Text = "";
+            //}
             txtExpectedAmount.Text = dt.Rows[0]["ExpectedAmount"].ToString();
 
             rblRoles.SelectedValue= dt.Rows[0]["ProposerType"].ToString();

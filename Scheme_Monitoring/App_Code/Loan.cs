@@ -364,7 +364,7 @@ public class Loan
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[19];
+            SqlParameter[] param = new SqlParameter[20];
 
             param[0] = new SqlParameter("@FY", obj.FY);
             param[1] = new SqlParameter("@Zone", obj.Zone);
@@ -384,9 +384,11 @@ public class Loan
             param[15] = new SqlParameter("@AddedBy", obj.AddedBy);
             param[16] = new SqlParameter("@ProposalName", obj.ProposalName);
             param[17] = new SqlParameter("@ProposalDetail", obj.ProposalDetail);
-            param[18] = new SqlParameter("@SubSchemeId", obj.SubSchemeId);
+            param[18] = new SqlParameter("@ProposalDate", obj.ProposalDate);
+            param[19] = new SqlParameter("@SubSchemeId", obj.SubSchemeId);
 
             return objDAL.ExecuteProcedureReturnDataTable("sp_InsertWorkProposal", param);
+            //return objDAL.ExecuteProcedureReturnDataTable("sp_InsertWorkProposal_Test", param);
         }
         catch (Exception ex)
         {
@@ -534,7 +536,7 @@ public class Loan
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[20];
+            SqlParameter[] param = new SqlParameter[21];
 
             param[0] = new SqlParameter("@FY", obj.FY);
             param[1] = new SqlParameter("@Zone", obj.Zone);
@@ -555,9 +557,11 @@ public class Loan
             param[16] = new SqlParameter("@WorkProposalId", WorkProposalId);
             param[17] = new SqlParameter("@ProposalName", obj.ProposalName);
             param[18] = new SqlParameter("@ProposalDetail", obj.ProposalDetail);
-            param[19] = new SqlParameter("@SubSchemeId", obj.SubSchemeId);
+            param[19] = new SqlParameter("@ProposalDate", obj.ProposalDate);
+            param[20] = new SqlParameter("@SubSchemeId", obj.SubSchemeId);
 
             return objDAL.ExecuteProcedure("sp_UpdateWorkProposal", param);
+            //return objDAL.ExecuteProcedure("sp_UpdateWorkProposal_Test", param);
         }
         catch (Exception ex)
         {
