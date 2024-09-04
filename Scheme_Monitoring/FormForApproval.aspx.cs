@@ -69,6 +69,12 @@ public partial class FormForApproval : System.Web.UI.Page
             ds = (new DataLayer()).get_tbl_Project(Convert.ToInt32(Session["Person_Id"].ToString()));
         }
         FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
+
+        ListItem itemToRemove = ddlProjectMaster.Items.FindByValue("13");
+        if (itemToRemove != null)
+        {
+            ddlProjectMaster.Items.Remove(itemToRemove);
+        }
     }
     private void get_tbl_Circle(int zoneId)
     {
