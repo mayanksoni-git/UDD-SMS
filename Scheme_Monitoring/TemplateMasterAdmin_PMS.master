@@ -230,6 +230,7 @@
                                         <li class="nav-item"><a href="FormForApproval2.aspx" class="nav-link" data-key="t-grid-js">Action on  Work Proposal</a> </li>
                                         <li class="nav-item"><a href="WorkPlanReport.aspx" class="nav-link" data-key="t-grid-js">Work Proposal Report</a> </li>
                                         <li class="nav-item"><a href="WorkPlanReportSectionWise.aspx" class="nav-link" data-key="t-grid-js">Work Proposal Report Section Wise</a> </li>
+                                        <li class="nav-item"><a href="WorkProposalSummaryReport.aspx" class="nav-link" data-key="t-grid-js">Work Proposal Summary Report</a> </li>
                                     </ul>
                                 </div>
                             </li>
