@@ -462,12 +462,12 @@ public class Loan
         }
     }
 
-    public DataTable getWorkProposalSummary(tbl_WorkProposal objSearch)
+    public DataTable getWorkProposalSummary(tbl_WorkProposal objSearch, int Mandal, string ULBType)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[7];
+            SqlParameter[] param = new SqlParameter[9];
 
             param[0] = new SqlParameter("@Zone", objSearch.Zone);
             param[1] = new SqlParameter("@Circle", objSearch.Circle);
@@ -476,6 +476,8 @@ public class Loan
             param[4] = new SqlParameter("@Scheme", objSearch.Scheme);
             param[5] = new SqlParameter("@Section", objSearch.Section);
             param[6] = new SqlParameter("@ProposerType", objSearch.ProposerType);
+            param[7] = new SqlParameter("@Mandal", Mandal);
+            param[8] = new SqlParameter("@ULBType", ULBType);
 
             return objDAL.GetDataByProcedure("SpFinancialYearWisePropasalReport_Test", param);
         }
