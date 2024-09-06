@@ -148,7 +148,7 @@
 
                                                         <th style="text-align:center;font-size:15px" >Sr. No.</th>
                                                        <th  style="text-align:center;font-size:15px" colspan="3">ULB Details</th>
-                                                        <th  style="text-align:center;font-size:15px" colspan="3">Project Name</th>
+                                                        <th  style="text-align:center;font-size:15px" colspan="4">Project Name</th>
                                                        <th  style="text-align:center;font-size:15px" colspan="2">Existing</th>
                                                         <th  style="text-align:center;font-size:15px" ">Condition</th>
                                                        
@@ -167,6 +167,7 @@
                                                         <th  style="text-align:center">Population</th>
                                                         <th  style="text-align:center">Project Type</th>
                                                          <th  style="text-align:center">Project Name</th>
+                                                          <th  style="text-align:center">Project Cost</th>
                                                         <th  style="text-align:center">Financial Year</th>
                                                         <th  style="text-align:center">Is Constructed?</th>
                                                       <%--  <th  style="text-align:center">Under Construction(Y/N)</th>
@@ -183,6 +184,8 @@
                                                         <th  style="text-align:center">Ward Name (Ward No.)</th>
                                                         <th  style="text-align:center">(on a scale of 1 to 5, 5 being the highest)</th>
                                                          <th></th>
+                                                         
+
                                                     </tr>
                                                 </thead>
                                        
@@ -195,6 +198,7 @@
                                                 <td><asp:Label id="lblPopulation" runat="server"><%# DataBinder.Eval(Container.DataItem, "population") %></asp:Label></td>
                                                 <td><asp:Label id="Label4" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectType_Name") %></asp:Label></td>
                                                 <td><asp:Label id="Label2" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectName") %></asp:Label></td>
+                                                 <td><asp:Label id="Label5" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectCost") %></asp:Label></td>
                                                 <td><asp:Label id="fy" runat="server"><%# DataBinder.Eval(Container.DataItem, "FinancialYear_Comments") %></asp:Label></td>
                                                 <td><asp:Label id="lblConstruction" runat="server"><%# DataBinder.Eval(Container.DataItem, "Construction") %></asp:Label></td>
                                                 <td><asp:Label id="lblConstructedYear" runat="server"><%# DataBinder.Eval(Container.DataItem, "constructedYear") %></asp:Label></td>

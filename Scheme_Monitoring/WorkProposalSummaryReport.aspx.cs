@@ -6,6 +6,9 @@ using System.Globalization;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html.simpleparser;
 using System.IO;
 using System.Text;
 using System.Web.UI.DataVisualization.Charting;
@@ -372,7 +375,33 @@ public partial class WorkProposalSummaryReport : System.Web.UI.Page
         {
             grdPost.DataSource = dt;
             grdPost.DataBind();
+            //divData.Visible = true;
+            Label lblTotalText = (Label)grdPost.FooterRow.FindControl("lblTotalText") as Label;
+            grdPost.FooterRow.Font.Bold = true;
+            lblTotalText.Text = "Total";
+            decimal TotalAmount = dt.Compute("Sum(TotalAmount)", "").ToString().ToDecimal();
+            Label lblTotalAmount = (Label)grdPost.FooterRow.FindControl("lblTotalAmount") as Label;
+            lblTotalAmount.Text = TotalAmount.ToString("0.00");
+            int TotalNoOfProposal = Convert.ToInt32(dt.Compute("Sum(NoOfProposals)", "").ToString());
+            Label lblTotalNoOfProposal = (Label)grdPost.FooterRow.FindControl("lblTotalNoOfProposal") as Label;
+            lblTotalNoOfProposal.Text = TotalNoOfProposal.ToString();
+            int lblApprovedProposals = Convert.ToInt32(dt.Compute("Sum(ApprovedProposals)", "").ToString());
+            Label lblApprovedProposal = (Label)grdPost.FooterRow.FindControl("lblApprovedProposal") as Label;
+            lblApprovedProposal.Text = lblApprovedProposals.ToString();
+            int lblHoldProposals = Convert.ToInt32(dt.Compute("Sum(HoldProposals)", "").ToString());
+            Label lblHoldProposal = (Label)grdPost.FooterRow.FindControl("lblHoldProposal") as Label;
+            lblHoldProposal.Text = lblHoldProposals.ToString();
+            int PendingProposals = Convert.ToInt32(dt.Compute("Sum(PendingProposals)", "").ToString());
+            Label lblPendingProposal = (Label)grdPost.FooterRow.FindControl("lblPendingProposal") as Label;
+            lblPendingProposal.Text = PendingProposals.ToString();
+
+
+            //grdPost.DataSource = dt;
+            //grdPost.DataBind();
             divData.Visible = true;
+           //ToggleDiv(divData);
+
+
         }
         else
         {
@@ -404,5 +433,19 @@ public partial class WorkProposalSummaryReport : System.Web.UI.Page
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         reset();
+    }
+
+    private void ToggleDiv(System.Web.UI.HtmlControls.HtmlGenericControl div)
+    {
+        //divData.Visible = false;
+        //divMPWise.Visible = false;
+        //divMLAWise.Visible = false;
+        //divDivisionWise.Visible = false;
+        //divWorkPlanWise.Visible = false;
+        //divDistrictWise.Visible = false;
+        //divRecommendationWise.Visible = false;
+        div.Visible = true;
+        divData.Visible = true;
+        div.Focus();
     }
 }

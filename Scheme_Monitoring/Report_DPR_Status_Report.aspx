@@ -291,17 +291,17 @@
                                                                             <asp:ImageButton ID="btnOpenTimeline" runat="server" Height="20px" ImageUrl="~/assets/images/timeline.png" OnClick="btnOpenTimeline_Click" Width="20px" ToolTip="Click To Show Timeline" />
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:BoundField HeaderText="District" DataField="Jurisdiction_Name_Eng" />
-                                                                    <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />
-                                                                    <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
-                                                                    <asp:BoundField HeaderText="Division" DataField="Division_Name" />
-                                                                    <asp:BoundField HeaderText="ULB" DataField="ULB_Name" />
+                                                                    <%--<asp:BoundField HeaderText="District" DataField="Jurisdiction_Name_Eng" />--%>
+                                                                    <%--<asp:BoundField HeaderText="Zone" DataField="Zone_Name" />--%>
+                                                                    <asp:BoundField HeaderText="District" DataField="Circle_Name" />
+                                                                    <asp:BoundField HeaderText="ULB" DataField="Division_Name" />
+                                                                    <%--<asp:BoundField HeaderText="ULB" DataField="ULB_Name" />--%>
                                                                     <asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />
-                                                                    <asp:BoundField HeaderText="Project Code" DataField="ProjectDPR_Code" />
+                                                                    <asp:BoundField HeaderText="Scheme Short Name" DataField="ShortNameCode" />
                                                                     <asp:BoundField HeaderText="Work" DataField="ProjectDPR_Name" />
                                                                     <asp:BoundField HeaderText="Capex Cost (In Lakhs)" DataField="ProjectDPR_CapexCost" />
                                                                     <asp:BoundField HeaderText="O & M  (In Lakhs)" DataField="ProjectDPR_OandM_Cost" />
-                                                                    <asp:BoundField HeaderText="ACA Cost  (In Lakhs)" DataField="ProjectDPR_ACA_Cost" />
+                                                                    <%--<asp:BoundField HeaderText="ACA Cost  (In Lakhs)" DataField="ProjectDPR_ACA_Cost" />--%>
                                                                     <asp:BoundField HeaderText="Project Cost  (In Lakhs)" DataField="ProjectDPR_Project_Cost" />
                                                                     <asp:BoundField HeaderText="Tentitive Date of DPR Preperation" DataField="ProjectDPR_TentitiveDate" />
                                                                     <asp:BoundField HeaderText="Date Diff Last Action" DataField="Date_Diff_Action" />

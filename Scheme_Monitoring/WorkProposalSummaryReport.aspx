@@ -137,10 +137,11 @@
                             </div>
                         </div>
                     </div>
-
-                    <div runat="server" visible="false" id="divData">
+                    
+                    <div runat="server" visible="false" id="divData" class="tblheader"  style="overflow: auto">
                         <div class="row">
                             <div class="col-lg-12">
+                                
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Work Proposal Detail</h4>
@@ -148,12 +149,13 @@
                                     <div class="card-body">
                                         <div class="live-preview">
                                             <div class="row gy-12">
+                                                
                                                 <div class="clearfix" id="dtOptions" runat="server">
                                                     <div class="pull-right tableTools-container">
                                                     </div>
                                                 </div>
                                                 <div style="overflow: auto">
-                                                    <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                    <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" ShowFooter="true" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                         <Columns>
                                                            <%-- <asp:BoundField DataField="WorkProposalId" HeaderText="Work Proposal Id">
                                                                 <HeaderStyle CssClass="displayStyle" />
@@ -164,15 +166,58 @@
                                                                 <ItemTemplate>
                                                                     <%# Container.DataItemIndex + 1 %>
                                                                 </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lblTotalText" runat="server"></asp:Label>
+                                                                </FooterTemplate>
                                                             </asp:TemplateField>
                                                             <asp:BoundField HeaderText="Section" DataField="Section_Name" />
                                                             <asp:BoundField HeaderText="Project Name" DataField="Project_Name" />
                                                             <asp:BoundField HeaderText="FinancialYear Comments" DataField="FinancialYear_Comments" />
-                                                            <asp:BoundField HeaderText="No Of Proposals" DataField="NoOfProposals" />
-                                                            <asp:BoundField HeaderText="Total Amount" DataField="TotalAmount" />
-                                                            <asp:BoundField HeaderText="Approved Proposals" DataField="ApprovedProposals" />
-                                                            <asp:BoundField HeaderText="Hold Proposals" DataField="HoldProposals" />
-                                                            <asp:BoundField HeaderText="Pending Proposals" DataField="PendingProposals" />
+                                                            <asp:TemplateField HeaderText="No Of Proposals">
+                                                                <ItemTemplate>
+                                                                    <span ID="Span2" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("NoOfProposals") %></span>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lblTotalNoOfProposal" runat="server"></asp:Label>
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <%--<asp:BoundField HeaderText="No Of Proposals" DataField="NoOfProposals" />--%>
+                                                            <%--<asp:BoundField HeaderText="Total Amount (In Lacks)" DataField="TotalAmount" />--%>
+                                                            <asp:TemplateField HeaderText="Total Sactioned Amount (In Lacs)">
+                                                                <ItemTemplate>
+                                                                    <span ID="Span1" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("TotalAmount") %></span>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lblTotalAmount" runat="server"></asp:Label>
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <%--<asp:BoundField HeaderText="Approved Proposals" DataField="ApprovedProposals" />--%>
+                                                            <asp:TemplateField HeaderText="Approved Proposals">
+                                                                <ItemTemplate>
+                                                                    <span ID="Span3" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("ApprovedProposals") %></span>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lblApprovedProposal" runat="server"></asp:Label>
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <%--<asp:BoundField HeaderText="Hold Proposals" DataField="HoldProposals" />--%>
+                                                            <asp:TemplateField HeaderText="Hold Proposals">
+                                                                <ItemTemplate>
+                                                                    <span ID="Span4" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("HoldProposals") %></span>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lblHoldProposal" runat="server"></asp:Label>
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
+                                                            <%--<asp:BoundField HeaderText="Pending Proposals" DataField="PendingProposals" />--%>
+                                                            <asp:TemplateField HeaderText="Pending Proposals">
+                                                                <ItemTemplate>
+                                                                    <span ID="Span4" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("PendingProposals") %></span>
+                                                                </ItemTemplate>
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lblPendingProposal" runat="server"></asp:Label>
+                                                                </FooterTemplate>
+                                                            </asp:TemplateField>
                                                             <%--<asp:BoundField DataField="Project_Name" HeaderText="Scheme">
                                                                 <HeaderStyle CssClass="displayStyle" />
                                                                 <ItemStyle CssClass="displayStyle" />
@@ -204,6 +249,8 @@
                             </div>
                         </div>
                     </div>
+                        
+                        </div>
                 </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="btnSearch" />
