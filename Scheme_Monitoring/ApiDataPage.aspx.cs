@@ -3,11 +3,27 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Data;
 using System.Web.UI.WebControls;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using System.Data.SqlClient;
+using System.Configuration;
 
 public partial class ApiDataPage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            try
+            {
+                 //btnFetchData_Click(null, null);
+            }
+            catch (Exception Ex)
+            {
+                Response.Write("Exppp :: " + Ex.Message);
+            }
+        }
     }
 
     protected async void btnFetchData_Click(object sender, EventArgs e)
@@ -22,30 +38,62 @@ public partial class ApiDataPage : System.Web.UI.Page
         {
             ""SecretKey"": ""Jeet12-jBh2CcK2H@uf3S8o1222082024"",
             ""ClientId"": ""jeettosangam82024"",
-            ""Date"": ""14/05/2024""
+            ""Date"": ""01/07/2024""
         }";
 
         try
         {
-            // Fetch the data from the API
             var apiData = await FetchDataFromApiAsync(apiUrl, jsonBody);
-
-            // Bind the data to the GridView
             if (apiData != null)
             {
-                gvApiData.DataSource = apiData;
+                gvApiData.DataSource = apiData.Data;
                 gvApiData.DataBind();
+
+                InsertDataIntoSql(apiData.Data);
             }
         }
         catch (Exception ex)
         {
-            // Handle errors (you can log the error or display a message)
-            // For simplicity, we'll just display the exception message
-            Response.Write("<script>alert('" + ex.Message + "');</script>");
+            Response.Write("<script>alert('Test" + ex.Message + "');</script>");
         }
     }
 
-    private async Task<DataTable> FetchDataFromApiAsync(string apiUrl, string jsonBody)
+    private void InsertDataIntoSql(List<List_Data> apiData)
+    {
+        string connectionString = ConfigurationManager.AppSettings.Get("conn");
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+
+            foreach (var item in apiData)
+            {
+                DateTime receivedDate, acknowledgeDate;
+                DateTime.TryParseExact((string)item.ReceivedDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out receivedDate);
+                DateTime.TryParseExact((string)item.AcknowledgeDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out acknowledgeDate);
+
+                using (SqlCommand command = new SqlCommand(
+                    @"INSERT INTO ApiData 
+                (LetterRefNo, Complainant, LetterSubject, Detail, MemberName, ReceivedDate, AcknowledgeDate, DISTRICT_NAME, LG_DT_Code)
+                VALUES (@LetterRefNo, @Complainant, @LetterSubject, @Detail, @MemberName, @ReceivedDate, @AcknowledgeDate, @DistrictName, @LGDTCode)", connection))
+                {
+                    command.Parameters.AddWithValue("@LetterRefNo", item.LetterRefNo ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@Complainant", item.Complainant ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@LetterSubject", item.LetterSubject ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@Detail", item.detail ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@MemberName", item.MemberName ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@ReceivedDate", receivedDate);
+                    command.Parameters.AddWithValue("@AcknowledgeDate", acknowledgeDate);
+                    command.Parameters.AddWithValue("@DistrictName", item.DISTRICT_NAME ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@LGDTCode", item.LG_DT_Code ?? (object)DBNull.Value);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+    }
+
+    private async Task<ApiResponse> FetchDataFromApiAsync(string apiUrl, string jsonBody)
     {
         using (var client = new HttpClient())
         {
@@ -61,16 +109,46 @@ public partial class ApiDataPage : System.Web.UI.Page
             // Read the response as a string
             var jsonResponse = await response.Content.ReadAsStringAsync();
 
-            // Deserialize the outer JSON object
-            var outerJsonObject = Newtonsoft.Json.Linq.JObject.Parse(jsonResponse);
+            jsonResponse = jsonResponse.Trim('"').Replace("\\\"", "\"");
+            jsonResponse = jsonResponse.Replace("\\\\", "\\");
+            jsonResponse = jsonResponse.Replace("\"[", "[");
+            jsonResponse = jsonResponse.Replace("]\"", "]");
+            jsonResponse = jsonResponse.Trim('"').Replace("\\\"", "\"");
 
-            // Extract the "Data" field (which is a JSON string)
-            var dataJsonString = outerJsonObject["Data"].ToString();
+            jsonResponse = jsonResponse.Trim('"').Replace("\\\\\"", "'");
 
-            // Deserialize the "Data" JSON string into a DataTable
-            var dataTable = Newtonsoft.Json.JsonConvert.DeserializeObject<DataTable>(dataJsonString);
-
-            return dataTable;
+            try
+            {
+                Response.Write(jsonResponse.Length);
+                var dataTable = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResponse>(jsonResponse);
+                return dataTable;
+            }
+            catch (Exception Ex)
+            {
+                Response.Write("Exppp :: " + Ex.Message);
+            }
+            return null;
         }
+    }
+
+    public class ApiResponse
+    {
+        public string IsResponse { get; set; }
+        public string Msg { get; set; }
+        public string Count { get; set; }
+        public List<List_Data> Data { get; set; } // Data is a JSON string
+    }
+
+    public class List_Data
+    {
+        public string LetterRefNo { get; set; }
+        public string Complainant { get; set; }
+        public string LetterSubject { get; set; }
+        public string detail { get; set; } // Data is a JSON string
+        public string MemberName { get; set; } // Data is a JSON string
+        public string ReceivedDate { get; set; } // Data is a JSON string
+        public string AcknowledgeDate { get; set; } // Data is a JSON string
+        public string DISTRICT_NAME { get; set; } // Data is a JSON string
+        public string LG_DT_Code { get; set; }
     }
 }
