@@ -819,4 +819,26 @@ public class Loan
 
 
     #endregion
+
+    #region JeetApiData
+    public DataTable get_JeetApi_Data(tbl_JeetApiData objSearch)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[4];
+
+            param[0] = new SqlParameter("@District", objSearch.DISTRICT_NAME);
+            param[1] = new SqlParameter("@FromDate", Convert.ToDateTime(objSearch.FromDate));
+            param[2] = new SqlParameter("@ToDate", Convert.ToDateTime(objSearch.ToDate));
+            param[3] = new SqlParameter("@LGTDCode", Convert.ToInt32(objSearch.LG_DT_Code));
+            
+            return objDAL.GetDataByProcedure("SpGetJeetReport_Test2", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    #endregion
 }
