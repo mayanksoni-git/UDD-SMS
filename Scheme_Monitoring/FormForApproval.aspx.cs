@@ -514,12 +514,12 @@ public partial class FormForApproval : System.Web.UI.Page
         if (rblRoles.SelectedValue == "Other" || rblRoles.SelectedValue == "C&DS (नगरीय)" || rblRoles.SelectedValue == "उत्तर प्रदेश जल निगम (नगरीय)"
              || rblRoles.SelectedValue == "Ex-MLA" || rblRoles.SelectedValue == "Ex-MP" || rblRoles.SelectedValue == "प्रदेश अध्यक्ष")
         {
-            if (txtMobileNo.Text.Trim() == "")
-            {
-                MessageBox.Show("Please enter mobile no of proposer.");
-                txtMobileNo.Focus();
-                IsValid = false;
-            }
+            //if (txtMobileNo.Text.Trim() == "")
+            //{
+            //    MessageBox.Show("Please enter mobile no of proposer.");
+            //    txtMobileNo.Focus();
+            //    IsValid = false;
+            //}
 
             if (txtOthers.Text.Trim() == "")
             {
