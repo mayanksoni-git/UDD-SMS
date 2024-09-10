@@ -95,6 +95,11 @@
                                                             <asp:ListItem Text="EO Nagar Panchayat" Value="EO Nagar Panchayat"></asp:ListItem>
                                                             <asp:ListItem Text="President Nagar Palika Parishad" Value="President Nagar Palika Parishad"></asp:ListItem>
                                                             <asp:ListItem Text="EO Nagar Palika Parishad" Value="EO Nagar Palika Parishad"></asp:ListItem>
+                                                            <asp:ListItem Text="उत्तर प्रदेश जल निगम (नगरीय)" Value="उत्तर प्रदेश जल निगम (नगरीय)"></asp:ListItem>
+                                                            <asp:ListItem Text="C&DS (नगरीय)" Value="C&DS (नगरीय)"></asp:ListItem>
+                                                            <asp:ListItem Text="Ex-MLA" Value="Ex-MLA"></asp:ListItem>
+                                                            <asp:ListItem Text="Ex-MP" Value="Ex-MP"></asp:ListItem>
+                                                            <asp:ListItem Text="प्रदेश अध्यक्ष" Value="प्रदेश अध्यक्ष"></asp:ListItem>
                                                             <asp:ListItem Text="Others" Value="Others"></asp:ListItem>
                                                         </asp:DropDownList>
                                                     </div>
@@ -157,7 +162,12 @@
                                                                 <FooterStyle CssClass="displayStyle" />
                                                             </asp:BoundField>
                                                             <%--<asp:BoundField HeaderText="Scheme Short Name" DataField="Project_Name"/>--%>
-                                                            <asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />
+                                                            <%--<asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />--%>
+                                                            <asp:TemplateField HeaderText="Scheme">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblShortNameCode" runat="server" Text='<%# Eval("ShortNameCode") %>' ToolTip='<%# Eval("Project_Name") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
                                                             <asp:BoundField HeaderText="Designation" DataField="Designation" />
                                                             <asp:BoundField HeaderText="Expected Amount()" DataField="ExpectedAmount" />
                                                             <asp:TemplateField HeaderText="Rec. Letter">

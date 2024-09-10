@@ -528,6 +528,20 @@ public partial class FormForApproval : System.Web.UI.Page
                 IsValid = false;
             }
         }
+
+        if (txtProposalName.Text.Trim() == "")
+        {
+            MessageBox.Show("Please enter Proposal Name (Letter subject).");
+            txtProposalName.Focus();
+            IsValid = false;
+        }
+
+        if (txtProposalDetail.Text.Trim() == "")
+        {
+            MessageBox.Show("Please enter Proposal Detail (Work details).");
+            txtProposalDetail.Focus();
+            IsValid = false;
+        }
         return IsValid;
     }
     private string UploadPDF()

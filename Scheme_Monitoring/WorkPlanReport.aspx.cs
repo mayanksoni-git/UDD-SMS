@@ -35,7 +35,9 @@ public partial class WorkPlanReport : System.Web.UI.Page
 
             get_tbl_FinancialYear();
             get_tbl_Zone();
+            get_tbl_Section();
             get_tbl_Project();
+
             
             SetDropdownsBasedOnUserType();
         }
@@ -46,6 +48,12 @@ public partial class WorkPlanReport : System.Web.UI.Page
     {
         DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
         FillDropDown(ds, ddlFY, "FinancialYear_Comments", "FinancialYear_Id");
+    }
+
+    private void get_tbl_Section()
+    {
+        DataSet ds = (new DataLayer()).get_tbl_Section();
+        FillDropDown(ds, ddlSection, "Section_Name", "Section_Id");
     }
     private void get_tbl_Zone()
     {
@@ -211,7 +219,8 @@ public partial class WorkPlanReport : System.Web.UI.Page
 
     protected tbl_WorkProposal BindWorkProposalGridBySearch()
     {
-        int Fy=0, Zone_Id = 0, Circle_Id = 0, Division_Id = 0, Scheme=0;
+        int Fy=0, Zone_Id = 0, Circle_Id = 0, Division_Id = 0, Scheme=0, Section = 0;
+        string Role;
 
         try
         {
@@ -256,6 +265,24 @@ public partial class WorkPlanReport : System.Web.UI.Page
         catch
         {
             Scheme = 0;
+        }
+
+        try
+        {
+            Section = Convert.ToInt32(ddlSection.SelectedValue);
+        }
+        catch
+        {
+            Section = 0;
+        }
+
+        try
+        {
+            Role = rblRoles.SelectedValue.ToString();
+        }
+        catch
+        {
+            Role = "";
         }
 
         tbl_WorkProposal obj = new tbl_WorkProposal();

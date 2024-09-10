@@ -623,9 +623,44 @@
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
+                                                    <div id="divSection" runat="server">
+                                                        <asp:Label ID="lblSectin" runat="server" Text="Section" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="ddlSection" runat="server" CssClass="form-select" ></asp:DropDownList>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
                                                     <div id="divScheme" runat="server">
                                                         <asp:Label ID="lblScheme" runat="server" Text="Scheme" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-select" AutoPostBack="true"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlProjectMaster" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divRole" runat="server">
+                                                        <asp:Label ID="lblRole" runat="server" Text="Proposer Type*" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="rblRoles" runat="server" CssClass="form-select" RepeatDirection="Horizontal">
+                                                            <asp:ListItem Text="-Select-" Value="-1" Selected="True"></asp:ListItem>
+                                                            <asp:ListItem Text="Central Minister" Value="Central Minister"></asp:ListItem>
+                                                            <asp:ListItem Text="Minister" Value="Minister"></asp:ListItem>
+                                                            <asp:ListItem Text="MP" Value="MP"></asp:ListItem>
+                                                            <asp:ListItem Text="MLA" Value="MLA"></asp:ListItem>
+                                                            <asp:ListItem Text="MLC" Value="MLC"></asp:ListItem>
+                                                            <asp:ListItem Text="Mayor" Value="Mayor"></asp:ListItem>
+                                                            <asp:ListItem Text="Municipal Commissioner" Value="Municipal Commissioner"></asp:ListItem>
+                                                            <asp:ListItem Text="District Magistrate" Value="District Magistrate"></asp:ListItem>
+                                                            <asp:ListItem Text="Divisional Commissioner" Value="Divisional Commissioner"></asp:ListItem>
+                                                            <asp:ListItem Text="President Nagar Panchayat" Value="President Nagar Panchayat"></asp:ListItem>
+                                                            <asp:ListItem Text="EO Nagar Panchayat" Value="EO Nagar Panchayat"></asp:ListItem>
+                                                            <asp:ListItem Text="President Nagar Palika Parishad" Value="President Nagar Palika Parishad"></asp:ListItem>
+                                                            <asp:ListItem Text="EO Nagar Palika Parishad" Value="EO Nagar Palika Parishad"></asp:ListItem>
+                                                            <asp:ListItem Text="उत्तर प्रदेश जल निगम (नगरीय)" Value="उत्तर प्रदेश जल निगम (नगरीय)"></asp:ListItem>
+                                                            <asp:ListItem Text="C&DS (नगरीय)" Value="C&DS (नगरीय)"></asp:ListItem>
+                                                            <asp:ListItem Text="Ex-MLA" Value="Ex-MLA"></asp:ListItem>
+                                                            <asp:ListItem Text="Ex-MP" Value="Ex-MP"></asp:ListItem>
+                                                            <asp:ListItem Text="प्रदेश अध्यक्ष" Value="प्रदेश अध्यक्ष"></asp:ListItem>
+                                                            <asp:ListItem Text="Others" Value="Others"></asp:ListItem>
+                                                        </asp:DropDownList>
                                                     </div>
                                                 </div>
                                             </div>
@@ -753,9 +788,14 @@
                                                             <asp:BoundField HeaderText="ULB" DataField="Division_Name" />
                                                             <asp:BoundField HeaderText="Zone" DataField="ZoneOfULB" />
                                                             <asp:BoundField HeaderText="Ward" DataField="Ward" />
-                                                            <asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />
+                                                            <%--<asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />--%>
+                                                            <asp:TemplateField HeaderText="Scheme">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblShortNameCode" runat="server" Text='<%# Eval("ShortNameCode") %>' ToolTip='<%# Eval("Project_Name") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
                                                             <asp:BoundField HeaderText="Sub Scheme" DataField="SubScheme" />
-                                                            <%--<asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />--%>
+                                                            <asp:BoundField HeaderText="Project Types" DataField="ProjectType_Names" />
                                                             <asp:BoundField HeaderText="Expected Amount" DataField="ExpectedAmount" />
                                                             <asp:BoundField HeaderText="Proposer Type" DataField="ProposerType" />
                                                             <asp:BoundField HeaderText="Proposer" DataField="MPMLAName" />

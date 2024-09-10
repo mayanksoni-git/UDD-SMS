@@ -249,8 +249,13 @@
                                                             <asp:BoundField HeaderText="ULB" DataField="Division_Name" />
                                                             <asp:BoundField HeaderText="Zone" DataField="ZoneOfULB" />
                                                             <asp:BoundField HeaderText="Ward" DataField="Ward" />
-                                                            <asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />
-                                                            <asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />
+                                                            <%--<asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />--%>
+                                                            <asp:TemplateField HeaderText="Scheme">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblShortNameCode" runat="server" Text='<%# Eval("ShortNameCode") %>' ToolTip='<%# Eval("Project_Name") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField HeaderText="Project Type" DataField="ProjectType_Names" />
                                                             <%--<asp:BoundField HeaderText="Sanctioned Amount in 2nd Last Year" DataField="FY2" />--%>
                                                             <%--<asp:BoundField HeaderText="Sanctioned Amount in Last Year" DataField="FY1" />--%>
 

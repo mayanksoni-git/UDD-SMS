@@ -112,13 +112,13 @@
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divProposalName" runat="server">
-                                                        <asp:Label ID="lblProposalName" runat="server" Text="Proposal Name" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblProposalName" runat="server" Text="Proposal Name (Letter subject)" CssClass="form-label"></asp:Label>
                                                     <asp:TextBox ID="txtProposalName" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divProposalDetail" runat="server">
-                                                        <asp:Label ID="lblProposalDetail" runat="server" Text="Proposal Detail" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblProposalDetail" runat="server" Text="Proposal Detail (Work details)" CssClass="form-label"></asp:Label>
                                                     <asp:TextBox ID="txtProposalDetail" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
@@ -288,8 +288,13 @@
                                                             <asp:BoundField HeaderText="ULB" DataField="Division_Name" />
                                                             <%--<asp:BoundField HeaderText="Zone" DataField="ZoneOfULB" />--%>
                                                             <%--<asp:BoundField HeaderText="Ward" DataField="Ward" />--%>
-                                                            <asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />
-                                                            <%--<asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />--%>
+                                                            <%--<asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />--%>
+                                                            <asp:TemplateField HeaderText="Scheme">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblShortNameCode" runat="server" Text='<%# Eval("ShortNameCode") %>' ToolTip='<%# Eval("Project_Name") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField HeaderText="Project Types" DataField="ProjectType_Names" />
                                                             <asp:BoundField HeaderText="Expected Amount" DataField="ExpectedAmount" />
                                                             <asp:BoundField HeaderText="Proposer Type" DataField="ProposerType" />
                                                             <asp:BoundField HeaderText="Proposer" DataField="MPMLAName" />
