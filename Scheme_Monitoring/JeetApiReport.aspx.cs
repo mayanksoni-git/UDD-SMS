@@ -75,10 +75,6 @@ public partial class JeetApiReport : System.Web.UI.Page
             ddl.Items.Clear();
         }
     }
-
-    
-    
-    
    
     private void reset()
     {
@@ -92,9 +88,6 @@ public partial class JeetApiReport : System.Web.UI.Page
         tbl_JeetApiData obj = BindJeetApiGridBySearch();
         LoadJeetApiGrid(obj);
     }
-
-    
-
 
     protected tbl_JeetApiData BindJeetApiGridBySearch()
     {

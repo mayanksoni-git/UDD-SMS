@@ -833,7 +833,7 @@ public class Loan
             param[2] = new SqlParameter("@ToDate", Convert.ToDateTime(objSearch.ToDate));
             param[3] = new SqlParameter("@LGTDCode", Convert.ToInt32(objSearch.LG_DT_Code));
             
-            return objDAL.GetDataByProcedure("SpGetJeetReport", param);
+            return objDAL.GetDataByProcedure("Sp_GetJeetApiWorkProposalData", param);
         }
         catch (Exception ex)
         {

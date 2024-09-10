@@ -13,17 +13,7 @@ public partial class ApiDataPage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
-            try
-            {
-                 //btnFetchData_Click(null, null);
-            }
-            catch (Exception Ex)
-            {
-                Response.Write("Exppp :: " + Ex.Message);
-            }
-        }
+        
     }
 
     protected async void btnFetchData_Click(object sender, EventArgs e)
@@ -31,15 +21,26 @@ public partial class ApiDataPage : System.Web.UI.Page
         await FetchAndBindDataAsync();
     }
 
+
     private async Task FetchAndBindDataAsync()
     {
         string apiUrl = "https://jeet.net.in/Service/JeetService.svc/JeetVRDetail";
-        string jsonBody = @"
+
+        // Get the selected date from the TextBox
+        string selectedDate = txtDate.Text; // Assuming the date format is "yyyy-MM-dd"
+        if (string.IsNullOrEmpty(selectedDate))
         {
+            Response.Write("<script>alert('Please select a date.');</script>");
+            return;
+        }
+
+        // Use string.Format to construct the JSON body
+        string jsonBody = string.Format(@"
+        {{
             ""SecretKey"": ""Jeet12-jBh2CcK2H@uf3S8o1222082024"",
             ""ClientId"": ""jeettosangam82024"",
-            ""Date"": ""01/07/2024""
-        }";
+            ""Date"": ""{0}""
+        }}", DateTime.Parse(selectedDate).ToString("dd/MM/yyyy"));
 
         try
         {
@@ -54,9 +55,37 @@ public partial class ApiDataPage : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            Response.Write("<script>alert('Test" + ex.Message + "');</script>");
+            Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
         }
     }
+
+    //private async Task FetchAndBindDataAsync()
+    //{
+    //    string apiUrl = "https://jeet.net.in/Service/JeetService.svc/JeetVRDetail";
+    //    string jsonBody = @"
+    //    {
+    //        ""SecretKey"": ""Jeet12-jBh2CcK2H@uf3S8o1222082024"",
+    //        ""ClientId"": ""jeettosangam82024"",
+    //        ""Date"": ""01/07/2024""
+    //    }";
+
+    //    try
+    //    {
+    //        var apiData = await FetchDataFromApiAsync(apiUrl, jsonBody);
+    //        if (apiData != null)
+    //        {
+    //            gvApiData.DataSource = apiData.Data;
+    //            gvApiData.DataBind();
+
+    //            InsertDataIntoSql(apiData.Data);
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        Response.Write("<script>alert('Test" + ex.Message + "');</script>");
+    //    }
+    //}
+
 
     private void InsertDataIntoSql(List<List_Data> apiData)
     {
@@ -72,18 +101,17 @@ public partial class ApiDataPage : System.Web.UI.Page
                 DateTime.TryParseExact((string)item.ReceivedDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out receivedDate);
                 DateTime.TryParseExact((string)item.AcknowledgeDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out acknowledgeDate);
 
-                using (SqlCommand command = new SqlCommand(
-                    @"INSERT INTO ApiData 
-                (LetterRefNo, Complainant, LetterSubject, Detail, MemberName, ReceivedDate, AcknowledgeDate, DISTRICT_NAME, LG_DT_Code)
-                VALUES (@LetterRefNo, @Complainant, @LetterSubject, @Detail, @MemberName, @ReceivedDate, @AcknowledgeDate, @DistrictName, @LGDTCode)", connection))
+                using (SqlCommand command = new SqlCommand("sp_InsertOrUpdateJeetApiWorkProposalData", connection))
                 {
+                    command.CommandType = CommandType.StoredProcedure;
+
                     command.Parameters.AddWithValue("@LetterRefNo", item.LetterRefNo ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@Complainant", item.Complainant ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@LetterSubject", item.LetterSubject ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@Detail", item.detail ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@MemberName", item.MemberName ?? (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@ReceivedDate", receivedDate);
-                    command.Parameters.AddWithValue("@AcknowledgeDate", acknowledgeDate);
+                    command.Parameters.AddWithValue("@ReceivedDate", receivedDate != DateTime.MinValue ? (object)receivedDate : DBNull.Value);
+                    command.Parameters.AddWithValue("@AcknowledgeDate", acknowledgeDate != DateTime.MinValue ? (object)acknowledgeDate : DBNull.Value);
                     command.Parameters.AddWithValue("@DistrictName", item.DISTRICT_NAME ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@LGDTCode", item.LG_DT_Code ?? (object)DBNull.Value);
 
@@ -92,6 +120,42 @@ public partial class ApiDataPage : System.Web.UI.Page
             }
         }
     }
+
+
+    //private void InsertDataIntoSql(List<List_Data> apiData)
+    //{
+    //    string connectionString = ConfigurationManager.AppSettings.Get("conn");
+
+    //    using (SqlConnection connection = new SqlConnection(connectionString))
+    //    {
+    //        connection.Open();
+
+    //        foreach (var item in apiData)
+    //        {
+    //            DateTime receivedDate, acknowledgeDate;
+    //            DateTime.TryParseExact((string)item.ReceivedDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out receivedDate);
+    //            DateTime.TryParseExact((string)item.AcknowledgeDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out acknowledgeDate);
+
+    //            using (SqlCommand command = new SqlCommand(
+    //                @"INSERT INTO ApiData 
+    //            (LetterRefNo, Complainant, LetterSubject, Detail, MemberName, ReceivedDate, AcknowledgeDate, DISTRICT_NAME, LG_DT_Code)
+    //            VALUES (@LetterRefNo, @Complainant, @LetterSubject, @Detail, @MemberName, @ReceivedDate, @AcknowledgeDate, @DistrictName, @LGDTCode)", connection))
+    //            {
+    //                command.Parameters.AddWithValue("@LetterRefNo", item.LetterRefNo ?? (object)DBNull.Value);
+    //                command.Parameters.AddWithValue("@Complainant", item.Complainant ?? (object)DBNull.Value);
+    //                command.Parameters.AddWithValue("@LetterSubject", item.LetterSubject ?? (object)DBNull.Value);
+    //                command.Parameters.AddWithValue("@Detail", item.detail ?? (object)DBNull.Value);
+    //                command.Parameters.AddWithValue("@MemberName", item.MemberName ?? (object)DBNull.Value);
+    //                command.Parameters.AddWithValue("@ReceivedDate", receivedDate);
+    //                command.Parameters.AddWithValue("@AcknowledgeDate", acknowledgeDate);
+    //                command.Parameters.AddWithValue("@DistrictName", item.DISTRICT_NAME ?? (object)DBNull.Value);
+    //                command.Parameters.AddWithValue("@LGDTCode", item.LG_DT_Code ?? (object)DBNull.Value);
+
+    //                command.ExecuteNonQuery();
+    //            }
+    //        }
+    //    }
+    //}
 
     private async Task<ApiResponse> FetchDataFromApiAsync(string apiUrl, string jsonBody)
     {
@@ -114,7 +178,6 @@ public partial class ApiDataPage : System.Web.UI.Page
             jsonResponse = jsonResponse.Replace("\"[", "[");
             jsonResponse = jsonResponse.Replace("]\"", "]");
             jsonResponse = jsonResponse.Trim('"').Replace("\\\"", "\"");
-
             jsonResponse = jsonResponse.Trim('"').Replace("\\\\\"", "'");
 
             try

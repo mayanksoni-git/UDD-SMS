@@ -7,6 +7,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Label ID="lblDate" runat="server" Text="Select Date: "></asp:Label>
+            <asp:TextBox ID="txtDate" runat="server" TextMode="Date" />
+            <br /><br />
             <asp:Button ID="btnFetchData" runat="server" Text="Fetch Data" OnClick="btnFetchData_Click" />
             <br /><br />
             <asp:GridView ID="gvApiData" runat="server" AutoGenerateColumns="true" />
