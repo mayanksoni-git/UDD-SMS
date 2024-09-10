@@ -251,7 +251,8 @@ public partial class FormForApproval : System.Web.UI.Page
     }
     protected void rblRoles_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if(rblRoles.SelectedValue!= "Others")
+        if(rblRoles.SelectedValue!= "Others" && rblRoles.SelectedValue != "C&DS (नगरीय)" && rblRoles.SelectedValue != "उत्तर प्रदेश जल निगम (नगरीय)" 
+            && rblRoles.SelectedValue != "Ex-MLA" && rblRoles.SelectedValue != "Ex-MP" && rblRoles.SelectedValue != "प्रदेश अध्यक्ष")
         {
             string selectedValue = rblRoles.SelectedValue;
             divMPMLA.Visible = true;
@@ -510,7 +511,8 @@ public partial class FormForApproval : System.Web.UI.Page
                 IsValid = false;
             }
         }
-        if (rblRoles.SelectedValue == "Other")
+        if (rblRoles.SelectedValue == "Other" || rblRoles.SelectedValue == "C&DS (नगरीय)" || rblRoles.SelectedValue == "उत्तर प्रदेश जल निगम (नगरीय)"
+             || rblRoles.SelectedValue == "Ex-MLA" || rblRoles.SelectedValue == "Ex-MP" || rblRoles.SelectedValue == "प्रदेश अध्यक्ष")
         {
             if (txtMobileNo.Text.Trim() == "")
             {
@@ -553,7 +555,7 @@ public partial class FormForApproval : System.Web.UI.Page
         string ZoneOfULB = "", Ward = "";
         string ProposalName = "", ProposalDetail = "";
 
-        int SchemeId, WorkType=0, SubSchemeId=0;
+        int SchemeId, SubSchemeId=0;
         double ExpectedAmount = 0.00;
 
         string ProposerType = "", ProposerName = "",ProposalDate="", MobileNo = "", Designation = "";
@@ -998,10 +1000,9 @@ public partial class FormForApproval : System.Web.UI.Page
 
             rblRoles.SelectedValue= dt.Rows[0]["ProposerType"].ToString();
             rblRoles_SelectedIndexChanged(rblRoles, new EventArgs());
-            if (rblRoles.SelectedValue.ToString()== "Others")
+            if (rblRoles.SelectedValue.ToString()== "Others" || rblRoles.SelectedValue == "C&DS (नगरीय)" || rblRoles.SelectedValue == "उत्तर प्रदेश जल निगम (नगरीय)"
+                 || rblRoles.SelectedValue == "Ex-MLA" || rblRoles.SelectedValue == "Ex-MP" || rblRoles.SelectedValue == "प्रदेश अध्यक्ष")
             {
-                
-
                 ddlMPMLA.Items.Clear();
                 lblConstituencyName.Text = "";
                 lblParyOfMPMLA.Text = "";

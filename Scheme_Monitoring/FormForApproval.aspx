@@ -154,6 +154,11 @@
                                                         <asp:ListItem Text="EO Nagar Panchayat" Value="EO Nagar Panchayat"></asp:ListItem>
                                                         <asp:ListItem Text="President Nagar Palika Parishad" Value="President Nagar Palika Parishad"></asp:ListItem>
                                                         <asp:ListItem Text="EO Nagar Palika Parishad" Value="EO Nagar Palika Parishad"></asp:ListItem>
+                                                        <asp:ListItem Text="उत्तर प्रदेश जल निगम (नगरीय)" Value="उत्तर प्रदेश जल निगम (नगरीय)"></asp:ListItem>
+                                                        <asp:ListItem Text="C&DS (नगरीय)" Value="C&DS (नगरीय)"></asp:ListItem>
+                                                        <asp:ListItem Text="Ex-MLA" Value="Ex-MLA"></asp:ListItem>
+                                                        <asp:ListItem Text="Ex-MP" Value="Ex-MP"></asp:ListItem>
+                                                        <asp:ListItem Text="प्रदेश अध्यक्ष" Value="प्रदेश अध्यक्ष"></asp:ListItem>
                                                         <asp:ListItem Text="Others" Value="Others"></asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
