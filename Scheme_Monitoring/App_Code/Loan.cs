@@ -417,12 +417,12 @@ public class Loan
         }
     }
 
-    public DataTable getWorkProposalBySearch(tbl_WorkProposal objSearch)
+    public DataTable getWorkProposalBySearch(tbl_WorkProposal objSearch, int Mandal, string ULBType)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[8];
+            SqlParameter[] param = new SqlParameter[10];
 
             param[0] = new SqlParameter("@Zone", objSearch.Zone);
             param[1] = new SqlParameter("@Circle", objSearch.Circle);
@@ -432,8 +432,38 @@ public class Loan
             param[5] = new SqlParameter("@ProposalStatus", objSearch.ProposalStatus);
             param[6] = new SqlParameter("@Section", objSearch.Section);
             param[7] = new SqlParameter("@ProposerType", objSearch.ProposerType);
+            param[8] = new SqlParameter("@Mandal", Mandal);
+            param[9] = new SqlParameter("@ULBType", ULBType);
 
             return objDAL.GetDataByProcedure("sp_SelectWorkProposalsBySearch", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getWorkProposalBySearchForReport(tbl_WorkProposal objSearch, int Mandal, string ULBType, int ExpAmtLess, int ExpAmtGret)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[12];
+
+            param[0] = new SqlParameter("@Zone", objSearch.Zone);
+            param[1] = new SqlParameter("@Circle", objSearch.Circle);
+            param[2] = new SqlParameter("@Division", objSearch.Division);
+            param[3] = new SqlParameter("@FY", objSearch.FY);
+            param[4] = new SqlParameter("@Scheme", objSearch.Scheme);
+            param[5] = new SqlParameter("@ProposalStatus", objSearch.ProposalStatus);
+            param[6] = new SqlParameter("@Section", objSearch.Section);
+            param[7] = new SqlParameter("@ProposerType", objSearch.ProposerType);
+            param[8] = new SqlParameter("@Mandal", Mandal);
+            param[9] = new SqlParameter("@ULBType", ULBType);
+            param[10] = new SqlParameter("@ExpAmtLess", ExpAmtLess);
+            param[11] = new SqlParameter("@ExpAmtGret", ExpAmtGret);
+
+            return objDAL.GetDataByProcedure("sp_SelectWorkProposalsBySearchForReport", param);
         }
         catch (Exception ex)
         {
@@ -828,12 +858,16 @@ public class Loan
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[4];
+            SqlParameter[] param = new SqlParameter[8];
 
             param[0] = new SqlParameter("@District", objSearch.DISTRICT_NAME);
             param[1] = new SqlParameter("@FromDate", Convert.ToDateTime(objSearch.FromDate));
             param[2] = new SqlParameter("@ToDate", Convert.ToDateTime(objSearch.ToDate));
             param[3] = new SqlParameter("@LGTDCode", Convert.ToInt32(objSearch.LG_DT_Code));
+            param[4] = new SqlParameter("@Complainant", objSearch.Complainant.ToString());
+            param[5] = new SqlParameter("@LetterSubject", objSearch.LetterSubject.ToString());
+            param[6] = new SqlParameter("@Detail", objSearch.Detail.ToString());
+            param[7] = new SqlParameter("@MemberName", objSearch.MemberName.ToString());
             
             return objDAL.GetDataByProcedure("Sp_GetJeetApiWorkProposalData", param);
         }

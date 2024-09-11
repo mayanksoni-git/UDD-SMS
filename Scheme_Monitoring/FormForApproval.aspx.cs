@@ -810,14 +810,13 @@ public partial class FormForApproval : System.Web.UI.Page
     private void LoadWorkProposalGrid(tbl_WorkProposal obj)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.getWorkProposalBySearch(obj);
+        dt = objLoan.getWorkProposalBySearch(obj, 0, "-1");
 
         if (dt != null && dt.Rows.Count > 0)
         {
             gvRecords.DataSource = dt;
             gvRecords.DataBind();
             divData.Visible = true;
-
         }
         else
         {

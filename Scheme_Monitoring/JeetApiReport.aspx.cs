@@ -144,6 +144,12 @@ public partial class JeetApiReport : System.Web.UI.Page
             obj.DISTRICT_NAME = Circle_Id;
         }
 
+
+        obj.Complainant = string.IsNullOrEmpty(txtComplainant.Text.Trim()) ? "" : txtComplainant.Text.Trim();
+        obj.LetterSubject = string.IsNullOrEmpty(txtLetterSubject.Text.Trim()) ? "" : txtLetterSubject.Text.Trim();
+        obj.Detail = string.IsNullOrEmpty(txtDetail.Text.Trim()) ? "" : txtDetail.Text.Trim();
+        obj.MemberName = string.IsNullOrEmpty(txtMemberName.Text.Trim()) ? "" : txtMemberName.Text.Trim();
+
         return obj;
     }
     private void LoadJeetApiGrid(tbl_JeetApiData obj)

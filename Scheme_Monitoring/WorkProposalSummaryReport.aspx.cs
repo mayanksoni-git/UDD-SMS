@@ -99,6 +99,82 @@ public partial class WorkProposalSummaryReport : System.Web.UI.Page
         FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
     }
 
+
+    protected void ddlZone_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlZone.SelectedValue == "0")
+        {
+            ddlMandal.Items.Clear();
+            ddlCircle.Items.Clear();
+            ddlDivision.Items.Clear();
+
+        }
+        else
+        {
+            get_tbl_Mandal();
+        }
+    }
+    protected void ddlMandal_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlMandal.SelectedValue == "0")
+        {
+            ddlCircle.Items.Clear();
+            ddlDivision.Items.Clear();
+        }
+        else
+        {
+            get_tbl_Circle(Convert.ToInt32(ddlMandal.SelectedValue));
+        }
+    }
+    protected void ddlCircle_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlCircle.SelectedValue == "0")
+        {
+            ddlDivision.Items.Clear();
+        }
+        else
+        {
+            get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue), ddlULBType.SelectedValue.ToString());
+        }
+    }
+    protected void ddlULBType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlULBType.SelectedValue == "-1")
+        {
+            lblMessage.Text = "Please Select a ULB Type.";
+            ddlULBType.Focus();
+        }
+        else
+        {
+            get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue), ddlULBType.SelectedValue.ToString());
+        }
+    }
+    protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlDivision.SelectedValue == "0")
+        {
+            lblMessage.Text = "Please Select a ULB.";
+            ddlDivision.Focus();
+        }
+        else
+        {
+            //BindLoanReleaseGridByULB();
+        }
+    }
+    protected void ddlSection_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlSection.SelectedValue == "-1")
+        {
+            lblMessage.Text = "Please Select a Section.";
+            ddlSection.Focus();
+        }
+        else
+        {
+            get_tbl_Project(Convert.ToInt32(ddlSection.SelectedValue));
+        }
+    }
+
+
     private void SetDropdownsBasedOnUserType()
     {
         int userType = Convert.ToInt32(Session["UserType"]);
@@ -163,80 +239,6 @@ public partial class WorkProposalSummaryReport : System.Web.UI.Page
         }
     }
 
-    protected void ddlZone_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlZone.SelectedValue == "0")
-        {
-            ddlMandal.Items.Clear();
-            ddlCircle.Items.Clear();
-            ddlDivision.Items.Clear();
-
-        }
-        else
-        {
-            get_tbl_Mandal();
-        }
-    }
-    protected void ddlMandal_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlMandal.SelectedValue == "0")
-        {
-            ddlCircle.Items.Clear();
-            ddlDivision.Items.Clear();
-        }
-        else
-        {
-            get_tbl_Circle(Convert.ToInt32(ddlMandal.SelectedValue));
-        }
-    }
-    protected void ddlCircle_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlCircle.SelectedValue == "0")
-        {
-            ddlDivision.Items.Clear();
-        }
-        else
-        {
-            get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue), ddlULBType.SelectedValue.ToString());
-        }
-    }
-    protected void ddlULBType_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlULBType.SelectedValue == "-1")
-        {
-            lblMessage.Text = "Please Select a ULB Type.";
-            ddlULBType.Focus();
-        }
-        else
-        {
-            get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue), ddlULBType.SelectedValue.ToString());
-        }
-    }
-    protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlDivision.SelectedValue == "0")
-        {
-            lblMessage.Text = "Please Select a ULB.";
-            ddlDivision.Focus();
-        }
-        else
-        {
-            //BindLoanReleaseGridByULB();
-        }
-    }
-
-    protected void ddlSection_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlSection.SelectedValue == "-1")
-        {
-            lblMessage.Text = "Please Select a Section.";
-            ddlSection.Focus();
-        }
-        else
-        {
-            get_tbl_Project(Convert.ToInt32(ddlSection.SelectedValue));
-        }
-    }
 
     private void reset()
     {
@@ -247,6 +249,7 @@ public partial class WorkProposalSummaryReport : System.Web.UI.Page
         grdPost.DataSource = null;
         grdPost.DataBind();
     }
+
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {

@@ -36,7 +36,7 @@ public partial class WorkPlanReport : System.Web.UI.Page
             get_tbl_FinancialYear();
             get_tbl_Zone();
             get_tbl_Section();
-            get_tbl_Project();
+            //get_tbl_Project();
 
             
             SetDropdownsBasedOnUserType();
@@ -61,32 +61,44 @@ public partial class WorkPlanReport : System.Web.UI.Page
         FillDropDown(ds, ddlZone, "Zone_Name", "Zone_Id");
         if (ddlZone.SelectedItem.Value != "0")
         {
-            get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
+            get_tbl_Mandal();
         }
     }
-    private void get_tbl_Circle(int zoneId)
+
+    private void get_tbl_Mandal()
     {
-        DataSet ds = (new DataLayer()).get_tbl_Circle(zoneId);
+        DataSet ds = (new DataLayer()).get_tbl_Mandal();
+        FillDropDown(ds, ddlMandal, "DivName", "DivisionID");
+        if (ddlMandal.SelectedItem.Value != "0")
+        {
+            get_tbl_Circle(Convert.ToInt32(ddlMandal.SelectedValue));
+        }
+    }
+
+    private void get_tbl_Circle(int MandalId)
+    {
+        DataSet ds = (new DataLayer()).get_tbl_CircleByDivisionId(MandalId);
         FillDropDown(ds, ddlCircle, "Circle_Name", "Circle_Id");
     }
-    private void get_tbl_Division(int circleId)
+    private void get_tbl_Division(int circleId, string ULBType)
     {
-        DataSet ds = (new DataLayer()).get_tbl_Division(circleId);
+        DataSet ds = (new DataLayer()).get_tbl_DivisionByULBType(circleId, ULBType);
         FillDropDown(ds, ddlDivision, "Division_Name", "Division_Id");
     }
-    private void get_tbl_Project()
+    private void get_tbl_Project(int SectionId)
     {
         DataSet ds = new DataSet();
         if (Session["UserType"].ToString() == "1")
         {
-            ds = (new DataLayer()).get_tbl_Project(0);
+            ds = (new DataLayer()).get_tbl_ProjectBySection(0, SectionId);
         }
         else
         {
-            ds = (new DataLayer()).get_tbl_Project(Convert.ToInt32(Session["Person_Id"].ToString()));
+            ds = (new DataLayer()).get_tbl_ProjectBySection(Convert.ToInt32(Session["Person_Id"].ToString()), SectionId);
         }
         FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
     }
+    
 
     private void SetDropdownsBasedOnUserType()
     {
@@ -156,14 +168,29 @@ public partial class WorkPlanReport : System.Web.UI.Page
     {
         if (ddlZone.SelectedValue == "0")
         {
+            ddlMandal.Items.Clear();
             ddlCircle.Items.Clear();
             ddlDivision.Items.Clear();
         }
         else
         {
-            get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
+            get_tbl_Mandal();
         }
     }
+
+    protected void ddlMandal_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlMandal.SelectedValue == "0")
+        {
+            ddlCircle.Items.Clear();
+            ddlDivision.Items.Clear();
+        }
+        else
+        {
+            get_tbl_Circle(Convert.ToInt32(ddlMandal.SelectedValue));
+        }
+    }
+
     protected void ddlCircle_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlCircle.SelectedValue == "0")
@@ -172,9 +199,23 @@ public partial class WorkPlanReport : System.Web.UI.Page
         }
         else
         {
-            get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue));
+            get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue), ddlULBType.SelectedValue.ToString());
         }
     }
+
+    protected void ddlULBType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlULBType.SelectedValue == "-1")
+        {
+            lblMessage.Text = "Please Select a ULB Type.";
+            ddlULBType.Focus();
+        }
+        else
+        {
+            get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue), ddlULBType.SelectedValue.ToString());
+        }
+    }
+
     protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlDivision.SelectedValue == "0")
@@ -187,7 +228,20 @@ public partial class WorkPlanReport : System.Web.UI.Page
             //BindLoanReleaseGridByULB();
         }
     }
-   
+
+    protected void ddlSection_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlSection.SelectedValue == "-1")
+        {
+            lblMessage.Text = "Please Select a Section.";
+            ddlSection.Focus();
+        }
+        else
+        {
+            get_tbl_Project(Convert.ToInt32(ddlSection.SelectedValue));
+        }
+    }
+
     private void reset()
     {
         ddlFY.SelectedValue = "0";
@@ -209,9 +263,35 @@ public partial class WorkPlanReport : System.Web.UI.Page
                 return;
             }
         }
-        
+
         tbl_WorkProposal obj = BindWorkProposalGridBySearch();
-        LoadWorkProposalGrid(obj);
+
+        int Mandal = 0, ExpAmtLess = 0, ExpAmtGret = 0;
+        string ULBType = "";
+        try
+        {
+            Mandal = Convert.ToInt32(ddlMandal.SelectedValue);
+        }
+        catch
+        {
+            Mandal = 0;
+        }
+
+        try
+        {
+            ULBType = ddlULBType.SelectedValue.ToString();
+        }
+        catch
+        {
+            ULBType = "-1";
+        }
+
+
+
+        ExpAmtLess = string.IsNullOrEmpty(txtExpAmtLess.Text) ? 0 : Convert.ToInt32(txtExpAmtLess.Text);
+        ExpAmtGret = string.IsNullOrEmpty(txtExpAmtGret.Text) ? 0 : Convert.ToInt32(txtExpAmtGret.Text);
+
+        LoadWorkProposalGrid(obj, Mandal, ULBType, ExpAmtLess, ExpAmtGret);
     }
 
     
@@ -285,6 +365,7 @@ public partial class WorkPlanReport : System.Web.UI.Page
             Role = "";
         }
 
+
         tbl_WorkProposal obj = new tbl_WorkProposal();
         obj.FY = Fy;
         obj.Zone = Zone_Id;
@@ -297,10 +378,10 @@ public partial class WorkPlanReport : System.Web.UI.Page
 
         return obj;
     }
-    private void LoadWorkProposalGrid(tbl_WorkProposal obj)
+    private void LoadWorkProposalGrid(tbl_WorkProposal obj, int Mandal, string ULBType, int ExpAmtLess, int ExpAmtGret)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.getWorkProposalBySearch(obj);
+        dt = objLoan.getWorkProposalBySearchForReport(obj, Mandal, ULBType, ExpAmtLess, ExpAmtGret);
 
         if (dt != null && dt.Rows.Count > 0)
         {

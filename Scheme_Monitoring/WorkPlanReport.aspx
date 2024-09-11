@@ -609,9 +609,28 @@
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
+                                                    <div id="divMandal" runat="server">
+                                                        <asp:Label ID="lblMandal" runat="server" Text=" Division" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="ddlMandal" runat="server" CssClass="form-select"  AutoPostBack="true" OnSelectedIndexChanged="ddlMandal_SelectedIndexChanged"></asp:DropDownList>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
                                                     <div id="divCircle" runat="server">
                                                         <asp:Label ID="lblCircleH" runat="server" Text="Circle*" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divULBType" runat="server">
+                                                        <asp:Label ID="lblULBType" runat="server" Text="ULB Type" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="ddlULBType" runat="server" CssClass="form-select" RepeatDirection="Horizontal"  AutoPostBack="true" OnSelectedIndexChanged="ddlULBType_SelectedIndexChanged">
+                                                            <asp:ListItem Text="-Select-" Value="-1" Selected="True"></asp:ListItem>
+                                                            <asp:ListItem Text="Nagar Nigam" Value="NN"></asp:ListItem>
+                                                            <asp:ListItem Text="Nagar Panchayat" Value="NP"></asp:ListItem>
+                                                            <asp:ListItem Text="Nagar Palika Parishad" Value="NPP"></asp:ListItem>
+                                                        </asp:DropDownList>
                                                     </div>
                                                 </div>
 
@@ -625,7 +644,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divSection" runat="server">
                                                         <asp:Label ID="lblSectin" runat="server" Text="Section" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlSection" runat="server" CssClass="form-select" ></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlSection" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlSection_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
@@ -661,6 +680,19 @@
                                                             <asp:ListItem Text="प्रदेश अध्यक्ष" Value="प्रदेश अध्यक्ष"></asp:ListItem>
                                                             <asp:ListItem Text="Others" Value="Others"></asp:ListItem>
                                                         </asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divExpAmtLess" runat="server">
+                                                        <asp:Label ID="lblExpAmtLess" runat="server" Text="Expected Amount(In Lakhs) Less Than*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtExpAmtLess" runat="server" placeholder="31.89" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divExpAmtGret" runat="server">
+                                                        <asp:Label ID="lblExpAmtGret" runat="server" Text="Expected Amount(In Lakhs) Greater Than*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtExpAmtGret" runat="server" placeholder="31.89" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>

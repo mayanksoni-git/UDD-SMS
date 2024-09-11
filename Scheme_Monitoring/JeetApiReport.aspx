@@ -60,6 +60,34 @@
                                                         <asp:TextBox ID="txtLgTdCode" type="number" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divComplainant" runat="server">
+                                                        <asp:Label ID="lblComplainant" runat="server" Text="Complainant Like" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtComplainant" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divLetterSubject" runat="server">
+                                                        <asp:Label ID="lblLetterSubject" runat="server" Text="Letter Subject Like" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtLetterSubject" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divDetail" runat="server">
+                                                        <asp:Label ID="lblDetail" runat="server" Text="Detail Like" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtDetail" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divMemberName" runat="server">
+                                                        <asp:Label ID="lblMemberName" runat="server" Text="Member Name Like" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtMemberName" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                    </div>
+                                                </div>
                                                 
                                             </div>
                                             <div class="row gy-4">

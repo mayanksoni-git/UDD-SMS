@@ -228,9 +228,9 @@
                                 <div class="collapse menu-dropdown" id="sidebarWPMS">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="FormForApproval.aspx" class="nav-link" data-key="t-grid-js">Create Work Proposal</a> </li>
-                                        <li class="nav-item"><a href="FormForApproval2.aspx" class="nav-link" data-key="t-grid-js">Action on  Work Proposal</a> </li>
                                         <li class="nav-item"><a href="WorkPlanReport.aspx" class="nav-link" data-key="t-grid-js">Work Proposal Report</a> </li>
-                                        <li class="nav-item"><a href="WorkPlanReportSectionWise.aspx" class="nav-link" data-key="t-grid-js">Work Proposal Report Section Wise</a> </li>
+                                        <li class="nav-item"><a href="FormForApproval2.aspx" class="nav-link" data-key="t-grid-js">Action on  Work Proposal</a> </li>
+                                        <%--<li class="nav-item"><a href="WorkPlanReportSectionWise.aspx" class="nav-link" data-key="t-grid-js">Work Proposal Report Section Wise</a> </li>--%>
                                         <li class="nav-item"><a href="WorkProposalSummaryReport.aspx" class="nav-link" data-key="t-grid-js">Work Proposal Summary Report</a> </li>
                                         <li class="nav-item"><a href="FetchJeetApiWorkProposalData.aspx" class="nav-link" data-key="t-grid-js">Fetch From Jeet Portal</a> </li>
                                         <li class="nav-item"><a href="JeetApiReport.aspx" class="nav-link" data-key="t-grid-js">Jeet Api Report</a> </li>
