@@ -291,6 +291,8 @@ public partial class WorkPlanReport : System.Web.UI.Page
         obj.Circle = Circle_Id;
         obj.Division = Division_Id;
         obj.Scheme = Scheme;
+        obj.ProposerType = Role;
+        obj.Section = Section;
         obj.ProposalStatus = -1;
 
         return obj;

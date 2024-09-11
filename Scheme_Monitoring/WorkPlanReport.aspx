@@ -789,6 +789,7 @@
                                                             <asp:BoundField HeaderText="Zone" DataField="ZoneOfULB" />
                                                             <asp:BoundField HeaderText="Ward" DataField="Ward" />
                                                             <%--<asp:BoundField HeaderText="Scheme" DataField="ShortNameCode" />--%>
+                                                            <asp:BoundField HeaderText="Section" DataField="Section_Name" />
                                                             <asp:TemplateField HeaderText="Scheme">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblShortNameCode" runat="server" Text='<%# Eval("ShortNameCode") %>' ToolTip='<%# Eval("Project_Name") %>'></asp:Label>
