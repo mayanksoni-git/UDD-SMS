@@ -443,12 +443,12 @@ public class Loan
         }
     }
 
-    public DataTable getWorkProposalBySearchForReport(tbl_WorkProposal objSearch, int Mandal, string ULBType, int ExpAmtLess, int ExpAmtGret)
+    public DataTable getWorkProposalBySearchForReport(tbl_WorkProposal objSearch, int Mandal, string ULBType, int ExpAmtLess, int ExpAmtGret, int personId)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[12];
+            SqlParameter[] param = new SqlParameter[13];
 
             param[0] = new SqlParameter("@Zone", objSearch.Zone);
             param[1] = new SqlParameter("@Circle", objSearch.Circle);
@@ -462,6 +462,7 @@ public class Loan
             param[9] = new SqlParameter("@ULBType", ULBType);
             param[10] = new SqlParameter("@ExpAmtLess", ExpAmtLess);
             param[11] = new SqlParameter("@ExpAmtGret", ExpAmtGret);
+            param[12] = new SqlParameter("@PersonId", personId);
 
             return objDAL.GetDataByProcedure("sp_SelectWorkProposalsBySearchForReport", param);
         }

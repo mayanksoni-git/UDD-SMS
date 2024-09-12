@@ -54,6 +54,7 @@ public partial class WorkPlanReport : System.Web.UI.Page
     {
         DataSet ds = (new DataLayer()).get_tbl_Section();
         FillDropDown(ds, ddlSection, "Section_Name", "Section_Id");
+        
     }
     private void get_tbl_Zone()
     {
@@ -106,6 +107,8 @@ public partial class WorkPlanReport : System.Web.UI.Page
         int zoneId = Convert.ToInt32(Session["PersonJuridiction_ZoneId"]);
         int circleId = Convert.ToInt32(Session["PersonJuridiction_CircleId"]);
         int divisionId = Convert.ToInt32(Session["PersonJuridiction_DivisionId"]);
+        int DesignationId = Convert.ToInt32(Session["PersonJuridiction_DesignationId"]);
+         
 
         if (userType == 4 && zoneId > 0)
         {
@@ -131,6 +134,7 @@ public partial class WorkPlanReport : System.Web.UI.Page
                 }
             }
         }
+
     }
     private void SetDropdownValueAndDisable(DropDownList ddl, int value)
     {
@@ -285,13 +289,10 @@ public partial class WorkPlanReport : System.Web.UI.Page
         {
             ULBType = "-1";
         }
-
-
-
         ExpAmtLess = string.IsNullOrEmpty(txtExpAmtLess.Text) ? 0 : Convert.ToInt32(txtExpAmtLess.Text);
         ExpAmtGret = string.IsNullOrEmpty(txtExpAmtGret.Text) ? 0 : Convert.ToInt32(txtExpAmtGret.Text);
 
-        LoadWorkProposalGrid(obj, Mandal, ULBType, ExpAmtLess, ExpAmtGret);
+        LoadWorkProposalGrid(obj, Mandal, ULBType, ExpAmtLess, ExpAmtGret, Convert.ToInt32(Session["Person_Id"].ToString()));
     }
 
     
@@ -378,10 +379,10 @@ public partial class WorkPlanReport : System.Web.UI.Page
 
         return obj;
     }
-    private void LoadWorkProposalGrid(tbl_WorkProposal obj, int Mandal, string ULBType, int ExpAmtLess, int ExpAmtGret)
+    private void LoadWorkProposalGrid(tbl_WorkProposal obj, int Mandal, string ULBType, int ExpAmtLess, int ExpAmtGret, int personId)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.getWorkProposalBySearchForReport(obj, Mandal, ULBType, ExpAmtLess, ExpAmtGret);
+        dt = objLoan.getWorkProposalBySearchForReport(obj, Mandal, ULBType, ExpAmtLess, ExpAmtGret, personId);
 
         if (dt != null && dt.Rows.Count > 0)
         {
