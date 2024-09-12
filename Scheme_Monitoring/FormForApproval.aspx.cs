@@ -77,9 +77,9 @@ public partial class FormForApproval : System.Web.UI.Page
         }
 
         ListItem itemToRemove2 = ddlProjectMaster.Items.FindByValue("1019");
-        if (itemToRemove != null)
+        if (itemToRemove2 != null)
         {
-            ddlProjectMaster.Items.Remove(itemToRemove);
+            ddlProjectMaster.Items.Remove(itemToRemove2);
         }
     }
     private void get_tbl_Circle(int zoneId)
