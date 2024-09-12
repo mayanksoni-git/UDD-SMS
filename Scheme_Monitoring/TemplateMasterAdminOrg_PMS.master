@@ -289,6 +289,14 @@
                                         <li class="nav-item"><a href="MasterDPR_Upload.aspx" class="nav-link" data-key="t-list-js">Upload DPR Document</a> </li>
                                         <li class="nav-item"><a href="Report_DPR_Status_Report.aspx" class="nav-link" data-key="t-list-js">DPR Status Report</a> </li>
                                         <li class="nav-item"><a href="VisionPlanActionFirst.aspx" class="nav-link" data-key="t-list-js">Action on Vision Plan</a> </li>
+                                        <li class="nav-item">
+                                            <a href="PDFs/Annexures/Annexure4.xlsx"
+                                                download="Annexure4.xlsx"
+                                                target="_blank"
+                                                class="nav-link"
+                                                data-key="t-list-js">Annexure-4</a>
+                                        </li>
+                                        <li class="nav-item"><a href="PDFs/GuideLines/CM-VNY_English_Revised_Final%20Guidelines%2022.08PDF.pdf" target="_blank" class="nav-link" data-key="t-list-js">USER GUIDE</a> </li>
                                         <%--<li class="nav-item"><a href="AnnualActionPlan.aspx" class="nav-link" data-key="t-grid-js">Annual Action Plan</a> </li>--%>
                                     </ul>
                                 </div>
