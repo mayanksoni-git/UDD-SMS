@@ -447,7 +447,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
         if (dt != null && dt.Rows.Count > 0)
         {
             TxtPopulation.Text = dt.Rows[0]["population"].ToString();
-            TxtPopulation.Enabled = false;
+            //TxtPopulation.Enabled = false;
         }
         else
         {
@@ -459,24 +459,25 @@ public partial class CreateVisionPlan: System.Web.UI.Page
     protected void ddlFY_SelectedIndexChanged(object sender, EventArgs e)
     {
         var divi = "";
-       if(ddlDivision.SelectedValue=="")
+        if (ddlDivision.SelectedValue == "")
         {
             divi = "0";
         }
-       else
+        else
         {
             divi = ddlDivision.SelectedValue;
         }
         if (divi != "" && ddlCircle.SelectedValue != "0" && ddlFY.SelectedValue != "0")
         {
             GetPopulationdata(divi, ddlFY.SelectedValue);
-            lblpop.Text = "Projected population for financial year(" + ddlFY.SelectedItem + ")";
+            //lblpop.Text = "Projected population for financial year(" + ddlFY.SelectedItem + ")";
+            lblpop.Text = "Population As per 2011";
         }
 
         if (ddlFY.SelectedValue != "0")
         {
-            
-            lblpop.Text = "Projected population for financial year(" + ddlFY.SelectedItem + ")*";
+            //lblpop.Text = "Projected population for financial year(" + ddlFY.SelectedItem + ")*";
+            lblpop.Text = "Population As per 2011";
         }
     }
 

@@ -206,6 +206,13 @@ public partial class CreateDocForVisionPlan : System.Web.UI.Page
             ddlFY.Focus();
             return false;
         }
+
+        if(rblApprovedVP.SelectedValue=="0")
+        {
+            MessageBox.Show("Please Upload only committee-approved Vision Plan.");
+            rblApprovedVP.Focus();
+            return false;
+        }
        
         //if (ddlProject.SelectedValue == "0")
         //{

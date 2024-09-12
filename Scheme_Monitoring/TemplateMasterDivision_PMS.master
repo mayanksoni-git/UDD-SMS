@@ -241,7 +241,7 @@
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="ListOfAllULB_IncomeType.aspx" class="nav-link" data-key="t-grid-js">Add ULB Income</a> </li>
                                         <li class="nav-item"><a href="ListOfAllULB_ExpenseType.aspx" class="nav-link" data-key="t-grid-js">Add ULB Expense</a> </li>
-                                        <li class="nav-item"><a href="FundRecievedInULB.aspx.aspx" class="nav-link" data-key="t-grid-js">Fund Recieved in ULB</a> </li>
+                                        <%--<li class="nav-item"><a href="FundRecievedInULB.aspx.aspx" class="nav-link" data-key="t-grid-js">Fund Recieved in ULB</a> </li>--%>
                                         <li class="nav-item"><a href="ExistPlans.aspx" class="nav-link" data-key="t-grid-js">Existing Project</a> </li>
                                         <li class="nav-item"><a href="OngoingPlans.aspx" class="nav-link" data-key="t-grid-js">Ongoing Project</a> </li>
                                         <li class="nav-item"><a href="AnnualActionplan.aspx" class="nav-link" data-key="t-grid-js">Annual Action Plan</a> </li>

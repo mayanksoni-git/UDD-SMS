@@ -64,6 +64,16 @@
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="div1" runat="server">
+                                                        <asp:Label ID="lblApprovedVP" runat="server" Text="Have you uploaded the committee-approved Vision Plan?*" CssClass="form-label"></asp:Label>
+                                                        <asp:RadioButtonList ID="rblApprovedVP" CssClass="form-control" runat="server" RepeatDirection="Horizontal">
+                                                            <asp:ListItem Value="1">Yes</asp:ListItem>
+                                                            <asp:ListItem Value="0" Selected="True">NO</asp:ListItem>
+                                                        </asp:RadioButtonList>
+                                                    </div>
+                                                </div>
                                                
                                                  
                                                  <div class="col-xxl-3 col-md-6">
