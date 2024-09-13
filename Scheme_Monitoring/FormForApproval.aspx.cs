@@ -728,8 +728,8 @@ public partial class FormForApproval : System.Web.UI.Page
         hypRecommendationLetterEdit.NavigateUrl = "";
         btnSave.Visible = true;
         btnUpdate.Visible = false;
-        gvRecords.DataSource = null;
-        gvRecords.DataBind();
+        grdPost.DataSource = null;
+        grdPost.DataBind();
     }
 
     //work form here
@@ -814,15 +814,15 @@ public partial class FormForApproval : System.Web.UI.Page
 
         if (dt != null && dt.Rows.Count > 0)
         {
-            gvRecords.DataSource = dt;
-            gvRecords.DataBind();
+            grdPost.DataSource = dt;
+            grdPost.DataBind();
             divData.Visible = true;
         }
         else
         {
             divData.Visible = true;
-            gvRecords.DataSource = null;
-            gvRecords.DataBind();
+            grdPost.DataSource = null;
+            grdPost.DataBind();
             MessageBox.Show("No Records Found");
         }
     }
@@ -843,45 +843,45 @@ public partial class FormForApproval : System.Web.UI.Page
             HtmlTextWriter hw = new HtmlTextWriter(sw);
 
             // To export all pages
-            gvRecords.AllowPaging = false;
+            grdPost.AllowPaging = false;
             // Rebind your data here if needed
             tbl_WorkProposal obj = BindWorkProposalGridBySearch();
             LoadWorkProposalGrid(obj);
 
-            gvRecords.HeaderRow.Cells[0].Visible = false; // Work Proposal Id
-            gvRecords.HeaderRow.Cells[2].Visible = false; // Edit
-            gvRecords.HeaderRow.Cells[12].Visible = false; // Recommendation Letter
+            grdPost.HeaderRow.Cells[0].Visible = false; // Work Proposal Id
+            grdPost.HeaderRow.Cells[2].Visible = false; // Edit
+            grdPost.HeaderRow.Cells[12].Visible = false; // Recommendation Letter
 
-            foreach (GridViewRow row in gvRecords.Rows)
+            foreach (GridViewRow row in grdPost.Rows)
             {
                 row.Cells[0].Visible = false; // Work Proposal Id
                 row.Cells[2].Visible = false; // Edit
                 row.Cells[12].Visible = false; // Recommendation Letter
             }
 
-            gvRecords.HeaderRow.BackColor = System.Drawing.Color.White;
-            foreach (TableCell cell in gvRecords.HeaderRow.Cells)
+            grdPost.HeaderRow.BackColor = System.Drawing.Color.White;
+            foreach (TableCell cell in grdPost.HeaderRow.Cells)
             {
-                cell.BackColor = gvRecords.HeaderStyle.BackColor;
+                cell.BackColor = grdPost.HeaderStyle.BackColor;
             }
-            foreach (GridViewRow row in gvRecords.Rows)
+            foreach (GridViewRow row in grdPost.Rows)
             {
                 row.BackColor = System.Drawing.Color.White;
                 foreach (TableCell cell in row.Cells)
                 {
                     if (row.RowIndex % 2 == 0)
                     {
-                        cell.BackColor = gvRecords.AlternatingRowStyle.BackColor;
+                        cell.BackColor = grdPost.AlternatingRowStyle.BackColor;
                     }
                     else
                     {
-                        cell.BackColor = gvRecords.RowStyle.BackColor;
+                        cell.BackColor = grdPost.RowStyle.BackColor;
                     }
                     cell.CssClass = "textmode";
                 }
             }
 
-            gvRecords.RenderControl(hw);
+            grdPost.RenderControl(hw);
 
             // Style to format numbers to string
             string style = @"<style> .textmode { mso-number-format:\@; } </style>";
@@ -897,7 +897,7 @@ public partial class FormForApproval : System.Web.UI.Page
     }
     protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        gvRecords.PageIndex = e.NewPageIndex;
+        grdPost.PageIndex = e.NewPageIndex;
         tbl_WorkProposal obj = BindWorkProposalGridBySearch();
         LoadWorkProposalGrid(obj);        
     }
@@ -1262,6 +1262,25 @@ public partial class FormForApproval : System.Web.UI.Page
         {
             // If no file is uploaded, validation passes (depending on your requirements)
             args.IsValid = true;
+        }
+    }
+
+
+    protected void grdPost_PreRender(object sender, EventArgs e)
+    {
+        GridView gv = (GridView)sender;
+        if (gv.Rows.Count > 0)
+        {
+            //This replaces <td> with <th> and adds the scope attribute
+            gv.UseAccessibleHeader = true;
+        }
+        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
+        {
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        if (gv.ShowFooter == true && gv.Rows.Count > 0)
+        {
+            gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
     }
 }

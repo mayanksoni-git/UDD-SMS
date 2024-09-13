@@ -263,8 +263,8 @@
                                                 </div>
                                                 <!-- div.dataTables_borderWrap -->
                                                 <div style="overflow: auto">
-                                                    <asp:GridView ID="gvRecords" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" AllowPaging="true"
-                                                    OnPageIndexChanging="OnPageIndexChanging" PageSize="10">
+                                                    <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found"
+                                                    OnPageIndexChanging="OnPageIndexChanging" PageSize="10" OnPreRender="grdPost_PreRender">
                                                         <Columns>
                                                             <asp:BoundField DataField="WorkProposalId" HeaderText="Work Proposal Id">
                                                                 <HeaderStyle CssClass="displayStyle" />
@@ -335,7 +335,7 @@
                 <Triggers>
                     <asp:PostBackTrigger ControlID="btnSave" />
                     <asp:PostBackTrigger ControlID="btnExportToExcel" />
-                    <%--<asp:PostBackTrigger ControlID="btnSearch" />--%>
+                    <asp:PostBackTrigger ControlID="btnSearch" />
                     <asp:PostBackTrigger ControlID="btnUpdate" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />
