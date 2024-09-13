@@ -896,6 +896,36 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         }
     }
 
+    public DataTable GetVisionPlanForReport(string actions,  int? ULBID,  int? stateid, string IsConstructed, int? circleId
+        , int? FY, string constructedYear,  string selfPriority, int VisionStatus, string ULBType, int mandal, int ExpAmtLess, 
+        int ExpAmtGret)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[13];
+            param[0] = new SqlParameter("@action", actions);
+            param[1] = new SqlParameter("@stateId", stateid);
+            param[2] = new SqlParameter("@distId", circleId);
+            param[3] = new SqlParameter("@ULBId", ULBID);
+            param[4] = new SqlParameter("@FYID", FY);
+            param[5] = new SqlParameter("@IsConstructed", IsConstructed);
+            param[6] = new SqlParameter("@constructedYear", constructedYear);
+            param[7] = new SqlParameter("@selfPriority", selfPriority);
+            param[8] = new SqlParameter("@VisionStatus", VisionStatus);
+            param[9] = new SqlParameter("@ULBType", ULBType);
+            param[10] = new SqlParameter("@mandal", mandal);
+            param[11] = new SqlParameter("@ExpAmtLess", ExpAmtLess);
+            param[12] = new SqlParameter("@ExpAmtGret", ExpAmtGret);
+
+            return objDAL.GetDataByProcedure("SPVisionPlanForReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     public DataSet getFYDetail()
     {
         DataSet ds = new DataSet();

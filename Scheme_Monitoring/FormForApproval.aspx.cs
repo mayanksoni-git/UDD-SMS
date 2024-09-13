@@ -45,7 +45,7 @@ public partial class FormForApproval : System.Web.UI.Page
 
     private void get_tbl_FinancialYear()
     {
-        DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
+        DataSet ds = (new DataLayer()).get_tbl_FinancialYearForWorkProposal();
         FillDropDown(ds, ddlFY, "FinancialYear_Comments", "FinancialYear_Id");
     }
     private void get_tbl_Zone()
