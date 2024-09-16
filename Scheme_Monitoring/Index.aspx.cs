@@ -476,6 +476,7 @@ public partial class Index : System.Web.UI.Page
             Session["PersonJuridiction_ZoneId"] = ds.Tables[0].Rows[0]["PersonJuridiction_ZoneId"].ToString();
             Session["PersonJuridiction_CircleId"] = ds.Tables[0].Rows[0]["PersonJuridiction_CircleId"].ToString();
             Session["PersonJuridiction_DivisionId"] = ds.Tables[0].Rows[0]["PersonJuridiction_DivisionId"].ToString();
+            Session["MandalId"] = ds.Tables[0].Rows[0]["DivisionID"].ToString();
         }
         else
         {

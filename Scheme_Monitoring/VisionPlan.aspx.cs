@@ -367,6 +367,11 @@ public partial class VisionPlan : System.Web.UI.Page
     {
         int userType = Convert.ToInt32(Session["UserType"]);
         int zoneId = Convert.ToInt32(Session["PersonJuridiction_ZoneId"]);
+        //int MandalId = Convert.ToInt32(Session["MandalId"]);
+        //int MandalId = Session["MandalId"] is int mandalId ? mandalId : Convert.ToInt32(Session["MandalId"]);
+        int MandalId = Session["MandalId"] != null && !string.IsNullOrEmpty(Session["MandalId"].ToString())
+               ? Convert.ToInt32(Session["MandalId"])
+               : 0;
         int circleId = Convert.ToInt32(Session["PersonJuridiction_CircleId"]);
         int divisionId = Convert.ToInt32(Session["PersonJuridiction_DivisionId"]);
 
@@ -385,15 +390,20 @@ public partial class VisionPlan : System.Web.UI.Page
         else if (userType == 7 && zoneId > 0)
         {
             SetDropdownValueAndDisable(ddlZone, zoneId);
-            if (circleId > 0)
+            if (MandalId>0)
             {
-                SetDropdownValueAndDisable(ddlCircle, circleId);
-                if (divisionId > 0)
+                SetDropdownValueAndDisable(ddlMandal, MandalId);
+                if (circleId > 0)
                 {
-                    SetDropdownValueAndDisable(ddlDivision, divisionId);
-
+                    SetDropdownValueAndDisable(ddlCircle, circleId);
+                    if (divisionId > 0)
+                    {
+                        SetDropdownValueAndDisable(ddlDivision, divisionId);
+                        ddlULBType.Enabled = false;
+                    }
                 }
             }
+            
         }
     }
     private void SetDropdownValueAndDisable(DropDownList ddl, int value)
@@ -406,6 +416,12 @@ public partial class VisionPlan : System.Web.UI.Page
             {
                 ddlZone_SelectedIndexChanged(ddl, EventArgs.Empty);
             }
+
+            else if(ddl.ID.ToString()== "ddlMandal")
+            {
+                ddlMandal_SelectedIndexChanged(ddl, EventArgs.Empty);
+            }
+
             else if (ddl.ID.ToString() == "ddlCircle")
             {
                 ddlCircle_SelectedIndexChanged(ddl, EventArgs.Empty);
