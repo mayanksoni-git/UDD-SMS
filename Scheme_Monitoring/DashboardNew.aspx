@@ -17,21 +17,17 @@
 
                 <!-- start page title -->
                 <div class="row">
-                    <div class="col-12 mb-4">
+                    <div class="col-12 mb-0">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                             <h4 class="mb-sm-0">Dashboard</h4>
-                            <div class="page-title-right">
-                                <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                    <li class="breadcrumb-item active">Dashboard</li>
-                                </ol>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- end page title -->
 
-                <div class="row mb-4">
+                <div class="card">
+                 <div class="card-body">
+                <div class="row mb-0">
                     <div class="col-md-3" id="divZone" runat="server">
                         <div class="form-group">
                             <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
@@ -51,17 +47,17 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="form-group">
-                            <br />
+                        <div class="form-group mt-4">
                             <asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn-filter" OnClick="btnSearch_Click"></asp:Button>
                         </div>
                     </div>
                 </div>
+                       </div>  </div>
                 <div class="row">
                     <div class="col-xxl-12">
                         <div class="d-flex flex-column h-100">
                             <!-- end row-->
-                            <div class="row">
+                           <div class="row">
                                 <div class="col-md-3">
                                     <asp:GridView ID="grdScheme_1" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdScheme_1_PreRender" ShowFooter="false" ShowHeader="false">
                                         <Columns>
@@ -82,7 +78,7 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-danger bg-gradient rounded-circle fs-2"><i class="bx bx-spreadsheet text-white"></i></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-danger bg-gradient rounded-circle fs-2"><%--<i class="bx bx-spreadsheet text-white"></i>--%><img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid"/></span></div>
 
                                                             </div>
 
@@ -130,7 +126,7 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-warning bg-gradient rounded-circle fs-2"><i class="bx bx-spreadsheet text-white"></i></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-warning bg-gradient rounded-circle fs-2"><img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid" /></span></div>
 
                                                             </div>
                                                             <div class="px-0 py-2 mt-1">
@@ -175,7 +171,7 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary bg-gradient rounded-circle fs-2"><i class="bx bx-spreadsheet text-white"></i></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary bg-gradient rounded-circle fs-2"><img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid" /></span></div>
 
                                                             </div>
                                                             <div class="px-0 py-2 mt-1">
@@ -220,7 +216,7 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-success bg-gradient rounded-circle fs-2"><i class="bx bx-spreadsheet text-white"></i></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-success bg-gradient rounded-circle fs-2"><img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid" /></span></div>
 
                                                             </div>
                                                             <div class="px-0 py-2 mt-1">
