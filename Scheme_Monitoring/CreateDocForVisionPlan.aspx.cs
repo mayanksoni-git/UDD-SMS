@@ -207,7 +207,7 @@ public partial class CreateDocForVisionPlan : System.Web.UI.Page
             return false;
         }
 
-        if(rblApprovedVP.SelectedValue=="0")
+        if(rblApprovedVP.SelectedValue!="1")
         {
             MessageBox.Show("Please Upload only committee-approved Vision Plan.");
             rblApprovedVP.Focus();

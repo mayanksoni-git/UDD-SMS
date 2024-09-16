@@ -39,21 +39,21 @@
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divZone" runat="server">
-                                                        <asp:Label ID="lblZoneH" runat="server" Text="Zone*" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblZoneH" runat="server" Text="State*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divCircle" runat="server">
-                                                        <asp:Label ID="lblCircleH" runat="server" Text="Circle*" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblCircleH" runat="server" Text="District*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divDivision" runat="server">
-                                                        <asp:Label ID="lblDivisionH" runat="server" Text="Division*" CssClass="form-label fw-bold me-1"></asp:Label>
+                                                        <asp:Label ID="lblDivisionH" runat="server" Text="ULB*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
@@ -70,7 +70,7 @@
                                                         <asp:Label ID="lblApprovedVP" runat="server" Text="Have you uploaded the committee-approved Vision Plan?*" CssClass="form-label"></asp:Label>
                                                         <asp:RadioButtonList ID="rblApprovedVP" CssClass="form-control" runat="server" RepeatDirection="Horizontal">
                                                             <asp:ListItem Value="1">Yes</asp:ListItem>
-                                                            <asp:ListItem Value="0" Selected="True">NO</asp:ListItem>
+                                                            <%--<asp:ListItem Value="0" Selected="True">NO</asp:ListItem>--%>
                                                         </asp:RadioButtonList>
                                                     </div>
                                                 </div>

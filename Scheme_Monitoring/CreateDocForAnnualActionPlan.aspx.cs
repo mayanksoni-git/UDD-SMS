@@ -206,7 +206,14 @@ public partial class CreateDocForAnnualActionPlan : System.Web.UI.Page
             ddlFY.Focus();
             return false;
         }
-       
+
+        if (rblApprovedAAP.SelectedValue != "1")
+        {
+            MessageBox.Show("Please Upload only committee-approved Annual Action Plan.");
+            rblApprovedAAP.Focus();
+            return false;
+        }
+
         //if (ddlProject.SelectedValue == "0")
         //{
         //    MessageBox.Show("Please Select a Project. ");

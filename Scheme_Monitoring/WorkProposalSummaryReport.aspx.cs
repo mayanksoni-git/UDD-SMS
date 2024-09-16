@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Globalization;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.text.html.simpleparser;
-using System.IO;
-using System.Text;
-using System.Web.UI.DataVisualization.Charting;
-using System.Web.Script.Serialization;
-using System.Web.Services;
 
 public partial class WorkProposalSummaryReport : System.Web.UI.Page
 {
@@ -40,7 +29,6 @@ public partial class WorkProposalSummaryReport : System.Web.UI.Page
             get_tbl_Zone();
             get_tbl_Mandal();
             get_tbl_Section();
-            //get_tbl_Project();
 
             SetDropdownsBasedOnUserType();
         }

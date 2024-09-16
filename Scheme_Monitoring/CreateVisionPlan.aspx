@@ -161,12 +161,12 @@
                                                     <div id="div7" runat="server">
                                                         <asp:Label ID="Label10" runat="server" Text="Self-Priority (5 is the highest, 1 is the lowest)" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-select" >
-                                                            <asp:ListItem Value="0">--Select--</asp:ListItem>
-                                                            <asp:ListItem Value="1">1</asp:ListItem>
-                                                            <asp:ListItem Value="2">2</asp:ListItem>
-                                                            <asp:ListItem Value="3">3</asp:ListItem>
-                                                            <asp:ListItem Value="4">4</asp:ListItem>
-                                                            <asp:ListItem Value="5">5</asp:ListItem>
+                                                            <asp:ListItem value="0">--Select--</asp:ListItem>
+                                                            <asp:ListItem Value="1">1 - Very Low Priority</asp:ListItem>
+                                                            <asp:ListItem Value="2">2 - Low Priority</asp:ListItem>
+                                                            <asp:ListItem Value="3">3 - Medium Priority</asp:ListItem>
+                                                            <asp:ListItem Value="4">4 - High Priority</asp:ListItem>
+                                                            <asp:ListItem Value="5">5 - Highest Priority</asp:ListItem>
                                                         </asp:DropDownList>
                                                     </div>
                                                 </div>
