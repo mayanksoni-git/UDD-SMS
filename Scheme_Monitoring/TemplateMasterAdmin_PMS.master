@@ -190,6 +190,7 @@
                                         <li class="nav-item"><a href="ULBPopulation.aspx" class="nav-link" data-key="t-pickers">ULB Population</a></li>
                                         <li class="nav-item"><a href="MasterULBIncome.aspx" class="nav-link" data-key="t-pickers">ULB Income Type</a></li>
                                         <li class="nav-item"><a href="MasterULBExpense.aspx" class="nav-link" data-key="t-pickers">ULB Expense Type</a></li>
+                                        <li class="nav-item"><a href="NotificationList.aspx" class="nav-link" data-key="t-pickers">Add Notification</a></li>
                                     </ul>
                                 </div>
                             </li>
