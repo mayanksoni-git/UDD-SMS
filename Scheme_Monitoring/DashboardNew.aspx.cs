@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -8,6 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class DashboardNew : System.Web.UI.Page
 {
+    ULBFund objLoan = new ULBFund();
     protected void Page_PreInit(object sender, EventArgs e)
     {
         this.MasterPageFile = SetMasterPage.ReturnPage();
@@ -15,10 +17,12 @@ public partial class DashboardNew : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (Session["Person_Id"] == null || Session["Login_Id"] == null)
         {
             Response.Redirect("Index.aspx");
         }
+       
         if (!IsPostBack)
         {
             lblZoneH.Text = Session["Default_Zone"].ToString();
@@ -105,11 +109,15 @@ public partial class DashboardNew : System.Web.UI.Page
                         catch
                         { }
                     }
+                    GetAllData();
                 }
-                catch
-                { }
+                catch (Exception ex)
+                { 
+                }
             }
+           
             Load_dashboard();
+          
         }
     }
 
@@ -608,4 +616,82 @@ public partial class DashboardNew : System.Web.UI.Page
             Response.Redirect("Report_Collection_Division.aspx?Scheme_Id=" + Scheme_Id.ToString() + "&Zone_Id=" + Zone_Id.ToString() + "&Circle_Id=" + Circle_Id.ToString() + "&Division_Id=" + Division_Id.ToString());
         }
     }
+    protected void GetAllData()
+    {
+        DataTable dt = new DataTable();
+        string userRole = GetCurrentUserRole();
+        string currentULB = Session["PersonJuridiction_DivisionId"].ToString();
+        //string currentULB = "2";
+
+        if (userRole == "7" && currentULB!="")
+        {
+            // ULB user - fetch data for the specific ULB
+            dt = objLoan.MarqueeList(currentULB);
+        }
+       
+
+        // Update marquee content
+        UpdateMarquee(dt);
+    }
+
+    protected string GetCurrentUserRole()
+    {
+        // Example implementation, replace with your actual logic
+        return HttpContext.Current.Session["UserType"].ToString();
+    }
+
+    protected string GetCurrentULB()
+    {
+        // Example implementation, replace with your actual logic
+        return Session["ULB_Id"].ToString();
+    }
+
+
+    protected void UpdateMarquee(DataTable dt)
+    {
+        StringBuilder marqueeContent = new StringBuilder();
+
+        foreach (DataRow row in dt.Rows)
+        {
+            // Assuming you have columns "Notification_Detail" and "Document_URL" in your DataTable
+            string notificationDetail = row["Notification_Detail"].ToString();
+            string documentUrl = row["Notification_Document"].ToString();
+
+            // Create a div with a link for each notification
+            marqueeContent.Append("<div>" + notificationDetail + " <a href=" + documentUrl + " target='_blank'>Click to Open </a>|  </div>");
+        }
+
+        // Update the marquee literal with the new content
+        LiteralMarquee.Text = "<marquee scrollamount='8' onmouseover='this.stop(); ' onmouseout = 'this.start();' > " + marqueeContent.ToString() + "</marquee>";
+    }
+
+    protected void UpdateMarquee12(DataTable dt)
+    {
+        StringBuilder marqueeContent = new StringBuilder();
+
+        foreach (DataRow row in dt.Rows)
+        {
+            string notificationDetail = row["Notification_Detail"].ToString();
+            string documentUrl = row["Notification_Document"].ToString();
+            marqueeContent.Append("<a href="+ documentUrl + " target='_blank'>"+ notificationDetail + "</a>");
+        }
+
+        // Update the marquee content
+        LiteralMarquee.Text = marqueeContent.ToString();
+    }
+
+
+    //protected void UpdateMarquee(DataTable dt)
+    //{
+    //    StringBuilder marqueeContent = new StringBuilder();
+
+    //    foreach (DataRow row in dt.Rows)
+    //    {
+    //        // Assuming you have a column named "Message" in your DataTable
+    //        marqueeContent.Append("<div>" + row["Notification_Detail"].ToString() + "</div>");
+    //    }
+
+    //    // Update the marquee literal with the new content
+    //    LiteralMarquee.Text = "<marquee>" + marqueeContent.ToString() + "</marquee>";
+    //}
 }

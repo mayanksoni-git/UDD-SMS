@@ -134,6 +134,27 @@ public class ULBFund
         return flag;
     }
 
+    public DataTable GetNotifications(string ZoneId, string CircleId, string Ulbtype, string DivisionId)
+    {
+        
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlParameter[] param = new SqlParameter[3];
+                param[0] = new SqlParameter("@ZoneId", ZoneId);
+                param[1] = new SqlParameter("@CircleId", CircleId);
+                param[2] = new SqlParameter("@UlbType", Ulbtype);
+                param[2] = new SqlParameter("@DivisionId", DivisionId);
+
+                return objDAL.GetDataByProcedure("sp_getNotificationList", param);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        
+    }
+
     //public bool InsertULBFundIncome(List<Tbl_ULBIncomeTypeChild> li, string Msg)
     //{
     //    bool flag = false;
@@ -628,6 +649,22 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             ds = null;
         }
         return ds;
+    }
+
+    public DataTable MarqueeList(string currentULB)
+    {
+
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@ULBID", currentULB);
+            return objDAL.GetDataByProcedure("sp_Marquee_notifications", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
     }
 
     public DataTable DeleteULBExpenses(string ULBID, string FYID)

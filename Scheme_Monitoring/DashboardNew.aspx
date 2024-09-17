@@ -1,4 +1,4 @@
-﻿<%@ page language="C#" masterpagefile="~/TemplateMasterAdmin.master" autoeventwireup="true" codefile="DashboardNew.aspx.cs" inherits="DashboardNew" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="DashboardNew.aspx.cs" Inherits="DashboardNew" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -11,6 +11,36 @@
             background-color: transparent;
         }
     </style>
+
+    <%--<style>
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+            background-color: #f1f1f1; /* Customize as needed */
+            padding: 10px 0;
+            border: 1px solid #ccc; /* Optional border */
+        }
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .marquee a {
+            text-decoration: none;
+            color: #000; /* Customize as needed */
+            margin-right: 2em; /* Space between notifications */
+        }
+    </style>--%>
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
@@ -24,40 +54,50 @@
                     </div>
                 </div>
                 <!-- end page title -->
-
+                <%--<h3><marquee behaviour="alternate" scrollamount="15">test marquee</marquee></h3>--%>
+                <div class="row">
+                    <div class="col-12 mb-0">
+                <div class="marquee">
+                    <div class="marquee-content">
+                        <asp:Literal ID="LiteralMarquee" runat="server"></asp:Literal>
+                    </div>
+                </div>
+                        </div>
+                    </div>
                 <div class="card">
-                 <div class="card-body">
-                <div class="row mb-0">
-                    <div class="col-md-3" id="divZone" runat="server">
-                        <div class="form-group">
-                            <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
-                            <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
-                        </div>
-                    </div>
-                    <div class="col-md-3" id="divCircle" runat="server">
-                        <div class="form-group">
-                            <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
-                            <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
-                        </div>
-                    </div>
-                    <div class="col-md-3" id="divDivision" runat="server">
-                        <div class="form-group">
-                            <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
-                            <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group mt-4">
-                            <asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn-filter" OnClick="btnSearch_Click"></asp:Button>
+                    <div class="card-body">
+                        <div class="row mb-0">
+                            <div class="col-md-3" id="divZone" runat="server">
+                                <div class="form-group">
+                                    <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
+                                    <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-3" id="divCircle" runat="server">
+                                <div class="form-group">
+                                    <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
+                                    <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-3" id="divDivision" runat="server">
+                                <div class="form-group">
+                                    <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
+                                    <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group mt-4">
+                                    <asp:Button ID="btnSearch" Text="Search" runat="server" CssClass="btn-filter" OnClick="btnSearch_Click"></asp:Button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                       </div>  </div>
                 <div class="row">
                     <div class="col-xxl-12">
                         <div class="d-flex flex-column h-100">
                             <!-- end row-->
-                           <div class="row">
+                            <div class="row">
                                 <div class="col-md-3">
                                     <asp:GridView ID="grdScheme_1" runat="server" AutoGenerateColumns="False" CssClass="display table table-bordered" EmptyDataText="No Records Found" OnPreRender="grdScheme_1_PreRender" ShowFooter="false" ShowHeader="false">
                                         <Columns>
@@ -78,7 +118,7 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-danger bg-gradient rounded-circle fs-2"><%--<i class="bx bx-spreadsheet text-white"></i>--%><img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid"/></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-danger bg-gradient rounded-circle fs-2"><%--<i class="bx bx-spreadsheet text-white"></i>--%><img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid" /></span></div>
 
                                                             </div>
 
@@ -126,7 +166,8 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-warning bg-gradient rounded-circle fs-2"><img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid" /></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-warning bg-gradient rounded-circle fs-2">
+                                                                    <img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid" /></span></div>
 
                                                             </div>
                                                             <div class="px-0 py-2 mt-1">
@@ -171,7 +212,8 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary bg-gradient rounded-circle fs-2"><img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid" /></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-primary bg-gradient rounded-circle fs-2">
+                                                                    <img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid" /></span></div>
 
                                                             </div>
                                                             <div class="px-0 py-2 mt-1">
@@ -216,7 +258,8 @@
                                                                     <h2 class="ff-secondary fw-semibold"><span class="counter-value" data-target='<%# Eval("Total_Count") %>'>0</span></h2>
                                                                 </a>
 
-                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-success bg-gradient rounded-circle fs-2"><img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid" /></span></div>
+                                                                <div class="avatar-sm flex-shrink-0"><span class="avatar-title bg-success bg-gradient rounded-circle fs-2">
+                                                                    <img src="<%# Eval("Project_Icon_Path") %>" class="img-fluid" /></span></div>
 
                                                             </div>
                                                             <div class="px-0 py-2 mt-1">
@@ -256,4 +299,5 @@
         </div>
         <!-- End Page-content -->
     </div>
+
 </asp:Content>

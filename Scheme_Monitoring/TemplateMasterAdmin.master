@@ -191,6 +191,7 @@
                                         <li class="nav-item"><a href="MasterLokSabha.aspx" class="nav-link" data-key="t-checkboxs-radios">Lok Sabha</a> </li>
                                         <li class="nav-item"><a href="MasterVidhanSabha.aspx" class="nav-link" data-key="t-checkboxs-radios">Vidhan Sabha</a> </li>
                                         <li class="nav-item"><a href="MasterDivision.aspx" class="nav-link" data-key="t-pickers">ULB</a></li>
+                                        <li class="nav-item"><a href="NotificationList.aspx" class="nav-link" data-key="t-pickers">Add Notification</a></li>
                                     </ul>
                                 </div>
                             </li>
