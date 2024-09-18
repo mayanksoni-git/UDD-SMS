@@ -253,17 +253,19 @@ public partial class NotificationList : System.Web.UI.Page
 
     protected void btnEdit_Click(object sender, ImageClickEventArgs e)
     {
-        GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
+        // Get the ImageButton that was clicked
+        ImageButton btnEdit = (ImageButton)sender;
 
-        int NotificationId = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        if (NotificationId > 0)
-        {
-           
-        }
-        else
-        {
-            return;
-        }
+        // Find the GridViewRow that contains the clicked button
+        GridViewRow row = (GridViewRow)btnEdit.NamingContainer;
+
+        // Retrieve the ID from the HiddenField in that row
+        HiddenField hiddenField = (HiddenField)row.FindControl("hdnNotificationI_d");
+        int notificationId = Convert.ToInt32(hiddenField.Value);
+
+        // Redirect to the same page with the ID as a query parameter
+        Response.Redirect("Notifications.aspx?id=" + notificationId);
     }
-  
+
+   
 }

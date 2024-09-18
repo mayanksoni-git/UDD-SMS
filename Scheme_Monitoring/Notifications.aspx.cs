@@ -26,13 +26,22 @@ public partial class Notifications : System.Web.UI.Page
             Response.Redirect("Index.aspx");
         }
         if (!IsPostBack)
+        
         {
             if (Request.QueryString.Count > 0)
             {
-                Notification_Id.Value = Request.QueryString["Notification_Id"].ToString();
-                //FYID.Value = Request.QueryString["FYID"].ToString();
+                if (Request.QueryString["Notification_Id"] != null)
+                {
+                    Notification_Id.Value = Request.QueryString["Notification_Id"];
+                }
             }
-
+            if (Request.QueryString["id"] != null)
+            {
+                int notificationId = Convert.ToInt32(Request.QueryString["id"]);
+                LoadNotificationDetails(notificationId);
+                BtnSave.Visible = false; // Hide Save button when editing
+                BtnUpdate.Visible = true; // Show Update button when editing
+            }
             get_tbl_Zone();
             get_tbl_Circle(0);
             get_tbl_Division(0,"-1");
@@ -41,7 +50,29 @@ public partial class Notifications : System.Web.UI.Page
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
 
-   
+    private void LoadNotificationDetails(int notificationId)
+    {
+        // Fetch notification details from the database
+        DataSet dt = (new DataLayer()).GetNotificationById(notificationId);
+        if (dt.Tables[0].Rows.Count > 0)
+        {
+            DataRow row = dt.Tables[0].Rows[0];
+            txtNotificationHeading.Text = row["Notification_Heading"].ToString();
+            txtNotificationDetail.Text = row["Notification_Detail"].ToString();
+            txtNotificationDate.Text = Convert.ToDateTime(row["Notification_Date"]).ToString("yyyy-MM-dd");
+            txtFromDate.Text = Convert.ToDateTime(row["Notification_FromDate"]).ToString("yyyy-MM-dd");
+            txtToDate.Text = Convert.ToDateTime(row["Notification_ToDate"]).ToString("yyyy-MM-dd");
+
+            // Set dropdowns based on the loaded data
+            ddlZone.SelectedValue = row["Zone_Id"].ToString();
+            get_tbl_Circle(Convert.ToInt32(row["Zone_Id"]));
+            ddlCircle.SelectedValue = row["Circle_Id"].ToString();
+            ddlULBType.SelectedValue = row["Division_Type"].ToString();
+
+            // Additional settings for other fields
+        }
+    }
+
     private void get_tbl_Zone()
     {
         DataSet ds = (new DataLayer()).get_tbl_Zone();
@@ -361,7 +392,7 @@ public partial class Notifications : System.Web.UI.Page
                     cmd.Parameters.AddWithValue("@Notification_Date", notificationDate);
                     cmd.Parameters.AddWithValue("@Notification_FromDate", fromDate);
                     cmd.Parameters.AddWithValue("@Notification_ToDate", toDate);
-                    cmd.Parameters.AddWithValue("@Notification_Document", !string.IsNullOrEmpty(documentFileName) ? ("~/PDFs/"+documentFileName) : (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Notification_Document", !string.IsNullOrEmpty(documentFileName) ? ("PDFs/"+documentFileName) : (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@Created_By", createdBy);
                     cmd.Parameters.AddWithValue("@Created_On", DateTime.Now);
 

@@ -131,10 +131,16 @@
                                                          <asp:BoundField HeaderText="Notification_FromDate" DataField="Notification_FromDate" DataFormatString="{0:dd-MM-yyyy}"  HtmlEncode="False" />
                                                          <asp:BoundField HeaderText="Notification_ToDate" DataField="Notification_ToDate" DataFormatString="{0:dd-MM-yyyy}"  HtmlEncode="False" />
                                                         <asp:TemplateField HeaderText="Edit">
-                                                                <ItemTemplate>
-                                                                    <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
+                                                            <ItemTemplate>
+                                                                <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" 
+                                                                    OnClick="btnEdit_Click" 
+                                                                    ImageUrl="~/assets/images/edit_btn.png" 
+                                                                    runat="server" />
+                                                                <asp:HiddenField ID="hdnNotificationI_d" 
+                                                                    Value='<%# Eval("Notification_Id") %>' 
+                                                                    runat="server" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Delete" Visible="false">
                                                             <ItemTemplate>
                                                                 <asp:Button runat="server" ID="BtnDelete" Text="Delete" CommandArgument='<%# Eval("Notification_Id")%>' CommandName="Delete" OnCommand="BtnDelete_Command" CssClass="btn btn-dangerr drill_btn" />

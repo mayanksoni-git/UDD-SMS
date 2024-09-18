@@ -658,7 +658,7 @@ public partial class DashboardNew : System.Web.UI.Page
             string documentUrl = row["Notification_Document"].ToString();
 
             // Create a div with a link for each notification
-            marqueeContent.Append("<div>" + notificationDetail + " <a href=" + documentUrl + " target='_blank'>Click to Open </a>|  </div>");
+            marqueeContent.Append("<div style='color:red'>" + notificationDetail + " <a href=" + documentUrl + " target='_blank'>Click to Open </a>|  </div>");
         }
 
         // Update the marquee literal with the new content

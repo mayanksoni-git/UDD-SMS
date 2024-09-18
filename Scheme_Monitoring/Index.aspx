@@ -44,7 +44,7 @@
                                             </asp:TextBox>
                                         </div>
                                         <div class="mb-3">
-                                            <div class="float-end"><a href="#" class="text-muted">Forgot password?</a> </div>
+                                            <div class="float-end"><a href="ForgetPassword.aspx" class="text-muted">Forgot password?</a> </div>
                                             <label class="form-label" for="password-input">Password</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
                                                 <asp:TextBox ID="txtPassowrd" TabIndex="2" runat="server" CssClass="form-control pe-5 password-input" placeholder="Password" onkeydown="return submitOnEnter(event);" autocomplete="off" TextMode="Password">
