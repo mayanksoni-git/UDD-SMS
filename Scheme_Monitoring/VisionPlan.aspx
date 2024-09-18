@@ -167,7 +167,7 @@
                                                     <tr class="table-primary">
 
                                                         <th style="text-align:center;font-size:15px" >Sr. No.</th>
-                                                       <th  style="text-align:center;font-size:15px" colspan="3">ULB Details</th>
+                                                       <th  style="text-align:center;font-size:15px" colspan="4">ULB Details</th>
                                                         <th  style="text-align:center;font-size:15px" colspan="4">Project Name</th>
                                                        <th  style="text-align:center;font-size:15px" colspan="2">Existing</th>
                                                         <th  style="text-align:center;font-size:15px" ">Condition</th>
@@ -177,6 +177,9 @@
                                                       
                                                         <th  style="text-align:center;font-size:15px" colspan="2">Location</th>
                                                         <th  style="text-align:center;font-size:15px" >Priority</th>
+                                                        <th  style="text-align:center;font-size:15px" colspan="2">VP Created/Updated On</th>
+                                                        <th  style="text-align:center;font-size:15px" colspan="4">Doc Status</th>
+
                                                          <th style="text-align:center;font-size:15px">Action</th>
                                                     </tr>
                                                      <tr class="table-primary">
@@ -184,6 +187,7 @@
                                                        <th>#</th>
                                                         <th  style="text-align:center">District</th>
                                                         <th  style="text-align:center">ULB Name</th>
+                                                        <th  style="text-align:center">ULB Type</th>
                                                         <th  style="text-align:center">Population</th>
                                                         <th  style="text-align:center">Project Type</th>
                                                          <th  style="text-align:center">Project Name</th>
@@ -203,7 +207,13 @@
                                                         <th  style="text-align:center">No Of Similar Project</th>
                                                         <th  style="text-align:center">Ward Name (Ward No.)</th>
                                                         <th  style="text-align:center">(on a scale of 1 to 5, 5 being the highest)</th>
-                                                         <th></th>
+                                                        <th  style="text-align:center">Created On</th>
+                                                        <th  style="text-align:center">Updated On</th>
+                                                        <th  style="text-align:center">Uploaded / Not Uploaded</th>
+                                                        <th  style="text-align:center">Visison Plan Doc</th>
+                                                        <th  style="text-align:center">Doc Created On</th>
+                                                        <th  style="text-align:center">Doc Updated On</th>
+                                                        <th></th>
                                                          
 
                                                     </tr>
@@ -215,6 +225,7 @@
                                                 <td><asp:Label id="lblSr" runat="server"><%# Container.ItemIndex + 1 %></asp:Label> </td>
                                                 <td><asp:Label id="lblDistrict" runat="server"><%# DataBinder.Eval(Container.DataItem, "Circle_Name") %></asp:Label></td>
                                                 <td><asp:Label id="lblULBName" runat="server"><%# DataBinder.Eval(Container.DataItem, "Division_Name") %></asp:Label></td>
+                                                <td><asp:Label id="lblULBType" runat="server"><%# DataBinder.Eval(Container.DataItem, "Division_Type") %></asp:Label></td>
                                                 <td><asp:Label id="lblPopulation" runat="server"><%# DataBinder.Eval(Container.DataItem, "population") %></asp:Label></td>
                                                 <td><asp:Label id="Label4" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectType_Name") %></asp:Label></td>
                                                 <td><asp:Label id="Label2" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectName") %></asp:Label></td>
@@ -227,7 +238,18 @@
                                                 <td><asp:Label id="lblOwnership" runat="server"><%# DataBinder.Eval(Container.DataItem, "OwnerShips") %></asp:Label></td>
                                                 <td><asp:Label id="lblNoOfSameProjInCity" runat="server"><%# DataBinder.Eval(Container.DataItem, "NoOfSameProjInCity") %></asp:Label></td>
                                                 <td><asp:Label id="lblLoactions" runat="server"><%# DataBinder.Eval(Container.DataItem, "Loactions") %></asp:Label></td>
+                                                
                                                 <td><asp:Label id="lblSelfPriority" runat="server"><%# DataBinder.Eval(Container.DataItem, "selfPriority") %></asp:Label></td>
+                                                <td><asp:Label id="lblVPCreatedOn" runat="server"><%# DataBinder.Eval(Container.DataItem, "VPCreatedOn", "{0:dd/MM/yyyy}") %></asp:Label></td>
+                                                <td><asp:Label id="lblVPUpdatedOn" runat="server"><%# DataBinder.Eval(Container.DataItem, "VPUpdatedOn", "{0:dd/MM/yyyy}") %></asp:Label></td>
+                                                <td><asp:Label id="lblDocStatu" runat="server"><%# DataBinder.Eval(Container.DataItem, "DocStatus") %></asp:Label></td>
+                                                <td>
+                                                    <asp:HyperLink ID="hypVPDoc" runat="server" Target="_blank" NavigateUrl='<%# Eval("VPDoc") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("VPDoc").ToString()) %>'>
+                                                        <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View Doc" Height="30" Width="30" />
+                                                    </asp:HyperLink>
+                                                </td>
+                                                <td><asp:Label id="lblDocCreatedOn" runat="server"><%# DataBinder.Eval(Container.DataItem, "DocCreatedOn", "{0:dd/MM/yyyy}") %></asp:Label></td>
+                                                <td><asp:Label id="lblDocUpdatedOn" runat="server"><%# DataBinder.Eval(Container.DataItem, "DocUpdatedOn", "{0:dd/MM/yyyy}") %></asp:Label></td>
                                                 <td id="LastColumn" runat="server">
                                                     <asp:LinkButton ID="btnEdit" runat="server" Text="Edit" CssClass="btn bg-warning icon-pencil bigger-130 green" ToolTip="Click to Edit Record" CommandName="edit"
                                                         CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
