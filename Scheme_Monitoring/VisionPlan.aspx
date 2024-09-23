@@ -37,7 +37,7 @@
                                 <div class="card" id="sectionFilter" runat="server">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Filter :</h4>
-                                        <a href="CreateVisionPlan.aspx" class="filter-btn" style="float: right; width: 155px"><i class="icon-download"></i>Create Vision Plan</a>
+                                        <a href="CreateVisionPlan.aspx" class="filter-btn" style="float: right; width: 155px;"><i class="icon-download"></i>Create Vision Plan</a>
 
                                     </div>
                                     <!-- end card header -->

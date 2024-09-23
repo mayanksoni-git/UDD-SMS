@@ -96,7 +96,7 @@
                                                 </div>
 
                                                 <div class="col-xxl-2 col-md-6" id="divParty">
-                                                    <asp:Label ID="lblStatus" runat="server" Text=" Work Proposal Status*" CssClass="form-label"></asp:Label>
+                                                    <asp:Label ID="lblStatus" runat="server" Text=" Vision Plan Status*" CssClass="form-label"></asp:Label>
                                                     <asp:DropDownList ID="DdlStatus" runat="server" CssClass="form-select">
                                                         <asp:ListItem Text="--Select Status--" Value="-1"></asp:ListItem>
                                                         <asp:ListItem Text="Pending" Value="0"></asp:ListItem>

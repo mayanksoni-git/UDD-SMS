@@ -45,9 +45,28 @@
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
+                                                    <div id="divMandal" runat="server">
+                                                        <asp:Label ID="lblMandal" runat="server" Text="Division" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="ddlMandal" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlMandal_SelectedIndexChanged"></asp:DropDownList>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
                                                     <div id="divCircle" runat="server">
                                                         <asp:Label ID="lblCircleH" runat="server" Text="District*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divULBType" runat="server">
+                                                        <asp:Label ID="lblULBType" runat="server" Text="ULB Type" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="ddlULBType" runat="server" CssClass="form-select" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="ddlULBType_SelectedIndexChanged">
+                                                            <asp:ListItem Text="-Select-" Value="-1" Selected="True"></asp:ListItem>
+                                                            <asp:ListItem Text="Nagar Nigam" Value="NN"></asp:ListItem>
+                                                            <asp:ListItem Text="Nagar Panchayat" Value="NP"></asp:ListItem>
+                                                            <asp:ListItem Text="Nagar Palika Parishad" Value="NPP"></asp:ListItem>
+                                                        </asp:DropDownList>
                                                     </div>
                                                 </div>
 
@@ -65,11 +84,25 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divFromDate" runat="server">
+                                                        <asp:Label ID="lblFromDate" runat="server" Text="Created From Date*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtFromDate" type="Date" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divToDate" runat="server">
+                                                        <asp:Label ID="lblToDate" runat="server" Text="Created To Date*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtToDate" type="Date" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                    </div>
+                                                </div>
+
                                                 <div class="col-xxl-11  col-md-11">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
                                                         <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnsave_Click"  convergence/>--%>
                                                         <asp:Button ID="BtnSearch" Text="Search" style="float:right" OnClick="BtnSearch_Click" runat="server"   CssClass="btn bg-success text-white"></asp:Button>
+                                                        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
                                                        
                                                     </div>
                                                 </div>

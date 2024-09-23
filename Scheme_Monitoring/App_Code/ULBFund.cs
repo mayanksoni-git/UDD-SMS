@@ -712,12 +712,12 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         }
     }
 
-    public DataTable GetDocOfAnnualActionPlan(string actions, int? ULBID, int? TaskId, int? stateid,  int? circleId, int? FY, int? personId, string Documents,string from)
+    public DataTable GetDocOfAnnualActionPlan(string actions, int? ULBID, int? TaskId, int? stateid,  int? circleId, int? FY, int? personId, string Documents,string from, string ULBType, int mandal, string FromDate, string ToDate)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[8];
+            SqlParameter[] param = new SqlParameter[12];
             param[0] = new SqlParameter("@action", actions);
             param[1] = new SqlParameter("@ULBId", ULBID);
             param[2] = new SqlParameter("@taskId", TaskId);
@@ -726,15 +726,17 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[5] = new SqlParameter("@FYId", FY); 
             param[6] = new SqlParameter("@createdBy", personId);
             param[7] = new SqlParameter("@Documents", Documents);
-           if(from=="VisionPlan")
+            param[8] = new SqlParameter("@ULBType", ULBType);
+            param[9] = new SqlParameter("@mandal", mandal);
+            param[10] = new SqlParameter("@FromDate", FromDate);
+            param[11] = new SqlParameter("@ToDate", ToDate);
+            if (from=="VisionPlan")
             {
                 return objDAL.GetDataByProcedure("SpVisionPlanDOC", param);
-
             }
             else
             {
                 return objDAL.GetDataByProcedure("AnnualActionPlanDOC", param);
-
             }
         }
         catch (Exception ex)

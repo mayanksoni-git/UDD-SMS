@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.IO;
-using System.Text;
 using System.Data;
 
 public partial class UploadDocForVisionplan : System.Web.UI.Page
@@ -29,10 +25,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
            
             message.InnerText = "";
             get_tbl_Zone();
-           
             get_tbl_FinancialYear();
-          //  GetAllData(Convert.ToInt32(ddlDivision.SelectedItem));
-           
             SetDropdownsBasedOnUserType();
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
@@ -45,67 +38,28 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         FillDropDown(ds, ddlZone, "Zone_Name", "Zone_Id");
         if (ddlZone.SelectedItem.Value != "0")
         {
-            get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
+            get_tbl_Mandal();
         }
     }
-
-    private void SetDropdownsBasedOnUserType()
+    private void get_tbl_Mandal()
     {
-        int userType = Convert.ToInt32(Session["UserType"]);
-        int zoneId = Convert.ToInt32(Session["PersonJuridiction_ZoneId"]);
-        int circleId = Convert.ToInt32(Session["PersonJuridiction_CircleId"]);
-        int divisionId = Convert.ToInt32(Session["PersonJuridiction_DivisionId"]);
-
-        if (userType == 4 && zoneId > 0)
+        DataSet ds = (new DataLayer()).get_tbl_Mandal();
+        FillDropDown(ds, ddlMandal, "DivName", "DivisionID");
+        if (ddlMandal.SelectedItem.Value != "0")
         {
-            SetDropdownValueAndDisable(ddlZone, zoneId);
-        }
-        else if (userType == 6 && zoneId > 0)
-        {
-            SetDropdownValueAndDisable(ddlZone, zoneId);
-            if (circleId > 0)
-            {
-                SetDropdownValueAndDisable(ddlCircle, circleId);
-            }
-        }
-        else if (userType == 7 && zoneId > 0)
-        {
-            SetDropdownValueAndDisable(ddlZone, zoneId);
-            if (circleId > 0)
-            {
-                SetDropdownValueAndDisable(ddlCircle, circleId);
-                if (divisionId > 0)
-                {
-                    SetDropdownValueAndDisable(ddlDivision, divisionId);
-                   // GetAllData();
-                }
-            }
+            get_tbl_Circle(Convert.ToInt32(ddlMandal.SelectedValue));
         }
     }
-
-    private void SetDropdownValueAndDisable(DropDownList ddl, int value)
+    private void get_tbl_Circle(int MandalId)
     {
-        try
-        {
-            ddl.SelectedValue = value.ToString();
-            ddl.Enabled = false;
-            if (ddl.ID.ToString() == "ddlZone")
-            {
-                ddlZone_SelectedIndexChanged(ddl, EventArgs.Empty);
-            }
-            else if (ddl.ID.ToString() == "ddlCircle")
-            {
-                ddlCircle_SelectedIndexChanged(ddl, EventArgs.Empty);
-            }
-        }
-        catch
-        {
-            // Handle exception if needed
-        }
+        DataSet ds = (new DataLayer()).get_tbl_CircleByDivisionId(MandalId);
+        FillDropDown(ds, ddlCircle, "Circle_Name", "Circle_Id");
     }
-
-
-  
+    private void get_tbl_Division(int circleId, string ULBType)
+    {
+        DataSet ds = (new DataLayer()).get_tbl_DivisionByULBType(circleId, ULBType);
+        FillDropDown(ds, ddlDivision, "Division_Name", "Division_Id");
+    }
     private void get_tbl_FinancialYear()
     {
         DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
@@ -114,23 +68,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         //FillDropDown(ds, ddlFY2, "FinancialYear_Comments", "FinancialYear_Id");
     }
 
-    private void FillDropDown(DataSet ds, DropDownList ddl, string textField, string valueField)
-    {
-        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-        {
-            AllClasses.FillDropDown2(ds.Tables[0], ddl, textField, valueField);
-        }
-        else
-        {
-            ddl.Items.Clear();
-        }
-    }
 
-    private void get_tbl_Circle(int zoneId)
-    {
-        DataSet ds = (new DataLayer()).get_tbl_Circle(zoneId);
-        FillDropDown(ds, ddlCircle, "Circle_Name", "Circle_Id");
-    }
     protected void ddlZone_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlZone.SelectedValue == "0")
@@ -143,6 +81,18 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
             get_tbl_Circle(Convert.ToInt32(ddlZone.SelectedValue));
         }
     }
+    protected void ddlMandal_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlMandal.SelectedValue == "0")
+        {
+            ddlCircle.Items.Clear();
+            ddlDivision.Items.Clear();
+        }
+        else
+        {
+            get_tbl_Circle(Convert.ToInt32(ddlMandal.SelectedValue));
+        }
+    }
     protected void ddlCircle_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlCircle.SelectedValue == "0")
@@ -151,13 +101,25 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         }
         else
         {
-            get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue));
+            get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue), ddlULBType.SelectedValue.ToString());
         }
     }
-    private void get_tbl_Division(int circleId)
+    protected void ddlULBType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        DataSet ds = (new DataLayer()).get_tbl_Division(circleId);
-        FillDropDown(ds, ddlDivision, "Division_Name", "Division_Id");
+        if (ddlULBType.SelectedValue == "-1")
+        {
+            lblMessage.Text = "Please Select a ULB Type.";
+            ddlULBType.Focus();
+        }
+        else if (ddlCircle.SelectedValue == "")
+        {
+            lblMessage.Text = "Please Select District before ULB Type.";
+            ddlULBType.Focus();
+        }
+        else
+        {
+            get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue), ddlULBType.SelectedValue.ToString());
+        }
     }
     protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -172,58 +134,10 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
             //BindLoanReleaseGridByULB();
         }
     }
- 
-    public bool ValidateFields()
+
+    protected void BtnSearch_Click(object sender, EventArgs e)
     {
-
-        if (ddlZone.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select a State. ");
-            ddlZone.Focus();
-            return false;
-        }
-        if (ddlCircle.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select a District. ");
-            ddlCircle.Focus();
-            return false;
-        }
-        if (ddlDivision.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select a ULB. ");
-            ddlDivision.Focus();
-            return false;
-        }
-        if (ddlFY.SelectedValue == "0")
-        {
-            MessageBox.Show("Please Select a Financial. ");
-            ddlFY.Focus();
-            return false;
-        }
-       
-        //if (ddlProject.SelectedValue == "0")
-        //{
-        //    MessageBox.Show("Please Select a Project. ");
-        //    ddlDivision.Focus();
-        //    return false;
-        //}
-        //if (string.IsNullOrWhiteSpace(txtDepositAmount.Text))
-        //{
-        //    MessageBox.Show("Please enter Deposit Amount!");
-        //    txtDepositAmount.Focus();
-        //    return false;
-        //}
-
-        //if (string.IsNullOrWhiteSpace(txtDepositDate.Text))
-        //{
-        //    MessageBox.Show("Please enter Deposit Date!");
-        //    txtDepositDate.Focus();
-        //    return false;
-        //}
-        else
-        {
-            return true;
-        }
+        GetAllData();
     }
     protected void GetAllData()
     {
@@ -232,6 +146,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         var FY = 0;
 
         var state = Convert.ToInt32(ddlZone.SelectedValue);
+        var mandal = Convert.ToInt32(ddlMandal.SelectedValue);
         if (ddlCircle.SelectedValue == "0" || ddlCircle.SelectedValue == "")
         {
             dist = 0;
@@ -240,6 +155,17 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         {
             dist = Convert.ToInt32(ddlCircle.SelectedValue);// == "0"
         }
+
+        string UlbType = "-1";
+        try
+        {
+            UlbType = ddlULBType.SelectedValue.ToString();
+        }
+        catch
+        {
+            UlbType = "-1";
+        }
+
         if (ddlDivision.SelectedValue == "0" || ddlDivision.SelectedValue == "")
         {
             ULB = 0;
@@ -257,12 +183,49 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
             FY = Convert.ToInt32(ddlFY.SelectedValue);// == "0"
         }
 
+        string FromDate = "", ToDate = "";
+
+        if (txtFromDate.Text == "")
+        {
+            FromDate = "1900-01-01";
+        }
+        else
+        {
+            FromDate = txtFromDate.Text;
+        }
+
+        if (txtToDate.Text == "")
+        {
+            ToDate = "9999-12-31";
+        }
+        else
+        {
+            ToDate = txtToDate.Text;
+        }
+
         // ULBID = 0;
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("select", ULB, 0, 0,  dist, FY,  0, "", "VisionPlan");
+        dt = objLoan.GetDocOfAnnualActionPlan("select", ULB, 0, 0, dist, FY, 0, "", "VisionPlan", UlbType, mandal, FromDate, ToDate);
         grdPost.DataSource = dt;
         grdPost.DataBind();
-      
+
+    }
+    protected void Edit_Command(object sender, CommandEventArgs e)
+    {
+        var id = Convert.ToInt32(e.CommandArgument.ToString());
+    }
+    protected void btnDelete_Command(object sender, CommandEventArgs e)
+    {
+        var id = Convert.ToInt32(e.CommandArgument.ToString());
+
+        DataTable dt = new DataTable();
+        dt = objLoan.GetDocOfAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "", "VisionPlan", "-1", 0, "1900-01-01", "9999-12-31");
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            MessageBox.Show(dt.Rows[0]["Remark"].ToString());
+        }
+
+        GetAllData();
     }
     protected void grdPost_PreRender(object sender, EventArgs e)
     {
@@ -281,35 +244,86 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
             gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
     }
-
  
-    protected void Edit_Command(object sender, CommandEventArgs e)
+
+    private void SetDropdownsBasedOnUserType()
     {
-        var id = Convert.ToInt32(e.CommandArgument.ToString());
+        int userType = Convert.ToInt32(Session["UserType"]);
+        int zoneId = Convert.ToInt32(Session["PersonJuridiction_ZoneId"]);
+        //int MandalId = Convert.ToInt32(Session["MandalId"]);
+        //int MandalId = Session["MandalId"] is int mandalId ? mandalId : Convert.ToInt32(Session["MandalId"]);
+        int MandalId = Session["MandalId"] != null && !string.IsNullOrEmpty(Session["MandalId"].ToString())
+               ? Convert.ToInt32(Session["MandalId"])
+               : 0;
+        int circleId = Convert.ToInt32(Session["PersonJuridiction_CircleId"]);
+        int divisionId = Convert.ToInt32(Session["PersonJuridiction_DivisionId"]);
 
-     
-    }
-
-   
-    protected void btnDelete_Command(object sender, CommandEventArgs e)
-    {
-        var id = Convert.ToInt32(e.CommandArgument.ToString());
-
-        DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "", "VisionPlan");
-        //dt = objLoan.GetAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
-        if (dt != null && dt.Rows.Count > 0)
+        if (userType == 4 && zoneId > 0)
         {
-           MessageBox.Show( dt.Rows[0]["Remark"].ToString());
+            SetDropdownValueAndDisable(ddlZone, zoneId);
+        }
+        else if (userType == 6 && zoneId > 0)
+        {
+            SetDropdownValueAndDisable(ddlZone, zoneId);
+            if (circleId > 0)
+            {
+                SetDropdownValueAndDisable(ddlCircle, circleId);
+            }
+        }
+        else if (userType == 7 && zoneId > 0)
+        {
+            SetDropdownValueAndDisable(ddlZone, zoneId);
+            if (MandalId > 0)
+            {
+                SetDropdownValueAndDisable(ddlMandal, MandalId);
+                if (circleId > 0)
+                {
+                    SetDropdownValueAndDisable(ddlCircle, circleId);
+                    if (divisionId > 0)
+                    {
+                        SetDropdownValueAndDisable(ddlDivision, divisionId);
+                        ddlULBType.Enabled = false;
+                    }
+                }
+            }
 
         }
-
-        GetAllData();
     }
-
-    protected void BtnSearch_Click(object sender, EventArgs e)
+    private void SetDropdownValueAndDisable(DropDownList ddl, int value)
     {
-        GetAllData();
+        try
+        {
+            ddl.SelectedValue = value.ToString();
+            ddl.Enabled = false;
+            if (ddl.ID.ToString() == "ddlZone")
+            {
+                ddlZone_SelectedIndexChanged(ddl, EventArgs.Empty);
+            }
 
+            else if (ddl.ID.ToString() == "ddlMandal")
+            {
+                ddlMandal_SelectedIndexChanged(ddl, EventArgs.Empty);
+            }
+
+            else if (ddl.ID.ToString() == "ddlCircle")
+            {
+                ddlCircle_SelectedIndexChanged(ddl, EventArgs.Empty);
+            }
+        }
+        catch
+        {
+            // Handle exception if needed
+        }
+    }
+    private void FillDropDown(DataSet ds, DropDownList ddl, string textField, string valueField)
+    {
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            AllClasses.FillDropDown2(ds.Tables[0], ddl, textField, valueField);
+        }
+        else
+        {
+            ddl.Items.Clear();
+        }
     }
 }
