@@ -115,7 +115,6 @@ public partial class JeetApiReport : System.Web.UI.Page
         if (txtToDate.Text == "")
         {
             obj.ToDate = "9999-12-31";
-           
         }
         else
         {

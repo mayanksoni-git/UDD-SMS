@@ -6,14 +6,14 @@
     <asp:HiddenField ID="HiddenField1" runat="server" />
     <asp:HiddenField ID="WorkProposalIds" runat="server" />
     <asp:HiddenField ID="hfWorkProposalId" runat="server" />
-    
+
     <div class="main-content">
         <div class="page-content">
-            <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
-            </cc1:ToolkitScriptManager>
+            <cc1:toolkitscriptmanager id="ToolkitScriptManager1" runat="server" enablepartialrendering="true" enablepagemethods="true" asyncpostbacktimeout="6000">
+            </cc1:toolkitscriptmanager>
             <asp:UpdatePanel ID="up" runat="server">
-                <ContentTemplate>
-                   <cc1:modalpopupextender id="mp1" runat="server" popupcontrolid="Panel1" targetcontrolid="btnShowPopup"
+                <contenttemplate>
+                    <cc1:modalpopupextender id="mp1" runat="server" popupcontrolid="Panel1" targetcontrolid="btnShowPopup"
                         cancelcontrolid="btnclose" backgroundcssclass="modalBackground1">
                     </cc1:modalpopupextender>
                     <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Approve Work Plan</h4> 
+                                    <h4 class="mb-sm-0">Approve Work Plan</h4>
                                     <%--<asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>--%>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
@@ -39,7 +39,7 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Work Plan Detail</h4>
-                                        <u><b> Proposal Code:<asp:Label runat="server" id="lblWrokProposalId" Text=""></asp:Label></b></u>
+                                        <u><b>Proposal Code:<asp:Label runat="server" id="lblWrokProposalId" Text=""></asp:Label></b></u>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -82,7 +82,7 @@
                                                     <asp:Label ID="lblWard" runat="server" Text="Ward :" CssClass="form-label fw-bold me-1"></asp:Label>
                                                     <asp:Label ID="txtWard" runat="server" CssClass="form-label" Enabled="false"></asp:Label>
                                                 </div>
-                                                </div>
+                                            </div>
                                             <br />
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
@@ -91,7 +91,7 @@
                                                         <asp:Label ID="lblProjectMasterValue" runat="server" Text="" CssClass="form-label"></asp:Label>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-xxl-3 col-md-6" runat="server" id="divSubScheme" visible="false">
                                                     <div class="d-flex">
                                                         <asp:Label ID="lblSubScheme" runat="server" Text="SubScheme :" CssClass="form-label fw-bold me-1"></asp:Label>
@@ -147,7 +147,7 @@
                                                 </div>--%>
 
                                                 <div class="col-xxl-3 col-md-6 d-flex" id="divParty" style="display: block;" runat="server">
-                                                    <asp:Label ID="lblParty" runat="server" Text="Political Party :" CssClass="form-label fw-bold me-1" ></asp:Label>
+                                                    <asp:Label ID="lblParty" runat="server" Text="Political Party :" CssClass="form-label fw-bold me-1"></asp:Label>
                                                     <asp:Label ID="lblParyOfMPMLA" runat="server" Text="" CssClass="form-label" Enabled="false"></asp:Label>
 
                                                 </div>
@@ -168,7 +168,7 @@
                                                         <asp:Label ID="lblDesignation" runat="server" Text="Designation :" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:Label ID="txtDesignation" runat="server" CssClass="form-label" Enabled="false"></asp:Label>
                                                     </div>
-                                                </div> 
+                                                </div>
                                                 <div class="col-xxl-3 col-md-6 ">
                                                     <div id="divPStatus" class="d-flex" runat="server">
                                                         <asp:Label ID="lblPStatus" runat="server" Text="Work Plan Status :" CssClass="form-label fw-bold me-1"></asp:Label>
@@ -180,7 +180,7 @@
                                                     <asp:HyperLink ID="hypRecommendationLetterEdit" runat="server" Target="_blank" Text="Click To View" Visible="false">
                                                         <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
                                                     </asp:HyperLink>
-                                                    <asp:HiddenField id="hfPDFUrl" runat="server"/>
+                                                    <asp:HiddenField id="hfPDFUrl" runat="server" />
                                                 </div>
 
                                                 <div class="col-xxl-2 offset-xxl-1 col-md-6">
@@ -229,7 +229,7 @@
                                                     <div id="div4" runat="server">
                                                         <asp:Label ID="lblDateOfAction" runat="server" Text="Action Date" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="txtDateOfAction" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
-                                                        <cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" TargetControlID="txtDateOfAction" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                        <cc1:calendarextender id="CalendarExtender1" runat="server" cssclass="cal_Theme1" targetcontrolid="txtDateOfAction" format="dd/MM/yyyy"></cc1:calendarextender>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-2 col-md-6">
@@ -239,821 +239,832 @@
                                                         <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
                                                     </div>
                                                 </div>
-                                                </div>
-                                                
                                             </div>
-                                            <!--end row-->
+
                                         </div>
+                                        <!--end row-->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                   
-                    <div runat="server" visible="true" id="div1">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Project details from previous years of the ULB.</h4>
-                                        <%--<a href="#" id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="filter-btn" style="float:right"><i class="icon-download"></i> Export To Excel</a>--%>
+        </div>
 
+        <div runat="server" visible="true" id="div1">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header align-items-center d-flex">
+                            <h4 class="card-title mb-0 flex-grow-1">Project details from previous years of the ULB.</h4>
+                            <%--<a href="#" id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="filter-btn" style="float:right"><i class="icon-download"></i> Export To Excel</a>--%>
+                        </div>
+                        <!-- end card header -->
+                        <div class="card-body">
+                            <div class="live-preview">
+                                <div class="row gy-12">
+                                    <div class="d-flex" style="margin-top: 20px; margin-bottom: 20px">
+                                        <asp:Button ID="btnFYWise" Text="Financial Year Wise" OnClick="btnFYWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                        <asp:Button ID="btnMPWise" Text="MP Wise" OnClick="btnMPWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                        <asp:Button ID="btnMLAWise" Text="MLA Wise" OnClick="btnMLAWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                        <asp:Button ID="BtnDistrictWise" Text="District Wise" OnClick="BtnDistrictWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                        <asp:Button ID="btnRegionWise" Text="Division Wise" OnClick="btnDivisionWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                        <asp:Button ID="btnProjectWise" OnClick="btnWorkPlanWise_Click" Text="Work Plan Wise" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                        <asp:Button ID="btnRecommendationWise" OnClick="btnRecommendationWise_Click" Text="Recommendation  Wise" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
                                     </div>
-                                    <!-- end card header -->
-                                    <div class="card-body" >
-                                        <div class="live-preview">
-                                            <div class="row gy-12">
-                                                <div class="d-flex"style="margin-top:20px;margin-bottom:20px">
-                                                <asp:Button ID="btnFYWise" Text="Financial Year Wise" OnClick="btnFYWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
-                                                <asp:Button ID="btnMPWise" Text="MP Wise" OnClick="btnMPWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
-                                                <asp:Button ID="btnMLAWise" Text="MLA Wise" OnClick="btnMLAWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
-                                                <asp:Button ID="BtnDistrictWise" Text="District Wise" OnClick="BtnDistrictWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
-                                                <asp:Button ID="btnRegionWise" Text="Division Wise" OnClick="btnDivisionWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
-                                                <asp:Button ID="btnProjectWise" OnClick="btnWorkPlanWise_Click" Text="Work Plan Wise" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
-                                                <asp:Button ID="btnRecommendationWise" OnClick="btnRecommendationWise_Click" Text="Recommendation  Wise" runat="server" CssClass="btn tab_btn bg-success text-white" ></asp:Button>
-                                               </div>
-                                                <!-- div.dataTables_borderWrap -->
-                                                <div runat="server" id="divFYWise" class="tblheader" visible="false" style="overflow: auto">
-                                                   
-                                       <div class="row">
-                                                    <div class="col-lg-10">  
-                                                    <h3>Financial Year Wise Data</h3>
-                                                        </div>
-                                                     <div class="col-lg-2"> <asp:Button ID="Button5" runat="server" Text="Export to Excel Of Financial Year Wise"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
-                                                     </div>
-                                                    <asp:GridView ID="gridFyWise" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="Sr. No.">
-                                                                <ItemTemplate>
-                                                                    <%# Container.DataItemIndex + 1 %>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField HeaderText="ULB Name" DataField="ULBName" />
-                                                            <asp:BoundField HeaderText="Financial Year" DataField="SessionYear" />
-                                                             <asp:TemplateField HeaderText="Financial Year">
-                                                                <ItemTemplate>
-                                                                    
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("SessionYear") %></span>
-                                                                    <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldAmountOfFY" Text="Total Sanctioned Amount" runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-                                                              <asp:TemplateField HeaderText="Total Sactioned Amount (In  Lacs)">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("TotalSactionedAmount") %></span>
-                                                                    <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmountOfFY" runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-                                                            <%--<asp:BoundField HeaderText="No Of Projects" DataField="NoOfProjects" />--%>
-                                                        </Columns>
-                                                        <EmptyDataTemplate>
-                                                            <tr>
-                                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
-                                                            </tr>
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>
-                                                </div>
-                                                <div runat="server" id="divMPWise" class="tblheader" visible="false" style="overflow: auto">
-                                                 <div class="row">
-                                                    <div class="col-lg-10">  <h3>MP Wise Data</h3></div>
-                                        <div class="col-lg-2"> <asp:Button ID="Button1" runat="server" Text="Export to Excel Of MP"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
-                                                     </div>
-                                                     <div class="clearfix" id="Div5" runat="server">
-                                                        <div class="pull-right tableTools-container"></div>
-                                                    </div>
-                                                    <asp:GridView ID="gridMPWise" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="Sr. No.">
-                                                                <ItemTemplate>
-                                                                    <%# Container.DataItemIndex + 1 %>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField HeaderText="MP Name" DataField="MPName" />
-                                                            <asp:BoundField HeaderText=" Constituency " DataField="ParliamentaryConstName" />
-                                                            <asp:BoundField HeaderText="Party Name" DataField="PartyName" />
-                                                            
-                                                          
-                                                              
-                                                           <asp:TemplateField HeaderText="No of ULB">
-                                                                   <ItemTemplate>
-                                                                          <asp:Label ID="lblULBCount" Text='<%# Eval("ulb_count") %>' runat="server" CssClass="hidden-column" />
-                                                                    </ItemTemplate>
-                                                               <ItemTemplate>
-                                                                    <%--<asp:HiddenField ID="HiddenField1" Value='<%# Eval("ulb_count") %>' runat="server" />--%>
-                                                              
-                                                                    <asp:Button ID="btnAction" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Action2" OnCommand="GetULBWiseData"  CommandArgument='<%# Eval("ParliamentaryConstID") %>'  CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-
-                                                             <asp:TemplateField HeaderText="No of Financial year">
-                                                                  <ItemTemplate>
-                                                                  
-                                                                    <asp:Button ID="btnAction2" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action2" OnCommand="GetYearWiseData"  CommandArgument='<%# Eval("ParliamentaryConstID") %>'  CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalAmountOfMp" Text="Total Sanctioned Amount" runat="server" ></asp:Label>
-                                                                </FooterTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Total Sactioned Amount(In Lacs)">
-                                                                <ItemTemplate>
-                                                                    <asp:Button ID="btnAction6" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action2" OnCommand="GetAmountWiseData"  CommandArgument='<%# Eval("ParliamentaryConstID") %>'  CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-                                                                <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmountOfMp" runat="server" ></asp:Label>
-                                                                </FooterTemplate>
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                        <EmptyDataTemplate>
-                                                            <tr>
-                                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
-                                                            </tr>
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>
-                                                </div>
-                                                <div runat="server" id="divMLAWise" class="tblheader" visible="false" style="overflow: auto">
-                                                    <div class="row">
-                                                        <div class="col-lg-10">
-                                                            <h3>MLA Wise Data</h3>
-                                                        </div>
-                                                        <div class="col-lg-2">
-                                                            <asp:Button ID="Button2" runat="server" Text="Export to Excel Of MLA" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
-                                                    </div>
-
-                                                     <div class="clearfix" id="dtOptions" runat="server">
-                                                        <div class="pull-right tableTools-container"></div>
-                                                    </div>
-
-                                                    <asp:GridView ID="gridMLAWise" runat="server" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" ShowFooter="true" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="Sr. No.">
-                                                                <ItemTemplate>
-                                                                    <%# Container.DataItemIndex + 1 %>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField HeaderText="MLA Name" DataField="MLAName" />
-                                                            <asp:BoundField HeaderText=" Constituency  " DataField="AssemblyConstName" />
-                                                            <asp:BoundField HeaderText="Party Name" DataField="PartyName" />
-
-
-                                                            <asp:TemplateField HeaderText="No of ULB">
-                                                                <ItemTemplate>
-                                                                    <asp:Button ID="btnAction3" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Action" OnCommand="GetULBWiseData" CommandArgument='<%# Eval("AssemblyConstID") %>' CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-
-                                                            <asp:TemplateField HeaderText="No of Financial year">
-                                                                <ItemTemplate>
-                                                                    <asp:Button ID="btnAction4" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action" OnCommand="GetYearWiseData" CommandArgument='<%# Eval("AssemblyConstID") %>' CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-                                                                <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmounttextOfMLA" Text="Total Sanctioned Amount" runat="server"></asp:Label>
-                                                                </FooterTemplate>
-                                                            </asp:TemplateField>
-
-
-                                                            <asp:TemplateField HeaderText="Total Sactioned Amount (In Lacs)">
-                                                                <ItemTemplate>
-                                                                    <asp:Button ID="btnAction5" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action" OnCommand="GetAmountWiseData" CommandArgument='<%# Eval("AssemblyConstID") %>' CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-
-                                                                <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmountOfMLA" runat="server"></asp:Label>
-                                                                </FooterTemplate>
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                        <EmptyDataTemplate>
-                                                            <tr>
-                                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
-                                                            </tr>
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>
-                                                </div>
-                                                <div runat="server" id="divDivisionWise" class="tblheader" visible="false" style="overflow: auto">
-                                                   
-                                                      <div class="row">
-                                                    <div class="col-lg-10">  
-                                                    <h3>Division Wise Data</h3>
-                                                        </div>
-                                                     <div class="col-lg-2"> <asp:Button ID="Button3" runat="server" Text="Export to Excel Of Division Wise"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
-                                                     </div>
-
-                                                    <asp:GridView ID="gridDivisionWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="Sr. No.">
-                                                                <ItemTemplate>
-                                                                    <%# Container.DataItemIndex + 1 %>
-                                                                   
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField HeaderText="Division Name" DataField="DivName" />
-                                                          
-                                                             <asp:TemplateField HeaderText="No of ULB">
-                                                                <ItemTemplate>
-                                                                    <asp:Button ID="btnAction3" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Division" OnCommand="GetULBWiseData"  CommandArgument='<%# Eval("DivisionID") %>'  CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-
-                                                           
-                                                           <asp:TemplateField HeaderText="No of Financial year">
-                                                                <ItemTemplate>
-                                                                    <asp:Button ID="btnAction7" runat="server" Text='<%# Eval("session_count") %>' CommandName="Division" OnCommand="GetYearWiseData"  CommandArgument='<%# Eval("DivisionID") %>'  CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-                                                                <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmounttextOfDvision" Text="Total Sanctioned Amount" runat="server" ></asp:Label>
-                                                                </FooterTemplate>
-                                                            </asp:TemplateField>
-                                                            
-                                                            <asp:TemplateField HeaderText="Total Sactioned Amount (In Lacs)">
-                                                                <ItemTemplate>
-                                                                    <asp:Button ID="btnAction6" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Division" OnCommand="GetAmountWiseData"  CommandArgument='<%# Eval("DivisionID") %>'  CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmountOfDivision" runat="server"></asp:Label>
-                                                                </FooterTemplate>
-
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField HeaderText="Percent b/w Division" DataField="percentage_of_total_amount" />
-                                                        </Columns>
-                                                        <EmptyDataTemplate>
-                                                            <tr>
-                                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
-                                                            </tr>
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>
-                                                </div>
-
-                                                 <div runat="server" id="divDistrictWise" class="tblheader" visible="false" style="overflow: auto">
-                                                   
-                                                      <div class="row">
-                                                    <div class="col-lg-10">  
-                                                    <h3>District Wise Data</h3>
-                                                        </div>
-                                                     <div class="col-lg-2"> <asp:Button ID="Button6" runat="server" Text="Export to Excel Of District Wise"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
-                                                     </div>
-
-                                                    <asp:GridView ID="GrdDistrictWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="Sr. No.">
-                                                                <ItemTemplate>
-                                                                    <%# Container.DataItemIndex + 1 %>
-                                                                   
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField HeaderText="District Name" DataField="DistName" />
-                                                          
-                                                             <asp:TemplateField HeaderText="No of ULB">
-                                                                <ItemTemplate>
-                                                                    <asp:Button ID="btnAction3" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Action3" OnCommand="GetULBWiseData"  CommandArgument='<%# Eval("DistID") %>'  CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-
-                                                           
-                                                           <asp:TemplateField HeaderText="No of Financial year">
-                                                                <ItemTemplate>
-                                                                    <asp:Button ID="btnAction7" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action3" OnCommand="GetYearWiseData"  CommandArgument='<%# Eval("DistID") %>'  CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-                                                                <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmounttextOfDistrict" Text="Total Sanctioned Amount" runat="server"></asp:Label>
-                                                                </FooterTemplate>
-                                                            </asp:TemplateField>
-                                                            
-                                                            <asp:TemplateField HeaderText="Total Sactioned Amount (In Lacs)">
-                                                                <ItemTemplate>
-                                                                    <asp:Button ID="btnAction6" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action3" OnCommand="GetAmountWiseData"  CommandArgument='<%# Eval("DistID") %>'  CssClass="btn btn-primary drill_btn" />
-                                                                </ItemTemplate>
-
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalSactionedAmountOfDistrict" runat="server" ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField HeaderText="Percent b/w District" DataField="percentage_of_total_amount" />
-                                                        </Columns>
-                                                        <EmptyDataTemplate>
-                                                            <tr>
-                                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
-                                                            </tr>
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>
-                                                </div>
-
-                                                <div runat="server" id="divWorkPlanWise" class="tblheader" visible="false" style="overflow: auto">
-                                                   
-                                                    <div class="row">
-                                                    <div class="col-lg-10">  
-                                                     <h3>Work Plan Data</h3>
-                                                        </div>
-                                                     <div class="col-lg-2"> <asp:Button ID="Button4" runat="server" Text="Export to Excel Of Work Plan"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
-                                                     </div>
-                                                    <asp:GridView ID="gridWorkPlanWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="Sr. No.">
-                                                                <ItemTemplate>
-                                                                    <%# Container.DataItemIndex + 1 %>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                          <%--  <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />--%>
-                                                             <asp:TemplateField HeaderText="Financial Year">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("FinancialYear_Comments") %></span>
-                                                                    <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label  Text="Total :" runat="server" ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="No Of Proposals" DataField="NoOfProposals" />--%>
-                                                             <asp:TemplateField HeaderText="No Of Proposals">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("NoOfProposals") %></span>
-                                                                </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposals"  runat="server" ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-
-                                                            <%--<asp:BoundField HeaderText="All Proposals Amount(In Rupees)" DataField="TotalAmount" />--%>
-
-                                                             <asp:TemplateField HeaderText="All Proposals Amount(In Rupees)">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("TotalAmount") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsAmount"  runat="server" ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-
-                                                            <%--<asp:BoundField HeaderText="PendingProposals" DataField="PendingProposals" />--%>
-
-                                                             <asp:TemplateField HeaderText="PendingProposals">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("PendingProposals") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsPending"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-
-
-                                                            <%--<asp:BoundField HeaderText="Pending Proposals Amount(In Rupees)" DataField="PendingProposalsAmount" />--%>
-
-                                                              <asp:TemplateField HeaderText="Pending Proposals Amount(In Rupees)">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("PendingProposalsAmount") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsPendingAmount"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-
-
-                                                            <%--<asp:BoundField HeaderText="Approved Proposals" DataField="ApprovedProposals" />--%>
-
-
-                                                               <asp:TemplateField HeaderText="Approved Proposals">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("ApprovedProposals") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsApproved"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="Approved Proposals Amount(In Rupees)" DataField="ApprovedProposalsAmount" />--%>
-                                                             <asp:TemplateField HeaderText="Approved Proposals Amount(In Rupees)">
-                                                                <ItemTemplate>
-                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("ApprovedProposalsAmount") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsApprovedAmount"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="Reject Proposals" DataField="RejectProposals" />--%>
-                                                             <asp:TemplateField HeaderText="Reject Proposals">
-                                                                <ItemTemplate>
-                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("RejectProposals") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsRejected"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="Reject Proposals Amount(In Rupees)" DataField="RejectProposalsAmount" />--%>
-                                                             <asp:TemplateField HeaderText="Reject Proposals Amount(In Rupees)">
-                                                                <ItemTemplate>
-                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("RejectProposalsAmount") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsRejectedAmount"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="Hold Proposals" DataField="HoldProposals" />--%>
-
-                                                            <asp:TemplateField HeaderText="Hold Proposals">
-                                                                <ItemTemplate>
-                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("HoldProposals") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsHold"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="Hold Proposals Amount (In Rupees)" DataField="HoldProposalsAmount" />--%>
-                                                            <asp:TemplateField HeaderText="Hold Proposals Amount(In Rupees)">
-                                                                <ItemTemplate>
-                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("HoldProposalsAmount") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsHoldAmount"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                        </Columns>
-                                                        <EmptyDataTemplate>
-                                                            <tr>
-                                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
-                                                            </tr>
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>
-                                                </div>
-
-                                                  <div runat="server" id="divRecommendationWise" class="tblheader" visible="false" style="overflow: auto">
-                                                   
-                                                    <div class="row">
-                                                    <div class="col-lg-10">  
-                                                     <h3>Recommendation Wise Data</h3>
-                                                        </div>
-                                                     <div class="col-lg-2"> <asp:Button ID="Button7" runat="server" Text="Export to Excel Of Recommendation"  CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" /></div>
-                                                     </div>
-                                                    <asp:GridView ID="GrdRecommendation" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="Sr. No.">
-                                                                <ItemTemplate>
-                                                                    <%# Container.DataItemIndex + 1 %>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                          <%--  <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />--%>
-                                                             <asp:TemplateField HeaderText="Proposer Type">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("ProposerType") %></span>
-                                                                    <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label  Text="Total :" runat="server" ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="No Of Proposals" DataField="NoOfProposals" />--%>
-                                                             <asp:TemplateField HeaderText="No Of Proposals">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("NoOfProposals") %></span>
-                                                                </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposals2"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-
-                                                            <%--<asp:BoundField HeaderText="All Proposals Amount(In Rupees)" DataField="TotalAmount" />--%>
-
-                                                             <asp:TemplateField HeaderText="All Proposals Amount(In Rupees)">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("TotalAmount") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsAmount2"  runat="server" ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-
-                                                            <%--<asp:BoundField HeaderText="PendingProposals" DataField="PendingProposals" />--%>
-
-                                                             <asp:TemplateField HeaderText="PendingProposals">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("PendingProposals") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsPending2"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-
-
-                                                            <%--<asp:BoundField HeaderText="Pending Proposals Amount(In Rupees)" DataField="PendingProposalsAmount" />--%>
-
-                                                              <asp:TemplateField HeaderText="Pending Proposals Amount(In Rupees)">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("PendingProposalsAmount") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsPendingAmount2"  runat="server" ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-
-
-                                                            <%--<asp:BoundField HeaderText="Approved Proposals" DataField="ApprovedProposals" />--%>
-
-
-                                                               <asp:TemplateField HeaderText="Approved Proposals">
-                                                                <ItemTemplate>
-                                                                    <span ID="btnAction5" runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("ApprovedProposals") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsApproved2"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="Approved Proposals Amount(In Rupees)" DataField="ApprovedProposalsAmount" />--%>
-                                                             <asp:TemplateField HeaderText="Approved Proposals Amount(In Rupees)">
-                                                                <ItemTemplate>
-                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("ApprovedProposalsAmount") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsApprovedAmount2"  runat="server"   ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="Reject Proposals" DataField="RejectProposals" />--%>
-                                                             <asp:TemplateField HeaderText="Reject Proposals">
-                                                                <ItemTemplate>
-                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("RejectProposals") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsRejected2"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="Reject Proposals Amount(In Rupees)" DataField="RejectProposalsAmount" />--%>
-                                                             <asp:TemplateField HeaderText="Reject Proposals Amount(In Rupees)">
-                                                                <ItemTemplate>
-                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("RejectProposalsAmount") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsRejectedAmount2"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="Hold Proposals" DataField="HoldProposals" />--%>
-
-                                                            <asp:TemplateField HeaderText="Hold Proposals">
-                                                                <ItemTemplate>
-                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("HoldProposals") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsHold2"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                            <%--<asp:BoundField HeaderText="Hold Proposals Amount (In Rupees)" DataField="HoldProposalsAmount" />--%>
-                                                            <asp:TemplateField HeaderText="Hold Proposals Amount(In Rupees)">
-                                                                <ItemTemplate>
-                                                                    <span  runat="server"  CssClass="btn btn-primary drill_btn" ><%# Eval("HoldProposalsAmount") %></span>
-                                                                   
-                                                                 </ItemTemplate>
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotaldProposalsHoldAmount2"  runat="server"  ></asp:Label>
-                                                                </FooterTemplate>
-
-                                                              </asp:TemplateField>
-
-                                                        </Columns>
-                                                        <EmptyDataTemplate>
-                                                            <tr>
-                                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
-                                                            </tr>
-                                                        </EmptyDataTemplate>
-                                                    </asp:GridView>
-                                                </div>
-
-
+                                    <!-- div.dataTables_borderWrap -->
+                                    <div runat="server" id="divFYWise" class="tblheader" visible="false" style="overflow: auto">
+
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <h3>Financial Year Wise Data</h3>
                                             </div>
-                                            <!--end row-->
+                                            <div class="col-lg-2">
+                                                <asp:Button ID="Button5" runat="server" Text="Export to Excel Of Financial Year Wise" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" />
+                                            </div>
                                         </div>
+                                        <asp:GridView ID="gridFyWise" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
+                                            <columns>
+                                                <asp:TemplateField HeaderText="Sr. No.">
+                                                    <itemtemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </itemtemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField HeaderText="ULB Name" DataField="ULBName" />
+                                                <asp:BoundField HeaderText="Financial Year" DataField="SessionYear" />
+                                                <asp:TemplateField HeaderText="Financial Year">
+                                                    <itemtemplate>
+
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("SessionYear") %></span>
+                                                        <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldAmountOfFY" Text="Total Sanctioned Amount" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Total Sactioned Amount (In  Lacs)">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("TotalSactionedAmount") %></span>
+                                                        <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotalSactionedAmountOfFY" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+                                                <%--<asp:BoundField HeaderText="No Of Projects" DataField="NoOfProjects" />--%>
+                                            </columns>
+                                            <emptydatatemplate>
+                                                <tr>
+                                                    <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                </tr>
+                                            </emptydatatemplate>
+                                        </asp:GridView>
                                     </div>
+                                    <div runat="server" id="divMPWise" class="tblheader" visible="false" style="overflow: auto">
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <h3>MP Wise Data</h3>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <asp:Button ID="Button1" runat="server" Text="Export to Excel Of MP" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" />
+                                            </div>
+                                        </div>
+                                        <div class="clearfix" id="Div5" runat="server">
+                                            <div class="pull-right tableTools-container"></div>
+                                        </div>
+                                        <asp:GridView ID="gridMPWise" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
+                                            <columns>
+                                                <asp:TemplateField HeaderText="Sr. No.">
+                                                    <itemtemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </itemtemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField HeaderText="MP Name" DataField="MPName" />
+                                                <asp:BoundField HeaderText=" Constituency " DataField="ParliamentaryConstName" />
+                                                <asp:BoundField HeaderText="Party Name" DataField="PartyName" />
+
+
+
+                                                <asp:TemplateField HeaderText="No of ULB">
+                                                    <itemtemplate>
+                                                        <asp:Label ID="lblULBCount" Text='<%# Eval("ulb_count") %>' runat="server" CssClass="hidden-column" />
+                                                    </itemtemplate>
+                                                    <itemtemplate>
+                                                        <%--<asp:HiddenField ID="HiddenField1" Value='<%# Eval("ulb_count") %>' runat="server" />--%>
+
+                                                        <asp:Button ID="btnAction" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Action2" OnCommand="GetULBWiseData" CommandArgument='<%# Eval("ParliamentaryConstID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="No of Financial year">
+                                                    <itemtemplate>
+
+                                                        <asp:Button ID="btnAction2" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action2" OnCommand="GetYearWiseData" CommandArgument='<%# Eval("ParliamentaryConstID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotalAmountOfMp" Text="Total Sanctioned Amount" runat="server"></asp:Label>
+                                                    </footertemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Total Sactioned Amount(In Lacs)">
+                                                    <itemtemplate>
+                                                        <asp:Button ID="btnAction6" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action2" OnCommand="GetAmountWiseData" CommandArgument='<%# Eval("ParliamentaryConstID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotalSactionedAmountOfMp" runat="server"></asp:Label>
+                                                    </footertemplate>
+                                                </asp:TemplateField>
+                                            </columns>
+                                            <emptydatatemplate>
+                                                <tr>
+                                                    <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                </tr>
+                                            </emptydatatemplate>
+                                        </asp:GridView>
+                                    </div>
+                                    <div runat="server" id="divMLAWise" class="tblheader" visible="false" style="overflow: auto">
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <h3>MLA Wise Data</h3>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <asp:Button ID="Button2" runat="server" Text="Export to Excel Of MLA" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" />
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix" id="dtOptions" runat="server">
+                                            <div class="pull-right tableTools-container"></div>
+                                        </div>
+
+                                        <asp:GridView ID="gridMLAWise" runat="server" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" ShowFooter="true" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
+                                            <columns>
+                                                <asp:TemplateField HeaderText="Sr. No.">
+                                                    <itemtemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </itemtemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField HeaderText="MLA Name" DataField="MLAName" />
+                                                <asp:BoundField HeaderText=" Constituency  " DataField="AssemblyConstName" />
+                                                <asp:BoundField HeaderText="Party Name" DataField="PartyName" />
+
+
+                                                <asp:TemplateField HeaderText="No of ULB">
+                                                    <itemtemplate>
+                                                        <asp:Button ID="btnAction3" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Action" OnCommand="GetULBWiseData" CommandArgument='<%# Eval("AssemblyConstID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="No of Financial year">
+                                                    <itemtemplate>
+                                                        <asp:Button ID="btnAction4" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action" OnCommand="GetYearWiseData" CommandArgument='<%# Eval("AssemblyConstID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotalSactionedAmounttextOfMLA" Text="Total Sanctioned Amount" runat="server"></asp:Label>
+                                                    </footertemplate>
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="Total Sactioned Amount (In Lacs)">
+                                                    <itemtemplate>
+                                                        <asp:Button ID="btnAction5" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action" OnCommand="GetAmountWiseData" CommandArgument='<%# Eval("AssemblyConstID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotalSactionedAmountOfMLA" runat="server"></asp:Label>
+                                                    </footertemplate>
+                                                </asp:TemplateField>
+                                            </columns>
+                                            <emptydatatemplate>
+                                                <tr>
+                                                    <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                </tr>
+                                            </emptydatatemplate>
+                                        </asp:GridView>
+                                    </div>
+                                    <div runat="server" id="divDivisionWise" class="tblheader" visible="false" style="overflow: auto">
+
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <h3>Division Wise Data</h3>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <asp:Button ID="Button3" runat="server" Text="Export to Excel Of Division Wise" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" />
+                                            </div>
+                                        </div>
+
+                                        <asp:GridView ID="gridDivisionWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
+                                            <columns>
+                                                <asp:TemplateField HeaderText="Sr. No.">
+                                                    <itemtemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </itemtemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField HeaderText="Division Name" DataField="DivName" />
+
+                                                <asp:TemplateField HeaderText="No of ULB">
+                                                    <itemtemplate>
+                                                        <asp:Button ID="btnAction3" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Division" OnCommand="GetULBWiseData" CommandArgument='<%# Eval("DivisionID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="No of Financial year">
+                                                    <itemtemplate>
+                                                        <asp:Button ID="btnAction7" runat="server" Text='<%# Eval("session_count") %>' CommandName="Division" OnCommand="GetYearWiseData" CommandArgument='<%# Eval("DivisionID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotalSactionedAmounttextOfDvision" Text="Total Sanctioned Amount" runat="server"></asp:Label>
+                                                    </footertemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Total Sactioned Amount (In Lacs)">
+                                                    <itemtemplate>
+                                                        <asp:Button ID="btnAction6" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Division" OnCommand="GetAmountWiseData" CommandArgument='<%# Eval("DivisionID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotalSactionedAmountOfDivision" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+                                                <asp:BoundField HeaderText="Percent b/w Division" DataField="percentage_of_total_amount" />
+                                            </columns>
+                                            <emptydatatemplate>
+                                                <tr>
+                                                    <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                </tr>
+                                            </emptydatatemplate>
+                                        </asp:GridView>
+                                    </div>
+
+                                    <div runat="server" id="divDistrictWise" class="tblheader" visible="false" style="overflow: auto">
+
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <h3>District Wise Data</h3>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <asp:Button ID="Button6" runat="server" Text="Export to Excel Of District Wise" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" />
+                                            </div>
+                                        </div>
+
+                                        <asp:GridView ID="GrdDistrictWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
+                                            <columns>
+                                                <asp:TemplateField HeaderText="Sr. No.">
+                                                    <itemtemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </itemtemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField HeaderText="District Name" DataField="DistName" />
+
+                                                <asp:TemplateField HeaderText="No of ULB">
+                                                    <itemtemplate>
+                                                        <asp:Button ID="btnAction3" runat="server" Text='<%# Eval("ulb_count") %>' CommandName="Action3" OnCommand="GetULBWiseData" CommandArgument='<%# Eval("DistID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="No of Financial year">
+                                                    <itemtemplate>
+                                                        <asp:Button ID="btnAction7" runat="server" Text='<%# Eval("session_count") %>' CommandName="Action3" OnCommand="GetYearWiseData" CommandArgument='<%# Eval("DistID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotalSactionedAmounttextOfDistrict" Text="Total Sanctioned Amount" runat="server"></asp:Label>
+                                                    </footertemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Total Sactioned Amount (In Lacs)">
+                                                    <itemtemplate>
+                                                        <asp:Button ID="btnAction6" runat="server" Text='<%# Eval("total_amount") %>' CommandName="Action3" OnCommand="GetAmountWiseData" CommandArgument='<%# Eval("DistID") %>' CssClass="btn btn-primary drill_btn" />
+                                                    </itemtemplate>
+
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotalSactionedAmountOfDistrict" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+                                                <asp:BoundField HeaderText="Percent b/w District" DataField="percentage_of_total_amount" />
+                                            </columns>
+                                            <emptydatatemplate>
+                                                <tr>
+                                                    <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                </tr>
+                                            </emptydatatemplate>
+                                        </asp:GridView>
+                                    </div>
+
+                                    <div runat="server" id="divWorkPlanWise" class="tblheader" visible="false" style="overflow: auto">
+
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <h3>Work Plan Data</h3>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <asp:Button ID="Button4" runat="server" Text="Export to Excel Of Work Plan" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" />
+                                            </div>
+                                        </div>
+                                        <asp:GridView ID="gridWorkPlanWise" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
+                                            <columns>
+                                                <asp:TemplateField HeaderText="Sr. No.">
+                                                    <itemtemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </itemtemplate>
+                                                </asp:TemplateField>
+                                                <%--  <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />--%>
+                                                <asp:TemplateField HeaderText="Financial Year">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("FinancialYear_Comments") %></span>
+                                                        <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label Text="Total :" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="No Of Proposals" DataField="NoOfProposals" />--%>
+                                                <asp:TemplateField HeaderText="No Of Proposals">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("NoOfProposals") %></span>
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposals" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+
+                                                <%--<asp:BoundField HeaderText="All Proposals Amount(In Rupees)" DataField="TotalAmount" />--%>
+
+                                                <asp:TemplateField HeaderText="All Proposals Amount(In Rupees)">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("TotalAmount") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsAmount" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+
+                                                <%--<asp:BoundField HeaderText="PendingProposals" DataField="PendingProposals" />--%>
+
+                                                <asp:TemplateField HeaderText="PendingProposals">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("PendingProposals") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsPending" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+
+
+                                                <%--<asp:BoundField HeaderText="Pending Proposals Amount(In Rupees)" DataField="PendingProposalsAmount" />--%>
+
+                                                <asp:TemplateField HeaderText="Pending Proposals Amount(In Rupees)">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("PendingProposalsAmount") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsPendingAmount" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+
+
+                                                <%--<asp:BoundField HeaderText="Approved Proposals" DataField="ApprovedProposals" />--%>
+
+
+                                                <asp:TemplateField HeaderText="Approved Proposals">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("ApprovedProposals") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsApproved" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="Approved Proposals Amount(In Rupees)" DataField="ApprovedProposalsAmount" />--%>
+                                                <asp:TemplateField HeaderText="Approved Proposals Amount(In Rupees)">
+                                                    <itemtemplate>
+                                                        <span runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("ApprovedProposalsAmount") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsApprovedAmount" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="Reject Proposals" DataField="RejectProposals" />--%>
+                                                <asp:TemplateField HeaderText="Reject Proposals">
+                                                    <itemtemplate>
+                                                        <span runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("RejectProposals") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsRejected" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="Reject Proposals Amount(In Rupees)" DataField="RejectProposalsAmount" />--%>
+                                                <asp:TemplateField HeaderText="Reject Proposals Amount(In Rupees)">
+                                                    <itemtemplate>
+                                                        <span runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("RejectProposalsAmount") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsRejectedAmount" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="Hold Proposals" DataField="HoldProposals" />--%>
+
+                                                <asp:TemplateField HeaderText="Hold Proposals">
+                                                    <itemtemplate>
+                                                        <span runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("HoldProposals") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsHold" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="Hold Proposals Amount (In Rupees)" DataField="HoldProposalsAmount" />--%>
+                                                <asp:TemplateField HeaderText="Hold Proposals Amount(In Rupees)">
+                                                    <itemtemplate>
+                                                        <span runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("HoldProposalsAmount") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsHoldAmount" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                            </columns>
+                                            <emptydatatemplate>
+                                                <tr>
+                                                    <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                </tr>
+                                            </emptydatatemplate>
+                                        </asp:GridView>
+                                    </div>
+
+                                    <div runat="server" id="divRecommendationWise" class="tblheader" visible="false" style="overflow: auto">
+
+                                        <div class="row">
+                                            <div class="col-lg-10">
+                                                <h3>Recommendation Wise Data</h3>
+                                            </div>
+                                            <div class="col-lg-2">
+                                                <asp:Button ID="Button7" runat="server" Text="Export to Excel Of Recommendation" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" />
+                                            </div>
+                                        </div>
+                                        <asp:GridView ID="GrdRecommendation" runat="server" ShowFooter="true" CssClass="display table table-bordered reportGrid" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="gridMPWise_PreRender">
+                                            <columns>
+                                                <asp:TemplateField HeaderText="Sr. No.">
+                                                    <itemtemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </itemtemplate>
+                                                </asp:TemplateField>
+                                                <%--  <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />--%>
+                                                <asp:TemplateField HeaderText="Proposer Type">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("ProposerType") %></span>
+                                                        <%--<asp:BoundField HeaderText="Total Sactioned Amount (In  Lacs)" DataField="TotalSactionedAmount" />--%>
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label Text="Total :" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="No Of Proposals" DataField="NoOfProposals" />--%>
+                                                <asp:TemplateField HeaderText="No Of Proposals">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("NoOfProposals") %></span>
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposals2" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+
+                                                <%--<asp:BoundField HeaderText="All Proposals Amount(In Rupees)" DataField="TotalAmount" />--%>
+
+                                                <asp:TemplateField HeaderText="All Proposals Amount(In Rupees)">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("TotalAmount") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsAmount2" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+
+                                                <%--<asp:BoundField HeaderText="PendingProposals" DataField="PendingProposals" />--%>
+
+                                                <asp:TemplateField HeaderText="PendingProposals">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("PendingProposals") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsPending2" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+
+
+                                                <%--<asp:BoundField HeaderText="Pending Proposals Amount(In Rupees)" DataField="PendingProposalsAmount" />--%>
+
+                                                <asp:TemplateField HeaderText="Pending Proposals Amount(In Rupees)">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("PendingProposalsAmount") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsPendingAmount2" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+
+
+                                                <%--<asp:BoundField HeaderText="Approved Proposals" DataField="ApprovedProposals" />--%>
+
+
+                                                <asp:TemplateField HeaderText="Approved Proposals">
+                                                    <itemtemplate>
+                                                        <span id="btnAction5" runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("ApprovedProposals") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsApproved2" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="Approved Proposals Amount(In Rupees)" DataField="ApprovedProposalsAmount" />--%>
+                                                <asp:TemplateField HeaderText="Approved Proposals Amount(In Rupees)">
+                                                    <itemtemplate>
+                                                        <span runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("ApprovedProposalsAmount") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsApprovedAmount2" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="Reject Proposals" DataField="RejectProposals" />--%>
+                                                <asp:TemplateField HeaderText="Reject Proposals">
+                                                    <itemtemplate>
+                                                        <span runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("RejectProposals") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsRejected2" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="Reject Proposals Amount(In Rupees)" DataField="RejectProposalsAmount" />--%>
+                                                <asp:TemplateField HeaderText="Reject Proposals Amount(In Rupees)">
+                                                    <itemtemplate>
+                                                        <span runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("RejectProposalsAmount") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsRejectedAmount2" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="Hold Proposals" DataField="HoldProposals" />--%>
+
+                                                <asp:TemplateField HeaderText="Hold Proposals">
+                                                    <itemtemplate>
+                                                        <span runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("HoldProposals") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsHold2" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                                <%--<asp:BoundField HeaderText="Hold Proposals Amount (In Rupees)" DataField="HoldProposalsAmount" />--%>
+                                                <asp:TemplateField HeaderText="Hold Proposals Amount(In Rupees)">
+                                                    <itemtemplate>
+                                                        <span runat="server" cssclass="btn btn-primary drill_btn"><%# Eval("HoldProposalsAmount") %></span>
+
+                                                    </itemtemplate>
+                                                    <footertemplate>
+                                                        <asp:Label ID="lblTotaldProposalsHoldAmount2" runat="server"></asp:Label>
+                                                    </footertemplate>
+
+                                                </asp:TemplateField>
+
+                                            </columns>
+                                            <emptydatatemplate>
+                                                <tr>
+                                                    <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                </tr>
+                                            </emptydatatemplate>
+                                        </asp:GridView>
+                                    </div>
+
+
                                 </div>
+                                <!--end row-->
                             </div>
-                            <!--end col-->
-
-
-
-                            
-
-                            
-                         
-
                         </div>
                     </div>
-                    </div>
-
-                    <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1 p-0" Style="display: none; width: 800px; margin-left: -32px;height:800px;overflow:auto">
-                            <div class="row  bg-warning" style="border-radius: 11px; padding:10px;">
-                                <div class="col-xs-12">
-                                    <div class="table-header fw-bold fs-4">
-                                        Fund Detail                                      
-                                    </div>
-                                </div>
-                            </div>
-
-                        <div class="row" style="padding:10px">
-                            <div class="col-xl-12">
-                                <h5 id="MPMLAName" style="text-align:center" runat="server"></h5>
-                            </div>
-                             <div class="col-xl-12">
-                                <h5 id="SchemeNamesof" style="text-align:center" runat="server"></h5>
-                            </div>
-                        </div>
-                        <div class="row p-3">
-                            <div class="col-md-12" id="dvPJ" runat="server">
-                                <div class="form-group">
-                                    <asp:GridView ID="gridULBCount" runat="server" ShowFooter="true" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Sr. No.">
-                                                <ItemTemplate>
-                                                    <%# Container.DataItemIndex + 1 %>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField HeaderText="District Name" DataField="DistName" />
-                                             <asp:TemplateField HeaderText="ULB Name">
-                                                                <ItemTemplate>
-                                                                   <span><%# Eval("ULBName") %></span>
-                                                                </ItemTemplate>
-                                                                  <FooterTemplate>
-                                                                    <asp:Label  Text="Total :" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
-                                                                </FooterTemplate>
-                                                            </asp:TemplateField>
-
-                                            <%--<asp:BoundField HeaderText="ULB Name" DataField="ULBName" />--%>
-
-                                             <asp:TemplateField HeaderText=" Sactioned Amount (In Lacs)">
-                                                                <ItemTemplate>
-                                                                   <span><%# Eval("amount") %></span>
-                                                                </ItemTemplate>
-                                                                
-
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalUlbsAmount" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
-                                                                </FooterTemplate>
-                                             </asp:TemplateField>
-                                           <%-- <asp:BoundField HeaderText=""  DataField="amount" />--%>
-                                        </Columns>
-                                        <EmptyDataTemplate>
-                                            <tr>
-                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
-                                            </tr>
-                                        </EmptyDataTemplate>
-                                    </asp:GridView>
-
-                                     <asp:GridView ID="GridYearViseSingle" ShowFooter="true" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Sr. No.">
-                                                <ItemTemplate>
-                                                    <%# Container.DataItemIndex + 1 %>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <%--<asp:BoundField HeaderText="No of Financial year" DataField="SessionYear" />--%>
-                                           
-                                             <asp:TemplateField HeaderText="No of Financial year">
-                                                                <ItemTemplate>
-                                                                   <span><%# Eval("SessionYear") %></span>
-                                                                </ItemTemplate>
-                                                                  <FooterTemplate>
-                                                                    <asp:Label  Text="Total :" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
-                                                                </FooterTemplate>
-                                             </asp:TemplateField>
-                                            <%--<asp:BoundField HeaderText="Total " DataField="" />--%>
-
-                                             <asp:TemplateField HeaderText=" Sactioned Amount (In Lacs)">
-                                                                <ItemTemplate>
-                                                                   <span><%# Eval("amount") %></span>
-                                                                </ItemTemplate>
-                                                                
-
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalUlbsyearAmount" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
-                                                                </FooterTemplate>
-                                             </asp:TemplateField>
-
-                                        </Columns>
-                                        <EmptyDataTemplate>
-                                            <tr>
-                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
-                                            </tr>
-                                        </EmptyDataTemplate>
-                                    </asp:GridView>
+                </div>
+                <!--end col-->
 
 
-                                    <asp:GridView ID="GridViewOfAmountWise1" runat="server" ShowFooter="true" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Sr. No.">
-                                                <ItemTemplate>
-                                                    <%# Container.DataItemIndex + 1 %>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                           <asp:BoundField HeaderText="District Name" DataField="DistName" />
-
-                                            <asp:BoundField HeaderText="ULB NAme" DataField="ULBName" />
-                                            <%--<asp:BoundField HeaderText="No of Financial year" DataField="SessionYear" />--%>
-                                             <asp:TemplateField HeaderText="No of Financial year">
-                                                                <ItemTemplate>
-                                                                   <span><%# Eval("SessionYear") %></span>
-                                                                </ItemTemplate>
-                                                                  <FooterTemplate>
-                                                                    <asp:Label  Text="Total :" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
-                                                                </FooterTemplate>
-                                             </asp:TemplateField>
-                                            <%--<asp:BoundField HeaderText="Total Sactioned Amount(In Lacs)" DataField="AmtInLac" />--%>
-                                        <asp:TemplateField HeaderText=" Sactioned Amount (In Lacs)">
-                                                                <ItemTemplate>
-                                                                   <span><%# Eval("AmtInLac") %></span>
-                                                                </ItemTemplate>
-                                                                
-
-                                                                 <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalAmount" runat="server" Style="font-weight: 700; font-weight:bold; font-size: 20px; color: #000000"></asp:Label>
-                                                                </FooterTemplate>
-                                             </asp:TemplateField>
-                                        
-                                        </Columns>
-                                        <EmptyDataTemplate>
-                                            <tr>
-                                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
-                                            </tr>
-                                        </EmptyDataTemplate>
-                                    </asp:GridView>
 
 
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group mt-2 text-end">
-                                    <asp:Button ID="btnclose" runat="server" Text="Close" CssClass="text-light btn bg-danger p-2" OnClick="btnclose_Click" />
-                                </div>
-                            </div>
-                        </div>
-                    </asp:Panel>
 
-                </ContentTemplate>
-                <Triggers>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1 p-0" Style="display: none; width: 800px; margin-left: -32px; height: 800px; overflow: auto">
+        <div class="row  bg-warning" style="border-radius: 11px; padding: 10px;">
+            <div class="col-xs-12">
+                <div class="table-header fw-bold fs-4">
+                    Fund Detail                                      
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="padding: 10px">
+            <div class="col-xl-12">
+                <h5 id="MPMLAName" style="text-align: center" runat="server"></h5>
+            </div>
+            <div class="col-xl-12">
+                <h5 id="SchemeNamesof" style="text-align: center" runat="server"></h5>
+            </div>
+        </div>
+        <div class="row p-3">
+            <div class="col-md-12" id="dvPJ" runat="server">
+                <div class="form-group">
+                    <asp:GridView ID="gridULBCount" runat="server" ShowFooter="true" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                        <columns>
+                            <asp:TemplateField HeaderText="Sr. No.">
+                                <itemtemplate>
+                                    <%# Container.DataItemIndex + 1 %>
+                                </itemtemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField HeaderText="District Name" DataField="DistName" />
+                            <asp:TemplateField HeaderText="ULB Name">
+                                <itemtemplate>
+                                    <span><%# Eval("ULBName") %></span>
+                                </itemtemplate>
+                                <footertemplate>
+                                    <asp:Label Text="Total :" runat="server" Style="font-weight: 700; font-weight: bold; font-size: 20px; color: #000000"></asp:Label>
+                                </footertemplate>
+                            </asp:TemplateField>
+
+                            <%--<asp:BoundField HeaderText="ULB Name" DataField="ULBName" />--%>
+
+                            <asp:TemplateField HeaderText=" Sactioned Amount (In Lacs)">
+                                <itemtemplate>
+                                    <span><%# Eval("amount") %></span>
+                                </itemtemplate>
+
+
+                                <footertemplate>
+                                    <asp:Label ID="lblTotalUlbsAmount" runat="server" Style="font-weight: 700; font-weight: bold; font-size: 20px; color: #000000"></asp:Label>
+                                </footertemplate>
+                            </asp:TemplateField>
+                            <%-- <asp:BoundField HeaderText=""  DataField="amount" />--%>
+                        </columns>
+                        <emptydatatemplate>
+                            <tr>
+                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                            </tr>
+                        </emptydatatemplate>
+                    </asp:GridView>
+
+                    <asp:GridView ID="GridYearViseSingle" ShowFooter="true" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                        <columns>
+                            <asp:TemplateField HeaderText="Sr. No.">
+                                <itemtemplate>
+                                    <%# Container.DataItemIndex + 1 %>
+                                </itemtemplate>
+                            </asp:TemplateField>
+                            <%--<asp:BoundField HeaderText="No of Financial year" DataField="SessionYear" />--%>
+
+                            <asp:TemplateField HeaderText="No of Financial year">
+                                <itemtemplate>
+                                    <span><%# Eval("SessionYear") %></span>
+                                </itemtemplate>
+                                <footertemplate>
+                                    <asp:Label Text="Total :" runat="server" Style="font-weight: 700; font-weight: bold; font-size: 20px; color: #000000"></asp:Label>
+                                </footertemplate>
+                            </asp:TemplateField>
+                            <%--<asp:BoundField HeaderText="Total " DataField="" />--%>
+
+                            <asp:TemplateField HeaderText=" Sactioned Amount (In Lacs)">
+                                <itemtemplate>
+                                    <span><%# Eval("amount") %></span>
+                                </itemtemplate>
+
+
+                                <footertemplate>
+                                    <asp:Label ID="lblTotalUlbsyearAmount" runat="server" Style="font-weight: 700; font-weight: bold; font-size: 20px; color: #000000"></asp:Label>
+                                </footertemplate>
+                            </asp:TemplateField>
+
+                        </columns>
+                        <emptydatatemplate>
+                            <tr>
+                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                            </tr>
+                        </emptydatatemplate>
+                    </asp:GridView>
+
+
+                    <asp:GridView ID="GridViewOfAmountWise1" runat="server" ShowFooter="true" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found">
+                        <columns>
+                            <asp:TemplateField HeaderText="Sr. No.">
+                                <itemtemplate>
+                                    <%# Container.DataItemIndex + 1 %>
+                                </itemtemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField HeaderText="District Name" DataField="DistName" />
+
+                            <asp:BoundField HeaderText="ULB NAme" DataField="ULBName" />
+                            <%--<asp:BoundField HeaderText="No of Financial year" DataField="SessionYear" />--%>
+                            <asp:TemplateField HeaderText="No of Financial year">
+                                <itemtemplate>
+                                    <span><%# Eval("SessionYear") %></span>
+                                </itemtemplate>
+                                <footertemplate>
+                                    <asp:Label Text="Total :" runat="server" Style="font-weight: 700; font-weight: bold; font-size: 20px; color: #000000"></asp:Label>
+                                </footertemplate>
+                            </asp:TemplateField>
+                            <%--<asp:BoundField HeaderText="Total Sactioned Amount(In Lacs)" DataField="AmtInLac" />--%>
+                            <asp:TemplateField HeaderText=" Sactioned Amount (In Lacs)">
+                                <itemtemplate>
+                                    <span><%# Eval("AmtInLac") %></span>
+                                </itemtemplate>
+
+
+                                <footertemplate>
+                                    <asp:Label ID="lblTotalAmount" runat="server" Style="font-weight: 700; font-weight: bold; font-size: 20px; color: #000000"></asp:Label>
+                                </footertemplate>
+                            </asp:TemplateField>
+
+                        </columns>
+                        <emptydatatemplate>
+                            <tr>
+                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                            </tr>
+                        </emptydatatemplate>
+                    </asp:GridView>
+
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group mt-2 text-end">
+                    <asp:Button ID="btnclose" runat="server" Text="Close" CssClass="text-light btn bg-danger p-2" OnClick="btnclose_Click" />
+                </div>
+            </div>
+        </div>
+    </asp:Panel>
+
+    </ContentTemplate>
+                <triggers>
                     <asp:PostBackTrigger ControlID="btnAction" />
                     <%--<asp:PostBackTrigger ControlID="exportToExcel" />--%>
                     <%--<asp:PostBackTrigger ControlID="btnExportToExcel" />--%>
-                    
-                </Triggers>
-            </asp:UpdatePanel>
+                </triggers>
+    </asp:UpdatePanel>
             <%--<asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
                     <ProgressTemplate>
                         <div style="position: fixed; z-index: 999; height: 100%; width: 100%; top: 0; filter: alpha(opacity=60); opacity: 0.6; -moz-opacity: 0.8; cursor: not-allowed;">
@@ -1078,83 +1089,83 @@
             })
         });
     </script>
-     <script type="text/javascript">
+    <script type="text/javascript">
 
-         $(document).ready(function () {
-             $("#ctl00_ContentPlaceHolder1_gridMPWise").DataTable();
-             $("#ctl00_ContentPlaceHolder1_gridMLAWise").DataTable();
-             $("#ctl00_ContentPlaceHolder1_gridDivisionWise").DataTable();
-             $("#ctl00_ContentPlaceHolder1_GrdDistrictWise").DataTable();
-             $("#ctl00_ContentPlaceHolder1_gridWorkPlanWise").DataTable();
-             $("#ctl00_ContentPlaceHolder1_GrdRecommendation").DataTable();
-             $("#ctl00_ContentPlaceHolder1_gridFyWise").DataTable();
-             
-         })
+        $(document).ready(function () {
+            $("#ctl00_ContentPlaceHolder1_gridMPWise").DataTable();
+            $("#ctl00_ContentPlaceHolder1_gridMLAWise").DataTable();
+            $("#ctl00_ContentPlaceHolder1_gridDivisionWise").DataTable();
+            $("#ctl00_ContentPlaceHolder1_GrdDistrictWise").DataTable();
+            $("#ctl00_ContentPlaceHolder1_gridWorkPlanWise").DataTable();
+            $("#ctl00_ContentPlaceHolder1_GrdRecommendation").DataTable();
+            $("#ctl00_ContentPlaceHolder1_gridFyWise").DataTable();
 
-         function ExportToExcel(type, fn, dl) {
-             debugger
-             const currentDate = new Date();
+        })
 
-             // Get the current date
-             const year = currentDate.getFullYear();
-             const month = currentDate.getMonth() + 1; // Months are zero-based
-             const day = currentDate.getDate();
-             var h2Element = document.querySelector('.tblheader h3');
-             var h2Value = h2Element ? h2Element.innerText : 'DefaultHeader';
-             // Format the date as desired (e.g., YYYY-MM-DD)
-             const formattedDate = "Work Plan Detail_" + `${year}-${month}-${day}`;
+        function ExportToExcel(type, fn, dl) {
+            debugger
+            const currentDate = new Date();
 
-             var elt = document.getElementById('ctl00_ContentPlaceHolder1_gvRecords');
-             var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
-             return dl ?
-                 XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
-                 XLSX.writeFile(wb, fn || (formattedDate + "." + (type || 'xlsx')));
-         }
+            // Get the current date
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth() + 1; // Months are zero-based
+            const day = currentDate.getDate();
+            var h2Element = document.querySelector('.tblheader h3');
+            var h2Value = h2Element ? h2Element.innerText : 'DefaultHeader';
+            // Format the date as desired (e.g., YYYY-MM-DD)
+            const formattedDate = "Work Plan Detail_" + `${year}-${month}-${day}`;
 
-
-         function ExportToExcel(type, fn, dl) {
-             debugger;
-             const currentDate = new Date();
-
-             // Get the current date
-             const year = currentDate.getFullYear();
-             const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-             const day = String(currentDate.getDate()).padStart(2, '0');
-
-             // Get the text from the h2 element
-             var h2Element = document.querySelector('.tblheader h3');
-             var h2Value = h2Element ? h2Element.innerText : 'DefaultHeader';
-
-             // Format the date as desired (e.g., YYYY-MM-DD)
-             const formattedDate = `${h2Value}_${year}-${month}-${day}`;
-
-             // Get the GridView table element
-             var tables = document.getElementsByTagName('table');
-             if (tables.length === 0) {
-                 console.error('No table elements found');
-                 return;
-             }
-
-             var table = tables[0];
-
-             //// Clone the table to avoid modifying the original
-             //var tableClone = table.cloneNode(true);
-
-             //// Convert button text to plain text
-             //var inputs = tableClone.querySelectorAll('input[type="submit"]');
-             //inputs.forEach(input => {
-             //    input.outerHTML = input.value; // Replace input with its value
-             //});
+            var elt = document.getElementById('ctl00_ContentPlaceHolder1_gvRecords');
+            var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+            return dl ?
+                XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+                XLSX.writeFile(wb, fn || (formattedDate + "." + (type || 'xlsx')));
+        }
 
 
-             // Convert the cleaned table to a workbook
-             var wb = XLSX.utils.table_to_book(table, { sheet: "sheet1" });
+        function ExportToExcel(type, fn, dl) {
+            debugger;
+            const currentDate = new Date();
 
-             // Write the workbook to file or return base64
-             return dl ?
-                 XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
-                 XLSX.writeFile(wb, fn || (formattedDate + "." + (type || 'xlsx')));
-         }
+            // Get the current date
+            const year = currentDate.getFullYear();
+            const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            const day = String(currentDate.getDate()).padStart(2, '0');
+
+            // Get the text from the h2 element
+            var h2Element = document.querySelector('.tblheader h3');
+            var h2Value = h2Element ? h2Element.innerText : 'DefaultHeader';
+
+            // Format the date as desired (e.g., YYYY-MM-DD)
+            const formattedDate = `${h2Value}_${year}-${month}-${day}`;
+
+            // Get the GridView table element
+            var tables = document.getElementsByTagName('table');
+            if (tables.length === 0) {
+                console.error('No table elements found');
+                return;
+            }
+
+            var table = tables[0];
+
+            //// Clone the table to avoid modifying the original
+            //var tableClone = table.cloneNode(true);
+
+            //// Convert button text to plain text
+            //var inputs = tableClone.querySelectorAll('input[type="submit"]');
+            //inputs.forEach(input => {
+            //    input.outerHTML = input.value; // Replace input with its value
+            //});
+
+
+            // Convert the cleaned table to a workbook
+            var wb = XLSX.utils.table_to_book(table, { sheet: "sheet1" });
+
+            // Write the workbook to file or return base64
+            return dl ?
+                XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+                XLSX.writeFile(wb, fn || (formattedDate + "." + (type || 'xlsx')));
+        }
 
 
 
@@ -1194,16 +1205,17 @@
          //        XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
          //        XLSX.writeFile(wb, fn || (formattedDate + "." + (type || 'xlsx')));
          //}
-        
-     </script>
+
+    </script>
     <style>
-       /*  table:nth-of-type(1) tbody:nth-of-type(1) tr:first-child {
+        /*  table:nth-of-type(1) tbody:nth-of-type(1) tr:first-child {
             background: linear-gradient(180deg, rgba(251, 108, 71, 1) 0%, rgba(242, 139, 42, 1) 100%);
             color:white;
         }*/
-       .hidden-column {
-    display: none;
-}
+        .hidden-column {
+            display: none;
+        }
+
         .form-control img {
             height: 20px;
             width: 20px;
@@ -1221,9 +1233,11 @@
             text-align: center;
             margin: 0 2px;
         }
-        .tblheader h3{
-            margin-bottom:20px
+
+        .tblheader h3 {
+            margin-bottom: 20px
         }
+
         .reportGrid tbody tbody td a {
             height: 35px;
             color: #000;
@@ -1235,13 +1249,15 @@
             background: #c5dffb;
             border: 1px solid #bbdbff;
         }
-       .drill_btn {
-    width: 75px;
-    height: 33px;
-    padding: 0;
-}
+
+        .drill_btn {
+            width: 75px;
+            height: 33px;
+            padding: 0;
+        }
+
         .tab_btn {
-    margin: 2px;
-}
+            margin: 2px;
+        }
     </style>
 </asp:Content>

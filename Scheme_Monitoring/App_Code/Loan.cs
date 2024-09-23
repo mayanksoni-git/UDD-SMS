@@ -674,6 +674,30 @@ public class Loan
             command.ExecuteNonQuery();
         }
     }
+
+
+
+    public DataTable getWorkProposalDashbaord()
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+
+            return objDAL.GetDataByProcedure("sp_ReportDashboard_WPReport_Test");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+
+
+
+
+
+
+
     #endregion
 
     #region Decision Making Page

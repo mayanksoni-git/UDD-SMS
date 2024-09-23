@@ -328,8 +328,29 @@ public partial class VisionPlan : System.Web.UI.Page
         var year = txtYear.Text;
         var fy = Convert.ToInt32(ddlFY.SelectedValue);
         var priority = DdlPriority.SelectedValue;
+
+        string FromDate = "", ToDate = "";
+
+        if (txtFromDate.Text == "")
+        {
+            FromDate = "1900-01-01";
+        }
+        else
+        {
+            FromDate = txtFromDate.Text;
+        }
+
+        if (txtToDate.Text == "")
+        {
+            ToDate = "9999-12-31";
+        }
+        else
+        {
+            ToDate = txtToDate.Text;
+        }
+
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlanForReport("select", ulb, state, check, dist, fy, year, priority, -1, UlbType, mandal, ExpAmtLess, ExpAmtGret);
+        dt = objLoan.GetVisionPlanForReport("select", ulb, state, check, dist, fy, year, priority, -1, UlbType, mandal, ExpAmtLess, ExpAmtGret, FromDate, ToDate);
 
         if (dt != null && dt.Rows.Count > 0)
         {
@@ -338,7 +359,6 @@ public partial class VisionPlan : System.Web.UI.Page
         }
         else
         {
-          
             grdPost.DataSource = dt;
             grdPost.DataBind();
         }

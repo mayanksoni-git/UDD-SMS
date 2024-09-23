@@ -935,12 +935,12 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
 
     public DataTable GetVisionPlanForReport(string actions,  int? ULBID,  int? stateid, string IsConstructed, int? circleId
         , int? FY, string constructedYear,  string selfPriority, int VisionStatus, string ULBType, int mandal, int ExpAmtLess, 
-        int ExpAmtGret)
+        int ExpAmtGret, string FromDate, string ToDate)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[13];
+            SqlParameter[] param = new SqlParameter[15];
             param[0] = new SqlParameter("@action", actions);
             param[1] = new SqlParameter("@stateId", stateid);
             param[2] = new SqlParameter("@distId", circleId);
@@ -954,6 +954,8 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[10] = new SqlParameter("@mandal", mandal);
             param[11] = new SqlParameter("@ExpAmtLess", ExpAmtLess);
             param[12] = new SqlParameter("@ExpAmtGret", ExpAmtGret);
+            param[13] = new SqlParameter("@FromDate", FromDate);
+            param[14] = new SqlParameter("@ToDate", ToDate);
 
             return objDAL.GetDataByProcedure("SPVisionPlanForReport", param);
         }
