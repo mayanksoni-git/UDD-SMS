@@ -285,9 +285,9 @@
                                 <div class="collapse menu-dropdown" id="sidebarCMVNY">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="VisionPlan.aspx" class="nav-link" data-key="t-grid-js">Vision Plan</a> </li>
-                                        <li class="nav-item"><a href="UploadDocForVisionplan.aspx" class="nav-link" data-key="t-grid-js">Upload Document For Vision Plan</a> </li>
+                                       <%-- <li class="nav-item"><a href="UploadDocForVisionplan.aspx" class="nav-link" data-key="t-grid-js">Upload Document For Vision Plan</a> </li>
                                         <li class="nav-item"><a href="MasterDPR_Upload.aspx" class="nav-link" data-key="t-list-js">Upload DPR Document</a> </li>
-                                        <li class="nav-item"><a href="Report_DPR_Status_Report.aspx" class="nav-link" data-key="t-list-js">DPR Status Report</a> </li>
+                                        <li class="nav-item"><a href="Report_DPR_Status_Report.aspx" class="nav-link" data-key="t-list-js">DPR Status Report</a> </li>--%>
                                         <li class="nav-item"><a href="VisionPlanActionFirst.aspx" class="nav-link" data-key="t-list-js">Action on Vision Plan</a> </li>
                                         <li class="nav-item">
                                             <a href="PDFs/Annexures/Annexure4.xlsx"
@@ -297,7 +297,10 @@
                                                 data-key="t-list-js">Annexure-4</a>
                                         </li>
                                         <li class="nav-item"><a href="PDFs/GuideLines/CM-VNY_English_Revised_Final%20Guidelines%2022.08PDF.pdf" target="_blank" class="nav-link" data-key="t-list-js">USER GUIDE</a> </li>
-                                        <%--<li class="nav-item"><a href="AnnualActionPlan.aspx" class="nav-link" data-key="t-grid-js">Annual Action Plan</a> </li>--%>
+                                        <li class="nav-item"><a href="PDFs/ULB%20Eligibility/NPP%20Greater%201%20Lac.pdf" target="_blank" class="nav-link" data-key="t-list-js">NPP Greater 1 Lac</a>
+                                        <li class="nav-item"><a href="PDFs/ULB%20Eligibility/NPP%20Less%201%20Lac.pdf" target="_blank" class="nav-link" data-key="t-list-js">NPP Less 1 Lac</a>
+                                        <li class="nav-item"><a href="PDFs/ULB%20Eligibility/qualifying%20NP_V2.pdf" target="_blank" class="nav-link" data-key="t-list-js">qualifying NP_V2</a>
+                                        
                                     </ul>
                                 </div>
                             </li>
