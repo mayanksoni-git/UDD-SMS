@@ -53,7 +53,8 @@
                                                 <div runat="server" id="divDashboard" class="tblheader" visible="true" style="overflow: auto">
                                                     <div class="row">
                                                         <div class="col-lg-10">
-                                                            <h3><asp:Label ID="lblReportName" runat="server"></asp:Label></h3>
+                                                            <h3>
+                                                                Reports</h3>
                                                         </div>
                                                         <div class="col-lg-2">
                                                             <%--<asp:Button ID="Button7" runat="server" Text="Export to Excel Of Financial Year Wise" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" />--%>
@@ -85,7 +86,6 @@
                     <asp:PostBackTrigger ControlID="btnProjectType" />
                     <asp:PostBackTrigger ControlID="btnProposerType" />
                     <asp:PostBackTrigger ControlID="btnSchemeWise" />
-                    <asp:PostBackTrigger ControlID="lblReportName" />
                 </Triggers>
             </asp:UpdatePanel>
         </div>

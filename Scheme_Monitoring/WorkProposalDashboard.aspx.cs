@@ -32,7 +32,6 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportDashboard_WPReport_Test";
 
         LoadWorkProposalGrid(ProcedureName);
-        lblReportName.Text = "Dashboard";
     }
 
     protected void btnULBWise_Click(object sender, EventArgs e)
@@ -41,7 +40,6 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportByDivision_WPReport_Test";
 
         LoadWorkProposalGrid(ProcedureName);
-        lblReportName.Text = "ULB Wise Report";
     }
 
     protected void btnULBType_Click(object sender, EventArgs e)
@@ -50,7 +48,6 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportByULBType_WPReport_Test";
 
         LoadWorkProposalGrid(ProcedureName);
-        lblReportName.Text = "ULB Type Wise Reprot";
     }
 
     protected void btnProjectType_Click(object sender, EventArgs e)
@@ -59,7 +56,6 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportByProjectType_WPReport_Test";
 
         LoadWorkProposalGrid(ProcedureName);
-        lblReportName.Text = "Project Type Wise Reprot";
     }
 
     protected void btnProposerType_Click(object sender, EventArgs e)
@@ -68,7 +64,6 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportByProposerType_WPReport_Test";
 
         LoadWorkProposalGrid(ProcedureName);
-        lblReportName.Text = "Proposer Type Wise Reprot";
     }
 
     protected void btnSchemeWise_Click(object sender, EventArgs e)
@@ -77,7 +72,6 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportByProjectName";
 
         LoadWorkProposalGrid(ProcedureName);
-        lblReportName.Text = "Scheme Wise Report";
     }
 
     private void LoadWorkProposalGrid(string ProcedureName)
