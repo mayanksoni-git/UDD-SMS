@@ -61,6 +61,13 @@
                                                         </div>
                                                     </div>
                                                     <asp:GridView ID="gridDashboard" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="True" EmptyDataText="No Records Found">
+                                                        <Columns>
+                                                            <asp:TemplateField HeaderText="Sr. No.">
+                                                                <ItemTemplate>
+                                                                    <%# Container.DataItemIndex + 1 %>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                        </Columns>
                                                         <EmptyDataTemplate>
                                                             <tr>
                                                                 <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
