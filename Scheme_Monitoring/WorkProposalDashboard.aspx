@@ -42,12 +42,18 @@
                                             <div class="row gy-12">
                                                 <div class="d-flex" style="margin-top: 20px; margin-bottom: 20px">
                                                     <asp:Button ID="btnDashboard" Text="Dashboard" OnClick="btnDashboard_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                                    <asp:Button ID="btnULBWise" Text="ULB Wise" OnClick="btnULBWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                                    <asp:Button ID="btnULBType" Text="ULB Type Wise" OnClick="btnULBType_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                                    <asp:Button ID="btnProjectType" Text="Project Type Wise" OnClick="btnProjectType_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                                    <asp:Button ID="btnProposerType" Text="Proposer Type Wise" OnClick="btnProposerType_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                                    <asp:Button ID="btnSchemeWise" Text="Scheme Wise" OnClick="btnSchemeWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                                   
                                                 </div>
                                                 <!-- div.dataTables_borderWrap -->
-                                                <div runat="server" id="divDashboard" class="tblheader" visible="false" style="overflow: auto">
+                                                <div runat="server" id="divDashboard" class="tblheader" visible="true" style="overflow: auto">
                                                     <div class="row">
                                                         <div class="col-lg-10">
-                                                            <h3>Dashboard</h3>
+                                                            <h3><asp:Label ID="lblReportName" runat="server"></asp:Label></h3>
                                                         </div>
                                                         <div class="col-lg-2">
                                                             <%--<asp:Button ID="Button7" runat="server" Text="Export to Excel Of Financial Year Wise" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" />--%>
@@ -73,10 +79,13 @@
                     </div>
                 </ContentTemplate>
                 <Triggers>
-                    <asp:PostBackTrigger ControlID="btnSearch" />
-                    <asp:PostBackTrigger ControlID="ddlCircle" />
-                    <asp:PostBackTrigger ControlID="ddlDivision" />
-                    <asp:PostBackTrigger ControlID="ddlProjectMaster" />
+                    <asp:PostBackTrigger ControlID="btnDashboard" />
+                    <asp:PostBackTrigger ControlID="btnULBWise" />
+                    <asp:PostBackTrigger ControlID="btnULBType" />
+                    <asp:PostBackTrigger ControlID="btnProjectType" />
+                    <asp:PostBackTrigger ControlID="btnProposerType" />
+                    <asp:PostBackTrigger ControlID="btnSchemeWise" />
+                    <asp:PostBackTrigger ControlID="lblReportName" />
                 </Triggers>
             </asp:UpdatePanel>
         </div>

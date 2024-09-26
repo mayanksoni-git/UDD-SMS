@@ -677,13 +677,13 @@ public class Loan
 
 
 
-    public DataTable getWorkProposalDashbaord()
+    public DataTable getWorkProposalDashbaord(string Proc)
     {
         try
         {
             DataTable dt = new DataTable();
 
-            return objDAL.GetDataByProcedure("sp_ReportDashboard_WPReport_Test");
+            return objDAL.GetDataByProcedure(Proc);
         }
         catch (Exception ex)
         {

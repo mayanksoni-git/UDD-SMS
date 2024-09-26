@@ -21,7 +21,6 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
-            
 
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
@@ -29,16 +28,62 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
 
     protected void btnDashboard_Click(object sender, EventArgs e)
     {
-        string GridName = "";
-        string ProcedureName = "";
+        //string GridName = "divDashboard";
+        string ProcedureName = "sp_ReportDashboard_WPReport_Test";
 
-        LoadWorkProposalGrid(GridName, ProcedureName);
+        LoadWorkProposalGrid(ProcedureName);
+        lblReportName.Text = "Dashboard";
     }
 
-    private void LoadWorkProposalGrid(string GrigName, string ProcedureName)
+    protected void btnULBWise_Click(object sender, EventArgs e)
+    {
+        //string GridName = "divULBWise";
+        string ProcedureName = "sp_ReportByDivision_WPReport_Test";
+
+        LoadWorkProposalGrid(ProcedureName);
+        lblReportName.Text = "ULB Wise Report";
+    }
+
+    protected void btnULBType_Click(object sender, EventArgs e)
+    {
+        //string GridName = "divULBType";
+        string ProcedureName = "sp_ReportByULBType_WPReport_Test";
+
+        LoadWorkProposalGrid(ProcedureName);
+        lblReportName.Text = "ULB Type Wise Reprot";
+    }
+
+    protected void btnProjectType_Click(object sender, EventArgs e)
+    {
+        //string GridName = "divULBType";
+        string ProcedureName = "sp_ReportByProjectType_WPReport_Test";
+
+        LoadWorkProposalGrid(ProcedureName);
+        lblReportName.Text = "Project Type Wise Reprot";
+    }
+
+    protected void btnProposerType_Click(object sender, EventArgs e)
+    {
+        //string GridName = "divULBType";
+        string ProcedureName = "sp_ReportByProposerType_WPReport_Test";
+
+        LoadWorkProposalGrid(ProcedureName);
+        lblReportName.Text = "Proposer Type Wise Reprot";
+    }
+
+    protected void btnSchemeWise_Click(object sender, EventArgs e)
+    {
+        //string GridName = "divULBType";
+        string ProcedureName = "sp_ReportByProjectName";
+
+        LoadWorkProposalGrid(ProcedureName);
+        lblReportName.Text = "Scheme Wise Report";
+    }
+
+    private void LoadWorkProposalGrid(string ProcedureName)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.getWorkProposalDashbaord();
+        dt = objLoan.getWorkProposalDashbaord(ProcedureName);
 
         if (dt != null && dt.Rows.Count > 0)
         {
