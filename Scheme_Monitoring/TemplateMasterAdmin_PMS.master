@@ -369,6 +369,15 @@
                                     </ul>
                                 </div>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarAkanchi" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFund"><img src="assets/images/left-menu-icon/CMVNY Scheme.svg" class="img-fluid" /><span data-key="t-tables">Akanchi Yojna</span> </a>
+                                <div class="collapse menu-dropdown" id="sidebarAkanchi">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item"><a href="AkanchiYojnaDashboard.aspx" class="nav-link" data-key="t-grid-js">Akanchi Fund Report</a> </li>
+                                    </ul>
+                                </div>
+                            </li>
                            
 
                         </ul>
