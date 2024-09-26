@@ -358,7 +358,16 @@
                                 </div>
                             </li>
                            
-                            
+                               <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarConstructionPark" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFund"><img src="assets/images/left-menu-icon/CMVNY Scheme.svg" class="img-fluid" /><span data-key="t-tables">CONSTRUCTION OF PARKS</span> </a>
+                                <div class="collapse menu-dropdown" id="sidebarConstructionPark">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item"><a href="AdoptedParkFormat.aspx" class="nav-link" data-key="t-grid-js">Adopted Parks</a> </li>
+                                        <li class="nav-item"><a href="AdoptedParkDetail.aspx" class="nav-link" data-key="t-grid-js">Park Detail</a> </li>
+                                       
+                                    </ul>
+                                </div>
+                            </li>
                            
 
                         </ul>
