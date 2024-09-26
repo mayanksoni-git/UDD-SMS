@@ -47,6 +47,7 @@
                                                     
                                                     <asp:Button ID="btnCircleWise" Text="District Wise" OnClick="btnCircleWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
                                                     <asp:Button ID="btnPriorityWise" Text="Priority Wise" OnClick="btnPriorityWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                                    <asp:Button ID="btnProjectType" Text="Project Type Wise" OnClick="btnProjectType_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
                                                    
                                                 </div>
                                                 <!-- div.dataTables_borderWrap -->
@@ -90,6 +91,8 @@
                     <asp:PostBackTrigger ControlID="btnDashboard" />
                     <asp:PostBackTrigger ControlID="btnULBWise" />
                     <asp:PostBackTrigger ControlID="btnCircleWise" />
+                    <asp:PostBackTrigger ControlID="btnPriorityWise" />
+                    <asp:PostBackTrigger ControlID="btnProjectType" />
                 </Triggers>
             </asp:UpdatePanel>
         </div>
