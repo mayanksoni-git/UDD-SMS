@@ -49,6 +49,13 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
 
         LoadVisionPlanGrid(ProcedureName);
     }
+    protected void btnPriorityWise_Click(object sender, EventArgs e)
+    {
+        //string GridName = "divULBType";
+        string ProcedureName = "sp_SelfPriorityWiseVisionReport_VPReport";
+
+        LoadVisionPlanGrid(ProcedureName);
+    }
 
     private void LoadVisionPlanGrid(string ProcedureName)
     {
