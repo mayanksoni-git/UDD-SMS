@@ -22,7 +22,7 @@
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">Akanchi Nagar Yojana</li>
-                                            <li class="breadcrumb-item active">Akanchi Nagar Yojana Dashboard</li>
+                                            <li class="breadcrumb-item active">Akanchi Nagar Yojana Report</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
 
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Akanchi Nagar Yojana Dashboard</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Akanchi Nagar Yojana Report</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="live-preview">
