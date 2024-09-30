@@ -250,7 +250,7 @@
                         </div>
                     </div>
                         
-                        </div>
+                        
                 </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="btnSearch" />

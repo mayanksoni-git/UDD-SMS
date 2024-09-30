@@ -359,6 +359,30 @@ public class Loan
     }
     #endregion
 
+    #region MasterPersonHidden
+    public DataTable getMasterPersonDetail(tbl_WorkProposal objSearch, int designation)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[6];
+
+            param[0] = new SqlParameter("@Zone", objSearch.Zone);
+            param[1] = new SqlParameter("@Circle", objSearch.Circle);
+            param[2] = new SqlParameter("@Division", objSearch.Division);
+            param[3] = new SqlParameter("@Scheme", objSearch.Scheme);
+            param[4] = new SqlParameter("@MobileNo", objSearch.Mobile);
+            param[5] = new SqlParameter("@Designation", designation);
+
+            return objDAL.GetDataByProcedure("sp_SelectMasterPersonHiddenBySearch", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    #endregion
+
     #region WorkProposal
     public DataTable InsertWorkProposal(tbl_WorkProposal obj)
     {
