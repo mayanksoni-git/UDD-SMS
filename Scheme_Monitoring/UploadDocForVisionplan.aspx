@@ -4,6 +4,76 @@
     <asp:HiddenField ID="hdnplanId" runat="server" />
 
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
+    <%--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>--%>
+
+
+
+    <%--<script type="text/javascript">
+        $(document).ready(function () {
+            $('#<%= grdPost2.ClientID %>').DataTable({
+            "paging": true,
+            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
+</script>--%>
+<%--    <!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"/>
+<!-- Buttons CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css"/>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<!-- Buttons JS -->
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>--%>
+
+
+    <%--<script type="text/javascript">
+        $(document).ready(function () {
+            $('#<%= grdPost2.ClientID %>').DataTable({
+            "paging": true,
+            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "dom": 'Bfrtip', // Add this line for the export buttons
+            "buttons": [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>--%>
+  <%--  <script type="text/javascript">
+        $(document).ready(function () {
+            $('#<%= grdPost2.ClientID %>').DataTable({
+            "paging": true,
+            "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "dom": 'Blfrtip', // Ensure both lengthMenu (l) and buttons (B) are included
+            "buttons": [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+    </script>--%>
+
     <div class="main-content">
         <div class="page-content">
             <asp:UpdatePanel ID="up" runat="server">
@@ -141,7 +211,7 @@
                                                         <div class="pull-right tableTools-container"></div>
                                                     </div>
                                                  <div style="overflow: auto">
-                                                <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                <asp:GridView runat="server" ID="grdPost" AllowPaging="false" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>
@@ -187,6 +257,6 @@
              </div>
         </div>
     </div>
-   
 
+    
 </asp:Content>

@@ -11,7 +11,10 @@ function initializeTables() {
         pagingType: "full_numbers"
     }),
         new DataTable("#ctl00_ContentPlaceHolder1_grdPost", {
-        dom: "Bfrtip",
+            paging: true,
+            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+            searching: true,
+        dom: "Blfrtip",
         buttons: ["copy", "csv", "excel", "print", "pdf"], 
         fixedHeader: !0
     }),
