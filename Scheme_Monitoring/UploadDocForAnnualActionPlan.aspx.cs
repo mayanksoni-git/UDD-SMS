@@ -284,8 +284,27 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
         }
     }
 
-   
-  
+    protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8")
+        {
+            // Find the columns by CssClass
+            foreach (DataControlField column in grdPost.Columns)
+            {
+                if (column.HeaderText == "Edit")
+                {
+                    column.Visible = false; // Hide the Edit column
+                }
+                if (column.HeaderText == "Delete")
+                {
+                    column.Visible = false; // Hide the Delete column
+                }
+            }
+        }
+    }
+
+
+
     protected void Edit_Command(object sender, CommandEventArgs e)
     {
         var id = Convert.ToInt32(e.CommandArgument.ToString());
