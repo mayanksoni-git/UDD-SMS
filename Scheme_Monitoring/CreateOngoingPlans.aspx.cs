@@ -114,12 +114,26 @@ public partial class CreateOngoingPlans : System.Web.UI.Page
     }
 
 
+    //private void get_tbl_Project()
+    //{
+    //    DataSet ds = (new DataLayer()).get_tbl_Project(0);
+    //   FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
+    //}
+
     private void get_tbl_Project()
     {
-        DataSet ds = (new DataLayer()).get_tbl_Project(0);
-       FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
+        DataSet ds = new DataSet();
+        if (Session["UserType"].ToString() == "1")
+        {
+            ds = (new DataLayer()).get_tbl_Project(0);
+        }
+        else
+        {
+            ds = (new DataLayer()).get_tbl_Project(Convert.ToInt32(Session["Person_Id"].ToString()));
+        }
+        FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
     }
-   
+
     private void get_tbl_FinancialYear()
     {
         DataSet ds = (new DataLayer()).get_tbl_FinancialYear();

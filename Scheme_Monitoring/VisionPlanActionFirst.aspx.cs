@@ -391,7 +391,7 @@ public partial class VisionPlanActionFirst : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             // Check if the session variable "ReadOnly" is set to 1
-            if (Session["Person_Id"] != null && Session["Person_Id"].ToString() == "2289")
+            if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8")
             {
                 // Find the last column (in this case, it's the <td> containing the LinkButtons)
                 HtmlTableCell lastColumn = e.Item.FindControl("LastColumn") as HtmlTableCell;

@@ -350,7 +350,7 @@ public partial class VisionPlan : System.Web.UI.Page
         }
 
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlanForReport("select", ulb, state, check, dist, fy, year, priority, -1, UlbType, mandal, ExpAmtLess, ExpAmtGret, FromDate, ToDate);
+        dt = objLoan.GetVisionPlanForReport("select", ulb, state, check, dist, fy, year, priority, -1, UlbType, mandal, ExpAmtLess, ExpAmtGret, FromDate, ToDate, Convert.ToInt32(Session["Person_Id"].ToString()));
 
         if (dt != null && dt.Rows.Count > 0)
         {
@@ -369,7 +369,7 @@ public partial class VisionPlan : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             // Check if the session variable "ReadOnly" is set to 1
-            if (Session["Person_Id"] != null && Session["Person_Id"].ToString() == "2289")
+            if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8")
             {
                 // Find the last column (in this case, it's the <td> containing the LinkButtons)
                 HtmlTableCell lastColumn = e.Item.FindControl("LastColumn") as HtmlTableCell;

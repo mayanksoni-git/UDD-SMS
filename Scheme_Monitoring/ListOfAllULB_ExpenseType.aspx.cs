@@ -246,6 +246,21 @@ public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
         GetAllData();
     }
 
+    protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8")
+        {
+            // Find the columns by CssClass
+            foreach (DataControlField column in grdPost.Columns)
+            {
+                if (column.HeaderText == "Edit")
+                {
+                    column.Visible = false; // Hide the Edit column
+                }
+            }
+        }
+    }
+
     protected void btnEdit_Command(object sender, CommandEventArgs e)
     {
         var ULBID = ddlDivision.SelectedValue;

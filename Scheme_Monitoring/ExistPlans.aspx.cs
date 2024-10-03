@@ -106,10 +106,24 @@ public partial class ExistPlans : System.Web.UI.Page
     }
 
 
+    //private void get_tbl_Project()
+    //{
+    //    DataSet ds = (new DataLayer()).get_tbl_Project(0);
+    //   FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
+    //}
+
     private void get_tbl_Project()
     {
-        DataSet ds = (new DataLayer()).get_tbl_Project(0);
-       FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
+        DataSet ds = new DataSet();
+        if (Session["UserType"].ToString() == "1")
+        {
+            ds = (new DataLayer()).get_tbl_Project(0);
+        }
+        else
+        {
+            ds = (new DataLayer()).get_tbl_Project(Convert.ToInt32(Session["Person_Id"].ToString()));
+        }
+        FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
     }
     private void get_tbl_WorkType(int ProjectId)
     {
@@ -192,6 +206,15 @@ public partial class ExistPlans : System.Web.UI.Page
         var ULB = 0;
         var FY = 0;
         var scheme = 0;
+        if (Session["UserType"].ToString() != "1")
+        {
+            if (ddlProjectMaster.SelectedValue == "0")
+            {
+                MessageBox.Show("Please Select A Scheme");
+                ddlProjectMaster.Focus();
+                return;
+            }
+        }
         var state = Convert.ToInt32(ddlZone.SelectedValue);
         if (ddlCircle.SelectedValue == "0" || ddlCircle.SelectedValue == "")
         {
@@ -250,8 +273,44 @@ public partial class ExistPlans : System.Web.UI.Page
         }
     }
 
-  
-  
+    //protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
+    //{
+    //    // Ensure it's not a header or footer row
+    //    if (e.Row.RowType == DataControlRowType.DataRow)
+    //    {
+    //        // Check the Person_Id from Session
+    //        if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8")
+    //        {
+    //            // Hide Edit and Delete columns
+    //            grdPost.Columns[grdPost.Columns.Count - 2].Visible = false; // Hide Edit column
+    //            grdPost.Columns[grdPost.Columns.Count - 1].Visible = false; // Hide Delete column
+    //        }
+    //    }
+    //}
+
+    protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8")
+        {
+            // Find the columns by CssClass
+            foreach (DataControlField column in grdPost.Columns)
+            {
+                if (column.HeaderText == "Edit")
+                {
+                    column.Visible = false; // Hide the Edit column
+                }
+                if (column.HeaderText == "Delete")
+                {
+                    column.Visible = false; // Hide the Delete column
+                }
+            }
+        }
+    }
+
+
+
+
+
     protected void Edit_Command(object sender, CommandEventArgs e)
     {
        
@@ -281,8 +340,6 @@ public partial class ExistPlans : System.Web.UI.Page
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-      
-
         GetAllData();
     }
 }

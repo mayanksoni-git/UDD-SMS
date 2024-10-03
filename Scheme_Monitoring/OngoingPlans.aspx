@@ -132,9 +132,6 @@
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
                                                         <asp:Button ID="btnSearch" style="float:right" runat="server"  CssClass="btn bg-success text-white" Text="Search" OnClick="btnSearch_Click"  />
-                                                        
-
-
                                                     </div>
                                             </div>
                                             <!--end row-->
@@ -170,7 +167,7 @@
                                                         <div class="pull-right tableTools-container"></div>
                                                     </div>
                                                  <div style="overflow: auto">
-                                                <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender"  OnRowDataBound="grdPost_RowDataBound">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>

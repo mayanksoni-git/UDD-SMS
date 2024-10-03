@@ -106,11 +106,26 @@ public partial class AnnualActionplan : System.Web.UI.Page
     }
 
 
+    //private void get_tbl_Project()
+    //{
+    //    DataSet ds = (new DataLayer()).get_tbl_Project(0);
+    //   FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
+    //}
+
     private void get_tbl_Project()
     {
-        DataSet ds = (new DataLayer()).get_tbl_Project(0);
-       FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
+        DataSet ds = new DataSet();
+        if (Session["UserType"].ToString() == "1")
+        {
+            ds = (new DataLayer()).get_tbl_Project(0);
+        }
+        else
+        {
+            ds = (new DataLayer()).get_tbl_Project(Convert.ToInt32(Session["Person_Id"].ToString()));
+        }
+        FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
     }
+
     private void get_tbl_WorkType(int ProjectId)
     {
         DataSet ds = (new DataLayer()).get_tbl_ProjectType(ProjectId, 0);
@@ -245,7 +260,7 @@ public partial class AnnualActionplan : System.Web.UI.Page
             scheme = Convert.ToInt32(ddlProjectMaster.SelectedValue);// == "0"
         }
         DataTable dt = new DataTable();
-        dt = objLoan.GetAnnualActionPlan("select", ULB, 0, 0, scheme, dist, FY, "", 0, "",0,"","","","");
+        dt = objLoan.GetAnnualActionPlan("select", ULB, 0, 0, scheme, dist, FY, "", 0, "", Convert.ToInt32(Session["Person_Id"].ToString()), "","","","");
         grdPost.DataSource = dt;
         grdPost.DataBind();
       
@@ -299,5 +314,24 @@ public partial class AnnualActionplan : System.Web.UI.Page
     protected void BtnSearch_Click(object sender, EventArgs e)
     {
         GetAllData();
+    }
+
+    protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8")
+        {
+            // Find the columns by CssClass
+            foreach (DataControlField column in grdPost.Columns)
+            {
+                if (column.HeaderText == "Edit")
+                {
+                    column.Visible = false; // Hide the Edit column
+                }
+                if (column.HeaderText == "Delete")
+                {
+                    column.Visible = false; // Hide the Delete column
+                }
+            }
+        }
     }
 }

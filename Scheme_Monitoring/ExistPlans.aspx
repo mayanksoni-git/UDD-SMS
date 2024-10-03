@@ -117,9 +117,6 @@
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
                                                         <asp:Button ID="btnSearch" style="float:right" runat="server"  CssClass="btn bg-success text-white" Text="Search" OnClick="btnSearch_Click"  />
-                                                        
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -156,7 +153,7 @@
                                                         <div class="pull-right tableTools-container"></div>
                                                     </div>
                                                  <div style="overflow: auto">
-                                                <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>
@@ -178,18 +175,18 @@
                                                                  <asp:Label ID="lblNoDocument" runat="server" Text="No Document" Visible='<%# string.IsNullOrEmpty(Eval("Documents") as string) %>'></asp:Label>
                                                                  <asp:HyperLink ID="hlDocument" runat="server" NavigateUrl='<%# Eval("Documents") %>' Text="Doc" Visible='<%# !string.IsNullOrEmpty(Eval("Documents") as string) %>' Target="_blank"></asp:HyperLink>
                                                              </ItemTemplate>
-                                                        
                                                         </asp:TemplateField>
+
                                                         <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>
                                                                 <asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditAnnualAction" OnCommand="Edit_Command" CommandArgument='<%# Eval("exPlanId") %>' CssClass="btn btn-primary drill_btn" />
-                                                            </ItemTemplate>                                                             
+                                                            </ItemTemplate>
                                                         </asp:TemplateField>
-                                                       <asp:TemplateField HeaderText="Delete">
-                                                        <ItemTemplate>
-                                                             <asp:Button ID="btnDelete" runat="server" Text='Delete' OnClientClick="return confirm('Are You Sure You Want To Delete This Item?')" CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("exPlanId") %>' CssClass="btn btn-danger drill_btn" />
-                                                         </ItemTemplate>
 
+                                                        <asp:TemplateField HeaderText="Delete">
+                                                            <ItemTemplate>
+                                                                <asp:Button ID="btnDelete" runat="server" Text='Delete' OnClientClick="return confirm('Are You Sure You Want To Delete This Item?')" CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("exPlanId") %>' CssClass="btn btn-danger drill_btn" />
+                                                            </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
                                                     <EmptyDataTemplate>
