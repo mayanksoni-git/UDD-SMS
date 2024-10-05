@@ -208,7 +208,7 @@
                                                     <th style="text-align: center">Population</th>
                                                     <th style="text-align: center">Project Type</th>
                                                     <th style="text-align: center">Project Name</th>
-                                                    <th style="text-align: center">Project Cost(In Rupees)</th>
+                                                    <th style="text-align: center">Project Cost(In Lakhs)</th>
                                                     <th style="text-align: center">Financial Year</th>
                                                     <th style="text-align: center">Is Constructed?</th>
                                                     <%--  <th  style="text-align:center">Under Construction(Y/N)</th>

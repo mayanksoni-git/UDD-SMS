@@ -94,7 +94,7 @@
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="div10" runat="server">
-                                                        <asp:Label ID="lblProjectCost" runat="server" Text="Project Cost(In Rupees)*" CssClass="form-label"></asp:Label>
+                                                        <asp:Label ID="lblProjectCost" runat="server" Text="Project Cost(In Lakhs)*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                     </div>
                                                 </div>
