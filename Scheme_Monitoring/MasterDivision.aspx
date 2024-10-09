@@ -83,6 +83,13 @@
                                             <asp:TextBox ID="txtDeathPer1000Source" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label ID="lblIsAkanshiULB" CssClass="control-label no-padding-right" Text="Is Akanshi ULB" runat="server"></asp:Label>
+                                            <asp:CheckBox ID="chkIsAkanshiULB" runat="server" CssClass="form-control mb-2" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

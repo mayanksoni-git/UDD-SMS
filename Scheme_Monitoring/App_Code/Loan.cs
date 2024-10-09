@@ -699,14 +699,11 @@ public class Loan
         }
     }
 
-
-
     public DataTable getWorkProposalDashbaord(string Proc)
     {
         try
         {
             DataTable dt = new DataTable();
-
             return objDAL.GetDataByProcedure(Proc);
         }
         catch (Exception ex)
@@ -714,14 +711,6 @@ public class Loan
             throw new Exception(ex.Message);
         }
     }
-
-
-
-
-
-
-
-
     #endregion
 
     #region Decision Making Page
@@ -919,6 +908,114 @@ public class Loan
             param[7] = new SqlParameter("@MemberName", objSearch.MemberName.ToString());
             
             return objDAL.GetDataByProcedure("Sp_GetJeetApiWorkProposalData", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    #endregion
+
+    #region Akanshi Yojna
+    public DataTable getAkanshiReportBySearch(int StateId, int MandalId, int CircleId, string ULBType, int ULBID, int FY)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[6];
+            param[0] = new SqlParameter("@ULBID", ULBID);
+            param[1] = new SqlParameter("@StateId", StateId);
+            param[2] = new SqlParameter("@CircleId", CircleId);
+            param[3] = new SqlParameter("@FYID", FY);
+            param[4] = new SqlParameter("@ULBType", ULBType);
+            param[5] = new SqlParameter("@MandalId", MandalId);
+
+            return objDAL.GetDataByProcedure("sp_GetAkanchiYojaData", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getGetAkanshiDataById(int AkanshiYojnaId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@AkanshiYojnaId", AkanshiYojnaId);
+
+            return objDAL.GetDataByProcedure("sp_GetAkanchiYojaDataById", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public int UpdateAkanshiYojnaData(tbl_AkanshiYojna obj_AkanshiYojna, int AkanshiYojnaId)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[16];
+
+            param[0] = new SqlParameter("@AddedBy", obj_AkanshiYojna.AddedBy);
+            param[1] = new SqlParameter("@FY", obj_AkanshiYojna.FY);
+            param[2] = new SqlParameter("@Division", obj_AkanshiYojna.Division);
+            param[3] = new SqlParameter("@CMFellowName", obj_AkanshiYojna.CMFellowName);
+
+            param[4] = new SqlParameter("@CMAbhyudaySchool", obj_AkanshiYojna.CMAbhyudaySchool);
+            param[5] = new SqlParameter("@TotalCMAbhyudaySchoolCost", obj_AkanshiYojna.TotalCMAbhyudaySchoolCost);
+
+            param[6] = new SqlParameter("@AnganwadiConstructionOnRent", obj_AkanshiYojna.AnganwadiConstructionOnRent);
+            param[7] = new SqlParameter("@AnganwadiConstructionOnOtherPlace", obj_AkanshiYojna.AnganwadiConstructionOnOtherPlace);
+            param[8] = new SqlParameter("@TotalAnganwadiCost", obj_AkanshiYojna.TotalAnganwadiCost);
+
+            param[9] = new SqlParameter("@SmartClassFurniture", obj_AkanshiYojna.SmartClassFurniture);
+            param[10] = new SqlParameter("@TotalSmartClassCost", obj_AkanshiYojna.TotalSmartClassCost);
+
+            param[11] = new SqlParameter("@AdditionalClassRoom", obj_AkanshiYojna.AdditionalClassRoom);
+            param[12] = new SqlParameter("@AdditionalClassRoomCost", obj_AkanshiYojna.AdditionalClassRoomCost);
+            param[13] = new SqlParameter("@TotalAmount", obj_AkanshiYojna.TotalAmount);
+            param[14] = new SqlParameter("@TotalAmountTransferred", obj_AkanshiYojna.TotalAmountTransferred);
+            param[15] = new SqlParameter("@AkanshiYojnaId", AkanshiYojnaId);
+
+            return objDAL.ExecuteProcedure("sp_UpdateAkanshiYojnaData", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public int InsertAkanshiYojnaData(tbl_AkanshiYojna obj_AkanshiYojna)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[15];
+
+            param[0] = new SqlParameter("@AddedBy", obj_AkanshiYojna.AddedBy);
+            param[1] = new SqlParameter("@FY", obj_AkanshiYojna.FY);
+            param[2] = new SqlParameter("@Division", obj_AkanshiYojna.Division);
+            param[3] = new SqlParameter("@CMFellowName", obj_AkanshiYojna.CMFellowName);
+
+            param[4] = new SqlParameter("@CMAbhyudaySchool", obj_AkanshiYojna.CMAbhyudaySchool);
+            param[5] = new SqlParameter("@TotalCMAbhyudaySchoolCost", obj_AkanshiYojna.TotalCMAbhyudaySchoolCost);
+
+            param[6] = new SqlParameter("@AnganwadiConstructionOnRent", obj_AkanshiYojna.AnganwadiConstructionOnRent);
+            param[7] = new SqlParameter("@AnganwadiConstructionOnOtherPlace", obj_AkanshiYojna.AnganwadiConstructionOnOtherPlace);
+            param[8] = new SqlParameter("@TotalAnganwadiCost", obj_AkanshiYojna.TotalAnganwadiCost);
+
+            param[9] = new SqlParameter("@SmartClassFurniture", obj_AkanshiYojna.SmartClassFurniture);
+            param[10] = new SqlParameter("@TotalSmartClassCost", obj_AkanshiYojna.TotalSmartClassCost);
+
+            param[11] = new SqlParameter("@AdditionalClassRoom", obj_AkanshiYojna.AdditionalClassRoom);
+            param[12] = new SqlParameter("@AdditionalClassRoomCost", obj_AkanshiYojna.AdditionalClassRoomCost);
+            param[13] = new SqlParameter("@TotalAmount", obj_AkanshiYojna.TotalAmount);
+            param[14] = new SqlParameter("@TotalAmountTransferred", obj_AkanshiYojna.TotalAmountTransferred);
+
+            return objDAL.ExecuteProcedure("sp_InsertAkanshiYojnaData", param);
         }
         catch (Exception ex)
         {
