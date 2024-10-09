@@ -254,26 +254,26 @@ public partial class AkanchiYojnaDashboard : System.Web.UI.Page
         }
         else if (e.Row.RowType == DataControlRowType.Footer)
         {
-            for (int i = 7; i <= 16; i++)
+            for (int i = 8; i <= 17; i++)
             {
                 e.Row.Cells[i].CssClass = "dt-type-numeric"; // Apply class to numeric columns
             }
 
 
-            e.Row.Cells[7].Text = totalCMAbhyudaySchool.ToString("N0");
-            e.Row.Cells[8].Text = "₹ " + totalCMAbhyudayCost.ToString("N2");
+            e.Row.Cells[8].Text = totalCMAbhyudaySchool.ToString("N0");
+            e.Row.Cells[9].Text = "₹ " + totalCMAbhyudayCost.ToString("N2");
 
-            e.Row.Cells[9].Text = totalAnganwadiConstructionOnRent.ToString("N0");
-            e.Row.Cells[10].Text = totalAnganwadiConstructionOnOtherPlace.ToString("N0");
-            e.Row.Cells[11].Text = "₹ " + totalAnganwadiCost.ToString("N2");
+            e.Row.Cells[10].Text = totalAnganwadiConstructionOnRent.ToString("N0");
+            e.Row.Cells[11].Text = totalAnganwadiConstructionOnOtherPlace.ToString("N0");
+            e.Row.Cells[12].Text = "₹ " + totalAnganwadiCost.ToString("N2");
 
-            e.Row.Cells[12].Text = totalSmartClassFurniture.ToString("N0");
-            e.Row.Cells[13].Text = "₹ " + totalSmartClassCost.ToString("N2");
+            e.Row.Cells[13].Text = totalSmartClassFurniture.ToString("N0");
+            e.Row.Cells[14].Text = "₹ " + totalSmartClassCost.ToString("N2");
 
-            e.Row.Cells[14].Text = totalAdditionalClassRoom.ToString("N0");
-            e.Row.Cells[15].Text = "₹ " + totalAdditionalClassRoomCost.ToString("N2");
+            e.Row.Cells[15].Text = totalAdditionalClassRoom.ToString("N0");
+            e.Row.Cells[16].Text = "₹ " + totalAdditionalClassRoomCost.ToString("N2");
 
-            e.Row.Cells[16].Text = "₹ " + totalAmountTransferred.ToString("N2");
+            e.Row.Cells[17].Text = "₹ " + totalAmountTransferred.ToString("N2");
 
             // Style the footer
             e.Row.Font.Bold = true;
