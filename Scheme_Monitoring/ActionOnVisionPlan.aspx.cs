@@ -227,7 +227,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
     protected void GetEditList(string taskid)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "", "",0,0);
+        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", Convert.ToInt32(Session["Person_Id"].ToString()), "", 0, "", "", "", "", "", "",0,0);
 
         //if (dt.Rows[0]["Ap_remark"].ToString() == "This record is currently being processed and cannot be edited at this time.")
         //{

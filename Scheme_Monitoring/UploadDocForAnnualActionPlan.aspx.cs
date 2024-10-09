@@ -261,7 +261,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
         }
        
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("select", ULB, 0, 0,  dist, FY,  0, "","", "-1", 0, "1900-01-01", "9999-12-31");
+        dt = objLoan.GetDocOfAnnualActionPlan("Select", ULB, 0, 0,  dist, FY,  0, "","", "-1", 0, "1900-01-01", "9999-12-31");
         grdPost.DataSource = dt;
         grdPost.DataBind();
       

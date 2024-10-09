@@ -81,7 +81,7 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
 
     private void get_tbl_FinancialYear()
     {
-        DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
+        DataSet ds = (new DataLayer()).get_tbl_FinancialYearFromId(19);
         FillDropDown(ds, ddlFY, "FinancialYear_Comments", "FinancialYear_Id");
     }
     private void get_tbl_Zone()

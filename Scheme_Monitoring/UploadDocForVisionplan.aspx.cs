@@ -205,7 +205,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
 
         // ULBID = 0;
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("select", ULB, 0, 0, dist, FY, 0, "", "VisionPlan", UlbType, mandal, FromDate, ToDate);
+        dt = objLoan.GetDocOfAnnualActionPlan("select", ULB, 0, 0, dist, FY, Convert.ToInt32(Session["Person_Id"].ToString()), "", "VisionPlan", UlbType, mandal, FromDate, ToDate);
         grdPost.DataSource = dt;
         grdPost.DataBind();
 
@@ -219,7 +219,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         var id = Convert.ToInt32(e.CommandArgument.ToString());
 
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "", "VisionPlan", "-1", 0, "1900-01-01", "9999-12-31");
+        dt = objLoan.GetDocOfAnnualActionPlan("Delete", 0, id, 0, 0, 0, Convert.ToInt32(Session["Person_Id"].ToString()), "", "VisionPlan", "-1", 0, "1900-01-01", "9999-12-31");
         if (dt != null && dt.Rows.Count > 0)
         {
             MessageBox.Show(dt.Rows[0]["Remark"].ToString());
