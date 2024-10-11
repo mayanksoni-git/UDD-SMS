@@ -76,15 +76,15 @@ namespace ePayment_API.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, obj_tbl_Project_Li);
             });
         }
-        [Route("api/GetULBs/{ULBTypeId}")]
-        public async Task<HttpResponseMessage> Get_ULBs(int ULBTypeId)
+        [Route("api/GetULBs/{DistrictId}/{ULBTypeId}")]
+        public async Task<HttpResponseMessage> Get_ULBs(int DistrictId,int ULBTypeId)
         {
             //long? UserLoginID = null;
             //if (UserManager.GetUserLoginInfo(User.Identity.Name).RoleID != 1)
             //{
             //    UserLoginID = UserManager.GetUserLoginInfo(User.Identity.Name).UserID;
             //}
-            List<ULB_DropDown> obj_tbl_Project_Li = await _SchemeFundMasterRepository.Get_ULBs(ULBTypeId );
+            List<ULB_DropDown> obj_tbl_Project_Li = await _SchemeFundMasterRepository.Get_ULBs(DistrictId,ULBTypeId);
             return await Task<HttpResponseMessage>.Factory.StartNew(() =>
             {
                 return Request.CreateResponse(HttpStatusCode.OK, obj_tbl_Project_Li);

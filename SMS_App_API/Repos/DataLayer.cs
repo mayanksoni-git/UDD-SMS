@@ -271,7 +271,7 @@ namespace ePayment_API.Repos
             return ds;
         }
 
-        internal DataSet get_tbl_ULBs(int ULBTypeId)
+        internal DataSet get_tbl_ULBs(int DistrictId,int ULBTypeId)
         {
             string strQuery = "";
 
@@ -280,7 +280,7 @@ namespace ePayment_API.Repos
                     select 
                         ULBID,
                         ULBName
-                      from ULBMaster where ULBTypeId='"+ ULBTypeId + "'";
+                      FROM ULBMaster where ULBTypeId='"+ ULBTypeId + "' and DistId='"+DistrictId +"'";
             try
             {
                 ds = ExecuteSelectQuery(strQuery);

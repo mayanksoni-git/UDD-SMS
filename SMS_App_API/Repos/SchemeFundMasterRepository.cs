@@ -116,20 +116,20 @@ namespace ePayment_API.Repos
             return obj_tbl_Project_Li;
         }
 
-        internal async Task<List<ULB_DropDown>> Get_ULBs(int ULBTypeId)
+        internal async Task<List<ULB_DropDown>> Get_ULBs(int DistrictId,int ULBTypeId)
         {
-            List<ULB_DropDown> obj_tbl_Project_Li = get_tbl_ULBs(ULBTypeId);
+            List<ULB_DropDown> obj_tbl_Project_Li = get_tbl_ULBs(DistrictId,ULBTypeId);
             return obj_tbl_Project_Li;
         }
 
        
 
-        private List<ULB_DropDown> get_tbl_ULBs(int ULBTypeId)
+        private List<ULB_DropDown> get_tbl_ULBs(int DistrictId,int ULBTypeId)
         {
             List<ULB_DropDown> obj_tbl_Project_Li = new List<ULB_DropDown>();
             try
             {
-                DataSet ds = new DataLayer().get_tbl_ULBs(ULBTypeId);
+                DataSet ds = new DataLayer().get_tbl_ULBs(DistrictId,ULBTypeId);
                 if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
