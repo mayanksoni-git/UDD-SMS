@@ -93,6 +93,7 @@
         <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
+
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
                     <div class="container-fluid">
@@ -124,7 +125,7 @@
                                                         <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>--%>
-                                                
+                                                 <asp:HiddenField ID="Id" runat="server" Value="0" />
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divMandal" runat="server">
                                                         <asp:Label ID="lblMandal" runat="server" Text="Division*" CssClass="form-label"></asp:Label>
@@ -189,6 +190,11 @@
                                                         <div class="table-responsive">
                                                             <asp:GridView ID="grdCallProductDtls" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdCallProductDtls_PreRender" OnRowDataBound="grdCallProductDtls_RowDataBound">
                                                                 <Columns>
+                                                                    <asp:BoundField DataField="Id" HeaderText="Id">
+                                                                     <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                      </asp:BoundField>
                                                                     <asp:TemplateField HeaderText="S No.">
                                                                         <ItemTemplate>
                                                                             <%# Container.DataItemIndex + 1 %>
@@ -196,22 +202,22 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Name of Park Adopted*">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="AdoptedParkName" runat="server" CssClass="form-control" autocomplete="off" Text='<%# Eval("AdoptedParkName") %>' EnableViewState="true"></asp:TextBox>
+                                                                            <asp:TextBox ID="AdoptedParkName" runat="server" CssClass="form-control" autocomplete="off" Text='<%# Eval("AdoptedParkName") %>' EnableViewState="true"  style="width: 300px;"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Adopted Park Latitude*">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="ParkLatitude" runat="server" CssClass="form-control " Text='<%# Eval("ParkLatitude") %>' EnableViewState="true"></asp:TextBox>
+                                                                            <asp:TextBox ID="ParkLatitude" runat="server" CssClass="form-control " Text='<%# Eval("ParkLatitude") %>' EnableViewState="true"  style="width: 100px;"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Adopted Park Longitude*">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="ParkLongitude" runat="server" CssClass="form-control" Text='<%# Eval("ParkLongitude") %>' onkeyup="isNumericVal(this);" EnableViewState="true"></asp:TextBox>
+                                                                            <asp:TextBox ID="ParkLongitude" runat="server" CssClass="form-control" Text='<%# Eval("ParkLongitude") %>' onkeyup="isNumericVal(this);" EnableViewState="true"  style="width: 100px;"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Year Of Adoption*">
                                                                             <ItemTemplate>
-                                                                                      <asp:DropDownList ID="SessionId" runat="server" CssClass="form-select" EnableViewState="true">
+                                                                                      <asp:DropDownList ID="SessionId" runat="server" CssClass="form-select" EnableViewState="true"  style="width: 200px;">
                                                                                   
                                                                                 </asp:DropDownList>
                                                                             <%--<asp:TextBox ID="SessionId" runat="server" CssClass="form-control" Text='<%# Eval("SessionId") %>' onkeyup="isNumericVal(this);"></asp:TextBox>--%>
@@ -219,42 +225,46 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Month*">
                                                                         <ItemTemplate>
-                                                                             <asp:DropDownList ID="MonthId" runat="server" CssClass="form-select" EnableViewState="true">
+                                                                             <asp:DropDownList ID="MonthId" runat="server" CssClass="form-select" EnableViewState="true"  style="width: 200px;">
                                                                                    
                                                                                 </asp:DropDownList>
                                                                             <%--<asp:TextBox ID="MonthId" runat="server" CssClass="form-control" Text='<%# Eval("MonthId") %>' onkeyup="isNumericVal(this);"></asp:TextBox>--%>
                                                                         </ItemTemplate>
+                                                                         <FooterTemplate>
+                                                                            <asp:ImageButton ID="btnDynamic" OnClick="btnDynamic_Click" runat="server" 
+                                                                                ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
+                                                                            <asp:ImageButton ID="imgdeleteQuestionnaire" CssClass="pull-right" runat="server" 
+                                                                                ImageUrl="~/assets/images/minus-icon.png" OnClick="imgdelete_Click" Width="30px" Height="30px" />
+                                                                        </FooterTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Name of CSR/PPP/NGO/RWA others*">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="NameCSR_NGO" runat="server" CssClass="form-control" Text='<%# Eval("NameCSR_NGO") %>' EnableViewState="true"></asp:TextBox>
+                                                                            <asp:TextBox ID="NameCSR_NGO" runat="server" CssClass="form-control" Text='<%# Eval("NameCSR_NGO") %>' EnableViewState="true"  style="width: 300px;"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Detail of the CSR/PPP/NGO/RWA/Others*">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="DetailCSR_NGO" runat="server" CssClass="form-control" Text='<%# Eval("DetailCSR_NGO") %>' EnableViewState="true"></asp:TextBox>
+                                                                            <asp:TextBox ID="DetailCSR_NGO" runat="server" CssClass="form-control" Text='<%# Eval("DetailCSR_NGO") %>' EnableViewState="true"  style="width: 300px;"></asp:TextBox>
                                                                         </ItemTemplate>
+
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Geotagged Photographs of Park*">
+                                                                      <asp:TemplateField HeaderText="Geotagged Photographs of Park*">
                                                                         <ItemTemplate>
-                                                                            <asp:FileUpload ID="GeotaggedPhotographs" runat="server" Text='<%# Eval("GeotaggedPhotographs") %>' EnableViewState="true"/>
-                                                                        </ItemTemplate>
+                                                                            <asp:FileUpload ID="GeotaggedPhotographs" runat="server" CssClass="form-control" EnableViewState="true" />
+                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                        
-                                                                        <asp:TemplateField HeaderText="MOU Attached*">
+        
+                                                                    <asp:TemplateField HeaderText="MOU Attached*">
                                                                         <ItemTemplate>
-                                                                            <asp:FileUpload ID="MOUAttached" runat="server" Text='<%# Eval("MOUAttached") %>' EnableViewState="true"/>
-                                                                        </ItemTemplate>
-                                                                     <FooterTemplate>
-                                                                            <asp:ImageButton ID="btnDynamic" OnClick="btnDynamic_Click" runat="server" ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
-                                                                            <asp:ImageButton ID="imgdeleteQuestionnaire" CssClass="pull-right" runat="server" ImageUrl="~/assets/images/minus-icon.png" OnClick="imgdelete_Click" Width="30px" Height="30px" />
-                                                                        </FooterTemplate>
+                                                                            <asp:FileUpload ID="MOUAttached" runat="server" CssClass="form-control" EnableViewState="true"/>
+                                                                           </ItemTemplate>
+                                                                       
                                                                     </asp:TemplateField> 
+        
                                                                     <asp:TemplateField HeaderText="UploadKML">
                                                                         <ItemTemplate>
-                                                                            <asp:FileUpload ID="UploadKML" runat="server" EnableViewState="true"/>
-                                                                        </ItemTemplate>
-                                                                    
+                                                                            <asp:FileUpload ID="UploadKML" runat="server" CssClass="form-control" EnableViewState="true"/>
+                                                                            </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     
                                                               
@@ -292,6 +302,7 @@
                 </ContentTemplate>
                 <Triggers>
      <asp:PostBackTrigger ControlID="btnSave" />
+
                 </Triggers>
             </asp:UpdatePanel>
          

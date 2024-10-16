@@ -30,7 +30,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Park Adoption Status And Progress Report</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Filter :</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="live-preview">
@@ -82,86 +82,7 @@
                         </div>
                     </div>
                     
-                    <%--<div runat="server" visible="true" id="divData" class="tblheader"  style="overflow: auto">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                
-                                <div class="card">
-                                    <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Park Adoption Status And Progress Report</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="live-preview">
-                                            <div class="row gy-12">
-                                                
-                                                <div class="clearfix" id="dtOptions" runat="server">
-                                                    <div class="pull-right tableTools-container">
-                                                    </div>
-                                                </div>
-                                                <div style="overflow: auto">
-                                                    <table class="display table table-bordered">
-    <thead>
-        <tr>
-            <th>Sr. No.</th>
-            <th>ULB Name</th>
-            <th>Ward</th>
-            <th>No. of Parks Adopted</th>
-            <th>Name of Park Adopted</th>
-            <th>NO. of park adoption in process</th>
-            <th>Name of CSR/PPP/NGO/RWA others</th>
-            <th>Contact Detail of the CSR/PPP/NGO/RWA/Others</th>
-            <th>Geo-tagged Photos of the Park</th>
-            <th>Download KML</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Example static rows -->
-        <tr>
-            <td>1</td>
-            <td>ULB Name A</td>
-            <td>Ward Alpha</td>
-            <td>5</td>
-            <td>Name of Park Adopted</td>
-            <td>20</td>
-            <td>Name of CSR/PPP/NGO/RWA others</td>
-            <td>Contact Detail of the CSR/PPP/NGO/RWA/Others</td>
-            <td>Geo-tagged Photos of the Park</td>
-            <td><span class="btn btn-primary drill_btn">Download</span></td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>ULB B</td>
-            <td>Ward Beta</td>
-            <td>7</td>
-            <td>Name of Park Adopted</td>
-            <td>15</td>
-            <td>Name of CSR/PPP/NGO/RWA others</td>
-            <td>Contact Detail of the CSR/PPP/NGO/RWA/Others</td>
-            <td>Geo-tagged Photos of the Park</td>
-            <td><span class="btn btn-primary drill_btn">Download</span></td>
-        </tr>
-        <!-- Add more rows as needed -->
-    </tbody>
-  <%--  <tfoot>
-        <tr>
-            <td colspan="3" style="text-align: center;">Total:</td>
-            <td><label id="lblTotalNoOfProposal">12</label></td>
-            <td><label id="lblTotalAmount"></label></td>
-            <td><label id="lblApprovedProposal">35</label></td>
-            <td><label id="lblHoldProposal"></label></td>
-            <td><label id="lblPendingProposal"></label></td>
-        </tr>
-    </tfoot>
-</table>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>--%>
+                   
                         
                         </div>
                 </ContentTemplate>
@@ -177,7 +98,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Projects For Annual Action Plan</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Park Adoption Status And Progress Report</h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -196,32 +117,38 @@
                                                         </asp:TemplateField>
                                                         <asp:BoundField HeaderText="ULB Name" DataField="Division_Name" />
                                                         <asp:BoundField HeaderText="District" DataField="Circle_Name" />
-                                                        <asp:BoundField HeaderText="Inprocess Park" DataField="NoOfAdoptionInprocessPark" />
-                                                        <asp:BoundField HeaderText="NoOfParkAdopted" DataField="NoOfParkAdopted" />
-                                                        <asp:BoundField HeaderText="NoOfParkInULB" DataField="NoOfParkInULB" />
-                                                        <asp:BoundField HeaderText="AdoptedParkName" DataField="AdoptedParkName" />
-                                                        <asp:BoundField HeaderText="ParkLatitude" DataField="ParkLatitude" />
-                                                        <asp:BoundField HeaderText="ParkLongitude" DataField="ParkLongitude" />
-                                                        <asp:BoundField HeaderText="SessionYear" DataField="SessionYear" />
-                                                        <asp:BoundField HeaderText="Month_MonthName " DataField="Month_MonthName" />                                            
-                                                        <asp:BoundField HeaderText="NameCSR_NGO " DataField="NameCSR_NGO" />                                            
-                                                        <asp:BoundField HeaderText="DetailCSR_NGO " DataField="DetailCSR_NGO" />                                            
-                                                        <%--<asp:BoundField HeaderText="GeotaggedPhotographs " DataField="GeotaggedPhotographs" />                                            
-                                                        <asp:BoundField HeaderText="MOUAttached " DataField="MOUAttached" />  --%>                                          
-                                                        <%-- <asp:TemplateField HeaderText="Docs">
+                                                        <asp:BoundField HeaderText="Ward" DataField="Ward" />
+                                                        <asp:BoundField HeaderText="No. of Parks Adopted" DataField="NoOfParkAdopted" />
+                                                        <asp:BoundField HeaderText="Name of Park Adopted" DataField="AdoptedParkName" />
+                                                        <asp:BoundField HeaderText="NO. of park adoption in process" DataField="NoOfAdoptionInprocessPark" />
+                                                        <asp:BoundField HeaderText="Name of CSR/PPP/NGO/RWA others " DataField="NameCSR_NGO" />                                            
+                                                        <asp:BoundField HeaderText="Contact Detail of the CSR/PPP/NGO/RWA/Others " DataField="DetailCSR_NGO" />                                            
+                                                        <%--<asp:BoundField HeaderText="GeotaggedPhotographs " DataField="GeotaggedPhotographs" />--%>   
+                                                        <asp:TemplateField HeaderText="Geotagged Photographs">
                                                              <ItemTemplate>
-                                                                 <asp:Label ID="lblNoDocument" runat="server" Text="No Document" Visible='<%# string.IsNullOrEmpty(Eval("Documents") as string) %>'></asp:Label>
-                                                                 <asp:HyperLink ID="hlDocument" runat="server" NavigateUrl='<%# Eval("Documents") %>' Text="Doc" Visible='<%# !string.IsNullOrEmpty(Eval("Documents") as string) %>' Target="_blank"></asp:HyperLink>
+                                                                 <asp:Label ID="lblNoDocument" runat="server" Text="No Document" Visible='<%# string.IsNullOrEmpty(Eval("GeotaggedPhotographs") as string) %>'></asp:Label>
+                                                                 <asp:HyperLink ID="hlDocument" runat="server" NavigateUrl='<%# Eval("GeotaggedPhotographs") %>' Text="Doc" Visible='<%# !string.IsNullOrEmpty(Eval("GeotaggedPhotographs") as string) %>' Target="_blank"></asp:HyperLink>
                                                              </ItemTemplate>
-                                                         </asp:TemplateField>--%>
-                                                        <%--<asp:TemplateField HeaderText="Edit">
+                                                         </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Download KML">
                                                             <ItemTemplate>
-                                                                <asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditAnnualAction" OnCommand="Edit_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-primary drill_btn" />
-                                                            </ItemTemplate>                                                             
+                                                                <asp:Label ID="lblNoDocument1" runat="server" Text="No Document" Visible='<%# string.IsNullOrEmpty(Eval("UploadKML") as string) %>'></asp:Label>
+                                                                <asp:LinkButton ID="lnkDownloadKML" runat="server" 
+                                                                    CommandArgument='<%# Eval("UploadKML") %>' 
+                                                                    OnClick="DownloadKMLFile" 
+                                                                    Text="Download KML" Visible='<%# !string.IsNullOrEmpty(Eval("UploadKML") as string) %>'>
+                                                                </asp:LinkButton>
+                                                            </ItemTemplate>
                                                         </asp:TemplateField>
-                                                       <asp:TemplateField HeaderText="Delete">
+                                                 
+<%--                                                        <asp:TemplateField HeaderText="Edit">
+                                                            <ItemTemplate>
+                                                                <asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditAdoptedPark" OnCommand="Edit_Command" CommandArgument='<%# Eval("AdoptedParkId") %>' CssClass="btn btn-primary drill_btn" />
+                                                            </ItemTemplate>                                                             
+                                                        </asp:TemplateField>--%>
+                                                       <%--<asp:TemplateField HeaderText="Delete">
                                                         <ItemTemplate>
-                                                             <asp:Button ID="btnDelete" OnClientClick="return confirm('Are You Sure You Want to Delete this Item?')" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("planId") %>' CssClass="btn btn-danger drill_btn" />
+                                                             <asp:Button ID="btnDelete" OnClientClick="return confirm('Are You Sure You Want to Delete this Item?')" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-danger drill_btn" />
                                                          </ItemTemplate>
 
                                                         </asp:TemplateField>--%>
