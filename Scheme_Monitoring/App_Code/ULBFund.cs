@@ -89,6 +89,25 @@ public class ULBFund
         }
     }
 
+    public DataTable GetParkAdoptionReport(string actions, int dist, int fY, int month)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[4];
+            param[0] = new SqlParameter("@action", actions);
+            param[1] = new SqlParameter("@DistrictId", dist);
+            param[2] = new SqlParameter("@FYId", fY);
+            param[3] = new SqlParameter("@MonthId", month);
+
+            return objDAL.GetDataByProcedure("Sp_GetParkAdoptionReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
 
     #region ULB Income
 
