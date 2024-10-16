@@ -696,10 +696,10 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6">
+                                                <div class="col-md-2">
                                                     <div class="form-group">
                                                         <asp:Label ID="lblIsAkanshiULB" CssClass="control-label no-padding-right" Text="Akanshi ULB" runat="server"></asp:Label>
-                                                        <asp:CheckBox ID="chkIsAkanshiULB" runat="server" CssClass="form-control mb-2" />
+                                                        <asp:CheckBox ID="chkIsAkanshiULB" runat="server" CssClass="form-check mb-2" />
                                                     </div>
                                                 </div>
                                             </div>

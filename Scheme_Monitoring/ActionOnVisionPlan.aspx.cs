@@ -227,7 +227,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
     protected void GetEditList(string taskid)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", Convert.ToInt32(Session["Person_Id"].ToString()), "", 0, "", "", "", "", "", "",0,0);
+        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", Convert.ToInt32(Session["Person_Id"].ToString()), "", 0, "", "", "", "", "", "",0,0,-1);
 
         //if (dt.Rows[0]["Ap_remark"].ToString() == "This record is currently being processed and cannot be edited at this time.")
         //{
@@ -706,7 +706,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
             dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text, TxtProject.Text,0,0);
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text, TxtProject.Text,0,0,-1);
 
             if (dt.Rows.Count > 0)
             {

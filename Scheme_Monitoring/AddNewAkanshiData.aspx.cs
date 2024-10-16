@@ -156,6 +156,10 @@ public partial class AddNewAkanshiData : System.Web.UI.Page
     {
         
     }
+    protected void imgdelete_Click(object sender, EventArgs e)
+    {
+        
+    }
 
 
     protected void ddlAkanshiHead_SelectedIndexChanged(object sender, EventArgs e)

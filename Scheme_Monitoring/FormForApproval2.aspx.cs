@@ -272,6 +272,8 @@ public partial class FormForApproval2 : System.Web.UI.Page
         obj.Scheme = Scheme;
         obj.ProposalStatus = ProposalStatus;
 
+        int AkanshiULB = chkIsAkanshiULB.Checked ? 1 : -1;
+
         LoadWorkProposalGrid(obj);
         btnHideModal.Visible = false;
         btnShowModal.Visible = false;
@@ -280,7 +282,8 @@ public partial class FormForApproval2 : System.Web.UI.Page
     private void LoadWorkProposalGrid(tbl_WorkProposal obj)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.getWorkProposalBySearch(obj, 0, "-1");
+        int AkanshiULB = chkIsAkanshiULB.Checked ? 1 : -1;
+        dt = objLoan.getWorkProposalBySearch(obj, 0, "-1", AkanshiULB);
 
         if (dt != null && dt.Rows.Count > 0)
         {

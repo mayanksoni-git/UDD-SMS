@@ -105,6 +105,13 @@
                                                         <asp:ListItem Text="Hold/Archive" Value="3"></asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
+
+                                                 <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lblIsAkanshiULB" CssClass="control-label no-padding-right" Text="Akanshi ULB" runat="server"></asp:Label>
+                                                        <asp:CheckBox ID="chkIsAkanshiULB" runat="server" CssClass="form-check mb-2" />
+                                                    </div>
+                                                </div>
                                                 <%-- <div class="col-xxl-3 col-md-6">
                                                     <div id="divULBType" runat="server">
                                                         <asp:Label ID="Label1" runat="server" Text="ULB Type" CssClass="form-label"></asp:Label>

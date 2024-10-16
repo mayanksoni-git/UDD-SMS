@@ -227,7 +227,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
     protected void GetEditList(string taskid)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "","",0,0);
+        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "","",0,0,-1);
 
         if (dt != null && dt.Rows.Count > 0)
         {
@@ -609,7 +609,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
             dt = objLoan.GetVisionPlan("update", cmvny, ULB, pk, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text,TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()),0);
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text,TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()),0,-1);
             //GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
             if (dt.Rows.Count > 0)
             {
@@ -785,7 +785,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
             dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location,TxtPopulation.Text,TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()),0);
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location,TxtPopulation.Text,TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()),0,-1);
             
             if (dt.Rows.Count > 0)
             {

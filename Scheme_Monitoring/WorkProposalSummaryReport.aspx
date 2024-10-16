@@ -119,6 +119,12 @@
                                                         </asp:DropDownList>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lblIsAkanshiULB" CssClass="control-label no-padding-right" Text="Akanshi ULB" runat="server"></asp:Label>
+                                                        <asp:CheckBox ID="chkIsAkanshiULB" runat="server" CssClass="form-check mb-2" />
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="row gy-4">
                                                 <div class="col-xxl-2 offset-xxl-10 col-md-6">

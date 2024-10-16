@@ -441,12 +441,12 @@ public class Loan
         }
     }
 
-    public DataTable getWorkProposalBySearch(tbl_WorkProposal objSearch, int Mandal, string ULBType)
+    public DataTable getWorkProposalBySearch(tbl_WorkProposal objSearch, int Mandal, string ULBType, int AkanshiULB)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[10];
+            SqlParameter[] param = new SqlParameter[11];
 
             param[0] = new SqlParameter("@Zone", objSearch.Zone);
             param[1] = new SqlParameter("@Circle", objSearch.Circle);
@@ -458,6 +458,7 @@ public class Loan
             param[7] = new SqlParameter("@ProposerType", objSearch.ProposerType);
             param[8] = new SqlParameter("@Mandal", Mandal);
             param[9] = new SqlParameter("@ULBType", ULBType);
+            param[10] = new SqlParameter("@AkanshiULB", AkanshiULB);
 
             return objDAL.GetDataByProcedure("sp_SelectWorkProposalsBySearch", param);
         }
@@ -487,7 +488,7 @@ public class Loan
             param[10] = new SqlParameter("@ExpAmtLess", ExpAmtLess);
             param[11] = new SqlParameter("@ExpAmtGret", ExpAmtGret);
             param[12] = new SqlParameter("@PersonId", personId);
-            param[13] = new SqlParameter("@PersonId", AkanshiULB);
+            param[13] = new SqlParameter("@AkanshiULB", AkanshiULB);
 
             return objDAL.GetDataByProcedure("sp_SelectWorkProposalsBySearchForReport", param);
         }
@@ -520,12 +521,12 @@ public class Loan
         }
     }
 
-    public DataTable getWorkProposalSummary(tbl_WorkProposal objSearch, int Mandal, string ULBType)
+    public DataTable getWorkProposalSummary(tbl_WorkProposal objSearch, int Mandal, string ULBType, int AkanshiULB)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[9];
+            SqlParameter[] param = new SqlParameter[10];
 
             param[0] = new SqlParameter("@Zone", objSearch.Zone);
             param[1] = new SqlParameter("@Circle", objSearch.Circle);
@@ -536,6 +537,7 @@ public class Loan
             param[6] = new SqlParameter("@ProposerType", objSearch.ProposerType);
             param[7] = new SqlParameter("@Mandal", Mandal);
             param[8] = new SqlParameter("@ULBType", ULBType);
+            param[9] = new SqlParameter("@AkanshiULB", AkanshiULB);
 
             return objDAL.GetDataByProcedure("SpFinancialYearWisePropasalReport_Test", param);
         }

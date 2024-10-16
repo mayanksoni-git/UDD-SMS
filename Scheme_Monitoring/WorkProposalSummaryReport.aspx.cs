@@ -271,9 +271,10 @@ public partial class WorkProposalSummaryReport : System.Web.UI.Page
         {
             ULBType = "";
         }
+        int AkanshiULB = chkIsAkanshiULB.Checked ? 1 : -1;
 
 
-        LoadWorkProposalGrid(obj, Mandal, ULBType);
+        LoadWorkProposalGrid(obj, Mandal, ULBType, AkanshiULB);
     }
 
     protected tbl_WorkProposal BindWorkProposalGridBySearch()
@@ -357,10 +358,10 @@ public partial class WorkProposalSummaryReport : System.Web.UI.Page
         return obj;
     }
 
-    private void LoadWorkProposalGrid(tbl_WorkProposal obj, int Mandal, string ULBType)
+    private void LoadWorkProposalGrid(tbl_WorkProposal obj, int Mandal, string ULBType, int AkanshiULB)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.getWorkProposalSummary(obj, Mandal, ULBType);
+        dt = objLoan.getWorkProposalSummary(obj, Mandal, ULBType, AkanshiULB);
 
         if (dt != null && dt.Rows.Count > 0)
         {

@@ -316,7 +316,7 @@ public partial class CreateDocForAnnualActionPlan : System.Web.UI.Page
         Button clickedButton = sender as Button;
         string text = clickedButton.Text;
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan(  "Insert",     division,   0,  zone,circle,  fy, Person_Id, pathProfile,"", "-1", 0, "1900-01-01", "9999-12-31");
+        dt = objLoan.GetDocOfAnnualActionPlan(  "Insert",     division,   0,  zone,circle,  fy, Person_Id, pathProfile,"", "-1", 0, "1900-01-01", "9999-12-31",-1);
         if (dt != null && dt.Rows.Count > 0)
         {
                 if (dt.Rows[0]["remark"].ToString() != "Record already exists for this ULBID and FYID")
@@ -376,7 +376,7 @@ public partial class CreateDocForAnnualActionPlan : System.Web.UI.Page
         DataTable dt = new DataTable();
 
        // objLoan.GetAnnualActionPlan("select", ULBID, 0, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
-        dt = objLoan.GetDocOfAnnualActionPlan("selectById", 0, id, 0, 0, 0,  0,  "","", "-1", 0, "1900-01-01", "9999-12-31");
+        dt = objLoan.GetDocOfAnnualActionPlan("selectById", 0, id, 0, 0, 0,  0,  "","", "-1", 0, "1900-01-01", "9999-12-31",-1);
         btnSave.Visible = false;
         BtnUpdate.Visible = true;
         if (dt != null && dt.Rows.Count > 0)
@@ -469,7 +469,7 @@ public partial class CreateDocForAnnualActionPlan : System.Web.UI.Page
             Button clickedButton = sender as Button;
             string text = clickedButton.Text;
             DataTable dt = new DataTable();
-            dt = objLoan.GetDocOfAnnualActionPlan("Update", division, taskid, zone, circle, fy, Person_Id, pathProfile,"", "-1", 0, "1900-01-01", "9999-12-31");
+            dt = objLoan.GetDocOfAnnualActionPlan("Update", division, taskid, zone, circle, fy, Person_Id, pathProfile,"", "-1", 0, "1900-01-01", "9999-12-31",-1);
 
             if (dt != null && dt.Rows.Count > 0)
             {

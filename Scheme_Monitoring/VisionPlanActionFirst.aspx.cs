@@ -236,7 +236,7 @@ public partial class VisionPlanActionFirst : System.Web.UI.Page
             FY = Convert.ToInt32(ddlFY.SelectedValue);// == "0"
         }
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("select",0,ULB,0,state,"",dist,FY,"","","", Convert.ToInt32(Session["Person_Id"].ToString()), "",0,"","","","","","",0,0);
+        dt = objLoan.GetVisionPlan("select",0,ULB,0,state,"",dist,FY,"","","", Convert.ToInt32(Session["Person_Id"].ToString()), "",0,"","","","","","",0,0,-1);
       
         if (dt != null && dt.Rows.Count > 0)
         {
@@ -293,7 +293,7 @@ public partial class VisionPlanActionFirst : System.Web.UI.Page
             {
                 var pk = Convert.ToInt16(e.CommandArgument.ToString());
                 DataTable dt = new DataTable();
-                dt = objLoan.GetVisionPlan("delete", 0, 0, pk, 0, "", 0, 0, "", "", "", Convert.ToInt32(Session["Person_Id"].ToString()), "", 0, "", "", "", "", "","",0,0);
+                dt = objLoan.GetVisionPlan("delete", 0, 0, pk, 0, "", 0, 0, "", "", "", Convert.ToInt32(Session["Person_Id"].ToString()), "", 0, "", "", "", "", "","",0,0,-1);
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
@@ -370,7 +370,8 @@ public partial class VisionPlanActionFirst : System.Web.UI.Page
         var fy = Convert.ToInt32(ddlFY.SelectedValue);
         var priority = DdlPriority.SelectedValue;
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("SelectForaAction", 0, ulb, 0, state, check, dist, fy, year, "", "", Convert.ToInt32(Session["Person_Id"].ToString()), "", 0, "", priority, "", "", "","",0, VisionStatus);
+        int AkanshiULB = chkIsAkanshiULB.Checked ? 1 : -1;
+        dt = objLoan.GetVisionPlan("SelectForaAction", 0, ulb, 0, state, check, dist, fy, year, "", "", Convert.ToInt32(Session["Person_Id"].ToString()), "", 0, "", priority, "", "", "","",0, VisionStatus, AkanshiULB);
 
         if (dt != null && dt.Rows.Count > 0)
         {

@@ -166,6 +166,12 @@
                                                         <asp:TextBox ID="txtToDate" type="Date" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lblIsAkanshiULB" CssClass="control-label no-padding-right" Text="Akanshi ULB" runat="server"></asp:Label>
+                                                        <asp:CheckBox ID="chkIsAkanshiULB" runat="server" CssClass="form-check mb-2" />
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-xxl-11  col-md-11">
                                                     <div>

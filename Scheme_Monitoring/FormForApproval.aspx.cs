@@ -810,7 +810,7 @@ public partial class FormForApproval : System.Web.UI.Page
     private void LoadWorkProposalGrid(tbl_WorkProposal obj)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.getWorkProposalBySearch(obj, 0, "-1");
+        dt = objLoan.getWorkProposalBySearch(obj, 0, "-1", -1);
 
         if (dt != null && dt.Rows.Count > 0)
         {

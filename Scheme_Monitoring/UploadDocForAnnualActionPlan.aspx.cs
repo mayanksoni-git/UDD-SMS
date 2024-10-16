@@ -261,7 +261,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
         }
        
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("Select", ULB, 0, 0,  dist, FY,  0, "","", "-1", 0, "1900-01-01", "9999-12-31");
+        dt = objLoan.GetDocOfAnnualActionPlan("Select", ULB, 0, 0,  dist, FY,  0, "","", "-1", 0, "1900-01-01", "9999-12-31",-1);
         grdPost.DataSource = dt;
         grdPost.DataBind();
       
@@ -319,7 +319,7 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
         var id = Convert.ToInt32(e.CommandArgument.ToString());
 
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "","", "-1", 0, "1900-01-01", "9999-12-31");
+        dt = objLoan.GetDocOfAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "","", "-1", 0, "1900-01-01", "9999-12-31",-1);
         //dt = objLoan.GetAnnualActionPlan("Delete", 0, id, 0, 0, 0, 0, "", 0, "", 0, "", "", "", "");
         if (dt != null && dt.Rows.Count > 0)
         {
