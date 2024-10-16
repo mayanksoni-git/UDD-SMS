@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -118,6 +119,27 @@ public partial class ParkAdoptionStatusReport : System.Web.UI.Page
         if (gv.ShowFooter == true && gv.Rows.Count > 0)
         {
             gv.FooterRow.TableSection = TableRowSection.TableFooter;
+        }
+    }
+    protected void DownloadKMLFile(object sender, EventArgs e)
+    {
+        LinkButton lnkButton = (LinkButton)sender;
+        string filePath = lnkButton.CommandArgument;
+        filePath = filePath.Replace("~", "");
+        // Check if the file exists
+        string fullPath = Server.MapPath(filePath); // Assuming your files are in the "Uploads" folder
+        if (File.Exists(fullPath))
+        {
+            // Set the response to download the file
+            Response.ContentType = "application/octet-stream";
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(fullPath));
+            Response.TransmitFile(fullPath);
+            Response.End();
+        }
+        else
+        {
+            // Handle file not found scenario, e.g., show a message or log an error
+            Response.Write("<script>alert('File not found.');</script>");
         }
     }
 
