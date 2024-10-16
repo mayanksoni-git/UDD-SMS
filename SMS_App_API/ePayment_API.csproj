@@ -218,11 +218,13 @@
     <Compile Include="Controllers\QuestionireOnlyController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\SchemeController.cs" />
+    <Compile Include="Controllers\SchemeFundMasterController.cs" />
     <Compile Include="Controllers\SchemeWiseReportController.cs" />
     <Compile Include="Controllers\SitePicController.cs" />
     <Compile Include="Controllers\SitePicSummeryController.cs" />
     <Compile Include="Controllers\TicketCategoryController.cs" />
     <Compile Include="Controllers\UCDetailsController.cs" />
+    <Compile Include="Controllers\UserManager.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\ZoneController.cs" />
     <Compile Include="Global.asax.cs">
@@ -231,8 +233,10 @@
     <Compile Include="Models\AES_256_Key.cs" />
     <Compile Include="Models\Click_To_Call.cs" />
     <Compile Include="Models\Client_Info.cs" />
+    <Compile Include="Models\District_DropDown.cs" />
     <Compile Include="Models\DPRWorkUpdate.cs" />
     <Compile Include="Models\DP_Limit.cs" />
+    <Compile Include="Models\Financial_DropDown.cs" />
     <Compile Include="Models\M_Jurisdiction.cs" />
     <Compile Include="Models\PNB_Assign_DP_Limit.cs" />
     <Compile Include="Models\PNB_GetAccountBal.cs" />
@@ -240,6 +244,8 @@
     <Compile Include="Models\PNB_GetPPATransactionDetails.cs" />
     <Compile Include="Models\PNB_Global.cs" />
     <Compile Include="Models\PPA_Details.cs" />
+    <Compile Include="Models\SchemeFundMaster.cs" />
+    <Compile Include="Models\Scheme_DropDown.cs" />
     <Compile Include="Models\SearchCriteria.cs" />
     <Compile Include="Models\SMS_Objects.cs" />
     <Compile Include="Models\tbl_Circle.cs" />
@@ -278,6 +284,9 @@
     <Compile Include="Models\tbl_SNA_API_History.cs" />
     <Compile Include="Models\tbl_TicketCategory.cs" />
     <Compile Include="Models\tbl_Zone.cs" />
+    <Compile Include="Models\ULBType_DropDown.cs" />
+    <Compile Include="Models\ULB_DropDown.cs" />
+    <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\CircleRepository.cs" />
     <Compile Include="Repos\ClickToCallRepository.cs" />
@@ -318,6 +327,7 @@
     <Compile Include="Repos\RegistrationRepository.cs" />
     <Compile Include="Repos\Repository.cs" />
     <Compile Include="Repos\RepositoryAsyn.cs" />
+    <Compile Include="Repos\SchemeFundMasterRepository.cs" />
     <Compile Include="Repos\SchemeRepository.cs" />
     <Compile Include="Repos\SchemeWiseReportRepository.cs" />
     <Compile Include="Repos\SitePicRepository.cs" />

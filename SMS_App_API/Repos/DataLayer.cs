@@ -43,6 +43,27 @@ namespace ePayment_API.Repos
             return set1;
         }
 
+        internal DataSet get_tbl_FinnYear()
+        {
+
+            string strQuery = "";
+            DataSet ds = new DataSet();
+            strQuery = @" set dateformat dmy; 
+                    select 
+                        YearId,
+                        SessionYear
+                      from SessionYear";
+            try
+            {
+                ds = ExecuteSelectQuery(strQuery);
+            }
+            catch
+            {
+                ds = null;
+            }
+            return ds;
+        }
+
         public void Insert_tbl_SMS(tbl_SMS obj_tbl_SMS)
         {
             DataSet set1 = new DataSet();
@@ -69,6 +90,274 @@ namespace ePayment_API.Repos
             {
 
             }
+        }
+        internal DataSet get_tbl_Schemes(long? UserLoginID)
+        {
+            DataSet ds = new DataSet();
+            string mappedSchemesQuery = @"SELECT SchemeID FROM UserSchemeMapping WHERE UserID = @UserLoginID AND IsActive = 1";
+
+            string strQuery;
+            string ConStr = System.Configuration.ConfigurationManager.ConnectionStrings["DBConnection"].ToString();
+
+            using (var connection = new SqlConnection(ConStr))
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand(mappedSchemesQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@UserLoginID", UserLoginID ?? (object)DBNull.Value);
+                    var mappedSchemes = command.ExecuteReader();
+
+                    if (mappedSchemes.HasRows)
+                    {
+                        List<string> schemeIds = new List<string>();
+                        while (mappedSchemes.Read())
+                        {
+                            schemeIds.Add(mappedSchemes["SchemeID"].ToString());
+                        }
+
+                        if (schemeIds.Count > 0)
+                        {
+                            strQuery = @"SET DATEFORMAT dmy; 
+                                 SELECT 
+                                     SchemeID, 
+                                     SchemeName 
+                                 FROM SchemeMaster 
+                                 WHERE SchemeID IN (" + string.Join(",", schemeIds) + ")";
+                        }
+                        else
+                        {
+                            strQuery = @"SET DATEFORMAT dmy; 
+                                 SELECT 
+                                     SchemeID, 
+                                     SchemeName 
+                                 FROM SchemeMaster";
+                        }
+                    }
+                    else
+                    {
+                        strQuery = @"SET DATEFORMAT dmy; 
+                             SELECT 
+                                 SchemeID, 
+                                 SchemeName 
+                             FROM SchemeMaster";
+                    }
+                }
+
+                try
+                {
+                    ds = ExecuteSelectQuery(strQuery);
+                }
+                catch
+                {
+                    ds = null;
+                }
+            }
+
+            return ds;
+        }
+
+        //internal DataSet get_tbl_Schemes(long? UserLoginID)
+        //{
+        //    DataSet ds = new DataSet();
+        //    string mappedSchemesQuery = @"SELECT SchemeID FROM UserSchemeMapping WHERE UserID ='" + UserLoginID + "' AND IsActive = 1";
+
+        //    string strQuery;
+        //    string ConStr = System.Configuration.ConfigurationManager.ConnectionStrings["DBConnection"].ToString();
+
+        //    using (var connection = new SqlConnection(ConStr))
+        //    {
+        //        connection.Open();
+
+        //        // First, check if there are any mapped schemes
+        //        using (var command = new SqlCommand(mappedSchemesQuery, connection))
+        //        {
+        //            command.Parameters.AddWithValue("@UserLoginID", UserLoginID ?? (object)DBNull.Value);
+
+        //            var mappedSchemes = command.ExecuteScalar();
+
+        //            // If no mapped schemes found, select all schemes
+        //            if (mappedSchemes == null)
+        //            {
+        //                strQuery = @"SET DATEFORMAT dmy; 
+        //                     SELECT 
+        //                         SchemeID, 
+        //                         SchemeName 
+        //                     FROM SchemeMaster";
+        //            }
+        //            else
+        //            {
+        //                strQuery = @"SET DATEFORMAT dmy; 
+        //                     SELECT 
+        //                         SchemeID, 
+        //                         SchemeName 
+        //                     FROM SchemeMaster 
+        //                     WHERE SchemeID IN (" + mappedSchemes + ")";
+        //            }
+        //        }
+
+        //        // Execute the main query
+        //        try
+        //        {
+        //            ds = ExecuteSelectQuery(strQuery);
+        //        }
+        //        catch
+        //        {
+        //            ds = null;
+        //        }
+        //    }
+
+        //    return ds;
+        //}
+
+        //    internal DataSet get_tbl_Schemes(long? UserLoginID)
+        //    {
+        //    var MappedSchemes = @"select SchemeID from UserSchemeMapping where UserID='" + UserLoginID + "' and IsActive=1";
+        //    string strQuery = "";
+        //        DataSet ds = new DataSet();
+        //        strQuery = @" set dateformat dmy; 
+        //            select 
+        //                SchemeID,
+        //                SchemeName
+        //              from SchemeMaster where SchemeID in ("+MappedSchemes+")";
+        //        try
+        //        {
+        //            ds = ExecuteSelectQuery(strQuery);
+        //        }
+        //        catch
+        //        {
+        //            ds = null;
+        //        }
+        //        return ds;
+
+        //}
+
+        internal DataSet get_tbl_Districts()
+        {
+            string strQuery = "";
+            DataSet ds = new DataSet();
+            strQuery = @" set dateformat dmy; 
+                    select 
+                        Circle_Id,
+                        Circle_Name
+                      from tbl_Circle";
+            try
+            {
+                ds = ExecuteSelectQuery(strQuery);
+            }
+            catch
+            {
+                ds = null;
+            }
+            return ds;
+        }
+        internal DataSet get_tbl_ULBTypes()
+        {
+            string strQuery = "";
+            DataSet ds = new DataSet();
+            strQuery = @" set dateformat dmy; 
+                    select 
+                        ULBTypeId,
+                        ULBType
+                      from UlbType";
+            try
+            {
+                ds = ExecuteSelectQuery(strQuery);
+            }
+            catch
+            {
+                ds = null;
+            }
+            return ds;
+        }
+
+        internal DataSet get_tbl_ULBs(int DistrictId,int ULBTypeId)
+        {
+            string strQuery = "";
+
+            DataSet ds = new DataSet();
+            strQuery = @" set dateformat dmy; 
+                    select 
+                        ULBID,
+                        ULBName
+                      FROM ULBMaster where ULBTypeId='"+ ULBTypeId + "' and DistId='"+DistrictId +"'";
+            try
+            {
+                ds = ExecuteSelectQuery(strQuery);
+            }
+            catch
+            {
+                ds = null;
+            }
+            return ds;
+        }
+        //internal DataSet Get_Tbl_SchemeFundReport(int YearId, int Scheme_Id, int Circle_Id, int ULBTypeId, int ULBID, int? UserLoginID)
+        //{
+        //    DataSet ds = new DataSet();
+
+        //    try
+        //    {
+        //        string ConStr = System.Configuration.ConfigurationManager.ConnectionStrings["DBConnection"].ToString();
+
+        //        using (SqlConnection conn = new SqlConnection(ConStr))
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand("[GetSchemeFundList]", conn))
+        //            {
+        //                cmd.CommandType = CommandType.StoredProcedure;
+        //                cmd.Parameters.AddWithValue("@UserLoginID",UserLoginID );
+        //                cmd.Parameters.AddWithValue("@DistID", Circle_Id);
+        //                cmd.Parameters.AddWithValue("@FinYearID", YearId);
+        //                cmd.Parameters.AddWithValue("@ULBID", ULBID);
+        //                cmd.Parameters.AddWithValue("@ULBTypeID", ULBTypeId);
+        //                cmd.Parameters.AddWithValue("@SchemeID", Scheme_Id);
+
+        //                SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //                da.Fill(ds);
+        //            }
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        ds = null;
+        //    }
+        //    return ds;
+        //}
+        internal DataSet Get_Tbl_SchemeFundReport(int YearId, int Scheme_Id, int Circle_Id, int ULBTypeId, int ULBID, int? UserLoginID)
+        {
+            DataSet ds = new DataSet();
+
+            try
+            {
+                string ConStr = System.Configuration.ConfigurationManager.ConnectionStrings["DBConnection"].ToString();
+
+                using (SqlConnection conn = new SqlConnection(ConStr))
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_FundsanctionListApi", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@UserLoginID", UserLoginID);
+                        cmd.Parameters.AddWithValue("@DistID", Circle_Id);
+                        cmd.Parameters.AddWithValue("@FinYearID", YearId);
+                        cmd.Parameters.AddWithValue("@ULBID", ULBID);
+                        cmd.Parameters.AddWithValue("@ULBTypeID", ULBTypeId);
+                        cmd.Parameters.AddWithValue("@SchemeID", Scheme_Id);
+                        conn.Open();
+                        SqlDataAdapter ada = new SqlDataAdapter(cmd);
+                        ada.Fill(ds);
+                        //using (SqlDataReader reader = cmd.ExecuteReader())
+                        //{
+                        //    DataTable dt = new DataTable();
+                        //    dt.Load(reader);
+                        //    ds.Tables.Add(dt);
+                        //}
+                    }
+                }
+            }
+            catch
+            {
+                ds = null;
+            }
+            return ds;
         }
 
         public DataSet get_M_Jurisdiction(int M_Level_Id, int Parent_Jurisdiction_Id)
