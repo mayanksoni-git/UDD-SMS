@@ -291,8 +291,10 @@ public partial class WorkPlanReport : System.Web.UI.Page
         }
         ExpAmtLess = string.IsNullOrEmpty(txtExpAmtLess.Text) ? 0 : Convert.ToInt32(txtExpAmtLess.Text);
         ExpAmtGret = string.IsNullOrEmpty(txtExpAmtGret.Text) ? 0 : Convert.ToInt32(txtExpAmtGret.Text);
+        int AkanshiULB = chkIsAkanshiULB.Checked ? 1 : -1;
 
-        LoadWorkProposalGrid(obj, Mandal, ULBType, ExpAmtLess, ExpAmtGret, Convert.ToInt32(Session["Person_Id"].ToString()));
+
+        LoadWorkProposalGrid(obj, Mandal, ULBType, ExpAmtLess, ExpAmtGret, Convert.ToInt32(Session["Person_Id"].ToString()), AkanshiULB);
     }
 
     
@@ -379,10 +381,10 @@ public partial class WorkPlanReport : System.Web.UI.Page
 
         return obj;
     }
-    private void LoadWorkProposalGrid(tbl_WorkProposal obj, int Mandal, string ULBType, int ExpAmtLess, int ExpAmtGret, int personId)
+    private void LoadWorkProposalGrid(tbl_WorkProposal obj, int Mandal, string ULBType, int ExpAmtLess, int ExpAmtGret, int personId, int AkanshiULB)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.getWorkProposalBySearchForReport(obj, Mandal, ULBType, ExpAmtLess, ExpAmtGret, personId);
+        dt = objLoan.getWorkProposalBySearchForReport(obj, Mandal, ULBType, ExpAmtLess, ExpAmtGret, personId, AkanshiULB);
 
         if (dt != null && dt.Rows.Count > 0)
         {

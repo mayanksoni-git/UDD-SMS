@@ -695,6 +695,13 @@
                                                         <asp:TextBox ID="txtExpAmtGret" runat="server" placeholder="31.89" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <asp:Label ID="lblIsAkanshiULB" CssClass="control-label no-padding-right" Text="Akanshi ULB" runat="server"></asp:Label>
+                                                        <asp:CheckBox ID="chkIsAkanshiULB" runat="server" CssClass="form-control mb-2" />
+                                                    </div>
+                                                </div>
                                             </div>
                                             <br />
                                             <div class="row gy-4">
