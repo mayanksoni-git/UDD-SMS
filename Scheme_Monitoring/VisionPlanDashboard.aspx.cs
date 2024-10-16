@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -71,9 +72,50 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
 
         if (dt != null && dt.Rows.Count > 0)
         {
-            gridDashboard.DataSource = dt;
-            gridDashboard.DataBind();
-            btnDashboard.Visible = true;
+            
+
+            if (ProcedureName == "sp_DashboardSummaryReport_VPReport")
+            {
+                Label1.Text = dt.Rows[0][0].ToString();
+                HeadLabel1.Text = dt.Columns[0].ColumnName;
+
+                Label2.Text = dt.Rows[0][1].ToString();
+                HeadLabel2.Text = dt.Columns[1].ColumnName;
+
+                Label3.Text = dt.Rows[0][2].ToString();
+                HeadLabel3.Text = dt.Columns[2].ColumnName;
+
+                Label4.Text = dt.Rows[0][3].ToString();
+                HeadLabel4.Text = dt.Columns[3].ColumnName;
+
+                Label5.Text = dt.Rows[0][4].ToString();
+                HeadLabel5.Text = dt.Columns[4].ColumnName;
+
+                Label6.Text = dt.Rows[0][5].ToString();
+                HeadLabel6.Text = dt.Columns[5].ColumnName;
+
+                Label7.Text = dt.Rows[0][6].ToString();
+                HeadLabel7.Text = dt.Columns[6].ColumnName;
+
+                Label8.Text = dt.Rows[0][7].ToString();
+                HeadLabel8.Text = dt.Columns[7].ColumnName;
+
+                Label9.Text = dt.Rows[0][8].ToString();
+                HeadLabel9.Text = dt.Columns[8].ColumnName;
+
+                Label10.Text = dt.Rows[0][9].ToString();
+                HeadLabel10.Text = dt.Columns[9].ColumnName;
+
+                Label11.Text = dt.Rows[0][10].ToString();
+                HeadLabel11.Text = dt.Columns[10].ColumnName;
+            }
+            else
+            {
+                gridDashboard.DataSource = dt;
+                gridDashboard.DataBind();
+                btnDashboard.Visible = true;
+            }
+
             ToggleDiv(divData);
         }
         else
@@ -84,6 +126,47 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
             MessageBox.Show("No Records Found");
         }
     }
+
+
+    //private void LoadVisionPlanGrid(string ProcedureName)
+    //{
+    //    DataTable dt = new DataTable();
+    //    dt = objLoan.getWorkProposalDashbaord(ProcedureName);
+
+    //    if (dt != null && dt.Rows.Count > 0)
+    //    {
+    //        gridDashboard.DataSource = dt;
+    //        gridDashboard.DataBind();
+    //        btnDashboard.Visible = true;
+
+    //        // Assuming you have predefined labels up to Label8 and HeadLabel8 on your form
+    //        for (int i = 0; i < dt.Columns.Count; i++)
+    //        {
+    //            // Dynamically find the label controls
+    //            Label valueLabel = (Label)FindControl("Label"+i + 1);
+    //            Label headerLabel = (Label)FindControl("HeadeLabel"+i + 1);
+
+    //            if (valueLabel != null && headerLabel != null)
+    //            {
+    //                // Set the value from the first row of the DataTable
+    //                valueLabel.Text = dt.Rows[0][i].ToString();
+    //                // Set the column name as the header
+    //                headerLabel.Text = dt.Columns[i].ColumnName;
+    //            }
+    //        }
+
+    //        ToggleDiv(divData);
+    //    }
+    //    else
+    //    {
+    //        btnDashboard.Visible = true;
+    //        gridDashboard.DataSource = null;
+    //        gridDashboard.DataBind();
+    //        MessageBox.Show("No Records Found");
+    //    }
+    //}
+
+
 
     protected void grdPost_PreRender(object sender, EventArgs e)
     {
