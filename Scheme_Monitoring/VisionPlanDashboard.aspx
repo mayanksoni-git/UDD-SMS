@@ -6,9 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <div class="main-content">
         <div class="page-content">
@@ -17,23 +15,20 @@
                     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
                     </cc1:ToolkitScriptManager>
                     <div class="container-fluid">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                        <h4 class="mb-sm-0">Vision Plan Dashboard</h4>
-                                        <div class="page-title-right">
-                                            <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                                <li class="breadcrumb-item">Vision Plan Management</li>
-                                                <li class="breadcrumb-item active">Vision Plan Dashboard</li>
-                                            </ol>
-                                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Vision Plan Dashboard</h4>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                            <li class="breadcrumb-item">Vision Plan Management</li>
+                                            <li class="breadcrumb-item active">Vision Plan Dashboard</li>
+                                        </ol>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <div runat="server" visible="true" id="divData" class="tblheader" style="overflow: auto">
                             <div class="row">
                                 <div class="col-lg-12">
@@ -77,8 +72,10 @@
                                                                         <div class="card-block">
                                                                             <div class="row align-items-center">
                                                                                 <div class="col-8">
-                                                                                    <h4 class="text-c-purple"><asp:Label id="Label1" Text="" runat="server"></asp:Label></h4>
-                                                                                    <h6 class="text-muted m-b-0"><asp:Label id="HeadLabel1" Text="" runat="server"></asp:Label></h6>
+                                                                                    <h4 class="text-c-purple">
+                                                                                        <asp:Label ID="Label1" Text="" runat="server"></asp:Label></h4>
+                                                                                    <h6 class="text-muted m-b-0">
+                                                                                        <asp:Label ID="HeadLabel1" Text="" runat="server"></asp:Label></h6>
                                                                                 </div>
                                                                                 <div class="col-4 text-right">
                                                                                     <i class="fa fa-bar-chart f-28"></i>
@@ -105,8 +102,10 @@
                                                                         <div class="card-block">
                                                                             <div class="row align-items-center">
                                                                                 <div class="col-8">
-                                                                                    <h4 class="text-c-purple">₹ <asp:Label id="Label2" Text="" runat="server"></asp:Label></h4>
-                                                                                    <h6 class="text-muted m-b-0"><asp:Label id="HeadLabel2" Text="" runat="server"></asp:Label></h6>
+                                                                                    <h4 class="text-c-purple">₹
+                                                                                        <asp:Label ID="Label2" Text="" runat="server"></asp:Label></h4>
+                                                                                    <h6 class="text-muted m-b-0">
+                                                                                        <asp:Label ID="HeadLabel2" Text="" runat="server"></asp:Label></h6>
                                                                                 </div>
                                                                                 <div class="col-4 text-right">
                                                                                     <i class="fa fa-bar-chart f-28"></i>
@@ -133,8 +132,10 @@
                                                                         <div class="card-block">
                                                                             <div class="row align-items-center">
                                                                                 <div class="col-8">
-                                                                                    <h4 class="text-c-purple"><asp:Label id="Label3" Text="" runat="server"></asp:Label></h4>
-                                                                                    <h6 class="text-muted m-b-0"><asp:Label id="HeadLabel3" Text="" runat="server"></asp:Label></h6>
+                                                                                    <h4 class="text-c-purple">
+                                                                                        <asp:Label ID="Label3" Text="" runat="server"></asp:Label></h4>
+                                                                                    <h6 class="text-muted m-b-0">
+                                                                                        <asp:Label ID="HeadLabel3" Text="" runat="server"></asp:Label></h6>
                                                                                 </div>
                                                                                 <div class="col-4 text-right">
                                                                                     <i class="fa fa-bar-chart f-28"></i>
@@ -161,8 +162,10 @@
                                                                         <div class="card-block">
                                                                             <div class="row align-items-center">
                                                                                 <div class="col-8">
-                                                                                    <h4 class="text-c-purple"><asp:Label id="Label4" Text="" runat="server"></asp:Label></h4>
-                                                                                    <h6 class="text-muted m-b-0"><asp:Label id="HeadLabel4" Text="" runat="server"></asp:Label></h6>
+                                                                                    <h4 class="text-c-purple">
+                                                                                        <asp:Label ID="Label4" Text="" runat="server"></asp:Label></h4>
+                                                                                    <h6 class="text-muted m-b-0">
+                                                                                        <asp:Label ID="HeadLabel4" Text="" runat="server"></asp:Label></h6>
                                                                                 </div>
                                                                                 <div class="col-4 text-right">
                                                                                     <i class="fa fa-bar-chart f-28"></i>
@@ -189,8 +192,10 @@
                                                                         <div class="card-block">
                                                                             <div class="row align-items-center">
                                                                                 <div class="col-8">
-                                                                                    <h4 class="text-c-purple"><asp:Label id="Label5" Text="" runat="server"></asp:Label></h4>
-                                                                                    <h6 class="text-muted m-b-0"><asp:Label id="HeadLabel5" Text="" runat="server"></asp:Label></h6>
+                                                                                    <h4 class="text-c-purple">
+                                                                                        <asp:Label ID="Label5" Text="" runat="server"></asp:Label></h4>
+                                                                                    <h6 class="text-muted m-b-0">
+                                                                                        <asp:Label ID="HeadLabel5" Text="" runat="server"></asp:Label></h6>
                                                                                 </div>
                                                                                 <div class="col-4 text-right">
                                                                                     <i class="fa fa-bar-chart f-28"></i>
@@ -217,8 +222,10 @@
                                                                         <div class="card-block">
                                                                             <div class="row align-items-center">
                                                                                 <div class="col-8">
-                                                                                    <h4 class="text-c-purple"><asp:Label id="Label6" Text="" runat="server"></asp:Label></h4>
-                                                                                    <h6 class="text-muted m-b-0"><asp:Label id="HeadLabel6" Text="" runat="server"></asp:Label></h6>
+                                                                                    <h4 class="text-c-purple">
+                                                                                        <asp:Label ID="Label6" Text="" runat="server"></asp:Label></h4>
+                                                                                    <h6 class="text-muted m-b-0">
+                                                                                        <asp:Label ID="HeadLabel6" Text="" runat="server"></asp:Label></h6>
                                                                                 </div>
                                                                                 <div class="col-4 text-right">
                                                                                     <i class="fa fa-bar-chart f-28"></i>
@@ -245,8 +252,10 @@
                                                                         <div class="card-block">
                                                                             <div class="row align-items-center">
                                                                                 <div class="col-8">
-                                                                                    <h4 class="text-c-purple"><asp:Label id="Label7" Text="" runat="server"></asp:Label></h4>
-                                                                                    <h6 class="text-muted m-b-0"><asp:Label id="HeadLabel7" Text="" runat="server"></asp:Label></h6>
+                                                                                    <h4 class="text-c-purple">
+                                                                                        <asp:Label ID="Label7" Text="" runat="server"></asp:Label></h4>
+                                                                                    <h6 class="text-muted m-b-0">
+                                                                                        <asp:Label ID="HeadLabel7" Text="" runat="server"></asp:Label></h6>
                                                                                 </div>
                                                                                 <div class="col-4 text-right">
                                                                                     <i class="fa fa-bar-chart f-28"></i>
@@ -273,8 +282,10 @@
                                                                         <div class="card-block">
                                                                             <div class="row align-items-center">
                                                                                 <div class="col-8">
-                                                                                    <h4 class="text-c-purple"><asp:Label id="Label8" Text="" runat="server"></asp:Label></h4>
-                                                                                    <h6 class="text-muted m-b-0"><asp:Label id="HeadLabel8" Text="" runat="server"></asp:Label></h6>
+                                                                                    <h4 class="text-c-purple">
+                                                                                        <asp:Label ID="Label8" Text="" runat="server"></asp:Label></h4>
+                                                                                    <h6 class="text-muted m-b-0">
+                                                                                        <asp:Label ID="HeadLabel8" Text="" runat="server"></asp:Label></h6>
                                                                                 </div>
                                                                                 <div class="col-4 text-right">
                                                                                     <i class="fa fa-bar-chart f-28"></i>
@@ -301,8 +312,10 @@
                                                                         <div class="card-block">
                                                                             <div class="row align-items-center">
                                                                                 <div class="col-8">
-                                                                                    <h4 class="text-c-purple"><asp:Label id="Label9" Text="" runat="server"></asp:Label></h4>
-                                                                                    <h6 class="text-muted m-b-0"><asp:Label id="HeadLabel9" Text="" runat="server"></asp:Label></h6>
+                                                                                    <h4 class="text-c-purple">
+                                                                                        <asp:Label ID="Label9" Text="" runat="server"></asp:Label></h4>
+                                                                                    <h6 class="text-muted m-b-0">
+                                                                                        <asp:Label ID="HeadLabel9" Text="" runat="server"></asp:Label></h6>
                                                                                 </div>
                                                                                 <div class="col-4 text-right">
                                                                                     <i class="fa fa-bar-chart f-28"></i>
@@ -329,8 +342,10 @@
                                                                         <div class="card-block">
                                                                             <div class="row align-items-center">
                                                                                 <div class="col-8">
-                                                                                    <h4 class="text-c-purple"><asp:Label id="Label10" Text="" runat="server"></asp:Label></h4>
-                                                                                    <h6 class="text-muted m-b-0"><asp:Label id="HeadLabel10" Text="" runat="server"></asp:Label></h6>
+                                                                                    <h4 class="text-c-purple">
+                                                                                        <asp:Label ID="Label10" Text="" runat="server"></asp:Label></h4>
+                                                                                    <h6 class="text-muted m-b-0">
+                                                                                        <asp:Label ID="HeadLabel10" Text="" runat="server"></asp:Label></h6>
                                                                                 </div>
                                                                                 <div class="col-4 text-right">
                                                                                     <i class="fa fa-bar-chart f-28"></i>
@@ -357,8 +372,10 @@
                                                                         <div class="card-block">
                                                                             <div class="row align-items-center">
                                                                                 <div class="col-8">
-                                                                                    <h4 class="text-c-purple"><asp:Label id="Label11" Text="" runat="server"></asp:Label></h4>
-                                                                                    <h6 class="text-muted m-b-0"><asp:Label id="HeadLabel11" Text="" runat="server"></asp:Label></h6>
+                                                                                    <h4 class="text-c-purple">
+                                                                                        <asp:Label ID="Label11" Text="" runat="server"></asp:Label></h4>
+                                                                                    <h6 class="text-muted m-b-0">
+                                                                                        <asp:Label ID="HeadLabel11" Text="" runat="server"></asp:Label></h6>
                                                                                 </div>
                                                                                 <div class="col-4 text-right">
                                                                                     <i class="fa fa-bar-chart f-28"></i>
