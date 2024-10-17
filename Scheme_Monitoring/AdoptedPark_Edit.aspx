@@ -155,7 +155,12 @@
                                                                 </asp:LinkButton>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                 
+                                                                     <asp:TemplateField HeaderText="Add Park Details">
+                                                                    <ItemTemplate>
+                                                                        
+                                                                        <asp:ImageButton ID="btnAddDetails" Width="20px" Height="20px" OnClick="btnAddDetails_Click" ImageUrl="~/assets/images/add-icon.png" runat="server" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
 <%--                                                        <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>
                                                                 <asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditAdoptedPark" OnCommand="Edit_Command" CommandArgument='<%# Eval("AdoptedParkId") %>' CssClass="btn btn-primary drill_btn" />

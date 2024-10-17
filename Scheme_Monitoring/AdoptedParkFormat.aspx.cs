@@ -44,7 +44,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                 get_tbl_Mandal();
                 Page.Form.Attributes.Add("enctype", "multipart/form-data");
             }
-
+            Page.Form.Attributes.Add("enctype", "multipart/form-data");
             //get_tbl_Month();
             lblCircleH.Text = Session["Default_Circle"].ToString();
             lblDivisionH.Text = Session["Default_Division"].ToString();
@@ -388,11 +388,11 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                         transaction.Commit();
 
                         // Optionally, display a success message
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Data saved successfully!');", true);
-                        Response.Redirect("AdoptedPark_Edit.aspx");
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Data saved successfully!');window.location.href ='AdoptedPark_Edit.aspx';", true);
 
                         // Clear the form or redirect as needed
                         ClearForm();
+
                     }
                     catch (Exception ex)
                     {
@@ -457,7 +457,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                         cmdMaster.Parameters.AddWithValue("@NoOfAdoptionInprocessPark", inProcessPark1);
                         cmdMaster.Parameters.AddWithValue("@NoOfParkAdopted", NoOfParkAdopted1);
                         cmdMaster.Parameters.AddWithValue("@CreatedBy", Person_Id1);
-                        cmdMaster.Parameters.AddWithValue("@CreatedOn", DateTime.Now);
+                        cmdMaster.Parameters.AddWithValue("@CreatedOn", DateTime.Now);  
                         cmdMaster.Parameters.AddWithValue("@IsActive", true);
 
                         // Execute and get the new master Id
@@ -547,12 +547,13 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                         transaction1.Commit();
 
                         // Optionally, display a success message
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Data saved successfully!');", true);
-                        Response.Redirect("AdoptedPark_Edit.aspx");
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Data saved successfully!');window.location.href ='AdoptedPark_Edit.aspx';", true);
 
 
                         // Clear the form or redirect as needed
                         ClearForm();
+                        //Response.Redirect("");
+
                     }
                     catch (Exception ex)
                     {
@@ -671,6 +672,12 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
 
     protected void grdCallProductDtls_PreRender(object sender, EventArgs e)
     {
+
+        if (ViewState["dtQuestionnaire"] != null)
+        {
+            grdCallProductDtls.DataSource = (DataTable)ViewState["dtQuestionnaire"];
+            grdCallProductDtls.DataBind();
+        }
         GridView gv = (GridView)sender;
         if (gv.Rows.Count > 0)
         {
@@ -736,83 +743,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
         }
     }
 
-    //protected void grdCallProductDtls_RowDataBound(object sender, GridViewRowEventArgs e)
-    //{
-    //    if (e.Row.RowType == DataControlRowType.DataRow)
-    //    {
-
-    //        DropDownList SessionId = e.Row.FindControl("SessionId") as DropDownList;
-    //        DataTable dtQuestionnaire = (DataTable)ViewState["dtQuestionnaire"];
-    //        if (AllClasses.CheckDt(dtQuestionnaire))
-    //        {
-    //            DataSet ds = new DataSet();
-    //            ds = (new DataLayer()).get_FinancialYear();
-    //            AllClasses.FillDropDown(ds.Tables[0], SessionId, "SessionYear", "YearID");
-    //            //AllClasses.FillDropDown(dtQuestionnaire, SessionId, "SessionYear", "YearID");
-    //        }
-    //        int sessionId = 0;
-    //        try
-    //        {
-    //            sessionId = Convert.ToInt32(e.Row.Cells[5].Text.Trim());
-    //        }
-    //        catch
-    //        {
-    //            sessionId = 0;
-    //        }
-    //        if (sessionId > 0)
-    //        {
-    //            try
-    //            {
-    //                SessionId.SelectedValue = sessionId.ToString();
-    //                //ddlIssueType_SelectedIndexChanged(ddlIssueType, e);
-    //            }
-    //            catch
-    //            {
-
-    //            }
-    //        }
-    //        DropDownList MonthId = e.Row.FindControl("MonthId") as DropDownList;
-    //        DataTable dtQuestionnaire1 = (DataTable)ViewState["dtQuestionnaire"];
-    //        if (AllClasses.CheckDt(dtQuestionnaire1))
-    //        {
-    //            DataSet ds = new DataSet();
-    //            ds = (new DataLayer()).get_tbl_Month();
-    //            AllClasses.FillDropDown(ds.Tables[0], MonthId, "Month_MonthName", "Month_Id");
-    //        }
-    //        int monthId = 0;
-    //        try
-    //        {
-    //            monthId = Convert.ToInt32(e.Row.Cells[6].Text.Trim());
-    //        }
-    //        catch
-    //        {
-    //            monthId = 0;
-    //        }
-    //        if (monthId > 0)
-    //        {
-    //            try
-    //            {
-    //                //AllClasses.FillDropDown(dtQuestionnaire1, MonthId, "Month_MonthName", "Month_Id");
-    //                MonthId.SelectedValue = monthId.ToString();
-    //                //ddlIssueType_SelectedIndexChanged(ddlIssueType, e);
-    //            }
-    //            catch
-    //            {
-
-    //            }
-    //        }
-    //        string filePath = e.Row.Cells[9].Text.Trim().Replace("&nbsp;", "");
-    //        if (filePath.Trim() != "")
-    //        {
-    //            e.Row.Cells[1].BackColor = System.Drawing.Color.LightGreen;
-    //        }
-    //        else
-    //        {
-    //            LinkButton lnkBtn = (LinkButton)e.Row.FindControl("lnkULBShr");
-    //            //lnkBtn.Visible = false;
-    //        }
-    //    }
-    //}
+    
     private void AddDynamicFields()
     {
         DataTable dtQuestionnaire;
@@ -825,7 +756,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
             foreach (GridViewRow row in grdCallProductDtls.Rows)
             {
                 DataRow dr = dtQuestionnaire.Rows[row.RowIndex];
-
+                
                 // Extract values from TextBoxes and DropDownLists
                 dr["AdoptedParkName"] = ((TextBox)row.FindControl("AdoptedParkName")).Text.Trim();
                 //dr["ParkLatitude"] = ((TextBox)row.FindControl("ParkLatitude")).Text.Trim();
@@ -902,63 +833,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
         grdCallProductDtls.DataBind();
     }
 
-    //private void AddDynamicFields()
-    //{
-    //    DataTable dtQuestionnaire;
-
-    //    if (ViewState["dtQuestionnaire"] != null)
-    //    {
-    //        dtQuestionnaire = (DataTable)ViewState["dtQuestionnaire"];
-
-    //        // Preserve existing data from GridView into DataTable
-    //        foreach (GridViewRow row in grdCallProductDtls.Rows)
-    //        {
-    //            DataRow dr = dtQuestionnaire.Rows[row.RowIndex];
-
-    //            // Extract values from TextBoxes and DropDownLists
-    //            dr["AdoptedParkName"] = ((TextBox)row.FindControl("AdoptedParkName")).Text.Trim();
-    //            dr["ParkLatitude"] = ((TextBox)row.FindControl("ParkLatitude")).Text.Trim();
-
-    //            decimal longitude;
-    //            dr["ParkLongitude"] = decimal.TryParse(((TextBox)row.FindControl("ParkLongitude")).Text.Trim(), out longitude) ? longitude : 0;
-
-    //            decimal sessionId;
-    //            dr["SessionId"] = decimal.TryParse(((DropDownList)row.FindControl("SessionId")).SelectedValue, out sessionId) ? sessionId : 0;
-
-    //            decimal monthId;
-    //            dr["MonthId"] = decimal.TryParse(((DropDownList)row.FindControl("MonthId")).SelectedValue, out monthId) ? monthId : 0;
-
-    //            dr["NameCSR_NGO"] = ((TextBox)row.FindControl("NameCSR_NGO")).Text.Trim();
-    //            dr["DetailCSR_NGO"] = ((TextBox)row.FindControl("DetailCSR_NGO")).Text.Trim();
-
-    //            // Handle FileUpload controls
-    //            ProcessFileUpload(row, dr, "GeotaggedPhotographs");
-    //            ProcessFileUpload(row, dr, "MOUAttached");
-    //            ProcessFileUpload(row, dr, "UploadKML");
-    //        }
-
-    //        // Add a new empty row
-    //        DataRow newRow = dtQuestionnaire.NewRow();
-    //        dtQuestionnaire.Rows.Add(newRow);
-    //    }
-    //    else
-    //    {
-    //        // Initialize DataTable if ViewState is null
-    //        dtQuestionnaire = InitializeDataTable();
-
-    //        // Add the first empty row
-    //        DataRow dr = dtQuestionnaire.NewRow();
-    //        dtQuestionnaire.Rows.Add(dr);
-    //    }
-
-    //    // Update ViewState and rebind GridView
-    //    ViewState["dtQuestionnaire"] = dtQuestionnaire;
-    //    grdCallProductDtls.DataSource = dtQuestionnaire;
-    //    grdCallProductDtls.DataBind();
-
-    //    // Optionally, re-populate DropDownLists if they are dynamically populated
-    //    // PopulateDropDownLists();
-    //}
+    
 
     private void ProcessFileUpload(GridViewRow row, DataRow dr, string controlID)
     {
@@ -980,141 +855,13 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
         dt.Columns.Add("MonthId", typeof(decimal));
         dt.Columns.Add("NameCSR_NGO", typeof(string));
         dt.Columns.Add("DetailCSR_NGO", typeof(string));
-        dt.Columns.Add("GeotaggedPhotographs", typeof(File));
-        dt.Columns.Add("MOUAttached", typeof(File));
-        dt.Columns.Add("UploadKML", typeof(File));
+        dt.Columns.Add("GeotaggedPhotographs", typeof(string));
+        dt.Columns.Add("MOUAttached", typeof(string));
+        dt.Columns.Add("UploadKML", typeof(string));
         return dt;
     }
 
-    //private void AddDynamicFields()
-    //{
-    //    DataTable dtQuestionnaire;
-
-    //    if (ViewState["dtQuestionnaire"] != null)
-    //    {
-    //        dtQuestionnaire = (DataTable)ViewState["dtQuestionnaire"];
-
-    //        // Preserve existing data from GridView into DataTable
-    //        foreach (GridViewRow row in grdCallProductDtls.Rows)
-    //        {
-    //            DataRow dr = dtQuestionnaire.Rows[row.RowIndex];
-
-    //            // Extract values from TextBoxes and DropDownLists
-    //            dr["AdoptedParkName"] = ((TextBox)row.FindControl("AdoptedParkName")).Text.Trim();
-    //            dr["ParkLatitude"] = ((TextBox)row.FindControl("ParkLatitude")).Text.Trim();
-    //            decimal longitude;
-    //            dr["ParkLongitude"] = decimal.TryParse(((TextBox)row.FindControl("ParkLongitude")).Text.Trim(), out longitude) ? longitude : 0;
-    //            //dr["ParkLongitude"] = decimal.TryParse(((TextBox)row.FindControl("ParkLongitude")).Text.Trim(), out decimal longitude) ? longitude : 0;
-    //            //dr["SessionId"] = decimal.TryParse(((DropDownList)row.FindControl("SessionId")).SelectedValue, out decimal sessionId) ? sessionId : 0;
-    //            //dr["MonthId"] = decimal.TryParse(((DropDownList)row.FindControl("MonthId")).SelectedValue, out decimal monthId) ? monthId : 0;
-    //            decimal sessionId;
-    //            dr["SessionId"] = decimal.TryParse(((DropDownList)row.FindControl("SessionId")).SelectedValue, out sessionId) ? sessionId : 0;
-
-    //            decimal monthId;
-    //            dr["MonthId"] = decimal.TryParse(((DropDownList)row.FindControl("MonthId")).SelectedValue, out monthId) ? monthId : 0;
-
-    //            dr["NameCSR_NGO"] = ((TextBox)row.FindControl("NameCSR_NGO")).Text.Trim();
-    //            dr["DetailCSR_NGO"] = ((TextBox)row.FindControl("DetailCSR_NGO")).Text.Trim();
-
-    //            // Handle FileUpload controls
-    //            FileUpload fuGeotaggedPhotographs = (FileUpload)row.FindControl("GeotaggedPhotographs");
-    //            if (fuGeotaggedPhotographs.HasFile)
-    //            {
-    //                // Save the file to a temporary location and store the path
-    //                string filePath = SaveFile(fuGeotaggedPhotographs.PostedFile);
-    //                dr["GeotaggedPhotographs"] = filePath;
-    //            }
-
-    //            FileUpload fuMOUAttached = (FileUpload)row.FindControl("MOUAttached");
-    //            if (fuMOUAttached.HasFile)
-    //            {
-    //                string filePath = SaveFile(fuMOUAttached.PostedFile);
-    //                dr["MOUAttached"] = filePath;
-    //            }
-
-    //            FileUpload fuUploadKML = (FileUpload)row.FindControl("UploadKML");
-    //            if (fuUploadKML.HasFile)
-    //            {
-    //                string filePath = SaveFile(fuUploadKML.PostedFile);
-    //                dr["UploadKML"] = filePath;
-    //            }
-    //        }
-
-    //        // Add a new empty row
-    //        DataRow newRow = dtQuestionnaire.NewRow();
-    //        dtQuestionnaire.Rows.Add(newRow);
-    //    }
-    //    else
-    //    {
-    //        // Initialize DataTable if ViewState is null
-    //        dtQuestionnaire = new DataTable();
-
-    //        dtQuestionnaire.Columns.Add("AdoptedParkName", typeof(string));
-    //        dtQuestionnaire.Columns.Add("ParkLatitude", typeof(string));
-    //        dtQuestionnaire.Columns.Add("ParkLongitude", typeof(decimal));
-    //        dtQuestionnaire.Columns.Add("SessionId", typeof(decimal));
-    //        dtQuestionnaire.Columns.Add("MonthId", typeof(decimal));
-    //        dtQuestionnaire.Columns.Add("NameCSR_NGO", typeof(string));
-    //        dtQuestionnaire.Columns.Add("DetailCSR_NGO", typeof(string));
-    //        dtQuestionnaire.Columns.Add("GeotaggedPhotographs", typeof(string));
-    //        dtQuestionnaire.Columns.Add("MOUAttached", typeof(string));
-    //        dtQuestionnaire.Columns.Add("UploadKML", typeof(string));
-
-    //        // Add the first empty row
-    //        DataRow dr = dtQuestionnaire.NewRow();
-    //        dtQuestionnaire.Rows.Add(dr);
-    //    }
-
-    //    // Update ViewState and rebind GridView
-    //    ViewState["dtQuestionnaire"] = dtQuestionnaire;
-    //    grdCallProductDtls.DataSource = dtQuestionnaire;
-    //    grdCallProductDtls.DataBind();
-
-    //    // Optionally, re-populate DropDownLists if they are dynamically populated
-    //    //PopulateDropDownLists();
-    //}
-    //private void AddDynamicFields()
-    //{
-    //    DataTable dtQuestionnaire;
-
-    //        if (ViewState["dtQuestionnaire"] != null)
-    //        {
-    //            dtQuestionnaire = (DataTable)(ViewState["dtQuestionnaire"]);
-    //            DataRow dr = dtQuestionnaire.NewRow();
-    //            dtQuestionnaire.Rows.Add(dr);
-    //            ViewState["dtQuestionnaire"] = dtQuestionnaire;
-
-    //            grdCallProductDtls.DataSource = dtQuestionnaire;
-    //            grdCallProductDtls.DataBind();
-    //        }
-    //        else
-    //        {
-    //            dtQuestionnaire = new DataTable();
-
-    //            //DataColumn dc_ProjectWorkGO_Id = new DataColumn("ProjectWorkGO_Id", typeof(int));
-    //            DataColumn txtAdoptedParkName = new DataColumn("AdoptedParkName", typeof(string));
-    //            DataColumn txtLatitude = new DataColumn("ParkLatitude", typeof(string));
-    //            DataColumn txtLongitude = new DataColumn("ParkLongitude", typeof(decimal));
-    //            DataColumn ddlYear = new DataColumn("SessionId", typeof(decimal));
-    //            DataColumn ddlMonth = new DataColumn("MonthId", typeof(decimal));
-    //            DataColumn txtNameCSR_NGO = new DataColumn("NameCSR_NGO", typeof(decimal));
-    //            DataColumn txtDetailCSR_NGO = new DataColumn("DetailCSR_NGO", typeof(string));
-    //            DataColumn GeotaggedPhotographs = new DataColumn("GeotaggedPhotographs", typeof(string));
-    //            DataColumn fileUploadMOUAttached = new DataColumn("MOUAttached", typeof(string));
-    //            DataColumn UploadKML = new DataColumn("UploadKML", typeof(string));
-
-    //            dtQuestionnaire.Columns.AddRange(new DataColumn[] { txtAdoptedParkName, txtLatitude, txtLongitude, ddlYear, ddlMonth, txtNameCSR_NGO, txtDetailCSR_NGO, GeotaggedPhotographs, fileUploadMOUAttached, UploadKML });
-
-    //            DataRow dr = dtQuestionnaire.NewRow();
-    //            dtQuestionnaire.Rows.Add(dr);
-    //            ViewState["dtQuestionnaire"] = dtQuestionnaire;
-
-    //            grdCallProductDtls.DataSource = dtQuestionnaire;
-    //            grdCallProductDtls.DataBind();
-
-    //        }
-
-    //}
+    
     protected void DeleteDetails_Click(object sender, ImageClickEventArgs e)
     {
 
@@ -1165,6 +912,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
             }
             try
             {
+                //get_tbl_Division(Convert.ToInt32(ds.Tables[0].Rows[0]["Circle_Id"]));
                 ddlDivision.SelectedValue = ds.Tables[0].Rows[0]["ULBID"].ToString(); 
                
             }

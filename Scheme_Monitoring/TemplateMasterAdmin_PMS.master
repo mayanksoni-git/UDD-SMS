@@ -363,7 +363,7 @@
                                 <div class="collapse menu-dropdown" id="sidebarConstructionPark">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="AdoptedParkFormat.aspx" class="nav-link" data-key="t-grid-js">Adopted Parks</a> </li>
-                                        <li class="nav-item"><a href="AdoptedParkDetail.aspx" class="nav-link" data-key="t-grid-js">Park Detail</a> </li>
+                                        <li class="nav-item"><a href="AdoptedPark_Edit.aspx" class="nav-link" data-key="t-grid-js">Add/Edit Park</a> </li>
                                         <li class="nav-item"><a href="ParkAdoptionStatusReport.aspx" class="nav-link" data-key="t-grid-js">Adopted Park Status Report</a> </li>
                                         <li class="nav-item"><a href="ULBDataSubmitReport.aspx" class="nav-link" data-key="t-grid-js">ULB Submitted Data Report</a> </li>
                                        

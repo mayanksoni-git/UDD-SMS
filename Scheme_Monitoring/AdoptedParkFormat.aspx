@@ -88,7 +88,34 @@
         cursor: pointer;
     }
 </style>--%>
+    <script>
+        function previewFile(input) {
+            debugger
+            var file = input.files[0];
+            var reader = new FileReader();
+            var imagePreview = document.getElementById('imagePreview');
+            var pdfPreview = document.getElementById('pdfPreview');
 
+            reader.onload = function (e) {
+                // Check if the file is an image
+                if (file.type.startsWith('image/')) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                    pdfPreview.style.display = 'none'; // Hide PDF preview
+                }
+                // Check if the file is a PDF
+                else if (file.type === 'application/pdf') {
+                    pdfPreview.src = e.target.result;
+                    pdfPreview.style.display = 'block';
+                    imagePreview.style.display = 'none'; // Hide image preview
+                }
+            }
+
+            if (file) {
+                reader.readAsDataURL(file); // Read file as data URL
+            }
+        }
+</script>
     <div class="main-content">
         <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
@@ -142,7 +169,7 @@
                                                 <div class="col-xxl-3 col-md-6" id="divDivision" runat="server">
                                                     <div>
                                                         <asp:Label ID="lblDivisionH" runat="server" Text="Division*" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
@@ -250,13 +277,18 @@
                                                                     </asp:TemplateField>
                                                                       <asp:TemplateField HeaderText="Geotagged Photographs of Park*">
                                                                         <ItemTemplate>
-                                                                            <asp:FileUpload ID="GeotaggedPhotographs" runat="server" CssClass="form-control" EnableViewState="true" />
-                                                                         </ItemTemplate>
+                                                                            <asp:FileUpload ID="GeotaggedPhotographs" runat="server" CssClass="form-control" EnableViewState="true" Text='<%# Eval("GeotaggedPhotographs") %>'/>
+                                                                            <%--<asp:Label ID="lblGeotaggedPhotographs" runat="server" Text='<%# Eval("GeotaggedPhotographs") %>'></asp:Label>--%>
+                                                                            <a href='<%# Eval("GeotaggedPhotographs").ToString().Replace("~", "") %>' target="_blank">View File </a>
+                                                                            </ItemTemplate>
                                                                     </asp:TemplateField>
         
                                                                     <asp:TemplateField HeaderText="MOU Attached*">
                                                                         <ItemTemplate>
                                                                             <asp:FileUpload ID="MOUAttached" runat="server" CssClass="form-control" EnableViewState="true"/>
+                                                                            <%--<asp:Label ID="lblMOUAttached" runat="server" Text='<%# Eval("MOUAttached") %>'></asp:Label>--%>
+                                                                            <a href='<%# Eval("MOUAttached").ToString().Replace("~", "") %>' target="_blank">View File </a>
+
                                                                            </ItemTemplate>
                                                                        
                                                                     </asp:TemplateField> 
@@ -264,6 +296,8 @@
                                                                     <asp:TemplateField HeaderText="UploadKML">
                                                                         <ItemTemplate>
                                                                             <asp:FileUpload ID="UploadKML" runat="server" CssClass="form-control" EnableViewState="true"/>
+                                                                            <%--<asp:Label ID="lblUploadKML" runat="server" Text='<%# Eval("UploadKML") %>'></asp:Label>--%>
+                                                                            <a href='<%# Eval("UploadKML").ToString().Replace("~", "") %>' target="_blank">Download KML </a>
                                                                             </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     
