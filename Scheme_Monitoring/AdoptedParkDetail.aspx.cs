@@ -251,12 +251,30 @@ public partial class AdoptedParkDetail : System.Web.UI.Page
         }
 
         // Handle file uploads
+        //for (int i = 0; i < plantedTreeNames.Count; i++)
+        //{
+        //    string fileKey = "fileUploadGeotaggedPhotos[]"; // Use the name from the JavaScript array
+
+        //    // Access the uploaded file
+        //    HttpPostedFile uploadedFile = Request.Files[fileKey]; // Use index to access the right file
+
+        //    if (uploadedFile != null && uploadedFile.ContentLength > 0)
+        //    {
+        //        string filePath = Path.Combine(Server.MapPath("~/ParkImages_And_KML"), Guid.NewGuid() + Path.GetExtension(uploadedFile.FileName));
+        //        uploadedFile.SaveAs(filePath);
+        //        filePaths.Add(filePath);
+        //    }
+        //    else
+        //    {
+        //        filePaths.Add(null); // No file uploaded for this entry
+        //    }
+        //}
+        // Handle file uploads
         for (int i = 0; i < plantedTreeNames.Count; i++)
         {
-            string fileKey = "fileUploadGeotaggedPhotos[]"; // Use the name from the JavaScript array
-
-            // Access the uploaded file
-            HttpPostedFile uploadedFile = Request.Files[fileKey]; // Use index to access the right file
+            HttpPostedFile uploadedFile = Request.Files["fileUploadGeotaggedPhotos[]"] != null && Request.Files.Count > i
+                                            ? Request.Files[i]
+                                            : null; // Adjust the index based on your structure
 
             if (uploadedFile != null && uploadedFile.ContentLength > 0)
             {
@@ -269,6 +287,24 @@ public partial class AdoptedParkDetail : System.Web.UI.Page
                 filePaths.Add(null); // No file uploaded for this entry
             }
         }
+        //for (int i = 0; i < plantedTreeNames.Count; i++)
+        //{
+        //    string fileKey = "fileUploadGeotaggedPhotos[]"; // Use the name from the JavaScript array
+
+        //    // Access the uploaded file
+        //    HttpPostedFile uploadedFile = Request.Files[fileKey]; // Use index to access the right file
+
+        //    if (uploadedFile != null && uploadedFile.ContentLength > 0)
+        //    {
+        //        string filePath = Path.Combine(Server.MapPath("~/ParkImages_And_KML"), Guid.NewGuid() + Path.GetExtension(uploadedFile.FileName));
+        //        uploadedFile.SaveAs(filePath);
+        //        filePaths.Add(filePath);
+        //    }
+        //    else
+        //    {
+        //        filePaths.Add(null); // No file uploaded for this entry
+        //    }
+        //}
 
         // Database connection
         string connectionString = ConfigurationManager.AppSettings["conn"].ToString();
@@ -303,9 +339,10 @@ public partial class AdoptedParkDetail : System.Web.UI.Page
                 {
                     cmd1.Parameters.AddWithValue("@IsDetailsCompleted", 1);
                     cmd1.ExecuteNonQuery();
-                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Data saved successfully!');window.location.href ='AdoptedPark_Edit.aspx';", true);
 
                 }
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Data saved successfully!');window.location.href ='AdoptedPark_Edit.aspx';", true);
+
             }
         }
 

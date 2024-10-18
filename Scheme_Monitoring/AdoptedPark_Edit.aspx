@@ -157,9 +157,14 @@
                                                         </asp:TemplateField>
                                                                      <asp:TemplateField HeaderText="Add Park Details">
                                                                     <ItemTemplate>
-                                                                        
-                                                                        <asp:ImageButton ID="btnAddDetails" Width="20px" Height="20px" OnClick="btnAddDetails_Click" ImageUrl="~/assets/images/add-icon.png" runat="server" />
-                                                                    </ItemTemplate>
+                                                                     <asp:Label ID="lblStatus" runat="server" 
+                   Text="Completed" 
+                   Visible='<%# Eval("IsDetailsCompleted") != null && (bool)Eval("IsDetailsCompleted") %>'></asp:Label>
+        <asp:ImageButton ID="btnAddDetails" Width="20px" Height="20px" 
+                         OnClick="btnAddDetails_Click" ImageUrl="~/assets/images/add-icon.png" 
+                         runat="server" 
+                         Visible='<%# Eval("IsDetailsCompleted") == null || !(bool)Eval("IsDetailsCompleted") %>' />
+     </ItemTemplate>
                                                                 </asp:TemplateField>
 <%--                                                        <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>
