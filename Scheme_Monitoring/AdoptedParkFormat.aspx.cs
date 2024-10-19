@@ -418,10 +418,10 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                                 // Insert new details
                                 string insertDetailQuery = @"INSERT INTO dbo.tbl_AdoptedParkMaster_details 
                                     (AdoptedParkId, AdoptedParkName, ParkLatitude, ParkLongitude, SessionId, 
-                                    MonthId, NameCSR_NGO, DetailCSR_NGO, GeotaggedPhotographs, MOUAttached, UploadKML, CreatedBy, CreatedOn)
+                                    MonthId, NameCSR_NGO, DetailCSR_NGO, GeotaggedPhotographs, MOUAttached, UploadKML, CreatedBy, CreatedOn,IsDetailsCompleted)
                                     VALUES 
                                     (@AdoptedParkId, @AdoptedParkName, @ParkLatitude, @ParkLongitude, @SessionId, 
-                                    @MonthId, @NameCSR_NGO, @DetailCSR_NGO, @GeotaggedPhotographs, @MOUAttached, @UploadKML, @CreatedBy, @CreatedOn);";
+                                    @MonthId, @NameCSR_NGO, @DetailCSR_NGO, @GeotaggedPhotographs, @MOUAttached, @UploadKML, @CreatedBy, @CreatedOn,@IsDetailsCompleted);";
 
                                 using (SqlCommand cmdDetail = new SqlCommand(insertDetailQuery, conn, transaction))
                                 {
@@ -438,6 +438,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                                     cmdDetail.Parameters.AddWithValue("@UploadKML", uploadKML);
                                     cmdDetail.Parameters.AddWithValue("@CreatedBy", Person_Id);
                                     cmdDetail.Parameters.AddWithValue("@CreatedOn", DateTime.Now);
+                                    cmdDetail.Parameters.AddWithValue("@IsDetailsCompleted", 0);
                                     cmdDetail.ExecuteNonQuery();
                                 }
                             }
@@ -501,10 +502,10 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                         // Insert into tbl_AdoptedParkMaster
                         string insertMasterQuery = @"INSERT INTO dbo.tbl_AdoptedParkMaster 
                 (DivisionID, Circle_Id, ULBID, Ward, NoOfParkInULB, 
-                 NoOfAdoptionInprocessPark, NoOfParkAdopted, CreatedBy, CreatedOn, IsActive)
+                 NoOfAdoptionInprocessPark, NoOfParkAdopted, CreatedBy, CreatedOn, IsActive,IsDetailsCompleted)
                 VALUES 
                 (@DivisionID, @Circle_Id, @ULBID, @Ward, @NoOfParkInULB, 
-                 @NoOfAdoptionInprocessPark, @NoOfParkAdopted, @CreatedBy, @CreatedOn, @IsActive);
+                 @NoOfAdoptionInprocessPark, @NoOfParkAdopted, @CreatedBy, @CreatedOn, @IsActive,@IsDetailsCompleted);
                 SELECT SCOPE_IDENTITY();";
 
                         SqlCommand cmdMaster = new SqlCommand(insertMasterQuery, conn1, transaction1);
@@ -518,6 +519,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                         cmdMaster.Parameters.AddWithValue("@CreatedBy", Person_Id1);
                         cmdMaster.Parameters.AddWithValue("@CreatedOn", DateTime.Now);  
                         cmdMaster.Parameters.AddWithValue("@IsActive", true);
+                        cmdMaster.Parameters.AddWithValue("@IsDetailsCompleted", 0);
 
                         // Execute and get the new master Id
                         int masterId1 = Convert.ToInt32(cmdMaster.ExecuteScalar());
@@ -536,40 +538,82 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                                 var SessionId1 = Convert.ToInt32(((DropDownList)row1.FindControl("SessionId")).SelectedValue);
                                 var nameCSR_NGO1 = ((TextBox)row1.FindControl("NameCSR_NGO")).Text.Trim();
                                 var detailCSR_NGO1 = ((TextBox)row1.FindControl("DetailCSR_NGO")).Text.Trim();
-                                string geotaggedPhotoPath1 = "";
-                                string mouAttached1 = "";
-                                string uploadKML1 = "";
+                                string geotaggedPhotoPath1 = string.Empty;
+                                string mouAttached1 = string.Empty;
+                                string uploadKML1 = string.Empty;
+
                                 FileUpload fuGeotaggedPhotographs1 = (FileUpload)row1.FindControl("GeotaggedPhotographs");
                                 FileUpload fuMOUAttached1 = (FileUpload)row1.FindControl("MOUAttached");
                                 FileUpload fuUploadKML1 = (FileUpload)row1.FindControl("UploadKML");
 
+                                // Check for existing links
+                                string existingGeotaggedPhotoPath1 = ((LinkButton)row1.FindControl("linkViewFile")).Attributes["href"];
+                                string existingMouAttached1= ((LinkButton)row1.FindControl("linkViewFile1")).Attributes["href"];
+                                string existingUploadKML1 = ((LinkButton)row1.FindControl("linkViewFile2")).Attributes["href"];
+
+                                // Handle GeotaggedPhotographs file upload
                                 if (fuGeotaggedPhotographs1 != null && fuGeotaggedPhotographs1.HasFile)
                                 {
                                     geotaggedPhotoPath1 = SaveFile(fuGeotaggedPhotographs1.PostedFile);
                                 }
                                 else
                                 {
-
-                                    geotaggedPhotoPath1 = string.Empty;
+                                    geotaggedPhotoPath1 = existingGeotaggedPhotoPath1; // Use existing path if no new file is uploaded
                                 }
+
+                                // Handle MOUAttached file upload
                                 if (fuMOUAttached1 != null && fuMOUAttached1.HasFile)
                                 {
                                     mouAttached1 = SaveFile(fuMOUAttached1.PostedFile);
                                 }
                                 else
                                 {
-
-                                    mouAttached1 = string.Empty;
+                                    mouAttached1 = existingMouAttached1; // Use existing path if no new file is uploaded
                                 }
+
+                                // Handle UploadKML file upload
                                 if (fuUploadKML1 != null && fuUploadKML1.HasFile)
                                 {
                                     uploadKML1 = SaveFile(fuUploadKML1.PostedFile);
                                 }
                                 else
                                 {
-
-                                    uploadKML1 = string.Empty;
+                                    uploadKML1 = existingUploadKML1; // Use existing path if no new file is uploaded
                                 }
+                                //string geotaggedPhotoPath1 = "";
+                                //string mouAttached1 = "";
+                                //string uploadKML1 = "";
+                                //FileUpload fuGeotaggedPhotographs1 = (FileUpload)row1.FindControl("GeotaggedPhotographs");
+                                //FileUpload fuMOUAttached1 = (FileUpload)row1.FindControl("MOUAttached");
+                                //FileUpload fuUploadKML1 = (FileUpload)row1.FindControl("UploadKML");
+
+                                //if (fuGeotaggedPhotographs1 != null && fuGeotaggedPhotographs1.HasFile)
+                                //{
+                                //    geotaggedPhotoPath1 = SaveFile(fuGeotaggedPhotographs1.PostedFile);
+                                //}
+                                //else
+                                //{
+
+                                //    geotaggedPhotoPath1 = string.Empty;
+                                //}
+                                //if (fuMOUAttached1 != null && fuMOUAttached1.HasFile)
+                                //{
+                                //    mouAttached1 = SaveFile(fuMOUAttached1.PostedFile);
+                                //}
+                                //else
+                                //{
+
+                                //    mouAttached1 = string.Empty;
+                                //}
+                                //if (fuUploadKML1 != null && fuUploadKML1.HasFile)
+                                //{
+                                //    uploadKML1 = SaveFile(fuUploadKML1.PostedFile);
+                                //}
+                                //else
+                                //{
+
+                                //    uploadKML1 = string.Empty;
+                                //}
                                 //string geotaggedPhotoPath = SaveFile(((FileUpload)row.FindControl("fuGeotaggedPhotographs")).PostedFile, "GeotaggedPhotographs");
                                 //string mouAttachedPath = SaveFile(((FileUpload)row.FindControl("fuMOUAttached")).PostedFile, "MOUAttached");
                                 // string kmlPath = SaveFile(((FileUpload)row.FindControl("fuUploadKML")).PostedFile, "KMLUploads");

@@ -280,7 +280,10 @@ public partial class AdoptedParkDetail : System.Web.UI.Page
             {
                 string filePath = Path.Combine(Server.MapPath("~/ParkImages_And_KML"), Guid.NewGuid() + Path.GetExtension(uploadedFile.FileName));
                 uploadedFile.SaveAs(filePath);
-                filePaths.Add(filePath);
+                string uniqueFileName = Guid.NewGuid() + Path.GetExtension(uploadedFile.FileName);
+                string relativePath = "~/ParkImages_And_KML/" + uniqueFileName;
+                filePaths.Add(relativePath); // Store the relative path
+                //filePaths.Add(filePath);
             }
             else
             {

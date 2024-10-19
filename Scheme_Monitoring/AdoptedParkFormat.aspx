@@ -175,12 +175,12 @@
                                                                                 </asp:DropDownList>
                                                                             <%--<asp:TextBox ID="MonthId" runat="server" CssClass="form-control" Text='<%# Eval("MonthId") %>' onkeyup="isNumericVal(this);"></asp:TextBox>--%>
                                                                         </ItemTemplate>
-                                                                         <FooterTemplate>
+                                                                         <%--<FooterTemplate>
                                                                             <asp:ImageButton ID="btnDynamic" OnClick="btnDynamic_Click" runat="server" 
                                                                                 ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
                                                                             <asp:ImageButton ID="imgdeleteQuestionnaire" CssClass="pull-right" runat="server" 
                                                                                 ImageUrl="~/assets/images/minus-icon.png" OnClick="imgdelete_Click" Width="30px" Height="30px" />
-                                                                        </FooterTemplate>
+                                                                        </FooterTemplate>--%>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Name of CSR/PPP/NGO/RWA others*">
                                                                         <ItemTemplate>
@@ -195,7 +195,7 @@
                                                                     </asp:TemplateField>
                                                                       <asp:TemplateField HeaderText="Geotagged Photographs of Park*">
                                                                         <ItemTemplate>
-                                                                            <asp:FileUpload ID="GeotaggedPhotographs" runat="server" CssClass="form-control" EnableViewState="true" Text='<%# Eval("GeotaggedPhotographs") %>' onchange="handleFileUpload(this, 'linkViewFile')"/>
+                                                                            <asp:FileUpload ID="GeotaggedPhotographs" runat="server" CssClass="form-control" EnableViewState="true" Text='<%# Eval("GeotaggedPhotographs") %>'/>
                                                                             <%--<asp:Label ID="lblGeotaggedPhotographs" runat="server" Text='<%# Eval("GeotaggedPhotographs") %>'></asp:Label>--%>
                                                                        <%--     <a href='<%# Eval("GeotaggedPhotographs").ToString().Replace("~", "") %>' target="_blank">View File </a>--%>
                                                                                <asp:LinkButton runat="server" id="linkViewFile" href='<%# Eval("GeotaggedPhotographs").ToString().Replace("~", "") %>' target="_blank" 
@@ -233,6 +233,8 @@
                                                                 </Columns>
                                                                 <FooterStyle Font-Bold="true" ForeColor="White" />
                                                             </asp:GridView>
+                                                            <asp:ImageButton ID="btnDynamic" OnClick="btnDynamic_Click" runat="server" 
+                                                                                ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -259,7 +261,8 @@
                 </ContentTemplate>
                 <Triggers>
      <asp:PostBackTrigger ControlID="btnSave" />
-
+     <asp:PostBackTrigger ControlID="btnDynamic" />
+                    <%--<asp:PostBackTrigger ControlID="btnDynamic" />--%>
                 </Triggers>
             </asp:UpdatePanel>
          

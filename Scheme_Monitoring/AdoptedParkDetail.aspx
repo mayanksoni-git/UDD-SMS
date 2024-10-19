@@ -86,6 +86,9 @@
                         </div>
                     </div>
                 </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="btnSave" />
+                </Triggers>
             </asp:UpdatePanel>
         </div>
     </div>
@@ -132,7 +135,7 @@
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <label class="form-label">Events Organised in Parks*</label>
-                            <input type="text" class="form-control" name="txtEventsOrganised[]" />
+                            <input type="text" class="form-control" name="txtEventsOrganised" />
                         </div>
                     </div>
                     <button type="button" class="btn btn-danger" onclick="removeFieldGroup(this)">Remove</button>
