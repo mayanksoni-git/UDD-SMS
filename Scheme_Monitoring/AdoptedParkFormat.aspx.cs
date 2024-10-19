@@ -44,7 +44,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                 get_tbl_Mandal();
                 Page.Form.Attributes.Add("enctype", "multipart/form-data");
             }
-
+            Page.Form.Attributes.Add("enctype", "multipart/form-data");
             //get_tbl_Month();
             lblCircleH.Text = Session["Default_Circle"].ToString();
             lblDivisionH.Text = Session["Default_Division"].ToString();
@@ -139,6 +139,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             AllClasses.FillDropDown(ds.Tables[0], ddlCircle, "Circle_Name", "Circle_Id");
+            get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue));
         }
         else
         {
@@ -153,10 +154,10 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
         {
             AllClasses.FillDropDown(ds.Tables[0], ddlDivision, "Division_Name", "Division_Id");
         }
-        else
-        {
-            ddlDivision.Items.Clear();
-        }
+        //else
+        //{
+        //    ddlDivision.Items.Clear();
+        //}
     }
     //private void get_tbl_month()
     //{
@@ -302,85 +303,144 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
 
                         // Execute and get the new master Id
                        int masterId = Convert.ToInt32(cmdMaster.ExecuteScalar());
+                        string selectQuery = @"SELECT Id FROM dbo.tbl_AdoptedParkMaster_details";
 
+                        // Dictionary to hold AdoptedParkId from the database
+                        HashSet<int?> dbIds = new HashSet<int?>();
+
+                        // Step 1: Retrieve all the AdoptedParkId values from the database
+                        using (SqlCommand selectCmd = new SqlCommand(selectQuery, conn, transaction))
+                        {
+                            using (SqlDataReader reader = selectCmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    // Store the AdoptedParkId in the HashSet
+                                    dbIds.Add(Convert.ToInt32(reader["Id"]));
+                                }
+                            }
+                        }
                         // Iterate through GridView rows to save details
                         foreach (GridViewRow row in grdCallProductDtls.Rows)
                         {
                             if (row.RowType == DataControlRowType.DataRow)
                             {
+                                int? detailId = null; // Use nullable int to handle null values
+
+                                // Assuming you are trying to extract the value from a GridView cell
+                                string detailIdText = row.Cells[0].Text.Trim(); // Get the text from the cell and trim whitespace
+
+                                // Check if the value is not empty or null before trying to convert
+                                if (!string.IsNullOrEmpty(detailIdText))
+                                {
+                                    // Try parsing the text to an integer, and handle the case where parsing fails
+                                     int parsedId;
+                                    if (int.TryParse(detailIdText, out  parsedId))
+                                    {
+                                        detailId = parsedId; // Successfully parsed detailId
+                                    }
+                                    else
+                                    {
+                                        // Handle the case where parsing fails (e.g., log an error or handle accordingly)
+                                        detailId = null;
+                                        // Log or inform that the format was incorrect
+                                    }
+                                }
+                                else
+                                {
+                                    // Handle the case where the cell text is null or empty
+                                    detailId = null;
+                                    Console.WriteLine("The detailIdText was null or empty.");
+                                }
                                 var adoptedParkName = ((TextBox)row.FindControl("AdoptedParkName")).Text.Trim();
                                 var parkLatitude = ((TextBox)row.FindControl("ParkLatitude")).Text.Trim();
                                 var parkLongitude = ((TextBox)row.FindControl("ParkLongitude")).Text.Trim();
-                                //var monthId = Convert.ToInt32(((TextBox)row.FindControl("MonthId")).Text.Trim());
                                 var monthId = Convert.ToInt32(((DropDownList)row.FindControl("MonthId")).SelectedValue);
-                                //var SessionId = Convert.ToInt32(((TextBox)row.FindControl("SessionId")).Text.Trim());
-                                var SessionId = Convert.ToInt32(((DropDownList)row.FindControl("SessionId")).SelectedValue);
+                                var sessionId = Convert.ToInt32(((DropDownList)row.FindControl("SessionId")).SelectedValue);
                                 var nameCSR_NGO = ((TextBox)row.FindControl("NameCSR_NGO")).Text.Trim();
                                 var detailCSR_NGO = ((TextBox)row.FindControl("DetailCSR_NGO")).Text.Trim();
-                                string geotaggedPhotoPath = "";
-                                string mouAttached = "";
-                                string uploadKML = "";
+
+                                string geotaggedPhotoPath = string.Empty;
+                                string mouAttached = string.Empty;
+                                string uploadKML = string.Empty;
+
                                 FileUpload fuGeotaggedPhotographs = (FileUpload)row.FindControl("GeotaggedPhotographs");
                                 FileUpload fuMOUAttached = (FileUpload)row.FindControl("MOUAttached");
                                 FileUpload fuUploadKML = (FileUpload)row.FindControl("UploadKML");
 
+                                // Check for existing links
+                                string existingGeotaggedPhotoPath = ((LinkButton)row.FindControl("linkViewFile")).Attributes["href"];
+                                string existingMouAttached = ((LinkButton)row.FindControl("linkViewFile1")).Attributes["href"];
+                                string existingUploadKML = ((LinkButton)row.FindControl("linkViewFile2")).Attributes["href"];
+
+                                // Handle GeotaggedPhotographs file upload
                                 if (fuGeotaggedPhotographs != null && fuGeotaggedPhotographs.HasFile)
                                 {
                                     geotaggedPhotoPath = SaveFile(fuGeotaggedPhotographs.PostedFile);
                                 }
                                 else
                                 {
-
-                                    geotaggedPhotoPath = string.Empty;
+                                    geotaggedPhotoPath = existingGeotaggedPhotoPath; // Use existing path if no new file is uploaded
                                 }
+
+                                // Handle MOUAttached file upload
                                 if (fuMOUAttached != null && fuMOUAttached.HasFile)
                                 {
                                     mouAttached = SaveFile(fuMOUAttached.PostedFile);
                                 }
                                 else
                                 {
-
-                                    mouAttached = string.Empty;
+                                    mouAttached = existingMouAttached; // Use existing path if no new file is uploaded
                                 }
+
+                                // Handle UploadKML file upload
                                 if (fuUploadKML != null && fuUploadKML.HasFile)
                                 {
                                     uploadKML = SaveFile(fuUploadKML.PostedFile);
                                 }
                                 else
                                 {
-
-                                    uploadKML = string.Empty;
+                                    uploadKML = existingUploadKML; // Use existing path if no new file is uploaded
                                 }
-                                string deletequery = @"Delete from dbo.tbl_AdoptedParkMaster_details  where AdoptedParkId='" + id + "' ";
-                                SqlCommand cmdDetail1 = new SqlCommand(deletequery, conn, transaction);
-                                cmdDetail1.Parameters.AddWithValue("@Id", id);
-                                cmdDetail1.ExecuteNonQuery();
 
+                                // Delete previous details
+                                string deletequery = @"Delete from dbo.tbl_AdoptedParkMaster_details where Id=@Id";
+                                if (detailId!=null && dbIds.Contains(detailId))
+                                {
+                                    // Step 3: If detailId is not found in the database, delete the record
+                                    using (SqlCommand deleteCmd = new SqlCommand(deletequery, conn, transaction))
+                                    {
+                                        deleteCmd.Parameters.AddWithValue("@Id",detailId);
+                                        deleteCmd.ExecuteNonQuery();
+                                    }
+                                }
 
+                                // Insert new details
                                 string insertDetailQuery = @"INSERT INTO dbo.tbl_AdoptedParkMaster_details 
-                        (AdoptedParkId, AdoptedParkName, ParkLatitude, ParkLongitude, SessionId, 
-                         MonthId, NameCSR_NGO, DetailCSR_NGO,GeotaggedPhotographs,MOUAttached,UploadKML,  CreatedBy, CreatedOn)
-                        VALUES 
-                        (@AdoptedParkId, @AdoptedParkName, @ParkLatitude, @ParkLongitude, @SessionId, 
-                         @MonthId, @NameCSR_NGO, @DetailCSR_NGO,@GeotaggedPhotographs,@MOUAttached,@UploadKML, @CreatedBy, @CreatedOn);";
+                                    (AdoptedParkId, AdoptedParkName, ParkLatitude, ParkLongitude, SessionId, 
+                                    MonthId, NameCSR_NGO, DetailCSR_NGO, GeotaggedPhotographs, MOUAttached, UploadKML, CreatedBy, CreatedOn,IsDetailsCompleted)
+                                    VALUES 
+                                    (@AdoptedParkId, @AdoptedParkName, @ParkLatitude, @ParkLongitude, @SessionId, 
+                                    @MonthId, @NameCSR_NGO, @DetailCSR_NGO, @GeotaggedPhotographs, @MOUAttached, @UploadKML, @CreatedBy, @CreatedOn,@IsDetailsCompleted);";
 
-                                SqlCommand cmdDetail = new SqlCommand(insertDetailQuery, conn, transaction);
-                                cmdDetail.Parameters.AddWithValue("@AdoptedParkId", id);
-                                cmdDetail.Parameters.AddWithValue("@AdoptedParkName", adoptedParkName);
-                                cmdDetail.Parameters.AddWithValue("@ParkLatitude", parkLatitude);
-                                cmdDetail.Parameters.AddWithValue("@ParkLongitude", parkLongitude);
-                                cmdDetail.Parameters.AddWithValue("@SessionId", SessionId); // Set appropriately
-                                cmdDetail.Parameters.AddWithValue("@MonthId", monthId);
-                                cmdDetail.Parameters.AddWithValue("@NameCSR_NGO", nameCSR_NGO);
-                                cmdDetail.Parameters.AddWithValue("@DetailCSR_NGO", detailCSR_NGO);
-                                cmdDetail.Parameters.AddWithValue("@GeotaggedPhotographs", geotaggedPhotoPath);
-                                cmdDetail.Parameters.AddWithValue("@MOUAttached", mouAttached);
-                                cmdDetail.Parameters.AddWithValue("@UploadKML", uploadKML);
-                                cmdDetail.Parameters.AddWithValue("@CreatedBy", Person_Id);
-                                cmdDetail.Parameters.AddWithValue("@CreatedOn", DateTime.Now);
-                                //cmdDetail.Parameters.AddWithValue("@IsActive", true);
-
-                                cmdDetail.ExecuteNonQuery();
+                                using (SqlCommand cmdDetail = new SqlCommand(insertDetailQuery, conn, transaction))
+                                {
+                                    cmdDetail.Parameters.AddWithValue("@AdoptedParkId", id);
+                                    cmdDetail.Parameters.AddWithValue("@AdoptedParkName", adoptedParkName);
+                                    cmdDetail.Parameters.AddWithValue("@ParkLatitude", parkLatitude);
+                                    cmdDetail.Parameters.AddWithValue("@ParkLongitude", parkLongitude);
+                                    cmdDetail.Parameters.AddWithValue("@SessionId", sessionId);
+                                    cmdDetail.Parameters.AddWithValue("@MonthId", monthId);
+                                    cmdDetail.Parameters.AddWithValue("@NameCSR_NGO", nameCSR_NGO);
+                                    cmdDetail.Parameters.AddWithValue("@DetailCSR_NGO", detailCSR_NGO);
+                                    cmdDetail.Parameters.AddWithValue("@GeotaggedPhotographs", geotaggedPhotoPath);
+                                    cmdDetail.Parameters.AddWithValue("@MOUAttached", mouAttached);
+                                    cmdDetail.Parameters.AddWithValue("@UploadKML", uploadKML);
+                                    cmdDetail.Parameters.AddWithValue("@CreatedBy", Person_Id);
+                                    cmdDetail.Parameters.AddWithValue("@CreatedOn", DateTime.Now);
+                                    cmdDetail.Parameters.AddWithValue("@IsDetailsCompleted", 0);
+                                    cmdDetail.ExecuteNonQuery();
+                                }
                             }
                         }
 
@@ -388,11 +448,11 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                         transaction.Commit();
 
                         // Optionally, display a success message
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Data saved successfully!');", true);
-                        Response.Redirect("AdoptedPark_Edit.aspx");
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Data saved successfully!');window.location.href ='AdoptedPark_Edit.aspx';", true);
 
                         // Clear the form or redirect as needed
                         ClearForm();
+
                     }
                     catch (Exception ex)
                     {
@@ -442,10 +502,10 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                         // Insert into tbl_AdoptedParkMaster
                         string insertMasterQuery = @"INSERT INTO dbo.tbl_AdoptedParkMaster 
                 (DivisionID, Circle_Id, ULBID, Ward, NoOfParkInULB, 
-                 NoOfAdoptionInprocessPark, NoOfParkAdopted, CreatedBy, CreatedOn, IsActive)
+                 NoOfAdoptionInprocessPark, NoOfParkAdopted, CreatedBy, CreatedOn, IsActive,IsDetailsCompleted)
                 VALUES 
                 (@DivisionID, @Circle_Id, @ULBID, @Ward, @NoOfParkInULB, 
-                 @NoOfAdoptionInprocessPark, @NoOfParkAdopted, @CreatedBy, @CreatedOn, @IsActive);
+                 @NoOfAdoptionInprocessPark, @NoOfParkAdopted, @CreatedBy, @CreatedOn, @IsActive,@IsDetailsCompleted);
                 SELECT SCOPE_IDENTITY();";
 
                         SqlCommand cmdMaster = new SqlCommand(insertMasterQuery, conn1, transaction1);
@@ -457,8 +517,9 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                         cmdMaster.Parameters.AddWithValue("@NoOfAdoptionInprocessPark", inProcessPark1);
                         cmdMaster.Parameters.AddWithValue("@NoOfParkAdopted", NoOfParkAdopted1);
                         cmdMaster.Parameters.AddWithValue("@CreatedBy", Person_Id1);
-                        cmdMaster.Parameters.AddWithValue("@CreatedOn", DateTime.Now);
+                        cmdMaster.Parameters.AddWithValue("@CreatedOn", DateTime.Now);  
                         cmdMaster.Parameters.AddWithValue("@IsActive", true);
+                        cmdMaster.Parameters.AddWithValue("@IsDetailsCompleted", 0);
 
                         // Execute and get the new master Id
                         int masterId1 = Convert.ToInt32(cmdMaster.ExecuteScalar());
@@ -477,40 +538,82 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                                 var SessionId1 = Convert.ToInt32(((DropDownList)row1.FindControl("SessionId")).SelectedValue);
                                 var nameCSR_NGO1 = ((TextBox)row1.FindControl("NameCSR_NGO")).Text.Trim();
                                 var detailCSR_NGO1 = ((TextBox)row1.FindControl("DetailCSR_NGO")).Text.Trim();
-                                string geotaggedPhotoPath1 = "";
-                                string mouAttached1 = "";
-                                string uploadKML1 = "";
+                                string geotaggedPhotoPath1 = string.Empty;
+                                string mouAttached1 = string.Empty;
+                                string uploadKML1 = string.Empty;
+
                                 FileUpload fuGeotaggedPhotographs1 = (FileUpload)row1.FindControl("GeotaggedPhotographs");
                                 FileUpload fuMOUAttached1 = (FileUpload)row1.FindControl("MOUAttached");
                                 FileUpload fuUploadKML1 = (FileUpload)row1.FindControl("UploadKML");
 
+                                // Check for existing links
+                                string existingGeotaggedPhotoPath1 = ((LinkButton)row1.FindControl("linkViewFile")).Attributes["href"];
+                                string existingMouAttached1= ((LinkButton)row1.FindControl("linkViewFile1")).Attributes["href"];
+                                string existingUploadKML1 = ((LinkButton)row1.FindControl("linkViewFile2")).Attributes["href"];
+
+                                // Handle GeotaggedPhotographs file upload
                                 if (fuGeotaggedPhotographs1 != null && fuGeotaggedPhotographs1.HasFile)
                                 {
                                     geotaggedPhotoPath1 = SaveFile(fuGeotaggedPhotographs1.PostedFile);
                                 }
                                 else
                                 {
-
-                                    geotaggedPhotoPath1 = string.Empty;
+                                    geotaggedPhotoPath1 = existingGeotaggedPhotoPath1; // Use existing path if no new file is uploaded
                                 }
+
+                                // Handle MOUAttached file upload
                                 if (fuMOUAttached1 != null && fuMOUAttached1.HasFile)
                                 {
                                     mouAttached1 = SaveFile(fuMOUAttached1.PostedFile);
                                 }
                                 else
                                 {
-
-                                    mouAttached1 = string.Empty;
+                                    mouAttached1 = existingMouAttached1; // Use existing path if no new file is uploaded
                                 }
+
+                                // Handle UploadKML file upload
                                 if (fuUploadKML1 != null && fuUploadKML1.HasFile)
                                 {
                                     uploadKML1 = SaveFile(fuUploadKML1.PostedFile);
                                 }
                                 else
                                 {
-
-                                    uploadKML1 = string.Empty;
+                                    uploadKML1 = existingUploadKML1; // Use existing path if no new file is uploaded
                                 }
+                                //string geotaggedPhotoPath1 = "";
+                                //string mouAttached1 = "";
+                                //string uploadKML1 = "";
+                                //FileUpload fuGeotaggedPhotographs1 = (FileUpload)row1.FindControl("GeotaggedPhotographs");
+                                //FileUpload fuMOUAttached1 = (FileUpload)row1.FindControl("MOUAttached");
+                                //FileUpload fuUploadKML1 = (FileUpload)row1.FindControl("UploadKML");
+
+                                //if (fuGeotaggedPhotographs1 != null && fuGeotaggedPhotographs1.HasFile)
+                                //{
+                                //    geotaggedPhotoPath1 = SaveFile(fuGeotaggedPhotographs1.PostedFile);
+                                //}
+                                //else
+                                //{
+
+                                //    geotaggedPhotoPath1 = string.Empty;
+                                //}
+                                //if (fuMOUAttached1 != null && fuMOUAttached1.HasFile)
+                                //{
+                                //    mouAttached1 = SaveFile(fuMOUAttached1.PostedFile);
+                                //}
+                                //else
+                                //{
+
+                                //    mouAttached1 = string.Empty;
+                                //}
+                                //if (fuUploadKML1 != null && fuUploadKML1.HasFile)
+                                //{
+                                //    uploadKML1 = SaveFile(fuUploadKML1.PostedFile);
+                                //}
+                                //else
+                                //{
+
+                                //    uploadKML1 = string.Empty;
+                                //}
                                 //string geotaggedPhotoPath = SaveFile(((FileUpload)row.FindControl("fuGeotaggedPhotographs")).PostedFile, "GeotaggedPhotographs");
                                 //string mouAttachedPath = SaveFile(((FileUpload)row.FindControl("fuMOUAttached")).PostedFile, "MOUAttached");
                                 // string kmlPath = SaveFile(((FileUpload)row.FindControl("fuUploadKML")).PostedFile, "KMLUploads");
@@ -547,12 +650,13 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                         transaction1.Commit();
 
                         // Optionally, display a success message
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Data saved successfully!');", true);
-                        Response.Redirect("AdoptedPark_Edit.aspx");
+                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Data saved successfully!');window.location.href ='AdoptedPark_Edit.aspx';", true);
 
 
                         // Clear the form or redirect as needed
                         ClearForm();
+                        //Response.Redirect("");
+
                     }
                     catch (Exception ex)
                     {
@@ -671,6 +775,12 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
 
     protected void grdCallProductDtls_PreRender(object sender, EventArgs e)
     {
+
+        if (ViewState["dtQuestionnaire"] != null)
+        {
+            grdCallProductDtls.DataSource = (DataTable)ViewState["dtQuestionnaire"];
+            grdCallProductDtls.DataBind();
+        }
         GridView gv = (GridView)sender;
         if (gv.Rows.Count > 0)
         {
@@ -736,83 +846,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
         }
     }
 
-    //protected void grdCallProductDtls_RowDataBound(object sender, GridViewRowEventArgs e)
-    //{
-    //    if (e.Row.RowType == DataControlRowType.DataRow)
-    //    {
-
-    //        DropDownList SessionId = e.Row.FindControl("SessionId") as DropDownList;
-    //        DataTable dtQuestionnaire = (DataTable)ViewState["dtQuestionnaire"];
-    //        if (AllClasses.CheckDt(dtQuestionnaire))
-    //        {
-    //            DataSet ds = new DataSet();
-    //            ds = (new DataLayer()).get_FinancialYear();
-    //            AllClasses.FillDropDown(ds.Tables[0], SessionId, "SessionYear", "YearID");
-    //            //AllClasses.FillDropDown(dtQuestionnaire, SessionId, "SessionYear", "YearID");
-    //        }
-    //        int sessionId = 0;
-    //        try
-    //        {
-    //            sessionId = Convert.ToInt32(e.Row.Cells[5].Text.Trim());
-    //        }
-    //        catch
-    //        {
-    //            sessionId = 0;
-    //        }
-    //        if (sessionId > 0)
-    //        {
-    //            try
-    //            {
-    //                SessionId.SelectedValue = sessionId.ToString();
-    //                //ddlIssueType_SelectedIndexChanged(ddlIssueType, e);
-    //            }
-    //            catch
-    //            {
-
-    //            }
-    //        }
-    //        DropDownList MonthId = e.Row.FindControl("MonthId") as DropDownList;
-    //        DataTable dtQuestionnaire1 = (DataTable)ViewState["dtQuestionnaire"];
-    //        if (AllClasses.CheckDt(dtQuestionnaire1))
-    //        {
-    //            DataSet ds = new DataSet();
-    //            ds = (new DataLayer()).get_tbl_Month();
-    //            AllClasses.FillDropDown(ds.Tables[0], MonthId, "Month_MonthName", "Month_Id");
-    //        }
-    //        int monthId = 0;
-    //        try
-    //        {
-    //            monthId = Convert.ToInt32(e.Row.Cells[6].Text.Trim());
-    //        }
-    //        catch
-    //        {
-    //            monthId = 0;
-    //        }
-    //        if (monthId > 0)
-    //        {
-    //            try
-    //            {
-    //                //AllClasses.FillDropDown(dtQuestionnaire1, MonthId, "Month_MonthName", "Month_Id");
-    //                MonthId.SelectedValue = monthId.ToString();
-    //                //ddlIssueType_SelectedIndexChanged(ddlIssueType, e);
-    //            }
-    //            catch
-    //            {
-
-    //            }
-    //        }
-    //        string filePath = e.Row.Cells[9].Text.Trim().Replace("&nbsp;", "");
-    //        if (filePath.Trim() != "")
-    //        {
-    //            e.Row.Cells[1].BackColor = System.Drawing.Color.LightGreen;
-    //        }
-    //        else
-    //        {
-    //            LinkButton lnkBtn = (LinkButton)e.Row.FindControl("lnkULBShr");
-    //            //lnkBtn.Visible = false;
-    //        }
-    //    }
-    //}
+    
     private void AddDynamicFields()
     {
         DataTable dtQuestionnaire;
@@ -825,7 +859,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
             foreach (GridViewRow row in grdCallProductDtls.Rows)
             {
                 DataRow dr = dtQuestionnaire.Rows[row.RowIndex];
-
+                
                 // Extract values from TextBoxes and DropDownLists
                 dr["AdoptedParkName"] = ((TextBox)row.FindControl("AdoptedParkName")).Text.Trim();
                 //dr["ParkLatitude"] = ((TextBox)row.FindControl("ParkLatitude")).Text.Trim();
@@ -902,73 +936,8 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
         grdCallProductDtls.DataBind();
     }
 
-    //private void AddDynamicFields()
-    //{
-    //    DataTable dtQuestionnaire;
+    
 
-    //    if (ViewState["dtQuestionnaire"] != null)
-    //    {
-    //        dtQuestionnaire = (DataTable)ViewState["dtQuestionnaire"];
-
-    //        // Preserve existing data from GridView into DataTable
-    //        foreach (GridViewRow row in grdCallProductDtls.Rows)
-    //        {
-    //            DataRow dr = dtQuestionnaire.Rows[row.RowIndex];
-
-    //            // Extract values from TextBoxes and DropDownLists
-    //            dr["AdoptedParkName"] = ((TextBox)row.FindControl("AdoptedParkName")).Text.Trim();
-    //            dr["ParkLatitude"] = ((TextBox)row.FindControl("ParkLatitude")).Text.Trim();
-
-    //            decimal longitude;
-    //            dr["ParkLongitude"] = decimal.TryParse(((TextBox)row.FindControl("ParkLongitude")).Text.Trim(), out longitude) ? longitude : 0;
-
-    //            decimal sessionId;
-    //            dr["SessionId"] = decimal.TryParse(((DropDownList)row.FindControl("SessionId")).SelectedValue, out sessionId) ? sessionId : 0;
-
-    //            decimal monthId;
-    //            dr["MonthId"] = decimal.TryParse(((DropDownList)row.FindControl("MonthId")).SelectedValue, out monthId) ? monthId : 0;
-
-    //            dr["NameCSR_NGO"] = ((TextBox)row.FindControl("NameCSR_NGO")).Text.Trim();
-    //            dr["DetailCSR_NGO"] = ((TextBox)row.FindControl("DetailCSR_NGO")).Text.Trim();
-
-    //            // Handle FileUpload controls
-    //            ProcessFileUpload(row, dr, "GeotaggedPhotographs");
-    //            ProcessFileUpload(row, dr, "MOUAttached");
-    //            ProcessFileUpload(row, dr, "UploadKML");
-    //        }
-
-    //        // Add a new empty row
-    //        DataRow newRow = dtQuestionnaire.NewRow();
-    //        dtQuestionnaire.Rows.Add(newRow);
-    //    }
-    //    else
-    //    {
-    //        // Initialize DataTable if ViewState is null
-    //        dtQuestionnaire = InitializeDataTable();
-
-    //        // Add the first empty row
-    //        DataRow dr = dtQuestionnaire.NewRow();
-    //        dtQuestionnaire.Rows.Add(dr);
-    //    }
-
-    //    // Update ViewState and rebind GridView
-    //    ViewState["dtQuestionnaire"] = dtQuestionnaire;
-    //    grdCallProductDtls.DataSource = dtQuestionnaire;
-    //    grdCallProductDtls.DataBind();
-
-    //    // Optionally, re-populate DropDownLists if they are dynamically populated
-    //    // PopulateDropDownLists();
-    //}
-
-    private void ProcessFileUpload(GridViewRow row, DataRow dr, string controlID)
-    {
-        FileUpload fu = (FileUpload)row.FindControl(controlID);
-        if (fu != null && fu.HasFile)
-        {
-            string filePath = SaveFile(fu.PostedFile);
-            dr[controlID] = filePath;
-        }
-    }
 
     private DataTable InitializeDataTable()
     {
@@ -980,145 +949,17 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
         dt.Columns.Add("MonthId", typeof(decimal));
         dt.Columns.Add("NameCSR_NGO", typeof(string));
         dt.Columns.Add("DetailCSR_NGO", typeof(string));
-        dt.Columns.Add("GeotaggedPhotographs", typeof(File));
-        dt.Columns.Add("MOUAttached", typeof(File));
-        dt.Columns.Add("UploadKML", typeof(File));
+        dt.Columns.Add("GeotaggedPhotographs", typeof(string));
+        dt.Columns.Add("MOUAttached", typeof(string));
+        dt.Columns.Add("UploadKML", typeof(string));
         return dt;
     }
 
-    //private void AddDynamicFields()
+    
+    //protected void DeleteDetails_Click(object sender, ImageClickEventArgs e)
     //{
-    //    DataTable dtQuestionnaire;
-
-    //    if (ViewState["dtQuestionnaire"] != null)
-    //    {
-    //        dtQuestionnaire = (DataTable)ViewState["dtQuestionnaire"];
-
-    //        // Preserve existing data from GridView into DataTable
-    //        foreach (GridViewRow row in grdCallProductDtls.Rows)
-    //        {
-    //            DataRow dr = dtQuestionnaire.Rows[row.RowIndex];
-
-    //            // Extract values from TextBoxes and DropDownLists
-    //            dr["AdoptedParkName"] = ((TextBox)row.FindControl("AdoptedParkName")).Text.Trim();
-    //            dr["ParkLatitude"] = ((TextBox)row.FindControl("ParkLatitude")).Text.Trim();
-    //            decimal longitude;
-    //            dr["ParkLongitude"] = decimal.TryParse(((TextBox)row.FindControl("ParkLongitude")).Text.Trim(), out longitude) ? longitude : 0;
-    //            //dr["ParkLongitude"] = decimal.TryParse(((TextBox)row.FindControl("ParkLongitude")).Text.Trim(), out decimal longitude) ? longitude : 0;
-    //            //dr["SessionId"] = decimal.TryParse(((DropDownList)row.FindControl("SessionId")).SelectedValue, out decimal sessionId) ? sessionId : 0;
-    //            //dr["MonthId"] = decimal.TryParse(((DropDownList)row.FindControl("MonthId")).SelectedValue, out decimal monthId) ? monthId : 0;
-    //            decimal sessionId;
-    //            dr["SessionId"] = decimal.TryParse(((DropDownList)row.FindControl("SessionId")).SelectedValue, out sessionId) ? sessionId : 0;
-
-    //            decimal monthId;
-    //            dr["MonthId"] = decimal.TryParse(((DropDownList)row.FindControl("MonthId")).SelectedValue, out monthId) ? monthId : 0;
-
-    //            dr["NameCSR_NGO"] = ((TextBox)row.FindControl("NameCSR_NGO")).Text.Trim();
-    //            dr["DetailCSR_NGO"] = ((TextBox)row.FindControl("DetailCSR_NGO")).Text.Trim();
-
-    //            // Handle FileUpload controls
-    //            FileUpload fuGeotaggedPhotographs = (FileUpload)row.FindControl("GeotaggedPhotographs");
-    //            if (fuGeotaggedPhotographs.HasFile)
-    //            {
-    //                // Save the file to a temporary location and store the path
-    //                string filePath = SaveFile(fuGeotaggedPhotographs.PostedFile);
-    //                dr["GeotaggedPhotographs"] = filePath;
-    //            }
-
-    //            FileUpload fuMOUAttached = (FileUpload)row.FindControl("MOUAttached");
-    //            if (fuMOUAttached.HasFile)
-    //            {
-    //                string filePath = SaveFile(fuMOUAttached.PostedFile);
-    //                dr["MOUAttached"] = filePath;
-    //            }
-
-    //            FileUpload fuUploadKML = (FileUpload)row.FindControl("UploadKML");
-    //            if (fuUploadKML.HasFile)
-    //            {
-    //                string filePath = SaveFile(fuUploadKML.PostedFile);
-    //                dr["UploadKML"] = filePath;
-    //            }
-    //        }
-
-    //        // Add a new empty row
-    //        DataRow newRow = dtQuestionnaire.NewRow();
-    //        dtQuestionnaire.Rows.Add(newRow);
-    //    }
-    //    else
-    //    {
-    //        // Initialize DataTable if ViewState is null
-    //        dtQuestionnaire = new DataTable();
-
-    //        dtQuestionnaire.Columns.Add("AdoptedParkName", typeof(string));
-    //        dtQuestionnaire.Columns.Add("ParkLatitude", typeof(string));
-    //        dtQuestionnaire.Columns.Add("ParkLongitude", typeof(decimal));
-    //        dtQuestionnaire.Columns.Add("SessionId", typeof(decimal));
-    //        dtQuestionnaire.Columns.Add("MonthId", typeof(decimal));
-    //        dtQuestionnaire.Columns.Add("NameCSR_NGO", typeof(string));
-    //        dtQuestionnaire.Columns.Add("DetailCSR_NGO", typeof(string));
-    //        dtQuestionnaire.Columns.Add("GeotaggedPhotographs", typeof(string));
-    //        dtQuestionnaire.Columns.Add("MOUAttached", typeof(string));
-    //        dtQuestionnaire.Columns.Add("UploadKML", typeof(string));
-
-    //        // Add the first empty row
-    //        DataRow dr = dtQuestionnaire.NewRow();
-    //        dtQuestionnaire.Rows.Add(dr);
-    //    }
-
-    //    // Update ViewState and rebind GridView
-    //    ViewState["dtQuestionnaire"] = dtQuestionnaire;
-    //    grdCallProductDtls.DataSource = dtQuestionnaire;
-    //    grdCallProductDtls.DataBind();
-
-    //    // Optionally, re-populate DropDownLists if they are dynamically populated
-    //    //PopulateDropDownLists();
-    //}
-    //private void AddDynamicFields()
-    //{
-    //    DataTable dtQuestionnaire;
-
-    //        if (ViewState["dtQuestionnaire"] != null)
-    //        {
-    //            dtQuestionnaire = (DataTable)(ViewState["dtQuestionnaire"]);
-    //            DataRow dr = dtQuestionnaire.NewRow();
-    //            dtQuestionnaire.Rows.Add(dr);
-    //            ViewState["dtQuestionnaire"] = dtQuestionnaire;
-
-    //            grdCallProductDtls.DataSource = dtQuestionnaire;
-    //            grdCallProductDtls.DataBind();
-    //        }
-    //        else
-    //        {
-    //            dtQuestionnaire = new DataTable();
-
-    //            //DataColumn dc_ProjectWorkGO_Id = new DataColumn("ProjectWorkGO_Id", typeof(int));
-    //            DataColumn txtAdoptedParkName = new DataColumn("AdoptedParkName", typeof(string));
-    //            DataColumn txtLatitude = new DataColumn("ParkLatitude", typeof(string));
-    //            DataColumn txtLongitude = new DataColumn("ParkLongitude", typeof(decimal));
-    //            DataColumn ddlYear = new DataColumn("SessionId", typeof(decimal));
-    //            DataColumn ddlMonth = new DataColumn("MonthId", typeof(decimal));
-    //            DataColumn txtNameCSR_NGO = new DataColumn("NameCSR_NGO", typeof(decimal));
-    //            DataColumn txtDetailCSR_NGO = new DataColumn("DetailCSR_NGO", typeof(string));
-    //            DataColumn GeotaggedPhotographs = new DataColumn("GeotaggedPhotographs", typeof(string));
-    //            DataColumn fileUploadMOUAttached = new DataColumn("MOUAttached", typeof(string));
-    //            DataColumn UploadKML = new DataColumn("UploadKML", typeof(string));
-
-    //            dtQuestionnaire.Columns.AddRange(new DataColumn[] { txtAdoptedParkName, txtLatitude, txtLongitude, ddlYear, ddlMonth, txtNameCSR_NGO, txtDetailCSR_NGO, GeotaggedPhotographs, fileUploadMOUAttached, UploadKML });
-
-    //            DataRow dr = dtQuestionnaire.NewRow();
-    //            dtQuestionnaire.Rows.Add(dr);
-    //            ViewState["dtQuestionnaire"] = dtQuestionnaire;
-
-    //            grdCallProductDtls.DataSource = dtQuestionnaire;
-    //            grdCallProductDtls.DataBind();
-
-    //        }
 
     //}
-    protected void DeleteDetails_Click(object sender, ImageClickEventArgs e)
-    {
-
-    }
 
 
     protected void btnDynamic_Click(object sender, ImageClickEventArgs e)
@@ -1165,6 +1006,7 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
             }
             try
             {
+                //get_tbl_Division(Convert.ToInt32(ds.Tables[0].Rows[0]["Circle_Id"]));
                 ddlDivision.SelectedValue = ds.Tables[0].Rows[0]["ULBID"].ToString(); 
                
             }

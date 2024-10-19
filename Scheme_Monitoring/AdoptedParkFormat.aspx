@@ -1,93 +1,38 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="AdoptedParkFormat.aspx.cs" Inherits="AdoptedParkFormat" EnableEventValidation="false" ValidateRequest="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <%--<style>
-    /* The Modal (background) */
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        padding-top: 60px;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0,0,0);
-        background-color: rgba(0,0,0,0.9);
-    }
+  
+    <script>
+        function previewFile(input) {
+            debugger
+            var file = input.files[0];
+            var reader = new FileReader();
+            var imagePreview = document.getElementById('imagePreview');
+            var pdfPreview = document.getElementById('pdfPreview');
 
-    /* Modal Content (image) */
-    .modal-content {
-        margin: auto;
-        display: block;
-        width: 80%;
-        max-width: 700px;
-        transform: scale(1);
-        transition: transform 0.25s ease;
-    }
+            reader.onload = function (e) {
+                // Check if the file is an image
+                if (file.type.startsWith('image/')) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                    pdfPreview.style.display = 'none'; // Hide PDF preview
+                }
+                // Check if the file is a PDF
+                else if (file.type === 'application/pdf') {
+                    pdfPreview.src = e.target.result;
+                    pdfPreview.style.display = 'block';
+                    imagePreview.style.display = 'none'; // Hide image preview
+                }
+            }
 
-    /* Caption of Modal Image (Image Text) - Same Width as the Image */
-    #caption {
-        margin: auto;
-        display: block;
-        width: 80%;
-        max-width: 700px;
-        text-align: center;
-        color: #ccc;
-        padding: 10px 0;
-        height: 150px;
-    }
+            if (file) {
+                reader.readAsDataURL(file); // Read file as data URL
+            }
+        }
+      
 
-    /* Add Animation - Zoom in the Modal */
-    .modal-content, #caption {  
-        -webkit-animation-name: zoom;
-        -webkit-animation-duration: 0.6s;
-        animation-name: zoom;
-        animation-duration: 0.6s;
-    }
-
-    @-webkit-keyframes zoom {
-        from {transform:scale(0)} 
-        to {transform:scale(1)}
-    }
-
-    @keyframes zoom {
-        from {transform:scale(0.1)} 
-        to {transform:scale(1)}
-    }
-
-    /* The Close Button */
-    .close {
-        position: absolute;
-        top: 15px;
-        right: 35px;
-        color: #f1f1f1;
-        font-size: 40px;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    /* Zoom Controls */
-    .zoom-controls {
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    .zoom-controls button {
-        font-size: 18px;
-        padding: 10px;
-        margin: 0 5px;
-        cursor: pointer;
-    }
-</style>--%>
+    </script>
+    
 
     <div class="main-content">
         <div class="page-content">
@@ -142,7 +87,7 @@
                                                 <div class="col-xxl-3 col-md-6" id="divDivision" runat="server">
                                                     <div>
                                                         <asp:Label ID="lblDivisionH" runat="server" Text="Division*" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
@@ -230,12 +175,12 @@
                                                                                 </asp:DropDownList>
                                                                             <%--<asp:TextBox ID="MonthId" runat="server" CssClass="form-control" Text='<%# Eval("MonthId") %>' onkeyup="isNumericVal(this);"></asp:TextBox>--%>
                                                                         </ItemTemplate>
-                                                                         <FooterTemplate>
+                                                                         <%--<FooterTemplate>
                                                                             <asp:ImageButton ID="btnDynamic" OnClick="btnDynamic_Click" runat="server" 
                                                                                 ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
                                                                             <asp:ImageButton ID="imgdeleteQuestionnaire" CssClass="pull-right" runat="server" 
                                                                                 ImageUrl="~/assets/images/minus-icon.png" OnClick="imgdelete_Click" Width="30px" Height="30px" />
-                                                                        </FooterTemplate>
+                                                                        </FooterTemplate>--%>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Name of CSR/PPP/NGO/RWA others*">
                                                                         <ItemTemplate>
@@ -250,13 +195,21 @@
                                                                     </asp:TemplateField>
                                                                       <asp:TemplateField HeaderText="Geotagged Photographs of Park*">
                                                                         <ItemTemplate>
-                                                                            <asp:FileUpload ID="GeotaggedPhotographs" runat="server" CssClass="form-control" EnableViewState="true" />
-                                                                         </ItemTemplate>
+                                                                            <asp:FileUpload ID="GeotaggedPhotographs" runat="server" CssClass="form-control" EnableViewState="true" Text='<%# Eval("GeotaggedPhotographs") %>'/>
+                                                                            <%--<asp:Label ID="lblGeotaggedPhotographs" runat="server" Text='<%# Eval("GeotaggedPhotographs") %>'></asp:Label>--%>
+                                                                       <%--     <a href='<%# Eval("GeotaggedPhotographs").ToString().Replace("~", "") %>' target="_blank">View File </a>--%>
+                                                                               <asp:LinkButton runat="server" id="linkViewFile" href='<%# Eval("GeotaggedPhotographs").ToString().Replace("~", "") %>' target="_blank" 
+                                                                                  visible='<%# !string.IsNullOrEmpty(Eval("GeotaggedPhotographs") as string) %>'>View File</asp:LinkButton>
+                                                                            </ItemTemplate>
                                                                     </asp:TemplateField>
         
                                                                     <asp:TemplateField HeaderText="MOU Attached*">
                                                                         <ItemTemplate>
                                                                             <asp:FileUpload ID="MOUAttached" runat="server" CssClass="form-control" EnableViewState="true"/>
+                                                                            <%--<asp:Label ID="lblMOUAttached" runat="server" Text='<%# Eval("MOUAttached") %>'></asp:Label>--%>
+                                                                            <%--<a href='<%# Eval("MOUAttached").ToString().Replace("~", "") %>' target="_blank">View File </a>--%>
+                                                                               <asp:LinkButton runat="server" id="linkViewFile1" href='<%# Eval("MOUAttached").ToString().Replace("~", "") %>' target="_blank" 
+                                                                                  visible='<%# !string.IsNullOrEmpty(Eval("MOUAttached") as string) %>'>View File</asp:LinkButton>
                                                                            </ItemTemplate>
                                                                        
                                                                     </asp:TemplateField> 
@@ -264,18 +217,24 @@
                                                                     <asp:TemplateField HeaderText="UploadKML">
                                                                         <ItemTemplate>
                                                                             <asp:FileUpload ID="UploadKML" runat="server" CssClass="form-control" EnableViewState="true"/>
+                                                                            <%--<asp:Label ID="lblUploadKML" runat="server" Text='<%# Eval("UploadKML") %>'></asp:Label>--%>
+                                                                            <%--<a href='<%# Eval("UploadKML").ToString().Replace("~", "") %>' target="_blank">Download KML </a>--%>
+                                                                           <asp:LinkButton runat="server" id="linkViewFile2" href='<%# Eval("UploadKML").ToString().Replace("~", "") %>' target="_blank" 
+                                                                                  visible='<%# !string.IsNullOrEmpty(Eval("UploadKML") as string) %>'>View File</asp:LinkButton>
                                                                             </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     
                                                               
-                                                                    <asp:TemplateField HeaderText="Delete">
+                                                                   <%-- <asp:TemplateField HeaderText="Delete">
                                                                         <ItemTemplate>
                                                                             <asp:ImageButton ID="DeleteDetails" OnClick="DeleteDetails_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="25px" Height="25px" />
                                                                         </ItemTemplate>
-                                                                    </asp:TemplateField>
+                                                                    </asp:TemplateField>--%>
                                                                 </Columns>
                                                                 <FooterStyle Font-Bold="true" ForeColor="White" />
                                                             </asp:GridView>
+                                                            <asp:ImageButton ID="btnDynamic" OnClick="btnDynamic_Click" runat="server" 
+                                                                                ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -302,7 +261,8 @@
                 </ContentTemplate>
                 <Triggers>
      <asp:PostBackTrigger ControlID="btnSave" />
-
+     <asp:PostBackTrigger ControlID="btnDynamic" />
+                    <%--<asp:PostBackTrigger ControlID="btnDynamic" />--%>
                 </Triggers>
             </asp:UpdatePanel>
          
