@@ -2,38 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   
-    <script>
-        function previewFile(input) {
-            debugger
-            var file = input.files[0];
-            var reader = new FileReader();
-            var imagePreview = document.getElementById('imagePreview');
-            var pdfPreview = document.getElementById('pdfPreview');
-
-            reader.onload = function (e) {
-                // Check if the file is an image
-                if (file.type.startsWith('image/')) {
-                    imagePreview.src = e.target.result;
-                    imagePreview.style.display = 'block';
-                    pdfPreview.style.display = 'none'; // Hide PDF preview
-                }
-                // Check if the file is a PDF
-                else if (file.type === 'application/pdf') {
-                    pdfPreview.src = e.target.result;
-                    pdfPreview.style.display = 'block';
-                    imagePreview.style.display = 'none'; // Hide image preview
-                }
-            }
-
-            if (file) {
-                reader.readAsDataURL(file); // Read file as data URL
-            }
-        }
-      
-
-    </script>
-    
-
     <div class="main-content">
         <div class="page-content">
             <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">

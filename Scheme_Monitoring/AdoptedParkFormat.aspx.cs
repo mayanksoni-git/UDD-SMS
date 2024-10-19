@@ -502,10 +502,10 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                         // Insert into tbl_AdoptedParkMaster
                         string insertMasterQuery = @"INSERT INTO dbo.tbl_AdoptedParkMaster 
                 (DivisionID, Circle_Id, ULBID, Ward, NoOfParkInULB, 
-                 NoOfAdoptionInprocessPark, NoOfParkAdopted, CreatedBy, CreatedOn, IsActive,IsDetailsCompleted)
+                 NoOfAdoptionInprocessPark, NoOfParkAdopted, CreatedBy, CreatedOn, IsActive)
                 VALUES 
                 (@DivisionID, @Circle_Id, @ULBID, @Ward, @NoOfParkInULB, 
-                 @NoOfAdoptionInprocessPark, @NoOfParkAdopted, @CreatedBy, @CreatedOn, @IsActive,@IsDetailsCompleted);
+                 @NoOfAdoptionInprocessPark, @NoOfParkAdopted, @CreatedBy, @CreatedOn, @IsActive);
                 SELECT SCOPE_IDENTITY();";
 
                         SqlCommand cmdMaster = new SqlCommand(insertMasterQuery, conn1, transaction1);
@@ -519,7 +519,6 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                         cmdMaster.Parameters.AddWithValue("@CreatedBy", Person_Id1);
                         cmdMaster.Parameters.AddWithValue("@CreatedOn", DateTime.Now);  
                         cmdMaster.Parameters.AddWithValue("@IsActive", true);
-                        cmdMaster.Parameters.AddWithValue("@IsDetailsCompleted", 0);
 
                         // Execute and get the new master Id
                         int masterId1 = Convert.ToInt32(cmdMaster.ExecuteScalar());
@@ -621,10 +620,10 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                                 // Insert into tbl_AdoptedParkMaster_details
                                 string insertDetailQuery = @"INSERT INTO dbo.tbl_AdoptedParkMaster_details 
                         (AdoptedParkId, AdoptedParkName, ParkLatitude, ParkLongitude, SessionId, 
-                         MonthId, NameCSR_NGO, DetailCSR_NGO,GeotaggedPhotographs,MOUAttached,UploadKML,  CreatedBy, CreatedOn)
+                         MonthId, NameCSR_NGO, DetailCSR_NGO,GeotaggedPhotographs,MOUAttached,UploadKML,  CreatedBy, CreatedOn,IsDetailsCompleted)
                         VALUES 
                         (@AdoptedParkId, @AdoptedParkName, @ParkLatitude, @ParkLongitude, @SessionId, 
-                         @MonthId, @NameCSR_NGO, @DetailCSR_NGO,@GeotaggedPhotographs,@MOUAttached,@UploadKML, @CreatedBy, @CreatedOn);";
+                         @MonthId, @NameCSR_NGO, @DetailCSR_NGO,@GeotaggedPhotographs,@MOUAttached,@UploadKML, @CreatedBy, @CreatedOn,@IsDetailsCompleted);";
 
                                 SqlCommand cmdDetail = new SqlCommand(insertDetailQuery, conn1, transaction1);
                                 cmdDetail.Parameters.AddWithValue("@AdoptedParkId", masterId1);
@@ -640,7 +639,8 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                                 cmdDetail.Parameters.AddWithValue("@UploadKML", uploadKML1);
                                 cmdDetail.Parameters.AddWithValue("@CreatedBy", Person_Id1);
                                 cmdDetail.Parameters.AddWithValue("@CreatedOn", DateTime.Now);
-                                //cmdDetail.Parameters.AddWithValue("@IsActive", true);
+                                cmdDetail.Parameters.AddWithValue("@IsDetailsCompleted", 0);
+
 
                                 cmdDetail.ExecuteNonQuery();
                             }
