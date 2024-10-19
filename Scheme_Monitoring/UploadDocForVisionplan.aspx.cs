@@ -215,6 +215,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
     protected void Edit_Command(object sender, CommandEventArgs e)
     {
         var id = Convert.ToInt32(e.CommandArgument.ToString());
+        Response.Redirect("CreateDocForVisionPlan.aspx?id=" + id);
     }
     protected void btnDelete_Command(object sender, CommandEventArgs e)
     {

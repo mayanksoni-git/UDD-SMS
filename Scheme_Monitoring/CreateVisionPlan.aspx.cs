@@ -325,14 +325,18 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             }
 
             DDLProj.SelectedValue = dt.Rows[0]["CMVNYId"].ToString();
-                ddlDivision.SelectedValue = dt.Rows[0]["ULBID"].ToString();
-                ddlZone.SelectedValue = dt.Rows[0]["stateId"].ToString();
-                ddlCircle.SelectedValue = dt.Rows[0]["distId"].ToString();
-                ddlFY.SelectedValue = dt.Rows[0]["FYID"].ToString();
-                similarProj.Text = dt.Rows[0]["NoOfSameProjInCity"].ToString();
-                Location.Text = dt.Rows[0]["Loactions"].ToString();
-                TxtPopulation.Text = dt.Rows[0]["population"].ToString();
-                TxtPopulation.Enabled = false;
+            ddlDivision.SelectedValue = dt.Rows[0]["ULBID"].ToString();
+            ddlZone.SelectedValue = dt.Rows[0]["stateId"].ToString();
+            ddlCircle.SelectedValue = dt.Rows[0]["distId"].ToString();
+            ddlFY.SelectedValue = dt.Rows[0]["FYID"].ToString();
+            similarProj.Text = dt.Rows[0]["NoOfSameProjInCity"].ToString();
+            Location.Text = dt.Rows[0]["Loactions"].ToString();
+            TxtPopulation.Text = dt.Rows[0]["population"].ToString();
+            if(!String.IsNullOrWhiteSpace(dt.Rows[0]["ProjectCost"].ToString()))
+            {
+                txtProjectCost.Text = dt.Rows[0]["ProjectCost"].ToString();
+            }
+            TxtPopulation.Enabled = false;
             BtnSave.Visible = false;
             BtnUpdate.Visible = true;
 
