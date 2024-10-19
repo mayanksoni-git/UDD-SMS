@@ -50,6 +50,24 @@ public class ULBFund
         return set1;
     }
 
+    public DataTable Get_ParkFascilityById(string v, int parkDetailId)
+    {
+       
+            try
+            {
+                DataTable dt = new DataTable();
+                SqlParameter[] param = new SqlParameter[2];
+                param[0] = new SqlParameter("@action", v);
+                param[1] = new SqlParameter("@AdoptedParkDetailID", parkDetailId);
+
+                return objDAL.GetDataByProcedure("Sp_Get_ParkFascilities", param);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+       
+    }
 
     private DataSet ExecuteSelectQuerywithTransaction(SqlConnection Con, string Sql, SqlTransaction trans)
     {
@@ -88,6 +106,28 @@ public class ULBFund
             throw new Exception(ex.Message);
         }
     }
+
+    public DataTable GetULBdataSubmittedReport(string v, int dist, int ULB, int person_Id)
+    {
+         try
+            {
+                DataTable dt = new DataTable();
+                SqlParameter[] param = new SqlParameter[4];
+                param[0] = new SqlParameter("@action", v);
+                param[1] = new SqlParameter("@DistrictId", dist);
+                param[2] = new SqlParameter("@ULBID", ULB);
+                param[3] = new SqlParameter("@LoginId", person_Id);
+
+                return objDAL.GetDataByProcedure("Sp_GetParkAdoptionReport", param);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        
+    }
+
+
 
     //public DataTable GetParkAdoptionReport(string actions, int dist, int fY, int month)
     //{
@@ -1063,16 +1103,17 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     }
 
 
-    public DataTable GetParkAdoptionReport(string actions, int dist, int fY, int month)
+    public DataTable GetParkAdoptionReport(string actions, int dist, int fY, int month,int Person_Id)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[4];
+            SqlParameter[] param = new SqlParameter[5];
             param[0] = new SqlParameter("@action", actions);
             param[1] = new SqlParameter("@DistrictId", dist);
             param[2] = new SqlParameter("@FYId", fY);
             param[3] = new SqlParameter("@MonthId", month);
+            param[4] = new SqlParameter("@LoginId", Person_Id);
 
             return objDAL.GetDataByProcedure("Sp_GetParkAdoptionReport", param);
         }

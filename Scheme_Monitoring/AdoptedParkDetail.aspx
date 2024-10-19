@@ -12,7 +12,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">PARK DETAIL</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">ADD PARK DETAIL</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="live-preview">
@@ -46,11 +46,34 @@
                                                         </div>
                                                         <div class="col-xxl-3 col-md-6">
                                                             <asp:Label ID="lblFascility" runat="server" Text="Facility Available*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txFascility" runat="server" CssClass="form-control"></asp:TextBox>
+                                                           <%-- <asp:TextBox ID="txFascility" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                                                            <asp:DropDownList ID="txFascility" runat="server" CssClass="form-select">
+                                                            <asp:ListItem Text="Select Facility" Value=""></asp:ListItem>
+                                                            <asp:ListItem Text="Tracks" Value="Tracks"></asp:ListItem>
+                                                            <asp:ListItem Text="Benches" Value="Benches"></asp:ListItem>
+                                                            <asp:ListItem Text="Electricity" Value="Electricity"></asp:ListItem>
+                                                            <asp:ListItem Text="Water Facility" Value="Water Facility"></asp:ListItem>
+                                                            <asp:ListItem Text="Sinages" Value="Sinages"></asp:ListItem>
+                                                            <asp:ListItem Text="Lights" Value="Lights"></asp:ListItem>
+                                                            <asp:ListItem Text="Open Gym" Value="Open Gym"></asp:ListItem>
+                                                            <asp:ListItem Text="Other" Value="Other"></asp:ListItem>
+                                                        </asp:DropDownList>
+
                                                         </div>
                                                         <div class="col-xxl-3 col-md-6">
                                                             <asp:Label ID="lblFascilityAdded" runat="server" Text="Facility Added*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtFascilityAdded" runat="server" CssClass="form-control"></asp:TextBox>
+                                                            <%--<asp:TextBox ID="txtFascilityAdded" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                                                             <asp:DropDownList ID="txtFascilityAdded" runat="server" CssClass="form-select">
+                                                            <asp:ListItem Text="Select Facility" Value=""></asp:ListItem>
+                                                             <asp:ListItem Text="Tracks" Value="Tracks"></asp:ListItem>
+                                                            <asp:ListItem Text="Benches" Value="Benches"></asp:ListItem>
+                                                            <asp:ListItem Text="Electricity" Value="Electricity"></asp:ListItem>
+                                                            <asp:ListItem Text="Water Facility" Value="Water Facility"></asp:ListItem>
+                                                            <asp:ListItem Text="Sinages" Value="Sinages"></asp:ListItem>
+                                                            <asp:ListItem Text="Lights" Value="Lights"></asp:ListItem>
+                                                            <asp:ListItem Text="Open Gym" Value="Open Gym"></asp:ListItem>
+                                                            <asp:ListItem Text="Other" Value="Other"></asp:ListItem>
+                                                        </asp:DropDownList>
                                                         </div>
                                                         <div class="col-xxl-3 col-md-6">
                                                             <asp:Label ID="lblNoofGardener" runat="server" Text="No. of Gardener*" CssClass="form-label"></asp:Label>
@@ -58,7 +81,14 @@
                                                         </div>
                                                         <div class="col-xxl-3 col-md-6">
                                                             <asp:Label ID="lblFrequencyMaintenance" runat="server" Text="Frequency of Maintenance*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtFrequencyMaintenance" runat="server" CssClass="form-control"></asp:TextBox>
+                                                            <%--<asp:TextBox ID="txtFrequencyMaintenance" runat="server" CssClass="form-control"></asp:TextBox>--%>
+                                                            <asp:DropDownList ID="txtFrequencyMaintenance" runat="server" CssClass="form-select">
+                                                            <asp:ListItem Text="Select Maintenance" Value=""></asp:ListItem>
+                                                            <asp:ListItem Text="Cleaning" Value="Cleaning"></asp:ListItem>
+                                                            <asp:ListItem Text="Grass Cutting" Value="Grass Cutting"></asp:ListItem>
+                                                            <asp:ListItem Text="Pruning of Plants" Value="Pruning of Plants"></asp:ListItem>
+                                                            <asp:ListItem Text="Watering" Value="Watering"></asp:ListItem>
+                                                        </asp:DropDownList>
                                                         </div>
                                                     
                                                         <div class="col-xxl-3 col-md-6">
@@ -115,11 +145,32 @@
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <label class="form-label">Facility Available*</label>
-                            <input type="text" class="form-control" name="txFascility[]" />
+                             <select name="txFascility[]" Class="form-select" Id="txFascility[]">
+                            <option Value="">Select Facility</option>
+                            <option Value="Tracks">Tracks</option>
+                            <option Value="Benches">Benches</option>
+                            <option Value="Electricity">Electricity</option>
+                            <option Value="Water Facility">Water Facility</option>
+                            <option Value="Sinages">Sinages</option>
+                            <option Value="Lights">Lights</option>
+                            <option Value="Open Gym">Open Gym</option>
+                            <option Value="Other">Other</option>
+                        </select>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <label class="form-label">Facility Added*</label>
-                            <input type="text" class="form-control" name="txtFascilityAdded[]" />
+                            
+                        <select name="txtFascilityAdded[]" Id="txtFascilityAdded[]" Class="form-select">
+                                    <option Value="">Select Added Facility</option>
+                            <option Value="Tracks">Tracks</option>
+                            <option Value="Benches">Benches</option>
+                            <option Value="Electricity">Electricity</option>
+                            <option Value="Water Facility">Water Facility</option>
+                            <option Value="Sinages">Sinages</option>
+                            <option Value="Lights">Lights</option>
+                            <option Value="Open Gym">Open Gym</option>
+                            <option Value="Other">Other</option>
+                        </select>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <label class="form-label">No. of Gardener*</label>
@@ -127,7 +178,13 @@
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <label class="form-label">Frequency of Maintenance*</label>
-                            <input type="text" class="form-control" name="txtFrequencyMaintenance[]" />
+                        <select name="txtFrequencyMaintenance[]" Id="txtFrequencyMaintenance[]"  Class="form-select">
+                            <option  Value="">Select Maintenance</option>
+                            <option Value="Cleaning">Cleaning</option>
+                            <option Value="Grass Cutting">Grass Cutting</option>
+                            <option Value="Pruning of Plants">Pruning of Plants</option>
+                            <option Value="Watering">Watering</option>
+                        </select>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <label class="form-label">Geotagged Photos*</label>

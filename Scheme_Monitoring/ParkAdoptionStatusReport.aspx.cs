@@ -27,6 +27,28 @@ public partial class ParkAdoptionStatusReport : System.Web.UI.Page
 
             get_tbl_FinancialYear();
             get_tbl_Month();
+
+            if (Session["UserType"].ToString() == "6" || Session["UserType"].ToString() == "7")
+            {
+                try
+                {
+
+                    if (Session["UserType"].ToString() == "6" && Convert.ToInt32(Session["PersonJuridiction_CircleId"].ToString()) > 0)
+                    {//Circle
+                        try
+                        {
+                            ddlCircle.SelectedValue = Session["PersonJuridiction_CircleId"].ToString();
+                            ddlCircle.Enabled = false;
+                        }
+                        catch
+                        { }
+                    }
+                }
+                catch
+                { }
+            }
+            
+
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
@@ -95,7 +117,8 @@ public partial class ParkAdoptionStatusReport : System.Web.UI.Page
             month = Convert.ToInt32(ddlMonth.SelectedValue);// == "0"
         }
         DataTable dt = new DataTable();
-        dt = objLoan.GetParkAdoptionReport("select", dist, FY, month);
+        var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
+        dt = objLoan.GetParkAdoptionReport("select", dist, FY, month, Person_Id);
         grdPost.DataSource = dt;
         grdPost.DataBind();
 

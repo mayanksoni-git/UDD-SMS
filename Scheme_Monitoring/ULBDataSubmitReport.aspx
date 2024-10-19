@@ -38,10 +38,16 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                     <div id="divCircle" runat="server">
                                                         <asp:Label ID="lblCircleH" runat="server" Text="District" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" ></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-3 col-md-6" id="divDivision" runat="server">
+                                                    <div>
+                                                        <asp:Label ID="lblDivisionH" runat="server" Text="Division*" CssClass="control-label no-padding-right"></asp:Label>
+                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true"></asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                           <%--     <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
                                                         <asp:Label ID="lblFY" runat="server" Text="Financial Year" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
@@ -52,7 +58,7 @@
                                                         <asp:Label ID="lblMonth" runat="server" Text="Month" CssClass="form-label"></asp:Label>
                                                         <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
-                                                </div>
+                                                </div>--%>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
@@ -64,17 +70,6 @@
                                                 </div>
                                             </div>
 
-                                           <%-- <div class="row gy-4">
-                                                <div class="col-xxl-2 offset-xxl-10 col-md-6">
-                                                    <div>
-                                                        <label class="d-block">&nbsp;</label>
-                                                        <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
-                                                        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-                                                        <asp:HiddenField ID="hfWorkProposalId" runat="server" />
-                                                    </div>
-                                                </div>
-                                            </div>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -82,77 +77,53 @@
                         </div>
                     </div>
                     
-                    <div runat="server" visible="true" id="divData" class="tblheader"  style="overflow: auto">
-                        <div class="row">
+                    <div class="row">
                             <div class="col-lg-12">
-                                
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">ULB Submitted Data Report</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">Adopted Park Detail and Fascilities</h4>
                                     </div>
+                                    <!-- end card header -->
                                     <div class="card-body">
                                         <div class="live-preview">
                                             <div class="row gy-12">
-                                                
-                                                <div class="clearfix" id="dtOptions" runat="server">
-                                                    <div class="pull-right tableTools-container">
+                                                   <div class="clearfix" id="dtOptions" runat="server">
+                                                        <div class="pull-right tableTools-container"></div>
                                                     </div>
-                                                </div>
-                                                <div style="overflow: auto">
-                                                    <table class="display table table-bordered">
-    <thead>
-        <tr>
-            <th>Sr. No.</th>
-            <th>District</th>
-            <th>Financial Year</th>
-            <th>Month</th>
-            <th>No. of ULB Submitted The data </th>
-            <th>No. of ULB not Submitted the data</th>
-          
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Example static rows -->
-        <tr>
-            <td>1</td>
-            <td>District 1</td>
-            <td>2024-25</td>
-            <td>January</td>
-            <td>50</td>
-            <td>24</td>
-            
-        </tr>
-        <tr>
-            <td>2</td>
-             <td>District 2</td>
-            <td>2023-24</td>
-            <td>March</td>
-            <td>20</td>
-            <td>10</td>
-          
-        </tr>
-        <!-- Add more rows as needed -->
-    </tbody>
-  <%--  <tfoot>
-        <tr>
-            <td colspan="3" style="text-align: center;">Total:</td>
-            <td><label id="lblTotalNoOfProposal">12</label></td>
-            <td><label id="lblTotalAmount"></label></td>
-            <td><label id="lblApprovedProposal">35</label></td>
-            <td><label id="lblHoldProposal"></label></td>
-            <td><label id="lblPendingProposal"></label></td>
-        </tr>
-    </tfoot>--%>
-</table>
-
-                                                </div>
+                                                 <div style="overflow: auto">
+                                                <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderText="Sr. No.">
+                                                            <ItemTemplate>
+                                                                <%# Container.DataItemIndex + 1 %>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField HeaderText="Circle Name">
+                                                            <ItemTemplate>
+                                                                <a href="javascript:void(0);" class="btn-open-modal" data-circle-name='<%# Eval("Circle_Id") %>'>
+                                                                    <%# Eval("Circle_Name") %>
+                                                                </a>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <%--<asp:BoundField HeaderText="District" DataField="Circle_Name" />--%>
+                                                        <%--<asp:BoundField HeaderText="ULB Name" DataField="Division_Name" />--%>
+                                                        <asp:BoundField HeaderText="No. of ULB Submitted The data" DataField="SUBMITTED_DATA" />
+                                                        <asp:BoundField HeaderText="No. of ULB not Submitted the data" DataField="NOT_SUBMITTED_DATA" />
+                                                                
+                                                    </Columns>
+                                                    <EmptyDataTemplate>
+                                                        <tr>
+                                                            <td colspan="2" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                        </tr>
+                                                    </EmptyDataTemplate>
+                                                </asp:GridView>
                                             </div>
+                                         </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                         
                         </div>
                 </ContentTemplate>
@@ -165,4 +136,5 @@
             </asp:UpdatePanel>
         </div>
     </div>
+      
 </asp:Content>

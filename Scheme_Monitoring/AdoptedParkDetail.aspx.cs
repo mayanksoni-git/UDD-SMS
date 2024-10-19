@@ -249,26 +249,6 @@ public partial class AdoptedParkDetail : System.Web.UI.Page
                 eventsOrganised.Add(Request.Form[key]);
             }
         }
-
-        // Handle file uploads
-        //for (int i = 0; i < plantedTreeNames.Count; i++)
-        //{
-        //    string fileKey = "fileUploadGeotaggedPhotos[]"; // Use the name from the JavaScript array
-
-        //    // Access the uploaded file
-        //    HttpPostedFile uploadedFile = Request.Files[fileKey]; // Use index to access the right file
-
-        //    if (uploadedFile != null && uploadedFile.ContentLength > 0)
-        //    {
-        //        string filePath = Path.Combine(Server.MapPath("~/ParkImages_And_KML"), Guid.NewGuid() + Path.GetExtension(uploadedFile.FileName));
-        //        uploadedFile.SaveAs(filePath);
-        //        filePaths.Add(filePath);
-        //    }
-        //    else
-        //    {
-        //        filePaths.Add(null); // No file uploaded for this entry
-        //    }
-        //}
         // Handle file uploads
         for (int i = 0; i < plantedTreeNames.Count; i++)
         {
@@ -290,24 +270,7 @@ public partial class AdoptedParkDetail : System.Web.UI.Page
                 filePaths.Add(null); // No file uploaded for this entry
             }
         }
-        //for (int i = 0; i < plantedTreeNames.Count; i++)
-        //{
-        //    string fileKey = "fileUploadGeotaggedPhotos[]"; // Use the name from the JavaScript array
 
-        //    // Access the uploaded file
-        //    HttpPostedFile uploadedFile = Request.Files[fileKey]; // Use index to access the right file
-
-        //    if (uploadedFile != null && uploadedFile.ContentLength > 0)
-        //    {
-        //        string filePath = Path.Combine(Server.MapPath("~/ParkImages_And_KML"), Guid.NewGuid() + Path.GetExtension(uploadedFile.FileName));
-        //        uploadedFile.SaveAs(filePath);
-        //        filePaths.Add(filePath);
-        //    }
-        //    else
-        //    {
-        //        filePaths.Add(null); // No file uploaded for this entry
-        //    }
-        //}
 
         // Database connection
         string connectionString = ConfigurationManager.AppSettings["conn"].ToString();
@@ -354,113 +317,7 @@ public partial class AdoptedParkDetail : System.Web.UI.Page
 
     }
 
-    //protected void btnSave_Click(object sender, EventArgs e)
-    //{
-    //    // Collect single-entry fields
-    //    string selectedMandal = ddlMandal.SelectedValue;
-    //    string selectedCircle = ddlCircle.SelectedValue;
-    //    string selectedDivision = ddlDivision.SelectedValue;
-    //    string AdoptedParkId = Id.Value.ToString();
-    //    var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
-    //    //string selectedMonth = ddlMonth.SelectedValue;
-
-    //    // Prepare to collect multiple entries
-    //    List<string> plantedTreeNames = new List<string>();
-    //    List<string> speciesOfTrees = new List<string>();
-    //    List<string> facilities = new List<string>();
-    //    List<string> facilitiesAdded = new List<string>();
-    //    List<string> noOfGardeners = new List<string>();
-    //    List<string> frequencies = new List<string>();
-    //    List<string> eventsOrganised = new List<string>();
-    //    List<string> filePaths = new List<string>();
-
-    //    // Loop through all field groups to collect data
-    //    for (int i = 0; i < Request.Form.Count; i++)
-    //    {
-    //        string key = Request.Form.Keys[i];
-
-    //        if (key.Contains("txtPlantedtreeName"))
-    //        {
-    //            plantedTreeNames.Add(Request.Form[key]);
-    //        }
-    //        else if (key.Contains("txtSpeciesOftree"))
-    //        {
-    //            speciesOfTrees.Add(Request.Form[key]);
-    //        }
-    //        else if (key.Contains("txFascility"))
-    //        {
-    //            facilities.Add(Request.Form[key]);
-    //        }
-    //        else if (key.Contains("txtFascilityAdded"))
-    //        {
-    //            facilitiesAdded.Add(Request.Form[key]);
-    //        }
-    //        else if (key.Contains("txtNoofGardener"))
-    //        {
-    //            noOfGardeners.Add(Request.Form[key]);
-    //        }
-    //        else if (key.Contains("txtFrequencyMaintenance"))
-    //        {
-    //            frequencies.Add(Request.Form[key]);
-    //        }
-    //        else if (key.Contains("txtEventsOrganised"))
-    //        {
-    //            eventsOrganised.Add(Request.Form[key]);
-    //        }
-    //    }
-    //    for (int i = 0; i < plantedTreeNames.Count; i++)
-    //    {
-    //        string fileKey = "fileUploadGeotaggedPhotos" + (i == 0 ? "" : "[" + i + "]"); // Use an appropriate key format
-
-    //        HttpPostedFile uploadedFile = Request.Files[fileKey];
-
-    //        if (uploadedFile != null && uploadedFile.ContentLength > 0)
-    //        {
-    //            string filePath = Path.Combine(Server.MapPath("~/ParkImages_And_KML"), Guid.NewGuid() + Path.GetExtension(uploadedFile.FileName));
-    //            uploadedFile.SaveAs(filePath);
-    //            filePaths.Add(filePath);
-    //        }
-    //        else
-    //        {
-    //            filePaths.Add(null); // No file uploaded for this entry
-    //        }
-    //    }
-
-
-    //    // Database connection
-    //    string connectionString = ConfigurationManager.AppSettings["conn"].ToString();
-
-    //    using (SqlConnection conn = new SqlConnection(connectionString))
-    //    {
-    //        conn.Open();
-    //        for (int i = 0; i < plantedTreeNames.Count; i++)
-    //        {
-    //            using (SqlCommand cmd = new SqlCommand("INSERT INTO ParkDetails_and_Facility (AdoptedParkDetailID, Name_of_Tree_Planted, Species_of_Planted_Trees, Facility_Available, Facility_Added, Noof_Gardener, Frequency_of_Maintenance, Events_Organised_in_Parks, Geotagged_Photos,CreatedBy,CreatedDate)" +
-    //                " VALUES (@AdoptedParkDetailID,@Name_of_Tree_Planted, @Species_of_Planted_Trees, @Facility_Available, @Facility_Added, @Noof_Gardener, @Frequency_of_Maintenance, @Events_Organised_in_Parks, @Geotagged_Photos,@CreatedBy,@CreatedDate)", conn))
-    //            {
-    //                //cmd.Parameters.AddWithValue("@Mandal", selectedMandal);
-    //                //cmd.Parameters.AddWithValue("@Circle", selectedCircle);
-    //                //cmd.Parameters.AddWithValue("@Division", selectedDivision);
-    //                cmd.Parameters.AddWithValue("@AdoptedParkDetailID", AdoptedParkId);
-    //                cmd.Parameters.AddWithValue("@Name_of_Tree_Planted", plantedTreeNames[i]);
-    //                cmd.Parameters.AddWithValue("@Species_of_Planted_Trees", speciesOfTrees[i]);
-    //                cmd.Parameters.AddWithValue("@Facility_Available", facilities[i]);
-    //                cmd.Parameters.AddWithValue("@Facility_Added", facilitiesAdded[i]);
-    //                cmd.Parameters.AddWithValue("@Noof_Gardener", noOfGardeners[i]);
-    //                cmd.Parameters.AddWithValue("@Frequency_of_Maintenance", frequencies[i]);
-    //                cmd.Parameters.AddWithValue("@Events_Organised_in_Parks", eventsOrganised[i]);
-    //                cmd.Parameters.AddWithValue("@Geotagged_Photos", "");
-    //                cmd.Parameters.AddWithValue("@CreatedBy", Person_Id);
-    //                cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
-
-    //                cmd.ExecuteNonQuery();
-    //            }
-    //        }
-    //    }
-
-    //    // Success message
-    //    Response.Write("<script>alert('Data saved successfully!');</script>");
-    //}
+    
     protected void Load_AdoptedPark_Name_Id(int id)
     {
         DataSet ds = new DataSet();

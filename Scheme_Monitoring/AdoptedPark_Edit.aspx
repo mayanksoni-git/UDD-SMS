@@ -15,12 +15,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Park Adoption Status And progress Report</h4>
+                                    <h4 class="mb-sm-0">ULB Status of Park Adoption Status & Progress</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">Construction Of Parks</li>
-                                            <li class="breadcrumb-item active">Park Adoption Status And progress Report</li>
+                                            <li class="breadcrumb-item active">ULB Status of Park Adoption Status & Progress</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Park Adoption Status And Progress Report</h4>
+                                        <h4 class="card-title mb-0 flex-grow-1">ULB Status of Park Adoption Status & Progress</h4>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -155,17 +155,13 @@
                                                                 </asp:LinkButton>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                                     <asp:TemplateField HeaderText="Add Park Details">
-                                                                    <ItemTemplate>
-                                                                     <asp:Label ID="lblStatus" runat="server" 
-                   Text="Completed" 
-                   Visible='<%# Eval("IsDetailsCompleted") != null && (bool)Eval("IsDetailsCompleted") %>'></asp:Label>
-        <asp:ImageButton ID="btnAddDetails" Width="20px" Height="20px" 
-                         OnClick="btnAddDetails_Click" ImageUrl="~/assets/images/add-icon.png" 
-                         runat="server" 
-                         Visible='<%# Eval("IsDetailsCompleted") == null || !(bool)Eval("IsDetailsCompleted") %>' />
-     </ItemTemplate>
-                                                                </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Add/View Park Details">
+                                                        <ItemTemplate>
+                                                            <%--<asp:Label ID="lblStatus" runat="server" Text="Completed"  Visible='<%# Eval("IsDetailsCompleted") != null && (bool)Eval("IsDetailsCompleted") %>'></asp:Label>--%>
+                                                            <asp:ImageButton ID="btnViewDetails" Width="20px" Height="20px"  OnClick="btnViewDetails_Click" ImageUrl="~/assets/images/View.png" runat="server" Visible='<%# Eval("IsDetailsCompleted") != null && (bool)Eval("IsDetailsCompleted") %>' />
+                                                            <asp:ImageButton ID="btnAddDetails" Width="20px" Height="20px"  OnClick="btnAddDetails_Click" ImageUrl="~/assets/images/add-icon.png" runat="server" Visible='<%# Eval("IsDetailsCompleted") == null || !(bool)Eval("IsDetailsCompleted") %>' />
+                                                                </ItemTemplate>
+                                                    </asp:TemplateField>
 <%--                                                        <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>
                                                                 <asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditAdoptedPark" OnCommand="Edit_Command" CommandArgument='<%# Eval("AdoptedParkId") %>' CssClass="btn btn-primary drill_btn" />
@@ -180,7 +176,7 @@
                                                     </Columns>
                                                     <EmptyDataTemplate>
                                                         <tr>
-                                                            <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                            <td colspan="13" style="text-align: center; font-weight: bold; color: red;">No records found</td>
                                                         </tr>
                                                     </EmptyDataTemplate>
                                                 </asp:GridView>

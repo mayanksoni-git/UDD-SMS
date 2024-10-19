@@ -27,6 +27,25 @@ public partial class AdoptedPark_Edit : System.Web.UI.Page
 
             get_tbl_FinancialYear();
             get_tbl_Month();
+            if (Session["UserType"].ToString() == "6" || Session["UserType"].ToString() == "7")
+            {
+                try
+                {
+
+                    if (Session["UserType"].ToString() == "6" && Convert.ToInt32(Session["PersonJuridiction_CircleId"].ToString()) > 0)
+                    {//Circle
+                        try
+                        {
+                            ddlCircle.SelectedValue = Session["PersonJuridiction_CircleId"].ToString();
+                            ddlCircle.Enabled = false;
+                        }
+                        catch
+                        { }
+                    }
+                }
+                catch
+                { }
+            }
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
@@ -95,7 +114,8 @@ public partial class AdoptedPark_Edit : System.Web.UI.Page
             month = Convert.ToInt32(ddlMonth.SelectedValue);// == "0"
         }
         DataTable dt = new DataTable();
-        dt = objLoan.GetParkAdoptionReport("select", dist, FY, month);
+        var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
+        dt = objLoan.GetParkAdoptionReport("select", dist, FY, month, Person_Id);
         grdPost.DataSource = dt;
         grdPost.DataBind();
 
@@ -159,6 +179,13 @@ public partial class AdoptedPark_Edit : System.Web.UI.Page
         int Id = Convert.ToInt32(gr.Cells[1].Text.Trim());
         //string ParkName = gr.Cells[8].Text.Trim().ToString();
         Response.Redirect("AdoptedParkDetail.aspx?Id=" + Id.ToString());
+    }
+
+    protected void btnViewDetails_Click(object sender, ImageClickEventArgs e)
+    {
+        GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
+        int Id = Convert.ToInt32(gr.Cells[1].Text.Trim());
+        Response.Redirect("ParkDetailsAndFascility.aspx?Id=" + Id.ToString());
     }
 }
 
