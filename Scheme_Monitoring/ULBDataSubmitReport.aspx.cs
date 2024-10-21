@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -143,5 +148,46 @@ public partial class ULBDataSubmitReport : System.Web.UI.Page
     protected void btnCancel_Click(object sender, EventArgs e)
     {
 
+    }
+    [WebMethod]
+    public static string GetULBDetails(int Circle_Id)
+    {
+        string connectionString = ConfigurationManager.AppSettings["conn"].ToString();
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            try
+            {
+                string query = @"
+                SELECT 
+                    CASE WHEN adp.ULBID IS NOT NULL THEN d.Division_Name END AS SUBMITTED_DATA,
+                    CASE WHEN adp.ULBID IS NULL THEN d.Division_Name END AS NOT_SUBMITTED_DATA
+                FROM 
+                    tbl_Division d 
+                LEFT JOIN 
+                    tbl_AdoptedParkMaster adp ON d.Division_Id = adp.ULBID 
+                WHERE 
+                    d.Division_CircleId = @Circle_Id";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Circle_Id", Circle_Id); // Use parameterized query to prevent SQL injection
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+
+                // Convert DataTable to JSON
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                // Handle exception (consider logging the error)
+                return JsonConvert.SerializeObject(new { error = ex.Message });
+            }
+        }
     }
 }

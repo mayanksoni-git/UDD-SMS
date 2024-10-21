@@ -59,4 +59,18 @@ public partial class ParkDetailsAndFascility : System.Web.UI.Page
         grdPost.DataBind();
 
     }
+    protected void btnEdit_Click(object sender, ImageClickEventArgs e)
+    {
+        ImageButton btnEdit = (ImageButton)sender;
+
+        GridViewRow row = (GridViewRow)btnEdit.NamingContainer;
+
+        // Retrieve the ID from the HiddenField in that row
+        HiddenField hiddenField = (HiddenField)row.FindControl("hdnParkDetailFacilityId");
+        int ParkDetailFacilityId = Convert.ToInt32(hiddenField.Value);
+
+        // Redirect to the same page with the ID as a query parameter
+        Response.Redirect("EditParkFascility_details.aspx?ParkDetailFacilityId=" + ParkDetailFacilityId);
+    }
+
 }

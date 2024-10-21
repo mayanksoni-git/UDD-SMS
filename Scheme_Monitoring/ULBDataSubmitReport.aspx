@@ -7,6 +7,39 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <div class="main-content">
         <div class="page-content">
+            <!-- Button trigger modal -->
+<%--<button type="button" class="btn btn-primary" >
+  Launch demo modal
+</button>--%>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">ULB Data Submit Report</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+     <table class="table table-bordered">
+         <thead>
+             <tr>
+                 <th>ULB(Which Data Submitted)</th>
+                 <th>ULB(Which Data Not Submitted)</th>
+             </tr>
+         </thead>
+         <tbody id="ULBData">
+
+         </tbody>
+     </table>
+      </div>
+    <%--  <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>--%>
+    </div>
+  </div>
+</div>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
                     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
@@ -93,6 +126,11 @@
                                                  <div style="overflow: auto">
                                                 <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                     <Columns>
+                                                          <asp:BoundField DataField="Circle_Id" HeaderText="Circle_Id">
+                                                        <HeaderStyle CssClass="displayStyle" />
+                                                        <ItemStyle CssClass="displayStyle" />
+                                                        <FooterStyle CssClass="displayStyle" />
+                                                    </asp:BoundField>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>
                                                                 <%# Container.DataItemIndex + 1 %>
@@ -100,7 +138,8 @@
                                                         </asp:TemplateField>
                                                          <asp:TemplateField HeaderText="Circle Name">
                                                             <ItemTemplate>
-                                                                <a href="javascript:void(0);" class="btn-open-modal" data-circle-name='<%# Eval("Circle_Id") %>'>
+                                                                <%--<asp:LinkButton ID="lnkULBDetails" runat="server" Text='<%# Eval("Circle_Name") %>' OnClick="lnkULBDetails_Click"></asp:LinkButton>--%>
+                                                                <a  href="javascript:void(0);" class="btn-open-modal" data-circle-name='<%# Eval("Circle_Id") %>' onclick="GetULBDetails(<%# Eval("Circle_Id") %>)">
                                                                     <%# Eval("Circle_Name") %>
                                                                 </a>
                                                             </ItemTemplate>
@@ -136,5 +175,80 @@
             </asp:UpdatePanel>
         </div>
     </div>
-      
+     <%-- <script>
+          function GetULBDetails(Circle_Id) {
+              debugger
+              $.ajax({
+                  url: "ULBDataSubmitReport.aspx/GetULBDetails",
+                  type: "POST",
+                  contentType: "Application/json;charset=utf-8;",
+                  dataType: "json",
+                  data: JSON.stringify({ Circle_Id: Circle_Id }),
+                  success: function (data) {
+                      console.log(data); // Inspect the response
+                      if (data.d) {
+                          var result = Array.isArray(data.d) ? data.d : [data.d]; // Ensure it's an array
+                          var html = '';
+                          result.forEach(function (item) {
+                              html += '<tr>';
+                              html += '<td>' + (item.SUBMITTED_DATA || 'N/A') + '</td>';
+                              html += '<td>' + (item.NOT_SUBMITTED_DATA || 'N/A') + '</td>';
+                              html += '</tr>';
+                          });
+                          $('#ULBData').html(html);
+                          $("#exampleModal").modal('show');
+                      } else {
+                          console.error("No data returned");
+                      }
+                  }
+
+               
+
+                 
+              })
+          }
+      </script>--%>
+   <script>
+       function GetULBDetails(Circle_Id) {
+           $.ajax({
+               url: "ULBDataSubmitReport.aspx/GetULBDetails",
+               type: "POST",
+               contentType: "application/json;charset=utf-8;",
+               dataType: "json",
+               data: JSON.stringify({ Circle_Id: Circle_Id }),
+               success: function (data) {
+                   console.log(data); // Inspect the response
+                   if (data.d) {
+                       // Parse the JSON string to get an array
+                       var result = JSON.parse(data.d);
+                       console.log(result); // Log the parsed result
+
+                       $('#ULBData').empty(); // Clear existing rows
+                       var html = '';
+
+                       // Iterate through the result using a for loop
+                       for (var i = 0; i < result.length; i++) {
+                           var item = result[i];
+                           html += '<tr>';
+                           html += '<td>' + (item.SUBMITTED_DATA || '') + '</td>';
+                           html += '<td>' + (item.NOT_SUBMITTED_DATA || '') + '</td>';
+                           html += '</tr>';
+                       }
+
+                       $('#ULBData').html(html); // Replace with new content
+                       $("#exampleModal").modal('show');
+                   } else {
+                       console.error("No data returned");
+                   }
+               },
+               error: function (xhr, status, error) {
+                   console.error("AJAX error: " + status + " - " + error);
+               }
+           });
+       }
+   </script>
+
+
+
+
 </asp:Content>

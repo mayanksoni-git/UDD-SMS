@@ -46,6 +46,17 @@
                                                                  <asp:HyperLink ID="hlDocument" runat="server" NavigateUrl='<%# Eval("Geotagged_Photos") %>' Text="Doc" Visible='<%# !string.IsNullOrEmpty(Eval("Geotagged_Photos") as string) %>' Target="_blank"></asp:HyperLink>
                                                              </ItemTemplate>
                                                          </asp:TemplateField>
+                                                           <asp:TemplateField HeaderText="Edit">
+                                                            <ItemTemplate>
+                                                                <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" 
+                                                                    OnClick="btnEdit_Click" 
+                                                                    ImageUrl="~/assets/images/edit_btn.png" 
+                                                                    runat="server" />
+                                                                <asp:HiddenField ID="hdnParkDetailFacilityId" 
+                                                                    Value='<%# Eval("ParkDetailFacilityId") %>' 
+                                                                    runat="server" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
                                                        
 <%--                                                        <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>
