@@ -27,6 +27,8 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">ADOPTED PARK</h4>
+                                     <a href="AdoptedPark_Edit.aspx"  class="filter-btn" style="float:right;width:155px"><i class="icon-download"></i> Go To List</a>
+
                                     </div>
                                     <div class="card-body">
                                         <div class="live-preview">
@@ -193,16 +195,23 @@
                                                                     </asp:TemplateField>
                                                                     
                                                               
-                                                                   <%-- <asp:TemplateField HeaderText="Delete">
+                                                                    <asp:TemplateField HeaderText="Delete">
                                                                         <ItemTemplate>
-                                                                            <asp:ImageButton ID="DeleteDetails" OnClick="DeleteDetails_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="25px" Height="25px" />
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>--%>
+                                                                            <%--<asp:ImageButton ID="DeleteDetails" OnClick="DeleteDetails_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="25px" Height="25px" />--%>
+                                                                         <asp:ImageButton ID="imgdeleteQuestionnaire" CssClass="pull-right" runat="server" 
+                                                                                ImageUrl="~/assets/images/minus-icon.png" OnClick="imgdelete_Click" Width="30px" Height="30px" />
+                                                                       
+                                                                       </ItemTemplate>
+                                                                    </asp:TemplateField>
                                                                 </Columns>
-                                                                <FooterStyle Font-Bold="true" ForeColor="White" />
+                                                                <%--<FooterStyle Font-Bold="true" ForeColor="White" />--%>
                                                             </asp:GridView>
-                                                            <asp:ImageButton ID="btnDynamic" OnClick="btnDynamic_Click" runat="server" 
-                                                                                ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="text-align:center">
+                                                                    <asp:ImageButton ID="btnDynamic" OnClick="btnDynamic_Click" runat="server" 
+                                                                                ImageUrl="~/assets/images/addmore_btn.png" Width="200px" Height="60px" />
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!--end col-->

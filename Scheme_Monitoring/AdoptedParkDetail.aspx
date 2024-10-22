@@ -10,13 +10,15 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
+                                 <div id="fieldsContainer">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">ADD PARK DETAIL</h4>
+                                          <a href="AdoptedPark_Edit.aspx"  class="filter-btn" style="float:right;width:155px"><i class="icon-download"></i> Go To List</a>
                                     </div>
                                     <div class="card-body">
                                         <div class="live-preview">
-                                            <div id="fieldsContainer">
+                                           
                                                 <div class="fieldGroup">
                                                     <div class="row gy-4">
                                                         <asp:HiddenField ID="Id" runat="server"/>
@@ -101,18 +103,21 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="col-xxl-6 col-md-6">
-                                                <asp:Button ID="btnAddMore" runat="server" Text="Add More" CssClass="btn btn-primary" OnClientClick="addFieldGroup(); return false;" />
-                                            </div>
-                                            <div class="col-xxl-3 col-md-6">
-                                                <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-success"></asp:Button>
-                                            </div>
-                                        </div>
+                                           
+                                            
+                                             </div>
                                     </div>
                                 </div>
                             </div>
+                                <div class="row gy-2 mb-3">
+                                            <div class="col-xxl-auto col-md-6">
+                                                <asp:Button ID="btnAddMore" runat="server" Text="Add More" CssClass="btn btn-primary" OnClientClick="addFieldGroup(); return false;" />
+                                            </div>
+                                            <div class="col-xxl-auto col-md-6">
+                                                <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-success"></asp:Button>
+                                            </div>
+                                        </div>
+                        </div>
                         </div>
                     </div>
                 </ContentTemplate>
@@ -131,9 +136,11 @@
           var newFieldGroup = document.createElement('div');
           newFieldGroup.className = 'fieldGroup';
           newFieldGroup.innerHTML = `
-            <table style='border:5px solid gray'>
-                <tr>
-                    <h3>Park Details ${i}</h3>
+            <div class="card">
+                                    <div class="card-header align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Park Details ${i}</h4>
+</div>
+                   <div class="card-body">
                     <div class="row gy-4">
                         <div class="col-xxl-3 col-md-6">
                             <label class="form-label">Name of Trees Planted*</label>
@@ -194,10 +201,13 @@
                             <label class="form-label">Events Organised in Parks*</label>
                             <input type="text" class="form-control" name="txtEventsOrganised" />
                         </div>
+                            <div class="col-xxl-12 col-md-12"> <button type="button" class="btn btn-danger" onclick="removeFieldGroup(this)">Remove</button> </div>
+
                     </div>
-                    <button type="button" class="btn btn-danger" onclick="removeFieldGroup(this)">Remove</button>
-                </tr>
-            </table>
+
+</div>
+</div>
+                   
         `;
           container.appendChild(newFieldGroup);
       }

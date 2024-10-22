@@ -164,27 +164,34 @@ public partial class AdoptedPark_Edit : System.Web.UI.Page
     }
     protected void btnEdit_Click(object sender, ImageClickEventArgs e)
     {
-        GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
-        int ParkId = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        int Id = Convert.ToInt32(gr.Cells[1].Text.Trim());
-        
-            Response.Redirect("AdoptedParkFormat.aspx?ParkId=" + ParkId.ToString() + "&Id=" + Id.ToString());
+        //GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
+        //int ParkId = Convert.ToInt32(gr.Cells[0].Text.Trim());
+        //int Id = Convert.ToInt32(gr.Cells[1].Text.Trim());
+        GridViewRow gr = (sender as ImageButton).NamingContainer as GridViewRow;
+        int Id = Convert.ToInt32(grdPost.DataKeys[gr.RowIndex].Values["Id"]);
+        int ParkId = Convert.ToInt32(grdPost.DataKeys[gr.RowIndex].Values["ParkId"]);
+        Response.Redirect("AdoptedParkFormat.aspx?ParkId=" + ParkId.ToString() + "&Id=" + Id.ToString());
         
         }
 
     protected void btnAddDetails_Click(object sender, ImageClickEventArgs e)
     {
-        GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
-        //int ParkId = Convert.ToInt32(gr.Cells[0].Text.Trim());
-        int Id = Convert.ToInt32(gr.Cells[1].Text.Trim());
+        GridViewRow gr = (sender as ImageButton).NamingContainer as GridViewRow;
+        int Id = Convert.ToInt32(grdPost.DataKeys[gr.RowIndex].Values["Id"]);
+        //GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
+        ////int ParkId = Convert.ToInt32(gr.Cells[0].Text.Trim());
+        //int Id = Convert.ToInt32(gr.Cells[1].Text.Trim());
         //string ParkName = gr.Cells[8].Text.Trim().ToString();
         Response.Redirect("AdoptedParkDetail.aspx?Id=" + Id.ToString());
     }
 
     protected void btnViewDetails_Click(object sender, ImageClickEventArgs e)
     {
-        GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
-        int Id = Convert.ToInt32(gr.Cells[1].Text.Trim());
+        GridViewRow gr = (sender as ImageButton).NamingContainer as GridViewRow;
+        int Id = Convert.ToInt32(grdPost.DataKeys[gr.RowIndex].Values["Id"]);
+        int parkId = Convert.ToInt32(grdPost.DataKeys[gr.RowIndex].Values["ParkId"]);
+        //GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
+        //int Id = Convert.ToInt32(gr.Cells[1].Text.Trim());
         Response.Redirect("ParkDetailsAndFascility.aspx?Id=" + Id.ToString());
     }
 }

@@ -30,7 +30,6 @@
                                 <div class="card" id="sectionFilter" runat="server">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Edit Park Fascilities</h4>
-                                         <a href="AdoptedPark_Edit.aspx"  class="filter-btn" style="float:right;width:155px"><i class="icon-download"></i> Go To List</a>
 
                                     </div>
                                     <!-- end card header -->
@@ -115,7 +114,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xxl-3 col-md-6">
+                                            <div class="col-xxl-3 col-md-6 mt-4 ">
                                                 <asp:Button ID="btnUpdate" Text="Update" OnClick="btnUpdate_Click" runat="server" CssClass="btn btn-info"></asp:Button>
                                             </div>
                                         </div>

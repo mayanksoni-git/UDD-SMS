@@ -40,7 +40,7 @@ namespace ePayment_API.Controllers
             string dd = Newtonsoft.Json.JsonConvert.SerializeObject(obj_tbl_Person);
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "Registration.txt", dd);
             obj_tbl_Person = await _RegistrationRepository.User_Registration(obj_tbl_Person);
-            if (obj_tbl_Person.Person_Mobile == "7398292555" || obj_tbl_Person.Person_Mobile2 == "7398292555")
+            if (obj_tbl_Person.Person_Mobile == "7398292555" || obj_tbl_Person.Person_Mobile2 == "7398292555" || obj_tbl_Person.Person_Mobile == "2222222222" || obj_tbl_Person.Person_Mobile2 == "2222222222")
             {
                 obj_tbl_Person.OTP = "0000";
             }

@@ -45,7 +45,7 @@ namespace ePayment_API.Controllers
             obj_Client_Info_Li.Add(obj_Client_Info);
 
             obj_Client_Info = new Client_Info();
-            obj_Client_Info.Client_Info_Base_URL = "https://apimapp.urbanschemes.up.in/api_pms";
+            obj_Client_Info.Client_Info_Base_URL = "https://apimapp.urbanschemes.up.in";
             obj_Client_Info.Client_Info_Code = "PMS (ULB Login)";
             obj_Client_Info.Client_Info_Id = 1;
             obj_Client_Info.Client_Info_Logo = "";

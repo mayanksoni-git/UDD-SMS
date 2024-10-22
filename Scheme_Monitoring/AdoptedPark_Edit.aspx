@@ -108,9 +108,9 @@
                                                         <div class="pull-right tableTools-container"></div>
                                                     </div>
                                                  <div style="overflow: auto">
-                                                <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                <asp:GridView runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" DataKeyNames="Id,ParkId">
                                                     <Columns>
-                                                         <asp:BoundField DataField="ParkId" HeaderText="ParkId">
+                                                        <%-- <asp:BoundField DataField="ParkId" HeaderText="ParkId">
                                                                     <HeaderStyle CssClass="displayStyle" />
                                                                     <ItemStyle CssClass="displayStyle" />
                                                                     <FooterStyle CssClass="displayStyle" />
@@ -119,7 +119,7 @@
                                                                     <HeaderStyle CssClass="displayStyle" />
                                                                     <ItemStyle CssClass="displayStyle" />
                                                                     <FooterStyle CssClass="displayStyle" />
-                                                                </asp:BoundField>
+                                                                </asp:BoundField>--%>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>
                                                                 <%# Container.DataItemIndex + 1 %>

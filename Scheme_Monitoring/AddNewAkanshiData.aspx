@@ -98,7 +98,7 @@
                                                         <div class="table-responsive">
                                                             <asp:GridView ID="grdAkanshiHead" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdAkanshiHead_PreRender" OnRowDataBound="grdAkanshiHead_RowDataBound">
                                                                 <Columns>
-                                                                    <asp:BoundField DataField="ProjectWorkGO_Id" HeaderText="ProjectWorkGO_Id">
+                                                                    <asp:BoundField DataField="newAkanshiDetail_Id" HeaderText="newAkanshiDetail_Id">
                                                                         <HeaderStyle CssClass="displayStyle" />
                                                                         <ItemStyle CssClass="displayStyle" />
                                                                         <FooterStyle CssClass="displayStyle" />
@@ -110,35 +110,37 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Akanshi Head">
                                                                         <ItemTemplate>
-                                                                            <asp:DropDownList ID="ddlAkanshiHead" runat="server" CssClass="form-select" AutoPostBack="true"  OnSelectedIndexChanged="ddlAkanshiHead_SelectedIndexChanged">
+                                                                            <asp:DropDownList ID="ddlAkanshiHead" runat="server" CssClass="form-select" EnableViewState="true" AutoPostBack="true" OnSelectedIndexChanged="ddlAkanshiHead_SelectedIndexChanged">
                                                                         </asp:DropDownList>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Quantity">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control " Text='<%# Eval("ProjectWorkGO_GO_Number") %>'></asp:TextBox>
+                                                                            <asp:TextBox ID="NoOfHead" runat="server" CssClass="form-control " Text='<%# Eval("NoOfHead") %>' AutoPostBack="true" OnTextChanged="NoOfHead_TextChanged"></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField> 
+                                                                    <asp:TemplateField HeaderText="Cost Per Head">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox ID="CostPerHead" runat="server" CssClass="form-control " Text='<%# Eval("CostPerHead") %>' ReadOnly="true"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Cost Per Head (In Lakhs)">
+                                                                    <asp:TemplateField HeaderText="Amount (In Lakhs)">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="txtCostPerHead" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkGO_CentralShare") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                                            <asp:TextBox ID="Amount" runat="server" CssClass="form-control" Text='<%# Eval("Amount") %>' onkeyup="isNumericVal(this);" ReadOnly="true"></asp:TextBox>
                                                                         </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Total Cost(In Lakhs)">
-                                                                        <ItemTemplate>
-                                                                            <asp:TextBox ID="txtStateShare" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkGO_StateShare") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
-                                                                        </ItemTemplate>
-                                                                        <FooterTemplate>
+                                                                          <FooterTemplate>
+                                                                               <asp:TextBox ID="TotalAmount" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                                                                             <asp:ImageButton ID="btnQuestionnaire" OnClick="btnQuestionnaire_Click" runat="server" ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
                                                                             <asp:ImageButton ID="imgdeleteQuestionnaire" CssClass="pull-right" runat="server" ImageUrl="~/assets/images/minus-icon.png" OnClick="imgdelete_Click" Width="30px" Height="30px" />
                                                                         </FooterTemplate>
                                                                     </asp:TemplateField>
+                                                                    
 
-                                                                    <asp:TemplateField HeaderText="Delete">
+                                                                   <%-- <asp:TemplateField HeaderText="Delete">
                                                                         <ItemTemplate>
                                                                             <asp:ImageButton ID="btnDeleteAkashiHead" OnClick="btnDeleteAkashiHead_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="25px" Height="25px" />
                                                                         </ItemTemplate>
-                                                                    </asp:TemplateField>
+                                                                    </asp:TemplateField>--%>
                                                                 </Columns>
                                                                 <FooterStyle Font-Bold="true" ForeColor="White" />
                                                             </asp:GridView>
@@ -170,6 +172,9 @@
                     </ContentTemplate>
                     <Triggers>
                         <asp:PostBackTrigger ControlID="btnSave" />
+                        <%--<asp:PostBackTrigger ControlID="NoOfHead" />--%>
+                       <asp:AsyncPostBackTrigger ControlID="grdAkanshiHead" EventName="SelectedIndexChanged" />
+                       <%--<asp:AsyncPostBackTrigger ControlID="NoOfHead" EventName="TextChanged" />--%>
                     </Triggers>
                 </asp:UpdatePanel>
                 <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
