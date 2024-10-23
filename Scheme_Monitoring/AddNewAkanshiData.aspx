@@ -69,7 +69,7 @@
                                                             <asp:TextBox ID="txtCMFellowName" runat="server" CssClass="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
-
+                                                    <asp:HiddenField ID="newAkanshi_Id" runat="server"/>
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="lblTotalTransferred" runat="server" Text="Total Transferred (In Lakhs)*" CssClass="form-label"></asp:Label>
@@ -123,24 +123,18 @@
                                                                         <ItemTemplate>
                                                                             <asp:TextBox ID="CostPerHead" runat="server" CssClass="form-control " Text='<%# Eval("CostPerHead") %>' ReadOnly="true"></asp:TextBox>
                                                                         </ItemTemplate>
+                                                                             
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Amount (In Lakhs)">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="Amount" runat="server" CssClass="form-control" Text='<%# Eval("Amount") %>' onkeyup="isNumericVal(this);" ReadOnly="true"></asp:TextBox>
+                                                                            <asp:TextBox ID="Amount" runat="server" CssClass="form-control" Text='<%# Eval("Amount") %>' ></asp:TextBox>
                                                                         </ItemTemplate>
                                                                           <FooterTemplate>
-                                                                               <asp:TextBox ID="TotalAmount" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                                                               <asp:TextBox ID="TotalAmount" runat="server" CssClass="form-control" Text='<%# Eval("TotalAmount") %>' ></asp:TextBox>
                                                                             <asp:ImageButton ID="btnQuestionnaire" OnClick="btnQuestionnaire_Click" runat="server" ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
                                                                             <asp:ImageButton ID="imgdeleteQuestionnaire" CssClass="pull-right" runat="server" ImageUrl="~/assets/images/minus-icon.png" OnClick="imgdelete_Click" Width="30px" Height="30px" />
                                                                         </FooterTemplate>
                                                                     </asp:TemplateField>
-                                                                    
-
-                                                                   <%-- <asp:TemplateField HeaderText="Delete">
-                                                                        <ItemTemplate>
-                                                                            <asp:ImageButton ID="btnDeleteAkashiHead" OnClick="btnDeleteAkashiHead_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="25px" Height="25px" />
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>--%>
                                                                 </Columns>
                                                                 <FooterStyle Font-Bold="true" ForeColor="White" />
                                                             </asp:GridView>
@@ -177,15 +171,7 @@
                        <%--<asp:AsyncPostBackTrigger ControlID="NoOfHead" EventName="TextChanged" />--%>
                     </Triggers>
                 </asp:UpdatePanel>
-                <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
-                    <ProgressTemplate>
-                        <div style="position: fixed; z-index: 999; height: 100%; width: 100%; top: 0; filter: alpha(opacity=60); opacity: 0.6; -moz-opacity: 0.8; cursor: not-allowed;">
-                            <div style="z-index: 1000; margin: 300px auto; padding: 10px; width: 130px; background-color: transparent; border-radius: 1px; filter: alpha(opacity=100); opacity: 1; -moz-opacity: 1;">
-                                <img src="assets/images/mb/mbloader.gif" style="height: 150px; width: 150px;" />
-                            </div>
-                        </div>
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
+              
             </div>
         </div>
     </div>

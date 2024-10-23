@@ -107,6 +107,26 @@ public class ULBFund
         }
     }
 
+    public DataTable GetNewAkanshiDataList(string v, int dist, int fY, int division, int person_Id)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[5];
+            param[0] = new SqlParameter("@action", v);
+            param[1] = new SqlParameter("@DistrictId", dist);
+            param[2] = new SqlParameter("@FYID", fY);
+            param[3] = new SqlParameter("@ULBID", division);
+            param[4] = new SqlParameter("@LoginId", person_Id);
+
+            return objDAL.GetDataByProcedure("Sp_GetNewAkanshiDataList", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     public DataTable GetULBdataSubmittedReport(string v, int dist, int ULB, int person_Id)
     {
          try
