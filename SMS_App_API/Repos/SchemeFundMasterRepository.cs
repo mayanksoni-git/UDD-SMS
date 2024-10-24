@@ -211,6 +211,7 @@ namespace ePayment_API.Repos
                         obj_tbl_Project.SessionYear = ds.Tables[0].Rows[i]["SessionYear"].ToString();
                         obj_tbl_Project.AmtInLac = Convert.ToDecimal(ds.Tables[0].Rows[i]["AmtInLac"]);
                         obj_tbl_Project.ULBID = Convert.ToInt32(ds.Tables[0].Rows[i]["ULBID"].ToString());
+                        obj_tbl_Project.ID = Convert.ToInt32(ds.Tables[0].Rows[i]["ID"].ToString());
                         obj_tbl_Project_Li.Add(obj_tbl_Project);
                     }
                 }

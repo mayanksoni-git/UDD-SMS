@@ -17,7 +17,7 @@ namespace ePayment_API.Models
         public string MPName { get; set; }
         public string AssemblyConstName { get; set; }
         public string MLAName { get; set; }
-        public string ID { get; set; }
+        public int ID { get; set; }
         public int YearId { get; set; }
         public int Scheme_Id { get; set; }
         public int Circle_Id { get; set; }

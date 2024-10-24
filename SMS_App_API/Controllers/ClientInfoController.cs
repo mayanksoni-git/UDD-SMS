@@ -23,30 +23,30 @@ namespace ePayment_API.Controllers
             List<Client_Info> obj_Client_Info_Li = new List<Client_Info>();
             Client_Info obj_Client_Info = new Client_Info();
 
-            obj_Client_Info = new Client_Info();
-            obj_Client_Info.Client_Info_Base_URL = "api.jnupepayment.in";
-            obj_Client_Info.Client_Info_Code = "JALNIGAM UP (AMRUT / STATE)";
-            obj_Client_Info.Client_Info_Id = 2;
-            obj_Client_Info.Client_Info_Logo = "";
-            obj_Client_Info_Li.Add(obj_Client_Info);
+            //obj_Client_Info = new Client_Info();
+            //obj_Client_Info.Client_Info_Base_URL = "api.jnupepayment.in";
+            //obj_Client_Info.Client_Info_Code = "JALNIGAM UP (AMRUT / STATE)";
+            //obj_Client_Info.Client_Info_Id = 2;
+            //obj_Client_Info.Client_Info_Logo = "";
+            //obj_Client_Info_Li.Add(obj_Client_Info);
 
-            obj_Client_Info = new Client_Info();
-            obj_Client_Info.Client_Info_Base_URL = "apicnds.jnupepayment.in";
-            obj_Client_Info.Client_Info_Code = "CnDS";
-            obj_Client_Info.Client_Info_Id = 4;
-            obj_Client_Info.Client_Info_Logo = "";
-            obj_Client_Info_Li.Add(obj_Client_Info);
+            //obj_Client_Info = new Client_Info();
+            //obj_Client_Info.Client_Info_Base_URL = "apicnds.jnupepayment.in";
+            //obj_Client_Info.Client_Info_Code = "CnDS";
+            //obj_Client_Info.Client_Info_Id = 4;
+            //obj_Client_Info.Client_Info_Logo = "";
+            //obj_Client_Info_Li.Add(obj_Client_Info);
 
-            obj_Client_Info = new Client_Info();
-            obj_Client_Info.Client_Info_Base_URL = "http://apisarovar.jnupepayment.in";
-            obj_Client_Info.Client_Info_Code = "AMRUT Sarovar";
-            obj_Client_Info.Client_Info_Id = 3;
-            obj_Client_Info.Client_Info_Logo = "";
-            obj_Client_Info_Li.Add(obj_Client_Info);
+            //obj_Client_Info = new Client_Info();
+            //obj_Client_Info.Client_Info_Base_URL = "http://apisarovar.jnupepayment.in";
+            //obj_Client_Info.Client_Info_Code = "AMRUT Sarovar";
+            //obj_Client_Info.Client_Info_Id = 3;
+            //obj_Client_Info.Client_Info_Logo = "";
+            //obj_Client_Info_Li.Add(obj_Client_Info);
 
             obj_Client_Info = new Client_Info();
             obj_Client_Info.Client_Info_Base_URL = "https://apimapp.urbanschemes.up.in";
-            obj_Client_Info.Client_Info_Code = "PMS (ULB Login)";
+            obj_Client_Info.Client_Info_Code = "PMS Login";
             obj_Client_Info.Client_Info_Id = 1;
             obj_Client_Info.Client_Info_Logo = "";
             obj_Client_Info_Li.Add(obj_Client_Info);            
