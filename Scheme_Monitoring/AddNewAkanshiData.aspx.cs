@@ -128,6 +128,28 @@ public partial class AddNewAkanshiData : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
+
+        HashSet<int> encounteredIds = new HashSet<int>();
+        bool hasDuplicates = false;
+
+        foreach (GridViewRow row in grdAkanshiHead.Rows)
+        {
+            if (row.RowType == DataControlRowType.DataRow)
+            {
+                var ddlAkanshiHead = Convert.ToInt32(((DropDownList)row.FindControl("ddlAkanshiHead")).SelectedValue);
+                if (!encounteredIds.Add(ddlAkanshiHead))
+                {
+                    hasDuplicates = true;
+                    break; // Exit the loop early if a duplicate is found
+                }
+            }
+        }
+
+        if (hasDuplicates)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Duplicate AkanshiHead  found. Please ensure each AkanshiHead is unique.');", true);
+            return; // Prevent further processing
+        }
         //var Akanshi_id = Convert.ToInt32(newAkanshi_Id.Value);
         int Akanshi_id = 0; // Initialize with a default value (like 0 or -1)
         if (!string.IsNullOrEmpty(newAkanshi_Id.Value))
