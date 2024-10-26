@@ -77,7 +77,7 @@ namespace ePayment_API.Controllers
             });
         }
         [Route("api/GetULBs/{DistrictId}/{ULBTypeId}")]
-        public async Task<HttpResponseMessage> Get_ULBs(int DistrictId,int ULBTypeId)
+        public async Task<HttpResponseMessage> Get_ULBs(int? DistrictId,int? ULBTypeId)
         {
             //long? UserLoginID = null;
             //if (UserManager.GetUserLoginInfo(User.Identity.Name).RoleID != 1)

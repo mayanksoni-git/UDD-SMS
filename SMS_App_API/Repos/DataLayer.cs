@@ -238,9 +238,9 @@ namespace ePayment_API.Repos
             DataSet ds = new DataSet();
             strQuery = @" set dateformat dmy; 
                     select 
-                        Circle_Id,
-                        Circle_Name
-                      from tbl_Circle";
+                        DistID as Circle_Id,
+                        DistName as Circle_Name
+                      from Districts";
             try
             {
                 ds = ExecuteSelectQuery(strQuery);
@@ -271,19 +271,29 @@ namespace ePayment_API.Repos
             return ds;
         }
 
-        internal DataSet get_tbl_ULBs(int DistrictId,int ULBTypeId)
+        internal DataSet get_tbl_ULBs(int? DistrictId,int? ULBTypeId)
         {
             string strQuery = "";
 
             DataSet ds = new DataSet();
-            strQuery = @" set dateformat dmy; 
-                    select 
-                        ULBID,
-                        ULBName
-                      FROM ULBMaster where ULBTypeId='"+ ULBTypeId + "' and DistId='"+DistrictId +"'";
             try
             {
-                ds = ExecuteSelectQuery(strQuery);
+                using (var connection = new SqlConnection(@"data source=103.248.60.254,1433;initial catalog=uddadmin;user id=uddadmindbuser;password=#82Xe6vf0;"))
+                {
+                    using (var command = new SqlCommand("sp_getULBs", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@DistrictId", DistrictId);
+                        command.Parameters.AddWithValue("@ULBTypeId", ULBTypeId);
+
+                        connection.Open();
+
+                        using (var adapter = new SqlDataAdapter(command))
+                        {
+                            adapter.Fill(ds);
+                        }
+                    }
+                }
             }
             catch
             {
@@ -410,7 +420,9 @@ namespace ePayment_API.Repos
 	                        Circle_Name, 
 	                        Division_Name, 
                             Department_Name, 
-                            Designation_DesignationName
+                            Designation_DesignationName,
+                           tbl_Division.ULBID,
+                            tbl_Circle.Districts_DistID
                         from tbl_PersonDetail
                         join tbl_PersonJuridiction on Person_Id = PersonJuridiction_PersonId
                         left join tbl_Department on Department_Id = PersonJuridiction_DepartmentId
@@ -427,7 +439,7 @@ namespace ePayment_API.Repos
             {
                 ds = ExecuteSelectQuery(strQuery);
             }
-            catch (Exception)
+            catch (Exception Ex)
             {
                 ds = null;
             }

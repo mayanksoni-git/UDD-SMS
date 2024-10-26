@@ -116,7 +116,7 @@ namespace ePayment_API.Repos
             return obj_tbl_Project_Li;
         }
 
-        internal async Task<List<ULB_DropDown>> Get_ULBs(int DistrictId,int ULBTypeId)
+        internal async Task<List<ULB_DropDown>> Get_ULBs(int? DistrictId,int? ULBTypeId)
         {
             List<ULB_DropDown> obj_tbl_Project_Li = get_tbl_ULBs(DistrictId,ULBTypeId);
             return obj_tbl_Project_Li;
@@ -124,7 +124,7 @@ namespace ePayment_API.Repos
 
        
 
-        private List<ULB_DropDown> get_tbl_ULBs(int DistrictId,int ULBTypeId)
+        private List<ULB_DropDown> get_tbl_ULBs(int? DistrictId,int? ULBTypeId)
         {
             List<ULB_DropDown> obj_tbl_Project_Li = new List<ULB_DropDown>();
             try
@@ -219,8 +219,24 @@ namespace ePayment_API.Repos
                 {
                     obj_tbl_Project_Li = null;
                 }
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[1].Rows.Count > 0)
+                {
+                    for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+                    {
+                        FundSanctionedGeoDetails obj_tbl_ProjectDetails = new FundSanctionedGeoDetails();
+                        obj_tbl_ProjectDetails.SchemeName = ds.Tables[1].Rows[i]["SchemeName"].ToString();
+                        obj_tbl_ProjectDetails.GoLink = ds.Tables[1].Rows[i]["GoLink"].ToString();
+                        obj_tbl_ProjectDetails.GONumber = ds.Tables[1].Rows[i]["GONumber"].ToString();
+                        obj_tbl_ProjectDetails.Tranch = Convert.ToInt32(ds.Tables[1].Rows[i]["Tranch"].ToString());
+                        obj_tbl_ProjectDetails.SchemeName = ds.Tables[1].Rows[i]["SchemeName"].ToString();
+                        obj_tbl_ProjectDetails.GODate = Convert.ToDateTime(ds.Tables[1].Rows[i]["GODate"]);
+                        obj_tbl_ProjectDetails.SchemeID = Convert.ToInt32(ds.Tables[1].Rows[i]["SchemeID"].ToString());
+                        obj_tbl_ProjectDetails.ID = Convert.ToInt32(ds.Tables[1].Rows[i]["ID"].ToString());
+                        obj_tbl_Project_Li[0].godetailList.Add(obj_tbl_ProjectDetails);
+                    }
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 obj_tbl_Project_Li = null;
             }

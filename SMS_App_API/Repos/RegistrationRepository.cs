@@ -53,7 +53,7 @@ namespace ePayment_API.Repos
 
                     obj_SMS_Objects_Li.Add(obj_SMS_Objects);
                     obj_tbl_Person.Base_URL = "https://www.jnupepayment.in/";
-                    obj_tbl_Person.District_Id = 0;
+                    
                     obj_tbl_Person.FinancialYear_Id = 3;
                     obj_tbl_Person.OTP = OTP;
                     obj_tbl_Person.ULB_Name = "";
@@ -68,6 +68,22 @@ namespace ePayment_API.Repos
                     obj_tbl_Person.Enable_Physical_Graph_On_Site_Progress = 1;
                     obj_tbl_Person.Enable_Financial_Graph_On_Site_Progress = 1;
                     obj_tbl_Person.Error_Message = "";
+                    try
+                    {
+                        obj_tbl_Person.District_Id = Convert.ToInt32(ds.Tables[0].Rows[0]["Districts_DistID"].ToString());
+                    }
+                    catch
+                    {
+                        obj_tbl_Person.District_Id = 0;
+                    }
+                    try
+                    {
+                        obj_tbl_Person.ULB_Id = Convert.ToInt32(ds.Tables[0].Rows[0]["ULBID"].ToString());
+                    }
+                    catch
+                    {
+                        obj_tbl_Person.ULB_Id = 0;
+                    }
                     try
                     {
                         obj_tbl_Person.Zone_Id = Convert.ToInt32(ds.Tables[0].Rows[0]["Zone_Id"].ToString());
@@ -92,6 +108,7 @@ namespace ePayment_API.Repos
                     {
                         obj_tbl_Person.Division_Id = 0;
                     }
+                    //obj_tbl_Person.Circle_Id = Convert.ToInt32(ds.Tables[0].Rows[0]["Circle_Id"].ToString());
                     obj_tbl_Person.Zone_Name = ds.Tables[0].Rows[0]["Zone_Name"].ToString();
                     obj_tbl_Person.Circle_Name = ds.Tables[0].Rows[0]["Circle_Name"].ToString();
                     obj_tbl_Person.Division_Name = ds.Tables[0].Rows[0]["Division_Name"].ToString();
@@ -114,7 +131,7 @@ namespace ePayment_API.Repos
                     obj_tbl_Person.OTP = "";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 obj_tbl_Person.Person_Id = 0;
                 obj_tbl_Person.response = "Mobile No is Not Registred. Please Contact Administrator";
