@@ -29,11 +29,11 @@ public partial class AddNewAkanshiData : System.Web.UI.Page
         if (!IsPostBack)
         {
             int newAkanshiId = 0;
-            int newAkanshiDetail_Id = 0;
+            //int newAkanshiDetail_Id = 0;
             if (Request.QueryString.Count > 0)
             {
                 newAkanshiId = Convert.ToInt32(Request.QueryString[0].ToString());
-                newAkanshiDetail_Id = Convert.ToInt32(Request.QueryString[1].ToString());
+                //newAkanshiDetail_Id = Convert.ToInt32(Request.QueryString[1].ToString());
                 Load_CmFellow(newAkanshiId);
                 LoadAkanshiHead(newAkanshiId);
             }

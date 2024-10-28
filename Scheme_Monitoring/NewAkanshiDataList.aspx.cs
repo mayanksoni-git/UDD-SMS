@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -139,7 +143,42 @@ public partial class NewAkanshiDataList : System.Web.UI.Page
          GridViewRow gr = (sender as ImageButton).NamingContainer as GridViewRow;
         int newAkanshi_Id = Convert.ToInt32(grdPost.DataKeys[gr.RowIndex].Values["newAkanshi_Id"]);
         int newAkanshiDetail_Id = Convert.ToInt32(grdPost.DataKeys[gr.RowIndex].Values["newAkanshiDetail_Id"]);
-        Response.Redirect("AddNewAkanshiData.aspx?newAkanshi_Id=" + newAkanshi_Id.ToString() + "&newAkanshiDetail_Id=" + newAkanshiDetail_Id.ToString());
+        //Response.Redirect("AddNewAkanshiData.aspx?newAkanshi_Id=" + newAkanshi_Id.ToString() + "&newAkanshiDetail_Id=" + newAkanshiDetail_Id.ToString());
+        Response.Redirect("AddNewAkanshiData.aspx?newAkanshi_Id=" + newAkanshi_Id.ToString());
 
+    }
+    [WebMethod]
+    public static string GetHeadDetails(int newAkanshi_Id)
+    {
+        string connectionString = ConfigurationManager.AppSettings["conn"].ToString();
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            DataTable dt = new DataTable();
+            conn.Open();
+            try
+            {
+                string query = @"
+               select AkanshiHead,AHD.CostPerHead,NoOfHead,Amount from tbl_NewAkanshiData_HeadDetails AHD left join uddadmindbuser.AkanshiHeadMaster AHM 
+                on AHD.AkanshiHeadId=AHM.AkanshiHeadID Where AHD.newAkanshi_Id=@newAkanshi_Id";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@newAkanshi_Id", newAkanshi_Id); // Use parameterized query to prevent SQL injection
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+
+                // Convert DataTable to JSON
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                // Handle exception (consider logging the error)
+                return JsonConvert.SerializeObject(new { error = ex.Message });
+            }
+        }
     }
 }
