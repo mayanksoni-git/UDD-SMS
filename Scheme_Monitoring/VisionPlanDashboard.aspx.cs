@@ -22,7 +22,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
-
+            btnDashboard_Click(null, EventArgs.Empty);
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
@@ -33,6 +33,11 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         string ProcedureName = "sp_DashboardSummaryReport_VPReport";
 
         LoadVisionPlanGrid(ProcedureName);
+        ToggleDiv(divDashboard);
+    }
+    protected void btnTotalProjects_Click(object sender, EventArgs e)
+    {
+        mp1.Show();
     }
 
     protected void btnULBWise_Click(object sender, EventArgs e)
@@ -41,6 +46,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ULBWiseReport_VPReport";
 
         LoadVisionPlanGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
 
     protected void btnCircleWise_Click(object sender, EventArgs e)
@@ -49,6 +55,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         string ProcedureName = "sp_UniqueCirclesWiseVisionReport_VPReport";
 
         LoadVisionPlanGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
     protected void btnPriorityWise_Click(object sender, EventArgs e)
     {
@@ -56,6 +63,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         string ProcedureName = "sp_SelfPriorityWiseVisionReport_VPReport";
 
         LoadVisionPlanGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
     protected void btnProjectType_Click(object sender, EventArgs e)
     {
@@ -63,6 +71,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ProjectTypeWiseVisionReport_VPReport";
 
         LoadVisionPlanGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
 
     private void LoadVisionPlanGrid(string ProcedureName)
@@ -115,8 +124,6 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
                 gridDashboard.DataBind();
                 btnDashboard.Visible = true;
             }
-
-            ToggleDiv(divData);
         }
         else
         {
@@ -190,14 +197,15 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
 
     private void ToggleDiv(System.Web.UI.HtmlControls.HtmlGenericControl div)
     {
-        divData.Visible = false;
-        //divMPWise.Visible = false;
-        //divMLAWise.Visible = false;
-        //divDivisionWise.Visible = false;
-        //divWorkPlanWise.Visible = false;
-        //divDistrictWise.Visible = false;
-        //divRecommendationWise.Visible = false;
+        divDashboard.Visible = false;
+        divGrid.Visible = false;
         div.Visible = true;
         div.Focus();
+    }
+
+    protected void btnclose_Click(object sender, EventArgs e)
+    {
+        // Code to hide the modal popup
+        Panel1.Style["display"] = "none";
     }
 }
