@@ -47,7 +47,6 @@
                                                     <div class="d-flex" style="margin-top: 20px; margin-bottom: 20px">
                                                         <asp:Button ID="btnDashboard" Text="Dashboard" OnClick="btnDashboard_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="btnULBWise" Text="ULB Wise" OnClick="btnULBWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
-
                                                         <asp:Button ID="btnCircleWise" Text="District Wise" OnClick="btnCircleWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="btnPriorityWise" Text="Priority Wise" OnClick="btnPriorityWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="btnProjectType" Text="Project Type Wise" OnClick="btnProjectType_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
@@ -65,7 +64,7 @@
                                                         </div>
 
                                                         <!-- Page-body start -->
-                                                        <div id="divDashboard" runat="server" visible="false">
+                                                        <div id="divDashboard" runat="server" visible="true">
                                                             <div class="page-body">
                                                                 <div class="row">
                                                                     <!-- task, page, download counter  start -->
@@ -431,7 +430,7 @@
         </div>
     </div>
     
-    <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1 p-0" Style="display: none; width: 800px; margin-left: -32px; height: 800px; overflow: auto">
+    <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1 p-0" Style="display: none; width: 1000px; margin-left: -32px; height: 800px; overflow: auto;">
         <div class="row  bg-warning" style="border-radius: 11px; padding: 10px;">
             <div class="col-xs-12">
                 <div class="table-header fw-bold fs-4">
@@ -449,9 +448,31 @@
             </div>
         </div>
         <div class="row p-3">
-            <div class="col-md-12" id="dvPJ" runat="server">
+            <div class="col-md-12" id="divTotalProjects" runat="server">
                 <div class="form-group">
-                    
+                    <asp:GridView ID="grdTotalProjects" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="false" EmptyDataText="No Records Found">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Sr. No.">
+                                <itemtemplate>
+                                    <%# Container.DataItemIndex + 1 %>
+                                </itemtemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
+                            <asp:TemplateField HeaderText="No of Projects">
+                                <ItemTemplate>
+                                    <asp:Button ID="btnNoOfProjects" runat="server" Text='<%# Eval("NoOfProjects") %>' CommandName="NoOfProjects" OnCommand="GetNoOfProjects" CommandArgument='<%# Eval("FYID") %>' CssClass="btn btn-primary drill_btn" />
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lblTotalNoOfProjects" Text="Total No Of Projects" runat="server"></asp:Label>
+                                </FooterTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <EmptyDataTemplate>
+                            <tr>
+                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                            </tr>
+                        </EmptyDataTemplate>
+                    </asp:GridView>
                 </div>
             </div>
             <div class="col-md-12">

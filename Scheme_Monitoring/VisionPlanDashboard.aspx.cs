@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 public partial class VisionPlanDashboard : System.Web.UI.Page
 {
     Loan objLoan = new Loan();
+    VisionPlan objVisionPlan = new VisionPlan();
 
     protected void Page_PreInit(object sender, EventArgs e)
     {
@@ -22,7 +23,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
-            btnDashboard_Click(null, EventArgs.Empty);
+            //btnDashboard_Click(null, EventArgs.Empty);
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
@@ -37,7 +38,23 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
     }
     protected void btnTotalProjects_Click(object sender, EventArgs e)
     {
+
+        DataTable dt = new DataTable();
+        dt = objVisionPlan.getTotalProjectFinancialYearWise();
+
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            grdTotalProjects.DataSource = dt;
+            grdTotalProjects.DataBind();
+        }
+        else
+        {
+            grdTotalProjects.DataSource = null;
+            grdTotalProjects.DataBind();
+            MessageBox.Show("No Records Found");
+        }
         mp1.Show();
+        //ToggleDiv(divTotalProjects);
     }
 
     protected void btnULBWise_Click(object sender, EventArgs e)
@@ -134,45 +151,10 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         }
     }
 
+    protected void GetNoOfProjects(object sender, CommandEventArgs e)
+    {
 
-    //private void LoadVisionPlanGrid(string ProcedureName)
-    //{
-    //    DataTable dt = new DataTable();
-    //    dt = objLoan.getWorkProposalDashbaord(ProcedureName);
-
-    //    if (dt != null && dt.Rows.Count > 0)
-    //    {
-    //        gridDashboard.DataSource = dt;
-    //        gridDashboard.DataBind();
-    //        btnDashboard.Visible = true;
-
-    //        // Assuming you have predefined labels up to Label8 and HeadLabel8 on your form
-    //        for (int i = 0; i < dt.Columns.Count; i++)
-    //        {
-    //            // Dynamically find the label controls
-    //            Label valueLabel = (Label)FindControl("Label"+i + 1);
-    //            Label headerLabel = (Label)FindControl("HeadeLabel"+i + 1);
-
-    //            if (valueLabel != null && headerLabel != null)
-    //            {
-    //                // Set the value from the first row of the DataTable
-    //                valueLabel.Text = dt.Rows[0][i].ToString();
-    //                // Set the column name as the header
-    //                headerLabel.Text = dt.Columns[i].ColumnName;
-    //            }
-    //        }
-
-    //        ToggleDiv(divData);
-    //    }
-    //    else
-    //    {
-    //        btnDashboard.Visible = true;
-    //        gridDashboard.DataSource = null;
-    //        gridDashboard.DataBind();
-    //        MessageBox.Show("No Records Found");
-    //    }
-    //}
-
+    }
 
 
     protected void grdPost_PreRender(object sender, EventArgs e)
