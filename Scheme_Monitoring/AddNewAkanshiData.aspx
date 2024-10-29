@@ -29,6 +29,8 @@
                                     <div class="card">
                                         <div class="card-header align-items-center d-flex">
                                             <h4 class="card-title mb-0 flex-grow-1">Create/Update New Akanshi Data</h4>
+                                          <a href="NewAkanshiDataList.aspx"  class="filter-btn" style="float:right;width:155px"><i class="icon-download"></i> Go To List</a>
+
                                         </div>
                                         <!-- end card header -->
                                         <div class="card-body">

@@ -7,6 +7,36 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <div class="main-content">
         <div class="page-content">
+            <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New Akanshi Data Head Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+     <table class="table table-bordered">
+         <thead>
+             <tr>
+                 <th>AkanshiHead</th>
+                 <th>CostPerHead</th>
+                 <th>NoOfHead</th>
+                 <th>Amount</th>
+             </tr>
+         </thead>
+         <tbody id="HeadData">
+
+         </tbody>
+     </table>
+      </div>
+    <%--  <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>--%>
+    </div>
+  </div>
+</div>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
                     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
@@ -31,6 +61,8 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Filter :</h4>
+                                          <a href="AddNewAkanshiData.aspx"  class="filter-btn" style="float:right;width:155px"><i class="icon-download"></i>Create New</a>
+
                                     </div>
                                     <div class="card-body">
                                         <div class="live-preview">
@@ -98,7 +130,7 @@
                                                         <div class="pull-right tableTools-container"></div>
                                                     </div>
                                                  <div style="overflow: auto">
-                                                <asp:GridView DataKeyNames="newAkanshi_Id,newAkanshiDetail_Id" runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                                <asp:GridView DataKeyNames="newAkanshi_Id" runat="server" ID="grdPost" CssClass="display table table-bordered"   AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sr. No.">
                                                             <ItemTemplate>
@@ -116,10 +148,19 @@
                                                         <asp:BoundField HeaderText="Cm Fellow Name" DataField="CmFellowName" />
                                                         <asp:BoundField HeaderText="Total Transferred" DataField="Total_Transferred" />
                                                         <asp:BoundField HeaderText="Total Amount" DataField="Total_Amount" />
-                                                        <asp:BoundField HeaderText="Cost Per Head " DataField="CostPerHead" />                                            
+                                                         <asp:TemplateField HeaderText="Total Head">
+                                                            <ItemTemplate>
+                                                                <%--<asp:LinkButton ID="lnkULBDetails" runat="server" Text='<%# Eval("Circle_Name") %>' OnClick="lnkULBDetails_Click"></asp:LinkButton>--%>
+                                                                <a  href="javascript:void(0);" class="btn-open-modal" data-total-head='<%# Eval("newAkanshi_Id") %>' onclick="GetHeadDetails(<%# Eval("newAkanshi_Id") %>)">
+                                                                    <%# Eval("Total_Head") %>
+                                                                </a>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <%--<asp:BoundField HeaderText="Total Head" DataField="Total_Head" />--%>
+                                                        <%--<asp:BoundField HeaderText="Cost Per Head " DataField="CostPerHead" />                                            
                                                         <asp:BoundField HeaderText="Akanshi Head" DataField="AkanshiHead" />                                            
                                                         <asp:BoundField HeaderText="No Of Head" DataField="NoOfHead" />                                            
-                                                        <asp:BoundField HeaderText="Amount" DataField="Amount" />                                            
+                                                        <asp:BoundField HeaderText="Amount" DataField="Amount" />--%>                                            
                                                 
                                                           <%--  <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>
@@ -149,4 +190,46 @@
              </div>
         </div>
     </div>
+
+       <script>
+           function GetHeadDetails(newAkanshi_Id) {
+           $.ajax({
+               url: "NewAkanshidataList.aspx/GetHeadDetails",
+               type: "POST",
+               contentType: "application/json;charset=utf-8;",
+               dataType: "json",
+               data: JSON.stringify({ newAkanshi_Id: newAkanshi_Id }),
+               success: function (data) {
+                   console.log(data); // Inspect the response
+                   if (data.d) {
+                       // Parse the JSON string to get an array
+                       var result = JSON.parse(data.d);
+                       console.log(result); // Log the parsed result
+
+                       $('#ULBData').empty(); // Clear existing rows
+                       var html = '';
+
+                       // Iterate through the result using a for loop
+                       for (var i = 0; i < result.length; i++) {
+                           var item = result[i];
+                           html += '<tr>';
+                           html += '<td>' + (item.AkanshiHead || '') + '</td>';
+                           html += '<td>' + (item.CostPerHead || '') + '</td>';
+                           html += '<td>' + (item.NoOfHead || '') + '</td>';
+                           html += '<td>' + (item.Amount || '') + '</td>';
+                           html += '</tr>';
+                       }
+
+                       $('#HeadData').html(html); // Replace with new content
+                       $("#exampleModal").modal('show');
+                   } else {
+                       console.error("No data returned");
+                   }
+               },
+               error: function (xhr, status, error) {
+                   console.error("AJAX error: " + status + " - " + error);
+               }
+           });
+       }
+       </script>
 </asp:Content>

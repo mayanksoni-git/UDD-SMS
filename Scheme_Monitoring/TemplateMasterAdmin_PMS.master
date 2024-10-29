@@ -379,7 +379,7 @@
                                 <div class="collapse menu-dropdown" id="sidebarAkanshi">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="AkanchiYojnaDashboard.aspx" class="nav-link" data-key="t-grid-js">Akanshi Fund Report</a> </li>
-                                        <li class="nav-item"><a href="AddNewAkanshiData.aspx" class="nav-link" data-key="t-grid-js">Add New Akanshi Data</a> </li>
+                                        <li class="nav-item"><a href="NewAkanshiDataList.aspx" class="nav-link" data-key="t-grid-js">Add New Akanshi Data</a> </li>
                                     </ul>
                                 </div>
                             </li>

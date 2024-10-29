@@ -36,6 +36,7 @@ namespace ePayment_API.Models
         public string GoLink { get; set; }
         public string GONumber { get; set; }
         public DateTime? GODate { get; set; }
-        public int Tranch { get; set; }
+        public string Tranch { get; set; }
+        public decimal? AmountInGo { get; set; }
     }
 }

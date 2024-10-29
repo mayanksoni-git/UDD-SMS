@@ -189,37 +189,131 @@ namespace ePayment_API.Repos
             return obj_tbl_Project_Li;
         }
 
+        //private List<SchemeFundMaster> Get_Tbl_SchemeFundReport(SchemeFundMaster schemeFundMaster)
+        //{
+        //    List<SchemeFundMaster> obj_tbl_Project_Li = new List<SchemeFundMaster>();
+        //    try
+        //    {
+        //        DataSet ds = new DataLayer().Get_Tbl_SchemeFundReport(schemeFundMaster.YearId, schemeFundMaster.Scheme_Id, schemeFundMaster.Circle_Id, schemeFundMaster.ULBTypeId, schemeFundMaster.ULBID,schemeFundMaster.UserLoginID);
+        //        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        //        {
+        //            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        //            {
+        //                SchemeFundMaster obj_tbl_Project = new SchemeFundMaster();
+        //                obj_tbl_Project.ULBName = ds.Tables[0].Rows[i]["ULBName"].ToString();
+        //                obj_tbl_Project.DistName = ds.Tables[0].Rows[i]["DistName"].ToString();
+        //                obj_tbl_Project.ULBType = ds.Tables[0].Rows[i]["ULBType"].ToString();
+        //                obj_tbl_Project.ParliamentaryConstName = ds.Tables[0].Rows[i]["ParliamentaryConstName"].ToString();
+        //                obj_tbl_Project.MPName = ds.Tables[0].Rows[i]["MPName"].ToString();
+        //                obj_tbl_Project.AssemblyConstName = ds.Tables[0].Rows[i]["AssemblyConstName"].ToString();
+        //                obj_tbl_Project.MLAName = ds.Tables[0].Rows[i]["MLAName"].ToString();
+        //                obj_tbl_Project.SchemeName = ds.Tables[0].Rows[i]["SchemeName"].ToString();
+        //                obj_tbl_Project.SessionYear = ds.Tables[0].Rows[i]["SessionYear"].ToString();
+        //                obj_tbl_Project.AmtInLac = Convert.ToDecimal(ds.Tables[0].Rows[i]["AmtInLac"]);
+        //                obj_tbl_Project.ULBID = Convert.ToInt32(ds.Tables[0].Rows[i]["ULBID"].ToString());
+        //                obj_tbl_Project.ID = Convert.ToInt32(ds.Tables[0].Rows[i]["ID"].ToString());
+        //                obj_tbl_Project_Li.Add(obj_tbl_Project);
+        //            }
+        //        }
+        //        //else
+        //        //{
+        //        //    obj_tbl_Project_Li = null;
+        //        //}
+        //        //obj_tbl_Project_Li[0].godetailList = new List<FundSanctionedGeoDetails>();
+        //        //if (ds != null && ds.Tables.Count > 0 && ds.Tables[1].Rows.Count > 0)
+        //        //{
+        //        //    for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+        //        //    {
+        //        //        FundSanctionedGeoDetails obj_tbl_ProjectDetails = new FundSanctionedGeoDetails();
+        //        //        obj_tbl_ProjectDetails.SchemeName = ds.Tables[1].Rows[i]["SchemeName"].ToString();
+        //        //        obj_tbl_ProjectDetails.GoLink = ds.Tables[1].Rows[i]["GoLink"].ToString();
+        //        //        obj_tbl_ProjectDetails.GONumber = ds.Tables[1].Rows[i]["GONumber"].ToString();
+        //        //        obj_tbl_ProjectDetails.Tranch =ds.Tables[1].Rows[i]["Tranch"].ToString();
+        //        //        obj_tbl_ProjectDetails.SchemeName = ds.Tables[1].Rows[i]["SchemeName"].ToString();
+        //        //        //obj_tbl_ProjectDetails.GODate = Convert.ToDateTime(ds.Tables[1].Rows[i]["GODate"]);
+        //        //        if (ds.Tables[1].Rows[i]["GODate"] != DBNull.Value)
+        //        //        {
+        //        //            obj_tbl_ProjectDetails.GODate = Convert.ToDateTime(ds.Tables[1].Rows[i]["GODate"]);
+        //        //        }
+        //        //        else
+        //        //        {
+        //        //            obj_tbl_ProjectDetails.GODate = DateTime.MinValue; // ya koi default date
+        //        //        }
+
+        //        //        obj_tbl_ProjectDetails.SchemeID = Convert.ToInt32(ds.Tables[1].Rows[i]["SchemeID"].ToString());
+        //        //        obj_tbl_ProjectDetails.ID = Convert.ToInt32(ds.Tables[1].Rows[i]["ID"].ToString());
+
+        //        //        obj_tbl_Project_Li[0].godetailList.Add(obj_tbl_ProjectDetails);
+        //        //    }
+        //        //}
+        //        //obj_tbl_Project_Li[0].godetailList = new List<FundSanctionedGeoDetails>();
+
+        //        if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+        //        {
+        //            for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
+        //            {
+        //                FundSanctionedGeoDetails obj_tbl_ProjectDetails = new FundSanctionedGeoDetails
+        //                {
+        //                    SchemeName = ds.Tables[1].Rows[i]["SchemeName"].ToString(),
+        //                    GoLink = ds.Tables[1].Rows[i]["GoLink"].ToString(),
+        //                    GONumber = ds.Tables[1].Rows[i]["GONumber"].ToString(),
+        //                    Tranch = ds.Tables[1].Rows[i]["Tranch"].ToString(),
+        //                    GODate = ds.Tables[1].Rows[i]["GODate"] != DBNull.Value
+        //                        ? Convert.ToDateTime(ds.Tables[1].Rows[i]["GODate"])
+        //                        : DateTime.MinValue, // ya koi default date
+        //                    SchemeID = Convert.ToInt32(ds.Tables[1].Rows[i]["SchemeID"].ToString()),
+        //                    ID = Convert.ToInt32(ds.Tables[1].Rows[i]["ID"]),
+        //                };
+        //                var parentScheme = obj_tbl_Project_Li.FirstOrDefault(x => x.ID == obj_tbl_ProjectDetails.ID); // assuming ParentID is in Table1
+        //                if (parentScheme != null)
+        //                {
+        //                    parentScheme.godetailList.Add(obj_tbl_ProjectDetails);
+        //                }
+        //                // Find the corresponding parent SchemeFundMaster by ID
+
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        obj_tbl_Project_Li = null;
+        //    }
+        //    return obj_tbl_Project_Li;
+        //}
         private List<SchemeFundMaster> Get_Tbl_SchemeFundReport(SchemeFundMaster schemeFundMaster)
         {
             List<SchemeFundMaster> obj_tbl_Project_Li = new List<SchemeFundMaster>();
             try
             {
-                DataSet ds = new DataLayer().Get_Tbl_SchemeFundReport(schemeFundMaster.YearId, schemeFundMaster.Scheme_Id, schemeFundMaster.Circle_Id, schemeFundMaster.ULBTypeId, schemeFundMaster.ULBID,schemeFundMaster.UserLoginID);
+                DataSet ds = new DataLayer().Get_Tbl_SchemeFundReport(schemeFundMaster.YearId, schemeFundMaster.Scheme_Id, schemeFundMaster.Circle_Id, schemeFundMaster.ULBTypeId, schemeFundMaster.ULBID, schemeFundMaster.UserLoginID);
+
+                // First table processing
                 if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                 {
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        SchemeFundMaster obj_tbl_Project = new SchemeFundMaster();
-                        obj_tbl_Project.ULBName = ds.Tables[0].Rows[i]["ULBName"].ToString();
-                        obj_tbl_Project.DistName = ds.Tables[0].Rows[i]["DistName"].ToString();
-                        obj_tbl_Project.ULBType = ds.Tables[0].Rows[i]["ULBType"].ToString();
-                        obj_tbl_Project.ParliamentaryConstName = ds.Tables[0].Rows[i]["ParliamentaryConstName"].ToString();
-                        obj_tbl_Project.MPName = ds.Tables[0].Rows[i]["MPName"].ToString();
-                        obj_tbl_Project.AssemblyConstName = ds.Tables[0].Rows[i]["AssemblyConstName"].ToString();
-                        obj_tbl_Project.MLAName = ds.Tables[0].Rows[i]["MLAName"].ToString();
-                        obj_tbl_Project.SchemeName = ds.Tables[0].Rows[i]["SchemeName"].ToString();
-                        obj_tbl_Project.SessionYear = ds.Tables[0].Rows[i]["SessionYear"].ToString();
-                        obj_tbl_Project.AmtInLac = Convert.ToDecimal(ds.Tables[0].Rows[i]["AmtInLac"]);
-                        obj_tbl_Project.ULBID = Convert.ToInt32(ds.Tables[0].Rows[i]["ULBID"].ToString());
-                        obj_tbl_Project.ID = Convert.ToInt32(ds.Tables[0].Rows[i]["ID"].ToString());
+                        SchemeFundMaster obj_tbl_Project = new SchemeFundMaster
+                        {
+                            ULBName = ds.Tables[0].Rows[i]["ULBName"].ToString(),
+                            DistName = ds.Tables[0].Rows[i]["DistName"].ToString(),
+                            ULBType = ds.Tables[0].Rows[i]["ULBType"].ToString(),
+                            ParliamentaryConstName = ds.Tables[0].Rows[i]["ParliamentaryConstName"].ToString(),
+                            MPName = ds.Tables[0].Rows[i]["MPName"].ToString(),
+                            AssemblyConstName = ds.Tables[0].Rows[i]["AssemblyConstName"].ToString(),
+                            MLAName = ds.Tables[0].Rows[i]["MLAName"].ToString(),
+                            SchemeName = ds.Tables[0].Rows[i]["SchemeName"].ToString(),
+                            SessionYear = ds.Tables[0].Rows[i]["SessionYear"].ToString(),
+                            AmtInLac = Convert.ToDecimal(ds.Tables[0].Rows[i]["AmtInLac"]),
+                            ULBID = Convert.ToInt32(ds.Tables[0].Rows[i]["ULBID"].ToString()),
+                            ID = Convert.ToInt32(ds.Tables[0].Rows[i]["ID"].ToString()),
+                            godetailList = new List<FundSanctionedGeoDetails>() // Ensure this is initialized
+                        };
                         obj_tbl_Project_Li.Add(obj_tbl_Project);
                     }
                 }
-                else
-                {
-                    obj_tbl_Project_Li = null;
-                }
-                if (ds != null && ds.Tables.Count > 0 && ds.Tables[1].Rows.Count > 0)
+
+                // Second table processing
+                if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
                 {
                     for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
                     {
@@ -227,20 +321,52 @@ namespace ePayment_API.Repos
                         obj_tbl_ProjectDetails.SchemeName = ds.Tables[1].Rows[i]["SchemeName"].ToString();
                         obj_tbl_ProjectDetails.GoLink = ds.Tables[1].Rows[i]["GoLink"].ToString();
                         obj_tbl_ProjectDetails.GONumber = ds.Tables[1].Rows[i]["GONumber"].ToString();
-                        obj_tbl_ProjectDetails.Tranch = Convert.ToInt32(ds.Tables[1].Rows[i]["Tranch"].ToString());
-                        obj_tbl_ProjectDetails.SchemeName = ds.Tables[1].Rows[i]["SchemeName"].ToString();
-                        obj_tbl_ProjectDetails.GODate = Convert.ToDateTime(ds.Tables[1].Rows[i]["GODate"]);
+                        obj_tbl_ProjectDetails.Tranch = ds.Tables[1].Rows[i]["Tranch"].ToString();
+
+                        // Check for GODate
+                        if (ds.Tables[1].Rows[i]["GODate"] != DBNull.Value)
+                        {
+                            obj_tbl_ProjectDetails.GODate = Convert.ToDateTime(ds.Tables[1].Rows[i]["GODate"]);
+                        }
+                        else
+                        {
+                            obj_tbl_ProjectDetails.GODate = DateTime.MinValue; // Default value for GODate
+                        }
+
+                        // Check for AmountInGo
+                        if (ds.Tables[1].Rows[i]["AmountInGo"] != DBNull.Value)
+                        {
+                            obj_tbl_ProjectDetails.AmountInGo = Convert.ToDecimal(ds.Tables[1].Rows[i]["AmountInGo"]);
+                        }
+                        else
+                        {
+                            obj_tbl_ProjectDetails.AmountInGo = 0; // Default value for AmountInGo
+                        }
+
                         obj_tbl_ProjectDetails.SchemeID = Convert.ToInt32(ds.Tables[1].Rows[i]["SchemeID"].ToString());
                         obj_tbl_ProjectDetails.ID = Convert.ToInt32(ds.Tables[1].Rows[i]["ID"].ToString());
-                        obj_tbl_Project_Li[0].godetailList.Add(obj_tbl_ProjectDetails);
+
+                        // Assuming you have the correct parent scheme logic
+                        var parentScheme = obj_tbl_Project_Li.FirstOrDefault(x => x.ID == obj_tbl_ProjectDetails.ID);
+                        if (parentScheme != null)
+                        {
+                            if (parentScheme.godetailList == null)
+                            {
+                                parentScheme.godetailList = new List<FundSanctionedGeoDetails>();
+                            }
+                            parentScheme.godetailList.Add(obj_tbl_ProjectDetails);
+                        }
                     }
                 }
+
             }
             catch (Exception ex)
             {
+                // Log the exception message or handle it as needed
                 obj_tbl_Project_Li = null;
             }
             return obj_tbl_Project_Li;
         }
+
     }
 }
