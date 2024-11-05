@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Web.Services;
+using Newtonsoft.Json;
 using System.Data;
 using System.Text;
 using System.Web;
@@ -23,7 +25,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
-            //btnDashboard_Click(null, EventArgs.Empty);
+            btnDashboard_Click(null, EventArgs.Empty);
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
@@ -36,26 +38,8 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         LoadVisionPlanGrid(ProcedureName);
         ToggleDiv(divDashboard);
     }
-    protected void btnTotalProjects_Click(object sender, EventArgs e)
-    {
 
-        DataTable dt = new DataTable();
-        dt = objVisionPlan.getTotalProjectFinancialYearWise();
-
-        if (dt != null && dt.Rows.Count > 0)
-        {
-            grdTotalProjects.DataSource = dt;
-            grdTotalProjects.DataBind();
-        }
-        else
-        {
-            grdTotalProjects.DataSource = null;
-            grdTotalProjects.DataBind();
-            MessageBox.Show("No Records Found");
-        }
-        mp1.Show();
-        //ToggleDiv(divTotalProjects);
-    }
+    
 
     protected void btnULBWise_Click(object sender, EventArgs e)
     {
@@ -185,9 +169,60 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         div.Focus();
     }
 
-    protected void btnclose_Click(object sender, EventArgs e)
+
+    #region For Modal Popup
+    [WebMethod]
+    public static string btnTotalProjects_Click(int newAkanshi_Id)
     {
-        // Code to hide the modal popup
-        Panel1.Style["display"] = "none";
+        try
+        {
+            DataTable dt = new DataTable();
+            VisionPlan objVisionPlan = new VisionPlan();
+            dt = objVisionPlan.getTotalProjectFinancialYearWise();
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new { error = "Record Not Found" });
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (consider logging the error)
+            return JsonConvert.SerializeObject(new { error = ex.Message });
+        }
     }
+
+    [WebMethod]
+    public static string GetTotalProjectsUlbWiseByFYID(int FYID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            VisionPlan objVisionPlan = new VisionPlan();
+            dt = objVisionPlan.getTotalProjectsUlbWiseByFYID(FYID);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new { error = "Record Not Found" });
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (consider logging the error)
+            return JsonConvert.SerializeObject(new { error = ex.Message });
+        }
+    }
+    #endregion
+
+
 }

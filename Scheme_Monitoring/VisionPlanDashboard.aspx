@@ -12,10 +12,7 @@
         <div class="page-content">
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
-                    <cc1:modalpopupextender id="mp1" runat="server" popupcontrolid="Panel1" targetcontrolid="btnShowPopup"
-                        cancelcontrolid="btnclose" backgroundcssclass="modalBackground1">
-                    </cc1:modalpopupextender>
-                    <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
+                    
                     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
                     </cc1:ToolkitScriptManager>
                     <div class="container-fluid">
@@ -86,7 +83,9 @@
                                                                             <div class="card-footer bg-c-organge">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-9">
-                                                                                       <asp:Button ID="btnTotalProjects" Text="View Details" OnClick="btnTotalProjects_Click"  runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                                                                       <%--<asp:Button ID="btnTotalProjects" Text="View Details" OnClick="btnTotalProjects_Click"  runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>--%>
+                                                                                        <asp:Button ID="btnTotalProjects" runat="server" Text="Open List" OnClientClick="btnTotalProjects_Click(1); return false;" />
+
                                                                                     </div>
                                                                                     <div class="col-3 text-right">
                                                                                         <i class="fa fa-line-chart text-white f-16"></i>
@@ -429,59 +428,147 @@
             </asp:UpdatePanel>
         </div>
     </div>
-    
-    <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1 p-0" Style="display: none; width: 1000px; margin-left: -32px; height: 800px; overflow: auto;">
-        <div class="row  bg-warning" style="border-radius: 11px; padding: 10px;">
-            <div class="col-xs-12">
-                <div class="table-header fw-bold fs-4">
-                    Vision Plan Dashboard
-                </div>
-            </div>
-        </div>
 
-        <div class="row" style="padding: 10px">
-            <div class="col-xl-12">
-                <h5 id="tableFor" style="text-align: center" runat="server"></h5>
-            </div>
-            <div class="col-xl-12">
-                <h5 id="tableDescription" style="text-align: center" runat="server"></h5>
-            </div>
-        </div>
-        <div class="row p-3">
-            <div class="col-md-12" id="divTotalProjects" runat="server">
-                <div class="form-group">
-                    <asp:GridView ID="grdTotalProjects" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="false" EmptyDataText="No Records Found">
-                        <Columns>
-                            <asp:TemplateField HeaderText="Sr. No.">
-                                <itemtemplate>
-                                    <%# Container.DataItemIndex + 1 %>
-                                </itemtemplate>
-                            </asp:TemplateField>
-                            <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
-                            <asp:TemplateField HeaderText="No of Projects">
-                                <ItemTemplate>
-                                    <asp:Button ID="btnNoOfProjects" runat="server" Text='<%# Eval("NoOfProjects") %>' CommandName="NoOfProjects" OnCommand="GetNoOfProjects" CommandArgument='<%# Eval("FYID") %>' CssClass="btn btn-primary drill_btn" />
-                                </ItemTemplate>
-                                <FooterTemplate>
-                                    <asp:Label ID="lblTotalNoOfProjects" Text="Total No Of Projects" runat="server"></asp:Label>
-                                </FooterTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                        <EmptyDataTemplate>
+     <script>
+         function btnTotalProjects_Click() {
+             $.ajax({
+                 url: "VisionPlanDashboard.aspx/btnTotalProjects_Click",
+                 type: "POST",
+                 contentType: "application/json;charset=utf-8;",
+                 dataType: "json",
+                 data: JSON.stringify({ newAkanshi_Id: 1 }),
+                 success: function (data) {
+                     console.log(data); // Inspect the response
+                     if (data.d) {
+                         var result = JSON.parse(data.d);
+                         $('#ULBData').empty(); // Clear existing rows
+                         var html = '';
+
+                         for (var i = 0; i < result.length; i++) {
+                             var item = result[i];
+                             html += '<tr>';
+                             html += '<td>' + (item.FYID || '') + '</td>';
+                             html += '<td>' + (item.FinancialYear_Comments || '') + '</td>';
+                             html += '<td>';
+                             html += '<button type="button" class="btn btn-primary btn-sm" onclick="openTotalProjectUlbWiseByFYID(' + item.FYID + ')">' + (item.NoOfProjects || '') + '</button>';
+                             html += '</td>';
+                             html += '<td>' + (item.TotalProjectCost || '') + '</td>';
+                             html += '</tr>';
+                         }
+
+                         $('#HeadData1').html(html);
+                         $("#TotalProjectsFinancialYearWise").modal('show');
+                     } else {
+                         console.error("No data returned");
+                     }
+                 },
+                 error: function (xhr, status, error) {
+                     console.error("AJAX error: " + status + " - " + error);
+                 }
+             });
+         }
+
+         function openTotalProjectUlbWiseByFYID(FYID) {
+
+             $.ajax({
+                 url: "VisionPlanDashboard.aspx/GetTotalProjectsUlbWiseByFYID",
+                 type: "POST",
+                 contentType: "application/json;charset=utf-8;",
+                 dataType: "json",
+                 data: JSON.stringify({ FYID: FYID }),
+                 success: function (data) {
+                     console.log(data); // Inspect the response
+                     if (data.d) {
+                         var result = JSON.parse(data.d);
+                         //$('#ULBData').empty(); // Clear existing rows
+                         var html = '';
+
+                         for (var i = 0; i < result.length; i++) {
+                             var item = result[i];
+                             html += '<tr>';
+                             html += '<td>' + (item.Circle_Name || '') + '</td>';
+                             html += '<td>' + (item.Division_Name || '') + '</td>';
+                             html += '<td>';
+                             html += '<button class="btn btn-primary btn-sm" onclick="ProjectByFYIDandULB(' + item.FYID + ')">' + (item.NoOfProjects || '') + '</button>';
+                             html += '</td>';
+                             html += '<td>' + (item.TotalProjectCost || '') + '</td>';
+                             html += '</tr>';
+                         }
+
+                         $('#HeadData2').html(html);
+                         $("#TotalProjectsFinancialYearWise").modal('hide');
+                         $("#TotalProjectsULBWiseByFYID").modal('show');
+                     } else {
+                         console.error("No data returned");
+                     }
+                 },
+                 error: function (xhr, status, error) {
+                     console.error("AJAX error: " + status + " - " + error);
+                 }
+             });
+         }
+
+         
+
+         
+     </script>
+
+
+    <!-- Modal for TotalProjectsFinancialYearWise -->
+    <div class="modal fade" id="TotalProjectsFinancialYearWise" tabindex="-1" aria-labelledby="TotalProjectsFinancialYearWiseLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="TotalProjectsFinancialYearWiseLabel">Total No of Projects Financial Year Wise</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                <th>Sr.No.</th>
+                                <th>Financial Year</th>
+                                <th>No Of Projects</th>
+                                <th>Total Project Cost</th>
                             </tr>
-                        </EmptyDataTemplate>
-                    </asp:GridView>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group mt-2 text-end">
-                    <asp:Button ID="btnclose" runat="server" Text="Close" CssClass="text-light btn bg-danger p-2" OnClick="btnclose_Click" />
+                        </thead>
+                        <tbody id="HeadData1">
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </asp:Panel>
+    </div>
+
+    <!-- Modal for TotalProjectsULBWiseByFYID -->
+    <div class="modal fade" id="TotalProjectsULBWiseByFYID" tabindex="-1" aria-labelledby="TotalProjectsULBWiseByFYIDLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="TotalProjectsULBWiseByFYIDLabel">Total Projects ULB Wise By Financial Year</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>District Name</th>
+                                <th>ULB Name</th>
+                                <th>No of Projects</th>
+                                <th>Total Project Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody id="HeadData2">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+
 
     <style>
         .card {
