@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Web.Services;
+using Newtonsoft.Json;
 using System.Data;
 using System.Text;
 using System.Web;
@@ -8,6 +10,7 @@ using System.Web.UI.WebControls;
 public partial class VisionPlanDashboard : System.Web.UI.Page
 {
     Loan objLoan = new Loan();
+    VisionPlan objVisionPlan = new VisionPlan();
 
     protected void Page_PreInit(object sender, EventArgs e)
     {
@@ -22,7 +25,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
-
+            btnDashboard_Click(null, EventArgs.Empty);
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
@@ -33,7 +36,10 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         string ProcedureName = "sp_DashboardSummaryReport_VPReport";
 
         LoadVisionPlanGrid(ProcedureName);
+        ToggleDiv(divDashboard);
     }
+
+    
 
     protected void btnULBWise_Click(object sender, EventArgs e)
     {
@@ -41,6 +47,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ULBWiseReport_VPReport";
 
         LoadVisionPlanGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
 
     protected void btnCircleWise_Click(object sender, EventArgs e)
@@ -49,6 +56,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         string ProcedureName = "sp_UniqueCirclesWiseVisionReport_VPReport";
 
         LoadVisionPlanGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
     protected void btnPriorityWise_Click(object sender, EventArgs e)
     {
@@ -56,6 +64,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         string ProcedureName = "sp_SelfPriorityWiseVisionReport_VPReport";
 
         LoadVisionPlanGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
     protected void btnProjectType_Click(object sender, EventArgs e)
     {
@@ -63,6 +72,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ProjectTypeWiseVisionReport_VPReport";
 
         LoadVisionPlanGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
 
     private void LoadVisionPlanGrid(string ProcedureName)
@@ -115,8 +125,6 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
                 gridDashboard.DataBind();
                 btnDashboard.Visible = true;
             }
-
-            ToggleDiv(divData);
         }
         else
         {
@@ -127,45 +135,10 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
         }
     }
 
+    protected void GetNoOfProjects(object sender, CommandEventArgs e)
+    {
 
-    //private void LoadVisionPlanGrid(string ProcedureName)
-    //{
-    //    DataTable dt = new DataTable();
-    //    dt = objLoan.getWorkProposalDashbaord(ProcedureName);
-
-    //    if (dt != null && dt.Rows.Count > 0)
-    //    {
-    //        gridDashboard.DataSource = dt;
-    //        gridDashboard.DataBind();
-    //        btnDashboard.Visible = true;
-
-    //        // Assuming you have predefined labels up to Label8 and HeadLabel8 on your form
-    //        for (int i = 0; i < dt.Columns.Count; i++)
-    //        {
-    //            // Dynamically find the label controls
-    //            Label valueLabel = (Label)FindControl("Label"+i + 1);
-    //            Label headerLabel = (Label)FindControl("HeadeLabel"+i + 1);
-
-    //            if (valueLabel != null && headerLabel != null)
-    //            {
-    //                // Set the value from the first row of the DataTable
-    //                valueLabel.Text = dt.Rows[0][i].ToString();
-    //                // Set the column name as the header
-    //                headerLabel.Text = dt.Columns[i].ColumnName;
-    //            }
-    //        }
-
-    //        ToggleDiv(divData);
-    //    }
-    //    else
-    //    {
-    //        btnDashboard.Visible = true;
-    //        gridDashboard.DataSource = null;
-    //        gridDashboard.DataBind();
-    //        MessageBox.Show("No Records Found");
-    //    }
-    //}
-
+    }
 
 
     protected void grdPost_PreRender(object sender, EventArgs e)
@@ -190,14 +163,93 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
 
     private void ToggleDiv(System.Web.UI.HtmlControls.HtmlGenericControl div)
     {
-        divData.Visible = false;
-        //divMPWise.Visible = false;
-        //divMLAWise.Visible = false;
-        //divDivisionWise.Visible = false;
-        //divWorkPlanWise.Visible = false;
-        //divDistrictWise.Visible = false;
-        //divRecommendationWise.Visible = false;
+        divDashboard.Visible = false;
+        divGrid.Visible = false;
         div.Visible = true;
         div.Focus();
     }
+
+
+    #region For Modal Popup
+    [WebMethod]
+    public static string btnTotalProjects_Click(int newAkanshi_Id)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            VisionPlan objVisionPlan = new VisionPlan();
+            dt = objVisionPlan.getTotalProjectFinancialYearWise();
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new { error = "Record Not Found" });
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (consider logging the error)
+            return JsonConvert.SerializeObject(new { error = ex.Message });
+        }
+    }
+
+    [WebMethod]
+    public static string GetTotalProjectsUlbWiseByFYID(int FYID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            VisionPlan objVisionPlan = new VisionPlan();
+            dt = objVisionPlan.getTotalProjectsUlbWiseByFYID(FYID);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new { error = "Record Not Found" });
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (consider logging the error)
+            return JsonConvert.SerializeObject(new { error = ex.Message });
+        }
+    }
+
+
+    [WebMethod]
+    public static string GetProjectByFYIDandULB(int FYID, int ULBID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            VisionPlan objVisionPlan = new VisionPlan();
+            dt = objVisionPlan.getProjectByFYIDandULB(FYID, ULBID);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new { error = "Record Not Found" });
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (consider logging the error)
+            return JsonConvert.SerializeObject(new { error = ex.Message });
+        }
+    }
+    #endregion
+
+
 }

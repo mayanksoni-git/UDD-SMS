@@ -714,6 +714,8 @@ public class Loan
             throw new Exception(ex.Message);
         }
     }
+
+
     #endregion
 
     #region Decision Making Page
