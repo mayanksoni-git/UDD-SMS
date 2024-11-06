@@ -169,17 +169,15 @@
                         <ul class="navbar-nav" id="navbar-nav">
                             <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                             <li class="nav-item"><a class="nav-link menu-link" href="DashboardNew.aspx">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy icon-dual">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                <img src="assets/images/left-menu-icon/dashboard.svg" class="img-fluid" />
                                 <span data-key="t-widgets">Dashboard</span> </a></li>
 
                             <li class="nav-item"><a class="nav-link menu-link" href="Menu_Analysis.aspx">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy icon-dual">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                <img src="assets/images/left-menu-icon/data-analysis.svg" class="img-fluid" />
                                 <span data-key="t-widgets">Analysis</span> </a></li>
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarFormsj" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFormsj"><i data-feather="file-text" class="icon-dual"></i><span data-key="t-forms">Jurisdiction Masters</span> </a>
+                                <a class="nav-link menu-link" href="#sidebarFormsj" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFormsj"><img src="assets/images/left-menu-icon/judicial.svg" class="img-fluid" /><span data-key="t-forms">Jurisdiction Masters</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarFormsj">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="ULBPopulation.aspx" class="nav-link" data-key="t-pickers">ULB Population</a></li>
@@ -197,7 +195,7 @@
                             </li>--%>
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarWPMS" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarWPMS"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Work Proposal Management</span> </a>
+                                <a class="nav-link menu-link" href="#sidebarWPMS" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarWPMS"><img src="assets/images/left-menu-icon/Work Proposal Management.svg" class="img-fluid" /><span data-key="t-tables">Work Proposal Management</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarWPMS">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="FormForApproval.aspx" class="nav-link" data-key="t-grid-js">Create Work Proposal</a> </li>
@@ -208,7 +206,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarProject" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProject"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Project Management</span> </a>
+                                <a class="nav-link menu-link" href="#sidebarProject" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProject"><img src="assets/images/left-menu-icon/Project Management.svg" class="img-fluid" /><span data-key="t-tables">Project Management</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarProject">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx" class="nav-link" data-key="t-grid-js">Create/Update Project (Legacy Data)</a> </li>
@@ -224,7 +222,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarMIS" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMIS"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">MIS</span> </a>
+                                <a class="nav-link menu-link" href="#sidebarMIS" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMIS"><img src="assets/images/left-menu-icon/MIS.svg" class="img-fluid" /><span data-key="t-tables">MIS</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarMIS">
                                     <ul class="nav nav-sm flex-column">
                                         <%--<li class="nav-item"><a href="PyersTracker.aspx" class="nav-link" data-key="t-grid-js">Crematorium Tracker</a> </li>--%>
@@ -236,7 +234,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarAAP" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDPR"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Annual Action Plan</span> </a>
+                                <a class="nav-link menu-link" href="#sidebarAAP" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDPR"><img src="assets/images/left-menu-icon/Annual Action Plan.svg" class="img-fluid" /><span data-key="t-tables">Annual Action Plan</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarAAP">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="ListOfAllULB_IncomeType.aspx" class="nav-link" data-key="t-grid-js">Add ULB Income</a> </li>
@@ -267,7 +265,7 @@
                                 </div>
                             </li>--%>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarDPR" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDPR"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">DPR</span> </a>
+                                <a class="nav-link menu-link" href="#sidebarDPR" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDPR"><img src="assets/images/left-menu-icon/DPR.svg" class="img-fluid" /><span data-key="t-tables">DPR</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarDPR">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="MasterProjectDPR.aspx" class="nav-link" data-key="t-grid-js">Create Project DPR</a> </li>
@@ -277,7 +275,7 @@
                                 </div>
                             </li>
                              <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarCMVNY" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFund"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">मुख्यमंत्री वैश्विक नगरोदय योजना</span> </a>
+                                <a class="nav-link menu-link" href="#sidebarCMVNY" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFund"><img src="assets/images/left-menu-icon/CMVNY Scheme.svg" class="img-fluid" /><span data-key="t-tables">मुख्यमंत्री वैश्विक नगरोदय योजना</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarCMVNY">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="VisionPlan.aspx" class="nav-link" data-key="t-grid-js">Vision Plan</a> </li>

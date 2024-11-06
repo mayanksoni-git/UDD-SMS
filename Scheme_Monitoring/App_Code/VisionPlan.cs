@@ -30,7 +30,7 @@ public class VisionPlan
         }
         catch (Exception ex)
         {
-            throw new Exception(ex.Message);
+            throw new Exception(ex.Message); 
         }
     }
 
@@ -43,6 +43,24 @@ public class VisionPlan
 
             param[0] = new SqlParameter("@Action", "TotalProjectsUlbWiseByFYID");
             param[1] = new SqlParameter("@FYID", FYID);
+            return objDAL.GetDataByProcedure("sp_VisionPlanDashboard", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getProjectByFYIDandULB(int FYID, int ULBID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[3];
+
+            param[0] = new SqlParameter("@Action", "ProjectByFYIDandULB");
+            param[1] = new SqlParameter("@FYID", FYID);
+            param[2] = new SqlParameter("@ULBID", ULBID);
             return objDAL.GetDataByProcedure("sp_VisionPlanDashboard", param);
         }
         catch (Exception ex)

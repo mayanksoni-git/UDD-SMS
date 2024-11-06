@@ -222,6 +222,33 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
             return JsonConvert.SerializeObject(new { error = ex.Message });
         }
     }
+
+
+    [WebMethod]
+    public static string GetProjectByFYIDandULB(int FYID, int ULBID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            VisionPlan objVisionPlan = new VisionPlan();
+            dt = objVisionPlan.getProjectByFYIDandULB(FYID, ULBID);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new { error = "Record Not Found" });
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (consider logging the error)
+            return JsonConvert.SerializeObject(new { error = ex.Message });
+        }
+    }
     #endregion
 
 
