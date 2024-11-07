@@ -12,7 +12,7 @@
                         <div id="divCreate" runat="server">
 
                             <div class="row">
-                                <div class="col-12 mb-4">
+                                <div class="col-12 mb-0">
                                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                         <h4 class="mb-sm-0">Create DPR</h4>
                                         <div class="page-title-right">
@@ -108,12 +108,7 @@
                                                             <asp:TextBox ID="TxtWard" runat="server" CssClass="form-control"  ></asp:TextBox>
                                                         </div>
                                                     </div>
-                                                     <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <br />
-                                                            <asp:CheckBox ID="chkSkip" runat="server" Text="Create DPR and Skip To Bid Process Management Module"></asp:CheckBox>
-                                                        </div>
-                                                    </div>
+                                                   
                                                      <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label7" runat="server" Text="Enter Zone" CssClass="control-label no-padding-right"></asp:Label>
@@ -124,10 +119,14 @@
                                                         <div>
                                                             <asp:Label ID="Label8" runat="server" Text="Land Status: " CssClass="control-label no-padding-right"></asp:Label>
                                                             <asp:CheckBoxList ID="chkLandStatus" runat="server" RepeatDirection="Horizontal">
-                                                                <asp:ListItem Text="Land Identified" Value="I"></asp:ListItem>
-                                                                <asp:ListItem Text="Land Transffered" Value="T"></asp:ListItem>
+                                                                <asp:ListItem Text="Land Identified" Value="I" CssClass="checkboxdpr"></asp:ListItem>
+                                                                <asp:ListItem Text="Land Transffered" Value="T" CssClass="checkboxdpr"></asp:ListItem>
                                                                
                                                             </asp:CheckBoxList>
+
+                                                            
+
+
                                                         </div>
                                                     </div>
 
@@ -138,7 +137,12 @@
                                                         </div>
                                                     </div>
 
-                                                    
+                                                      <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <br />
+                                                            <asp:CheckBox ID="chkSkip" runat="server" Text="Create DPR and Skip To Bid Process Management Module"></asp:CheckBox>
+                                                        </div>
+                                                    </div>
                                                    
 
                                                       <div class="col-xxl-11 col-md-11 flex-grow-1"></div>
@@ -228,7 +232,7 @@
                                                             <asp:BoundField HeaderText="Project Code" DataField="ProjectDPR_Code" />
                                                             <asp:TemplateField HeaderText="Delete">
                                                                 <ItemTemplate>
-                                                                    <asp:ImageButton ID="btnDelete" Width="20px" Height="30px" OnClick="btnDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
+                                                                    <asp:ImageButton ID="btnDelete" Width="20px" OnClick="btnDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                         </Columns>

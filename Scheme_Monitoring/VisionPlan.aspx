@@ -175,42 +175,44 @@
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Vision Plan</h4>
                                         <%--<asp:Button ID="ExportExcel" runat="server" Text="Export to Excel"  CommandName="Export Data" OnClick="ExportToExcel_Click" CssClass="btn btn-success" />--%>
-                                        <button id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="smallsBtn">Excel</button>
-                                        <button text="" style="float: right" onclick="exportTableToPDF()" class="smallsBtn">PDF</button>
+                                        <button id="exportToExcel" runat="server" onclick="ExportToExcel('xlsx')" class="dt-button buttons-excel buttons-html5">Excel</button>
+                                        <button text="" style="float: right" onclick="exportTableToPDF()" class="dt-button buttons-pdf buttons-html5">PDF</button>
                                     </div>
                                     <div class="card-body" runat="server" style="">
                                         <div class="clearfix" id="dtOptions" runat="server">
                                             <div class="pull-right tableTools-container"></div>
                                         </div>
+                                        <div class="table-responsive">
+
                                         <table id="sample-table-2" class="table table-striped table-bordered table-hover table-responsive">
 
 
                                             <thead>
                                                 <tr class="table-primary">
 
-                                                    <th style="text-align: center; font-size: 15px">Sr. No.</th>
-                                                    <th style="text-align: center; font-size: 15px" colspan="5">ULB Details</th>
-                                                    <th style="text-align: center; font-size: 15px" colspan="4">Project Name</th>
-                                                    <th style="text-align: center; font-size: 15px" colspan="2">Existing</th>
-                                                    <th style="text-align: center; font-size: 15px">Condition</th>
+                                                    <th>Sr. No.</th>
+                                                    <th colspan="5">ULB Details</th>
+                                                    <th colspan="4">Project Name</th>
+                                                    <th colspan="2">Existing</th>
+                                                    <th>Condition</th>
 
-                                                    <th style="text-align: center; font-size: 15px">User Charge</th>
-                                                    <th style="text-align: center; font-size: 15px">Ownership</th>
+                                                    <th>User Charge</th>
+                                                    <th>Ownership</th>
 
-                                                    <th style="text-align: center; font-size: 15px" colspan="2">Location</th>
-                                                    <th style="text-align: center; font-size: 15px">Priority</th>
-                                                    <th style="text-align: center; font-size: 15px" colspan="2">VP Created/Updated On</th>
-                                                    <th style="text-align: center; font-size: 15px" colspan="4">Doc Status</th>
+                                                    <th colspan="2">Location</th>
+                                                    <th>Priority</th>
+                                                    <th colspan="2">VP Created/Updated On</th>
+                                                    <th colspan="4">Doc Status</th>
 
-                                                    <th style="text-align: center; font-size: 15px">Action</th>
+                                                    <th>Action</th>
                                                 </tr>
                                                 <tr class="table-primary">
 
                                                     <th>#</th>
-                                                    <th style="text-align: center">Division</th>
-                                                    <th style="text-align: center">District</th>
-                                                    <th style="text-align: center">ULB Name</th>
-                                                    <th style="text-align: center">ULB Type</th>
+                                                    <th>Division</th>
+                                                    <th>District</th>
+                                                    <th>ULB Name</th>
+                                                    <th>ULB Type</th>
                                                     <th style="text-align: center">Population</th>
                                                     <th style="text-align: center">Project Type</th>
                                                     <th style="text-align: center">Project Name</th>
@@ -289,22 +291,30 @@
                                                         <td>
                                                             <asp:Label ID="lblDocStatu" runat="server"><%# DataBinder.Eval(Container.DataItem, "DocStatus") %></asp:Label></td>
                                                         <td>
-                                                            <asp:HyperLink ID="hypVPDoc" runat="server" Target="_blank" NavigateUrl='<%# Eval("VPDoc") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("VPDoc").ToString()) %>'>
-                                                                <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View Doc" Height="30" Width="30" />
+                                                            <asp:HyperLink ID="hypVPDoc" runat="server" Target="_blank" ToolTip="Click to View Document" NavigateUrl='<%# Eval("VPDoc") %>' Visible='<%# !string.IsNullOrEmpty(Eval("VPDoc").ToString()) %>'>
+                                                                 <%--<asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png"  AlternateText="View Doc" Width="14" />--%>
+                                                                 <img src="/assets/images/ViewPdf.png" alt="Edit" width="20" />
                                                             </asp:HyperLink>
                                                         </td>
                                                         <td>
                                                             <asp:Label ID="lblDocCreatedOn" runat="server"><%# DataBinder.Eval(Container.DataItem, "DocCreatedOn", "{0:dd/MM/yyyy}") %></asp:Label></td>
                                                         <td>
                                                             <asp:Label ID="lblDocUpdatedOn" runat="server"><%# DataBinder.Eval(Container.DataItem, "DocUpdatedOn", "{0:dd/MM/yyyy}") %></asp:Label></td>
-                                                        <td id="LastColumn" runat="server">
-                                                            <asp:LinkButton ID="btnEdit" runat="server" Text="Edit" CssClass="btn bg-warning icon-pencil bigger-130 green" ToolTip="Click to Edit Record" CommandName="edit"
+                                                        <td id="LastColumn" runat="server" class="d-flex">
+                                                            <asp:LinkButton ID="btnEdit" runat="server" CssClass=" m-1" ToolTip="Click to Edit Record" CommandName="edit"
+                                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>'>
+                                                                <img src="/assets/images/edit_btn.png" alt="Edit"  width="20" />
+                                                            </asp:LinkButton>
+
+                                                            <asp:LinkButton ID="btnDelete" CssClass="btn bg-danger m-1"  runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
+                                                                OnClientClick="return confirm('Are you sure !');" >
+                                                            <img src="/assets/images/delete.png" alt="Delete" width="20" />
+                                                            </asp:LinkButton>
+                                                            
+
+                                                            <asp:LinkButton ID="BtnAction" runat="server" Visible="false" Text="Action" CssClass="btn bg-primary icon-pencil bigger-130 green m-1" ToolTip="Click to Action on  Record" CommandName="Action"
                                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
-                                                            <asp:LinkButton ID="btnDelete" CssClass="btn bg-danger" Text="Delete" runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
-                                                                OnClientClick="return confirm('Are you sure !');" />
-                                                            <asp:LinkButton ID="BtnAction" runat="server" Visible="false" Text="Action" CssClass="btn bg-primary icon-pencil bigger-130 green" ToolTip="Click to Action on  Record" CommandName="Action"
-                                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
-                                                        </td>
+                                                            </td>
                                                     </tr>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -315,6 +325,7 @@
                                                 <p style="color: red;">Record Not Found</p>
                                             </asp:Panel>
                                         </table>
+                                            </div>
                                     </div>
                                 </div>
 

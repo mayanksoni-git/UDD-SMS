@@ -8,6 +8,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <style>
+        .card-animate:hover {
+	transform: scale(1);
+}
+     .card-animate h6 {
+    font-weight: 400;
+    color: #000 !important;
+    font-weight: 500;
+    font-size: 14px;
+}
+    </style>
     <div class="main-content">
         <div class="page-content">
             <asp:UpdatePanel ID="up" runat="server">
@@ -30,7 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div runat="server" id="divData" class="tblheader" style="overflow: auto">
+                        <div runat="server" id="divData" class="tblheader">
                             <div class="row">
                                 <div class="col-lg-12">
 
@@ -41,33 +52,51 @@
                                         <div class="card-body">
                                             <div class="live-preview">
                                                 <div class="row gy-12">
-                                                    <div class="d-flex" style="margin-top: 20px; margin-bottom: 20px">
-                                                        <asp:Button ID="btnDashboard" Text="Dashboard" OnClick="btnDashboard_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnULBWise" Text="ULB Wise" OnClick="btnULBWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnCircleWise" Text="District Wise" OnClick="btnCircleWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnPriorityWise" Text="Priority Wise" OnClick="btnPriorityWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnProjectType" Text="Project Type Wise" OnClick="btnProjectType_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
 
-                                                    </div>
-                                                    <!-- div.dataTables_borderWrap -->
-                                                    <div runat="server" id="divReport" class="tblheader" style="overflow: auto">
-                                                        <div class="row">
-                                                            <div class="col-lg-10">
-                                                                <h3>Reports</h3>
-                                                            </div>
-                                                            <div class="col-lg-2">
-                                                                <%--<asp:Button ID="Button7" runat="server" Text="Export to Excel Of Financial Year Wise" CommandName="Financial Year Wise Data" OnClick="btnExportToExcel_Click" CssClass="btn btn-success" />--%>
-                                                            </div>
-                                                        </div>
+                                                    <div class="card-body">
 
-                                                        <!-- Page-body start -->
-                                                        <div id="divDashboard" runat="server" visible="true">
+                                    <ul class="nav nav-pills arrow-navtabs nav-success mb-3" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <div class="nav-link active" data-bs-toggle="tab" href="#arrow-dashboard" role="tab" aria-selected="true">
+                                             
+                                                 <asp:Button ID="btnDashboard" Text="Dashboard" OnClick="btnDashboard_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <div class="nav-link" data-bs-toggle="tab" href="#arrow-btnULBWise" role="tab" aria-selected="false" tabindex="-1">
+                                               
+                                                <asp:Button ID="btnULBWise" Text="ULB Wise" OnClick="btnULBWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <div class="nav-link" data-bs-toggle="tab" href="#arrow-btnCircleWise" role="tab" aria-selected="false" tabindex="-1">
+                                                
+                                                <asp:Button ID="btnCircleWise" Text="District Wise" OnClick="btnCircleWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                            </div>
+                                        </li>
+                                         <li class="nav-item" role="presentation">
+                                            <div class="nav-link" data-bs-toggle="tab" href="#arrow-btnPriorityWise" role="tab" aria-selected="false" tabindex="-1">
+                                                
+                                      <asp:Button ID="btnPriorityWise" Text="Priority Wise" OnClick="btnPriorityWise_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                            </div>
+                                        </li>
+                                         <li class="nav-item" role="presentation">
+                                            <div class="nav-link" data-bs-toggle="tab" href="#arrow-btnProjectType" role="tab" aria-selected="false" tabindex="-1">
+                                                
+                                             <asp:Button ID="btnProjectType" Text="Project Type Wise" OnClick="btnProjectType_Click" runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content text-muted">
+                                        <div class="tab-pane active" id="arrow-dashboard" role="tabpanel">
+                                               <div id="divDashboard" runat="server" visible="true">
                                                             <div class="page-body">
                                                                 <div class="row">
                                                                     <!-- task, page, download counter  start -->
                                                                     <div class="col-xl-3 col-md-6">
-                                                                        <div class="card">
-                                                                            <div class="card-block">
+                                                                        <div class="card card-animate bg-primary-subtle">
+                                                                            <div class="card-body">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-8">
                                                                                         <h4 class="text-c-purple">
@@ -75,30 +104,24 @@
                                                                                         <h6 class="text-muted m-b-0">
                                                                                             <asp:Label ID="HeadLabel1" Text="" runat="server"></asp:Label></h6>
                                                                                     </div>
-                                                                                    <div class="col-4 text-right">
-                                                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                                                   <div class="col-4 text-end">
+                                                                                       <i class="ri-article-line display-3 text-danger"></i>
                                                                                     </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-footer bg-c-organge">
-                                                                                <div class="row align-items-center">
-                                                                                    <div class="col-9">
+                                                                                     <div class="col-12">
                                                                                        <%--<asp:Button ID="btnTotalProjects" Text="View Details" OnClick="btnTotalProjects_Click"  runat="server" CssClass="btn tab_btn bg-success text-white"></asp:Button>--%>
-                                                                                        <asp:Button ID="btnTotalProjects" runat="server" Text="Open List" OnClientClick="btnTotalProjects_Click(1); return false;" />
+                                                                                        <asp:Button ID="btnTotalProjects" type="button" runat="server" CssClass="plan-btn" Text="Open List" OnClientClick="btnTotalProjects_Click(1); return false;" />
 
                                                                                     </div>
-                                                                                    <div class="col-3 text-right">
-                                                                                        <i class="fa fa-line-chart text-white f-16"></i>
-                                                                                    </div>
                                                                                 </div>
                                                                             </div>
+                                                                           
 
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-xl-3 col-md-6">
-                                                                        <div class="card">
-                                                                            <div class="card-block">
+                                                                        <div class="card card-animate bg-success-subtle">
+                                                                            <div class="card-body">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-8">
                                                                                         <h4 class="text-c-purple">₹
@@ -106,28 +129,22 @@
                                                                                         <h6 class="text-muted m-b-0">
                                                                                             <asp:Label ID="HeadLabel2" Text="" runat="server"></asp:Label></h6>
                                                                                     </div>
-                                                                                    <div class="col-4 text-right">
-                                                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                                                     <div class="col-4 text-end">
+                                                                                       <i class="ri-article-line display-3 text-danger"></i>
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="card-footer bg-c-organge">
-                                                                                <div class="row align-items-center">
-                                                                                    <div class="col-9">
-                                                                                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                    </div>
-                                                                                    <div class="col-3 text-right">
-                                                                                        <i class="fa fa-line-chart text-white f-16"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                         
 
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-xl-3 col-md-6">
-                                                                        <div class="card">
-                                                                            <div class="card-block">
+                                                                        <div class="card card-animate bg-warning-subtle">
+                                                                            <div class="card-body">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-8">
                                                                                         <h4 class="text-c-purple">
@@ -135,28 +152,21 @@
                                                                                         <h6 class="text-muted m-b-0">
                                                                                             <asp:Label ID="HeadLabel3" Text="" runat="server"></asp:Label></h6>
                                                                                     </div>
-                                                                                    <div class="col-4 text-right">
-                                                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                                                     <div class="col-4 text-end">
+                                                                                       <i class="ri-article-line display-3 text-danger"></i>
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="card-footer bg-c-organge">
-                                                                                <div class="row align-items-center">
-                                                                                    <div class="col-9">
-                                                                                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                    </div>
-                                                                                    <div class="col-3 text-right">
-                                                                                        <i class="fa fa-line-chart text-white f-16"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
+                                                                          
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-xl-3 col-md-6">
-                                                                        <div class="card">
-                                                                            <div class="card-block">
+                                                                        <div class="card card-animate bg-info-subtle">
+                                                                            <div class="card-body">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-8">
                                                                                         <h4 class="text-c-purple">
@@ -164,28 +174,22 @@
                                                                                         <h6 class="text-muted m-b-0">
                                                                                             <asp:Label ID="HeadLabel4" Text="" runat="server"></asp:Label></h6>
                                                                                     </div>
-                                                                                    <div class="col-4 text-right">
-                                                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                                                   <div class="col-4 text-end">
+                                                                                       <i class="ri-article-line display-3 text-danger"></i>
+                                                                                    </div>
+                                                                                     <div class="col-12">
+                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="card-footer bg-c-organge">
-                                                                                <div class="row align-items-center">
-                                                                                    <div class="col-9">
-                                                                                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                    </div>
-                                                                                    <div class="col-3 text-right">
-                                                                                        <i class="fa fa-line-chart text-white f-16"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                         
 
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-xl-3 col-md-6">
-                                                                        <div class="card">
-                                                                            <div class="card-block">
+                                                                        <div class="card card-animate bg-danger-subtle">
+                                                                            <div class="card-body">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-8">
                                                                                         <h4 class="text-c-purple">
@@ -193,28 +197,22 @@
                                                                                         <h6 class="text-muted m-b-0">
                                                                                             <asp:Label ID="HeadLabel5" Text="" runat="server"></asp:Label></h6>
                                                                                     </div>
-                                                                                    <div class="col-4 text-right">
-                                                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                                                     <div class="col-4 text-end">
+                                                                                       <i class="ri-article-line display-3 text-danger"></i>
+                                                                                    </div>
+                                                                                     <div class="col-12">
+                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="card-footer bg-c-organge">
-                                                                                <div class="row align-items-center">
-                                                                                    <div class="col-9">
-                                                                                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                    </div>
-                                                                                    <div class="col-3 text-right">
-                                                                                        <i class="fa fa-line-chart text-white f-16"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                          
 
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-xl-3 col-md-6">
-                                                                        <div class="card">
-                                                                            <div class="card-block">
+                                                                        <div class="card card-animate bg-dark-subtle">
+                                                                            <div class="card-body">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-8">
                                                                                         <h4 class="text-c-purple">
@@ -222,28 +220,22 @@
                                                                                         <h6 class="text-muted m-b-0">
                                                                                             <asp:Label ID="HeadLabel6" Text="" runat="server"></asp:Label></h6>
                                                                                     </div>
-                                                                                    <div class="col-4 text-right">
-                                                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                                                    <div class="col-4 text-end">
+                                                                                       <i class="ri-article-line display-3 text-danger"></i>
+                                                                                    </div>
+                                                                                     <div class="col-12">
+                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="card-footer bg-c-organge">
-                                                                                <div class="row align-items-center">
-                                                                                    <div class="col-9">
-                                                                                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                    </div>
-                                                                                    <div class="col-3 text-right">
-                                                                                        <i class="fa fa-line-chart text-white f-16"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                        
 
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-xl-3 col-md-6">
-                                                                        <div class="card">
-                                                                            <div class="card-block">
+                                                                        <div class="card card-animate bg-primary-subtle">
+                                                                            <div class="card-body">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-8">
                                                                                         <h4 class="text-c-purple">
@@ -251,28 +243,22 @@
                                                                                         <h6 class="text-muted m-b-0">
                                                                                             <asp:Label ID="HeadLabel7" Text="" runat="server"></asp:Label></h6>
                                                                                     </div>
-                                                                                    <div class="col-4 text-right">
-                                                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                                                     <div class="col-4 text-end">
+                                                                                       <i class="ri-article-line display-3 text-danger"></i>
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="card-footer bg-c-organge">
-                                                                                <div class="row align-items-center">
-                                                                                    <div class="col-9">
-                                                                                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                    </div>
-                                                                                    <div class="col-3 text-right">
-                                                                                        <i class="fa fa-line-chart text-white f-16"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                           
 
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-xl-3 col-md-6">
-                                                                        <div class="card">
-                                                                            <div class="card-block">
+                                                                        <div class="card card-animate bg-success-subtle">
+                                                                            <div class="card-body">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-8">
                                                                                         <h4 class="text-c-purple">
@@ -280,28 +266,22 @@
                                                                                         <h6 class="text-muted m-b-0">
                                                                                             <asp:Label ID="HeadLabel8" Text="" runat="server"></asp:Label></h6>
                                                                                     </div>
-                                                                                    <div class="col-4 text-right">
-                                                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                                                    <div class="col-4 text-end">
+                                                                                       <i class="ri-article-line display-3 text-danger"></i>
+                                                                                    </div>
+                                                                                     <div class="col-12">
+                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="card-footer bg-c-organge">
-                                                                                <div class="row align-items-center">
-                                                                                    <div class="col-9">
-                                                                                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                    </div>
-                                                                                    <div class="col-3 text-right">
-                                                                                        <i class="fa fa-line-chart text-white f-16"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                          
 
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-xl-3 col-md-6">
-                                                                        <div class="card">
-                                                                            <div class="card-block">
+                                                                        <div class="card card-animate bg-warning-subtle">
+                                                                            <div class="card-body">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-8">
                                                                                         <h4 class="text-c-purple">
@@ -309,28 +289,22 @@
                                                                                         <h6 class="text-muted m-b-0">
                                                                                             <asp:Label ID="HeadLabel9" Text="" runat="server"></asp:Label></h6>
                                                                                     </div>
-                                                                                    <div class="col-4 text-right">
-                                                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                                                     <div class="col-4 text-end">
+                                                                                       <i class="ri-article-line display-3 text-danger"></i>
+                                                                                    </div>
+                                                                                     <div class="col-12">
+                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="card-footer bg-c-organge">
-                                                                                <div class="row align-items-center">
-                                                                                    <div class="col-9">
-                                                                                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                    </div>
-                                                                                    <div class="col-3 text-right">
-                                                                                        <i class="fa fa-line-chart text-white f-16"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                          
 
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-xl-3 col-md-6">
-                                                                        <div class="card">
-                                                                            <div class="card-block">
+                                                                        <div class="card card-animate bg-info-subtle">
+                                                                            <div class="card-body">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-8">
                                                                                         <h4 class="text-c-purple">
@@ -338,28 +312,22 @@
                                                                                         <h6 class="text-muted m-b-0">
                                                                                             <asp:Label ID="HeadLabel10" Text="" runat="server"></asp:Label></h6>
                                                                                     </div>
-                                                                                    <div class="col-4 text-right">
-                                                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                                                    <div class="col-4 text-end">
+                                                                                       <i class="ri-article-line display-3 text-danger"></i>
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="card-footer bg-c-organge">
-                                                                                <div class="row align-items-center">
-                                                                                    <div class="col-9">
-                                                                                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                    </div>
-                                                                                    <div class="col-3 text-right">
-                                                                                        <i class="fa fa-line-chart text-white f-16"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                          
 
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-xl-3 col-md-6">
-                                                                        <div class="card">
-                                                                            <div class="card-block">
+                                                                        <div class="card card-animate bg-danger-subtle">
+                                                                            <div class="card-body">
                                                                                 <div class="row align-items-center">
                                                                                     <div class="col-8">
                                                                                         <h4 class="text-c-purple">
@@ -367,21 +335,15 @@
                                                                                         <h6 class="text-muted m-b-0">
                                                                                             <asp:Label ID="HeadLabel11" Text="" runat="server"></asp:Label></h6>
                                                                                     </div>
-                                                                                    <div class="col-4 text-right">
-                                                                                        <i class="fa fa-bar-chart f-28"></i>
+                                                                                    <div class="col-4 text-end">
+                                                                                       <i class="ri-article-line display-3 text-danger"></i>
+                                                                                    </div>
+                                                                                    <div class="col-12">
+                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="card-footer bg-c-organge">
-                                                                                <div class="row align-items-center">
-                                                                                    <div class="col-9">
-                                                                                        <button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                    </div>
-                                                                                    <div class="col-3 text-right">
-                                                                                        <i class="fa fa-line-chart text-white f-16"></i>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                           
 
                                                                         </div>
                                                                     </div>
@@ -389,6 +351,30 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                        </div>
+                                        <div class="tab-pane" id="arrow-btnULBWise" role="tabpanel">
+                                           
+                                        </div>
+                                        <div class="tab-pane" id="arrow-btnCircleWise" role="tabpanel">
+                                          
+                                        </div>
+                                        <div class="tab-pane" id="arrow-btnPriorityWise" role="tabpanel">
+                                          
+                                        </div>
+                                        <div class="tab-pane" id="arrow-btnProjectType" role="tabpanel">
+                                          
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+
+                                                    <!-- div.dataTables_borderWrap -->
+                                                    <div runat="server" id="divReport" class="tblheader">
+                                                       
+
+                                                        <!-- Page-body start -->
+                                                    
+                                                       
                                                         <div id="divGrid" runat="server" visible="false">
                                                             <asp:GridView ID="gridDashboard" runat="server" CssClass="display table table-bordered reportGrid" ShowFooter="true" AutoGenerateColumns="True" EmptyDataText="No Records Found">
                                                                 <Columns>
@@ -466,11 +452,12 @@
                          $('#VPTableFooter12').text(totalProjectCost.toFixed(2));
                          $('#VPTableFooter11').text(totalProjectCount);
                          $("#TotalProjectsFinancialYearWise").modal('show');
-                         
+                                        
+
                          $('#VPTable1').DataTable({
                              destroy: true, // Ensures re-initialization on each AJAX load
                              dom: 'Blfrtip', // Adds button container at the top
-                             buttons: ["copy", "csv", "excel", "print", "pdf"]
+                             buttons: ["csv", "excel", "print"]
                          });
                      } else {
                          console.error("No data returned");
@@ -523,13 +510,15 @@
                          $('#HeadData2').html(html);
                          $('#VPTableFooter22').text(totalProjectCost.toFixed(2));
                          $('#VPTableFooter21').text(totalProjectCount);
-                         $("#TotalProjectsFinancialYearWise").modal('hide');
+                         //$("#TotalProjectsFinancialYearWise").modal('hide');
                          $("#TotalProjectsULBWiseByFYID").modal('show');
+                            
+
                          $('#VPTable2').DataTable({
                              destroy: true, // Ensures re-initialization on each AJAX load
                              dom: 'Blfrtip', // Adds button container at the top
                              
-                             buttons: ["copy", "csv", "excel", "print", "pdf"]
+                             buttons: ["csv", "excel", "print"]
                          });
                      } else {
                          console.error("No data returned");
@@ -583,7 +572,7 @@
                              html += '<td>' + (item.ProjectStatus || '') + '</td>';
                              html += '<td>';
                              if (item.VPDoc) {
-                                 html += '<button type="button" class="btn btn-info btn-xs" onclick="window.open(\'' + item.VPDoc + '\', \'_blank\')">Open Doc</button>';
+                                 html += '<button type="button" class="btn btn-info btn-sm" onclick="window.open(\'' + item.VPDoc + '\', \'_blank\')"><i class="bx bxs-file-pdf"></i></button>';
                              } else {
                                  html += 'No Document';
                              }
@@ -594,29 +583,19 @@
                          $('#VPTableFooter31').text(totalProjectCost.toFixed(2)); // Display total in footer
                          //$('#VPTableFooter32').text(result.length); // Display total in footer
 
-                         $("#TotalProjectsULBWiseByFYID").modal('hide');
+                         //$("#TotalProjectsULBWiseByFYID").modal('hide');
                          $("#ProjectByFYIDandULB").modal('show');
+                         
 
                          $('#VPTable3').DataTable({
                              destroy: true, // Ensures re-initialization on each AJAX load
                              dom: 'Blfrtip', // Adds button container at the top
-                             buttons: ["copy", "csv", "excel", "print", "pdf"]
+                             buttons: ["csv", "excel", "print"]
                          });
 
 
 
-                         $('#VPTable3').DataTable({
-                             destroy: true, // Ensures re-initialization on each AJAX load
-                             dom: 'Blfrtip', // Adds button container at the top
-                             buttons: [
-                                 {
-                                     extend: 'excelHtml5',
-                                     text: 'Export to Excel',
-                                     title: 'Project Data Export'
-                                 }
-                             ]
-                             //buttons: ["copy", "csv", "excel", "print", "pdf"]
-                         });
+                        
                      } else {
                          console.error("No data returned");
                      }
@@ -626,6 +605,8 @@
                  }
              });
          }
+
+
 
 
 
@@ -747,54 +728,9 @@
 
      </script>
 
-    <!-- Modal for ProjectByFYIDandULB -->
-    <div class="modal fade" id="ProjectByFYIDandULB" tabindex="-1" aria-labelledby="ProjectByFYIDandULBLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="ProjectByFYIDandULBLabel">List of Projects by ULB and Financial Year</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <table id="VPTable3" class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Sr.No.</th>
-                                <th>District Name</th>
-                                <th>ULB Name</th>
-                                <th>Project Name</th>
-                                <th>Project Type</th>
-                                <th>Project Cost</th>
-                                <th>Location</th>
-                                <th>FY</th>
-                                <th>Construction</th>
-                                <th>Priority</th>
-                                <th>Project Status</th>
-                                <th>VPDoc</th>
-                            </tr>
-                        </thead>
-                        <tbody id="HeadData3">
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <%--<th style="text-align: right">Total Project:</th>--%>
-                                <%--<th  id="VPTableFooter32" style="text-align: right"></th>--%>
-                                <th colspan="5" style="text-align: right">Total Project Cost:</th>
-                                <th id="VPTableFooter31"></th>
-                                <th colspan="6"></th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Modal for TotalProjectsFinancialYearWise -->
-    <div class="modal fade" id="TotalProjectsFinancialYearWise" tabindex="-1" aria-labelledby="TotalProjectsFinancialYearWiseLabel" aria-hidden="true">
+    <div class="modal fade" id="TotalProjectsFinancialYearWise" tabindex="1" aria-labelledby="TotalProjectsFinancialYearWiseLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -822,15 +758,15 @@
                         </tfoot>
                     </table>
                 </div>
-                <div class="modal-footer">
+                <%--<div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
+                </div>--%>
             </div>
         </div>
     </div>
 
     <!-- Modal for TotalProjectsULBWiseByFYID -->
-    <div class="modal fade" id="TotalProjectsULBWiseByFYID" tabindex="-1" aria-labelledby="TotalProjectsULBWiseByFYIDLabel" aria-hidden="true">
+    <div class="modal fade" id="TotalProjectsULBWiseByFYID" tabindex="2" aria-labelledby="TotalProjectsULBWiseByFYIDLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -858,88 +794,65 @@
                         </tfoot>
                     </table>
                 </div>
-                <div class="modal-footer">
+                <%--<div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
+                </div>--%>
             </div>
         </div>
     </div>
 
-   
+    <!-- Modal for ProjectByFYIDandULB -->
+    <div class="modal fade" id="ProjectByFYIDandULB" tabindex="3" aria-labelledby="ProjectByFYIDandULBLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="ProjectByFYIDandULBLabel">List of Projects by ULB and Financial Year</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table id="VPTable3" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sr.No.</th>
+                                    <th>District Name</th>
+                                    <th>ULB Name</th>
+                                    <th>Project Name</th>
+                                    <th>Project Type</th>
+                                    <th>Project Cost</th>
+                                    <th>Location</th>
+                                    <th>FY</th>
+                                    <th>Construction</th>
+                                    <th>Priority</th>
+                                    <th>Project Status</th>
+                                    <th>VPDoc</th>
+                                </tr>
+                            </thead>
+                            <tbody id="HeadData3">
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <%--<th style="text-align: right">Total Project:</th>--%>
+                                    <%--<th  id="VPTableFooter32" style="text-align: right"></th>--%>
+                                    <th colspan="5" style="text-align: right">Total Project Cost:</th>
+                                    <th id="VPTableFooter31"></th>
+                                    <th colspan="6"></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <%--<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>--%>
+            </div>
+        </div>
+    </div>
 
-    <style>
-        .card {
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-        }
+    
 
-        .card-block {
-            padding: 20px;
-            background-color: #fff;
-        }
+    
 
-        .text-c-purple {
-            color: #7C4DFF; /* Adjust the color to match the design */
-            font-size: 24px;
-            font-weight: bold;
-        }
+    
 
-        .text-muted {
-            color: #6c757d; /* Use a muted grey color */
-        }
-
-        .m-b-0 {
-            margin-bottom: 0;
-        }
-
-        .f-28 {
-            font-size: 28px;
-        }
-
-        .fa-bar-chart {
-            color: #7C4DFF; /* Adjust to match the card design */
-        }
-
-        .card-footer {
-            padding: 10px 20px;
-        }
-
-        .bg-c-organge {
-            background-color: #f8753e; /* Purple background color */
-        }
-
-        .text-white {
-            color: #ffffff;
-        }
-
-        .f-16 {
-            font-size: 16px;
-        }
-
-        .row {
-            display: flex;
-            align-items: center;
-        }
-
-        .btn-light {
-            background-color: #f8f9fa;
-            color: #7C4DFF;
-            border: none;
-            padding: 5px 10px;
-            font-size: 14px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-            .btn-light:hover {
-                background-color: #e2e6ea;
-            }
-
-        /* Ensure the modal has a smooth appearance */
-        .modal-content {
-            border-radius: 8px;
-            padding: 20px;
-        }
-    </style>
 </asp:Content>
