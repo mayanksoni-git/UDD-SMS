@@ -814,18 +814,18 @@
                         <table id="VPTable3" class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Sr.No.</th>
-                                    <th>District Name</th>
-                                    <th>ULB Name</th>
-                                    <th>Project Name</th>
-                                    <th>Project Type</th>
-                                    <th>Project Cost</th>
-                                    <th>Location</th>
-                                    <th>FY</th>
-                                    <th>Construction</th>
-                                    <th>Priority</th>
-                                    <th>Project Status</th>
-                                    <th>VPDoc</th>
+                                    <th style="width: 2%;">Sr.No.</th>
+                                    <th style="width: 8%;">District Name</th>
+                                    <th style="width: 7%;">ULB Name</th>
+                                    <th style="width: 18%;">Project Name</th>
+                                    <th style="width: 14%;">Project Type</th>
+                                    <th style="width: 7%;">Project Cost</th>
+                                    <th style="width: 11%;">Location</th>
+                                    <th style="width: 6%;">FY</th>
+                                    <th style="width: 9%;">Construction</th>
+                                    <th style="width: 3%;">Priority</th>
+                                    <th style="width: 8%;">Project Status</th>
+                                    <th style="width: 7%;">VPDoc</th>
                                 </tr>
                             </thead>
                             <tbody id="HeadData3">
