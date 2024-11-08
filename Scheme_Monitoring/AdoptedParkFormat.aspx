@@ -209,7 +209,7 @@
                                                             <div class="row">
                                                                 <div class="col-sm-12" style="text-align:center">
                                                                     <asp:ImageButton ID="btnDynamic" OnClick="btnDynamic_Click" runat="server" 
-                                                                                ImageUrl="~/assets/images/addmore_btn.png" Width="200px" Height="60px" />
+                                                                                ImageUrl="~/assets/images/addmore_btn.png" Width="100px" Height="30px" />
                                                                 </div>
                                                             </div>
                                                         </div>

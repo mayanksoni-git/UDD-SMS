@@ -166,42 +166,48 @@ public partial class OfficeRegistration : System.Web.UI.Page
         hf_OfficeBranch_Id.Value = grd.Cells[0].Text.Trim();
         try
         {
-            ddlState.SelectedValue = grd.Cells[1].Text.Trim();
+            HiddenField hdn = (HiddenField)grd.FindControl("State_Id");
+            string id = hdn.Value;
+            ddlState.SelectedValue = hdn.Value.Trim();
+            //ddlState.SelectedValue = grd.Cells[1].Text.Trim();
             ddlState_SelectedIndexChanged(ddlState, e);
         }
         catch
         { }
         try
         {
-            ddlDistrict.SelectedValue = grd.Cells[2].Text.Trim();
+            HiddenField hdn = (HiddenField)grd.FindControl("OfficeBranch_JurisdictionId");
+            string id = hdn.Value.Trim();
+            ddlDistrict.SelectedValue = id;
+            //ddlDistrict.SelectedValue = grd.Cells[2].Text.Trim();
         }
         catch
         { }
-        txtAddress.Text = grd.Cells[11].Text.Replace("&nbsp;", "").Trim();
+        txtAddress.Text = grd.Cells[8].Text.Replace("&nbsp;", "").Trim();
         
-        txtEmailId.Text = grd.Cells[13].Text.Replace("&nbsp;", "").Trim();
-        txtGSTN.Text = grd.Cells[12].Text.Replace("&nbsp;", "").Trim();
-        txtLandLineNo.Text = grd.Cells[9].Text.Replace("&nbsp;", "").Trim();
-        txtMobileNo.Text = grd.Cells[10].Text.Replace("&nbsp;", "").Trim();
-        
-        string fileName = grd.Cells[17].Text.Replace("&nbsp;", "").Trim();
-        string webURI = "";
-        if (Page.Request.Url.Query.Trim() == "")
-        {
-            webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + fileName).Replace("\\", "/");
-        }
-        else
-        {
-            webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + fileName).Replace("\\", "/");
-        }
-        imgPreview.ImageUrl = webURI;
-        try
-        {
-            rbtOrgType.SelectedValue = grd.Cells[7].Text.Trim();
-        }
-        catch
-        { }
-        txtOfficeBranchName.Text = grd.Cells[8].Text.Replace("&nbsp;", "").Trim();
+        txtEmailId.Text = grd.Cells[10].Text.Replace("&nbsp;", "").Trim();
+        txtGSTN.Text = grd.Cells[9].Text.Replace("&nbsp;", "").Trim();
+        txtLandLineNo.Text = grd.Cells[6].Text.Replace("&nbsp;", "").Trim();
+        txtMobileNo.Text = grd.Cells[7].Text.Replace("&nbsp;", "").Trim();
+
+        //string fileName = grd.Cells[14].Text.Replace("&nbsp;", "").Trim();
+        //string webURI = "";
+        //if (Page.Request.Url.Query.Trim() == "")
+        //{
+        //    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "") + fileName).Replace("\\", "/");
+        //}
+        //else
+        //{
+        //    webURI = (Page.Request.Url.AbsoluteUri.Replace(Page.Request.Url.AbsolutePath, "").Replace(Page.Request.Url.Query, "") + fileName).Replace("\\", "/");
+        //}
+        //imgPreview.ImageUrl = webURI;
+        //try
+        //{
+        //    rbtOrgType.SelectedValue = grd.Cells[4].Text.Trim();
+        //}
+        //catch
+        //{ }
+        txtOfficeBranchName.Text = grd.Cells[5].Text.Replace("&nbsp;", "").Trim();
     }
 
     protected void btnReset_Click(object sender, EventArgs e)

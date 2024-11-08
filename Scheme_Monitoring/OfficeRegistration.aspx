@@ -156,12 +156,12 @@
                                             <div class="table-responsive">
                                                 <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
                                                     <Columns>
-                                                        <asp:BoundField DataField="OfficeBranch_Id" HeaderText="OfficeBranch_Id">
+                                                       <%-- <asp:BoundField DataField="OfficeBranch_Id" HeaderText="OfficeBranch_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
                                                             <ItemStyle CssClass="displayStyle" />
                                                             <FooterStyle CssClass="displayStyle" />
-                                                        </asp:BoundField>
-                                                        <asp:BoundField DataField="State_Id" HeaderText="State_Id">
+                                                        </asp:BoundField>--%>
+                                                <%--        <asp:BoundField DataField="State_Id" HeaderText="State_Id">
                                                             <HeaderStyle CssClass="displayStyle" />
                                                             <ItemStyle CssClass="displayStyle" />
                                                             <FooterStyle CssClass="displayStyle" />
@@ -170,9 +170,12 @@
                                                             <HeaderStyle CssClass="displayStyle" />
                                                             <ItemStyle CssClass="displayStyle" />
                                                             <FooterStyle CssClass="displayStyle" />
-                                                        </asp:BoundField>
+                                                        </asp:BoundField>--%>
                                                         <asp:TemplateField HeaderText="S No.">
                                                             <ItemTemplate>
+                                                            <asp:HiddenField ID="State_Id" runat="server" Value='<%# Eval("State_Id") %>' />
+                                                            <asp:HiddenField ID="OfficeBranch_JurisdictionId" runat="server" Value='<%# Eval("OfficeBranch_jurisdictionId") %>' />
+
                                                                 <%# Container.DataItemIndex + 1 %>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
@@ -191,7 +194,7 @@
                                                         <asp:BoundField HeaderText="FullAddress" DataField="OfficeBranch_FullAddress" />
                                                         <asp:BoundField HeaderText="GSTIN" DataField="OfficeBranch_GSTIN" />
                                                         <asp:BoundField HeaderText="EmailId" DataField="OfficeBranch_EmailId" />
-                                                        <asp:BoundField HeaderText="WebSite" DataField="OfficeBranch_WebSite">
+                                                     <%--   <asp:BoundField HeaderText="WebSite" DataField="OfficeBranch_WebSite">
                                                             <HeaderStyle CssClass="displayStyle" />
                                                             <ItemStyle CssClass="displayStyle" />
                                                             <FooterStyle CssClass="displayStyle" />
@@ -210,7 +213,7 @@
                                                             <HeaderStyle CssClass="displayStyle" />
                                                             <ItemStyle CssClass="displayStyle" />
                                                             <FooterStyle CssClass="displayStyle" />
-                                                        </asp:BoundField>
+                                                        </asp:BoundField>--%>
                                                     </Columns>
                                                 </asp:GridView>
                                             </div>
