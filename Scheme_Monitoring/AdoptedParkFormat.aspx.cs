@@ -962,10 +962,11 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
     //}
 
 
-    protected void btnDynamic_Click(object sender, ImageClickEventArgs e)
-    {
-        AddDynamicFields();
-    }
+    //protected void btnDynamic_Click(object sender, ImageClickEventArgs e)
+    //{
+    //    AddDynamicFields();
+    //}
+
 
     protected void imgdelete_Click(object sender, ImageClickEventArgs e)
     {
@@ -1061,5 +1062,10 @@ public partial class AdoptedParkFormat : System.Web.UI.Page
                 grdCallProductDtls.DataBind();
             }
         }
+    }
+
+    protected void btnDynamic_Click1(object sender, EventArgs e)
+    {
+        AddDynamicFields();
     }
 }

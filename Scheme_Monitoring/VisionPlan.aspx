@@ -156,13 +156,11 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xxl-3  col-md-6">
-                                                    <div>
-                                                        <br />
-                                                        <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" Style="float: right" CssClass="btn bg-success text-white"></asp:Button>
+                                                <div class="col-xxl-12 col-md-12 text-center">
+                                                    
+                                                        <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
 
-                                                    </div>
                                                 </div>
 
                                             </div>

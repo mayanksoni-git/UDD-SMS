@@ -208,8 +208,8 @@
                                                             </asp:GridView>
                                                             <div class="row">
                                                                 <div class="col-sm-12" style="text-align:center">
-                                                                    <asp:ImageButton ID="btnDynamic" OnClick="btnDynamic_Click" runat="server" 
-                                                                                ImageUrl="~/assets/images/addmore_btn.png" Width="100px" Height="30px" />
+                                                                    <%--<asp:ImageButton ID="btnDynamic" OnClick="btnDynamic_Click" runat="server" ImageUrl="~/assets/images/addmore_btn.png" Width="200px" Height="60px" />--%>
+                                                                    <asp:Button ID="btnDynamic" Text="Add More" runat="server" CssClass="btn bg-success text-white" OnClick="btnDynamic_Click1"></asp:Button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -223,9 +223,8 @@
                                 </div>
                                 <!--end col-->
                             </div>
-                            <div class="col-xxl-3 col-md-6">
+                            <div class="col-xxl-12 col-md-12 text-center">
                             <div>
-                                <br />
                                 <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-success"></asp:Button>
                             </div>
                         </div>
