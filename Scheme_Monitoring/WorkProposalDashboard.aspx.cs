@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Web.Services;
+using Newtonsoft.Json;
 using System.Data;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -7,6 +10,7 @@ using System.Web.UI.WebControls;
 public partial class WorkProposalDashboard : System.Web.UI.Page
 {
     Loan objLoan = new Loan();
+    WorkProposal objWP = new WorkProposal();
 
     protected void Page_PreInit(object sender, EventArgs e)
     {
@@ -21,7 +25,7 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         }
         if (!IsPostBack)
         {
-
+            btnDashboard_Click(null, EventArgs.Empty);
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
@@ -32,7 +36,9 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportDashboard_WPReport_Test";
 
         LoadWorkProposalGrid(ProcedureName);
+        ToggleDiv(divDashboard);
     }
+
 
     protected void btnULBWise_Click(object sender, EventArgs e)
     {
@@ -40,6 +46,7 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportByDivision_WPReport_Test";
 
         LoadWorkProposalGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
 
     protected void btnULBType_Click(object sender, EventArgs e)
@@ -48,6 +55,7 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportByULBType_WPReport_Test";
 
         LoadWorkProposalGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
 
     protected void btnProjectType_Click(object sender, EventArgs e)
@@ -56,6 +64,7 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportByProjectType_WPReport_Test";
 
         LoadWorkProposalGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
 
     protected void btnProposerType_Click(object sender, EventArgs e)
@@ -64,6 +73,7 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportByProposerType_WPReport_Test";
 
         LoadWorkProposalGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
 
     protected void btnSchemeWise_Click(object sender, EventArgs e)
@@ -72,6 +82,7 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
         string ProcedureName = "sp_ReportByProjectName";
 
         LoadWorkProposalGrid(ProcedureName);
+        ToggleDiv(divGrid);
     }
 
     private void LoadWorkProposalGrid(string ProcedureName)
@@ -81,10 +92,37 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
 
         if (dt != null && dt.Rows.Count > 0)
         {
-            gridDashboard.DataSource = dt;
-            gridDashboard.DataBind();
-            btnDashboard.Visible = true;
-            ToggleDiv(divData);
+            
+
+            if (ProcedureName == "sp_ReportDashboard_WPReport_Test")
+            {
+                Label1.Text = dt.Rows[0][0].ToString();
+                HeadLabel1.Text = dt.Columns[0].ColumnName;
+
+                Label2.Text = dt.Rows[0][1].ToString();
+                HeadLabel2.Text = dt.Columns[1].ColumnName;
+
+                Label3.Text = dt.Rows[0][2].ToString();
+                HeadLabel3.Text = dt.Columns[2].ColumnName;
+
+                Label4.Text = dt.Rows[0][3].ToString();
+                HeadLabel4.Text = dt.Columns[3].ColumnName;
+
+                Label5.Text = dt.Rows[0][4].ToString();
+                HeadLabel5.Text = dt.Columns[4].ColumnName;
+
+                Label6.Text = dt.Rows[0][5].ToString();
+                HeadLabel6.Text = dt.Columns[5].ColumnName;
+
+                Label7.Text = dt.Rows[0][6].ToString();
+                HeadLabel7.Text = dt.Columns[6].ColumnName;
+            }
+            else
+            {
+                gridDashboard.DataSource = dt;
+                gridDashboard.DataBind();
+                btnDashboard.Visible = true;
+            }
         }
         else
         {
@@ -94,6 +132,12 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
             MessageBox.Show("No Records Found");
         }
     }
+
+    protected void GetNoOfProjects(object sender, CommandEventArgs e)
+    {
+
+    }
+
 
     protected void grdPost_PreRender(object sender, EventArgs e)
     {
@@ -117,14 +161,93 @@ public partial class WorkProposalDashboard : System.Web.UI.Page
 
     private void ToggleDiv(System.Web.UI.HtmlControls.HtmlGenericControl div)
     {
-        divData.Visible = false;
-        //divMPWise.Visible = false;
-        //divMLAWise.Visible = false;
-        //divDivisionWise.Visible = false;
-        //divWorkPlanWise.Visible = false;
-        //divDistrictWise.Visible = false;
-        //divRecommendationWise.Visible = false;
+        divDashboard.Visible = false;
+        divGrid.Visible = false;
         div.Visible = true;
         div.Focus();
     }
+
+
+    #region For Modal Popup
+    [WebMethod]
+    public static string btnTotalProjects_Click(int newAkanshi_Id)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            VisionPlan objVisionPlan = new VisionPlan();
+            dt = objVisionPlan.getTotalProjectFinancialYearWise();
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new { error = "Record Not Found" });
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (consider logging the error)
+            return JsonConvert.SerializeObject(new { error = ex.Message });
+        }
+    }
+
+    [WebMethod]
+    public static string GetTotalProjectsUlbWiseByFYID(int FYID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            VisionPlan objVisionPlan = new VisionPlan();
+            dt = objVisionPlan.getTotalProjectsUlbWiseByFYID(FYID);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new { error = "Record Not Found" });
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (consider logging the error)
+            return JsonConvert.SerializeObject(new { error = ex.Message });
+        }
+    }
+
+
+    [WebMethod]
+    public static string GetProjectByFYIDandULB(int FYID, int ULBID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            VisionPlan objVisionPlan = new VisionPlan();
+            dt = objVisionPlan.getProjectByFYIDandULB(FYID, ULBID);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new { error = "Record Not Found" });
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (consider logging the error)
+            return JsonConvert.SerializeObject(new { error = ex.Message });
+        }
+    }
+    #endregion
+
+
 }

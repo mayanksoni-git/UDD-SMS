@@ -15,7 +15,7 @@ function initializeTables() {
             lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
             searching: true,
         dom: "Blfrtip",
-        buttons: ["copy", "csv", "excel", "print", "pdf"], 
+        buttons: ["csv", "excel", "print"], 
         fixedHeader: !0
     }),
     new DataTable("#ajax-datatables", {
