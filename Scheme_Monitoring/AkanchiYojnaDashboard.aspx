@@ -89,12 +89,11 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xxl-11  col-md-11">
-                                                    <div>
-                                                        <label class="d-block">&nbsp;</label>
-                                                        <asp:Button ID="BtnSearch" Text="Search" Style="float: right" OnClick="BtnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
+                                                <div class="col-xxl-12 col-md-12 text-center">
+                                                    
+                                                        <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
