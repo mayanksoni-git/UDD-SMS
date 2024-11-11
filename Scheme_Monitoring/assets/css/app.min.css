@@ -18476,5 +18476,135 @@ div.dt-length {
     top: 2px;
 }
 
+@media (max-width:1024px) {
+    .navbar-menu {
+        top: 60px;
+    }
+    .auth-page-wrapper{
+        display:block !important
+    }
+    .auth-page-wrapper .auth-page-content {
+        padding-bottom: 0px;
+    }
+    .footer {
+        padding: 10px 10px;
+        text-align: center;
+    }
+    .text-muted {
+        font-size: 13px;
+    }
+    .form-label {
+        font-size: 13px;
+    }
+    .text-login {
+        font-size: 24px;
+        font-weight: 700;
+    }
+    .page-content {
+        padding: 75px 0px 0px 0px;
+    }
+    label {
+        font-size: 12px;
+    }
+    .page-title-box h4 {
+        font-weight: 600;
+        font-size: 16px;
+        margin: 0;
+    }
+    .form-group {
+        padding-bottom: 10px;
+    }
+    .form-select {
+        font-size: 12px;
+    }
+    .btn-filter {
+        border-radius: 3px;
+        font-size: 13px;
+        padding: 5px 20px;
+    }
+    .dash-box a p {
+        height: auto;
+        line-height: normal;
+        font-size: 14px;
+        margin-bottom: 10px !important;
+    }
+    .dash-box {
+        padding: 10px;
+    }
+    .avatar-sm {
+        height: 60px;
+        width: 60px;
+        padding: 4px;
+    }
+    .footer {
+        margin-top: 0rem;
+        position: relative;
+    }
+    .logo h2 {
+        font-size: 12px !important;
+        margin: 0px !important;
+    }
+    .navbar-menu .navbar-nav .nav-link {
+        font-size: 12px;
+    }
+    .page-title-box h4 {
+        font-weight: 500;
+        font-size: 14px;
+        margin: 0;
+    }
+    .breadcrumb-item > a {
+        font-size: 12px;
+    }
+    .anal-btn-details {
+        padding: 20px;
+    }
+        .anal-btn-details h3 {
+            font-size: 16px;
+            height: auto;
+        }
+        .anal-btn-details .avatar-title {
+            width: 50px;
+            height: 50px;
+            display: block;
+            text-align: center;
+            line-height: normal;
+            padding: 9px 0px;
+        }
+        .anal-btn-details .avatar-title img {
+            height: 30px;
+        }
+    .breadcrumb-item + .breadcrumb-item {
+        font-size: 12px;
+        line-height: 22px;
+    }
+    .page-title-box {
+        padding: 10px;
+    }
+    .form-control {
+        padding: 6px;
+        font-size: 13px;
+    }
+    .navbar-header {
+        padding: 10px 5px;
+        height: auto;
+    }
+    table.dataTable th, table.dataTable td {
+        font-size: 12px;
+        line-height: normal;
+    }
+    div.dt-container div.dt-length, div.dt-container div.dt-search, div.dt-container div.dt-info, div.dt-container div.dt-paging {
+        font-size: 12px;
+        padding-top: 10px;
+    }
+    .filter-btn {
+        padding: 5px 14px;
+        border-radius: 5px;
+        font-size: 12px;
+        width: auto;
+        height: auto;
+        line-height: 22px;
+    }
+}
+
 
 

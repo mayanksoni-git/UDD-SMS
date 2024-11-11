@@ -36,7 +36,7 @@
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div class="clearfix">
-                                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter mb-2"></asp:Button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                         </div>
-                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
+                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none;">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="table-header">
@@ -136,9 +136,9 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group mt-2">
-                                        <asp:Button ID="btnSave" Text="Save" OnClientClick="return ValidateJurisdiction(this);" OnClick="btnSave_Click" runat="server" CssClass="btn btn-success"></asp:Button>
+                                        <asp:Button ID="btnSave" Text="Save" OnClientClick="return ValidateJurisdiction(this);" OnClick="btnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-danger"></asp:Button>
-                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn bg-info"></asp:Button>
+                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn bg-danger text-white"></asp:Button>
                                         <button id="btnclose" runat="server" text="Close" cssclass="btn bg-warning" style="display: none"></button>
                                     </div>
                                 </div>

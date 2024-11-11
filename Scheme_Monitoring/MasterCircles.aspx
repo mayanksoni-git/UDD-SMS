@@ -10,7 +10,7 @@
                     <div class="container-fluid">
 
                         <div class="row">
-                            <div class="col-12 ">
+                            <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                     <h4 class="mb-sm-0">
                                         <%= Session["Default_Circle"].ToString() %> Master</h4>
@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning mb-2"></asp:Button>
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter mb-2"></asp:Button>
                                 </div>
                             </div>
                         </div>

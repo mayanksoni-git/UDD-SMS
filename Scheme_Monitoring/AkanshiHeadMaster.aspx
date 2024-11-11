@@ -57,15 +57,15 @@
                                                 </div>
 
                                                 <!-- Buttons -->
-                                                <div class="col-xxl-10 col-md-10"></div>
+                                               
                                                 <div class="col-xxl-2 col-md-2">
-                                                    <div>
+                                                   
                                                         <label class="d-block">&nbsp;</label>
                                                         <asp:Label ID="lblHiddenId" runat="server" Enabled="false" Visible="false"></asp:Label>
                                                         <asp:Button ID="BtnSave" Text="Save" OnClick="BtnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="BtnUpdate" Visible="false" Text="Update" OnClick="BtnUpdate_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="BtnSearch" Text="Search" style="margin:10px" OnClick="BtnSearch_Click" runat="server" CssClass="btn btn-warning mb-2"></asp:Button>
-                                                    </div>
+                                                  
                                                 </div>
                                             </div>
                                             <!--end row-->

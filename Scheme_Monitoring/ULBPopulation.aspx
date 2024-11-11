@@ -72,18 +72,14 @@
                                                     </div>
                                                 </div>
                                                  
+                                                <div class="col-xxl-12 col-md-12 text-center">
                                                  
-                                                <div class="col-xxl-10  col-md-10"></div>
-                                                <div class="col-xxl-2  col-md-2">
-                                                    <div>
-                                                        <label class="d-block">&nbsp;</label>
                                                         <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnsave_Click"  convergence/>--%>
                                                         <asp:Button ID="BtnSave" Text="Save"  OnClick="BtnSave_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="BtnUpdate" Visible="false" Text="Update"  OnClick="BtnUpdate_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
                                                         <%--<asp:Button ID="Button3" Text="Search" style="float:right" OnClick="BtnSearch_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>--%>
                                                         <asp:Button ID="BtnSearch" Text="Search" style="margin:10px"  OnClick="BtnSearch_Click" runat="server"  CssClass="btn btn-warning mb-2"></asp:Button>
                                                        
-                                                    </div>
                                                 </div>
                                             </div>
                                             <!--end row-->

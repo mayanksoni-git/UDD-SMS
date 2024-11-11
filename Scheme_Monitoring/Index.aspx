@@ -15,7 +15,7 @@
                 <div class="col-lg-12">
                     <div class="card overflow-hidden border-0">
                         <div class="row g-0">
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 d-none d-sm-block">
                                 <div class="p-lg-5 p-4 auth-one-bg h-100">
                                     <div class="bg-overlay"></div>
                                     <div class="position-relative h-100 d-flex flex-column">
@@ -35,7 +35,7 @@
                             <div class="col-lg-6">
                                 <div class="p-lg-5 p-4">
                                     <div>
-                                        <h5 class="text-login">Signin</h5>
+                                        <h5 class="text-login">SignIn</h5>
                                     </div>
                                     <div class="mt-4">
                                         <div class="mb-3">

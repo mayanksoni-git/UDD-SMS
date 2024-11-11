@@ -30,15 +30,17 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="live-preview">
-                                                <div class="row gy-4">
+                                                <div class="row">
                                                     <div class="col-xxl-4 col-md-6">
+                                                        <div class="form-group">
                                                         <asp:Label ID="lblCenterName" runat="server" Text="Organization Name" CssClass="form-label no-padding-right"></asp:Label>
                                                         <asp:TextBox ID="txtOfficeBranchName" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    </div>
+                                                    </div>   </div>
 
                                                     <div class="col-xxl-4 col-md-6">
                                                         <div class="form-group">
                                                             <asp:Label ID="lblRegNo" runat="server" Text="Organization Type" CssClass="form-label no-padding-right"></asp:Label>
+                                                         <div class="table-responsive">
                                                             <asp:RadioButtonList ID="rbtOrgType" runat="server" RepeatColumns="6">
                                                                 <asp:ListItem Selected="True" Text="Goverment" Value="Goverment"></asp:ListItem>
                                                                 <asp:ListItem Text="Directorate" Value="Directorate"></asp:ListItem>
@@ -47,6 +49,8 @@
                                                                 <asp:ListItem Text="Mission" Value="Mission"></asp:ListItem>
                                                                 <asp:ListItem Text="Society" Value="Society"></asp:ListItem>
                                                             </asp:RadioButtonList>
+                                                         </div>
+                                                           
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-4 col-md-6">
