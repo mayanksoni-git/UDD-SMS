@@ -69,12 +69,11 @@
                                                         <asp:DropDownList ID="ddlsearchDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
-                                                <div class="col-xxl-11 col-md-11"></div>
-                                                <div class="col-xxl-1 col-md-6">
-                                                    <div>
-                                                        <br />
+                                               
+                                                <div class="col-xxl-12 col-md-12 text-center">
+                                                    
                                                         <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                    </div>
+                                                  
                                                 </div>
                                             </div>
                                             <!--end row-->

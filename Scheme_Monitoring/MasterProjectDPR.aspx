@@ -144,13 +144,10 @@
                                                         </div>
                                                     </div>
                                                    
-
-                                                      <div class="col-xxl-11 col-md-11 flex-grow-1"></div>
-                                                    <div class="col-xxl-1 col-md-6 flex-grow-1">
-                                                        <div>
-                                                            <br />
+                                                    <div class="col-xxl-1 col-md-6 text-center">
+                                                      <label class="d-block">&nbsp;</label>
                                                             <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
-                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                                 <!--end row-->

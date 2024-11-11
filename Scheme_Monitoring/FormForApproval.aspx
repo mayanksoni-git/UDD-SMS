@@ -230,7 +230,7 @@
                                                         <label class="d-block">&nbsp;</label>
                                                         <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="btnUpdate" Text="Update" Visible="false" OnClick="btnUpdate_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
+                                                        <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-danger text-white"></asp:Button>
                                                         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
                                                         <asp:HiddenField ID="hfWorkProposalId" runat="server" />
                                                     </div>

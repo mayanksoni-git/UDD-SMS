@@ -98,11 +98,11 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xxl-3 offset-xxl-4 col-md-6">
+                                                <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
                                                         <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
+                                                        <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-danger text-white"></asp:Button>
                                                         <asp:Button ID="btnShowModal" runat="server" Visible="false" CssClass="btn bg-success text-white" Text="Show Fund Status" OnClick="btnShowModal_Click" />
                                                         <asp:Button ID="btnHideModal" runat="server" Visible="false" CssClass="btn bg-black text-white" Text="Hide Fund Status" OnClick="btnHideModal_Click" />
                                                         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>

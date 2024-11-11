@@ -128,7 +128,7 @@
                                                     </div>
                                                 </div>
                                                  --%>
-                                                <div class="col-xxl-8 col-md-8">
+                                                <div class="col-xxl-1 col-md-3">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
                                                         <asp:Button ID="btnSearch" style="float:right" runat="server"  CssClass="btn bg-success text-white" Text="Search" OnClick="btnSearch_Click"  />

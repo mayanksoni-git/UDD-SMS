@@ -72,9 +72,9 @@
                                                 </div>
 
                                                
-                                                <div class="col-xxl-12  col-md-12">
+                                                <div class="col-xxl-12  col-md-12 text-center">
                                                     <div>
-                                                        <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" style="float:right"  CssClass="btn bg-success text-white"></asp:Button>
+                                                        <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
 
                                                         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
                                                     </div>

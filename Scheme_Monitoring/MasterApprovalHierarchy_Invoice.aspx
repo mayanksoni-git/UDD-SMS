@@ -133,9 +133,9 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-12">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <asp:Button ID="btnAdd" Text="Add Process" OnClick="btnAdd_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group text-center">
+                                                            <asp:Button ID="btnAdd" Text="Add Process" OnClick="btnAdd_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -234,7 +234,7 @@
                                                 <div class="col-md-4 offset-xxl-4">
                                                     <br />
                                                     <label class="control-label no-padding-right" style="display:block"></label>
-                                                    <asp:Button ID="btnUpload" Text="Save Process" OnClick="btnUpload_Click" runat="server" CssClass="btn btn-warning"></asp:Button>
+                                                    <asp:Button ID="btnUpload" Text="Save Process" OnClick="btnUpload_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
 
                                                 </div>
                                             </div>

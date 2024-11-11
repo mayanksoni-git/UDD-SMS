@@ -171,8 +171,8 @@
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
-                                                        <br />
-                                                        <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" runat="server" CssClass="btn btn-warning"></asp:Button>
+                                                        <label class="d-block">&nbsp;</label>
+                                                        <asp:Button ID="btnSearch" Text="Search" OnClick="btnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                     </div>
                                                 </div>
                                             </div>

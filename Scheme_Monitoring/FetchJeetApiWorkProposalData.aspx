@@ -38,15 +38,14 @@
                                                 <asp:TextBox ID="txtFromDate" type="Date" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row gy-4">
-                                        <div class="col-xxl-2 offset-xxl-10 col-md-6">
+                                         <div class="col-xxl-1 col-md-2">
                                             <div>
                                                 <label class="d-block">&nbsp;</label>
                                                 <asp:Button ID="btnFetch" Text="Fetch" OnClick="btnFetch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>

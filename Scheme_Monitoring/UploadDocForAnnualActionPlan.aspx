@@ -68,11 +68,10 @@
                                                  
                                                  
                                                  
-                                                <div class="col-xxl-11  col-md-11">
+                                                <div class="col-xxl-12  col-md-12 text-center">
                                                     <div>
-                                                        <label class="d-block">&nbsp;</label>
                                                         <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnsave_Click"  convergence/>--%>
-                                                        <asp:Button ID="BtnSearch" Text="Search" style="float:right" OnClick="BtnSearch_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
+                                                        <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
                                                        
                                                     </div>
                                                 </div>
