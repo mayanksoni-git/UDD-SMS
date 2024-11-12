@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Collections.Generic;
 
 public partial class UploadDocForVisionplan : System.Web.UI.Page
 {
@@ -137,7 +138,13 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
 
     protected void BtnSearch_Click(object sender, EventArgs e)
     {
-        GetAllData();
+        List<string> PersonIdNotAllowd = new List<string> { "3291"};
+        string searchString = Session["Person_Id"].ToString();
+
+        if (!PersonIdNotAllowd.Contains(searchString))
+        {
+            GetAllData();
+        }        
     }
     protected void GetAllData()
     {
