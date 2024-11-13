@@ -1036,6 +1036,51 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         }
     }
 
+
+    public DataTable InsertVisionPlan(string actions, int? CMVNYId, int? ULBID, int? TaskId, int? stateid, string IsConstructed, int? circleId, int? FY, 
+        string constructedYear, string Conditionof, string IsUserCharger, int? personId, string IsOwnerNagarNigamOrULB, decimal AmountOfUserCharge, 
+        string OtherOwner, string selfPriority, string NoOfSameProjInCity, string Loactions, string Population, string project, decimal ProjectCost, 
+        int VisionStatus, int AkanshiULB, int Quantity, decimal SiteArea)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[25];
+            param[0] = new SqlParameter("@action", actions);
+            param[1] = new SqlParameter("@taskId", TaskId);
+            param[2] = new SqlParameter("@CMVNYId", CMVNYId);
+            param[3] = new SqlParameter("@stateId", stateid);
+            param[4] = new SqlParameter("@distId", circleId);
+            param[5] = new SqlParameter("@ULBId", ULBID);
+            param[6] = new SqlParameter("@FYID", FY);
+            param[7] = new SqlParameter("@IsConstructed", IsConstructed);
+            param[8] = new SqlParameter("@constructedYear", constructedYear);
+            param[9] = new SqlParameter("@Conditionof", Conditionof);
+            param[10] = new SqlParameter("@IsUserCharger", IsUserCharger);
+            param[11] = new SqlParameter("@AmountOfUserCharge", AmountOfUserCharge);
+            param[12] = new SqlParameter("@IsOwnerNagarNigamOrULB", IsOwnerNagarNigamOrULB);
+            param[13] = new SqlParameter("@OtherOwner", OtherOwner);
+            param[14] = new SqlParameter("@NoOfSameProjInCity", NoOfSameProjInCity);
+            param[15] = new SqlParameter("@Loactions", Loactions);
+            param[16] = new SqlParameter("@selfPriority", selfPriority);
+            param[17] = new SqlParameter("@createdBy", personId);
+            param[18] = new SqlParameter("@population", Population);
+            param[19] = new SqlParameter("@ProjectName", project);
+            param[20] = new SqlParameter("@ProjectCost", ProjectCost);
+            param[21] = new SqlParameter("@VisionStatus", VisionStatus);
+            param[22] = new SqlParameter("@AkanshiULB", AkanshiULB);
+            param[23] = new SqlParameter("@Quantity", Quantity);
+            param[24] = new SqlParameter("@SiteArea", SiteArea);
+
+
+            return objDAL.GetDataByProcedure("SPVisionPlan_Garbage", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     public DataTable GetVisionPlanForReport(string actions,  int? ULBID,  int? stateid, string IsConstructed, int? circleId
         , int? FY, string constructedYear,  string selfPriority, int VisionStatus, string ULBType, int mandal, int ExpAmtLess, 
         int ExpAmtGret, string FromDate, string ToDate, int PersonId, int AkanshiULB)

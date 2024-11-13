@@ -62,6 +62,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="ProjectType_Name" HeaderText="ProjectType" />
+                                                    <asp:BoundField DataField="ProjectType_Description" HeaderText="Project Type Description" />
                                                     <asp:BoundField DataField="Project_Name" HeaderText="Scheme" />
                                                     <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
                                                     <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
@@ -106,9 +107,14 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-
                                         <asp:Label ID="lblProjectType" runat="server" Text="Project Type*" CssClass="control-label no-padding-right"></asp:Label>
                                         <asp:TextBox ID="txtProjectType" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <asp:Label ID="lblDescription" runat="server" Text="Project Type Description" CssClass="control-label no-padding-right"></asp:Label>
+                                        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="6" CssClass="form-control mb-2"></asp:TextBox>
                                     </div>
                                 </div>
 

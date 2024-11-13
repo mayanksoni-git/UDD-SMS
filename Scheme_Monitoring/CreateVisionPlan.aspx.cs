@@ -10,6 +10,7 @@ using System.IO;
 using System.Text;
 using System.Data.SqlClient;
 using System.Web.UI.HtmlControls;
+using System.Web.Services;
 
 public partial class CreateVisionPlan: System.Web.UI.Page
 {
@@ -336,11 +337,17 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             {
                 txtProjectCost.Text = dt.Rows[0]["ProjectCost"].ToString();
             }
+            if(!String.IsNullOrWhiteSpace(dt.Rows[0]["Quantity"].ToString()))
+            {
+                txtQuantity.Text = dt.Rows[0]["Quantity"].ToString();
+            }
+            if(!String.IsNullOrWhiteSpace(dt.Rows[0]["SiteArea"].ToString()))
+            {
+                txtSiteArea.Text = dt.Rows[0]["SiteArea"].ToString();
+            }
             TxtPopulation.Enabled = false;
             BtnSave.Visible = false;
             BtnUpdate.Visible = true;
-
-
             }
         else
         {
@@ -391,6 +398,12 @@ public partial class CreateVisionPlan: System.Web.UI.Page
         {
             MessageBox.Show("Please Enter Project Cost. ");
             txtProjectCost.Focus();
+            return false;
+        }
+        if (txtQuantity.Text == "" || txtQuantity.Text == null)
+        {
+            MessageBox.Show("Please Enter Quantity/Capacity. ");
+            txtQuantity.Focus();
             return false;
         }
         else
@@ -595,6 +608,13 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 Location.Focus();
                 return;
             }
+
+            if (txtQuantity.Text == "")
+            {
+                MessageBox.Show("Please Enter Quantity/Capacity.");
+                Location.Focus();
+                return;
+            }
             var pk = Convert.ToInt32(VisionPlanID.Value);
             var cmvny = Convert.ToInt32(DDLProj.SelectedValue);
             var ULB = Convert.ToInt32(ddlDivision.SelectedValue);
@@ -609,11 +629,23 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 MessageBox.Show("Please select  priority");
                 return;
             }
+            var SiteArea = 0.00;
+            var Quantity = 0;
+            if (!string.IsNullOrEmpty(txtQuantity.Text))
+            {
+                Quantity = Convert.ToInt16(txtQuantity.Text.ToString());
+            }
+
+            if (!string.IsNullOrEmpty(txtSiteArea.Text))
+            {
+                SiteArea = Convert.ToDouble(txtSiteArea.Text.ToString());
+            }
+
             // var person=Convert.ToInt32(se)
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
-            dt = objLoan.GetVisionPlan("update", cmvny, ULB, pk, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text,TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()),0,-1);
+            dt = objLoan.InsertVisionPlan("update", cmvny, ULB, pk, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text,TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()),0,-1, Quantity, Convert.ToDecimal(SiteArea));
             //GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
             if (dt.Rows.Count > 0)
             {
@@ -747,8 +779,13 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             }
             if (Location.Text == "")
             {
-              
                 MessageBox.Show("Please Enter Location.");
+                Location.Focus();
+                return;
+            }
+            if (txtQuantity.Text == "")
+            {
+                MessageBox.Show("Please Enter Quantity/Capacity.");
                 Location.Focus();
                 return;
             }
@@ -784,12 +821,22 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 return;
             }
 
+            var SiteArea = 0.00;
+            var Quantity = 0;
+            if (!string.IsNullOrEmpty(txtQuantity.Text))
+            {
+                Quantity = Convert.ToInt16(txtQuantity.Text.ToString());
+            }
 
-       
+            if (!string.IsNullOrEmpty(txtSiteArea.Text))
+            {
+                SiteArea = Convert.ToDouble(txtSiteArea.Text.ToString());
+            }
+
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
-            dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location,TxtPopulation.Text,TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()),0,-1);
+            dt = objLoan.InsertVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location,TxtPopulation.Text,TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()),0,-1, Quantity, Convert.ToDecimal(SiteArea));
             
             if (dt.Rows.Count > 0)
             {
@@ -837,24 +884,6 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 sectionusercharge.Visible = false;
                 sectionuOwner.Visible = true;
                 secOtherown.Visible = false;
-                //RadioButton1.Checked = false;
-
-                //RadioButton4.Checked = false;
-                //RadioButton5.Checked = false;
-                //RadioButton6.Checked = false;
-                //RadioButton7.Checked = false;
-                //RadioButton8.Checked = false;
-                //RadioButton9.Checked = false;
-                //RadioButton10.Checked = false;
-
-
-             
-
-                  //  sectionusercharge.Visible = true;
-
-               
-              
-
             }
             if (RadioButton7.Checked == true)
             {
@@ -893,6 +922,16 @@ public partial class CreateVisionPlan: System.Web.UI.Page
         {
             GetPopulationdata(divi, ddlFY.SelectedValue);
         }
-       
+    }
+    [WebMethod]
+    public static string DDLProj_SelectedIndexChanged(int id)
+    {
+        int selectedValue = id;
+        string scalarValue =  (new DataLayer()).GetScalarValueFromDatabase(selectedValue);
+
+
+        // Serialize as JSON using JavaScriptSerializer
+        var result = new { scalarValue = scalarValue };
+        return new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(result);
     }
 }

@@ -110,6 +110,7 @@ public partial class MasterProjectType : System.Web.UI.Page
             return;
         }
         obj_tbl_ProjectType.ProjectType_Name = txtProjectType.Text.Trim();
+        obj_tbl_ProjectType.ProjectType_Description = txtDescription.Text.Trim();
         obj_tbl_ProjectType.ProjectType_Status = 1;
         obj_tbl_ProjectType.ProjectType_ProjectId = Convert.ToInt32(ddlSearchScheme.SelectedValue);
 
@@ -137,6 +138,7 @@ public partial class MasterProjectType : System.Web.UI.Page
     private void reset()
     {
         txtProjectType.Text = "";
+        txtDescription.Text = "";
         hf_ProjectType_Id.Value = "0";
         ddlSearchScheme.SelectedValue = "0";
         get_tbl_ProjectType();
@@ -155,6 +157,7 @@ public partial class MasterProjectType : System.Web.UI.Page
         int ProjectType_Id = Convert.ToInt32(((sender as ImageButton).Parent.Parent as GridViewRow).Cells[0].Text.Trim());
         hf_ProjectType_Id.Value = ProjectType_Id.ToString();
         txtProjectType.Text = ((sender as ImageButton).Parent.Parent as GridViewRow).Cells[3].Text.Trim();
+        txtDescription.Text= ((sender as ImageButton).Parent.Parent as GridViewRow).Cells[4].Text.Trim();
         try
         {
             ddlSearchScheme.SelectedValue = ((sender as ImageButton).Parent.Parent as GridViewRow).Cells[1].Text.Trim();
@@ -202,6 +205,7 @@ public partial class MasterProjectType : System.Web.UI.Page
     protected void btnAddNew_Click(object sender, EventArgs e)
     {
         txtProjectType.Text = "";
+        txtDescription.Text = "";
         hf_ProjectType_Id.Value = "0";
         btnDelete.Visible = false;
         mp1.Show();

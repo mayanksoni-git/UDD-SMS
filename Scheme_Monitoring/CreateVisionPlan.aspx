@@ -14,8 +14,11 @@
         <div class="page-content">
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
+                    
                     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
                     </cc1:ToolkitScriptManager>
+                   
+
                     <div class="container-fluid">
 
                          <div class="row">
@@ -83,7 +86,9 @@
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="divProj" runat="server">
                                                         <asp:Label ID="lblProj" runat="server" Text="Project type*" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="DDLProj" runat="server" CssClass="form-select" ></asp:DropDownList>
+                                                        <%--<asp:DropDownList ID="DDLProj" runat="server" CssClass="form-select" ></asp:DropDownList>--%>
+                                                        <asp:DropDownList ID="DDLProj" runat="server" CssClass="form-select"></asp:DropDownList>
+                                                        <asp:HiddenField ID="hfScalarValue" runat="server" />
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
@@ -96,6 +101,18 @@
                                                     <div id="div10" runat="server">
                                                         <asp:Label ID="lblProjectCost" runat="server" Text="Project Cost(In Lakhs)*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-xxl-3 col-md-6">
+                                                    <div id="div11" runat="server">
+                                                        <asp:Label ID="lblQuantity" runat="server" Text="Quantity/Capacity *" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-xxl-3 col-md-6">
+                                                    <div id="div12" runat="server">
+                                                        <asp:Label ID="lblSiteArea" runat="server" Text="Site Area(In Square Meter)*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtSiteArea" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server" >
@@ -190,81 +207,14 @@
                                         </div>
                                     </div>
                                 </div>
-
-                               <%-- <div class="card" id="sectionData" runat="server">
-                                            <table id="sample-table-2" class="mt-5 table table-striped table-bordered table-hover">
-
-                                                <thead >
-                                                    <tr class="table-success">
-                                                        <th style="text-align: center;font-size:26px"  colspan="4" rowspan="1"> Annual Income :
-                                                            <label id="AnnualULB" runat="server"></label>
-                                                        </th>
-                                                        </tr>
-                                                    <tr>
-                                                        <th style="font-size:18px" colspan="2">District :
-                                                             <label id="District" runat="server"></label>
-                                                        </th>
-                                                        <th style="font-size:18px" colspan="1" >ULB Type (Category) :
-                                                            
-                                                        </th>
-                                                        </tr>
-                                                    <tr>
-                                                        <th style="font-size:18px" colspan="2">Year :
-                                                             <label id="year" runat="server"></label>
-                                                        </th>
-                                                       <th style="font-size:18px"> <label id="ULBType" runat="server"></label></th>
-                                                        </tr>
-                                                    <tr class="table-primary">
-                                                        <th align="center" >Sr No.  
-                                                                              
-                                                        </th>
-                                                        <th rowspan="2">Name Of Head
-                                                        </th>
-                                                         <th style="text-align: right" rowspan="2">Amount
-                                                        </th>
-                                                         <th style="text-align: right" rowspan="2">
-                                                        </th>
-                                                    </tr>
-                                                   
-                                                </thead>
-                                       
-                                     <asp:Repeater ID="rptSearchResult" runat="server">
-                                        <ItemTemplate>
-                                            <tr>
-                                                <td>
-                                                 
-                                                     <%#DataBinder.Eval(Container,"DataItem.SrNo")%>
-                                                </td>
-                                                <td align="left">
-                                                 
-                                                    <%#DataBinder.Eval(Container,"DataItem.ULBIncomeType_Name")%>
-                                                </td>
-                                                <td style="text-align: right">
-                                                    <%#DataBinder.Eval(Container,"DataItem.Amount")%>
-                                                </td>
-                                                
-                                              
-
-
-
-
-                                            </tr>
-                                        </ItemTemplate>
-                                        <FooterTemplate>
-                                           
-                                        </FooterTemplate>
-                                    </asp:Repeater>
-                                     </table>
-                                </div>--%>
-
                             </div>
                         </div>
+                        
 
 
                        
                     </ContentTemplate>
                 <Triggers>
-                    <asp:PostBackTrigger ControlID="BtnSave" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />
                     <asp:PostBackTrigger ControlID="ddlFY" />
@@ -284,57 +234,61 @@
 
                 </asp:UpdatePanel>
           
-
+            
             </div>
         </div>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-   <%--<script type="text/javascript">
-       $(document).ready(function () {
-           $('input[name$="IsConstructed"]').change(function () {
-               debugger
-               var selectedValue = $(this).val();
-               if (selectedValue == 1) {
-                   $("#sectionyear").slideDown();
-                   $("#sectionCond").slideDown();
-                   $("#secUser").slideDown();
-                  $("#sectionuOwner").slideDown();
+    
+    <script>
+        $(document).ready(function () {
+            $('#<%= DDLProj.ClientID %>').change(function () {
+                var selectedValue = $(this).val();
+                var selectedText = $(this).find("option:selected").text();
 
-               } else {
-                   $("#sectionyear").slideUp();
-                   $("#sectionCond").slideUp();
-                   $("#secUser").slideUp();
-                   $("#sectionuOwner").slideUp();
-                   $("#sectionusercharge").slideUp();
-                   $("#secOtherown").slideUp();
-               }
-               //alert("You selected: " + selectedValue);
-           });
-           $('input[name$="usercharge"]').change(function () {
-               var selectedValue = $(this).val();
-               if (selectedValue == 1) {
-                   $("#sectionusercharge").slideDown();
+                $.ajax({
+                    type: "POST",
+                    url: "CreateVisionPlan.aspx/DDLProj_SelectedIndexChanged",
+                    data: JSON.stringify({ id: selectedValue }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var parsedResponse = JSON.parse(response.d);  
+                        var scalarValue = parsedResponse.scalarValue;
+                        $('#modalContent').text(scalarValue);
+                        $('#ProjectTypeText').text('Guide Lines to fill form for Project Type: '+selectedText);
+                        // Update modal content
+                        // Show the modal
+                        $('#myModal').modal('show');
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error: " + error);
+                    }
+                });
+            });
+        });
 
-               }
-               else {
-                   $("#sectionusercharge").slideUp();
 
-               }
-           })
 
-           $('input[name$="Owner"]').change(function () {
-               var selectedValue = $(this).val();
-               if (selectedValue == 0) {
-                   $("#secOtherown").slideDown();
+    </script>
 
-               }
-               else {
-                   $("#secOtherown").slideUp();
-
-               }
-           })
-           //
-       });
-   </script>--%>
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="ProjectTypeText"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalContent">
+                </div>
+                <div>
+                    <a href="PDFs/GuideLines/Cost%20Estimate.pdf">Click Here to See Full Guidelines</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
         <style>
            
 
@@ -358,4 +312,5 @@
     transition: all .35s ease-Out;
 }
     </style>
+    
     </asp:Content>
