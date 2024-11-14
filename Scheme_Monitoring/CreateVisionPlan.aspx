@@ -278,10 +278,12 @@
                     <h5 id="ProjectTypeText"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="modalContent">
+                <div class="modal-body" >
+                    <b id="modalContent"></b>.
+                    <a href="PDFs/GuideLines/Cost%20Estimate.pdf" target="_blank"> Click here</a> to See Full Guidelines
                 </div>
                 <div>
-                    <a href="PDFs/GuideLines/Cost%20Estimate.pdf" target="_blank">Click Here to See Full Guidelines</a>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
