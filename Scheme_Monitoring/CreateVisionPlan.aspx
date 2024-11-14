@@ -281,7 +281,7 @@
                 <div class="modal-body" id="modalContent">
                 </div>
                 <div>
-                    <a href="PDFs/GuideLines/Cost%20Estimate.pdf">Click Here to See Full Guidelines</a>
+                    <a href="PDFs/GuideLines/Cost%20Estimate.pdf" target="_blank">Click Here to See Full Guidelines</a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

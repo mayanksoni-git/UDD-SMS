@@ -332,6 +332,13 @@ public partial class UploadDocForAnnualActionPlan : System.Web.UI.Page
 
     protected void BtnSearch_Click(object sender, EventArgs e)
     {
-        GetAllData();
+
+        List<string> PersonIdNotAllowd = new List<string> { "3291", "3294" };
+        string searchString = Session["Person_Id"].ToString();
+
+        if (!PersonIdNotAllowd.Contains(searchString))
+        {
+            GetAllData();
+        }
     }
 }
