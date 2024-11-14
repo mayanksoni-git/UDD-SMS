@@ -272,7 +272,7 @@
     </script>
 
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 id="ProjectTypeText"></h5>
@@ -280,7 +280,8 @@
                 </div>
                 <div class="modal-body" >
                     <b id="modalContent"></b>.
-                    <a href="PDFs/GuideLines/Cost%20Estimate.pdf" target="_blank"> Click here</a> to See Full Guidelines
+                    <a href="PDFs/GuideLines/Cost%20Estimate.pdf" target="_blank" class="btn bg-success text-white"> Click here</a> to See Full Guidelines
+                    <img src="assets/images/Cost-Estimate-2.jpg" class="img-fluid"/>
                 </div>
                 <div>
                     
