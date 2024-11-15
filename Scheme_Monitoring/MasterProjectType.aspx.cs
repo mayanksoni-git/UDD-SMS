@@ -156,8 +156,8 @@ public partial class MasterProjectType : System.Web.UI.Page
 
         int ProjectType_Id = Convert.ToInt32(((sender as ImageButton).Parent.Parent as GridViewRow).Cells[0].Text.Trim());
         hf_ProjectType_Id.Value = ProjectType_Id.ToString();
-        txtProjectType.Text = ((sender as ImageButton).Parent.Parent as GridViewRow).Cells[3].Text.Trim();
-        txtDescription.Content = HttpUtility.UrlDecode(((sender as ImageButton).Parent.Parent as GridViewRow).Cells[4].Text.Trim());
+        txtProjectType.Text = ((sender as ImageButton).Parent.Parent as GridViewRow).Cells[4].Text.Trim();
+        txtDescription.Content = HttpUtility.UrlDecode(((sender as ImageButton).Parent.Parent as GridViewRow).Cells[2].Text.Trim());
         try
         {
             ddlSearchScheme.SelectedValue = ((sender as ImageButton).Parent.Parent as GridViewRow).Cells[1].Text.Trim();
