@@ -8,9 +8,7 @@
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
                     <div class="container-fluid">
-
-                        <div class="row">
-                            <div class="col-12">
+                         <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                     <h4 class="mb-sm-0">
                                         <%= Session["Default_Circle"].ToString() %> Master</h4>
@@ -23,6 +21,10 @@
                                     </div>
                                 </div>
                             </div>
+                        <div class="card">
+                                    <div class="card-body">
+                        <div class="row">
+                           
                             <div class="col-xs-12">
                                 <div class="clearfix">
                                     <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter mb-2"></asp:Button>
@@ -30,46 +32,37 @@
                             </div>
                         </div>
 
-
-                        <div id="divCreateNew" runat="server" visible="false">
+                        <div class="card"  id="divCreateNew" runat="server" visible="false">
+                             <div class="card-body">
                             <div class="row">
                                 <div class="col-xs-12">
-
-                                    <div class="table-header col-lg-6">
+                                    <div class="table-header">
                                         <h3 style="font-weight:bold; font-size:large">Create / Update <%= Session["Default_Circle"].ToString() %></h3>
                                         <hr />
-
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
                                             <asp:DropDownList ID="ddlZoneMaster" runat="server" CssClass="form-select mb-2"></asp:DropDownList>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label class="control-label no-padding-right"><%= Session["Default_Circle"].ToString() %> Name* </label>
                                             <asp:TextBox ID="txtCircleName" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-6">
+                                <div class="col-md-4">
                                         <div class="form-group">
-                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
-                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning mb-2"></asp:Button>
+                                            <label class="d-block">&nbsp;</label>
+                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
+                                           <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn bg-danger text-white"></asp:Button>
                                         </div>
                                     </div>
-                                </div>
+                                
+                            </div>
+
                             </div>
                         </div>
 
@@ -119,7 +112,8 @@
                         </div>
 
                     </div>
-
+                            </div>
+                        </div>
                     <asp:HiddenField ID="hf_Circle_Id" runat="server" Value="0" />
                 </ContentTemplate>
             </asp:UpdatePanel>

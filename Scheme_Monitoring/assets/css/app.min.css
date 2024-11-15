@@ -42,6 +42,10 @@ body {
     background-attachment: fixed;
 }
 
+.modal-header {
+    margin-bottom: 1rem;
+}
+
 #ctl00_ContentPlaceHolder1_txtDescription_ctl04_ctl114{
     display:none;
 }

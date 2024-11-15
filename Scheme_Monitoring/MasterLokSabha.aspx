@@ -25,6 +25,9 @@
                                 </div>
                             </div>
 
+
+                             <div class="card">
+ <div class="card-body">
                             <div class="row">
                                 <div class="col-xxl-12 col-md-12">
                                     <div>
@@ -33,19 +36,21 @@
                                 </div>
                             </div>
 
-                            <div id="divCreateNew" runat="server" visible="false">
+       <div id="divCreateNew" runat="server" visible="false" class="card">
+ <div class="card-body">
+                           
 
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <div class="table-header col-lg-6">
+                                        <div class="table-header">
                                             <h3 style="font-weight:bold; font-size:large">Create Lok Sabha</h3>
                                             <hr />
                                         </div>
 
                                     </div>
                                 </div>
+
                                 <div class="row">
-                                    <div class="col-md-12">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <asp:Label ID="lblProject" runat="server" Text="District*" CssClass="control-label no-padding-right"></asp:Label>
@@ -58,24 +63,23 @@
                                                 <asp:TextBox ID="txtLokSabha" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                             </div>
                                         </div>
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="col-md-6">
+                                         <div class="col-md-4">
+                                             
                                             <div class="form-group">
-                                                <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
-                                                <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>
-                                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning mb-2"></asp:Button>
+                                                <label class="d-block">&nbsp;</label>
+                                                <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
+                                                <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn bg-danger text-white"></asp:Button>
+                                                <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn bg-danger text-white"></asp:Button>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    
 
-                            <div class="row">
-                                <div class="col-xs-12">
+                                </div>
+                              
+                      
+       </div>
+                    </div>
+                       
 
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -122,13 +126,12 @@
                                         </div>
                                     </div>
                                     <!-- PAGE CONTENT ENDS -->
-                                </div>
-                                <!-- /.col -->
-                            </div>
+                              
                             <!-- /.row -->
                         </div>
                     </div>
-
+                     </div>
+                    </div>
                     <asp:HiddenField ID="hf_LokSabha_Id" runat="server" Value="0" />
                 </ContentTemplate>
             </asp:UpdatePanel>

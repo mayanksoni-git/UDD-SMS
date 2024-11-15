@@ -25,13 +25,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            <div class="col-xs-12">
+                        </div>
+                         <div class="card">
+                            <div class="card-body">
+                        <div class="row">
+                             <div class="col-xs-12">
                                 <div class="clearfix">
                                     <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter mb-2"></asp:Button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-xs-12">
                                 <div class="row">
                                     <div class="col-xs-12">
@@ -95,15 +97,17 @@
                             <div class="col-md-12">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
-                                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>
-                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning mb-2"></asp:Button>
+                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
+                                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn bg-danger text-white"></asp:Button>
+                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn bg-danger text-white"></asp:Button>
                                         <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </asp:Panel>
+
+                              </div> </div>
                     <asp:HiddenField ID="hf_ULBIncomeType_Id" runat="server" Value="0" />
                 </ContentTemplate>
             </asp:UpdatePanel>

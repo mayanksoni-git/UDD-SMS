@@ -75,17 +75,17 @@
                                                     </div>
                                                 </div>
                                                 <!--end col-->
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-1 col-md-6">
                                                     <div>
-                                                        <br />
-                                                        <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Search" CssClass="btn btn-primary"></asp:Button>
+                                                          <label class="d-block">&nbsp;</label>
+                                                        <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Search" CssClass="btn bg-success text-white"></asp:Button>
                                                     </div>
                                                 </div>
                                                 <!--end col-->
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-1 col-md-6">
                                                     <div>
-                                                        <br />
-                                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                                    <label class="d-block">&nbsp;</label>
+                                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-primary"></asp:Button>
                                                     </div>
                                                 </div>
                                                 <!--end col-->

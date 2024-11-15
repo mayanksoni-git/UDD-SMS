@@ -78,7 +78,7 @@
                                                         <asp:Button ID="BtnSave" Text="Save"  OnClick="BtnSave_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="BtnUpdate" Visible="false" Text="Update"  OnClick="BtnUpdate_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
                                                         <%--<asp:Button ID="Button3" Text="Search" style="float:right" OnClick="BtnSearch_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>--%>
-                                                        <asp:Button ID="BtnSearch" Text="Search" style="margin:10px"  OnClick="BtnSearch_Click" runat="server"  CssClass="btn btn-warning mb-2"></asp:Button>
+                                                        <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server"  CssClass="btn bg-success text-white"></asp:Button>
                                                        
                                                 </div>
                                             </div>
