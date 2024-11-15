@@ -1,6 +1,8 @@
 <%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true"
     CodeFile="MasterProjectType.aspx.cs" Inherits="MasterProjectType" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
 
+<%@ Register Assembly="Obout.Ajax.UI" Namespace="Obout.Ajax.UI.HTMLEditor" TagPrefix="obout" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <div class="main-content">
@@ -9,27 +11,23 @@
             </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
-                    <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="btnShowPopup"
-                        CancelControlID="btnclose" BackgroundCssClass="modalBackground1">
-                    </cc1:ModalPopupExtender>
-                    <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
                     <div class="page-content">
                         <div class="row">
                             <div class="col-12">
-                                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                        <h4 class="mb-sm-0">Project Type Master</h4>
-                                        <div class="page-title-right">
-                                            <ol class="breadcrumb m-0">
-                                                <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                                <li class="breadcrumb-item">Basic Masters</li>
-                                                <li class="breadcrumb-item active">Project Type</li>
-                                            </ol>
-                                        </div>
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Project Type Master</h4>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                            <li class="breadcrumb-item">Basic Masters</li>
+                                            <li class="breadcrumb-item active">Project Type</li>
+                                        </ol>
                                     </div>
                                 </div>
+                            </div>
                             <div class="col-xs-12">
                                 <div class="clearfix">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter mb-2"  ></asp:Button>
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter mb-2"></asp:Button>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +42,7 @@
                                         <!-- div.table-responsive -->
                                         <!-- div.dataTables_borderWrap -->
                                         <div style="overflow: auto">
-                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
+                                            <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender" OnRowDataBound="grdPost_RowDataBound">
                                                 <Columns>
                                                     <asp:BoundField DataField="ProjectType_Id" HeaderText="ProjectType_Id">
                                                         <HeaderStyle CssClass="displayStyle" />
@@ -56,13 +54,23 @@
                                                         <ItemStyle CssClass="displayStyle" />
                                                         <FooterStyle CssClass="displayStyle" />
                                                     </asp:BoundField>
+                                                    <asp:BoundField DataField="ProjectType_Description" HeaderText="ProjectType_Description">
+                                                        <HeaderStyle CssClass="displayStyle" />
+                                                        <ItemStyle CssClass="displayStyle" />
+                                                        <FooterStyle CssClass="displayStyle" />
+                                                    </asp:BoundField>
                                                     <asp:TemplateField HeaderText="S No.">
                                                         <ItemTemplate>
                                                             <%# Container.DataItemIndex + 1 %>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="ProjectType_Name" HeaderText="ProjectType" />
-                                                    <asp:BoundField DataField="ProjectType_Description" HeaderText="Project Type Description" />
+                                                    <asp:TemplateField HeaderText="Project Type Description">
+                                                        <ItemTemplate>
+                                                            <div id="htmlDesc" runat="server">
+                                                            </div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:BoundField DataField="Project_Name" HeaderText="Scheme" />
                                                     <asp:BoundField DataField="CreatedBy" HeaderText="Created By" />
                                                     <asp:BoundField DataField="Created_Date" HeaderText="Created Date" />
@@ -70,7 +78,7 @@
                                                     <asp:BoundField DataField="Modified_Date" HeaderText="Modified Date" />
                                                     <asp:TemplateField HeaderText="View">
                                                         <ItemTemplate>
-                                                            <asp:ImageButton ID="btnDelete" Width="20px" Height="20px"  OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
+                                                            <asp:ImageButton ID="btnDelete" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit.png" runat="server" />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
@@ -85,7 +93,7 @@
                         </div>
 
                     </div>
-                    <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
+                    <div id="divAddNew" runat="server" visible="false">
 
                         <div class="row">
                             <div class="col-xs-12">
@@ -114,7 +122,10 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <asp:Label ID="lblDescription" runat="server" Text="Project Type Description" CssClass="control-label no-padding-right"></asp:Label>
-                                        <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="6" CssClass="form-control mb-2"></asp:TextBox>
+                                        <%--<asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" Rows="6" CssClass="form-control mb-2"></asp:TextBox>--%>
+                                        <obout:Editor runat="server" ID="txtDescription" Height="400px" Width="100%">
+                                            <EditPanel FullHtml="true" />
+                                        </obout:Editor>
                                     </div>
                                 </div>
 
@@ -127,12 +138,11 @@
                                         <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
                                         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-danger"></asp:Button>
                                         <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning mb-2"></asp:Button>
-                                        <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </asp:Panel>
+                    </div>
                     <asp:HiddenField ID="hf_ProjectType_Id" runat="server" Value="0" />
 
                 </ContentTemplate>
@@ -149,7 +159,7 @@
         </div>
     </div>
 
-   
+
 
 
     <script>

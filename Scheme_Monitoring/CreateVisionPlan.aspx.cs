@@ -927,8 +927,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
     public static string DDLProj_SelectedIndexChanged(int id)
     {
         int selectedValue = id;
-        string scalarValue =  (new DataLayer()).GetScalarValueFromDatabase(selectedValue);
-
+        string scalarValue = HttpUtility.UrlDecode((new DataLayer()).GetScalarValueFromDatabase(selectedValue));
 
         // Serialize as JSON using JavaScriptSerializer
         var result = new { scalarValue = scalarValue };

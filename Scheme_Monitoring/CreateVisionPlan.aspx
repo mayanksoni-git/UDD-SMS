@@ -254,7 +254,7 @@
                     success: function (response) {
                         var parsedResponse = JSON.parse(response.d);  
                         var scalarValue = parsedResponse.scalarValue;
-                        $('#modalContent').text(scalarValue);
+                        $('#modalContent').html(scalarValue);
                         $('#ProjectTypeText').text('Guide Lines to fill form for Project Type: '+selectedText);
                         // Update modal content
                         // Show the modal
@@ -279,7 +279,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" >
-                    <b id="modalContent"></b>.
+                    <p id="modalContent"></p>.
                     <a href="PDFs/GuideLines/Cost%20Estimate.pdf" target="_blank" class="btn bg-success text-white"> Click here</a> to See Full Guidelines
                     <img src="assets/images/Cost-Estimate-2.jpg" class="img-fluid"/>
                 </div>

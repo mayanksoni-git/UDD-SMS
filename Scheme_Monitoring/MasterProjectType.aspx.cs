@@ -43,7 +43,7 @@ public partial class MasterProjectType : System.Web.UI.Page
         {
             ds = (new DataLayer()).get_tbl_ProjectType(0, Convert.ToInt32(Session["Person_Id"].ToString()));
         }
-        
+
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             grdPost.DataSource = ds.Tables[0];
@@ -101,7 +101,7 @@ public partial class MasterProjectType : System.Web.UI.Page
         {
             Msg = "Give ProjectType";
             txtProjectType.Focus();
-            return ;
+            return;
         }
         if (ddlSearchScheme.SelectedValue == null || ddlSearchScheme.SelectedValue == "0")
         {
@@ -110,7 +110,7 @@ public partial class MasterProjectType : System.Web.UI.Page
             return;
         }
         obj_tbl_ProjectType.ProjectType_Name = txtProjectType.Text.Trim();
-        obj_tbl_ProjectType.ProjectType_Description = txtDescription.Text.Trim();
+        obj_tbl_ProjectType.ProjectType_Description = HttpUtility.UrlEncode(txtDescription.Content);
         obj_tbl_ProjectType.ProjectType_Status = 1;
         obj_tbl_ProjectType.ProjectType_ProjectId = Convert.ToInt32(ddlSearchScheme.SelectedValue);
 
@@ -138,14 +138,14 @@ public partial class MasterProjectType : System.Web.UI.Page
     private void reset()
     {
         txtProjectType.Text = "";
-        txtDescription.Text = "";
+        txtDescription.Content = "";
         hf_ProjectType_Id.Value = "0";
         ddlSearchScheme.SelectedValue = "0";
         get_tbl_ProjectType();
-        mp1.Hide();
+        divAddNew.Visible = false;
     }
 
-   
+
     protected void btnReset_Click(object sender, EventArgs e)
     {
         reset();
@@ -153,11 +153,11 @@ public partial class MasterProjectType : System.Web.UI.Page
 
     protected void btnEdit_Click(object sender, ImageClickEventArgs e)
     {
-        
+
         int ProjectType_Id = Convert.ToInt32(((sender as ImageButton).Parent.Parent as GridViewRow).Cells[0].Text.Trim());
         hf_ProjectType_Id.Value = ProjectType_Id.ToString();
         txtProjectType.Text = ((sender as ImageButton).Parent.Parent as GridViewRow).Cells[3].Text.Trim();
-        txtDescription.Text= ((sender as ImageButton).Parent.Parent as GridViewRow).Cells[4].Text.Trim();
+        txtDescription.Content = HttpUtility.UrlDecode(((sender as ImageButton).Parent.Parent as GridViewRow).Cells[4].Text.Trim());
         try
         {
             ddlSearchScheme.SelectedValue = ((sender as ImageButton).Parent.Parent as GridViewRow).Cells[1].Text.Trim();
@@ -165,7 +165,7 @@ public partial class MasterProjectType : System.Web.UI.Page
         catch
         {
         }
-        mp1.Show(); 
+        divAddNew.Visible = true;
     }
     protected void btnDelete_Click(object sender, EventArgs e)
     {
@@ -205,9 +205,19 @@ public partial class MasterProjectType : System.Web.UI.Page
     protected void btnAddNew_Click(object sender, EventArgs e)
     {
         txtProjectType.Text = "";
-        txtDescription.Text = "";
+        txtDescription.Content = "";
         hf_ProjectType_Id.Value = "0";
         btnDelete.Visible = false;
-        mp1.Show();
+        divAddNew.Visible = true;
+    }
+
+    protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            string ProjectType_Description = HttpUtility.UrlDecode(e.Row.Cells[2].Text.Trim());
+
+            (e.Row.FindControl("htmlDesc") as System.Web.UI.HtmlControls.HtmlGenericControl).InnerHtml = ProjectType_Description;
+        }
     }
 }
