@@ -25,20 +25,24 @@
                                         </div>
                                     </div>
                                 </div>
-                            <div class="col-xs-12">
+                           
+                        </div>
+                         <div class="card">
+                                  <div class="card-body">
+                        <div class="row">
+                             <div class="col-xs-12">
                                 <div class="clearfix">
                                     <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter mb-2"></asp:Button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-header align-items-center d-flex">
+                               
+
+                                    <div class="card-header align-items-center d-flex mb-4">
                                         <h4 class="card-title mb-0 flex-grow-1">Physical Component Master</h4>
                                     </div>
                                     <!-- end card header -->
-                                    <div class="card-body">
+                               
                                         <div class="live-preview">
                                             <div class="row gy-12">
                                                 <asp:GridView ID="grdPost" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender">
@@ -100,7 +104,7 @@
                                     <div class="card-body">
                                         <div class="live-preview">
                                             <div class="row gy-4">
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-6 col-md-6">
                                                     <div>
                                                         <label class="control-label no-padding-right">Scheme </label>
                                                         <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-select"></asp:DropDownList>
@@ -108,7 +112,7 @@
                                                 </div>
                                                 <!--end col-->
 
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-6 col-md-6">
                                                     <div>
                                                         <%--<asp:Label ID="lblUnit" runat="server" Text="Component*" CssClass="control-label no-padding-right"></asp:Label>--%>
                                                         <label runat="server" id="lblUnit" class="control-label no-padding-right">Component*</label>
@@ -137,22 +141,14 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <br />
-                                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div>
-                                                        <br />
+                                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-warning"></asp:Button>
                                                         <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-danger"></asp:Button>
+                                                          <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
                                                     </div>
                                                 </div>
-                                                <div class="col-xxl-3 col-md-6">
-                                                    <div>
-                                                        <br />
-                                                        <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
-                                                    </div>
-                                                </div>
+                                             
+                                                
                                             </div>
                                             <!--end row-->
                                         </div>

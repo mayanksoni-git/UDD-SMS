@@ -27,20 +27,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12">
-                                <div class="clearfix mb-2">
-                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter mb-2"></asp:Button>
-                             
-                                </div>
-                            </div>
+                           
                         </div>
 
                         <div class="card">
-                            <div class="card-header align-items-center d-flex">
-                                <h4 class="card-title mb-0 flex-grow-1">Dependency Master</h4>
-                            </div>
+                           
                             <!-- end card header -->
                             <div class="card-body">
+                                  <div class="col-xs-12">
+                                <div class="clearfix mb-2">
+                                    <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter mb-2"></asp:Button>
+                                </div>
+                            </div>
+                            <div class="card-header align-items-center d-flex mb-4">
+                                <h4 class="card-title mb-0 flex-grow-1">Dependency Master</h4>
+                            </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="clearfix" id="dtOptions" runat="server">

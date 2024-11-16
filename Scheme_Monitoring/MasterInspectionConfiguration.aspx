@@ -83,8 +83,7 @@
 
                         </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
+                      
                                 <div class="row">
                                     <div class="col-12">
                                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -99,7 +98,9 @@
                                     </div>
                                 </div>
                                     <div class="col-xs-12">
-
+                                        
+                        <div class="card">
+                                <div class="card-body">
                                         <!-- div.table-responsive -->
                                         <div class="clearfix" id="dtOptions" runat="server">
                                             <div class="pull-right tableTools-container"></div>
@@ -133,8 +134,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                         </div>
+                                </div>
+                          
                     </div>
                     <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
                         <div class="row">

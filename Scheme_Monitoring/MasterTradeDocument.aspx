@@ -33,7 +33,7 @@
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div class="clearfix">
-                                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn btn-warning"></asp:Button>
+                                                        <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn bg-success text-white"></asp:Button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 800px; margin-left: -32px">
+                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 600px; margin-left: -32px">
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="table-header">
@@ -92,23 +92,23 @@
                                         <hr />
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4" id="dvPJ" runat="server">
+                                <div class="col-md-6" id="dvPJ" runat="server">
                                     <div class="form-group">
                                         <asp:Label ID="lblDepartment" runat="server" Text="List Of Document*" CssClass="control-label no-padding-right"></asp:Label>
                                         <asp:TextBox ID="txtListOfDocument" runat="server" CssClass="form-control"></asp:TextBox>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group mt-2">
-                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-success"></asp:Button>
-                                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn btn-danger"></asp:Button>
-                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn  bg-info"></asp:Button>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="d-block">&nbsp;</label>
+                                        <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
+                                        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" CssClass="btn bg-danger text-white"></asp:Button>
+                                        <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn bg-danger text-white"></asp:Button>
                                         <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
                                     </div>
                                 </div>
                             </div>
+                           
                         </asp:Panel>
                     </div>
                     <asp:HiddenField ID="hf_ListOfDocument_Id" runat="server" Value="0" />
