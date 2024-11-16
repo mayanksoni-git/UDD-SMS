@@ -58,7 +58,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
     }
     private void get_tbl_Division(int circleId, string ULBType)
     {
-        DataSet ds = (new DataLayer()).get_tbl_DivisionByULBType(circleId, ULBType);
+        DataSet ds = (new DataLayer3()).get_tbl_DivisionByULBTypeForVisionPlan(circleId, ULBType);
         FillDropDown(ds, ddlDivision, "Division_Name", "Division_Id");
     }
     private void get_tbl_FinancialYear()
