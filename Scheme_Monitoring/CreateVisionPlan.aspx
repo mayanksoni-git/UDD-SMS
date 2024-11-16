@@ -280,7 +280,7 @@
                 </div>
                 <div class="modal-body" >
                     <p id="modalContent"></p>.
-                    <a href="PDFs/GuideLines/Cost%20Estimate.pdf" target="_blank" class="btn sm-success text-white"> Click here</a> to See Full Guidelines
+                    <a href="PDFs/GuideLines/Cost%20Estimate.pdf" target="_blank" class="btn btn-sm bg-success text-white"> Click here</a> to See Full Guidelines
                     <%--<img src="assets/images/Cost-Estimate-2.jpg" class="img-fluid"/>--%>
                 </div>
                 <div>
