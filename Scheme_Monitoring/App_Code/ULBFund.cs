@@ -1073,7 +1073,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[24] = new SqlParameter("@SiteArea", SiteArea);
 
 
-            return objDAL.GetDataByProcedure("SPVisionPlan_Garbage", param);
+            return objDAL.GetDataByProcedure("SPVisionPlan", param);
         }
         catch (Exception ex)
         {

@@ -188,7 +188,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
     }
     private void get_tbl_Division(int circleId)
     {
-        DataSet ds = (new DataLayer()).get_tbl_Division(circleId);
+        DataSet ds = (new DataLayer3()).get_tbl_DivisionForVisionPlan(circleId);
         FillDropDown(ds, ddlDivision, "Division_Name", "Division_Id");
     }
     protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
