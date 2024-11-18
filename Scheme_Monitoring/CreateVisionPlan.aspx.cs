@@ -629,6 +629,12 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 MessageBox.Show("Please select  priority");
                 return;
             }
+            if (Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()) >= 100000)
+            {
+                MessageBox.Show("Please enter project cost in Lakhs not in Rupees.");
+                return;
+            }
+
             var SiteArea = 0.00;
             var Quantity = 0;
             if (!string.IsNullOrEmpty(txtQuantity.Text))
