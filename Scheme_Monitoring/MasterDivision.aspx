@@ -22,93 +22,90 @@
                                         </div>
                                     </div>
                                 </div>
-                            <div class="col-xs-12">
+                        </div>
+
+                        <div class="card">
+ <div class="card-body">
+                        <div class="col-xs-12">
                                 <div class="clearfix">
                                     <asp:Button ID="btnAddNew" runat="server" OnClick="btnAddNew_Click" Text="Create New" CssClass="btn-filter mb-2"></asp:Button>
                                 </div>
                             </div>
-                        </div>
 
-
-                        <div id="divCreateNew" runat="server" visible="false">
-                            <div class="row">
+                         <div id="divCreateNew" runat="server" visible="false" class="card">
+                            <div class="card-body">
+                      
+                                <div class="row">
                                 <div class="col-xs-12">
 
-                                    <div class="table-header col-lg-6">
+                                    <div class="table-header">
                                         <h3 style="font-weight:bold; font-size:large">Create / Update Division</h3>
                                             <hr />
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="col-md-6">
+                               <div class="row">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
                                             <asp:DropDownList ID="ddlZoneMaster" runat="server" CssClass="form-select mb-2"></asp:DropDownList>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <asp:Label ID="lblDivisionH" CssClass="control-label no-padding-right" Text="Division" runat="server"></asp:Label>
                                             <asp:TextBox ID="txtDivisionName" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <asp:Label ID="lblUrbanPopulation" CssClass="control-label no-padding-right" Text="Total urban population*" runat="server"></asp:Label>
                                             <asp:TextBox ID="txtUrbanPopulation" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <asp:Label ID="lblUrbanPopulationSource" CssClass="control-label no-padding-right" Text="Source of Urban Population*" runat="server"></asp:Label>
                                             <asp:TextBox ID="txtUrbanPopulationSource" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <asp:Label ID="lblDeathPer1000" runat="server" Text="Death rate per 1000 per year*" CssClass="form-label"></asp:Label>
                                             <asp:TextBox ID="txtDeathPer1000" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <asp:Label ID="lblDeathPer1000Source" CssClass="control-label no-padding-right" Text="Source of Death rate per 1000 per year*" runat="server"></asp:Label>
                                             <asp:TextBox ID="txtDeathPer1000Source" runat="server" CssClass="form-control mb-2"></asp:TextBox>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <asp:Label ID="lblIsAkanshiULB" CssClass="control-label no-padding-right" Text="Is Akanshi ULB" runat="server"></asp:Label>
                                             <asp:CheckBox ID="chkIsAkanshiULB" runat="server" CssClass="form-control mb-2" />
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-md-12">       
-                                    <div class="col-md-6">   
+                                     <div class="col-md-4">   
                                         <div class="form-group">
-                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info mb-2"></asp:Button>
-                                            <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn btn-warning mb-2"></asp:Button>
+                                            <label class="d-block">&nbsp;</label>
+                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
+                                            <asp:Button ID="btnReset" runat="server" OnClick="btnReset_Click" Text="Reset" CssClass="btn bg-danger text-white"></asp:Button>
                                         </div>
                                     </div>
-                                </div>
                             </div>
-                        </div>
 
+                             </div>
+                         </div>
 
-                        <div class="row">
-                            <div class="col-xs-12">
+                            
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="clearfix" id="dtOptions" runat="server">
@@ -156,9 +153,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
+                        
+                           </div> </div>
                     </div>
 
                     <asp:HiddenField ID="hf_Division_Id" runat="server" Value="0" />

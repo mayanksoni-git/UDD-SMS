@@ -33,7 +33,7 @@
                                         <div class="live-preview">
                                             <div class="row gy-4">
                                                 <!-- Financial Year Dropdown -->
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-4 col-md-6">
                                                     <div id="divFY" runat="server">
                                                         <asp:Label ID="lblFY" runat="server" Text="Financial Year*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
@@ -41,7 +41,7 @@
                                                 </div>
 
                                                 <!-- Head Name Textbox -->
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-4 col-md-6">
                                                     <div id="divHeadName" runat="server">
                                                         <asp:Label ID="lblHeadName" runat="server" Text="Head Name*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="txtHeadName" runat="server" CssClass="form-control"></asp:TextBox>
@@ -49,7 +49,7 @@
                                                 </div>
 
                                                 <!-- Cost of Per Head Textbox (Decimal) -->
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-4 col-md-6">
                                                     <div id="divCostPerHead" runat="server">
                                                         <asp:Label ID="lblCostPerHead" runat="server" Text="Cost of Per Head*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:TextBox ID="txtCostPerHead" runat="server" CssClass="form-control"></asp:TextBox>
@@ -58,9 +58,8 @@
 
                                                 <!-- Buttons -->
                                                
-                                                <div class="col-xxl-2 col-md-2">
+                                                <div class="col-xxl-12 col-md-12 text-center">
                                                    
-                                                        <label class="d-block">&nbsp;</label>
                                                         <asp:Label ID="lblHiddenId" runat="server" Enabled="false" Visible="false"></asp:Label>
                                                         <asp:Button ID="BtnSave" Text="Save" OnClick="BtnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="BtnUpdate" Visible="false" Text="Update" OnClick="BtnUpdate_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>

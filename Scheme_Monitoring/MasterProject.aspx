@@ -25,7 +25,8 @@
                                     </div>
                                 </div>
                             </div>
-
+                             <div class="card">
+                                  <div class="card-body">
                             <div class="row">
                                 <div class="col-xxl-12 col-md-12">
                                     <div>
@@ -248,6 +249,7 @@
                             </div>
                             <!-- /.row -->
                         </div>
+                    </div>   </div>
                     </div>
                     <asp:HiddenField ID="hf_Project_Id" runat="server" Value="0" />
                 </ContentTemplate>
