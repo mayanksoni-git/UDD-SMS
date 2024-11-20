@@ -136,7 +136,7 @@
                                                                     <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
                                                                     <asp:TemplateField HeaderText="Total DPR">
                                                                         <ItemTemplate>
-                                                                            <asp:LinkButton ID="lnkDPR" runat="server" Text='<%# Eval("TotalDPR") %>' OnClick="lnkDPR_Click"></asp:LinkButton>
+                                                                            <asp:LinkButton ID="lnkDPR" runat="server" Text='<%# Eval("TotalDPR") %>' ForeColor="#000" Font-Bold="true" Font-Size="Medium" OnClick="lnkDPR_Click"></asp:LinkButton>
                                                                         </ItemTemplate>
                                                                         <FooterTemplate>
                                                                             <asp:LinkButton ID="lnkDPRF" runat="server" OnClick="lnkDPRF_Click" ForeColor="White"></asp:LinkButton>

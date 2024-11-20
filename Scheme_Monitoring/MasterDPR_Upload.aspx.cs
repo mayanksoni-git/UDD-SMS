@@ -465,6 +465,7 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
             {
                 dgvQuestionnaire.DataSource = ds.Tables[0];
                 dgvQuestionnaire.DataBind();
+                dgvQuestionnaire.Focus();
             }
             else
             {
@@ -626,6 +627,72 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
+
+        bool allAnswered = true; // Flag to check if all questions are answered.
+        bool allValid = true; // Flag to check if all questions are answered.
+
+        //foreach (GridViewRow row in dgvQuestionnaire.Rows)
+        //{
+        //    if (row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        RadioButtonList rbtAnswer = (RadioButtonList)row.FindControl("rbtDPRQuestionnaire_Answer");
+
+        //        if (rbtAnswer != null && string.IsNullOrEmpty(rbtAnswer.SelectedValue))
+        //        {
+        //            allAnswered = false;
+        //            row.BackColor = System.Drawing.Color.LightPink; // Highlight the row for missing answer.
+        //        }
+        //        else
+        //        {
+        //            row.BackColor = System.Drawing.Color.Transparent; // Reset row color if answered.
+        //        }
+        //    }
+        //}
+
+        foreach (GridViewRow row in dgvQuestionnaire.Rows)
+        {
+            if (row.RowType == DataControlRowType.DataRow)
+            {
+                // Find the RadioButtonList and TextBox controls.
+                RadioButtonList rbtAnswer = (RadioButtonList)row.FindControl("rbtDPRQuestionnaire_Answer");
+                TextBox txtRemark = (TextBox)row.FindControl("txtDPRQuestionnaire_Remark");
+
+                if (rbtAnswer != null)
+                {
+                    if (string.IsNullOrEmpty(rbtAnswer.SelectedValue))
+                    {
+                        // If no answer is selected, mark the row as invalid.
+                        allValid = false;
+                        row.BackColor = System.Drawing.Color.LightPink; // Highlight the row for missing answer.
+                    }
+                    else if (rbtAnswer.SelectedValue == "No" && txtRemark != null && string.IsNullOrWhiteSpace(txtRemark.Text))
+                    {
+                        // If "No" is selected and remarks are missing, mark the row as invalid.
+                        allValid = false;
+                        row.BackColor = System.Drawing.Color.LightYellow; // Highlight the row for missing remarks.
+                    }
+                    else
+                    {
+                        row.BackColor = System.Drawing.Color.Transparent; // Reset row color if valid.
+                    }
+                }
+            }
+        }
+
+        if (!allAnswered)
+        {
+            lblErrorMessage.Text= "Please ensure all questions in the Pre-Upload Checklist for DPR are answered. Provide remarks for any questions answered as 'No'. Unanswered questions are highlighted in pink, and questions answered as 'No' without remarks are highlighted in yellow."; // Display error message.
+            lblErrorMessage.Visible = true;
+        }
+        else
+        {
+            lblErrorMessage.Visible = false;
+
+            //Proceed with saving logic here.
+            //SaveData();
+        }
+        return;
+
         if (ddlStatus.SelectedValue == "0")
         {
             MessageBox.Show("Please Select Status");

@@ -175,7 +175,7 @@
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">DPR Points wise Comments</h4>
+                                            <h4 class="card-title mb-0 flex-grow-1">Pre-Upload Checklist for DPR</h4>
                                         </div>
                                         <!-- end card header -->
                                         <div class="card-body">
@@ -381,7 +381,8 @@
                                 <div class="col-md-12">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                                            <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" Visible="False"></asp:Label>
+                                            <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click"  OnClientClick="return confirm('Please make sure you have incorporated all the chapters in the DPR Document, mentioned in the Pre-Upload Checklist for DPR before saving the record. Are you sure you want to save this record?');"  runat="server" CssClass="btn btn-info"></asp:Button>
                                         </div>
                                     </div>
                                 </div>
@@ -484,6 +485,11 @@
             //location.href = window.location.origin + PersonFiles_FilePath;
             return false;
         }
+
+        //function confirm() {
+        //    return window.confirm("Please make sure you have incorporated all the chapters in the DPR Document, mentioned in the Pre-Upload Checklist for DPR before saving the record. Are you sure you want to save this record?");
+        //}
+
 
     </script>
 </asp:Content>
