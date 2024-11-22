@@ -251,5 +251,57 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
     }
     #endregion
 
+    [WebMethod]
+    public static string btnTotalULBRepoted_Click(int newAkanshi_Id)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            VisionPlan objVisionPlan = new VisionPlan();
+            dt = objVisionPlan.getTotalULBFinancialYearWise();
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new { error = "Record Not Found" });
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (consider logging the error)
+            return JsonConvert.SerializeObject(new { error = ex.Message });
+        }
+    }
+    [WebMethod]
+    public static string GetUlbDetailsByFYID(int FYID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            VisionPlan objVisionPlan = new VisionPlan();
+            dt = objVisionPlan.getULBByFYID(FYID);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string jsonResult = JsonConvert.SerializeObject(dt);
+                return jsonResult;
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(new { error = "Record Not Found" });
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exception (consider logging the error)
+            return JsonConvert.SerializeObject(new { error = ex.Message });
+        }
+    }
+
+
 
 }

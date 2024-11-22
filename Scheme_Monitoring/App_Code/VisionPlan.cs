@@ -68,4 +68,37 @@ public class VisionPlan
             throw new Exception(ex.Message);
         }
     }
+
+    public DataTable getTotalULBFinancialYearWise()
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@Action", "TotalULBReportedFinnacialYearWise");
+            return objDAL.GetDataByProcedure("sp_VisionPlanDashboard", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getULBByFYID(int FYID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[2];
+
+            param[0] = new SqlParameter("@Action", "ULBNamesByFYID");
+            param[1] = new SqlParameter("@FYID", FYID);
+            return objDAL.GetDataByProcedure("sp_VisionPlanDashboard", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 }

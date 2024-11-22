@@ -133,7 +133,7 @@
                                                                                        <i class="ri-article-line display-3 text-danger"></i>
                                                                                     </div>
                                                                                     <div class="col-12">
-                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
+                                                                                      <asp:Button ID="btnTotalAmounts" type="button" runat="server" CssClass="plan-btn" Text="Open List" OnClientClick="btnTotalAmounts_Click(1); return false;" />
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -156,7 +156,8 @@
                                                                                        <i class="ri-article-line display-3 text-danger"></i>
                                                                                     </div>
                                                                                     <div class="col-12">
-                                                                                        <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
+                                                                                      <asp:Button ID="btnTotalULBRepoted" type="button" runat="server" CssClass="plan-btn" Text="Open List" OnClientClick="btnTotalULBRepoted_Click(1); return false;" />
+                                                                                        <%--<button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>--%>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -727,8 +728,312 @@
          //}
 
      </script>
+    <script>
+        function btnTotalAmounts_Click() {
+            $.ajax({
+                url: "VisionPlanDashboard.aspx/btnTotalProjects_Click",
+                type: "POST",
+                contentType: "application/json;charset=utf-8;",
+                dataType: "json",
+                data: JSON.stringify({ newAkanshi_Id: 1 }),
+                success: function (data) {
+                    console.log(data); // Inspect the response
+                    if (data.d) {
+                        var result = JSON.parse(data.d);
+                        $('#ULBData').empty(); // Clear existing rows
+                        var html = '';
+                        var totalProjectCost = 0;
+                        var totalProjectCount = 0;
+
+                        for (var i = 0; i < result.length; i++) {
+                            var item = result[i];
+                            var projectCost = parseFloat(item.TotalProjectCost) || 0;
+                            totalProjectCost += projectCost; // Accumulate the project cost
+                            var projectCount = parseInt(item.NoOfProjects) || 0;
+                            totalProjectCount += projectCount; //Count Total Project
+                            html += '<tr>';
+                            html += '<td>' + (item.FYID || '') + '</td>';
+                            html += '<td>' + (item.FinancialYear_Comments || '') + '</td>';
+                            html += '<td>';
+                            html += '<button type="button" class="btn btn-primary btn-sm" onclick="openTotalAmountUlbWiseByFYID(' + item.FYID + ')">' + (item.NoOfProjects || '') + '</button>';
+                            html += '</td>';
+                            html += '<td>' + (item.TotalProjectCost || '') + '</td>';
+                            html += '</tr>';
+                        }
+
+                        $('#HeadDataA1').html(html);
+                        $('#VATableFooter12').text(totalProjectCost.toFixed(2));
+                        $('#VATableFooter11').text(totalProjectCount);
+                        $("#TotalAmountsFinancialYearWise").modal('show');
 
 
+                        $('#VATable1').DataTable({
+                            destroy: true, // Ensures re-initialization on each AJAX load
+                            dom: 'Blfrtip', // Adds button container at the top
+                            buttons: ["csv", "excel", "print"]
+                        });
+                    } else {
+                        console.error("No data returned");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX error: " + status + " - " + error);
+                }
+            });
+        }
+
+        function openTotalAmountUlbWiseByFYID(FYID) {
+
+            $.ajax({
+                url: "VisionPlanDashboard.aspx/GetTotalProjectsUlbWiseByFYID",
+                type: "POST",
+                contentType: "application/json;charset=utf-8;",
+                dataType: "json",
+                data: JSON.stringify({ FYID: FYID }),
+                success: function (data) {
+                    console.log(data); // Inspect the response
+                    if (data.d) {
+                        var result = JSON.parse(data.d);
+
+                        // Check if DataTable is already initialized and clear its contents
+                        if ($.fn.DataTable.isDataTable('#VATable2')) {
+                            $('#VATable2').DataTable().clear().destroy();
+                        }
+
+                        //$('#ULBData').empty(); // Clear existing rows
+                        var html = '';
+                        var totalProjectCost = 0;
+                        var totalProjectCount = 0;
+                        for (var i = 0; i < result.length; i++) {
+                            var item = result[i];
+                            var projectCost = parseFloat(item.TotalProjectCost) || 0;
+                            totalProjectCost += projectCost; // Accumulate the project cost
+                            var projectCount = parseInt(item.NoOfProjects) || 0;
+                            totalProjectCount += projectCount; //Count Total Project
+                            html += '<tr>';
+                            html += '<td>' + (item.Circle_Name || '') + '</td>';
+                            html += '<td>' + (item.Division_Name || '') + '</td>';
+                            html += '<td>';
+                            html += '<button type="button" class="btn btn-primary btn-sm" onclick="AmountByFYIDandULB(' + item.FYID + ',' + item.ULBID + ')">' + (item.NoOfProjects || '') + '</button>';
+                            html += '</td>';
+                            html += '<td>' + (item.TotalProjectCost || '') + '</td>';
+                            html += '</tr>';
+                        }
+
+                        $('#HeadDataA2').html(html);
+                        $('#VATableFooter22').text(totalProjectCost.toFixed(2));
+                        $('#VATableFooter21').text(totalProjectCount);
+                        //$("#TotalProjectsFinancialYearWise").modal('hide');
+                        $("#TotalAmountsULBWiseByFYID").modal('show');
+
+
+                        $('#VATable2').DataTable({
+                            destroy: true, // Ensures re-initialization on each AJAX load
+                            dom: 'Blfrtip', // Adds button container at the top
+
+                            buttons: ["csv", "excel", "print"]
+                        });
+                    } else {
+                        console.error("No data returned");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX error: " + status + " - " + error);
+                }
+            });
+        }
+        function AmountByFYIDandULB(FYID, ULBID) {
+            $('#HeadDataA3').empty();
+            debugger
+            $.ajax({
+                url: "VisionPlanDashboard.aspx/GetProjectByFYIDandULB",
+                type: "POST",
+                contentType: "application/json;charset=utf-8;",
+                dataType: "json",
+                data: JSON.stringify({ FYID: FYID, ULBID: ULBID }),
+                success: function (data) {
+                    console.log(data); // Inspect the response
+                    if (data.d) {
+                        var result = JSON.parse(data.d);
+
+                        // Check if DataTable is already initialized and clear its contents
+                        if ($.fn.DataTable.isDataTable('#VATable3')) {
+                            $('#VATable3').DataTable().clear().destroy();
+                        }
+
+                        var html = '';
+                        var totalProjectCost = 0;
+
+                        for (var i = 0; i < result.length; i++) {
+                            var item = result[i];
+                            var projectCost = parseFloat(item.ProjectCost) || 0;
+                            totalProjectCost += projectCost; // Accumulate the project cost
+
+                            html += '<tr>';
+                            html += '<td>' + (i + 1 || '') + '</td>';
+                            html += '<td>' + (item.Circle_Name || '') + '</td>';
+                            html += '<td>' + (item.Division_Name || '') + '</td>';
+                            html += '<td>' + (item.ProjectName || '') + '</td>';
+                            html += '<td>' + (item.ProjectType_Name || '') + '</td>';
+                            html += '<td>' + (projectCost ? projectCost.toFixed(2) : '') + '</td>';
+                            html += '<td>' + (item.Loactions || '') + '</td>';
+                            html += '<td>' + (item.FinancialYear_Comments || '') + '</td>';
+                            html += '<td>' + (item.Construction || '') + '</td>';
+                            html += '<td>' + (item.selfPriority || '') + '</td>';
+                            html += '<td>' + (item.ProjectStatus || '') + '</td>';
+                            html += '<td>';
+                            if (item.VPDoc) {
+                                html += '<button type="button" class="btn btn-info btn-sm" onclick="window.open(\'' + item.VPDoc + '\', \'_blank\')"><i class="bx bxs-file-pdf"></i></button>';
+                            } else {
+                                html += 'No Document';
+                            }
+                            html += '</td></tr>';
+                        }
+
+                        $('#HeadDataA3').html(html);
+                        $('#VATableFooter31').text(totalProjectCost.toFixed(2)); // Display total in footer
+                        //$('#VPTableFooter32').text(result.length); // Display total in footer
+
+                        //$("#TotalProjectsULBWiseByFYID").modal('hide');
+                        $("#AmountByFYIDandULB").modal('show');
+
+
+                        $('#VATable3').DataTable({
+                            destroy: true, // Ensures re-initialization on each AJAX load
+                            dom: 'Blfrtip', // Adds button container at the top
+                            buttons: ["csv", "excel", "print"]
+                        });
+
+
+
+
+                    } else {
+                        console.error("No data returned");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX error: " + status + " - " + error);
+                }
+            });
+        }
+
+    </script>
+
+    <script>
+        function btnTotalULBRepoted_Click() {
+            $.ajax({
+                url: "VisionPlanDashboard.aspx/btnTotalULBRepoted_Click",
+                type: "POST",
+                contentType: "application/json;charset=utf-8;",
+                dataType: "json",
+                data: JSON.stringify({ newAkanshi_Id: 1 }),
+                success: function (data) {
+                    console.log(data); // Inspect the response
+                    if (data.d) {
+                        var result = JSON.parse(data.d);
+                        $('#ULBData').empty(); // Clear existing rows
+                        var html = '';
+                        var totalProjectCost = 0;
+                        var totalProjectCount = 0;
+
+                        for (var i = 0; i < result.length; i++) {
+                            var item = result[i];
+                            var projectCost = parseFloat(item.TotalProjectCost) || 0;
+                            totalProjectCost += projectCost; // Accumulate the project cost
+                            var projectCount = parseInt(item.NoOfULB) || 0;
+                            totalProjectCount += projectCount; //Count Total Project
+                            html += '<tr>';
+                            html += '<td>' + (item.FYID || '') + '</td>';
+                            html += '<td>' + (item.FinancialYear_Comments || '') + '</td>';
+                            html += '<td>';
+                            html += '<button type="button" class="btn btn-primary btn-sm" onclick="openUlbDetailsByFYID(' + item.FYID + ')">' + (item.NoOfULB || '') + '</button>';
+                            html += '</td>';
+                       /*     html += '<td>' + (item.TotalProjectCost || '') + '</td>';*/
+                            html += '</tr>';
+                        }
+
+                        $('#HeadDataULB1').html(html);
+                        //$('#VULBTableFooter12').text(totalProjectCost.toFixed(2));
+                        $('#VULBTableFooter11').text(totalProjectCount);
+                        $("#TotalULBFinancialYearWise").modal('show');
+
+
+                        $('#VULBTable1').DataTable({
+                            destroy: true, // Ensures re-initialization on each AJAX load
+                            dom: 'Blfrtip', // Adds button container at the top
+                            buttons: ["csv", "excel", "print"]
+                        });
+                    } else {
+                        console.error("No data returned");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX error: " + status + " - " + error);
+                }
+            });
+        }
+
+        function openUlbDetailsByFYID(FYID) {
+            debugger
+            $.ajax({
+                url: "VisionPlanDashboard.aspx/GetUlbDetailsByFYID",
+                type: "POST",
+                contentType: "application/json;charset=utf-8;",
+                dataType: "json",
+                data: JSON.stringify({ FYID: FYID }),
+                success: function (data) {
+                    console.log(data); // Inspect the response
+                    if (data.d) {
+                        var result = JSON.parse(data.d);
+
+                        // Check if DataTable is already initialized and clear its contents
+                        if ($.fn.DataTable.isDataTable('#VULBTable2')) {
+                            $('#VULBTable2').DataTable().clear().destroy();
+                        }
+
+                        //$('#ULBData').empty(); // Clear existing rows
+                        var html = '';
+                        //var totalProjectCost = 0;
+                        //var totalProjectCount = 0;
+                        for (var i = 0; i < result.length; i++) {
+                            var item = result[i];
+                            //var projectCost = parseFloat(item.TotalProjectCost) || 0;
+                            //totalProjectCost += projectCost; // Accumulate the project cost
+                            //var projectCount = parseInt(item.NoOfProjects) || 0;
+                            //totalProjectCount += projectCount; //Count Total Project
+                            html += '<tr>';
+                            html += '<td>' + (item.Circle_Name || '') + '</td>';
+                            html += '<td>' + (item.Division_Name || '') + '</td>';
+                            //html += '<td>';
+                            //html += '<button type="button" class="btn btn-primary btn-sm" onclick="AmountByFYIDandULB(' + item.FYID + ',' + item.ULBID + ')">' + (item.NoOfProjects || '') + '</button>';
+                            //html += '</td>';
+                            //html += '<td>' + (item.TotalProjectCost || '') + '</td>';
+                            html += '</tr>';
+                        }
+
+                        $('#HeadDataULB2').html(html);
+                        //$('#VULBTableFooter22').text(totalProjectCost.toFixed(2));
+                        //$('#VULBTableFooter21').text(totalProjectCount);
+                        $("#TotalULBFinancialYearWise").modal('hide');
+                        $("#TotalULBWiseByFYID").modal('show');
+
+
+                        $('#VULBTable2').DataTable({
+                            destroy: true, // Ensures re-initialization on each AJAX load
+                            dom: 'Blfrtip', // Adds button container at the top
+
+                            buttons: ["csv", "excel", "print"]
+                        });
+                    } else {
+                        console.error("No data returned");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX error: " + status + " - " + error);
+                }
+            });
+        }
+    </script>
     <!-- Modal for TotalProjectsFinancialYearWise -->
     <div class="modal fade" id="TotalProjectsFinancialYearWise" tabindex="1" aria-labelledby="TotalProjectsFinancialYearWiseLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -851,8 +1156,198 @@
 
     
 
-    
+     <!-- Modal for TotalAmountsFinancialYearWise -->
+    <div class="modal fade" id="TotalAmountsFinancialYearWise" tabindex="1" aria-labelledby="TotalAmountFinancialYearWiseLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="TotalAmountsFinancialYearWiseLabel">Total Amounts Financial Year Wise</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table id="VATable1" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sr.No.</th>
+                                <th>Financial Year</th>
+                                <th>No Of Projects</th>
+                                <th>Total Project Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody id="HeadDataA1">
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="2" style="text-align: right">Total Amount Count/Cost:</th>
+                                <th id="VATableFooter11"></th>
+                                <th  id="VATableFooter12"></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <%--<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>--%>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for TotalProjectsULBWiseByFYID -->
+    <div class="modal fade" id="TotalAmountsULBWiseByFYID" tabindex="2" aria-labelledby="TotalAmountsULBWiseByFYIDLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="TotalAmountsULBWiseByFYIDLabel">Total Amount ULB Wise By Financial Year</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table id="VATable2" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>District Name</th>
+                                <th>ULB Name</th>
+                                <th>No of Projects</th>
+                                <th>Total Project Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody id="HeadDataA2">
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="2" style="text-align: right">Total Project Count/Cost:</th>
+                                <th id="VATableFooter21"></th>
+                                <th  id="VATableFooter22"></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <%--<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>--%>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for ProjectByFYIDandULB -->
+    <div class="modal fade" id="AmountByFYIDandULB" tabindex="3" aria-labelledby="AmountByFYIDandULBLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="AmountByFYIDandULBLabel">List of Amounts by ULB and Financial Year</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table id="VATable3" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 2%;">Sr.No.</th>
+                                    <th style="width: 8%;">District Name</th>
+                                    <th style="width: 7%;">ULB Name</th>
+                                    <th style="width: 18%;">Project Name</th>
+                                    <th style="width: 14%;">Project Type</th>
+                                    <th style="width: 7%;">Project Cost</th>
+                                    <th style="width: 11%;">Location</th>
+                                    <th style="width: 6%;">FY</th>
+                                    <th style="width: 9%;">Construction</th>
+                                    <th style="width: 3%;">Priority</th>
+                                    <th style="width: 8%;">Project Status</th>
+                                    <th style="width: 7%;">VPDoc</th>
+                                </tr>
+                            </thead>
+                            <tbody id="HeadDataA3">
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <%--<th style="text-align: right">Total Project:</th>--%>
+                                    <%--<th  id="VPTableFooter32" style="text-align: right"></th>--%>
+                                    <th colspan="5" style="text-align: right">Total Project Cost:</th>
+                                    <th id="VATableFooter31"></th>
+                                    <th colspan="6"></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <%--<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>--%>
+            </div>
+        </div>
+    </div>
+
 
     
+     <!-- Modal for TotalULBFinancialYearWise -->
+    <div class="modal fade" id="TotalULBFinancialYearWise" tabindex="1" aria-labelledby="TotalULBFinancialYearWiseLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="TotalULBFinancialYearWiseLabel">Total ULB Financial Year Wise</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table id="VULBTable1" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sr.No.</th>
+                                <th>Financial Year</th>
+                                <th>No Of ULB</th>
+                                <%--<th>Total Project Cost</th>--%>
+                            </tr>
+                        </thead>
+                        <tbody id="HeadDataULB1">
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="2" style="text-align: right">Total ULB:</th>
+                                <th id="VULBTableFooter11"></th>
+                                <%--<th  id="VULBTableFooter12"></th>--%>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <%--<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>--%>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for TotalProjectsULBWiseByFYID -->
+    <div class="modal fade" id="TotalULBWiseByFYID" tabindex="2" aria-labelledby="TotalULBWiseByFYIDLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="TotalULBWiseByFYIDLabel">Total  ULB  By Financial Year</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table id="VULBTable2" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>District Name</th>
+                                <th>ULB Name</th>
+                                <%--<th>No of Projects</th>
+                                <th>Total Project Cost</th>--%>
+                            </tr>
+                        </thead>
+                        <tbody id="HeadDataULB2">
+                        </tbody>
+                       <%-- <tfoot>
+                            <tr>
+                                <th colspan="2" style="text-align: right">Total ULB:</th>
+                              <%--  <th id="VULBTableFooter21"></th>
+                                <th  id="VULBTableFooter22"></th>
+                            </tr>
+                        </tfoot>--%>
+                    </table>
+                </div>
+                <%--<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>--%>
+            </div>
+        </div>
+    </div>
 
 </asp:Content>
