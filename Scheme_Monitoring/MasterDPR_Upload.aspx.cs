@@ -628,7 +628,7 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
 
-        bool allAnswered = true; // Flag to check if all questions are answered.
+        //bool allAnswered = true; // Flag to check if all questions are answered.
         bool allValid = true; // Flag to check if all questions are answered.
 
         //foreach (GridViewRow row in dgvQuestionnaire.Rows)
@@ -663,13 +663,15 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
                     {
                         // If no answer is selected, mark the row as invalid.
                         allValid = false;
-                        row.BackColor = System.Drawing.Color.LightPink; // Highlight the row for missing answer.
+                        row.BackColor = System.Drawing.Color.Tomato; // Highlight the row for missing answer.
+                        //row.ForeColor = Color.Blue;
+                        row.Font.Bold = true;
                     }
                     else if (rbtAnswer.SelectedValue == "No" && txtRemark != null && string.IsNullOrWhiteSpace(txtRemark.Text))
                     {
                         // If "No" is selected and remarks are missing, mark the row as invalid.
                         allValid = false;
-                        row.BackColor = System.Drawing.Color.LightYellow; // Highlight the row for missing remarks.
+                        row.BackColor = System.Drawing.Color.FromArgb(255, 235, 59); // Highlight the row for missing remarks.
                     }
                     else
                     {
@@ -679,19 +681,16 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
             }
         }
 
-        if (!allAnswered)
+        if (!allValid)
         {
-            lblErrorMessage.Text= "Please ensure all questions in the Pre-Upload Checklist for DPR are answered. Provide remarks for any questions answered as 'No'. Unanswered questions are highlighted in pink, and questions answered as 'No' without remarks are highlighted in yellow."; // Display error message.
+            lblErrorMessage.Text= "Please ensure all questions in the Pre-Upload Checklist for DPR are answered. Provide remarks for any questions answered as 'No'. Unanswered questions are highlighted in Red, and questions answered as 'No' without remarks are highlighted in Yellow."; // Display error message.
             lblErrorMessage.Visible = true;
+            return;
         }
         else
         {
             lblErrorMessage.Visible = false;
-
-            //Proceed with saving logic here.
-            //SaveData();
         }
-        return;
 
         if (ddlStatus.SelectedValue == "0")
         {

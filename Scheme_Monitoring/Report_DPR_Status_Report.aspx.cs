@@ -1374,6 +1374,20 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
             e.Row.Cells[8].Text = Session["Default_Circle"].ToString();
             e.Row.Cells[9].Text = Session["Default_Division"].ToString();
         }
+
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            // Retrieve the IsDocAvailable value from the data source
+            bool isDocAvailable = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "IsDocAvailable"));
+
+            // Find the LinkButton in the current row
+            LinkButton lnkViewDocs = (LinkButton)e.Row.FindControl("lnkViewDocs");
+
+            // Show or hide the LinkButton based on IsDocAvailable
+            lnkViewDocs.Visible = isDocAvailable;
+        }
+
+
     }
 
     protected void grdMultipleFiles_RowDataBound(object sender, GridViewRowEventArgs e)

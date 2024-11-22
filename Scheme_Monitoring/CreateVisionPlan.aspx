@@ -100,19 +100,19 @@
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="div10" runat="server">
                                                         <asp:Label ID="lblProjectCost" runat="server" Text="Project Cost(In Lakhs)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                        <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"  TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="div11" runat="server">
-                                                        <asp:Label ID="lblQuantity" runat="server" Text="Quantity/Capacity *" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                        <asp:Label ID="lblQuantity" runat="server" Text="Quantity/Capacity(Only Number)*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6">
                                                     <div id="div12" runat="server">
                                                         <asp:Label ID="lblSiteArea" runat="server" Text="Site Area(In Square Meter)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtSiteArea" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSiteArea" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"  TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                  <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server" >
