@@ -125,9 +125,9 @@ public class VisionPlan
             DataTable dt = new DataTable();
             SqlParameter[] param = new SqlParameter[2];
 
-            param[0] = new SqlParameter("@Action", "select");
+            param[0] = new SqlParameter("@Action", "SelectForDashboard");
             param[1] = new SqlParameter("@FYID", FYID);
-            return objDAL.GetDataByProcedure("SpVisionPlanDOC", param);
+            return objDAL.GetDataByProcedure("sp_VisionPlanDashboard", param);
         }
         catch (Exception ex)
         {

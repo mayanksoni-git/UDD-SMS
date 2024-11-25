@@ -20,6 +20,13 @@ function initializeTables() {
     }),
     new DataTable("#ajax-datatables", {
         ajax: "assets/json/datatable.json"
+    }),
+        
+    $('#ctl00_ContentPlaceHolder1_grdFinancialFull').DataTable({
+        destroy: true, // Ensures re-initialization on each AJAX load
+        dom: 'Blfrtip', // Adds button container at the top
+
+        buttons: ["csv", "excel", "print"]
     });
 }
 document.addEventListener("DOMContentLoaded", function () {
