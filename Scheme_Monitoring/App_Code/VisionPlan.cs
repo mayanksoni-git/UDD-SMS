@@ -101,4 +101,72 @@ public class VisionPlan
             throw new Exception(ex.Message);
         }
     }
+
+    public DataTable getVisionPlanDocumentFYWise()
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@Action", "VisionPlanDocumentFYWise");
+            return objDAL.GetDataByProcedure("sp_VisionPlanDashboard", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getTotalDocumentsULBWiseByFYID(int FYID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[2];
+
+            param[0] = new SqlParameter("@Action", "select");
+            param[1] = new SqlParameter("@FYID", FYID);
+            return objDAL.GetDataByProcedure("SpVisionPlanDOC", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getGetULBPendingToUploadFYWise()
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@Action", "GetULBPendingToUploadFYWise");
+            return objDAL.GetDataByProcedure("sp_VisionPlanDashboard", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+
+    public DataTable getUlBPendingToUpByFYID(int FYID)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[2];
+
+            param[0] = new SqlParameter("@Action", "UlBPendingToUpByFYID");
+            param[1] = new SqlParameter("@FYID", FYID);
+            return objDAL.GetDataByProcedure("sp_VisionPlanDashboard", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
 }
