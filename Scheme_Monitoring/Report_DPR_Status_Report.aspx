@@ -305,6 +305,7 @@
                                                                     <asp:BoundField HeaderText="Tentitive Date of DPR Preperation" DataField="ProjectDPR_TentitiveDate" />
                                                                     <asp:BoundField HeaderText="Date Diff Last Action" DataField="Date_Diff_Action" />
                                                                     <asp:BoundField HeaderText="Last Action Taken On" DataField="ProjectDPRApproval_AddedOn" />
+                                                                    <asp:BoundField HeaderText="Doc Added On" DataField="DocAddedOn" DataFormatString="{0:dd/MM/yyyy}" />
                                                                     <asp:BoundField HeaderText="Current Status" DataField="Designation_Current" />
                                                                     <asp:TemplateField HeaderText="View Documents">
                                                                         <ItemTemplate>

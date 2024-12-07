@@ -318,6 +318,13 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             txtTentitiveDate.Focus();
             return;
         }
+
+        if (ddlProposalApprovedBy.SelectedValue == "-1")
+        {
+            MessageBox.Show("Please Select Proposal Approved By.");
+            ddlProposalApprovedBy.Focus();
+            return;
+        }
         tbl_ProjectDPR obj_tbl_ProjectDPR = new tbl_ProjectDPR();
         try
         {
@@ -369,6 +376,16 @@ public partial class MasterProjectDPR : System.Web.UI.Page
         {
             obj_tbl_ProjectDPR.ProjectDPR_Project_Id = 0;
         }
+
+        try
+        {
+            obj_tbl_ProjectDPR.ProposalApprovedBy = ddlProposalApprovedBy.SelectedValue;
+        }
+        catch
+        {
+            obj_tbl_ProjectDPR.ProposalApprovedBy = "";
+        }
+        
         obj_tbl_ProjectDPR.ProjectDPR_Name = txtProjectWorkName.Text.Trim();
         obj_tbl_ProjectDPR.ProjectDPR_DivisionId = Convert.ToInt32(ddlDivision.SelectedValue);
         obj_tbl_ProjectDPR.ProjectDPR_ModifiedBy = Convert.ToInt32(Session["Person_Id"].ToString());
@@ -478,6 +495,15 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             {
                 ddlDivision.SelectedValue = "0";
             }
+
+            try
+            {
+                ddlProposalApprovedBy.SelectedValue = ds.Tables[0].Rows[0]["ProposalApprovedBy"].ToString();
+            }
+            catch
+            {
+                ddlProposalApprovedBy.SelectedValue = "-1";
+            }
             int ProjectDPR_LandIdentified = 0;
             int ProjectDPR_LandTransfered = 0;
             try
@@ -521,7 +547,17 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             {
                 total += Convert.ToDecimal(ds.Tables[0].Rows[0]["ProjectDPR_OandM_Cost"]);
             }
-            txtTentitiveDate.Text = ds.Tables[0].Rows[0]["ProjectDPR_TentitiveDate"].ToString();
+
+            string date = ds.Tables[0].Rows[0]["ProjectDPR_TentitiveDate"].ToString();
+            if (date != "")
+            {
+                txtTentitiveDate.Text = DateTime.Parse(ds.Tables[0].Rows[0]["ProjectDPR_TentitiveDate"].ToString()).ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                txtTentitiveDate.Text = "";
+            }
+            //txtTentitiveDate.Text = ds.Tables[0].Rows[0]["ProjectDPR_TentitiveDate"].ToString();
             txtProjectWorkName.Text = ds.Tables[0].Rows[0]["ProjectDPR_Name"].ToString();
             txtCapexCost.Text = ds.Tables[0].Rows[0]["ProjectDPR_CapexCost"].ToString();
             txtOMCost.Text = ds.Tables[0].Rows[0]["ProjectDPR_OandM_Cost"].ToString();
