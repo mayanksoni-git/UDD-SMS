@@ -41,7 +41,7 @@ namespace ePayment_API.Controllers
             }
             else
             {
-                List<tbl_Scheme_Wise_Report> obj_tbl_Scheme_Wise_Report_Li = await _SchemeWiseReportRepository.get_Scheme_Wise_Report(obj_SearchCriteria);
+                List<tbl_Scheme_Wise_Report2> obj_tbl_Scheme_Wise_Report_Li = await _SchemeWiseReportRepository.get_Scheme_Wise_Report(obj_SearchCriteria);
                 List<tbl_Scheme_Wise_Report2> obj_tbl_Scheme_Wise_Report_Li2 = new List<tbl_Scheme_Wise_Report2>();
 
                 obj_tbl_Scheme_Wise_Report_Li2 = obj_tbl_Scheme_Wise_Report_Li
@@ -51,10 +51,13 @@ namespace ePayment_API.Controllers
                     FinancialYear_Id = report.FinancialYear_Id,
                     Project_Name = report.Project_Name,
                     Total_ULB = report.Total_ULB,
-                    Project_Budget = report.Project_Budget.ToString("F2"), // Convert to string with 2 decimal places
+                    //Project_Budget = report.Project_Budget.ToString("F2"), // Convert to string with 2 decimal places
+                    Project_Budget = report.Project_Budget,// Convert to string with 2 decimal places
                     Total_Work = report.Total_Work,
-                    BudgetAllocated = report.BudgetAllocated.ToString("F2"), // Convert to string with 2 decimal places
-                    Fund_Released = report.Fund_Released.ToString("F2"), // Convert to string with 2 decimal places
+                    //BudgetAllocated = report.BudgetAllocated.ToString("F2"), // Convert to string with 2 decimal places
+                    BudgetAllocated = report.BudgetAllocated, // Convert to string with 2 decimal places
+                    Fund_Released = report.Fund_Released, // Convert to string with 2 decimal places
+                    //Fund_Released = report.Fund_Released.ToString("F2"), // Convert to string with 2 decimal places
                     Expenditure = report.Expenditure,
                     Balance = report.Balance,
                     Physical_Progress = report.Physical_Progress,

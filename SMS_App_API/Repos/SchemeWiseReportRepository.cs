@@ -17,9 +17,9 @@ namespace ePayment_API.Repos
         /// <param name="body">Description of notification</param>
         /// <param name="data">Object with all extra information you want to send hidden in the notification</param>
         /// <returns></returns>
-        public async Task<List<tbl_Scheme_Wise_Report>> get_Scheme_Wise_Report(SearchCriteria obj_SearchCriteria)
+        public async Task<List<tbl_Scheme_Wise_Report2>> get_Scheme_Wise_Report(SearchCriteria obj_SearchCriteria)
         {
-            List<tbl_Scheme_Wise_Report> obj_tbl_Scheme_Wise_Report_Li = get_tbl_Scheme_Wise_Report(obj_SearchCriteria, 0);
+            List<tbl_Scheme_Wise_Report2> obj_tbl_Scheme_Wise_Report_Li = get_tbl_Scheme_Wise_Report(obj_SearchCriteria, 0);
             return obj_tbl_Scheme_Wise_Report_Li;
         }
 
@@ -36,7 +36,7 @@ namespace ePayment_API.Repos
                     obj_tbl_FinancialYear.FinancialYear_Name = ds.Tables[0].Rows[i]["Zone_Name"].ToString();
 
                     //obj_SearchCriteria.Zone_Id = obj_tbl_FinancialYear.FinancialYear_Id;
-                    List<tbl_Scheme_Wise_Report> obj_tbl_Scheme_Wise_Report_Li = get_tbl_Scheme_Wise_Report(obj_SearchCriteria, obj_tbl_FinancialYear.FinancialYear_Id);
+                    List<tbl_Scheme_Wise_Report2> obj_tbl_Scheme_Wise_Report_Li = get_tbl_Scheme_Wise_Report(obj_SearchCriteria, obj_tbl_FinancialYear.FinancialYear_Id);
                     obj_tbl_FinancialYear.obj_tbl_Scheme_Wise_Report_Li = obj_tbl_Scheme_Wise_Report_Li;
 
                     if (obj_tbl_Scheme_Wise_Report_Li != null && obj_tbl_Scheme_Wise_Report_Li.Count > 0)
@@ -52,9 +52,9 @@ namespace ePayment_API.Repos
             return obj_tbl_FinancialYear_Li;
         }
 
-        private List<tbl_Scheme_Wise_Report> get_tbl_Scheme_Wise_Report(SearchCriteria obj_SearchCriteria, int Zone_Id_Search)
+        private List<tbl_Scheme_Wise_Report2> get_tbl_Scheme_Wise_Report(SearchCriteria obj_SearchCriteria, int Zone_Id_Search)
         {
-            List<tbl_Scheme_Wise_Report> obj_tbl_Scheme_Wise_Report_Li = new List<tbl_Scheme_Wise_Report>();
+            List<tbl_Scheme_Wise_Report2> obj_tbl_Scheme_Wise_Report_Li = new List<tbl_Scheme_Wise_Report2>();
             try
             {
                 DataSet ds = new DataLayer().get_Scheme_Wise_Report(obj_SearchCriteria, Zone_Id_Search);
@@ -62,7 +62,7 @@ namespace ePayment_API.Repos
                 {
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        tbl_Scheme_Wise_Report obj_tbl_Scheme_Wise_Report = new tbl_Scheme_Wise_Report();
+                        tbl_Scheme_Wise_Report2 obj_tbl_Scheme_Wise_Report = new tbl_Scheme_Wise_Report2();
                         obj_tbl_Scheme_Wise_Report.FinancialYear_Id = Zone_Id_Search;
                         obj_tbl_Scheme_Wise_Report.Project_Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Project_Id"].ToString());
                         obj_tbl_Scheme_Wise_Report.Project_Name = ds.Tables[0].Rows[i]["Project_Name"].ToString();
@@ -86,7 +86,8 @@ namespace ePayment_API.Repos
                         { }
                         try
                         {
-                            obj_tbl_Scheme_Wise_Report.BudgetAllocated = Convert.ToDecimal(ds.Tables[0].Rows[i]["Fund_Released"].ToString());
+                            //obj_tbl_Scheme_Wise_Report.BudgetAllocated = Convert.ToDecimal(ds.Tables[0].Rows[i]["Fund_Released"].ToString());
+                            obj_tbl_Scheme_Wise_Report.BudgetAllocated = ds.Tables[0].Rows[i]["Fund_Released"].ToString();
                         }
                         catch
                         { }
@@ -112,7 +113,8 @@ namespace ePayment_API.Repos
                         }
                         try
                         {
-                            obj_tbl_Scheme_Wise_Report.Fund_Released = Convert.ToDecimal(ds.Tables[0].Rows[i]["Fund_Released"].ToString());
+                            //obj_tbl_Scheme_Wise_Report.Fund_Released = Convert.ToDecimal(ds.Tables[0].Rows[i]["Fund_Released"].ToString());
+                            obj_tbl_Scheme_Wise_Report.Fund_Released = ds.Tables[0].Rows[i]["Fund_Released"].ToString();
                         }
                         catch
                         { }
@@ -124,7 +126,8 @@ namespace ePayment_API.Repos
                         { }
                         try
                         {
-                            obj_tbl_Scheme_Wise_Report.Project_Budget = Convert.ToDecimal(ds.Tables[0].Rows[i]["Project_Budget"].ToString());
+                            //obj_tbl_Scheme_Wise_Report.Project_Budget = Convert.ToDecimal(ds.Tables[0].Rows[i]["Project_Budget"].ToString());
+                            obj_tbl_Scheme_Wise_Report.Project_Budget = ds.Tables[0].Rows[i]["Project_Budget"].ToString();
                         }
                         catch
                         { }
