@@ -444,7 +444,7 @@ public partial class MasterProjectDPR : System.Web.UI.Page
     }
         
     protected void btnEdit_Click(object sender, ImageClickEventArgs e)
-    {
+    {   
         ImageButton lnkUpdate = sender as ImageButton;
         GridViewRow gr = lnkUpdate.Parent.Parent as GridViewRow;
         hf_ProjectDPR_Id.Value = gr.Cells[0].Text.Trim();

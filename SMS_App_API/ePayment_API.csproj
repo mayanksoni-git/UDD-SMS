@@ -275,6 +275,7 @@
     <Compile Include="Models\tbl_ProjectUC_Concent.cs" />
     <Compile Include="Models\tbl_ProjectUC_Deliverables.cs" />
     <Compile Include="Models\tbl_ProjectUC_PhysicalProgress.cs" />
+    <Compile Include="Models\tbl_Scheme_Wise_Report2.cs" />
     <Compile Include="Models\tbl_Scheme_Wise_Report.cs" />
     <Compile Include="Models\tbl_SMS.cs" />
     <Compile Include="Models\tbl_SNAAccountBalance.cs" />
