@@ -173,7 +173,7 @@
 
 
                                                                             <%--Tile 4--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-3 col-md-6" style="display:none">
                                                                                 <div class="card card-animate bg-info-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -196,7 +196,7 @@
 
 
                                                                             <%--Tile 5--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-3 col-md-6"  style="display:none">
                                                                                 <div class="card card-animate bg-danger-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -220,7 +220,7 @@
                                                                             </div>
 
                                                                             <%--Tile 6--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-3 col-md-6" style="display:none">
                                                                                 <div class="card card-animate bg-dark-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -336,7 +336,7 @@
                                                                             </div>
 
                                                                             <%--Tile 11--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-3 col-md-6" style="display:none">
                                                                                 <div class="card card-animate bg-danger-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -345,6 +345,72 @@
                                                                                                     <asp:Label ID="Label11" Text="" runat="server"></asp:Label></h4>
                                                                                                 <h6 class="text-muted m-b-0">
                                                                                                     <asp:Label ID="HeadLabel11" Text="" runat="server"></asp:Label></h6>
+                                                                                            </div>
+                                                                                            <div class="col-4 text-end">
+                                                                                                <i class="ri-article-line display-3 text-danger"></i>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <%--Tile 12--%>
+                                                                            <div class="col-xl-3 col-md-6">
+                                                                                <div class="card card-animate bg-danger-subtle">
+                                                                                    <div class="card-body">
+                                                                                        <div class="row align-items-center">
+                                                                                            <div class="col-8">
+                                                                                                <h4 class="text-c-purple">
+                                                                                                    <asp:Label ID="Label12" Text="" runat="server"></asp:Label></h4>
+                                                                                                <h6 class="text-muted m-b-0">
+                                                                                                    <asp:Label ID="HeadLabel12" Text="" runat="server"></asp:Label></h6>
+                                                                                            </div>
+                                                                                            <div class="col-4 text-end">
+                                                                                                <i class="ri-article-line display-3 text-danger"></i>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <%--Tile 13--%>
+                                                                            <div class="col-xl-3 col-md-6">
+                                                                                <div class="card card-animate bg-danger-subtle">
+                                                                                    <div class="card-body">
+                                                                                        <div class="row align-items-center">
+                                                                                            <div class="col-8">
+                                                                                                <h4 class="text-c-purple">
+                                                                                                    <asp:Label ID="Label13" Text="" runat="server"></asp:Label></h4>
+                                                                                                <h6 class="text-muted m-b-0">
+                                                                                                    <asp:Label ID="HeadLabel13" Text="" runat="server"></asp:Label></h6>
+                                                                                            </div>
+                                                                                            <div class="col-4 text-end">
+                                                                                                <i class="ri-article-line display-3 text-danger"></i>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <%--Tile 14--%>
+                                                                            <div class="col-xl-3 col-md-6">
+                                                                                <div class="card card-animate bg-danger-subtle">
+                                                                                    <div class="card-body">
+                                                                                        <div class="row align-items-center">
+                                                                                            <div class="col-8">
+                                                                                                <h4 class="text-c-purple">
+                                                                                                    <asp:Label ID="Label14" Text="" runat="server"></asp:Label></h4>
+                                                                                                <h6 class="text-muted m-b-0">
+                                                                                                    <asp:Label ID="HeadLabel14" Text="" runat="server"></asp:Label></h6>
                                                                                             </div>
                                                                                             <div class="col-4 text-end">
                                                                                                 <i class="ri-article-line display-3 text-danger"></i>

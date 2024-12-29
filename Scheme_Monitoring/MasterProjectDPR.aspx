@@ -236,12 +236,12 @@
                                                     <asp:BoundField HeaderText="Work" DataField="ProjectDPR_Name" />
                                                     <asp:BoundField HeaderText="Capex Cost (In Lakhs)" DataField="ProjectDPR_CapexCost" />
                                                     <asp:BoundField HeaderText="O & M  (In Lakhs)" DataField="ProjectDPR_OandM_Cost" />
-                                                    <asp:BoundField HeaderText="ACA Cost  (In Lakhs)" DataField="ProjectDPR_ACA_Cost" />
+                                                    <%--<asp:BoundField HeaderText="ACA Cost  (In Lakhs)" DataField="ProjectDPR_ACA_Cost" />--%>
                                                     <asp:BoundField HeaderText="Project Cost  (In Lakhs)" DataField="ProjectDPR_Project_Cost" />
                                                     <asp:BoundField HeaderText="Project Code" DataField="ProjectDPR_Code" />
                                                     <asp:TemplateField HeaderText="Delete">
                                                         <ItemTemplate>
-                                                            <asp:ImageButton ID="btnDelete" Width="20px" OnClick="btnDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
+                                                            <asp:ImageButton ID="btnDelete" Width="20px" OnClientClick="return confirm('Are you sure you want to delete DPR?');" OnClick="btnDelete_Click" ImageUrl="~/assets/images/delete.png" runat="server" />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>

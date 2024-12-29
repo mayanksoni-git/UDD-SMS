@@ -117,7 +117,16 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
                 HeadLabel10.Text = dt.Columns[9].ColumnName;
 
                 Label11.Text = dt.Rows[0][10].ToString();
-                HeadLabel11.Text = dt.Columns[10].ColumnName;
+                HeadLabel11.Text = dt.Columns[10].ColumnName; 
+
+                Label12.Text = dt.Rows[0][11].ToString();
+                HeadLabel12.Text = dt.Columns[11].ColumnName; 
+
+                Label13.Text = dt.Rows[0][12].ToString();
+                HeadLabel13.Text = dt.Columns[12].ColumnName; 
+
+                Label14.Text = dt.Rows[0][13].ToString();
+                HeadLabel14.Text = dt.Columns[13].ColumnName;
             }
             else
             {

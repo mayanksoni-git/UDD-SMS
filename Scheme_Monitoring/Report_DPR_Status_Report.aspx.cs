@@ -273,8 +273,10 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
 
         DataSet ds = new DataSet();
         DataSet ds1 = new DataSet();
+        DataSet ds2 = new DataSet();
         ds = (new DataLayer()).get_DPR_Process_Status_Summery(Scheme_Id, Zone_Id, Circle_Id, Division_Id, District_Id, ULB_Id, Tranche_Id);
         ds1 = (new DataLayer()).get_tbl_ProjectWorkDPR(Scheme_Id, District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, 0, 0, "0", 0, Tranche_Id, NodalDepartment_Id);
+        ds2 = (new DataLayer()).get_tbl_ProjectWorkDPRRevert(Scheme_Id, District_Id, Zone_Id, Circle_Id, Division_Id, ULB_Id, 0, 0, "0", 0, Tranche_Id, NodalDepartment_Id);
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
             grdPost.DataSource = ds.Tables[0];
@@ -366,6 +368,31 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
         {
             grdFinancialFull.DataSource = null;
             grdFinancialFull.DataBind();
+        }
+        if (ds2 != null && ds2.Tables.Count > 0 && ds2.Tables[0].Rows.Count > 0)
+        {
+            grdRevert.DataSource = ds2.Tables[0];
+            grdRevert.DataBind();
+
+            List<string> _columnsList = new List<string>();
+
+            for (int i = 0; i < grdRevert.Columns.Count; i++)
+            {
+                if (grdRevert.Columns[i].Visible == true)
+                {
+                    _columnsList.Add(null);
+                }
+            }
+            //_columnsList.Add(null);
+            string[] columnsList = new string[_columnsList.Count];
+            columnsList = _columnsList.ToArray();
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            hf_dt_Options_Dynamic3.Value = jss.Serialize(columnsList);
+        }
+        else
+        {
+            grdRevert.DataSource = null;
+            grdRevert.DataBind();
         }
     }
 
@@ -476,6 +503,24 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
     }
 
     protected void grdFinancialFull_PreRender(object sender, EventArgs e)
+    {
+        GridView gv = (GridView)sender;
+        if (gv.Rows.Count > 0)
+        {
+            //This replaces <td> with <th> and adds the scope attribute
+            gv.UseAccessibleHeader = true;
+        }
+        if ((gv.ShowHeader == true && gv.Rows.Count > 0) || (gv.ShowHeaderWhenEmpty == true))
+        {
+            gv.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        if (gv.ShowFooter == true && gv.Rows.Count > 0)
+        {
+            gv.FooterRow.TableSection = TableRowSection.TableFooter;
+        }
+    }
+
+    protected void grdRevert_PreRender(object sender, EventArgs e)
     {
         GridView gv = (GridView)sender;
         if (gv.Rows.Count > 0)
@@ -1367,6 +1412,31 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
     }
 
     protected void grdFinancialFull_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.Header)
+        {
+            e.Row.Cells[7].Text = Session["Default_Zone"].ToString();
+            e.Row.Cells[8].Text = Session["Default_Circle"].ToString();
+            e.Row.Cells[9].Text = Session["Default_Division"].ToString();
+        }
+
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            // Retrieve the IsDocAvailable value from the data source
+            bool isDocAvailable = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "IsDocAvailable"));
+
+            // Find the LinkButton in the current row
+            LinkButton lnkViewDocs = (LinkButton)e.Row.FindControl("lnkViewDocs");
+
+            // Show or hide the LinkButton based on IsDocAvailable
+            lnkViewDocs.Visible = isDocAvailable;
+        }
+
+
+    }
+
+
+    protected void grdRevert_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.Header)
         {

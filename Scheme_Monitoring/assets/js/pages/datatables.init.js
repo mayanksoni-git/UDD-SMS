@@ -28,6 +28,12 @@ function initializeTables() {
 
         buttons: ["csv", "excel", "print"]
     });
+    $('#ctl00_ContentPlaceHolder1_grdRevert').DataTable({
+        destroy: true, // Ensures re-initialization on each AJAX load
+        dom: 'Blfrtip', // Adds button container at the top
+
+        buttons: ["csv", "excel", "print"]
+    });
 }
 document.addEventListener("DOMContentLoaded", function () {
     initializeTables()

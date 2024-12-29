@@ -100,6 +100,10 @@
                                                             <a class="nav-link fw-semibold active" data-bs-toggle="tab" href="#productnav-published" role="tab" aria-selected="true">Details
                                                             </a>
                                                         </li>
+                                                        <li class="nav-item" role="presentation">
+                                                            <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#productnav-Revert" role="tab" aria-selected="false">Revert
+                                                            </a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -246,7 +250,7 @@
                                                 </div>
                                                 <!-- end tab pane -->
 
-                                                <div class="tab-pane active show" id="productnav-published" role="tabpanel">
+                                                <div class="tab-pane  active show" id="productnav-published" role="tabpanel">
                                                     <div id="table-product-list-published" class="table-card gridjs-border-none">
                                                         <div class="clearfix">
                                                             <div class="pull-right grdFinancialFulltableTools-container"></div>
@@ -302,6 +306,81 @@
                                                                     <asp:BoundField HeaderText="O & M  (In Lakhs)" DataField="ProjectDPR_OandM_Cost" />
                                                                     <%--<asp:BoundField HeaderText="ACA Cost  (In Lakhs)" DataField="ProjectDPR_ACA_Cost" />--%>
                                                                     <asp:BoundField HeaderText="Project Cost  (In Lakhs)" DataField="ProjectDPR_Project_Cost" />
+                                                                    <asp:BoundField HeaderText="Proposal Approved By" DataField="ProposalApprovedBy" />
+                                                                    <asp:BoundField HeaderText="Tentitive Date of DPR Preperation" DataField="ProjectDPR_TentitiveDate" />
+                                                                    <asp:BoundField HeaderText="Date Diff Last Action" DataField="Date_Diff_Action" />
+                                                                    <asp:BoundField HeaderText="Last Action Taken On" DataField="ProjectDPRApproval_AddedOn" />
+                                                                    <asp:BoundField HeaderText="Doc Added On" DataField="DocAddedOn" DataFormatString="{0:dd/MM/yyyy}" />
+                                                                    <asp:BoundField HeaderText="Current Status" DataField="Designation_Current" />
+                                                                    <asp:TemplateField HeaderText="View Documents">
+                                                                        <ItemTemplate>
+                                                                            <asp:LinkButton ID="lnkViewDocs" runat="server" Text='View Docs' OnClick="lnkViewDocs_Click"></asp:LinkButton>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                </Columns>
+                                                            </asp:GridView>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end tab pane -->
+
+                                                <div class="tab-pane" id="productnav-Revert" role="tabpanel">
+                                                    <div id="table-product-list-Revert" class="table-card gridjs-border-none">
+                                                        <div class="clearfix">
+                                                            <div class="pull-right tableTools-container"></div>
+                                                        </div>
+                                                        <div style="overflow: auto">
+                                                            <asp:GridView ID="grdRevert" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdRevert_PreRender" OnRowDataBound="grdRevert_RowDataBound">
+                                                                <Columns>
+                                                                    <asp:BoundField DataField="ProjectDPR_Id" HeaderText="ProjectDPR_Id">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:BoundField DataField="ProjectDPR_ProjectTypeId" HeaderText="ProjectDPR_ProjectTypeId">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:BoundField DataField="ProjectDPR_Project_Id" HeaderText="ProjectDPR_Project_Id">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:BoundField DataField="ProjectDPR_DistrictId" HeaderText="ProjectDPR_DistrictId">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:BoundField DataField="ProjectDPR_ULBId" HeaderText="ProjectDPR_ULBId">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:BoundField DataField="ProjectDPR_DivisionId" HeaderText="ProjectDPR_DivisionId">
+                                                                        <HeaderStyle CssClass="displayStyle" />
+                                                                        <ItemStyle CssClass="displayStyle" />
+                                                                        <FooterStyle CssClass="displayStyle" />
+                                                                    </asp:BoundField>
+                                                                    <asp:TemplateField HeaderText="S No.">
+                                                                        <ItemTemplate>
+                                                                            <%# Container.DataItemIndex + 1 %>
+                                                                            <asp:ImageButton ID="btnOpenTimeline" runat="server" Height="20px" ImageUrl="~/assets/images/timeline.png" OnClick="btnOpenTimeline_Click" Width="20px" ToolTip="Click To Show Timeline" />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <%--<asp:BoundField HeaderText="District" DataField="Jurisdiction_Name_Eng" />--%>
+                                                                    <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />
+                                                                    <asp:BoundField HeaderText="District" DataField="Circle_Name" />
+                                                                    <asp:BoundField HeaderText="ULB" DataField="Division_Name" />
+                                                                    <%--<asp:BoundField HeaderText="ULB" DataField="ULB_Name" />--%>
+                                                                    <asp:BoundField HeaderText="Project Type" DataField="ProjectType_Name" />
+                                                                    <asp:BoundField HeaderText="Scheme Short Name" DataField="ShortNameCode" />
+                                                                    <asp:BoundField HeaderText="Work" DataField="ProjectDPR_Name" />
+                                                                    <asp:BoundField HeaderText="Capex Cost (In Lakhs)" DataField="ProjectDPR_CapexCost" />
+                                                                    <asp:BoundField HeaderText="O & M  (In Lakhs)" DataField="ProjectDPR_OandM_Cost" />
+                                                                    <%--<asp:BoundField HeaderText="ACA Cost  (In Lakhs)" DataField="ProjectDPR_ACA_Cost" />--%>
+                                                                    <asp:BoundField HeaderText="Project Cost  (In Lakhs)" DataField="ProjectDPR_Project_Cost" />
+                                                                    <asp:BoundField HeaderText="Proposal Approved By" DataField="ProposalApprovedBy" />
                                                                     <asp:BoundField HeaderText="Tentitive Date of DPR Preperation" DataField="ProjectDPR_TentitiveDate" />
                                                                     <asp:BoundField HeaderText="Date Diff Last Action" DataField="Date_Diff_Action" />
                                                                     <asp:BoundField HeaderText="Last Action Taken On" DataField="ProjectDPRApproval_AddedOn" />
@@ -432,6 +511,7 @@
                     </div>
                     <asp:HiddenField ID="hf_dt_Options_Dynamic1" runat="server" Value="0" />
                     <asp:HiddenField ID="hf_dt_Options_Dynamic2" runat="server" Value="0" />
+                    <asp:HiddenField ID="hf_dt_Options_Dynamic3" runat="server" Value="0" />
                 </ContentTemplate>
             </asp:UpdatePanel>
             <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">

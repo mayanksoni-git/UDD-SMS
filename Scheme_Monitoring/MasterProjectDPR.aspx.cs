@@ -300,6 +300,11 @@ public partial class MasterProjectDPR : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        if (Convert.ToDecimal(txtCapexCost.Text.Trim().ToString()) > 5000)
+        {
+            MessageBox.Show("Total Capital Expenditures Cost should not be greater that 10 Crore and Please Enter Value in Lakhs.");
+            return;
+        }
         if (ddlProjectMaster.SelectedValue == "0")
         {
             MessageBox.Show("Please Select A Scheme");
