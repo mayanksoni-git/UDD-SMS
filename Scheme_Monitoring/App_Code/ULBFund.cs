@@ -1164,18 +1164,19 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     #endregion
 
 
-    public DataTable ActionOnVisionPlan(string actions, int pk, int person, string status, DateTime APdate, string Remark)
+    public DataTable ActionOnVisionPlan(string actions, int pk, int person, string status, DateTime APdate, string Remark, string ProposalApprovedBy)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[6];
+            SqlParameter[] param = new SqlParameter[7];
             param[0] = new SqlParameter("@action", actions);
             param[1] = new SqlParameter("@taskId", pk);
             param[2] = new SqlParameter("@status", status);
             param[3] = new SqlParameter("@appDate", APdate);
             param[4] = new SqlParameter("@Remark", Remark);
             param[5] = new SqlParameter("@pesronId", person);
+            param[6] = new SqlParameter("@ProposalApprovedBy", ProposalApprovedBy);
             //
             return objDAL.GetDataByProcedure("SPActionOnVisionPlan", param);
         }

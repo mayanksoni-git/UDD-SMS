@@ -403,6 +403,18 @@ public partial class VisionPlanActionFirst : System.Web.UI.Page
                     lastColumn.Visible = false;
                 }
             }
+
+            if (Session["Person_Id"] != null && Session["Person_Id"].ToString() == "2288")
+            {
+                // Find the last column (in this case, it's the <td> containing the LinkButtons)
+                HtmlTableCell lastColumn = e.Item.FindControl("LastColumn") as HtmlTableCell;
+
+                if (lastColumn != null)
+                {
+                    // Hide the last column
+                    lastColumn.Visible = true;
+                }
+            }
         }
     }
 

@@ -532,12 +532,21 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
                 MessageBox.Show("Please Select Date.");
                 return;
             }
+            string ProposalApprovedBy = "";
+            try
+            {
+                ProposalApprovedBy = ddlProposalApprovedBy.SelectedValue;
+            }
+            catch
+            {
+                ProposalApprovedBy = "";
+            }
             var apDate = Convert.ToDateTime(TxtDate.Text);
             var pk = Convert.ToInt32(VisionPlanID.Value);
 
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
-            dt = objLoan.ActionOnVisionPlan("update", pk, Person_Id, statuss, apDate, TxtRemark.Text);
+            dt = objLoan.ActionOnVisionPlan("update", pk, Person_Id, statuss, apDate, TxtRemark.Text, ProposalApprovedBy);
             //GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
             if (dt.Rows.Count > 0)
             {
@@ -550,6 +559,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
                 ddlFY.Enabled = true;
                 VisionPlanID.Value = "";
                 TxtPopulation.Text = "";
+                ddlProposalApprovedBy.SelectedValue = "-1";
                 reset();
 
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + dt.Rows[0]["Remarks"].ToString() + "');window.location='VisionPlanActionFirst'", true);

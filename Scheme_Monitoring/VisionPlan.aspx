@@ -203,6 +203,7 @@
                                                     <th colspan="4">Doc Status</th>
 
                                                     <th>Action</th>
+                                                    <th>Approved By</th>
                                                 </tr>
                                                 <tr class="table-primary">
 
@@ -236,6 +237,7 @@
                                                     <th style="text-align: center">Visison Plan Doc</th>
                                                     <th style="text-align: center">Doc Created On</th>
                                                     <th style="text-align: center">Doc Updated On</th>
+                                                    <th></th>
                                                     <th></th>
 
 
@@ -300,7 +302,7 @@
                                                             <asp:Label ID="lblDocUpdatedOn" runat="server"><%# DataBinder.Eval(Container.DataItem, "DocUpdatedOn", "{0:dd/MM/yyyy}") %></asp:Label></td>
                                                         <td id="LastColumn" runat="server" class="d-flex">
                                                             <asp:LinkButton ID="btnEdit" runat="server" CssClass=" m-1" ToolTip="Click to Edit Record" CommandName="edit"
-                                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>'>
+                                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") + "|" + DataBinder.Eval(Container.DataItem, "ProjectStatus")%>'>
                                                                 <img src="/assets/images/edit_btn.png" alt="Edit"  width="20" />
                                                             </asp:LinkButton>
 
@@ -310,9 +312,12 @@
                                                             </asp:LinkButton>
                                                             
 
-                                                            <asp:LinkButton ID="BtnAction" runat="server" Visible="false" Text="Action" CssClass="btn bg-primary icon-pencil bigger-130 green m-1" ToolTip="Click to Action on  Record" CommandName="Action"
+                                                            <asp:LinkButton ID="BtnAction" runat="server" Visible="false" Text="Action" CssClass="btn bg-primary icon-pencil bigger-130 green m-1" ToolTip="Click to Action on Record" CommandName="Action"
                                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
                                                             </td>
+                                                        <td>
+                                                            <asp:Label ID="lblApprovedBy" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProposalApprovedBy") %></asp:Label></td>
+                                                        <td>
                                                     </tr>
                                                 </ItemTemplate>
                                                 <FooterTemplate>

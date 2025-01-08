@@ -165,7 +165,8 @@
 
                                                     <th style="text-align: center; font-size: 15px" colspan="2">Location</th>
                                                     <th style="text-align: center; font-size: 15px">Priority</th>
-                                                    <th style="text-align: center; font-size: 15px">Status</th>
+                                                    <th style="text-align: center; font-size: 15px" >Status</th>
+                                                    <th style="text-align: center; font-size: 15px" >Approved By</th>
                                                     <th style="text-align: center; font-size: 15px">Action</th>
                                                 </tr>
                                                 <tr class="table-primary">
@@ -191,6 +192,7 @@
                                                     <th style="text-align: center">No Of Similar Project</th>
                                                     <th style="text-align: center">Ward Name (Ward No.)</th>
                                                     <th style="text-align: center">(on a scale of 1 to 5, 5 being the highest)</th>
+                                                    <th></th>
                                                     <th></th>
                                                     <th></th>
                                                 </tr>
@@ -232,6 +234,8 @@
                                                             <asp:Label ID="lblSelfPriority" runat="server"><%# DataBinder.Eval(Container.DataItem, "selfPriority") %></asp:Label></td>
                                                         <td>
                                                             <asp:Label ID="lblProjectStatus" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectStatus") %></asp:Label></td>
+                                                        <td>
+                                                            <asp:Label ID="lblApprovedBy" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProposalApprovedBy") %></asp:Label></td>
                                                         <td id="LastColumn" runat="server">
                                                             <asp:LinkButton ID="btnEdit" runat="server" Visible="false" Text="Edit" CssClass="btn bg-warning icon-pencil bigger-130 green" ToolTip="Click to Edit Record" CommandName="edit"
                                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />

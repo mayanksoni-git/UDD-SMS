@@ -102,11 +102,6 @@
                                                         <asp:ListItem Value="SUIC 1">SUIC 1</asp:ListItem>
                                                         <asp:ListItem Value="SUIC 2">SUIC 2</asp:ListItem>
                                                         <asp:ListItem Value="SUIC 3">SUIC 3</asp:ListItem>
-                                                        <asp:ListItem Value="SUIC 4">SUIC 4</asp:ListItem>
-                                                        <asp:ListItem Value="SUIC 5">SUIC 5</asp:ListItem>
-                                                        <asp:ListItem Value="SUIC 6">SUIC 6</asp:ListItem>
-                                                        <asp:ListItem Value="SUIC 7">SUIC 7</asp:ListItem>
-                                                        <asp:ListItem Value="SUIC 8">SUIC 8</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>

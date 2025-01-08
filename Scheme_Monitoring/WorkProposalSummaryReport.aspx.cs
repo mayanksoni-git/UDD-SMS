@@ -85,6 +85,8 @@ public partial class WorkProposalSummaryReport : System.Web.UI.Page
             ds = (new DataLayer()).get_tbl_ProjectBySection(Convert.ToInt32(Session["Person_Id"].ToString()), SectionId);
         }
         FillDropDown(ds, ddlProjectMaster, "Project_Name", "Project_Id");
+        ListItem itemToRemove = ddlProjectMaster.Items.FindByValue("1019");
+        ddlProjectMaster.Items.Remove(itemToRemove);
     }
 
 

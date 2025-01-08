@@ -235,6 +235,10 @@
                                         <li class="nav-item"><a href="PDFs/ULB%20Eligibility/NPP%20Greater%201%20Lac.pdf" target="_blank" class="nav-link" data-key="t-list-js">Qualifying Nagar Palika Parishad Greater Than 1 Lac</a> </li>
                                         <li class="nav-item"><a href="PDFs/ULB%20Eligibility/NPP%20Less%201%20Lac.pdf" target="_blank" class="nav-link" data-key="t-list-js">Qualifying Nagar Palika Parishad Less Than 1 Lac</a> </li>
                                         <li class="nav-item"><a href="PDFs/ULB%20Eligibility/qualifying%20NP_V2.pdf" target="_blank" class="nav-link" data-key="t-list-js">Qualifying Nagar Panchayat</a> </li>
+                                        <li class="nav-item"><a href="PDFs/SUIC%20-1%20MOM.pdf" target="_blank" class="nav-link" data-key="t-list-js">SUIC-1 MOM</a> </li>
+                                        <li class="nav-item"><a href="PDFs/SUIC-2%20MOM.pdf" target="_blank" class="nav-link" data-key="t-list-js">SUIC-2 MOM</a> </li>
+                                        <li class="nav-item"><a href="PDFs/SUIC-3%20MOM.pdf" target="_blank" class="nav-link" data-key="t-list-js">SUIC-3 MOM</a> </li>
+
                                         <%--<li class="nav-item"><a href="MasterDPR_Upload.aspx" class="nav-link" data-key="t-list-js">Upload DPR Document</a> </li>--%>
                                         <%--<li class="nav-item"><a href="Report_DPR_Status_Report.aspx" class="nav-link" data-key="t-list-js">DPR Status Report</a> </li>--%>
                                         

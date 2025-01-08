@@ -253,8 +253,18 @@ public partial class VisionPlan : System.Web.UI.Page
                 string Distid = args[1];
                 string ULBID = args[2];
                 string FYID = args[3];
+                string ProjectStatus = args[4];
+                if(ProjectStatus!= "Pending")
+                {
+                    MessageBox.Show("You can not edit this record. Action has been taken on this proposal.");
+                    return;
+                }
+                else
+                {
+                    Response.Redirect("CreateVisionPlan.aspx?id=" + PlanID + "&&Dist=" + Distid + "&&ULBID=" + ULBID + "&&FYID=" + FYID + "");
+                }
                 //var pk = Convert.ToInt16(e.CommandArgument.ToString());
-                Response.Redirect("CreateVisionPlan.aspx?id=" + PlanID+"&&Dist="+Distid+"&&ULBID="+ULBID+"&&FYID="+FYID+"");
+                
             }
 
             if (e.CommandName == "Action")

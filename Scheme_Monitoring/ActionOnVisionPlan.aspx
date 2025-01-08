@@ -1,13 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="ActionOnVisionPlan.aspx.cs" Inherits="ActionOnVisionPlan" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-     <asp:HiddenField ID="VisionPlanID" runat="server" />
+    <asp:HiddenField ID="VisionPlanID" runat="server" />
     <asp:HiddenField ID="ULBID" runat="server" />
     <asp:HiddenField ID="FYID" runat="server" />
-   
-   
+
+
     <%--git testing--%>
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
     <div class="main-content">
@@ -18,7 +19,7 @@
                     </cc1:ToolkitScriptManager>
                     <div class="container-fluid">
 
-                         <div class="row">
+                        <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                     <h4 class="mb-sm-0" id="HeadingSec" runat="server">Action On Vision Plan</h4>
@@ -34,16 +35,16 @@
                             <!--end col-->
                         </div>
 
-                          <div class="row">
+                        <div class="row">
                             <div class="col-lg-12">
                                 <div class="card" id="sectionFilter" runat="server">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Action On Vision Plan</h4>
-                                         <a href="VisionPlanActionFirst.aspx"  class="filter-btn" style="float:right;width:155px"><i class="icon-download"></i> Vision Plan List</a>
-                                        
+                                        <a href="VisionPlanActionFirst.aspx" class="filter-btn" style="float: right; width: 155px"><i class="icon-download"></i>Vision Plan List</a>
+
                                     </div>
                                     <!-- end card header -->
-                                     <div class="card-body">
+                                    <div class="card-body">
                                         <div class="live-preview">
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
@@ -71,40 +72,40 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
                                                         <asp:Label ID="lblFY" runat="server" Text=" Financial Year*" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlFY_SelectedIndexChanged" ></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlFY_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
+                                                <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
                                                     <div id="div8" runat="server">
                                                         <asp:Label ID="lblpop" runat="server" Text="Population*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="TxtPopulation" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-3 col-md-6">
                                                     <div id="divProj" runat="server">
                                                         <asp:Label ID="lblProj" runat="server" Text="Project type*" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="DDLProj" runat="server" CssClass="form-select" ></asp:DropDownList>
+                                                        <asp:DropDownList ID="DDLProj" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
+                                                <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
                                                     <div id="div9" runat="server">
                                                         <asp:Label ID="Label11" runat="server" Text="Project Name" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="TxtProject" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server" >
+                                                <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server">
                                                     <div id="div6" runat="server">
                                                         <asp:Label ID="Label9" runat="server" Text="Location (Ward Name)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="Location" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                        <asp:TextBox ID="Location" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div runat="server" id="NewConstruction">
                                                         <asp:Label ID="Label1" runat="server" Text="Is Constructed ?*" CssClass="form-label"></asp:Label>
-                                                        <asp:RadioButton ID="RadioButton1" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Constructed " Value="1"  />
-                                                        <asp:RadioButton ID="RadioButton2" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Construction " Value="2"  />
-                                                        <asp:RadioButton ID="RadioButton3" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Sanction " Value="3"  />
+                                                        <asp:RadioButton ID="RadioButton1" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Constructed " Value="1" />
+                                                        <asp:RadioButton ID="RadioButton2" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Construction " Value="2" />
+                                                        <asp:RadioButton ID="RadioButton3" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Sanction " Value="3" />
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6 validsec" id="sectionyear" runat="server">
@@ -113,7 +114,7 @@
                                                         <asp:TextBox ID="TxtYear" placeholder="yyyy" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                              <div class="col-xxl-3 col-md-6 validsec" id="sectionCond" runat="server">
+                                                <div class="col-xxl-3 col-md-6 validsec" id="sectionCond" runat="server">
                                                     <div id="condition" runat="server">
                                                         <asp:Label ID="Label3" runat="server" Text="Condition *" CssClass="form-label"></asp:Label>
                                                         <asp:RadioButton ID="RadioButton4" runat="server" GroupName="Condition" Text="Good " Value="1" />
@@ -121,40 +122,40 @@
                                                         <asp:RadioButton ID="RadioButton6" runat="server" GroupName="Condition" Text="Need Redevelopement" Value="3" />
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 validsec" id="secUser" runat="server">
+                                                <div class="col-xxl-3 col-md-6 validsec" id="secUser" runat="server">
                                                     <div id="UserCharge" runat="server">
                                                         <asp:Label ID="Label4" runat="server" Text="User Charge *" CssClass="form-label"></asp:Label>
                                                         <asp:RadioButton ID="RadioButton7" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="usercharge" Text="Yes " Value="1" />
                                                         <asp:RadioButton ID="RadioButton8" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="usercharge" Text="No" Value="0" /><br />
-                                                       
+
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 validsec" runat="server" id="sectionusercharge" >
+                                                <div class="col-xxl-3 col-md-6 validsec" runat="server" id="sectionusercharge">
                                                     <div id="div1" runat="server">
                                                         <asp:Label ID="Label5" runat="server" Text="Amount(in rupees)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="Amounts" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                        <asp:TextBox ID="Amounts" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 validsec" runat="server" id="sectionuOwner">
+                                                <div class="col-xxl-3 col-md-6 validsec" runat="server" id="sectionuOwner">
                                                     <div id="Div3" runat="server">
                                                         <asp:Label ID="Label6" runat="server" Text="Is Owner Nagar Nigam or ULB *" CssClass="form-label"></asp:Label>
                                                         <asp:RadioButton ID="RadioButton9" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="Owner" Text="Yes " Value="1" />
                                                         <asp:RadioButton ID="RadioButton10" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="Owner" Text="No" Value="0" /><br />
-                                                       
+
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 validsec" runat="server"  id="secOtherown" >
+                                                <div class="col-xxl-3 col-md-6 validsec" runat="server" id="secOtherown">
                                                     <div id="div4" runat="server">
                                                         <asp:Label ID="Label7" runat="server" Text="Owner Department*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="OtherDepartment" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                        <asp:TextBox ID="OtherDepartment" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                
-                                                
-                                                 <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
+
+
+                                                <div class="col-xxl-3 col-md-6" id="sectionpriority" runat="server">
                                                     <div id="div7" runat="server">
                                                         <asp:Label ID="Label10" runat="server" Text="Self Priority" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-select" >
+                                                        <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-select">
                                                             <asp:ListItem Value="0">--Select--</asp:ListItem>
                                                             <asp:ListItem Value="1">1</asp:ListItem>
                                                             <asp:ListItem Value="2">2</asp:ListItem>
@@ -164,17 +165,17 @@
                                                         </asp:DropDownList>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6" id="sectionSimilar" runat="server" >
+                                                <div class="col-xxl-3 col-md-6" id="sectionSimilar" runat="server">
                                                     <div id="div5" runat="server">
                                                         <asp:Label ID="Label8" runat="server" Text="Number Of Similar project in city*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="similarProj" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                        <asp:TextBox ID="similarProj" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
 
-                                                 <div class="col-xxl-3 col-md-6"  >
-                                                    <div >
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
                                                         <asp:Label ID="Label12" runat="server" Text="Status" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="DdlStatus" runat="server" CssClass="form-select" >
+                                                        <asp:DropDownList ID="DdlStatus" runat="server" CssClass="form-select">
                                                             <asp:ListItem Text="--Select Status--" Value="-1"></asp:ListItem>
                                                             <asp:ListItem Text="Pending" Value="0"></asp:ListItem>
                                                             <asp:ListItem Text="Approved" Value="1"></asp:ListItem>
@@ -182,19 +183,31 @@
                                                             <asp:ListItem Text="Hold/Archive" Value="3"></asp:ListItem>
                                                         </asp:DropDownList>
                                                     </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <%--<label class="control-label no-padding-right">Project Type* </label>--%>
+                                                        <asp:Label ID="lblProposalApprovedBy" runat="server" Text="Proposal Approved By*" CssClass="control-label no-padding-right"></asp:Label>
+                                                        <asp:DropDownList ID="ddlProposalApprovedBy" runat="server" CssClass="form-select">
+                                                            <asp:ListItem Text="-Select-" Value="-1" Selected="True"></asp:ListItem>
+                                                            <asp:ListItem Value="SUIC 1">SUIC 1</asp:ListItem>
+                                                            <asp:ListItem Value="SUIC 2">SUIC 2</asp:ListItem>
+                                                            <asp:ListItem Value="SUIC 3">SUIC 3</asp:ListItem>
+                                                        </asp:DropDownList>
                                                     </div>
-                                                      <div class="col-xxl-3 col-md-6" >
-                                                          <div >
-                                                              <asp:Label ID="Label13" runat="server" Text="Action Date*" CssClass="form-label"></asp:Label>
-                                                              <asp:TextBox ID="TxtDate" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
-                                                          </div>
-                                                      </div>
-                                                       <div class="col-xxl-6 col-md-6" >
-                                                          <div >
-                                                              <asp:Label ID="Label14" runat="server" Text="Remark" CssClass="form-label"></asp:Label>
-                                                              <asp:TextBox ID="TxtRemark" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
-                                                          </div>
-                                                      </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div>
+                                                        <asp:Label ID="Label13" runat="server" Text="Action Date*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="TxtDate" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-6 col-md-6">
+                                                    <div>
+                                                        <asp:Label ID="Label14" runat="server" Text="Remark" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="TxtRemark" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-xxl-10  col-md-10">
                                                     <div>
@@ -204,14 +217,14 @@
 
                                                     </div>
                                                 </div>
-                                              
+
                                             </div>
                                             <!--end row-->
                                         </div>
                                     </div>
                                 </div>
 
-                               <%-- <div class="card" id="sectionData" runat="server">
+                                <%-- <div class="card" id="sectionData" runat="server">
                                             <table id="sample-table-2" class="mt-5 table table-striped table-bordered table-hover">
 
                                                 <thead >
@@ -276,13 +289,9 @@
                                     </asp:Repeater>
                                      </table>
                                 </div>--%>
-
                             </div>
                         </div>
-
-
-                       
-                    </ContentTemplate>
+                </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="BtnSave" />
                     <asp:PostBackTrigger ControlID="ddlCircle" />
@@ -302,13 +311,13 @@
                     <asp:PostBackTrigger ControlID="RadioButton10" />
                 </Triggers>
 
-                </asp:UpdatePanel>
-          
+            </asp:UpdatePanel>
 
-            </div>
+
         </div>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-   <%--<script type="text/javascript">
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <%--<script type="text/javascript">
        $(document).ready(function () {
            $('input[name$="IsConstructed"]').change(function () {
                debugger
@@ -355,27 +364,25 @@
            //
        });
    </script>--%>
-        <style>
-           
-
+    <style>
         .filter-btn {
-    display: flex;
-    padding: 8px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #ffffff;
-    background-color: #f85420;
-    width: 137px;
-    border: 0;
-    background: -webkit-gradient(linear, left top, right top, from(#FF5722), to(#D84315));
-    background: linear-gradient(88deg, #FF5722 0%, #D84315);
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    height: 39px;
-    line-height: 22px;
-    transition: all .35s ease-Out;
-}
+            display: flex;
+            padding: 8px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #ffffff;
+            background-color: #f85420;
+            width: 137px;
+            border: 0;
+            background: -webkit-gradient(linear, left top, right top, from(#FF5722), to(#D84315));
+            background: linear-gradient(88deg, #FF5722 0%, #D84315);
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            height: 39px;
+            line-height: 22px;
+            transition: all .35s ease-Out;
+        }
     </style>
-    </asp:Content>
+</asp:Content>
