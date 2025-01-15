@@ -192,6 +192,7 @@
                                         <li class="nav-item"><a href="MasterULBExpense.aspx" class="nav-link" data-key="t-pickers">ULB Expense Type</a></li>
                                         <li class="nav-item"><a href="NotificationList.aspx" class="nav-link" data-key="t-pickers">Add Notification</a></li>
                                         <li class="nav-item"><a href="AkanshiHeadMaster.aspx" class="nav-link" data-key="t-pickers">Akanshi Head Master</a></li>
+                                        <li class="nav-item"><a href="MasterMinister.aspx" class="nav-link" data-key="t-pickers">Minister Master</a></li>
                                     </ul>
                                 </div>
                             </li>
