@@ -167,7 +167,6 @@ public partial class MasterDivision : System.Web.UI.Page
         txtUrbanPopulationSource.Text = grd.Cells[7].Text.Replace("&nbsp;", "").Trim();
         txtDeathPer1000.Text = grd.Cells[8].Text.Replace("&nbsp;", "").Trim();
         txtDeathPer1000Source.Text = grd.Cells[9].Text.Replace("&nbsp;", "").Trim();
-        
         divCreateNew.Focus();
     }
     protected void btnReset_Click(object sender, EventArgs e)
