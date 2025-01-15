@@ -118,6 +118,22 @@ public class VisionPlan
         }
     }
 
+    public DataTable getDPRDocumentFYWise()
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+
+            param[0] = new SqlParameter("@Action", "DPRDocumentFYWise");
+            return objDAL.GetDataByProcedure("sp_VisionPlanDashboard", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
     public DataTable getTotalDocumentsULBWiseByFYID(int FYID)
     {
         try

@@ -108,7 +108,7 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
                 HeadLabel7.Text = dt.Columns[6].ColumnName;
 
                 Label8.Text = dt.Rows[0][7].ToString();
-                HeadLabel8.Text = dt.Columns[7].ColumnName;
+                //HeadLabel8.Text = dt.Columns[7].ColumnName;
 
                 Label9.Text = dt.Rows[0][8].ToString();
                 HeadLabel9.Text = dt.Columns[8].ColumnName;
@@ -288,16 +288,15 @@ public partial class VisionPlanDashboard : System.Web.UI.Page
     {
         return HandleRequest(() => new VisionPlan().getUlBPendingToUpByFYID(FYID));
     }
+    #endregion
+
+    #region Tile 13
+    [WebMethod]
+    public static string btnTotalDocUpDPR_Click()
+    {
+        return HandleRequest(() => new VisionPlan().getDPRDocumentFYWise());
+    }
 
     #endregion
     #endregion
-
-
-
-
-
-
-
-
-
 }

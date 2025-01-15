@@ -274,7 +274,9 @@
                                                                                                 <h4 class="text-c-purple">
                                                                                                     <asp:Label ID="Label8" Text="" runat="server"></asp:Label></h4>
                                                                                                 <h6 class="text-muted m-b-0">
-                                                                                                    <asp:Label ID="HeadLabel8" Text="" runat="server"></asp:Label></h6>
+                                                                                                    Total Documents Uploaded 
+                                                                                                    <asp:Label ID="HeadLabel8" Text=""  runat="server"></asp:Label>
+                                                                                                </h6>
                                                                                             </div>
                                                                                             <div class="col-4 text-end">
                                                                                                 <i class="ri-article-line display-3 text-danger"></i>
@@ -357,71 +359,7 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <%--Tile 12--%>
-                                                                            <div class="col-xl-3 col-md-6">
-                                                                                <div class="card card-animate bg-danger-subtle">
-                                                                                    <div class="card-body">
-                                                                                        <div class="row align-items-center">
-                                                                                            <div class="col-8">
-                                                                                                <h4 class="text-c-purple">
-                                                                                                    <asp:Label ID="Label12" Text="" runat="server"></asp:Label></h4>
-                                                                                                <h6 class="text-muted m-b-0">
-                                                                                                    <asp:Label ID="HeadLabel12" Text="" runat="server"></asp:Label></h6>
-                                                                                            </div>
-                                                                                            <div class="col-4 text-end">
-                                                                                                <i class="ri-article-line display-3 text-danger"></i>
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <%--Tile 13--%>
-                                                                            <div class="col-xl-3 col-md-6">
-                                                                                <div class="card card-animate bg-danger-subtle">
-                                                                                    <div class="card-body">
-                                                                                        <div class="row align-items-center">
-                                                                                            <div class="col-8">
-                                                                                                <h4 class="text-c-purple">
-                                                                                                    <asp:Label ID="Label13" Text="" runat="server"></asp:Label></h4>
-                                                                                                <h6 class="text-muted m-b-0">
-                                                                                                    <asp:Label ID="HeadLabel13" Text="" runat="server"></asp:Label></h6>
-                                                                                            </div>
-                                                                                            <div class="col-4 text-end">
-                                                                                                <i class="ri-article-line display-3 text-danger"></i>
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <%--Tile 14--%>
-                                                                            <div class="col-xl-3 col-md-6">
-                                                                                <div class="card card-animate bg-danger-subtle">
-                                                                                    <div class="card-body">
-                                                                                        <div class="row align-items-center">
-                                                                                            <div class="col-8">
-                                                                                                <h4 class="text-c-purple">
-                                                                                                    <asp:Label ID="Label14" Text="" runat="server"></asp:Label></h4>
-                                                                                                <h6 class="text-muted m-b-0">
-                                                                                                    <asp:Label ID="HeadLabel14" Text="" runat="server"></asp:Label></h6>
-                                                                                            </div>
-                                                                                            <div class="col-4 text-end">
-                                                                                                <i class="ri-article-line display-3 text-danger"></i>
-                                                                                            </div>
-                                                                                            <div class="col-12">
-                                                                                                <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+                                                                            
                                                                             <!-- task, page, download counter  end -->
                                                                         </div>
                                                                     </div>
@@ -473,6 +411,105 @@
                             </div>
                         </div>
 
+                        <div runat="server" id="div1" class="tblheader">
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Vision Plan's DPR Dashboard</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-12">
+                                                    <div class="card-body">
+
+                                                        <div class="tab-content text-muted">
+                                                            <div class="tab-pane active" id="arrow-dashboard2" role="tabpanel">
+                                                                <div id="div2" runat="server" visible="true">
+                                                                    <div class="page-body">
+                                                                        <div class="row">
+                                                                                <%--Tile 12--%>
+                                                                            <div class="col-xl-3 col-md-6"  style="display:none">
+                                                                                <div class="card card-animate bg-danger-subtle">
+                                                                                    <div class="card-body">
+                                                                                        <div class="row align-items-center">
+                                                                                            <div class="col-8">
+                                                                                                <h4 class="text-c-purple"> 
+                                                                                                    <asp:Label ID="Label12" Text="" runat="server"></asp:Label></h4>
+                                                                                                <h6 class="text-muted m-b-0">
+                                                                                                    <asp:Label ID="HeadLabel12" Text="" runat="server"></asp:Label></h6>
+                                                                                            </div>
+                                                                                            <div class="col-4 text-end">
+                                                                                                <i class="ri-article-line display-3 text-danger"></i>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            
+
+                                                                            <%--Tile 13--%>
+                                                                            <div class="col-xl-3 col-md-6">
+                                                                                <div class="card card-animate bg-success-subtle">
+                                                                                    <div class="card-body">
+                                                                                        <div class="row align-items-center">
+                                                                                            <div class="col-8">
+                                                                                                <h4 class="text-c-purple">
+                                                                                                    <asp:Label ID="Label13" Text="" runat="server"></asp:Label></h4>
+                                                                                                <h6 class="text-muted m-b-0">
+                                                                                                    <asp:Label ID="HeadLabel13" Text="" runat="server"></asp:Label></h6>
+                                                                                            </div>
+                                                                                            <div class="col-4 text-end">
+                                                                                                <i class="ri-article-line display-3 text-danger"></i>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <asp:Button ID="btnTotalDocUpDPR" type="button" runat="server" CssClass="plan-btn" Text="Open List" OnClientClick="btnTotalDocUpDPR_Click(); return false;" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <%--Tile 14--%>
+                                                                            <div class="col-xl-3 col-md-6">
+                                                                                <div class="card card-animate bg-danger-subtle">
+                                                                                    <div class="card-body">
+                                                                                        <div class="row align-items-center">
+                                                                                            <div class="col-8">
+                                                                                                <h4 class="text-c-purple">
+                                                                                                    <asp:Label ID="Label14" Text="" runat="server"></asp:Label></h4>
+                                                                                                <h6 class="text-muted m-b-0">
+                                                                                                    <asp:Label ID="HeadLabel14" Text="" runat="server"></asp:Label></h6>
+                                                                                            </div>
+                                                                                            <div class="col-4 text-end">
+                                                                                                <i class="ri-article-line display-3 text-danger"></i>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <button type="button" class="plan-btn" data-toggle="modal" data-target="#earningsModal2">View Details</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </ContentTemplate>
                 <Triggers>
@@ -1086,6 +1123,8 @@
         }
     </script>
 
+
+
     <script>
         //For Tile 10
         function btnTotalULBPendingToUp() {
@@ -1187,6 +1226,114 @@
             });
         }
     </script>
+    <script>
+        //For Tile 13
+        function btnTotalDocUpDPR_Click() {
+            $.ajax({
+                url: "VisionPlanDashboard.aspx/btnTotalDocUpDPR_Click",
+                type: "POST",
+                contentType: "application/json;charset=utf-8;",
+                dataType: "json",
+                data: JSON.stringify({ newAkanshi_Id: 1 }),
+                success: function (data) {
+                    console.log(data); // Inspect the response
+                    if (data.d) {
+                        var result = JSON.parse(data.d);
+                        //$('#ULBData').empty(); // Clear existing rows
+                        var html = '';
+                        var totalDPRDoc = 0;
+
+                        for (var i = 0; i < result.length; i++) {
+                            var item = result[i];
+                            var totalDocument = parseInt(item.ProjectDPR_Count) || 0;
+                            totalDPRDoc += totalDocument; //Count Total Project
+                            html += '<tr>';
+                            html += '<td>' + (i + 1 || '') + '</td>';
+                            html += '<td>' + (item.FinancialYear || '') + '</td>';
+                            html += '<td>';
+                            html += '<button type="button" class="btn btn-primary btn-sm" onclick="openTotalDPRDocumentsULBWiseByFYID(' + item.FinancialYear_Id + ')">' + (item.ProjectDPR_Count || '') + '</button>';
+                            html += '</td>';
+                            html += '</tr>';
+                        }
+
+                        $('#HeadData131').html(html);
+                        $('#VPTableFooter1311').text(totalDPRDoc);
+                        $("#TotalDPRDocumentFinancialYearWise").modal('show');
+
+
+                        $('#VPTable131').DataTable({
+                            destroy: true, // Ensures re-initialization on each AJAX load
+                            dom: 'Blfrtip', // Adds button container at the top
+                            buttons: ["csv", "excel", "print"]
+                        });
+                    } else {
+                        console.error("No data returned");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX error: " + status + " - " + error);
+                }
+            });
+        }
+        function openTotalDPRDocumentsULBWiseByFYID(FYID) {
+            $.ajax({
+                url: "VisionPlanDashboard.aspx/GetTotalDPRDocumentsULBWiseByFYID",
+                type: "POST",
+                contentType: "application/json;charset=utf-8;",
+                dataType: "json",
+                data: JSON.stringify({ FYID: FYID }),
+                success: function (data) {
+                    console.log(data); // Inspect the response
+                    if (data.d) {
+                        var result = JSON.parse(data.d);
+
+                        // Check if DataTable is already initialized and clear its contents
+                        if ($.fn.DataTable.isDataTable('#VPTable82')) {
+                            $('#VPTable82').DataTable().clear().destroy();
+                        }
+
+                        //$('#ULBData').empty(); // Clear existing rows
+                        var html = '';
+                        for (var i = 0; i < result.length; i++) {
+                            var item = result[i];
+                            html += '<tr>';
+                            html += '<td>' + (i + 1 || '') + '</td>';
+                            html += '<td>' + (item.Zone_Name || '') + '</td>';
+                            html += '<td>' + (item.Circle_Name || '') + '</td>';
+                            html += '<td>' + (item.Division_Name || '') + '</td>';
+                            html += '<td>' + (item.FinancialYear_Comments || '') + '</td>';
+                            html += '<td>';
+                            if (item.Documents) {
+                                html += '<button type="button" class="btn btn-info btn-sm" onclick="window.open(\'' + item.Documents + '\', \'_blank\')"><i class="bx bxs-file-pdf"></i></button>';
+                            } else {
+                                html += 'No Document';
+                            }
+                            html += '</td></tr>';
+                        }
+
+                        $('#HeadData82').html(html);
+                        $("#TotalDocumentFinancialYearWise").modal('hide');
+                        $("#TotalDocumentsULBWiseByFYID").modal('show');
+
+
+                        $('#VPTable82').DataTable({
+                            destroy: true, // Ensures re-initialization on each AJAX load
+                            dom: 'Blfrtip', // Adds button container at the top
+
+                            buttons: ["csv", "excel", "print"]
+                        });
+                    } else {
+                        console.error("No data returned");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX error: " + status + " - " + error);
+                }
+            });
+        }
+    </script>
+
+    
 
     <!-- Modal for Total ULB Pending To Upload Financial Year Wise -->
     <div class="modal fade" id="TotalULBPendingToUpFinancialYearWise" tabindex="1" aria-labelledby="TotalULBPendingToUpFinancialYearWiseeLabel" aria-hidden="true">
@@ -1561,9 +1708,6 @@
         </div>
     </div>
 
-
-
-
     <!-- Modal for TotalULBFinancialYearWise -->
     <div class="modal fade" id="TotalULBFinancialYearWise" tabindex="1" aria-labelledby="TotalULBFinancialYearWiseLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -1627,6 +1771,40 @@
                                 <th  id="VULBTableFooter22"></th>
                             </tr>
                         </tfoot>--%>
+                    </table>
+                </div>
+                <%--<div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>--%>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Total DPR Documents Financial Year Wise -->
+    <div class="modal fade" id="TotalDPRDocumentFinancialYearWise" tabindex="1" aria-labelledby="TotalDPRDocumentFinancialYearWiseLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="TotalDPRDocumentFinancialYearWiseLabel">Total No of DPR Documents Financial Year Wise</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table id="VPTable131" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sr.No.</th>
+                                <th>Financial Year</th>
+                                <th>No Of Documents</th>
+                            </tr>
+                        </thead>
+                        <tbody id="HeadData131">
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="2" style="text-align: right">Total No of Dcuments:</th>
+                                <th id="VPTableFooter1311"></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
                 <%--<div class="modal-footer">
