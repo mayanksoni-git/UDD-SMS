@@ -133,6 +133,32 @@
                                                                                                 <h4 class="text-c-purple">
                                                                                                     0</h4>
                                                                                                 <h6 class="text-muted m-b-0">
+                                                                                                    Total Master Plan Reverted</h6>
+                                                                                            </div>
+                                                                                            <div class="col-4 text-end">
+                                                                                                <i class="ri-article-line display-3 text-danger"></i>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                               <asp:Button ID="Button8" type="button" runat="server" CssClass="plan-btn" Text="Open List" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <%--Tile 1--%>
+                                                                            <div class="col-xl-3 col-md-6"></div>
+
+                                                                            <%--Tile 3--%>
+                                                                            <div class="col-xl-3 col-md-6">
+                                                                                <div class="card card-animate bg-warning-subtle">
+                                                                                    <div class="card-body">
+                                                                                        <div class="row align-items-center">
+                                                                                            <div class="col-8">
+                                                                                                <h4 class="text-c-purple">
+                                                                                                    0</h4>
+                                                                                                <h6 class="text-muted m-b-0">
                                                                                                     Total Action Plans Received</h6>
                                                                                             </div>
                                                                                             <div class="col-4 text-end">
@@ -147,9 +173,11 @@
                                                                                 </div>
                                                                             </div>
 
+                                                                            
+
 
                                                                             <%--Tile 4--%>
-                                                                            <div class="col-xl-3 col-md-6" style="display:none">
+                                                                            <div class="col-xl-3 col-md-6">
                                                                                 <div class="card card-animate bg-info-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -170,6 +198,31 @@
                                                                                 </div>
                                                                             </div>
 
+                                                                            <%--Tile 3--%>
+                                                                            <div class="col-xl-3 col-md-6">
+                                                                                <div class="card card-animate bg-warning-subtle">
+                                                                                    <div class="card-body">
+                                                                                        <div class="row align-items-center">
+                                                                                            <div class="col-8">
+                                                                                                <h4 class="text-c-purple">
+                                                                                                    0</h4>
+                                                                                                <h6 class="text-muted m-b-0">
+                                                                                                    Total Action Plan Reverted</h6>
+                                                                                            </div>
+                                                                                            <div class="col-4 text-end">
+                                                                                                <i class="ri-article-line display-3 text-danger"></i>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                               <asp:Button ID="Button9" type="button" runat="server" CssClass="plan-btn" Text="Open List" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <%--Tile 1--%>
+                                                                            <div class="col-xl-3 col-md-6"></div>
 
                                                                             
 
@@ -180,7 +233,7 @@
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
                                                                                             <div class="col-8">
-                                                                                                <h4 class="text-c-purple">
+                                                                                                <h4 class="text-c-purple"> ₹
                                                                                                     0</h4>
                                                                                                 <h6 class="text-muted m-b-0">
                                                                                                     Total Fund Allocation</h6>
@@ -190,6 +243,55 @@
                                                                                             </div>
                                                                                             <div class="col-12">
                                                                                                 <asp:Button ID="Button7" type="button" runat="server" CssClass="plan-btn" Text="Open List" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <%--Tile 2--%>
+
+                                                                            <div class="col-xl-3 col-md-6">
+                                                                                <div class="card card-animate bg-success-subtle">
+                                                                                    <div class="card-body">
+                                                                                        <div class="row align-items-center">
+                                                                                            <div class="col-8">
+                                                                                                <h4 class="text-c-purple"> ₹
+                                                                                        0</h4>
+                                                                                                <h6 class="text-muted m-b-0">
+                                                                                                    Total Fund Sanctioned</h6> 
+                                                                                            </div>
+                                                                                            <div class="col-4 text-end">
+                                                                                                <i class="ri-article-line display-3 text-danger"></i>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <asp:Button ID="Button11" type="button" runat="server" CssClass="plan-btn" Text="Open List" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <%--Tile 4--%>
+                                                                            <div class="col-xl-3 col-md-6">
+                                                                                <div class="card card-animate bg-info-subtle">
+                                                                                    <div class="card-body">
+                                                                                        <div class="row align-items-center">
+                                                                                            <div class="col-8">
+                                                                                                <h4 class="text-c-purple">  ₹
+                                                                                                    0</h4>
+                                                                                                <h6 class="text-muted m-b-0">
+                                                                                                    Total Fund Utilized</h6>
+                                                                                            </div>
+                                                                                            <div class="col-4 text-end">
+                                                                                                <i class="ri-article-line display-3 text-danger"></i>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <asp:Button ID="Button12" type="button" runat="server" CssClass="plan-btn" Text="Open List" />
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -299,6 +401,30 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                             <%--Tile 5--%>
+                                                                            <div class="col-xl-3 col-md-6">
+                                                                                <div class="card card-animate bg-danger-subtle">
+                                                                                    <div class="card-body">
+                                                                                        <div class="row align-items-center">
+                                                                                            <div class="col-8">
+                                                                                                <h4 class="text-c-purple">
+                                                                                                    0</h4>
+                                                                                                <h6 class="text-muted m-b-0">
+                                                                                                    Total DPR Reverted</h6>
+                                                                                            </div>
+                                                                                            <div class="col-4 text-end">
+                                                                                                <i class="ri-article-line display-3 text-danger"></i>
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <asp:Button ID="Button10" type="button" runat="server" CssClass="plan-btn" Text="Open List" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+
                                                                                 </div>
                                                                             </div>
                                                                         </div>
