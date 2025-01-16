@@ -5,8 +5,9 @@ using System.Web;
 public class PDFUploader
 {
     // Directory to save PDF files
-    private static string PdfDirectory = "~/PDFs/RecomendationLetters/";
-    private const int MaxPdfSize = 10 * 1024 * 1024; // 10MB in bytes
+    private static string PdfDirectory = "~/PDFs/MasterPlan/";
+    private const int MaxPdfSize = 5 * 1024 * 1024; // 10MB in bytes
+
 
     public static string UploadPDF(HttpPostedFile file, out string errorMessage)
     {
@@ -24,6 +25,44 @@ public class PDFUploader
         {
             errorMessage = "The file size exceeds the 10MB limit.";
             return null;
+        }
+
+        // Ensure the directory exists
+        string serverPath = HttpContext.Current.Server.MapPath(PdfDirectory);
+        if (!Directory.Exists(serverPath))
+        {
+            Directory.CreateDirectory(serverPath);
+        }
+
+        // Generate a unique file name if there is a collision
+        string uniqueFileName = GenerateUniqueFileName(serverPath, Path.GetFileName(file.FileName));
+
+        // Save the file to the server
+        string filePath = Path.Combine(serverPath, uniqueFileName);
+        file.SaveAs(filePath);
+
+        // Return the relative path for database storage
+        string relativePath = Path.Combine(PdfDirectory, uniqueFileName).Replace("\\", "/");
+        return relativePath;
+    }
+
+    public static string UploadPDFWithSizeAndPath(HttpPostedFile file, string PdfDirectory, int MaxPdfSize, out string errorMessage)
+    {
+        errorMessage = string.Empty;
+
+        // Check if the file is a PDF
+        if (!IsPDF(file))
+        {
+            errorMessage = "The file is not a valid PDF.";
+            return null;
+        }
+
+
+        // Check if the file size exceeds 10MB
+        if (!IsValidPDFSizeWithMaxPdfSize(file, MaxPdfSize))
+        {
+            errorMessage = "The file size exceeds the "+ (MaxPdfSize/1024/1024).ToString() +" MB limit.";
+            return null;                                                                    
         }
 
         // Ensure the directory exists
@@ -72,6 +111,10 @@ public class PDFUploader
     }
 
     private static bool IsValidPDFSize(HttpPostedFile file)
+    {
+        return file.ContentLength <= MaxPdfSize;
+    } 
+    private static bool IsValidPDFSizeWithMaxPdfSize(HttpPostedFile file, int MaxPdfSize)
     {
         return file.ContentLength <= MaxPdfSize;
     }

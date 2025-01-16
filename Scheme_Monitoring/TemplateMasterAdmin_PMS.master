@@ -370,7 +370,8 @@
                                 <a class="nav-link menu-link" href="#sidebarDrain" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDrain"><img src="assets/images/left-menu-icon/CMVNY Scheme.svg" class="img-fluid" /><span data-key="t-tables">Storm Water Drainage</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarDrain">
                                     <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item"><a href="DrainDashboard.aspx" class="nav-link" data-key="t-grid-js">Dashboard</a> </li>
+                                        <li class="nav-item"><a href="DrainageDashboard.aspx" class="nav-link" data-key="t-grid-js">Dashboard</a></li>
+                                        <li class="nav-item"><a href="MasterPlan.aspx" class="nav-link" data-key="t-grid-js">Master Plan</a></li>
                                     </ul>
                                 </div>
                             </li>
