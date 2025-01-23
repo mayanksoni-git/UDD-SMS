@@ -200,6 +200,9 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
     }
     protected void grdPost_PreRender(object sender, EventArgs e)
     {
+        grdPost.Columns[0].Visible = false;
+        grdPost.Columns[1].Visible = false;
+        grdPost.Columns[2].Visible = false;
         GridView gv = (GridView)sender;
         if (gv.Rows.Count > 0)
         {

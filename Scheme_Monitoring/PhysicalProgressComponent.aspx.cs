@@ -221,6 +221,7 @@ public partial class PhysicalProgressComponent : System.Web.UI.Page
 
     protected void grdPost_PreRender(object sender, EventArgs e)
     {
+
         GridView gv = (GridView)sender;
         if (gv.Rows.Count > 0)
         {
@@ -235,6 +236,9 @@ public partial class PhysicalProgressComponent : System.Web.UI.Page
         {
             gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
+        grdPost.Columns[0].Visible = false;
+        grdPost.Columns[1].Visible = false;
+        grdPost.Columns[2].Visible = false;
     }
     protected void btnAddNew_Click(object sender, EventArgs e)
     {
