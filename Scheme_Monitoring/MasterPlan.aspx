@@ -128,7 +128,7 @@
                                         <div style="overflow: auto">
                                             <asp:GridView runat="server" ID="grdPost" AllowPaging="false" CssClass="display table table-bordered" 
                                                 AutoGenerateColumns="False" EmptyDataText="No Records Found"  OnPreRender="grdPost_PreRender" 
-                                                OnRowDataBound="grdPost_RowDataBound" ShowFooter="True">
+                                                OnRowDataBound="grdPost_RowDataBound" ShowFooter="false">
                                                 <Columns>
                                                      <asp:TemplateField HeaderText="Edit">
                                                             <ItemTemplate>                                                               
@@ -148,6 +148,7 @@
                                                     <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
                                                     <asp:BoundField HeaderText="Population" DataField="Population" />
                                                     <asp:BoundField HeaderText="Area" DataField="Area" />
+                                                    <asp:BoundField HeaderText="Master Plan Code" DataField="MasterPlanCode" />
                                                     <asp:TemplateField HeaderText="Master Plan Doc">
                                                         <ItemTemplate>
                                                             <asp:HyperLink ID="hypMasterPlanDoc" runat="server" Target="_blank" NavigateUrl='<%# Eval("MasterPlanFilePath") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("MasterPlanFilePath").ToString()) %>'>
@@ -158,7 +159,7 @@
                                                 </Columns>
                                                 <EmptyDataTemplate>
                                                     <tr>
-                                                        <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                        <td colspan="11" style="text-align: center; font-weight: bold; color: red;">No records found</td>
                                                     </tr>
                                                 </EmptyDataTemplate>
                                             </asp:GridView>

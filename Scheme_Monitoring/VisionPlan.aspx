@@ -190,7 +190,7 @@
 
                                                     <th>Sr. No.</th>
                                                     <th colspan="5">ULB Details</th>
-                                                    <th colspan="4">Project Name</th>
+                                                    <th colspan="5">Project Name</th>
                                                     <th colspan="2">Existing</th>
                                                     <th>Condition</th>
 
@@ -214,6 +214,7 @@
                                                     <th>ULB Type</th>
                                                     <th style="text-align: center">Population</th>
                                                     <th style="text-align: center">Project Type</th>
+                                                    <th style="text-align: center">Vision Plan Code</th>
                                                     <th style="text-align: center">Project Name</th>
                                                     <th style="text-align: center">Project Cost(In Lakhs)</th>
                                                     <th style="text-align: center">Financial Year</th>
@@ -260,8 +261,11 @@
                                                             <asp:Label ID="lblULBType" runat="server"><%# DataBinder.Eval(Container.DataItem, "Division_Type") %></asp:Label></td>
                                                         <td>
                                                             <asp:Label ID="lblPopulation" runat="server"><%# DataBinder.Eval(Container.DataItem, "population") %></asp:Label></td>
+                                                       
                                                         <td>
                                                             <asp:Label ID="Label4" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectType_Name") %></asp:Label></td>
+                                                         <td>
+                                                            <asp:Label ID="Label6" runat="server"><%# DataBinder.Eval(Container.DataItem, "VisionPlanCode") %></asp:Label></td>
                                                         <td>
                                                             <asp:Label ID="Label2" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectName") %></asp:Label></td>
                                                         <td>
@@ -317,7 +321,7 @@
                                                             </td>
                                                         <td>
                                                             <asp:Label ID="lblApprovedBy" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProposalApprovedBy") %></asp:Label></td>
-                                                        <td>
+                                                        
                                                     </tr>
                                                 </ItemTemplate>
                                                 <FooterTemplate>

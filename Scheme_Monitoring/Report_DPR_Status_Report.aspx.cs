@@ -504,6 +504,12 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
 
     protected void grdFinancialFull_PreRender(object sender, EventArgs e)
     {
+        grdFinancialFull.Columns[0].Visible = false;
+        grdFinancialFull.Columns[1].Visible = false;
+        grdFinancialFull.Columns[2].Visible = false;
+        grdFinancialFull.Columns[3].Visible = false;
+        grdFinancialFull.Columns[4].Visible = false;
+        grdFinancialFull.Columns[5].Visible = false;
         GridView gv = (GridView)sender;
         if (gv.Rows.Count > 0)
         {

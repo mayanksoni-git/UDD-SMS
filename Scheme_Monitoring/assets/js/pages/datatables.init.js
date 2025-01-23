@@ -10,13 +10,14 @@ function initializeTables() {
     new DataTable("#alternative-pagination", {
         pagingType: "full_numbers"
     }),
-        new DataTable("#ctl00_ContentPlaceHolder1_grdPost", {
-            paging: true,
-            lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-            searching: true,
-        dom: "Blfrtip",
-        buttons: ["csv", "excel", "print"], 
-        fixedHeader: !0
+    new DataTable("#ctl00_ContentPlaceHolder1_grdPost", {
+        paging: true,
+        destroy: true,
+        lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        searching: true,
+    dom: "Blfrtip",
+    buttons: ["csv", "excel", "print"], 
+    fixedHeader: !0
     }),
     new DataTable("#ajax-datatables", {
         ajax: "assets/json/datatable.json"

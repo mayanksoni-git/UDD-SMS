@@ -75,7 +75,7 @@
                                                                             <!-- task, page, download counter  start -->
 
                                                                             <%--Tile 1--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-primary-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -101,7 +101,7 @@
 
                                                                             <%--Tile 2--%>
 
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-success-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -125,7 +125,7 @@
                                                                             </div>
 
                                                                             <%--Tile 3--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-warning-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -147,11 +147,10 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <%--Tile 1--%>
-                                                                            <div class="col-xl-3 col-md-6"></div>
+                                                                           
 
                                                                             <%--Tile 3--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-warning-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -177,7 +176,7 @@
 
 
                                                                             <%--Tile 4--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-info-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -199,7 +198,7 @@
                                                                             </div>
 
                                                                             <%--Tile 3--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-warning-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -221,14 +220,13 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <%--Tile 1--%>
-                                                                            <div class="col-xl-3 col-md-6"></div>
+                                                                        
 
                                                                             
 
 
                                                                             <%--Tile 7--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-primary-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -252,7 +250,7 @@
 
                                                                             <%--Tile 2--%>
 
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-success-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -277,7 +275,7 @@
 
 
                                                                             <%--Tile 4--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-info-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -359,7 +357,7 @@
                                                                     <div class="page-body">
                                                                         <div class="row">
                                                                                 <%--Tile 5--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-danger-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -383,7 +381,7 @@
                                                                             </div>
 
                                                                             <%--Tile 6--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-dark-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">
@@ -405,7 +403,7 @@
                                                                             </div>
 
                                                                              <%--Tile 5--%>
-                                                                            <div class="col-xl-3 col-md-6">
+                                                                            <div class="col-xl-4 col-md-6">
                                                                                 <div class="card card-animate bg-danger-subtle">
                                                                                     <div class="card-body">
                                                                                         <div class="row align-items-center">

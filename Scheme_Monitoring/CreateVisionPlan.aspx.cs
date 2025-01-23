@@ -79,6 +79,9 @@ public partial class CreateVisionPlan: System.Web.UI.Page
         int circleId = Convert.ToInt32(Session["PersonJuridiction_CircleId"]);
         int divisionId = Convert.ToInt32(Session["PersonJuridiction_DivisionId"]);
 
+        
+
+
         if (userType == 4 && zoneId > 0)
         {
             SetDropdownValueAndDisable(ddlZone, zoneId);
@@ -99,11 +102,19 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 SetDropdownValueAndDisable(ddlCircle, circleId);
                 if (divisionId > 0)
                 {
+                    VisionPlan vp = new VisionPlan();
+                    int IsQualified = vp.IsQualifiedForVisionPlan(divisionId);
+                    if (IsQualified == 0)
+                    {
+                        MessageBox.Show("Your ULB is not qualified to send Vision Plan for CM-VNY Scheme. Do not fill form.");
+                        ddlDivision.Enabled = false;
+                        return;
+                    }
                     SetDropdownValueAndDisable(ddlDivision, divisionId);
-                   
                 }
             }
         }
+        
     }
     private void SetDropdownValueAndDisable(DropDownList ddl, int value)
     {
@@ -683,6 +694,15 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             if (!ValidateFields())
             {
                 MessageBox.Show("All Fields required.");
+                return;
+            }
+
+            VisionPlan vp = new VisionPlan();
+            int IsQualified = vp.IsQualifiedForVisionPlan(Convert.ToInt32(ddlDivision.SelectedValue));
+            if (IsQualified == 0)
+            {
+                MessageBox.Show("This ULB is not qualified to send Vision Plan for CM-VNY Scheme");
+                ddlDivision.Focus();
                 return;
             }
             var constructed = "";

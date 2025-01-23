@@ -230,31 +230,6 @@ public partial class MasterPlan : System.Web.UI.Page
         }
     }
 
-    private decimal GetSafeDecimal(object value)
-    {
-        if (value == DBNull.Value || value == null)
-        {
-            return 0; // Return 0 if the value is null
-        }
-        else
-        {
-            return Convert.ToDecimal(value);
-        }
-    }
-
-    // Helper method to safely convert to integer
-    private int GetSafeInteger(object value)
-    {
-        if (value == DBNull.Value || value == null)
-        {
-            return 0; // Return 0 if the value is null
-        }
-        else
-        {
-            return Convert.ToInt32(value);
-        }
-    }
-
 
     private void SetDropdownsBasedOnUserType()
     {
