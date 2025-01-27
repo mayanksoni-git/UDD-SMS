@@ -52,21 +52,21 @@ public class ULBFund
 
     public DataTable Get_ParkFascilityById(string v, int parkDetailId)
     {
-       
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlParameter[] param = new SqlParameter[2];
-                param[0] = new SqlParameter("@action", v);
-                param[1] = new SqlParameter("@AdoptedParkDetailID", parkDetailId);
 
-                return objDAL.GetDataByProcedure("Sp_Get_ParkFascilities", param);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-       
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[2];
+            param[0] = new SqlParameter("@action", v);
+            param[1] = new SqlParameter("@AdoptedParkDetailID", parkDetailId);
+
+            return objDAL.GetDataByProcedure("Sp_Get_ParkFascilities", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+
     }
 
     private DataSet ExecuteSelectQuerywithTransaction(SqlConnection Con, string Sql, SqlTransaction trans)
@@ -80,7 +80,7 @@ public class ULBFund
     }
 
 
-    public DataTable GetULBFundAction(string actions, int? ULBID, int? TaskId,int?  stateid, int? circleId,int? FY,decimal SFC, decimal CFC, decimal totalTax, int? personId )
+    public DataTable GetULBFundAction(string actions, int? ULBID, int? TaskId, int? stateid, int? circleId, int? FY, decimal SFC, decimal CFC, decimal totalTax, int? personId)
     {
         try
         {
@@ -97,7 +97,7 @@ public class ULBFund
             param[7] = new SqlParameter("@CFCFund", CFC);
             param[8] = new SqlParameter("@TotalTaxtCollection", totalTax);
             param[9] = new SqlParameter("@PersonBy", personId);
-           
+
 
             return objDAL.GetDataByProcedure("ULBFunds", param);
         }
@@ -147,22 +147,22 @@ public class ULBFund
     }
     public DataTable GetULBdataSubmittedReport(string v, int dist, int ULB, int person_Id)
     {
-         try
-            {
-                DataTable dt = new DataTable();
-                SqlParameter[] param = new SqlParameter[4];
-                param[0] = new SqlParameter("@action", v);
-                param[1] = new SqlParameter("@DistrictId", dist);
-                param[2] = new SqlParameter("@ULBID", ULB);
-                param[3] = new SqlParameter("@LoginId", person_Id);
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[4];
+            param[0] = new SqlParameter("@action", v);
+            param[1] = new SqlParameter("@DistrictId", dist);
+            param[2] = new SqlParameter("@ULBID", ULB);
+            param[3] = new SqlParameter("@LoginId", person_Id);
 
-                return objDAL.GetDataByProcedure("Sp_GetParkAdoptionReport", param);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        
+            return objDAL.GetDataByProcedure("Sp_GetParkAdoptionReport", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+
     }
 
 
@@ -233,23 +233,23 @@ public class ULBFund
 
     public DataTable GetNotifications(string ZoneId, string CircleId, string Ulbtype, string DivisionId)
     {
-        
-            try
-            {
-                DataTable dt = new DataTable();
-                SqlParameter[] param = new SqlParameter[3];
-                param[0] = new SqlParameter("@ZoneId", ZoneId);
-                param[1] = new SqlParameter("@CircleId", CircleId);
-                param[2] = new SqlParameter("@UlbType", Ulbtype);
-                param[2] = new SqlParameter("@DivisionId", DivisionId);
 
-                return objDAL.GetDataByProcedure("sp_getNotificationList", param);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[3];
+            param[0] = new SqlParameter("@ZoneId", ZoneId);
+            param[1] = new SqlParameter("@CircleId", CircleId);
+            param[2] = new SqlParameter("@UlbType", Ulbtype);
+            param[2] = new SqlParameter("@DivisionId", DivisionId);
+
+            return objDAL.GetDataByProcedure("sp_getNotificationList", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+
     }
 
     //public bool InsertULBFundIncome(List<Tbl_ULBIncomeTypeChild> li, string Msg)
@@ -342,13 +342,13 @@ public class ULBFund
     }
 
 
-    public DataSet CheckDuplicacyData(int?ULBID,int?FYID, SqlTransaction trans, SqlConnection cn)
+    public DataSet CheckDuplicacyData(int? ULBID, int? FYID, SqlTransaction trans, SqlConnection cn)
     {
 
         string strQuery = "";
         DataSet ds = new DataSet();
-        strQuery = " set dateformat dmy; Select  * from Tbl_ULBIncomeTypeChild  where isactive = 'true' and  ULBID = '" + ULBID + "' and FYID='"+FYID+ "' ";
-      
+        strQuery = " set dateformat dmy; Select  * from Tbl_ULBIncomeTypeChild  where isactive = 'true' and  ULBID = '" + ULBID + "' and FYID='" + FYID + "' ";
+
         if (trans == null)
         {
             ds = ExecuteSelectQuery(strQuery);
@@ -360,7 +360,7 @@ public class ULBFund
         return ds;
     }
 
-    public DataTable GetULBIncomedata(string dist, string ULBID,string FYID)
+    public DataTable GetULBIncomedata(string dist, string ULBID, string FYID)
     {
         try
         {
@@ -454,12 +454,12 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
 
     }
 
-    public DataSet CheckDuplicacyData2(int?incId,int? ULBID, int? FYID, SqlTransaction trans, SqlConnection cn)
+    public DataSet CheckDuplicacyData2(int? incId, int? ULBID, int? FYID, SqlTransaction trans, SqlConnection cn)
     {
 
         string strQuery = "";
         DataSet ds = new DataSet();
-        strQuery = " set dateformat dmy; Select  * from Tbl_ULBIncomeTypeChild  where isactive = 'true' and HeadID='" + incId+"' and  ULBID = '" + ULBID + "' and FYID='" + FYID + "' ";
+        strQuery = " set dateformat dmy; Select  * from Tbl_ULBIncomeTypeChild  where isactive = 'true' and HeadID='" + incId + "' and  ULBID = '" + ULBID + "' and FYID='" + FYID + "' ";
 
         if (trans == null)
         {
@@ -552,8 +552,8 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         string strQuery = "";
 
 
-         strQuery = "INSERT INTO Tbl_ULBExpenses ([stateId],[CircleId],[ULBID],[FYID],[HeadID],[NewAmount],[MaintenanceAmount],[createdBy],[createdOn],[IsActive]) " +
-                        "VALUES (@stateId, @CircleId, @ULBID, @FYID, @HeadID, @NewAmount,@MaintenanceAmount, @createdBy, getdate(), @IsActive); ";
+        strQuery = "INSERT INTO Tbl_ULBExpenses ([stateId],[CircleId],[ULBID],[FYID],[HeadID],[NewAmount],[MaintenanceAmount],[createdBy],[createdOn],[IsActive]) " +
+                       "VALUES (@stateId, @CircleId, @ULBID, @FYID, @HeadID, @NewAmount,@MaintenanceAmount, @createdBy, getdate(), @IsActive); ";
 
         using (SqlCommand cmd = new SqlCommand(strQuery, cn, trans))
         {
@@ -610,7 +610,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             SqlTransaction trans = cn.BeginTransaction();
             try
             {
-                
+
                 for (int i = 0; i < li.Count; i++)
                 {
                     if (AllClasses.CheckDataSet(CheckDuplicacyDataOfExpense2(li[i].HeadID, li[0].ULBID, li[0].FYID, trans, cn)))
@@ -623,7 +623,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
                         li[i].createdOn = DateTime.Now.ToString();
                         Insert_Tbl_ULBExpense(li[i], trans, cn);
                     }
-                    
+
                 }
                 trans.Commit();
                 flag = true;
@@ -644,7 +644,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
 
 
 
-        strQuery = "Update Tbl_ULBExpenses  set  stateId='" + obj.stateId + "',CircleId='" + obj.CircleId + "',ULBID='" + obj.ULBID + "',FYID='" + obj.FYID + "',NewAmount='" + obj.NewAmount + "',MaintenanceAmount='" + obj.MaintenanceAmount + "',updateBy='"+obj.updateBy+ "',updateOn=GETDATE() where HeadID='" + obj.HeadID+ "' and FYID='"+obj.FYID+ "' and ULBID='" + obj.ULBID + "'";
+        strQuery = "Update Tbl_ULBExpenses  set  stateId='" + obj.stateId + "',CircleId='" + obj.CircleId + "',ULBID='" + obj.ULBID + "',FYID='" + obj.FYID + "',NewAmount='" + obj.NewAmount + "',MaintenanceAmount='" + obj.MaintenanceAmount + "',updateBy='" + obj.updateBy + "',updateOn=GETDATE() where HeadID='" + obj.HeadID + "' and FYID='" + obj.FYID + "' and ULBID='" + obj.ULBID + "'";
         if (trans == null)
         {
             try
@@ -768,7 +768,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     {
         string strQuery = "";
         DataTable ds = new DataTable();
-        strQuery = @"set dateformat dmy;Update  Tbl_ULBExpenses   set IsActive='false' where  FYID='" + FYID + "' and ULBID='" + ULBID +"';  select 'Data Deleted ' as remark";
+        strQuery = @"set dateformat dmy;Update  Tbl_ULBExpenses   set IsActive='false' where  FYID='" + FYID + "' and ULBID='" + ULBID + "';  select 'Data Deleted ' as remark";
         ds = ExecuteSelectQuerywithDatatable(strQuery);
         return ds;
     }
@@ -776,7 +776,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     #endregion
 
     #region
-    public DataTable GetAnnualActionPlan(string actions, int? ULBID, int? TaskId, int? stateid,int?schemeId, int? circleId, int? FY, string ProjectName, decimal cost, string ProjectDetail, int? personId, string ReasonForSelected, string ConvergeDetail,string @Documents,string PrivorityNo)
+    public DataTable GetAnnualActionPlan(string actions, int? ULBID, int? TaskId, int? stateid, int? schemeId, int? circleId, int? FY, string ProjectName, decimal cost, string ProjectDetail, int? personId, string ReasonForSelected, string ConvergeDetail, string @Documents, string PrivorityNo)
     {
         try
         {
@@ -800,7 +800,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[12] = new SqlParameter("@Documents", Documents);
             param[13] = new SqlParameter("@PrivorityNo", PrivorityNo);
             param[14] = new SqlParameter("@ConvergeDetail", ConvergeDetail);
-           
+
             return objDAL.GetDataByProcedure("SpAnualActionplan", param);
         }
         catch (Exception ex)
@@ -845,7 +845,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     }
 
 
-    public DataTable GetExistPlan(string actions, int? ULBID, int? TaskId, int? stateid, int? schemeId, int? circleId, int? FY, string ProjectName, decimal cost, string ProjectDetail, int? personId, string Remark,string recievedAmn, string Documents)
+    public DataTable GetExistPlan(string actions, int? ULBID, int? TaskId, int? stateid, int? schemeId, int? circleId, int? FY, string ProjectName, decimal cost, string ProjectDetail, int? personId, string Remark, string recievedAmn, string Documents)
     {
         try
         {
@@ -865,7 +865,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[11] = new SqlParameter("@Remark", Remark);
             param[12] = new SqlParameter("@Documents", Documents);
             param[13] = new SqlParameter("@createdBy", personId);
-          
+
 
             return objDAL.GetDataByProcedure("SpExistplan", param);
         }
@@ -908,7 +908,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
 
     #region ULB Report
 
-    public DataTable GetReportOfULBIncomeExpense(int? stateid, int? circleId, int? ULBID, string ulbType,  int? FY)
+    public DataTable GetReportOfULBIncomeExpense(int? stateid, int? circleId, int? ULBID, string ulbType, int? FY)
     {
         try
         {
@@ -917,9 +917,9 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[0] = new SqlParameter("@stateid", stateid);
             param[1] = new SqlParameter("@distId", circleId);
             param[2] = new SqlParameter("@ulbType", ulbType);
-            param[3] = new SqlParameter("@ULBId", ULBID);         
+            param[3] = new SqlParameter("@ULBId", ULBID);
             param[4] = new SqlParameter("@FYId", FY);
-       
+
 
 
             return objDAL.GetDataByProcedure("SpULBIncomeExpenseReport", param);
@@ -933,7 +933,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     #endregion
 
 
-    public DataTable GetULBIncExpHead(string ULBID, string FYID, string stateId, string DisId,string Action)
+    public DataTable GetULBIncExpHead(string ULBID, string FYID, string stateId, string DisId, string Action)
     {
         try
         {
@@ -945,7 +945,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[2] = new SqlParameter("@ULBId", ULBID);
             param[3] = new SqlParameter("@distId", DisId);
             param[4] = new SqlParameter("@FYID", FYID);
-           
+
             return objDAL.GetDataByProcedure("UlBExpIncHeadReport", param);
         }
         catch (Exception ex)
@@ -972,11 +972,11 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     }
 
 
-    public DataTable GetPopulation(string ulb,string fy)
+    public DataTable GetPopulation(string ulb, string fy)
     {
         string strQuery = "";
         DataTable ds = new DataTable();
-        strQuery = "select population from Tbl_VisionPopulation where ULBID='"+ulb+"' and FYID='"+fy+"'  and isactive=1 ";
+        strQuery = "select population from Tbl_VisionPopulation where ULBID='" + ulb + "' and FYID='" + fy + "'  and isactive=1 ";
         try
         {
             ds = ExecuteSelectQuerywithDatatable(strQuery);
@@ -988,27 +988,27 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         }
         return ds;
     }
-    public DataTable GetVisionPlan(string actions,int? CMVNYId, int? ULBID, int? TaskId, int? stateid, string IsConstructed, int? circleId, int? FY, string constructedYear, string Conditionof, string IsUserCharger, int? personId, string  IsOwnerNagarNigamOrULB, decimal AmountOfUserCharge, string OtherOwner, string selfPriority, string NoOfSameProjInCity,string Loactions,string Population,string project, decimal ProjectCost, int VisionStatus, int AkanshiULB)
+    public DataTable GetVisionPlan(string actions, int? CMVNYId, int? ULBID, int? TaskId, int? stateid, string IsConstructed, int? circleId, int? FY, string constructedYear, string Conditionof, string IsUserCharger, int? personId, string IsOwnerNagarNigamOrULB, decimal AmountOfUserCharge, string OtherOwner, string selfPriority, string NoOfSameProjInCity, string Loactions, string Population, string project, decimal ProjectCost, int VisionStatus, int AkanshiULB, decimal? ApprovedProjCost )
     {
         try
         {
 
 
-//@IsOwnerNagarNigamOrULB bit = null,
-//@OtherOwner nvarchar(100) = null,
-//@NoOfSameProjInCity nvarchar(10)= null,
-//@Loactions nvarchar(500)= null,
-//@selfPriority nvarchar(5)= null,
-//@createdBy int= null
+            //@IsOwnerNagarNigamOrULB bit = null,
+            //@OtherOwner nvarchar(100) = null,
+            //@NoOfSameProjInCity nvarchar(10)= null,
+            //@Loactions nvarchar(500)= null,
+            //@selfPriority nvarchar(5)= null,
+            //@createdBy int= null
 
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[23];
+            SqlParameter[] param = new SqlParameter[24];
             param[0] = new SqlParameter("@action", actions);
             param[1] = new SqlParameter("@taskId", TaskId);
             param[2] = new SqlParameter("@CMVNYId", CMVNYId);
             param[3] = new SqlParameter("@stateId", stateid);
             param[4] = new SqlParameter("@distId", circleId);
-            param[5] = new SqlParameter("@ULBId", ULBID);          
+            param[5] = new SqlParameter("@ULBId", ULBID);
             param[6] = new SqlParameter("@FYID", FY);
             param[7] = new SqlParameter("@IsConstructed", IsConstructed);
             param[8] = new SqlParameter("@constructedYear", constructedYear);
@@ -1026,6 +1026,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[20] = new SqlParameter("@ProjectCost", ProjectCost);
             param[21] = new SqlParameter("@VisionStatus", VisionStatus);
             param[22] = new SqlParameter("@AkanshiULB", AkanshiULB);
+            param[23] = new SqlParameter("@ApprovedProjCost", ApprovedProjCost);
 
 
             return objDAL.GetDataByProcedure("SPVisionPlan", param);
@@ -1037,11 +1038,16 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     }
 
 
-    public DataTable InsertVisionPlan(string actions, int? CMVNYId, int? ULBID, int? TaskId, int? stateid, string IsConstructed, int? circleId, int? FY, 
-        string constructedYear, string Conditionof, string IsUserCharger, int? personId, string IsOwnerNagarNigamOrULB, decimal AmountOfUserCharge, 
-        string OtherOwner, string selfPriority, string NoOfSameProjInCity, string Loactions, string Population, string project, decimal ProjectCost, 
-        int VisionStatus, int AkanshiULB, int Quantity, decimal SiteArea)
+    public DataTable InsertVisionPlan(string actions, int? CMVNYId, int? ULBID, int? TaskId, int? stateid, string IsConstructed, int? circleId, int? FY,
+        string constructedYear, string Conditionof, string IsUserCharger, int? personId, string IsOwnerNagarNigamOrULB, decimal AmountOfUserCharge,
+        string OtherOwner, string selfPriority, string NoOfSameProjInCity, string Loactions, string Population, string project, decimal ProjectCost,
+        int VisionStatus, int AkanshiULB, int Quantity, decimal SiteArea, decimal? ApprovedProjCost)
     {
+        if (!ApprovedProjCost.HasValue)
+        {
+            ApprovedProjCost = 0;
+        }
+
         try
         {
             DataTable dt = new DataTable();
@@ -1071,6 +1077,8 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[22] = new SqlParameter("@AkanshiULB", AkanshiULB);
             param[23] = new SqlParameter("@Quantity", Quantity);
             param[24] = new SqlParameter("@SiteArea", SiteArea);
+            param[25] = new SqlParameter("@ApprovedProjCost", ApprovedProjCost.HasValue ? (object)ApprovedProjCost.Value : DBNull.Value);
+
 
 
             return objDAL.GetDataByProcedure("SPVisionPlan", param);
@@ -1081,8 +1089,8 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         }
     }
 
-    public DataTable GetVisionPlanForReport(string actions,  int? ULBID,  int? stateid, string IsConstructed, int? circleId
-        , int? FY, string constructedYear,  string selfPriority, int VisionStatus, string ULBType, int mandal, int ExpAmtLess, 
+    public DataTable GetVisionPlanForReport(string actions, int? ULBID, int? stateid, string IsConstructed, int? circleId
+        , int? FY, string constructedYear, string selfPriority, int VisionStatus, string ULBType, int mandal, int ExpAmtLess,
         int ExpAmtGret, string FromDate, string ToDate, int PersonId, int AkanshiULB)
     {
         try
@@ -1164,12 +1172,12 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     #endregion
 
 
-    public DataTable ActionOnVisionPlan(string actions, int pk, int person, string status, DateTime APdate, string Remark, string ProposalApprovedBy)
+    public DataTable ActionOnVisionPlan(string actions, int pk, int person, string status, DateTime APdate, string Remark, string ProposalApprovedBy, decimal ApprovedProjCost)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[7];
+            SqlParameter[] param = new SqlParameter[8];
             param[0] = new SqlParameter("@action", actions);
             param[1] = new SqlParameter("@taskId", pk);
             param[2] = new SqlParameter("@status", status);
@@ -1177,6 +1185,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[4] = new SqlParameter("@Remark", Remark);
             param[5] = new SqlParameter("@pesronId", person);
             param[6] = new SqlParameter("@ProposalApprovedBy", ProposalApprovedBy);
+            param[7] = new SqlParameter("@ApprovedProjCost", ApprovedProjCost);
             //
             return objDAL.GetDataByProcedure("SPActionOnVisionPlan", param);
         }
@@ -1187,7 +1196,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     }
 
 
-    public DataTable GetParkAdoptionReport(string actions, int dist, int fY, int month,int Person_Id)
+    public DataTable GetParkAdoptionReport(string actions, int dist, int fY, int month, int Person_Id)
     {
         try
         {

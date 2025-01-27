@@ -197,7 +197,7 @@ public partial class Notifications : System.Web.UI.Page
             {
                 var pk = Convert.ToInt16(e.CommandArgument.ToString());
                 DataTable dt = new DataTable();
-                dt = objLoan.GetVisionPlan("delete", 0, 0, pk, 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "", "", 0, 0,-1);
+                dt = objLoan.GetVisionPlan("delete", 0, 0, pk, 0, "", 0, 0, "", "", "", 0, "", 0, "", "", "", "", "", "", 0, 0,-1,0);
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
