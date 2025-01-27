@@ -371,6 +371,7 @@
                                 <div class="collapse menu-dropdown" id="sidebarDrain">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="DrainageDashboard.aspx" class="nav-link" data-key="t-grid-js">Dashboard</a></li>
+                                        <li class="nav-item"><a href="MasterPlanProposal.aspx" class="nav-link" data-key="t-grid-js">Master Plan Proposal</a></li>
                                         <li class="nav-item"><a href="MasterPlan.aspx" class="nav-link" data-key="t-grid-js">Master Plan</a></li>
                                     </ul>
                                 </div>

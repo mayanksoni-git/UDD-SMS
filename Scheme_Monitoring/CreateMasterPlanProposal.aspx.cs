@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class CreateMasterPlan : System.Web.UI.Page
+public partial class CreateMasterPlanProposal : System.Web.UI.Page
 {
     StormWaterDrainage obj = new StormWaterDrainage();
 
@@ -23,8 +23,8 @@ public partial class CreateMasterPlan : System.Web.UI.Page
         {
             if (Request.QueryString.Count > 0)
             {
-                hfMasterPlanId.Value = Request.QueryString["MasterPlanID"].ToString();
-                GetGetMasterPlanById(Convert.ToInt32(hfMasterPlanId.Value));
+                hfMasterPlanProposalId.Value = Request.QueryString["MasterPlanProposalID"].ToString();
+                GetMasterPlanProposalById(Convert.ToInt32(hfMasterPlanProposalId.Value));
             }
 
             lblZoneH.Text = Session["Default_Zone"].ToString() + "*";
@@ -38,10 +38,10 @@ public partial class CreateMasterPlan : System.Web.UI.Page
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
 
-    protected void GetGetMasterPlanById(int MasterPlanId)
+    protected void GetMasterPlanProposalById(int MasterPlanProposalId)
     {
         DataTable dt = new DataTable();
-        dt = obj.getGetMasterPlanById(MasterPlanId);
+        dt = obj.getGetMasterPlanProposalById(MasterPlanProposalId);
 
         if (dt != null && dt.Rows.Count > 0)
         {
@@ -50,15 +50,17 @@ public partial class CreateMasterPlan : System.Web.UI.Page
             get_tbl_Division(Convert.ToInt32(dt.Rows[0]["Circle_Id"].ToString()));
             ddlDivision.SelectedValue = dt.Rows[0]["Division_Id"].ToString();
             ddlFY.SelectedValue = dt.Rows[0]["FinancialYear_Id"].ToString();
-            txtPopulation.Text = dt.Rows[0]["Population"].ToString();
-            txtArea.Text = dt.Rows[0]["Area"].ToString();
-            hfMasterPlanId.Value = dt.Rows[0]["SrNo"].ToString();
+            txtProposalName.Text = dt.Rows[0]["ProposalName"].ToString();
+            txtProposalDetail.Text = dt.Rows[0]["ProposalDetail"].ToString();
+            txtMobileNo.Text = dt.Rows[0]["MobileNo"].ToString();
+            txtExpAmt.Text = dt.Rows[0]["ExpAmt"].ToString();
+            hfMasterPlanProposalId.Value = dt.Rows[0]["SrNo"].ToString();
 
-            hfPDFUrl.Value = dt.Rows[0]["MasterPlanFilePath"].ToString();
+            hfPDFUrl.Value = dt.Rows[0]["MasterPlanProposalFilePath"].ToString();
             if (!string.IsNullOrEmpty(hfPDFUrl.Value.ToString()))
             {
-                hypMasterPlanDocEdit.Visible = true;
-                hypMasterPlanDocEdit.NavigateUrl = dt.Rows[0]["MasterPlanFilePath"].ToString();
+                hypMasterPlanProposalDocEdit.Visible = true;
+                hypMasterPlanProposalDocEdit.NavigateUrl = dt.Rows[0]["MasterPlanProposalFilePath"].ToString();
             }
 
             btnUpdate.Visible = true;
@@ -235,25 +237,25 @@ public partial class CreateMasterPlan : System.Web.UI.Page
             return;
         }
 
-        if (!fileUploadMasterPlanDoc.HasFile)
+        if (!fileUploadMasterPlanProposalDoc.HasFile)
         {
             MessageBox.Show("Please choose master plan document.");
-            fileUploadMasterPlanDoc.Focus();
+            fileUploadMasterPlanProposalDoc.Focus();
             return;
         }
 
-        tbl_MasterPlan obj_MasterPlan = CreateMasterPlanObject();
+        tbl_MasterPlanProposal obj_MasterPlanProposal = CreateMasterPlanProposalObject();
 
         string pdfLocation = UploadPDF();
         if (string.IsNullOrEmpty(pdfLocation))
         {
             pdfLocation = "";
         }
-        obj_MasterPlan.MasterPlanFilePath = pdfLocation;
+        obj_MasterPlanProposal.MasterPlanProposalFilePath = pdfLocation;
 
         try
         {
-            int result = obj.InsertMasterPlan(obj_MasterPlan);
+            int result = obj.InsertMasterPlanProposal(obj_MasterPlanProposal);
 
             if (result > 0)
             {
@@ -266,7 +268,7 @@ public partial class CreateMasterPlan : System.Web.UI.Page
                 bool IsPDFDelete = PDFUploader.DeletePDF(pdfLocation);
                 if (!IsPDFDelete)
                 {
-                    MessageBox.Show("Something went wrong please try again or contact administrator!. While processing this data, master plan document was uploaded but failed to be deleted.");
+                    MessageBox.Show("Something went wrong please try again or contact administrator!. While processing this data, master plan proposal document was uploaded but failed to be deleted.");
                 }
                 else
                 {
@@ -284,11 +286,11 @@ public partial class CreateMasterPlan : System.Web.UI.Page
     private string UploadPDF()
     {
         int MaxPdfSize = 10 * 1024 * 1024;
-        string PdfDirectory = "~/PDFs/MasterPlan/";
-        if (fileUploadMasterPlanDoc.HasFile)
+        string PdfDirectory = "~/PDFs/MasterPlanProposal/";
+        if (fileUploadMasterPlanProposalDoc.HasFile)
         {
             string errorMessage;
-            string pdfLocation = PDFUploader.UploadPDFWithSizeAndPath(fileUploadMasterPlanDoc.PostedFile, PdfDirectory, MaxPdfSize,  out errorMessage);
+            string pdfLocation = PDFUploader.UploadPDFWithSizeAndPath(fileUploadMasterPlanProposalDoc.PostedFile, PdfDirectory, MaxPdfSize,  out errorMessage);
 
             if (!string.IsNullOrEmpty(errorMessage))
             {
@@ -329,24 +331,34 @@ public partial class CreateMasterPlan : System.Web.UI.Page
             ddlDivision.Focus();
             IsValid = false;
         }
-        if (txtPopulation.Text == "" || int.Parse(txtPopulation.Text) <= 0)
+        if (txtMobileNo.Text == "")
         {
-            lblMessage.Text = "You cannot enter record with 0 population!";
-            txtPopulation.Focus();
+            lblMessage.Text = "You cannot enter record without mobile no!";
+            txtMobileNo.Focus();
             IsValid = false;
         }
-        
-        if (txtArea.Text == "" || double.Parse(txtArea.Text) <= 0)
+        if (txtExpAmt.Text == "" || double.Parse(txtExpAmt.Text) <= 0)
         {
-            lblMessage.Text = "You cannot enter record with 0 Area!";
-            txtArea.Focus();
+            lblMessage.Text = "You cannot enter record with 0 Expected Amount!";
+            txtExpAmt.Focus();
             IsValid = false;
         }
-
-        if(!fileUploadMasterPlanDoc.HasFile)
+        if (txtProposalName.Text == "")
         {
-            lblMessage.Text = "Please choose master plan document!";
-            fileUploadMasterPlanDoc.Focus();
+            lblMessage.Text = "Please Enter Proposal Amount!";
+            txtProposalName.Focus();
+            IsValid = false;
+        }
+        if (txtProposalDetail.Text == "")
+        {
+            lblMessage.Text = "Please Enter Proposal Detail!";
+            txtProposalDetail.Focus();
+            IsValid = false;
+        }
+        if (!fileUploadMasterPlanProposalDoc.HasFile)
+        {
+            lblMessage.Text = "Please choose master plan proposal document!";
+            fileUploadMasterPlanProposalDoc.Focus();
             IsValid = false;
         }
 
@@ -361,7 +373,7 @@ public partial class CreateMasterPlan : System.Web.UI.Page
         }
 
 
-        tbl_MasterPlan obj_MasterPlan = CreateMasterPlanObject();
+        tbl_MasterPlanProposal obj_MasterPlanProposal = CreateMasterPlanProposalObject();
 
         string pdfLocation = UploadPDF();
         if (string.IsNullOrEmpty(pdfLocation))
@@ -372,14 +384,14 @@ public partial class CreateMasterPlan : System.Web.UI.Page
         {
             if (!PDFUploader.DeletePDF(hfPDFUrl.Value))
             {
-                MessageBox.Show("While updating this data, a new master plan doc was uploaded but failed to delete the existing master plan doc.");
+                MessageBox.Show("While updating this data, a new master plan proposal doc was uploaded but failed to delete the existing master plan proposal doc.");
             }
         }
-        obj_MasterPlan.MasterPlanFilePath = pdfLocation;
+        obj_MasterPlanProposal.MasterPlanProposalFilePath = pdfLocation;
 
         try
         {
-            int result = obj.UpdateMasterPlan(obj_MasterPlan, Convert.ToInt32(hfMasterPlanId.Value));
+            int result = obj.UpdateMasterPlanProposal(obj_MasterPlanProposal, Convert.ToInt32(hfMasterPlanProposalId.Value));
 
             if (result > 0)
             {
@@ -392,7 +404,7 @@ public partial class CreateMasterPlan : System.Web.UI.Page
                 bool IsPDFDelete = PDFUploader.DeletePDF(pdfLocation);
                 if (!IsPDFDelete)
                 {
-                    MessageBox.Show("Something went wrong please try again or contact administrator!. While processing this data, new master plan document was uploaded but failed to be new master plan document deleted.");
+                    MessageBox.Show("Something went wrong please try again or contact administrator!. While processing this data, new master plan proposal document was uploaded but failed to be new master plan proposal document deleted.");
                 }
                 else
                 {
@@ -407,7 +419,7 @@ public partial class CreateMasterPlan : System.Web.UI.Page
         }
     }
 
-    private tbl_MasterPlan CreateMasterPlanObject()
+    private tbl_MasterPlanProposal CreateMasterPlanProposalObject()
     {
         int personId;
         int FY, zone, circle, division;
@@ -437,14 +449,16 @@ public partial class CreateMasterPlan : System.Web.UI.Page
             throw new FormatException("Invalid Division selected value.");
         }
 
-        return new tbl_MasterPlan
+        return new tbl_MasterPlanProposal
         {
             FY = FY,
             Zone = zone,
             Circle = circle,
             Division = division,
-            Population = Int32.Parse(string.IsNullOrEmpty(txtPopulation.Text) ? "0" : txtPopulation.Text),
-            Area = double.Parse(string.IsNullOrEmpty(txtArea.Text) ? "0" : txtArea.Text),
+            ProposalName = string.IsNullOrEmpty(txtProposalName.Text) ? "" : txtProposalName.Text,
+            ProposalDetail = string.IsNullOrEmpty(txtProposalDetail.Text) ? "" : txtProposalDetail.Text,
+            MobileNo = string.IsNullOrEmpty(txtMobileNo.Text) ? "" : txtMobileNo.Text,
+            ExpAmt = double.Parse(string.IsNullOrEmpty(txtExpAmt.Text) ? "0" : txtExpAmt.Text),
             AddedBy = personId,
             UpdatedBy = personId
         };
@@ -452,10 +466,10 @@ public partial class CreateMasterPlan : System.Web.UI.Page
 
     protected void cvFileSize_ServerValidate(object source, ServerValidateEventArgs args)
     {
-        if (fileUploadMasterPlanDoc.HasFile)
+        if (fileUploadMasterPlanProposalDoc.HasFile)
         {
             // Check the file size (5MB = 5 * 1024 * 1024 bytes)
-            if (fileUploadMasterPlanDoc.PostedFile.ContentLength > 5 * 1024 * 1024)
+            if (fileUploadMasterPlanProposalDoc.PostedFile.ContentLength > 5 * 1024 * 1024)
             {
                 args.IsValid = false;
             }
