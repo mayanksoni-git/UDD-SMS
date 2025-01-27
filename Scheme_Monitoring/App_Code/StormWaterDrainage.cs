@@ -99,4 +99,94 @@ public class StormWaterDrainage
         }
     }
     #endregion
+
+
+    #region Master Plan Proposal
+    public DataTable getMasterPlanProposalReportBySearch(int StateId, int MandalId, int CircleId, string ULBType, int ULBID, int FY)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[6];
+            param[0] = new SqlParameter("@ULBID", ULBID);
+            param[1] = new SqlParameter("@StateId", StateId);
+            param[2] = new SqlParameter("@CircleId", CircleId);
+            param[3] = new SqlParameter("@FYID", FY);
+            param[4] = new SqlParameter("@ULBType", ULBType);
+            param[5] = new SqlParameter("@MandalId", MandalId);
+
+            return objDAL.GetDataByProcedure("sp_GetMasterPlanProposal", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public DataTable getGetMasterPlanProposalById(int MasterPlanProposalId)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            SqlParameter[] param = new SqlParameter[1];
+            param[0] = new SqlParameter("@MasterPlanProposalId", MasterPlanProposalId);
+
+            return objDAL.GetDataByProcedure("sp_GetMasterProposalPlanById", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public int UpdateMasterPlanProposal(tbl_MasterPlanProposal obj, int MasterPlanProposalId)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[9];
+
+            param[0] = new SqlParameter("@AddedBy", obj.AddedBy);
+            param[1] = new SqlParameter("@FY", obj.FY);
+            param[2] = new SqlParameter("@Division", obj.Division);
+            param[3] = new SqlParameter("@ProposalName", obj.ProposalName);
+            param[4] = new SqlParameter("@ProposalDetail", obj.ProposalDetail);
+            param[5] = new SqlParameter("@MasterPlanProposalId", MasterPlanProposalId);
+            param[6] = new SqlParameter("@MasterPlanProposalFilePath", obj.MasterPlanProposalFilePath);
+            param[7] = new SqlParameter("@ExpAmt", obj.ExpAmt);
+            param[8] = new SqlParameter("@MobileNo", obj.MobileNo);
+
+            return objDAL.ExecuteProcedure("sp_UpdateMasterPlanProposal", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public int InsertMasterPlanProposal(tbl_MasterPlanProposal obj)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[8];
+
+            param[0] = new SqlParameter("@AddedBy", obj.AddedBy);
+            param[1] = new SqlParameter("@FY", obj.FY);
+            param[2] = new SqlParameter("@Division", obj.Division);
+            param[3] = new SqlParameter("@ProposalName", obj.ProposalName);
+            param[4] = new SqlParameter("@ProposalDetail", obj.ProposalDetail);
+            param[5] = new SqlParameter("@MasterPlanProposalFilePath", obj.MasterPlanProposalFilePath);
+            param[6] = new SqlParameter("@ExpAmt", obj.ExpAmt);
+            param[7] = new SqlParameter("@MobileNo", obj.MobileNo);
+
+            return objDAL.ExecuteProcedure("sp_InsertMasterPlanProposal", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    #endregion
+
+
+
 }
