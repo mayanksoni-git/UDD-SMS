@@ -284,7 +284,7 @@ public partial class CreateMasterPlan : System.Web.UI.Page
     private string UploadPDF()
     {
         int MaxPdfSize = 10 * 1024 * 1024;
-        string PdfDirectory = "~/PDFs/MasterPlan/";
+        string PdfDirectory = "~/PDFs/MasterPlan2/";
         if (fileUploadMasterPlanDoc.HasFile)
         {
             string errorMessage;
