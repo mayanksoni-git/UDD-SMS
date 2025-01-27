@@ -156,7 +156,7 @@
 
                                                     <th style="text-align: center; font-size: 15px">Sr. No.</th>
                                                     <th style="text-align: center; font-size: 15px" colspan="3">ULB Details</th>
-                                                    <th style="text-align: center; font-size: 15px" colspan="3">Project Name</th>
+                                                    <th style="text-align: center; font-size: 15px" colspan="4">Project Name</th>
                                                     <th style="text-align: center; font-size: 15px" colspan="2">Existing</th>
                                                     <th style="text-align: center; font-size: 15px">Condition</th>
 
@@ -176,6 +176,7 @@
                                                     <th style="text-align: center">ULB Name</th>
                                                     <th style="text-align: center">Population</th>
                                                     <th style="text-align: center">Project Type</th>
+                                                    <th style="text-align: center">Project Cost</th>
                                                     <th style="text-align: center">Project Name</th>
                                                     <th style="text-align: center">Financial Year</th>
                                                     <th style="text-align: center">Is Constructed?</th>
@@ -212,6 +213,8 @@
                                                             <asp:Label ID="lblPopulation" runat="server"><%# DataBinder.Eval(Container.DataItem, "population") %></asp:Label></td>
                                                         <td>
                                                             <asp:Label ID="Label4" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectType_Name") %></asp:Label></td>
+                                                        <td>
+                                                            <asp:Label ID="Label5" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectCost") %></asp:Label></td>
                                                         <td>
                                                             <asp:Label ID="Label2" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProjectName") %></asp:Label></td>
                                                         <td>

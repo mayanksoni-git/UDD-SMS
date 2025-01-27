@@ -227,7 +227,8 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
     protected void GetEditList(string taskid)
     {
         DataTable dt = new DataTable();
-        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", Convert.ToInt32(Session["Person_Id"].ToString()), "", 0, "", "", "", "", "", "",0,0,-1);
+        dt = objLoan.GetVisionPlan("selectbyid", 0, 0, Convert.ToInt32(taskid), 0, "", 0, 0, "", "", "", Convert.ToInt32(Session["Person_Id"].ToString()), "", 0, "", "", "", "", "", "",0,0,-1,0);
+      
 
         //if (dt.Rows[0]["Ap_remark"].ToString() == "This record is currently being processed and cannot be edited at this time.")
         //{
@@ -246,6 +247,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
             DdlPriority.Enabled = false;
             TxtProject.Enabled = false;
             Location.Enabled = false;
+            txtProjCost.Enabled = false;
             TxtYear.Enabled = false;
             similarProj.Enabled = false;
             DdlStatus.SelectedValue = dt.Rows[0]["Ap_Status"].ToString();
@@ -367,6 +369,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
             DDLProj.SelectedValue = dt.Rows[0]["CMVNYId"].ToString();
             DDLProj.Enabled = false;
             ddlDivision.SelectedValue = dt.Rows[0]["ULBID"].ToString();
+           
             ddlZone.SelectedValue = dt.Rows[0]["stateId"].ToString();
             ddlCircle.SelectedValue = dt.Rows[0]["distId"].ToString();
             ddlFY.SelectedValue = dt.Rows[0]["FYID"].ToString();
@@ -374,7 +377,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
             Location.Text = dt.Rows[0]["Loactions"].ToString();
             TxtPopulation.Text = dt.Rows[0]["population"].ToString();
             TxtPopulation.Enabled = false;
-
+            txtProjCost.Text = dt.Rows[0]["ProjectCost"].ToString();
             BtnUpdate.Visible = true;
             BtnSave.Visible = false;
 
@@ -420,7 +423,13 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
             TxtPopulation.Focus();
             return false;
         }
-        if(DdlStatus.SelectedItem.Value=="-1")
+        if (txtApprovedProjCost.Text == "" || txtProjCost.Text == null)
+        {
+            MessageBox.Show("Please Enter Approved Project Cost. ");
+            txtApprovedProjCost.Focus();
+            return false;
+        }
+        if (DdlStatus.SelectedItem.Value=="-1")
         {
             MessageBox.Show("Please select status for the vision plan. ");
             DdlStatus.Focus();
@@ -461,6 +470,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
         TxtPopulation.Text = "";
         Location.Text = "";
         similarProj.Text = "";
+        txtProjCost.Text = "";
         TxtPopulation.Enabled = true;
         RadioButton1.Checked = false;
         RadioButton2.Checked = false;
@@ -522,6 +532,11 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
         try
         {
             var statuss = DdlStatus.SelectedValue;
+            if (string.IsNullOrEmpty(txtApprovedProjCost.Text.Trim()))
+            {
+                MessageBox.Show("Please enter the approved project cost");
+                return;
+            }
             if (statuss == "0")
             {
                 MessageBox.Show("Please Select Status.");
@@ -546,7 +561,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
 
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
-            dt = objLoan.ActionOnVisionPlan("update", pk, Person_Id, statuss, apDate, TxtRemark.Text, ProposalApprovedBy);
+            dt = objLoan.ActionOnVisionPlan("update", pk, Person_Id, statuss, apDate, TxtRemark.Text, ProposalApprovedBy,Convert.ToDecimal(txtApprovedProjCost.Text));
             //GetEditExpenseList(ddlZone.SelectedValue, ddlCircle.SelectedValue, ddlDivision.SelectedValue, ddlFY.SelectedValue);
             if (dt.Rows.Count > 0)
             {
@@ -560,12 +575,14 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
                 VisionPlanID.Value = "";
                 TxtPopulation.Text = "";
                 ddlProposalApprovedBy.SelectedValue = "-1";
+                txtApprovedProjCost.Text = "";
                 reset();
 
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + dt.Rows[0]["Remarks"].ToString() + "');window.location='VisionPlanActionFirst'", true);
 
                 return;
             }
+            
 
         }
         catch (Exception ex)
@@ -716,7 +733,7 @@ public partial class ActionOnVisionPlan : System.Web.UI.Page
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
             DataTable dt = new DataTable();
             dt = objLoan.GetVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text, TxtProject.Text,0,0,-1);
+              Convert.ToInt32(Amount), owner, DdlPriority.SelectedValue, SameProj, location, TxtPopulation.Text, TxtProject.Text,0,0,-1 ,Convert.ToInt32(txtApprovedProjCost.Text));
 
             if (dt.Rows.Count > 0)
             {

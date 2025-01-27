@@ -121,6 +121,8 @@
                                                         <asp:TextBox ID="Location" runat="server" CssClass="form-control" ></asp:TextBox>
                                                     </div>
                                                 </div>
+                                                <asp:TextBox ID="txtApprovedProjCost" runat="server" Text="0" Enabled="false"></asp:TextBox>
+
                                                 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div runat="server" id="NewConstruction">

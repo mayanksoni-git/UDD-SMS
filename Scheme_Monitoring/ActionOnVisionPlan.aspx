@@ -87,6 +87,13 @@
                                                         <asp:DropDownList ID="DDLProj" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="div10" runat="server">
+                                                        <asp:Label ID="lblProjCost" runat="server" Text="Project Cost" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtProjCost" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                              
                                                 <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
                                                     <div id="div9" runat="server">
                                                         <asp:Label ID="Label11" runat="server" Text="Project Name" CssClass="form-label"></asp:Label>
@@ -122,6 +129,7 @@
                                                         <asp:RadioButton ID="RadioButton6" runat="server" GroupName="Condition" Text="Need Redevelopement" Value="3" />
                                                     </div>
                                                 </div>
+
                                                 <div class="col-xxl-3 col-md-6 validsec" id="secUser" runat="server">
                                                     <div id="UserCharge" runat="server">
                                                         <asp:Label ID="Label4" runat="server" Text="User Charge *" CssClass="form-label"></asp:Label>
@@ -144,6 +152,7 @@
 
                                                     </div>
                                                 </div>
+
                                                 <div class="col-xxl-3 col-md-6 validsec" runat="server" id="secOtherown">
                                                     <div id="div4" runat="server">
                                                         <asp:Label ID="Label7" runat="server" Text="Owner Department*" CssClass="form-label"></asp:Label>
@@ -182,6 +191,12 @@
                                                             <asp:ListItem Text="Reject" Value="2"></asp:ListItem>
                                                             <asp:ListItem Text="Hold/Archive" Value="3"></asp:ListItem>
                                                         </asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="div11" runat="server">
+                                                        <asp:Label ID="lblApprovedCost" runat="server" Text="Approved Project Cost" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtApprovedProjCost" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
