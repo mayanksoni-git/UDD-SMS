@@ -102,18 +102,19 @@ public class StormWaterDrainage
 
 
     #region Master Plan Proposal
-    public DataTable getMasterPlanProposalReportBySearch(int StateId, int MandalId, int CircleId, string ULBType, int ULBID, int FY)
+    public DataTable getMasterPlanProposalReportBySearch(int StateId, int MandalId, int CircleId, string ULBType, int ULBID, int FY, int Status)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[6];
+            SqlParameter[] param = new SqlParameter[7];
             param[0] = new SqlParameter("@ULBID", ULBID);
             param[1] = new SqlParameter("@StateId", StateId);
             param[2] = new SqlParameter("@CircleId", CircleId);
             param[3] = new SqlParameter("@FYID", FY);
             param[4] = new SqlParameter("@ULBType", ULBType);
             param[5] = new SqlParameter("@MandalId", MandalId);
+            param[6] = new SqlParameter("@Status", Status);
 
             return objDAL.GetDataByProcedure("sp_GetMasterPlanProposal", param);
         }

@@ -383,6 +383,7 @@ public partial class Index : System.Web.UI.Page
         {
             string pass_MD5 = AllClasses.CreateMD5(ds.Tables[0].Rows[0]["Login_password"].ToString().Trim());
             var orignalpassword = ReturnHash(pass_MD5.ToUpper(), Convert.ToString(Session["rno"]));
+            string EnteredPassword = txtPassowrd.Text.Trim().Replace("'", "").Replace("<script>", "");
 
             if (txtPassowrd.Text.Trim().Replace("'", "").Replace("<script>", "") == orignalpassword)
             {

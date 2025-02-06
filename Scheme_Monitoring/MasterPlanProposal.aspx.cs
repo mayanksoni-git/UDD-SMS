@@ -138,6 +138,7 @@ public partial class MasterPlanProposal : System.Web.UI.Page
         var dist = 0;
         var ULB = 0;
         var FY = 0;
+        int ProposalStatus = 0;
 
         var state = Convert.ToInt32(ddlZone.SelectedValue);
         var mandal = Convert.ToInt32(ddlMandal.SelectedValue);
@@ -176,9 +177,17 @@ public partial class MasterPlanProposal : System.Web.UI.Page
         {
             FY = Convert.ToInt32(ddlFY.SelectedValue);// == "0"
         }
+        try
+        {
+            ProposalStatus = Convert.ToInt32(ddlProposalStatus.SelectedValue);
+        }
+        catch
+        {
+            ProposalStatus = -1;
+        }
 
         DataTable dt = new DataTable();
-        dt = objLoan.getMasterPlanProposalReportBySearch(state, mandal, dist, UlbType,  ULB, FY);
+        dt = objLoan.getMasterPlanProposalReportBySearch(state, mandal, dist, UlbType,  ULB, FY, ProposalStatus);
         if (dt != null && dt.Rows.Count > 0)
         {
             grdPost.DataSource = dt;

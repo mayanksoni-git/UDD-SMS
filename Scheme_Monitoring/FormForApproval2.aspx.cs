@@ -261,7 +261,7 @@ public partial class FormForApproval2 : System.Web.UI.Page
         }
         catch
         {
-            ProposalStatus = 0;
+            ProposalStatus = -1;
         }
 
         tbl_WorkProposal obj = new tbl_WorkProposal();

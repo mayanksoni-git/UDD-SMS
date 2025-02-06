@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin_PMS.master" MaintainScrollPositionOnPostback="true" 
+﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin_PMS.master" MaintainScrollPositionOnPostback="true"
     AutoEventWireup="true" CodeFile="MasterPlanProposal.aspx.cs" Inherits="MasterPlanProposal" EnableEventValidation="false" ValidateRequest="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
@@ -7,8 +7,8 @@
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
     <style>
         .right-align {
-    text-align: right;
-}
+            text-align: right;
+        }
     </style>
     <div class="main-content">
         <div class="page-content">
@@ -89,12 +89,25 @@
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divStatus" runat="server">
+                                                        <asp:Label ID="lblStatus" runat="server" Text="Status*" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="ddlProposalStatus" runat="server" CssClass="form-select">
+                                                            <asp:ListItem Text="--Select Status--" Value="-1"></asp:ListItem>
+                                                            <asp:ListItem Text="Pending" Value="0"></asp:ListItem>
+                                                            <asp:ListItem Text="Approved" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="Reject" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="Hold/Archive" Value="3"></asp:ListItem>
+                                                            <asp:ListItem Text="Revert" Value="4"></asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-xxl-12 col-md-12 text-center">
-                                                    
-                                                        <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-                                                    
+
+                                                    <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
+                                                    <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -127,15 +140,30 @@
                                             <div class="pull-right tableTools-container"></div>
                                         </div>
                                         <div style="overflow: auto">
-                                            <asp:GridView runat="server" ID="grdPost" AllowPaging="false" CssClass="display table table-bordered" 
-                                                AutoGenerateColumns="False" EmptyDataText="No Records Found"  OnPreRender="grdPost_PreRender" 
+                                            <asp:GridView runat="server" ID="grdPost" AllowPaging="false" CssClass="display table table-bordered"
+                                                AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender"
                                                 OnRowDataBound="grdPost_RowDataBound" ShowFooter="false">
                                                 <Columns>
-                                                     <asp:TemplateField HeaderText="Edit">
-                                                            <ItemTemplate>                                                               
-                                                                <a href="CreateMasterPlanProposal.aspx?MasterPlanProposalID=<%# Eval("SrNo") %>" CssClass="btn btn-primary editBTN">Edit</a>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
+                                                    <%--<asp:TemplateField HeaderText="Edit">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="lnkEdit" runat="server" CssClass="btn btn-primary editBTN"
+                                                                NavigateUrl='<%# "CreateMasterPlanProposal.aspx?MasterPlanProposalID=" + Eval("SrNo") %>'
+                                                                Visible='<%# Eval("ProposalStatus").ToString() == "Pending" || Eval("ProposalStatus").ToString() == "Revert" %>'>
+                                                                Edit
+                                                            </asp:HyperLink>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>--%>
+                                                    <asp:TemplateField HeaderText="Edit">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="lnkEdit" runat="server" CssClass="btn btn-primary editBTN"
+                                                                NavigateUrl='<%# "CreateMasterPlanProposal.aspx?MasterPlanProposalID=" + Eval("SrNo") %>'
+                                                                Text='<%# Eval("ProposalStatus").ToString() == "Revert" ? "Update" : "Edit" %>'
+                                                                Visible='<%# Eval("ProposalStatus").ToString() == "Pending" || Eval("ProposalStatus").ToString() == "Revert" %>'>
+                                                            </asp:HyperLink>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+
                                                     <asp:TemplateField HeaderText="Sr. No.">
                                                         <ItemTemplate>
                                                             <%# Container.DataItemIndex + 1 %>
@@ -152,6 +180,14 @@
                                                     <asp:BoundField HeaderText="Mobile No" DataField="MobileNo" />
                                                     <asp:BoundField HeaderText="ExpAmt" DataField="ExpAmt" />
                                                     <asp:BoundField HeaderText="Master Plan Proposal Code" DataField="MasterPlanProposalCode" />
+                                                    <%--<asp:BoundField HeaderText="Status" DataField="ProposalStatus" />--%>
+                                                    <asp:TemplateField HeaderText="Status">
+                                                        <ItemTemplate>
+                                                            <span class="badge <%# Eval("ProposalStatusClass") %>">
+                                                                <%# Eval("ProposalStatus") %>
+                                                            </span>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Master Plan Proposal Doc">
                                                         <ItemTemplate>
                                                             <asp:HyperLink ID="hypMasterPlanProposalDoc" runat="server" Target="_blank" NavigateUrl='<%# Eval("MasterPlanProposalFilePath") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("MasterPlanProposalFilePath").ToString()) %>'>
