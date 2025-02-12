@@ -480,7 +480,6 @@ public partial class CreateDocForVisionPlan : System.Web.UI.Page
                 UpladedDoc.InnerText = "";
                 if (dt.Rows[0]["remark"].ToString() != "Record already exists for this ULBID and FYID")
                 {
-
                     reset();
                 }
                 MessageBox.Show(dt.Rows[0]["remark"].ToString());

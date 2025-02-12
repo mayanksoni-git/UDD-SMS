@@ -102,12 +102,12 @@ public class StormWaterDrainage
 
 
     #region Master Plan Proposal
-    public DataTable getMasterPlanProposalReportBySearch(int StateId, int MandalId, int CircleId, string ULBType, int ULBID, int FY, int Status)
+    public DataTable getMasterPlanProposalReportBySearch(int StateId, int MandalId, int CircleId, string ULBType, int ULBID, int FY, int Status, int PersonId)
     {
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[7];
+            SqlParameter[] param = new SqlParameter[8];
             param[0] = new SqlParameter("@ULBID", ULBID);
             param[1] = new SqlParameter("@StateId", StateId);
             param[2] = new SqlParameter("@CircleId", CircleId);
@@ -115,6 +115,7 @@ public class StormWaterDrainage
             param[4] = new SqlParameter("@ULBType", ULBType);
             param[5] = new SqlParameter("@MandalId", MandalId);
             param[6] = new SqlParameter("@Status", Status);
+            param[7] = new SqlParameter("@PersonId", PersonId);
 
             return objDAL.GetDataByProcedure("sp_GetMasterPlanProposal", param);
         }
@@ -133,6 +134,26 @@ public class StormWaterDrainage
             param[0] = new SqlParameter("@MasterPlanProposalId", MasterPlanProposalId);
 
             return objDAL.GetDataByProcedure("sp_GetMasterProposalPlanById", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public int ActionOnMasterPlanProposal(string Remark, int Status, DateTime ActionDate, int MasterPlanProposalId, int ActionTakenBy)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[5];
+
+            param[0] = new SqlParameter("@Remark", Remark);
+            param[1] = new SqlParameter("@Status", Status);
+            param[2] = new SqlParameter("@ActionDate", ActionDate);
+            param[3] = new SqlParameter("@MasterPlanProposalId", MasterPlanProposalId);
+            param[4] = new SqlParameter("@ActionBy", ActionTakenBy);
+
+            return objDAL.ExecuteProcedure("sp_UpdateMasterPlanProposalForAction", param);
         }
         catch (Exception ex)
         {
@@ -186,6 +207,7 @@ public class StormWaterDrainage
             throw new Exception(ex.Message);
         }
     }
+
     #endregion
 
 

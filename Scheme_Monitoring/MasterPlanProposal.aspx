@@ -195,6 +195,11 @@
                                                             </asp:HyperLink>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Action">
+                                                        <ItemTemplate>
+                                                            <asp:Button ID="btnAction" runat="server" Text="Action" CommandName="Action" CommandArgument='<%# Eval("SrNo") %>' CssClass="btn btn-primary" OnCommand="btnAction_Command" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                 </Columns>
                                                 <EmptyDataTemplate>
                                                     <tr>

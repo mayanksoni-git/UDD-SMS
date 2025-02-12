@@ -187,7 +187,7 @@ public partial class MasterPlanProposal : System.Web.UI.Page
         }
 
         DataTable dt = new DataTable();
-        dt = objLoan.getMasterPlanProposalReportBySearch(state, mandal, dist, UlbType,  ULB, FY, ProposalStatus);
+        dt = objLoan.getMasterPlanProposalReportBySearch(state, mandal, dist, UlbType,  ULB, FY, ProposalStatus, Convert.ToInt32(Session["Person_Id"].ToString()));
         if (dt != null && dt.Rows.Count > 0)
         {
             grdPost.DataSource = dt;
@@ -202,6 +202,8 @@ public partial class MasterPlanProposal : System.Web.UI.Page
         
 
     }
+
+
     protected void grdPost_PreRender(object sender, EventArgs e)
     {
         GridView gv = (GridView)sender;
@@ -231,11 +233,51 @@ public partial class MasterPlanProposal : System.Web.UI.Page
                 {
                     column.Visible = false; // Hide the Edit column
                 }
-                if (column.HeaderText == "Delete")
+
+                //if (Session["Designation_DesignationName"] != null &&
+                //    Session["Designation_DesignationName"].ToString() == "EXECUTIVE OFFICER")
+                //{
+                //    // Hides the column (e.g., column index 2)
+                //    //e.Row.Cells[2].Visible = false;
+                //    if (column.HeaderText == "Action")
+                //    {
+                //        column.Visible = false; // Hide the Edit column
+                //    }
+                //}
+            }
+        }
+
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            if (Session["Designation_DesignationName"] != null &&
+                Session["Designation_DesignationName"].ToString() == "EXECUTIVE OFFICER")
+            {
+                Button btn = (Button)e.Row.FindControl("btnAction");
+                if (btn != null)
                 {
-                    column.Visible = false; // Hide the Delete column
+                    btn.Visible = false; // Hide the button
                 }
             }
+        }
+
+
+    }
+
+    protected void btnAction_Command(object sender, CommandEventArgs e)
+    {
+        if (e.CommandName == "Action")
+        {
+            // Retrieve the command argument (WorkProposalId)
+            int MasterPlanProposalID;
+            if (int.TryParse(e.CommandArgument.ToString(), out MasterPlanProposalID))
+            {
+                Response.Redirect("ActionOnMPP.aspx?MasterPlanProposalID=" + MasterPlanProposalID.ToString());
+            }
+            else
+            {
+                // Handle error if parsing fails
+            }
+            
         }
     }
 
