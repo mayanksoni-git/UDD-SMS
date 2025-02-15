@@ -20,6 +20,7 @@ public partial class VisionPlan : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
+        
         if (!IsPostBack)
         {
             if (Request.QueryString.Count > 0)
@@ -381,16 +382,38 @@ public partial class VisionPlan : System.Web.UI.Page
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             // Check if the session variable "ReadOnly" is set to 1
-            if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8")
-            {
-                // Find the last column (in this case, it's the <td> containing the LinkButtons)
-                HtmlTableCell lastColumn = e.Item.FindControl("LastColumn") as HtmlTableCell;
+            //if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8")
+            //{
+            //    // Find the last column (in this case, it's the <td> containing the LinkButtons)
+            //    HtmlTableCell lastColumn = e.Item.FindControl("LastColumn") as HtmlTableCell;
 
-                if (lastColumn != null)
-                {
-                    // Hide the last column
-                    lastColumn.Visible = false;
-                }
+            //    if (lastColumn != null)
+            //    {
+            //        // Hide the last column
+            //        lastColumn.Visible = false;
+            //    }
+            //}
+
+            LinkButton btnEdit = (LinkButton)e.Item.FindControl("btnEdit");
+            LinkButton btnDelete = (LinkButton)e.Item.FindControl("btnDelete");
+            LinkButton BtnAction = (LinkButton)e.Item.FindControl("BtnAction");
+
+            // Get session values
+            string personId = Session["Person_Id"].ToString();
+            string Designation = Session["PersonJuridiction_DesignationId"].ToString(); 
+
+            // Check conditions and hide buttons
+            if (Designation == "1056" || personId == "3297" || personId == "2288")
+            {
+                if (btnEdit != null) btnEdit.Visible = true;
+                if (btnDelete != null) btnDelete.Visible = true;
+                if (BtnAction != null) BtnAction.Visible = true;
+            }
+            else
+            {
+                if (btnEdit != null) btnEdit.Visible = false;
+                if (btnDelete != null) btnDelete.Visible = false;
+                if (BtnAction != null) BtnAction.Visible = false;
             }
         }
     }

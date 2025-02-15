@@ -194,7 +194,7 @@
                                                                             <asp:LinkButton ID="lnkCEF2" runat="server" OnClick="lnkCEF2_Click" ForeColor="White"></asp:LinkButton>
                                                                         </FooterTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="At SMD (AMRUT)">
+                                                                    <asp:TemplateField HeaderText="At SMD (AMRUT)" Visible="false">
                                                                         <ItemTemplate>
                                                                             <asp:LinkButton ID="lnkSMD" runat="server" Text='<%# Eval("SMD") %>' OnClick="lnkSMD_Click"></asp:LinkButton>
                                                                         </ItemTemplate>
@@ -202,7 +202,7 @@
                                                                             <asp:LinkButton ID="lnkSMDF" runat="server" OnClick="lnkSMDF_Click" ForeColor="White"></asp:LinkButton>
                                                                         </FooterTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="At Directorate (Nagar Vikas)">
+                                                                    <asp:TemplateField HeaderText="At Directorate (Nagar Vikas)"  Visible="false">
                                                                         <ItemTemplate>
                                                                             <asp:LinkButton ID="lnkSMD1" runat="server" Text='<%# Eval("DUD") %>' OnClick="lnkSMD1_Click"></asp:LinkButton>
                                                                         </ItemTemplate>

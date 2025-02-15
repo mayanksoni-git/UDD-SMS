@@ -175,7 +175,10 @@
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Pre-Upload Checklist for DPR</h4>
+                                            <h4 class="card-title mb-0 flex-grow-1">Pre-Upload Checklist for DPR<br />
+                                                <asp:Label ID="lblDPRName" runat="server" Text=""></asp:Label> <br />
+                                                <asp:Label ID="lblULBName" runat="server" Text=""></asp:Label>
+                                            </h4>
                                         </div>
                                         <!-- end card header -->
                                         <div class="card-body">

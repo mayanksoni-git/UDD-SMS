@@ -473,10 +473,50 @@ public partial class Report_DPR_Status_Report : System.Web.UI.Page
 
     protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        if (e.Row.RowType == DataControlRowType.Header)
+        //if (e.Row.RowType == DataControlRowType.Header)
+        //{
+        //    e.Row.Cells[3].Text = Session["Default_Zone"].ToString();
+        //    e.Row.Cells[4].Text = Session["Default_Circle"].ToString();
+        //}
+
+        //if (e.Row.RowType == DataControlRowType.Header || e.Row.RowType == DataControlRowType.DataRow || e.Row.RowType == DataControlRowType.Footer)
+        //{
+        //    string personId = Session["Person_Id"].ToString();
+        //    string Designation = Session["PersonJuridiction_DesignationId"].ToString();
+
+
+        //    if (Designation == "1056" || personId == "3297" || personId == "2288")
+        //    {
+        //        for (int i = 0; i < grdPost.Columns.Count; i++)
+        //        {
+        //            string headerText = grdPost.Columns[i].HeaderText;
+
+        //            // Keep these columns visible
+        //            if (headerText == "S No." || headerText == "Zone" || headerText == "Circle" || headerText == "Total DPR")
+        //            {
+        //                continue;
+        //            } 
+
+
+        //            // Hide other columns
+        //            grdPost.Columns[i].Visible = false;
+        //        }
+        //    }
+        //}
+        string personId = Session["Person_Id"].ToString();
+        string Designation = Session["PersonJuridiction_DesignationId"].ToString();
+        if (Designation == "1056" || personId == "3297" || personId == "2288")
         {
-            e.Row.Cells[3].Text = Session["Default_Zone"].ToString();
-            e.Row.Cells[4].Text = Session["Default_Circle"].ToString();
+            foreach (DataControlField column in grdPost.Columns)
+            {
+                if (column.HeaderText != "S No." &&
+                    column.HeaderText != "Zone" &&
+                    column.HeaderText != "Circle" &&
+                    column.HeaderText != "Total DPR")
+                {
+                    column.Visible = false;
+                }
+            }
         }
     }
 

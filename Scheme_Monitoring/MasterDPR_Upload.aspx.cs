@@ -458,6 +458,8 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
         {
             hf_IsFirst.Value = "0";
         }
+        lblDPRName.Text = "Project Name : " + gr.Cells[14].Text.Trim().ToString();
+        lblULBName.Text = "ULB Name : " + gr.Cells[11].Text.Trim().ToString();
         divEntry.Visible = true;
         hf_ProjectDPR_Id.Value = DPR_Id.ToString();
         hf_Loop.Value = Loop.ToString();

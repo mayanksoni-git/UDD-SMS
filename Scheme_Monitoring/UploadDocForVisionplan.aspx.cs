@@ -257,9 +257,27 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
 
     protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8")
+        string personId = Session["Person_Id"].ToString();
+        string Designation = Session["PersonJuridiction_DesignationId"].ToString();
+
+        // Check conditions and hide buttons
+        if (Designation == "1056" || personId == "3297" || personId == "2288")
         {
             // Find the columns by CssClass
+            foreach (DataControlField column in grdPost.Columns)
+            {
+                if (column.HeaderText == "Edit")
+                {
+                    column.Visible = true; // Hide the Edit column
+                }
+                if (column.HeaderText == "Delete")
+                {
+                    column.Visible = true; // Hide the Delete column
+                }
+            }
+        }
+        else
+        {
             foreach (DataControlField column in grdPost.Columns)
             {
                 if (column.HeaderText == "Edit")
@@ -272,6 +290,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
                 }
             }
         }
+
     }
 
 

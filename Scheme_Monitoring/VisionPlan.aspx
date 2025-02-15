@@ -309,16 +309,13 @@
                                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") + "|" + DataBinder.Eval(Container.DataItem, "ProjectStatus")%>'>
                                                                 <img src="/assets/images/edit_btn.png" alt="Edit"  width="20" />
                                                             </asp:LinkButton>
-
-                                                            <asp:LinkButton ID="btnDelete" CssClass="btn bg-danger m-1"  runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
-                                                                OnClientClick="return confirm('Are you sure !');" >
+                                                            <asp:LinkButton ID="btnDelete" CssClass="btn bg-danger m-1" runat="server" ToolTip="Click to Delete Record" CommandName="delete" class="icon-trash bigger-130 red" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") %>'
+                                                                OnClientClick="return confirm('Are you sure !');">
                                                             <img src="/assets/images/delete.png" alt="Delete" width="20" />
                                                             </asp:LinkButton>
-                                                            
-
                                                             <asp:LinkButton ID="BtnAction" runat="server" Visible="false" Text="Action" CssClass="btn bg-primary icon-pencil bigger-130 green m-1" ToolTip="Click to Action on Record" CommandName="Action"
                                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "VisionPlanID") + "|" + DataBinder.Eval(Container.DataItem, "distId")+ "|" + DataBinder.Eval(Container.DataItem, "ULBID")+ "|" + DataBinder.Eval(Container.DataItem, "FYID") %>' />
-                                                            </td>
+                                                        </td>
                                                         <td>
                                                             <asp:Label ID="lblApprovedBy" runat="server"><%# DataBinder.Eval(Container.DataItem, "ProposalApprovedBy") %></asp:Label></td>
                                                         

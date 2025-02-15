@@ -22,6 +22,16 @@ public partial class CreateVisionPlan: System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        string personId = Session["Person_Id"].ToString();
+        string Designation = Session["PersonJuridiction_DesignationId"].ToString();
+        if (Designation == "1056" || personId == "3297" || personId == "2288")
+        {
+            
+        }
+        else
+        {
+            Response.Redirect("VisionPlan.aspx");
+        }
         if (!IsPostBack)
         {
 

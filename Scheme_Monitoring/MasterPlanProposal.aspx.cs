@@ -224,7 +224,7 @@ public partial class MasterPlanProposal : System.Web.UI.Page
 
     protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8")
+        if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8" || Session["UserType"].ToString() == "1")
         {
             // Find the columns by CssClass
             foreach (DataControlField column in grdPost.Columns)
