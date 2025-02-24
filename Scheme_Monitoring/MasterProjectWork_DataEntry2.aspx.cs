@@ -352,36 +352,36 @@ public partial class MasterProjectWork_DataEntry2 : System.Web.UI.Page
         }
         if (Package_Id > 0 || obj_tbl_ProjectWorkPkg_Li == null || obj_tbl_ProjectWorkPkg_Li.Count == 0)
         {
-            if (txtAgreementAmount.Text.Trim() == "" || txtAgreementAmount.Text.Trim() == "0")
-            {
-                MessageBox.Show("Please Provide Project Agreement Amount");
-                txtAgreementAmount.Focus();
-                return;
-            }
-            if (txtAgreementDate.Text.Trim() == "")
-            {
-                MessageBox.Show("Please Provide Agreement Date");
-                txtAgreementDate.Focus();
-                return;
-            }
-            if (txtActualDate.Text.Trim() == "")
-            {
-                MessageBox.Show("Please Provide Actual Date of Start");
-                txtActualDate.Focus();
-                return;
-            }
-            if (txtDueDate.Text.Trim() == "")
-            {
-                MessageBox.Show("Please Provide Date of Completion As Per Agreement");
-                txtDueDate.Focus();
-                return;
-            }
-            if (txtextenddate.Text.Trim() == "")
-            {
-                MessageBox.Show("Please Provide Origional Date of Completion");
-                txtextenddate.Focus();
-                return;
-            }
+            //if (txtAgreementAmount.Text.Trim() == "" || txtAgreementAmount.Text.Trim() == "0")
+            //{
+            //    MessageBox.Show("Please Provide Project Agreement Amount");
+            //    txtAgreementAmount.Focus();
+            //    return;
+            //}
+            //if (txtAgreementDate.Text.Trim() == "")
+            //{
+            //    MessageBox.Show("Please Provide Agreement Date");
+            //    txtAgreementDate.Focus();
+            //    return;
+            //}
+            //if (txtActualDate.Text.Trim() == "")
+            //{
+            //    MessageBox.Show("Please Provide Actual Date of Start");
+            //    txtActualDate.Focus();
+            //    return;
+            //}
+            //if (txtDueDate.Text.Trim() == "")
+            //{
+            //    MessageBox.Show("Please Provide Date of Completion As Per Agreement");
+            //    txtDueDate.Focus();
+            //    return;
+            //}
+            //if (txtextenddate.Text.Trim() == "")
+            //{
+            //    MessageBox.Show("Please Provide Origional Date of Completion");
+            //    txtextenddate.Focus();
+            //    return;
+            //}
             DateTime AgreementDate = new DateTime();
             DateTime ActualDate = new DateTime();
             DateTime DueDate = new DateTime();
