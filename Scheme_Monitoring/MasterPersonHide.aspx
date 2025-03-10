@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="MasterPerson.aspx.cs" Inherits="MasterPerson" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="MasterPersonHide.aspx.cs" Inherits="MasterPersonHide" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="main-content">
@@ -584,7 +584,7 @@
                                                             <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
                                                             <asp:BoundField HeaderText="Division" DataField="Division_Name" />
                                                             <asp:BoundField HeaderText="User Name" DataField="Login_UserName" />
-                                                            <%--<asp:BoundField HeaderText="Password" DataField="Login_password" />--%>
+                                                            <asp:BoundField HeaderText="Password" DataField="Login_password" />
                                                             <asp:BoundField HeaderText="List_AdditionZone" DataField="List_AdditionZone">
                                                                 <HeaderStyle CssClass="displayStyle" />
                                                                 <ItemStyle CssClass="displayStyle" />

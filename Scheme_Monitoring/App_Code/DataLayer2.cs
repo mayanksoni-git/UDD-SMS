@@ -18486,7 +18486,8 @@ public partial class DataLayer : Page, IRequiresSessionState
         }
         if (Zone_Id > 0 && Division_Id == 0)
         {
-            strQuery = strQuery.Replace("Zone_IdCond", "and Circle_ZoneId = '" + Zone_Id + "'");
+            //strQuery = strQuery.Replace("Zone_IdCond", "and Circle_ZoneId = '" + Zone_Id + "'");
+            strQuery = strQuery.Replace("Zone_IdCond", "");
         }
         else
         {
@@ -18762,7 +18763,8 @@ public partial class DataLayer : Page, IRequiresSessionState
         }
         if (Zone_Id != 0)
         {
-            strQuery = strQuery.Replace("Zone_IdCond", " and Circle_ZoneId = '" + Zone_Id + "'");
+            //strQuery = strQuery.Replace("Zone_IdCond", " and Circle_ZoneId = '" + Zone_Id + "'");
+            strQuery = strQuery.Replace("Zone_IdCond", "");
         }
         else
         {

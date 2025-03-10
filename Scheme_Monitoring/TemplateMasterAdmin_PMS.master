@@ -385,7 +385,6 @@
                                         <li class="nav-item"><a href="AdoptedPark_Edit.aspx" class="nav-link" data-key="t-grid-js">Add/Edit Park</a> </li>
                                         <li class="nav-item"><a href="ParkAdoptionStatusReport.aspx" class="nav-link" data-key="t-grid-js">Adopted Park Status Report</a> </li>
                                         <li class="nav-item"><a href="ULBDataSubmitReport.aspx" class="nav-link" data-key="t-grid-js">ULB Submitted Data Report</a> </li>
-                                       
                                     </ul>
                                 </div>
                             </li>
@@ -396,11 +395,10 @@
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="AkanchiYojnaDashboard.aspx" class="nav-link" data-key="t-grid-js">Akanshi Fund Report</a> </li>
                                         <li class="nav-item"><a href="NewAkanshiDataList.aspx" class="nav-link" data-key="t-grid-js">Add New Akanshi Data</a> </li>
+                                        <li class="nav-item"><a href="AddCMFellowDetail.aspx" class="nav-link" data-key="t-grid-js">Add CM Fellow Detail</a> </li>
                                     </ul>
                                 </div>
                             </li>
-                           
-
                         </ul>
                     </div>
                     <!-- Sidebar -->

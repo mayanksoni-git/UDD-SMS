@@ -63,13 +63,13 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Issuing Type">
                                                                     <ItemTemplate>
-                                                                        <asp:DropDownList ID="ddlIssueType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlIssueType_SelectedIndexChanged">
+                                                                        <asp:DropDownList ID="ddlIssueType" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlIssueType_SelectedIndexChanged">
                                                                         </asp:DropDownList>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Sub Issue">
                                                                     <ItemTemplate>
-                                                                        <asp:DropDownList ID="ddlDependency" runat="server" CssClass="form-control">
+                                                                        <asp:DropDownList ID="ddlDependency" runat="server" CssClass="form-select">
                                                                         </asp:DropDownList>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
@@ -142,6 +142,7 @@
                                     <div class="card">
                                         <div class="card-header align-items-center d-flex">
                                             <h4 class="card-title mb-0 flex-grow-1">Conversation Log Against Specific Issue</h4>
+
                                         </div>
                                         <!-- end card header -->
                                         <div class="card-body">
@@ -173,7 +174,8 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Date">
                                                                         <ItemTemplate>
-                                                                            <asp:TextBox ID="txtLogDate" runat="server" Text='<%# Eval("PMIS_ProjectWorkIssueHistory_Date") %>' CssClass="form-control date-picker" autocomplete="off" data-date-format="dd/mm/yyyy"></asp:TextBox>
+                                                                            <asp:TextBox ID="txtLogDate" runat="server" CssClass="form-control date-picker" autocomplete="off"  Text='<%# Eval("PMIS_ProjectWorkIssueHistory_Date") %>'></asp:TextBox>
+                                                                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" TargetControlID="txtLogDate" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Subject">

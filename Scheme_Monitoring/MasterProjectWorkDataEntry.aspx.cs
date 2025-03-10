@@ -169,10 +169,10 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
                 {
                     ddlDivision.SelectedValue = obj_SearchStorage.Division_Id.ToString();
                 }
-                if (obj_SearchStorage.Zone_Id + obj_SearchStorage.Circle_Id + obj_SearchStorage.Division_Id > 0)
-                {
-                    btnSearch_Click(btnSearch, e);
-                }
+                //if (obj_SearchStorage.Zone_Id + obj_SearchStorage.Circle_Id + obj_SearchStorage.Division_Id > 0)
+                //{
+                //    btnSearch_Click(btnSearch, e);
+                //}
             }
         }
         obj_tbl_ePaymentModules = (tbl_ePaymentModules)Session["tbl_ePaymentModules"];

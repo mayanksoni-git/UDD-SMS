@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
-public partial class UploadDocForVisionplan : System.Web.UI.Page
+public partial class VisionPlanLog : System.Web.UI.Page
 {
-    ULBFund objLoan = new ULBFund();
+    CmvnyLog objLoan = new CmvnyLog();
+
+
     protected void Page_PreInit(object sender, EventArgs e)
     {
         this.MasterPageFile = SetMasterPage.ReturnPage();
@@ -18,16 +21,14 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
-        
         if (!IsPostBack)
         {
             lblZoneH.Text = Session["Default_Zone"].ToString() + "*";
             lblCircleH.Text = Session["Default_Circle"].ToString() + "*";
             lblDivisionH.Text = Session["Default_Division"].ToString() + "*";
-           
+
             message.InnerText = "";
             get_tbl_Zone();
-            get_tbl_FinancialYear();
             SetDropdownsBasedOnUserType();
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
@@ -59,16 +60,10 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
     }
     private void get_tbl_Division(int circleId, string ULBType)
     {
-        DataSet ds = (new DataLayer3()).get_tbl_DivisionByULBTypeForVisionPlan(circleId, ULBType);
+        DataSet ds = (new DataLayer()).get_tbl_DivisionByULBType(circleId, ULBType);
         FillDropDown(ds, ddlDivision, "Division_Name", "Division_Id");
     }
-    private void get_tbl_FinancialYear()
-    {
-        DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
-        FillDropDown(ds, ddlFY, "FinancialYear_Comments", "FinancialYear_Id");
-        //FillDropDown(ds, ddlFY1, "FinancialYear_Comments", "FinancialYear_Id");
-        //FillDropDown(ds, ddlFY2, "FinancialYear_Comments", "FinancialYear_Id");
-    }
+    
 
 
     protected void ddlZone_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,31 +122,20 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
     {
         if (ddlDivision.SelectedValue == "0")
         {
-           // lblMessage.Text = "Please Select a ULB.";
             ddlDivision.Focus();
-        }
-        else
-        {
-           // GetAllData();
-            //BindLoanReleaseGridByULB();
         }
     }
 
     protected void BtnSearch_Click(object sender, EventArgs e)
     {
-        List<string> PersonIdNotAllowd = new List<string> { "3291", "3294" };
-        string searchString = Session["Person_Id"].ToString();
-
-        if (!PersonIdNotAllowd.Contains(searchString))
-        {
-            GetAllData();
-        }        
+        GetAllData();
     }
     protected void GetAllData()
     {
         var dist = 0;
         var ULB = 0;
         var FY = 0;
+        int ProposalStatus = 0;
 
         var state = Convert.ToInt32(ddlZone.SelectedValue);
         var mandal = Convert.ToInt32(ddlMandal.SelectedValue);
@@ -182,62 +166,34 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         {
             ULB = Convert.ToInt32(ddlDivision.SelectedValue);// == "0"
         }
-        if (ddlFY.SelectedValue == "0" || ddlFY.SelectedValue == "")
+        
+        try
         {
-            FY = 0;
+            ProposalStatus = Convert.ToInt32(ddlProposalStatus.SelectedValue);
         }
-        else
+        catch
         {
-            FY = Convert.ToInt32(ddlFY.SelectedValue);// == "0"
+            ProposalStatus = -1;
         }
-
-        string FromDate = "", ToDate = "";
-
-        if (txtFromDate.Text == "")
-        {
-            FromDate = "1900-01-01";
-        }
-        else
-        {
-            FromDate = txtFromDate.Text;
-        }
-
-        if (txtToDate.Text == "")
-        {
-            ToDate = "9999-12-31";
-        }
-        else
-        {
-            ToDate = txtToDate.Text;
-        }
-
-        int AkanshiULB = chkIsAkanshiULB.Checked ? 1 : -1;
-
-        // ULBID = 0;
-        DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("select", ULB, 0, 0, dist, FY, Convert.ToInt32(Session["Person_Id"].ToString()), "", "VisionPlan", UlbType, mandal, FromDate, ToDate, AkanshiULB);
-        grdPost.DataSource = dt;
-        grdPost.DataBind();
-
-    }
-    protected void Edit_Command(object sender, CommandEventArgs e)
-    {
-        var id = Convert.ToInt32(e.CommandArgument.ToString());
-        Response.Redirect("CreateDocForVisionPlan.aspx?id=" + id);
-    }
-    protected void btnDelete_Command(object sender, CommandEventArgs e)
-    {
-        var id = Convert.ToInt32(e.CommandArgument.ToString());
 
         DataTable dt = new DataTable();
-        dt = objLoan.GetDocOfAnnualActionPlan("Delete", 0, id, 0, 0, 0, Convert.ToInt32(Session["Person_Id"].ToString()), "", "VisionPlan", "-1", 0, "1900-01-01", "9999-12-31", -1);
+        dt = objLoan.getCmvnyLogBySearch(state, mandal, dist, UlbType,  ULB, FY, ProposalStatus, Convert.ToInt32(Session["Person_Id"].ToString()));
         if (dt != null && dt.Rows.Count > 0)
         {
-            MessageBox.Show(dt.Rows[0]["Remark"].ToString());
+            grdPost.DataSource = dt;
+            grdPost.DataBind();
         }
+        else
+        {
+            grdPost.DataSource = null;
+            grdPost.DataBind();
+            MessageBox.Show("No Records Found");
+        }
+        
 
-        GetAllData();
     }
+
+
     protected void grdPost_PreRender(object sender, EventArgs e)
     {
         GridView gv = (GridView)sender;
@@ -258,40 +214,121 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
 
     protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        string personId = Session["Person_Id"].ToString();
-        string Designation = Session["PersonJuridiction_DesignationId"].ToString();
-
-        // Check conditions and hide buttons
-        if (Designation == "1056" || personId == "3297" || personId == "2288")
+        if (Session["Person_Id"] != null && Session["UserType"].ToString() == "8" || Session["UserType"].ToString() == "1")
         {
             // Find the columns by CssClass
             foreach (DataControlField column in grdPost.Columns)
             {
                 if (column.HeaderText == "Edit")
                 {
-                    column.Visible = true; // Hide the Edit column
-                }
-                if (column.HeaderText == "Delete")
-                {
-                    column.Visible = true; // Hide the Delete column
-                }
-            }
-        }
-        else
-        {
-            foreach (DataControlField column in grdPost.Columns)
-            {
-                if (column.HeaderText == "Edit")
-                {
                     column.Visible = false; // Hide the Edit column
                 }
-                if (column.HeaderText == "Delete")
+
+                //if (Session["Designation_DesignationName"] != null &&
+                //    Session["Designation_DesignationName"].ToString() == "EXECUTIVE OFFICER")
+                //{
+                //    // Hides the column (e.g., column index 2)
+                //    //e.Row.Cells[2].Visible = false;
+                //    if (column.HeaderText == "Action")
+                //    {
+                //        column.Visible = false; // Hide the Edit column
+                //    }
+                //}
+            }
+        }
+
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            if (Session["Designation_DesignationName"] != null &&
+                Session["Designation_DesignationName"].ToString() == "EXECUTIVE OFFICER")
+            {
+                Button btn = (Button)e.Row.FindControl("btnAction");
+                if (btn != null)
                 {
-                    column.Visible = false; // Hide the Delete column
+                    btn.Visible = false; // Hide the button
                 }
             }
         }
 
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            
+
+            object newDataObj = DataBinder.Eval(e.Row.DataItem, "NewData");
+            string newDataJson = newDataObj != null ? newDataObj.ToString() : "";
+
+            object oldDataObj = DataBinder.Eval(e.Row.DataItem, "OldData");
+            string oldDataJson = oldDataObj != null ? oldDataObj.ToString() : "";
+
+            // Find controls
+            Literal litOldData = (Literal)e.Row.FindControl("litOldData");
+            Literal litNewData = (Literal)e.Row.FindControl("litNewData");
+
+            // Convert JSON to HTML Table
+            litOldData.Text = ConvertJsonArrayToHtmlTable(oldDataJson);
+            litNewData.Text = ConvertJsonArrayToHtmlTable(newDataJson);
+        }
+
+
+    }
+
+    private string ConvertJsonArrayToHtmlTable(string jsonData)
+    {
+        if (string.IsNullOrEmpty(jsonData))
+            return "No Data";
+
+        try
+        {
+            JArray jsonArray = JArray.Parse(jsonData);
+            if (jsonArray.Count == 0)
+                return "No Data";
+
+            string htmlTable = "<table class='table table-bordered'><tr>";
+
+            // Generate table headers dynamically from the first object in the array
+            JObject firstItem = (JObject)jsonArray[0];
+            foreach (var column in firstItem.Properties())
+            {
+                htmlTable += "<th>"+column.Name+"</th>";
+            }
+            htmlTable += "</tr>";
+
+            // Generate rows
+            foreach (JObject obj in jsonArray)
+            {
+                htmlTable += "<tr>";
+                foreach (var column in obj.Properties())
+                {
+                    htmlTable += "<td>"+column.Value+"</td>";
+                }
+                htmlTable += "</tr>";
+            }
+
+            htmlTable += "</table>";
+            return htmlTable;
+        }
+        catch (Exception)
+        {
+            return "Invalid JSON Format";
+        }
+    }
+
+    protected void btnAction_Command(object sender, CommandEventArgs e)
+    {
+        if (e.CommandName == "Action")
+        {
+            // Retrieve the command argument (WorkProposalId)
+            int MasterPlanProposalID;
+            if (int.TryParse(e.CommandArgument.ToString(), out MasterPlanProposalID))
+            {
+                Response.Redirect("ActionOnMPP.aspx?MasterPlanProposalID=" + MasterPlanProposalID.ToString());
+            }
+            else
+            {
+                // Handle error if parsing fails
+            }
+            
+        }
     }
 
 
@@ -299,8 +336,6 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
     {
         int userType = Convert.ToInt32(Session["UserType"]);
         int zoneId = Convert.ToInt32(Session["PersonJuridiction_ZoneId"]);
-        //int MandalId = Convert.ToInt32(Session["MandalId"]);
-        //int MandalId = Session["MandalId"] is int mandalId ? mandalId : Convert.ToInt32(Session["MandalId"]);
         int MandalId = Session["MandalId"] != null && !string.IsNullOrEmpty(Session["MandalId"].ToString())
                ? Convert.ToInt32(Session["MandalId"])
                : 0;
