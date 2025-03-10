@@ -84,15 +84,15 @@
 
 
                                                 <div class="col-xxl-3 col-md-6">
-                                                    <div id="divStatus" runat="server">
-                                                        <asp:Label ID="lblStatus" runat="server" Text="Status*" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlProposalStatus" runat="server" CssClass="form-select">
-                                                            <asp:ListItem Text="--Select Status--" Value="-1"></asp:ListItem>
-                                                            <asp:ListItem Text="Pending" Value="0"></asp:ListItem>
-                                                            <asp:ListItem Text="Approved" Value="1"></asp:ListItem>
-                                                            <asp:ListItem Text="Reject" Value="2"></asp:ListItem>
-                                                            <asp:ListItem Text="Hold/Archive" Value="3"></asp:ListItem>
-                                                            <asp:ListItem Text="Revert" Value="4"></asp:ListItem>
+                                                    <div id="divLogType" runat="server">
+                                                        <asp:Label ID="lblLogType" runat="server" Text="Log Type*" CssClass="form-label"></asp:Label>
+                                                        <asp:DropDownList ID="ddlLogType" runat="server" CssClass="form-select">
+                                                            <asp:ListItem Text="--Select Log Type--" Value="-1"></asp:ListItem>
+                                                            <asp:ListItem Text="Vsion Plan Created" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="Vision Plan Doc Created" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="Vision Plan Doc Updated" Value="3"></asp:ListItem>
+                                                            <asp:ListItem Text="Vision Plan Doc Deleted" Value="4"></asp:ListItem>
+                                                            <asp:ListItem Text="New DPR Created" Value="5"></asp:ListItem>
                                                         </asp:DropDownList>
                                                     </div>
                                                 </div>

@@ -135,7 +135,7 @@ public partial class VisionPlanLog : System.Web.UI.Page
         var dist = 0;
         var ULB = 0;
         var FY = 0;
-        int ProposalStatus = 0;
+        int LogTypeId = 0;
 
         var state = Convert.ToInt32(ddlZone.SelectedValue);
         var mandal = Convert.ToInt32(ddlMandal.SelectedValue);
@@ -169,15 +169,15 @@ public partial class VisionPlanLog : System.Web.UI.Page
         
         try
         {
-            ProposalStatus = Convert.ToInt32(ddlProposalStatus.SelectedValue);
+            LogTypeId = Convert.ToInt32(ddlLogType.SelectedValue);
         }
         catch
         {
-            ProposalStatus = -1;
+            LogTypeId = -1;
         }
 
         DataTable dt = new DataTable();
-        dt = objLoan.getCmvnyLogBySearch(state, mandal, dist, UlbType,  ULB, FY, ProposalStatus, Convert.ToInt32(Session["Person_Id"].ToString()));
+        dt = objLoan.getCmvnyLogBySearch(state, mandal, dist, UlbType,  ULB, FY, LogTypeId, Convert.ToInt32(Session["Person_Id"].ToString()));
         if (dt != null && dt.Rows.Count > 0)
         {
             grdPost.DataSource = dt;

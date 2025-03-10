@@ -19,7 +19,7 @@ public class CmvnyLog
     string ConStr = ConfigurationManager.AppSettings.Get("conn").ToString();
 
     #region Master Plan Proposal
-    public DataTable getCmvnyLogBySearch(int StateId, int MandalId, int CircleId, string ULBType, int ULBID, int FY, int Status, int PersonId)
+    public DataTable getCmvnyLogBySearch(int StateId, int MandalId, int CircleId, string ULBType, int ULBID, int FY, int LogTypeId, int PersonId)
     {
         try
         {
@@ -31,7 +31,7 @@ public class CmvnyLog
             param[3] = new SqlParameter("@FYID", FY);
             param[4] = new SqlParameter("@ULBType", ULBType);
             param[5] = new SqlParameter("@MandalId", MandalId);
-            param[6] = new SqlParameter("@Status", Status);
+            param[6] = new SqlParameter("@LogTypeId", LogTypeId);
             param[7] = new SqlParameter("@PersonId", PersonId);
 
             return objDAL.GetDataByProcedure("sp_GetCmvnyLogsBySearch", param);
