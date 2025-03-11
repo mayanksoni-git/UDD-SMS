@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Master Plan Proposal</h4>
+                                    <h4 class="mb-sm-0">Vision Plan Log</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
@@ -81,7 +81,18 @@
                                                         <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
-
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divFromDate" runat="server">
+                                                        <asp:Label ID="lblFromDate" runat="server" Text="Created From Date*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtFromDate" type="Date" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divToDate" runat="server">
+                                                        <asp:Label ID="lblToDate" runat="server" Text="Created To Date*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtToDate" type="Date" runat="server" CssClass="form-control mb-2"></asp:TextBox>
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divLogType" runat="server">
@@ -93,6 +104,7 @@
                                                             <asp:ListItem Text="Vision Plan Doc Updated" Value="3"></asp:ListItem>
                                                             <asp:ListItem Text="Vision Plan Doc Deleted" Value="4"></asp:ListItem>
                                                             <asp:ListItem Text="New DPR Created" Value="5"></asp:ListItem>
+                                                            <asp:ListItem Text="DPR Doc Uploaded by EOs" Value="6"></asp:ListItem>
                                                         </asp:DropDownList>
                                                     </div>
                                                 </div>

@@ -175,9 +175,27 @@ public partial class VisionPlanLog : System.Web.UI.Page
         {
             LogTypeId = -1;
         }
+        string FromDate = "", ToDate = "";
+        if (txtFromDate.Text == "")
+        {
+            FromDate = "1900-01-01";
+        }
+        else
+        {
+            FromDate = txtFromDate.Text;
+        }
+
+        if (txtToDate.Text == "")
+        {
+            ToDate = "9999-12-31";
+        }
+        else
+        {
+            ToDate = txtToDate.Text;
+        }
 
         DataTable dt = new DataTable();
-        dt = objLoan.getCmvnyLogBySearch(state, mandal, dist, UlbType,  ULB, FY, LogTypeId, Convert.ToInt32(Session["Person_Id"].ToString()));
+        dt = objLoan.getCmvnyLogBySearch(state, mandal, dist, UlbType,  ULB, FY, LogTypeId, Convert.ToInt32(Session["Person_Id"].ToString()), FromDate, ToDate);
         if (dt != null && dt.Rows.Count > 0)
         {
             grdPost.DataSource = dt;
