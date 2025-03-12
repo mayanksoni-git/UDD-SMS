@@ -395,7 +395,7 @@
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item"><a href="AkanchiYojnaDashboard.aspx" class="nav-link" data-key="t-grid-js">Akanshi Fund Report</a> </li>
                                         <li class="nav-item"><a href="NewAkanshiDataList.aspx" class="nav-link" data-key="t-grid-js">Add New Akanshi Data</a> </li>
-                                        <li class="nav-item"><a href="AddCMFellowDetail.aspx" class="nav-link" data-key="t-grid-js">Add CM Fellow Detail</a> </li>
+                                        <li class="nav-item"><a href="CMFellowDetail.aspx" class="nav-link" data-key="t-grid-js">CM Fellow Detail</a> </li>
                                     </ul>
                                 </div>
                             </li>

@@ -2,11 +2,11 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <asp:HiddenField ID="hdnplanId" runat="server" />
+    <asp:HiddenField ID="hfCMFellowDetailId" runat="server" />
     <style>
         .profile-images-card {
             height: 200px;
-            width: 200px;
+            width: 200px;                 
             border: 5px solid #f67d37;
             border-radius: 50%;
             margin-top: 4vh;
@@ -18,6 +18,17 @@
         .custom-file input[type='file'] {
             margin: 15px;
         }
+
+       .profile-images {
+    display: flex;
+    align-items: center;
+    height: 85px;
+    padding-top: 22px;
+}
+       .header-profile-user {
+    height: 60px;
+    width: 60px;
+}
     </style>
 
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
@@ -48,7 +59,7 @@
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1" id="head2" runat="server">Add CM Fellow Detail<label id="message" runat="server" style="float: right; color: red; font-weight: bold"></label></h4>
-                                        <a href="CMFellowDetailList.aspx" class="filter-btn" style="float: right"><i class="icon-download"></i>CM Fellow List</a>
+                                        <a href="CMFellowDetail.aspx" class="filter-btn" style="float: right"><i class="icon-download"></i>CM Fellow List</a>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -98,32 +109,33 @@
                                                         <asp:TextBox ID="txtExperience" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div class="profile-images">
-                                                        <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" id="uploadimg" runat="server">
-                                                    </div>
-                                                    <div class="custom-file">
-                                                        <asp:FileUpload ID="fileupload" runat="server" />
-                                                        <asp:HiddenField ID="ProfileUrl" runat="server"></asp:HiddenField>
+                                                        <asp:HyperLink ID="HyperLink1" runat="server" Target="_blank">
+                                                            <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" id="uploadimg" runat="server">
+                                                        </asp:HyperLink>
+                                                        <div class="custom-file">
+                                                            <asp:FileUpload ID="fileupload" runat="server" />
+                                                        </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xxl-3 col-md-6" hidden>
-                                                    <div id="div8" runat="server">
-                                                        <asp:Label ID="Label6" runat="server" Text="Upload Doc  (PDF)" CssClass="form-label fw-bold me-1"></asp:Label>
-                                                        <asp:FileUpload ID="fileupload1" runat="server" CssClass="form-control" Accept=".pdf" /> 
-                                                         <a href="" target="_blank" id="UpladedDoc" runat="server"></a>
-                                                    </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:Label ID="Label1" runat="server" Text="Uploaded Image" CssClass="form-label"></asp:Label>
+                                                    <asp:HyperLink ID="hypCMFellowImage" runat="server" Target="_blank" Visible="false">
+                                                      <asp:Image ID="imgCMFellow" runat="server" CssClass="rounded-circle header-profile-user" AlternateText="CM Fellow Image" />
+                                                     </asp:HyperLink>
+                                                    <asp:HiddenField ID="hfImageUrl" runat="server" />
                                                 </div>
+
                                                 <div class="col-xxl-3  col-md-6">
                                                     <div>
                                                         <label class="d-block">&nbsp;</label>
-                                                        <%--<asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnsave_Click"  convergence/>--%>
-                                                        <asp:Button ID="BtnUpdate" Text="Update" OnClick="BtnUpdate_Click" runat="server" Visible="false" CssClass="btn bg-success text-white"></asp:Button>
+                                                        <asp:Button ID="btnUpdate" Text="Update" OnClick="BtnUpdate_Click" runat="server" Visible="false" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="btnSave" Text="Save" OnClick="btnsave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="btnCancel" Text="Cancel / Reset" OnClick="btnCancel_Click" runat="server" CssClass="btn bg-secondary text-white"></asp:Button>
                                                         <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-                                                        <asp:HiddenField ID="hfFormApproval_Id" runat="server" />
                                                     </div>
                                                 </div>
                                             </div>

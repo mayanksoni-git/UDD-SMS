@@ -285,6 +285,15 @@
                                     </ul>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarAkanshi" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFund"><img src="assets/images/left-menu-icon/CMVNY Scheme.svg" class="img-fluid" /><span data-key="t-tables">Akanshi Yojna</span> </a>
+                                <div class="collapse menu-dropdown" id="sidebarAkanshi">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item"><a href="AkanchiYojnaDashboard.aspx" class="nav-link" data-key="t-grid-js">Akanshi Fund Report</a> </li>
+                                        <li class="nav-item"><a href="AddCMFellowDetail.aspx" class="nav-link" data-key="t-grid-js">Add CM Fellow Detail</a> </li>
+                                    </ul>
+                                </div>
+                            </li>
                              <li class="nav-item">
                                 <a class="nav-link menu-link" href="#sidebarCMVNY" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFund"><img src="assets/images/left-menu-icon/CMVNY Scheme.svg" class="img-fluid" /><span data-key="t-tables">मुख्यमंत्री वैश्विक नगरोदय योजना</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarCMVNY">

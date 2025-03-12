@@ -963,7 +963,7 @@ public class Loan
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[16];
+            SqlParameter[] param = new SqlParameter[20];
 
             param[0] = new SqlParameter("@AddedBy", obj_AkanshiYojna.AddedBy);
             param[1] = new SqlParameter("@FY", obj_AkanshiYojna.FY);
@@ -971,20 +971,26 @@ public class Loan
             param[3] = new SqlParameter("@CMFellowName", obj_AkanshiYojna.CMFellowName);
 
             param[4] = new SqlParameter("@CMAbhyudaySchool", obj_AkanshiYojna.CMAbhyudaySchool);
-            param[5] = new SqlParameter("@TotalCMAbhyudaySchoolCost", obj_AkanshiYojna.TotalCMAbhyudaySchoolCost);
+            param[5] = new SqlParameter("@CMAbhyudaySchoolWP", obj_AkanshiYojna.CMAbhyudaySchoolWP);
+            param[6] = new SqlParameter("@TotalCMAbhyudaySchoolCost", obj_AkanshiYojna.TotalCMAbhyudaySchoolCost);
 
-            param[6] = new SqlParameter("@AnganwadiConstructionOnRent", obj_AkanshiYojna.AnganwadiConstructionOnRent);
-            param[7] = new SqlParameter("@AnganwadiConstructionOnOtherPlace", obj_AkanshiYojna.AnganwadiConstructionOnOtherPlace);
-            param[8] = new SqlParameter("@TotalAnganwadiCost", obj_AkanshiYojna.TotalAnganwadiCost);
+            param[7] = new SqlParameter("@AnganwadiConstructionOnRent", obj_AkanshiYojna.AnganwadiConstructionOnRent);
+            param[8] = new SqlParameter("@AnganwadiConstructionOnOtherPlace", obj_AkanshiYojna.AnganwadiConstructionOnOtherPlace);
+            param[9] = new SqlParameter("@AnganwadiConstructionWP", obj_AkanshiYojna.AnganwadiConstructionWP);
+            param[10] = new SqlParameter("@TotalAnganwadiCost", obj_AkanshiYojna.TotalAnganwadiCost);
 
-            param[9] = new SqlParameter("@SmartClassFurniture", obj_AkanshiYojna.SmartClassFurniture);
-            param[10] = new SqlParameter("@TotalSmartClassCost", obj_AkanshiYojna.TotalSmartClassCost);
+            param[11] = new SqlParameter("@SmartClassFurniture", obj_AkanshiYojna.SmartClassFurniture);
+            param[12] = new SqlParameter("@SmartClassFurnitureWP", obj_AkanshiYojna.SmartClassFurnitureWP);
+            param[13] = new SqlParameter("@TotalSmartClassCost", obj_AkanshiYojna.TotalSmartClassCost);
 
-            param[11] = new SqlParameter("@AdditionalClassRoom", obj_AkanshiYojna.AdditionalClassRoom);
-            param[12] = new SqlParameter("@AdditionalClassRoomCost", obj_AkanshiYojna.AdditionalClassRoomCost);
-            param[13] = new SqlParameter("@TotalAmount", obj_AkanshiYojna.TotalAmount);
-            param[14] = new SqlParameter("@TotalAmountTransferred", obj_AkanshiYojna.TotalAmountTransferred);
-            param[15] = new SqlParameter("@AkanshiYojnaId", AkanshiYojnaId);
+            param[14] = new SqlParameter("@AdditionalClassRoom", obj_AkanshiYojna.AdditionalClassRoom);
+            param[15] = new SqlParameter("@AdditionalClassRoomWP", obj_AkanshiYojna.AdditionalClassRoomWP);
+            param[16] = new SqlParameter("@AdditionalClassRoomCost", obj_AkanshiYojna.AdditionalClassRoomCost);
+
+            param[17] = new SqlParameter("@TotalAmount", obj_AkanshiYojna.TotalAmount);
+            param[18] = new SqlParameter("@TotalAmountTransferred", obj_AkanshiYojna.TotalAmountTransferred);
+
+            param[19] = new SqlParameter("@AkanshiYojnaId", AkanshiYojnaId);
 
             return objDAL.ExecuteProcedure("sp_UpdateAkanshiYojnaData", param);
         }
@@ -998,27 +1004,33 @@ public class Loan
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[15];
+            SqlParameter[] param = new SqlParameter[19];
 
             param[0] = new SqlParameter("@AddedBy", obj_AkanshiYojna.AddedBy);
             param[1] = new SqlParameter("@FY", obj_AkanshiYojna.FY);
             param[2] = new SqlParameter("@Division", obj_AkanshiYojna.Division);
+
             param[3] = new SqlParameter("@CMFellowName", obj_AkanshiYojna.CMFellowName);
 
             param[4] = new SqlParameter("@CMAbhyudaySchool", obj_AkanshiYojna.CMAbhyudaySchool);
-            param[5] = new SqlParameter("@TotalCMAbhyudaySchoolCost", obj_AkanshiYojna.TotalCMAbhyudaySchoolCost);
+            param[5] = new SqlParameter("@CMAbhyudaySchoolWP", obj_AkanshiYojna.CMAbhyudaySchoolWP);
+            param[6] = new SqlParameter("@TotalCMAbhyudaySchoolCost", obj_AkanshiYojna.TotalCMAbhyudaySchoolCost);
 
-            param[6] = new SqlParameter("@AnganwadiConstructionOnRent", obj_AkanshiYojna.AnganwadiConstructionOnRent);
-            param[7] = new SqlParameter("@AnganwadiConstructionOnOtherPlace", obj_AkanshiYojna.AnganwadiConstructionOnOtherPlace);
-            param[8] = new SqlParameter("@TotalAnganwadiCost", obj_AkanshiYojna.TotalAnganwadiCost);
+            param[7] = new SqlParameter("@AnganwadiConstructionOnRent", obj_AkanshiYojna.AnganwadiConstructionOnRent);
+            param[8] = new SqlParameter("@AnganwadiConstructionOnOtherPlace", obj_AkanshiYojna.AnganwadiConstructionOnOtherPlace);
+            param[9] = new SqlParameter("@AnganwadiConstructionWP", obj_AkanshiYojna.AnganwadiConstructionWP);
+            param[10] = new SqlParameter("@TotalAnganwadiCost", obj_AkanshiYojna.TotalAnganwadiCost);
 
-            param[9] = new SqlParameter("@SmartClassFurniture", obj_AkanshiYojna.SmartClassFurniture);
-            param[10] = new SqlParameter("@TotalSmartClassCost", obj_AkanshiYojna.TotalSmartClassCost);
+            param[11] = new SqlParameter("@SmartClassFurniture", obj_AkanshiYojna.SmartClassFurniture);
+            param[12] = new SqlParameter("@SmartClassFurnitureWP", obj_AkanshiYojna.SmartClassFurnitureWP);
+            param[13] = new SqlParameter("@TotalSmartClassCost", obj_AkanshiYojna.TotalSmartClassCost);
 
-            param[11] = new SqlParameter("@AdditionalClassRoom", obj_AkanshiYojna.AdditionalClassRoom);
-            param[12] = new SqlParameter("@AdditionalClassRoomCost", obj_AkanshiYojna.AdditionalClassRoomCost);
-            param[13] = new SqlParameter("@TotalAmount", obj_AkanshiYojna.TotalAmount);
-            param[14] = new SqlParameter("@TotalAmountTransferred", obj_AkanshiYojna.TotalAmountTransferred);
+            param[14] = new SqlParameter("@AdditionalClassRoom", obj_AkanshiYojna.AdditionalClassRoom);
+            param[15] = new SqlParameter("@AdditionalClassRoomWP", obj_AkanshiYojna.AdditionalClassRoomWP);
+            param[16] = new SqlParameter("@AdditionalClassRoomCost", obj_AkanshiYojna.AdditionalClassRoomCost);
+
+            param[17] = new SqlParameter("@TotalAmount", obj_AkanshiYojna.TotalAmount);
+            param[18] = new SqlParameter("@TotalAmountTransferred", obj_AkanshiYojna.TotalAmountTransferred);
 
             return objDAL.ExecuteProcedure("sp_InsertAkanshiYojnaData", param);
         }

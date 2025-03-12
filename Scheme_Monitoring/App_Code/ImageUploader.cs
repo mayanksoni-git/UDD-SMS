@@ -51,10 +51,10 @@ public class ImageUploader
     {
         errorMessage = string.Empty;
 
-        // Check if the file is a PDF
+        // Check if the file is a Image
         if (!IsImage(file))
         {
-            errorMessage = "The file is not a valid PDF.";
+            errorMessage = "The file is not a valid Image.";
             return null;
         }
 

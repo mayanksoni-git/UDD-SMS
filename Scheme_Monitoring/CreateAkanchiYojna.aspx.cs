@@ -23,7 +23,9 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
         {
             if (Request.QueryString.Count > 0)
             {
-                hfAkanshiYoujnaId.Value = Request.QueryString["AkanshiID"].ToString();
+                //hfAkanshiYoujnaId.Value = Request.QueryString["AkanshiID"].ToString();
+                string encryptedId = Request.QueryString["AkanshiID"];
+                hfAkanshiYoujnaId.Value = CryptoHelper.Decrypt(Server.UrlDecode(encryptedId));
                 GetGetAkanshiDataById(Convert.ToInt32(hfAkanshiYoujnaId.Value));
             }
 
@@ -52,11 +54,19 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
             ddlFY.SelectedValue = dt.Rows[0]["FinancialYear_Id"].ToString();
 
             txtCMFellowName.Text = dt.Rows[0]["CMFellowName"].ToString();
+
             txtCMAbhyudaySchool.Text = dt.Rows[0]["CMAbhyudaySchool"].ToString();
+            txtCMAbhyudaySchoolWP.Text = dt.Rows[0]["CMAbhyudaySchoolWP"].ToString();
+
             txtAnganwadiConstructionOnRent.Text = dt.Rows[0]["AnganwadiConstructionOnRent"].ToString();
             txtAnganwadiConstructionOnOtherPlace.Text = dt.Rows[0]["AnganwadiConstructionOnOtherPlace"].ToString();
+            txtAnganwadiConstructionWP.Text = dt.Rows[0]["AnganwadiConstructionWP"].ToString();
+
             txtSmartClassFurniture.Text = dt.Rows[0]["SmartClassFurniture"].ToString();
+            txtSmartClassFurnitureWP.Text = dt.Rows[0]["SmartClassFurnitureWP"].ToString(); 
+
             txtAdditionalClassRoom.Text = dt.Rows[0]["AdditionalClassRoom"].ToString();
+            txtAdditionalClassRoomWP.Text = dt.Rows[0]["AdditionalClassRoomWP"].ToString();
 
             //txtTotalCMAbhyudaySchoolCost.Text = dt.Rows[0]["TotalCMAbhyudayCost"].ToString();
             //txtTotalAnganwadiCost.Text = dt.Rows[0]["TotalAnganwadiCost"].ToString();
@@ -131,6 +141,13 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
                 if (divisionId > 0)
                 {
                     SetDropdownValueAndDisable(ddlDivision, divisionId);
+                    txtCMFellowName.Enabled = false;
+                    txtCMAbhyudaySchool.Enabled = false;
+                    txtAnganwadiConstructionOnRent.Enabled = false;
+                    txtAnganwadiConstructionOnOtherPlace.Enabled = false;
+                    txtSmartClassFurniture.Enabled = false;
+                    txtAdditionalClassRoom.Enabled = false;
+                    ddlFY.Enabled = false;
                 }
             }
         }
@@ -420,16 +437,26 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
             Zone = zone,
             Circle = circle,
             Division = division,
+
             CMFellowName = txtCMFellowName.Text.ToString(),
+
             CMAbhyudaySchool = Int32.Parse(string.IsNullOrEmpty(txtCMAbhyudaySchool.Text) ? "0" : txtCMAbhyudaySchool.Text),
+            CMAbhyudaySchoolWP = Int32.Parse(string.IsNullOrEmpty(txtCMAbhyudaySchoolWP.Text) ? "0" : txtCMAbhyudaySchoolWP.Text),
             TotalCMAbhyudaySchoolCost = double.Parse(string.IsNullOrEmpty(txtTotalCMAbhyudaySchoolCost.Text) ? "0" : txtTotalCMAbhyudaySchoolCost.Text),
+
             AnganwadiConstructionOnRent = Int32.Parse(string.IsNullOrEmpty(txtAnganwadiConstructionOnRent.Text) ? "0" : txtAnganwadiConstructionOnRent.Text),
             AnganwadiConstructionOnOtherPlace = Int32.Parse(string.IsNullOrEmpty(txtAnganwadiConstructionOnOtherPlace.Text) ? "0" : txtAnganwadiConstructionOnOtherPlace.Text),
+            AnganwadiConstructionWP = Int32.Parse(string.IsNullOrEmpty(txtAnganwadiConstructionWP.Text) ? "0" : txtAnganwadiConstructionWP.Text),
             TotalAnganwadiCost = double.Parse(string.IsNullOrEmpty(txtTotalAnganwadiCost.Text) ? "0" : txtTotalAnganwadiCost.Text),
+
             SmartClassFurniture = Int32.Parse(string.IsNullOrEmpty(txtSmartClassFurniture.Text) ? "0" : txtSmartClassFurniture.Text),
+            SmartClassFurnitureWP = Int32.Parse(string.IsNullOrEmpty(txtSmartClassFurnitureWP.Text) ? "0" : txtSmartClassFurnitureWP.Text),
             TotalSmartClassCost = double.Parse(string.IsNullOrEmpty(txtTotalSmartClassCost.Text) ? "0" : txtTotalSmartClassCost.Text),
+
             AdditionalClassRoom = Int32.Parse(string.IsNullOrEmpty(txtAdditionalClassRoom.Text) ? "0" : txtAdditionalClassRoom.Text),
+            AdditionalClassRoomWP = Int32.Parse(string.IsNullOrEmpty(txtAdditionalClassRoomWP.Text) ? "0" : txtAdditionalClassRoomWP.Text),
             AdditionalClassRoomCost = double.Parse(string.IsNullOrEmpty(txtAdditionalClassRoomCost.Text) ? "0" : txtAdditionalClassRoomCost.Text),
+
             TotalAmount = double.Parse(string.IsNullOrEmpty(txtTotalAmount.Text) ? "0" : txtTotalAmount.Text),
             TotalAmountTransferred = double.Parse(string.IsNullOrEmpty(txtTotalAmountTransferred.Text) ? "0" : txtTotalAmountTransferred.Text),
             AddedBy = personId,

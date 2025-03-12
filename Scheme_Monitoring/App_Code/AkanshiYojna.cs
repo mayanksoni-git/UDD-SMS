@@ -22,7 +22,7 @@ public class AkanshiYojna
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[6];
+            SqlParameter[] param = new SqlParameter[7];
 
             param[0] = new SqlParameter("@AddedBy", obj.AddedBy);
             param[1] = new SqlParameter("@CMFellowName", obj.CMFellowName);
@@ -30,6 +30,7 @@ public class AkanshiYojna
             param[3] = new SqlParameter("@ProfessionalDetail", obj.ProfessionalDetail);
             param[4] = new SqlParameter("@Experience", obj.Experience);
             param[5] = new SqlParameter("@CMFellowImagePath", obj.CMFellowImagePath);
+            param[6] = new SqlParameter("@Division", obj.Division);
 
             return objDAL.ExecuteProcedure("sp_InsertCMFellowDetail", param);
         }
@@ -39,8 +40,7 @@ public class AkanshiYojna
         }
     }
 
-    #region Master Plan
-    public DataTable getMasterPlanReportBySearch(int StateId, int MandalId, int CircleId, string ULBType, int ULBID, int FY)
+    public DataTable getCMFellowDetailBySearch(int StateId, int MandalId, int CircleId, string ULBType, int ULBID, int FY)
     {
         try
         {
@@ -53,7 +53,7 @@ public class AkanshiYojna
             param[4] = new SqlParameter("@ULBType", ULBType);
             param[5] = new SqlParameter("@MandalId", MandalId);
 
-            return objDAL.GetDataByProcedure("sp_GetMasterPlan", param);
+            return objDAL.GetDataByProcedure("sp_GetCMFellowDetail", param);
         }
         catch (Exception ex)
         {
@@ -61,15 +61,15 @@ public class AkanshiYojna
         }
     }
 
-    public DataTable getGetMasterPlanById(int MasterPlanId)
+    public DataTable getGetCMFellowDetailById(int Id)
     {
         try
         {
             DataTable dt = new DataTable();
             SqlParameter[] param = new SqlParameter[1];
-            param[0] = new SqlParameter("@MasterPlanId", MasterPlanId);
+            param[0] = new SqlParameter("@Id", Id);
 
-            return objDAL.GetDataByProcedure("sp_GetMasterPlanById", param);
+            return objDAL.GetDataByProcedure("sp_GetCMFellowDetailById", param);
         }
         catch (Exception ex)
         {
@@ -77,21 +77,23 @@ public class AkanshiYojna
         }
     }
 
-    public int UpdateMasterPlan(tbl_MasterPlan obj, int MasterPlanId)
+    public int UpdateCMFellowDetail(tbl_CMFellowDetail obj, int Id)
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[7];
+            SqlParameter[] param = new SqlParameter[8];
 
             param[0] = new SqlParameter("@AddedBy", obj.AddedBy);
-            param[1] = new SqlParameter("@FY", obj.FY);
-            param[2] = new SqlParameter("@Division", obj.Division);
-            param[3] = new SqlParameter("@Population", obj.Population);
-            param[4] = new SqlParameter("@Area", obj.Area);
-            param[5] = new SqlParameter("@MasterPlanId", MasterPlanId);
-            param[6] = new SqlParameter("@MasterPlanFilePath", obj.MasterPlanFilePath);
+            param[1] = new SqlParameter("@CMFellowName", obj.CMFellowName);
+            param[2] = new SqlParameter("@EducationalDetail", obj.EducationalDetail);
+            param[3] = new SqlParameter("@ProfessionalDetail", obj.ProfessionalDetail);
+            param[4] = new SqlParameter("@Experience", obj.Experience);
+            param[5] = new SqlParameter("@CMFellowImagePath", obj.CMFellowImagePath);
+            param[6] = new SqlParameter("@Division", obj.Division);
+            param[7] = new SqlParameter("@Id", Id);
 
-            return objDAL.ExecuteProcedure("sp_UpdateMasterPlan", param);
+
+            return objDAL.ExecuteProcedure("sp_UpdateCMFellowDetail", param);
         }
         catch (Exception ex)
         {
@@ -99,25 +101,4 @@ public class AkanshiYojna
         }
     }
 
-    public int InsertMasterPlan(tbl_MasterPlan obj_MasterPlan)
-    {
-        try
-        {
-            SqlParameter[] param = new SqlParameter[6];
-
-            param[0] = new SqlParameter("@AddedBy", obj_MasterPlan.AddedBy);
-            param[1] = new SqlParameter("@FY", obj_MasterPlan.FY);
-            param[2] = new SqlParameter("@Division", obj_MasterPlan.Division);
-            param[3] = new SqlParameter("@Population", obj_MasterPlan.Population);
-            param[4] = new SqlParameter("@Area", obj_MasterPlan.Area);
-            param[5] = new SqlParameter("@MasterPlanFilePath", obj_MasterPlan.MasterPlanFilePath);
-
-            return objDAL.ExecuteProcedure("sp_InsertMasterPlan", param);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception(ex.Message);
-        }
-    }
-    #endregion
 }

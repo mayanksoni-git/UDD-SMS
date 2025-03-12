@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin_PMS.master" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeFile="AkanchiYojnaDashboard.aspx.cs" Inherits="AkanchiYojnaDashboard" EnableEventValidation="false" ValidateRequest="false" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin_PMS.master" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeFile="CMFellowDetail.aspx.cs" Inherits="CMFellowDetail" EnableEventValidation="false" ValidateRequest="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -19,12 +19,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Akanshi Nagar Yojana</h4>
+                                    <h4 class="mb-sm-0">CM Fellow Detail</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                            <li class="breadcrumb-item">Akanshi Nagar Yojana</li>
-                                            <li class="breadcrumb-item active">Create Akanshi Nagar Yojana</li>
+                                            <li class="breadcrumb-item">Akanshi Yojna</li>
+                                            <li class="breadcrumb-item active">CM Fellow Detail</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -37,7 +37,7 @@
                                         <h4 class="card-title mb-0 flex-grow-1">Filter :
                                             <label id="message" runat="server" style="float: right; color: red; font-weight: bold"></label>
                                         </h4>
-                                        <a href="CreateAkanchiYojna.aspx" class="filter-btn" style="float: right"><i class="icon-download"></i>Create New</a>
+                                        <a href="AddCMFellowDetail.aspx" class="filter-btn" style="float: right"><i class="icon-download"></i>Create New</a>
                                     </div>
                                     <div class="card-body">
                                         <div class="live-preview">
@@ -82,7 +82,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-3 col-md-6" hidden>
                                                     <div id="divFY" runat="server">
                                                         <asp:Label ID="lblFY" runat="server" Text="Select Financial Year*" CssClass="form-label fw-bold me-1"></asp:Label>
                                                         <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select"></asp:DropDownList>
@@ -90,10 +90,8 @@
                                                 </div>
 
                                                 <div class="col-xxl-12 col-md-12 text-center">
-
                                                     <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                     <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -116,7 +114,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header align-items-center d-flex">
-                                <h4 class="card-title mb-0 flex-grow-1">Akanshi Yojna Report</h4>
+                                <h4 class="card-title mb-0 flex-grow-1">CM Fellow Detail</h4>
                             </div>
                             <!-- end card header -->
                             <div class="card-body">
@@ -128,12 +126,11 @@
                                         <div style="overflow: auto">
                                             <asp:GridView runat="server" ID="grdPost" AllowPaging="false" CssClass="display table table-bordered"
                                                 AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender"
-                                                OnRowDataBound="grdPost_RowDataBound" ShowFooter="True">
+                                                OnRowDataBound="grdPost_RowDataBound" ShowFooter="false">
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Edit">
                                                         <ItemTemplate>
-                                                            <a href='CreateAkanchiYojna.aspx?AkanshiID=<%# EncryptSrNo(Eval("SrNo").ToString()) %>'
-                                                                cssclass="btn btn-primary editBTN">Edit</a>
+                                                            <a href="AddCMFellowDetail.aspx?ID=<%# Eval("SrNo") %>" cssclass="btn btn-primary editBTN">Edit</a>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Sr. No.">
@@ -146,22 +143,21 @@
                                                     <asp:BoundField HeaderText="Mandal" DataField="DivName" />
                                                     <asp:BoundField HeaderText="District" DataField="Circle_Name" />
                                                     <asp:BoundField HeaderText="ULB Name" DataField="Division_Name" />
-                                                    <asp:BoundField HeaderText="Financial Year" DataField="FinancialYear_Comments" />
-                                                    <asp:BoundField HeaderText="CM Fellow Name " DataField="CMFellowName" />
-                                                    <asp:BoundField HeaderText="CM Abhyuday School" DataField="CMAbhyudaySchool" ItemStyle-CssClass="right-align" />
-                                                    <asp:BoundField HeaderText="Total CM Abhyuday  Cost @1.42 Crore each" DataField="TotalCMAbhyudayCost" ItemStyle-CssClass="right-align" />
-                                                    <asp:BoundField HeaderText="Anganwadi Construction(On Rent)" DataField="AnganwadiConstructionOnRent" ItemStyle-CssClass="right-align" />
-                                                    <asp:BoundField HeaderText="Anganwadi Construction (On Other place)" DataField="AnganwadiConstructionOnOtherPlace" ItemStyle-CssClass="right-align" />
-                                                    <asp:BoundField HeaderText="Total Anganwadi Cost @11.84 Lakh each" DataField="TotalAnganwadiCost" ItemStyle-CssClass="right-align" />
-                                                    <asp:BoundField HeaderText="Smart Class+Furniture" DataField="SmartClassFurniture" ItemStyle-CssClass="right-align" />
-                                                    <asp:BoundField HeaderText="Total Smart Class Cost Smart class @2.505L &Furniture @0.7195L each" DataField="TotalSmartClassCost" ItemStyle-CssClass="right-align" />
-                                                    <asp:BoundField HeaderText="Additional Class Room" DataField="AdditionalClassRoom" ItemStyle-CssClass="right-align" />
-                                                    <asp:BoundField HeaderText="Total Additional Class Room @9.27 Lakh each" DataField="TotalAdditionalClassRoomCost" ItemStyle-CssClass="right-align" />
-                                                    <asp:BoundField HeaderText="Total Amount Transferred" DataField="TotalAmountTransferred" ItemStyle-CssClass="right-align" />
+                                                    <asp:BoundField HeaderText="CM Fellow Name" DataField="CMFellowName" />
+                                                    <asp:BoundField HeaderText="Educational Detail" DataField="EducationalDetail" />
+                                                    <asp:BoundField HeaderText="Professional Detail" DataField="ProfessionalDetail" />
+                                                    <asp:BoundField HeaderText="Experience" DataField="Experience" />
+                                                    <asp:TemplateField HeaderText="CM Fellow Image">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="hypCMFellowImage" runat="server" Target="_blank" NavigateUrl='<%# Eval("CMFellowImagePath") %>'>
+                                                                <asp:Image ID="imgCMFellow" runat="server" ImageUrl='<%# Eval("CMFellowImagePath") %>' CssClass="circle-image" AlternateText="CM Fellow Image" />
+                                                            </asp:HyperLink>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                 </Columns>
                                                 <EmptyDataTemplate>
                                                     <tr>
-                                                        <td colspan="15" style="text-align: center; font-weight: bold; color: red;">No records found</td>
+                                                        <td colspan="11" style="text-align: center; font-weight: bold; color: red;">No records found</td>
                                                     </tr>
                                                 </EmptyDataTemplate>
                                             </asp:GridView>
@@ -175,4 +171,13 @@
             </div>
         </div>
     </div>
+    <style>
+        .circle-image {
+    border-radius: 50%;
+    width: 50px; /* Adjust the size as needed */
+    height: 50px; /* Adjust the size as needed */
+    object-fit: cover; /* Ensures the image covers the circle without distortion */
+    border: 2px solid #ddd; /* Optional: Adds a border around the image */
+}
+    </style>
 </asp:Content>
