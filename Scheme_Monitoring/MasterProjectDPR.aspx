@@ -153,8 +153,7 @@
 
                                             <div class="col-xxl-1 col-md-6 text-center">
                                                 <label class="d-block">&nbsp;</label>
-                                                <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-
+                                                <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" Visible="false" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                             </div>
                                         </div>
                                         <!--end row-->

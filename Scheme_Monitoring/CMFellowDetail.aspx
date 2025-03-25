@@ -161,6 +161,9 @@
                                                     </tr>
                                                 </EmptyDataTemplate>
                                             </asp:GridView>
+                                            <br />
+                                            <%--<iframe title="Tutorial on Power BI" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=f219299d-e5a0-4871-9ae2-2364c57217d5&autoAuth=true&ctid=194f1a71-32ca-4a84-a646-e5b0d4eb00c1" frameborder="0" allowFullScreen="true"></iframe>--%>
+                                            <%--<iframe title="CMVNY-Master Dashboard" width="1500" height="750" src="https://app.powerbi.com/reportEmbed?reportId=fa1f9409-1eab-42e3-8b0b-daa7d6289f9a&autoAuth=true&embeddedDemo=true" frameborder="0" allowFullScreen="true"></iframe>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -170,6 +173,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div>
+        
     </div>
     <style>
         .circle-image {

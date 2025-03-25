@@ -150,14 +150,27 @@
                                                     <asp:BoundField HeaderText="CM Fellow Name " DataField="CMFellowName" />
                                                     <asp:BoundField HeaderText="CM Abhyuday School" DataField="CMAbhyudaySchool" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Total CM Abhyuday  Cost @1.42 Crore each" DataField="TotalCMAbhyudayCost" ItemStyle-CssClass="right-align" />
+
                                                     <asp:BoundField HeaderText="Anganwadi Construction(On Rent)" DataField="AnganwadiConstructionOnRent" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Anganwadi Construction (On Other place)" DataField="AnganwadiConstructionOnOtherPlace" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Total Anganwadi Cost @11.84 Lakh each" DataField="TotalAnganwadiCost" ItemStyle-CssClass="right-align" />
+
                                                     <asp:BoundField HeaderText="Smart Class+Furniture" DataField="SmartClassFurniture" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Total Smart Class Cost Smart class @2.505L &Furniture @0.7195L each" DataField="TotalSmartClassCost" ItemStyle-CssClass="right-align" />
+
                                                     <asp:BoundField HeaderText="Additional Class Room" DataField="AdditionalClassRoom" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Total Additional Class Room @9.27 Lakh each" DataField="TotalAdditionalClassRoomCost" ItemStyle-CssClass="right-align" />
+
                                                     <asp:BoundField HeaderText="Total Amount Transferred" DataField="TotalAmountTransferred" ItemStyle-CssClass="right-align" />
+
+                                                    <asp:BoundField HeaderText="CM Abhyuday School Work Progress" DataField="CMAbhyudaySchoolWP" ItemStyle-CssClass="right-align" />
+                                                    <asp:BoundField HeaderText="Anganwadi Construction Work Progress" DataField="AnganwadiConstructionWP" ItemStyle-CssClass="right-align" />
+                                                    <asp:BoundField HeaderText="Smart Class+Furniture Work Progress" DataField="SmartClassFurnitureWP" ItemStyle-CssClass="right-align" />
+                                                    <asp:BoundField HeaderText="Additional Class Room Work Progress" DataField="AdditionalClassRoomWP" ItemStyle-CssClass="right-align" />
+
+
+
+
                                                 </Columns>
                                                 <EmptyDataTemplate>
                                                     <tr>

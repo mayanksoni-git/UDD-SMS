@@ -284,11 +284,11 @@
                                                     <div class="col">
                                                         <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
                                                             <li class="nav-item" role="presentation">
-                                                                <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#productnav-all" role="tab" aria-selected="false" tabindex="-1">Upload Document (If Any) 
+                                                                <a class="nav-link fw-semibold active" data-bs-toggle="tab" href="#productnav-all" role="tab" aria-selected="true" tabindex="-1">Upload Document (If Any) 
                                                                 </a>
                                                             </li>
                                                             <li class="nav-item" role="presentation">
-                                                                <a class="nav-link fw-semibold active" data-bs-toggle="tab" href="#productnav-published" role="tab" aria-selected="true">Download / View Previous Uploaded Document 
+                                                                <a class="nav-link fw-semibold" data-bs-toggle="tab" href="#productnav-published" role="tab" aria-selected="false">Download / View Previous Uploaded Document 
                                                                 </a>
                                                             </li>
                                                         </ul>
@@ -299,7 +299,7 @@
                                             <div class="card-body">
 
                                                 <div class="tab-content text-muted">
-                                                    <div class="tab-pane" id="productnav-all" role="tabpanel">
+                                                    <div class="tab-pane active show" id="productnav-all" role="tabpanel">
                                                         <div id="table-product-list-all" class="table-card gridjs-border-none">
                                                             <asp:GridView ID="grdDocumentMaster" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Documents Configured To Upload" OnPreRender="grdDocumentMaster_PreRender" OnRowDataBound="grdDocumentMaster_RowDataBound">
                                                                 <Columns>
@@ -340,7 +340,7 @@
                                                     </div>
                                                     <!-- end tab pane -->
 
-                                                    <div class="tab-pane active show" id="productnav-published" role="tabpanel">
+                                                    <div class="tab-pane" id="productnav-published" role="tabpanel">
                                                         <div id="table-product-list-published" class="table-card gridjs-border-none">
                                                             <asp:GridView ID="grdMultipleFiles" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="False" EmptyDataText="No Records Found" OnRowDataBound="grdMultipleFiles_RowDataBound">
                                                                 <Columns>
