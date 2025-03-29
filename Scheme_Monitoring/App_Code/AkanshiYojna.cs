@@ -18,7 +18,7 @@ public class AkanshiYojna
 
     string ConStr = ConfigurationManager.AppSettings.Get("conn").ToString();
 
-    public int InsertCMFellowDetail(tbl_CMFellowDetail obj)
+    public int InsertCMFellowDetailOld(tbl_CMFellowDetail obj)
     {
         try
         {
@@ -33,6 +33,33 @@ public class AkanshiYojna
             param[6] = new SqlParameter("@Division", obj.Division);
 
             return objDAL.ExecuteProcedure("sp_InsertCMFellowDetail", param);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public int InsertCMFellowDetail(tbl_CMFellowDetail obj)
+    {
+        try
+        {
+            SqlParameter[] param = new SqlParameter[7];
+
+            param[0] = new SqlParameter("@AddedBy", obj.AddedBy);
+            param[1] = new SqlParameter("@CMFellowName", obj.CMFellowName);
+            param[2] = new SqlParameter("@EducationalDetail", obj.EducationalDetail);
+            param[3] = new SqlParameter("@ProfessionalDetail", obj.ProfessionalDetail);
+            param[4] = new SqlParameter("@Experience", obj.Experience);
+            param[5] = new SqlParameter("@CMFellowImagePath", obj.CMFellowImagePath);
+            param[6] = new SqlParameter("@Division", obj.Division);
+
+            DataTable dtResult = objDAL.GetDataByProcedure("sp_InsertCMFellowDetail", param);
+            if (dtResult.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dtResult.Rows[0]["Result"]);
+            }
+            return 0;
         }
         catch (Exception ex)
         {

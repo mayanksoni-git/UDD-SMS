@@ -77,7 +77,7 @@ public partial class AddCMFellowDetail : BasePage
         }
     }
 
-    protected void btnsave_Click(object sender, EventArgs e)
+    protected void btnsave_Click2(object sender, EventArgs e)
     {
         try
         {
@@ -124,6 +124,76 @@ public partial class AddCMFellowDetail : BasePage
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
+        }
+    }
+
+
+    protected void btnsave_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (!ValidateFields())
+            {
+                return;
+            }
+
+            string imageLocation = UploadImage();
+            if (string.IsNullOrEmpty(imageLocation))
+            {
+                imageLocation = "";
+            }
+
+            tbl_CMFellowDetail objCMFellowDetail = CreateCMFellowDetailObject();
+            objCMFellowDetail.CMFellowImagePath = imageLocation;
+
+            try
+            {
+                int result = obj.InsertCMFellowDetail(objCMFellowDetail);
+
+                if (result > 0)
+                {
+                    lblMessage.Text = "Record saved successfully!";
+                    lblMessage.ForeColor = System.Drawing.Color.Green;
+                    reset();
+                }
+                else if (result == -1)
+                {
+                    // Division already exists case
+                    bool IsPDFDelete = ImageUploader.DeleteImage(imageLocation);
+                    if (!IsPDFDelete)
+                    {
+                        lblMessage.Text = "You can insert only one record for every Division. Additionally, the uploaded image couldn't be deleted.";
+                    }
+                    else
+                    {
+                        lblMessage.Text = "You can insert only one record for every Division.";
+                    }
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    bool IsPDFDelete = ImageUploader.DeleteImage(imageLocation);
+                    if (!IsPDFDelete)
+                    {
+                        lblMessage.Text = "Something went wrong please try again or contact administrator!. While processing this data, CM Fellow Image was uploaded but failed to be deleted.";
+                    }
+                    else
+                    {
+                        lblMessage.Text = "Something went wrong please try again or contact administrator!";
+                    }
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Text = "An error occurred: " + ex.Message;
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+        catch (Exception ex)
+        {
+            lblMessage.Text = ex.Message;
+            lblMessage.ForeColor = System.Drawing.Color.Red;
         }
     }
 
