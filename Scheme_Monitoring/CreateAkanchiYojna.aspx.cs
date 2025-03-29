@@ -147,6 +147,7 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
                     txtAnganwadiConstructionOnOtherPlace.Enabled = false;
                     txtSmartClassFurniture.Enabled = false;
                     txtAdditionalClassRoom.Enabled = false;
+                    txtTotalAmountTransferred.Enabled = false;
                     ddlFY.Enabled = false;
                 }
             }

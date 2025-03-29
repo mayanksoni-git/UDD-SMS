@@ -25,7 +25,7 @@ public partial class MasterProjectDPR : System.Web.UI.Page
             btnSave.Visible = true;
         }
 
-        var allowedDivisionIds = new HashSet<string> { "175", "429", "400", "494"};
+        var allowedDivisionIds = new HashSet<string> { "175", "429", "400", "494", "149", "321", "557" };
 
         // Check if the session value is in the allowed list
         if (allowedDivisionIds.Contains(Session["PersonJuridiction_DivisionId"].ToString()))
