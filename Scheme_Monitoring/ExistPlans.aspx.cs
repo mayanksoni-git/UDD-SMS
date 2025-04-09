@@ -10,7 +10,7 @@ using System.Data;
 
 public partial class ExistPlans : System.Web.UI.Page
 {
-    ULBFund objLoan = new ULBFund();
+    ULBFund objLoan = new ULBFund();    
     protected void Page_PreInit(object sender, EventArgs e)
     {
         this.MasterPageFile = SetMasterPage.ReturnPage();

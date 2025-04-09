@@ -10,7 +10,7 @@ using System.IO;
 using System.Text;
 using System.Data.SqlClient;
 
-public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page
+public partial class ListOfAllULB_ExpenseType : System.Web.UI.Page 
 {
     ULBFund objLoan = new ULBFund();
     string ConStr = ConfigurationManager.AppSettings.Get("conn");

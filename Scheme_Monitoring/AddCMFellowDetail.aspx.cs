@@ -162,7 +162,7 @@ public partial class AddCMFellowDetail : BasePage
                     bool IsPDFDelete = ImageUploader.DeleteImage(imageLocation);
                     if (!IsPDFDelete)
                     {
-                        lblMessage.Text = "You can insert only one record for every Division. Additionally, the uploaded image couldn't be deleted.";
+                        lblMessage.Text = "You can insert only one record for every ULB. Additionally, the uploaded image couldn't be deleted.";
                     }
                     else
                     {

@@ -10,7 +10,7 @@ using System.Data;
 /// </summary>
 public class ULBFund
 {
-    DAL objDAL = new DAL();
+    DAL objDAL = new DAL(); 
 
     string ConStr = ConfigurationManager.AppSettings.Get("conn").ToString();
 

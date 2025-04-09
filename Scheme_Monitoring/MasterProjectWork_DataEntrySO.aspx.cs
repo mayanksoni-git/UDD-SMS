@@ -351,6 +351,48 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
         {
             obj_tbl_ProjectWork.ProjectWork_ProjectType_Id = 0;
         }
+
+
+        //New Fields Starts
+
+        obj_tbl_ProjectWork.TenderAppDate = txtTenderAppDate.Text.Trim();
+        obj_tbl_ProjectWork.TenderIssueDate = txtTenderIssueDate.Text.Trim();
+        obj_tbl_ProjectWork.TenderEndDate = txtTenderEndDate.Text.Trim();
+        try
+        {
+            obj_tbl_ProjectWork.BidSecurityAmount = Convert.ToDecimal(txtBidSecurityAmount.Text.Trim());
+        }
+        catch (FormatException)
+        {
+            obj_tbl_ProjectWork.BidSecurityAmount = 0;
+        }
+        obj_tbl_ProjectWork.TenderFileUploadPath = "";
+        if (fuTenderFileUpload.HasFile)
+        {
+            obj_tbl_ProjectWork.TenderFileUploadPath_Bytes = fuTenderFileUpload.FileBytes;
+            string[] _fname = fuTenderFileUpload.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            obj_tbl_ProjectWork.extTenderFile = _fname[_fname.Length - 1];
+        }
+        obj_tbl_ProjectWork.WorkOrderNo = txtWorkOrderNo.Text.Trim();
+        obj_tbl_ProjectWork.WorkOrderDate = txtWorkOrderDate.Text.Trim();
+
+        obj_tbl_ProjectWork.WorkOrderCopyPath = "";
+        if (fuWorkOrderCopy.HasFile)
+        {
+            obj_tbl_ProjectWork.WorkOrderCopyPath_Bytes = fuWorkOrderCopy.FileBytes;
+            string[] _fname = fuWorkOrderCopy.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            obj_tbl_ProjectWork.extWorkOrderCopy = _fname[_fname.Length - 1];
+        }
+        obj_tbl_ProjectWork.ContractorName = txtContractorName.Text.Trim();
+        obj_tbl_ProjectWork.ContactPerson = txtContactPerson.Text.Trim();
+        obj_tbl_ProjectWork.ContactNo = txtContactNo.Text.Trim();
+        obj_tbl_ProjectWork.EmailId = txtEmailId.Text.Trim();
+        obj_tbl_ProjectWork.ContractorAddress = txtContractorAddress.Text.Trim();
+
+        //New Fields Ends
+
+
+
         obj_tbl_ProjectWork.ProjectWork_DistrictId = 0;
         obj_tbl_ProjectWork.ProjectWork_BlockId = 0;
         try

@@ -7,7 +7,7 @@
     <asp:HiddenField ID="FYID" runat="server" />
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
     <div class="main-content">
-        <div class="page-content">
+        <div class="page-content">        
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
                     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">

@@ -328,6 +328,10 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
             string[] _fname = flUploadGO.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
             extGO = _fname[_fname.Length - 1];
         }
+        else
+        {
+            obj_tbl_ProjectWork.ProjectWork_GO_Path = hf_GO_Path.Value.ToString();
+        }
         obj_tbl_ProjectWork.ProjectWork_GO_Date = txtGODate2.Text.Trim();
         obj_tbl_ProjectWork.ProjectWork_GO_No = txtGONo.Text.Trim();
         try
@@ -357,6 +361,57 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
         {
             obj_tbl_ProjectWork.ProjectWork_ProjectType_Id = 0;
         }
+
+
+
+        //New Fields Starts
+
+        obj_tbl_ProjectWork.TenderAppDate = txtTenderAppDate.Text.Trim();
+        obj_tbl_ProjectWork.TenderIssueDate = txtTenderIssueDate.Text.Trim();
+        obj_tbl_ProjectWork.TenderEndDate = txtTenderEndDate.Text.Trim();
+        try
+        {
+            obj_tbl_ProjectWork.BidSecurityAmount = Convert.ToDecimal(txtBidSecurityAmount.Text.Trim());
+        }
+        catch (FormatException)
+        {
+            obj_tbl_ProjectWork.BidSecurityAmount = 0;
+        }
+        obj_tbl_ProjectWork.TenderFileUploadPath = "";
+        if (fuTenderFileUpload.HasFile)
+        {
+            obj_tbl_ProjectWork.TenderFileUploadPath_Bytes = fuTenderFileUpload.FileBytes;
+            string[] _fname = fuTenderFileUpload.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            obj_tbl_ProjectWork.extTenderFile = _fname[_fname.Length - 1];
+        }
+        else
+        {
+            obj_tbl_ProjectWork.TenderFileUploadPath = hfTenderFileUploadPath.Value.ToString();
+        }
+        obj_tbl_ProjectWork.WorkOrderNo = txtWorkOrderNo.Text.Trim();
+        obj_tbl_ProjectWork.WorkOrderDate = txtWorkOrderDate.Text.Trim();
+
+        obj_tbl_ProjectWork.WorkOrderCopyPath = "";
+        if (fuWorkOrderCopy.HasFile)
+        {
+            obj_tbl_ProjectWork.WorkOrderCopyPath_Bytes = fuWorkOrderCopy.FileBytes;
+            string[] _fname = fuWorkOrderCopy.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            obj_tbl_ProjectWork.extWorkOrderCopy = _fname[_fname.Length - 1];
+        }
+        else
+        {
+            obj_tbl_ProjectWork.WorkOrderCopyPath = hfWorkOrderCopyPath.Value.ToString();
+        }
+        obj_tbl_ProjectWork.ContractorName = txtContractorName.Text.Trim();
+        obj_tbl_ProjectWork.ContactPerson = txtContactPerson.Text.Trim();
+        obj_tbl_ProjectWork.ContactNo = txtContactNo.Text.Trim();
+        obj_tbl_ProjectWork.EmailId = txtEmailId.Text.Trim();
+        obj_tbl_ProjectWork.ContractorAddress = txtContractorAddress.Text.Trim();
+
+        //New Fields Ends
+
+
+
         obj_tbl_ProjectWork.ProjectWork_DistrictId = 0;
         obj_tbl_ProjectWork.ProjectWork_BlockId = 0;
         try
@@ -534,7 +589,7 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
             if (Msg == "")
             {
                 MessageBox.Show("Project Created / Updated Successfully!");
-                Response.Redirect("MasterProjectWorkDataEntry.aspx");
+                Response.Redirect("MasterProjectWorkDataEntry?M=SO");
                 return;
             }
             else
@@ -664,6 +719,30 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
             {
                 aGO.Visible = false;
             }
+
+            txtTenderAppDate.Text = ds.Tables[0].Rows[0]["TenderAppDate"].ToString();
+            txtTenderIssueDate.Text = ds.Tables[0].Rows[0]["TenderIssueDate"].ToString();
+            txtTenderEndDate.Text = ds.Tables[0].Rows[0]["TenderEndDate"].ToString();
+            txtBidSecurityAmount.Text = ds.Tables[0].Rows[0]["BidSecurityAmount"].ToString();
+            hfTenderFileUploadPath.Value = ds.Tables[0].Rows[0]["TenderFileUploadPath"].ToString();
+            if (hfTenderFileUploadPath.Value == "")
+            {
+                aTenderFile.Visible = false;
+            }
+            hfWorkOrderCopyPath.Value = ds.Tables[0].Rows[0]["WorkOrderCopyPath"].ToString();
+            if (hfWorkOrderCopyPath.Value == "")
+            {
+                aOrderCopyFile.Visible = false;
+            }
+
+            txtWorkOrderNo.Text = ds.Tables[0].Rows[0]["WorkOrderNo"].ToString();
+            txtWorkOrderDate.Text = ds.Tables[0].Rows[0]["WorkOrderDate"].ToString();
+            txtContractorName.Text = ds.Tables[0].Rows[0]["ContractorName"].ToString();
+            txtContactPerson.Text = ds.Tables[0].Rows[0]["ContactPerson"].ToString();
+            txtContactNo.Text = ds.Tables[0].Rows[0]["ContactNo"].ToString();
+            txtEmailId.Text = ds.Tables[0].Rows[0]["EmailId"].ToString();
+            txtContractorAddress.Text = ds.Tables[0].Rows[0]["ContractorAddress"].ToString();
+            
         }
         if (ds != null && ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
         {

@@ -14,7 +14,7 @@ using System.Data.SqlClient;
 public class DAL
 {
     string ConStr = "";
-    public DAL()
+    public DAL()    
     {
         ConStr = ConfigurationManager.AppSettings.Get("conn");
     }

@@ -154,6 +154,175 @@
                                 <!--end col-->
                             </div>
 
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Tender Detail</h4>
+                                        </div>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblTenderAppDate" runat="server" Text="Tender Approval Date*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtTenderAppDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" CssClass="cal_Theme1" TargetControlID="txtTenderAppDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblTenderIssueDate" runat="server" Text="Tender Issue Date*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtTenderIssueDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender3" runat="server" CssClass="cal_Theme1" TargetControlID="txtTenderIssueDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblTenderEndDate" runat="server" Text="Tender End Date*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtTenderEndDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender4" runat="server" CssClass="cal_Theme1" TargetControlID="txtTenderEndDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblBidSecurityAmount" runat="server" Text="Bid Security Amount (In Lakhs)*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtBidSecurityAmount" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblTenderFileUpload" runat="server" Text="Upload Tender File" CssClass="form-label"></asp:Label>
+                                                            <asp:FileUpload ID="fuTenderFileUpload" runat="server" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <br />
+                                                            <button class="btn btn-outline-success" onclick="return downloadTenderFile(this);" title="Download Tender File" runat="server" id="aTenderFile">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"></path>
+                                                                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"></path>
+                                                                </svg>
+                                                            Download Tender File
+                                                            </button>                                                                                                                                
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Work Order Detail</h4>
+                                        </div>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblWorkOrderNo" runat="server" Text="Work Order No*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtWorkOrderNo" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblWorkOrderDate" runat="server" Text="Work Order Date*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtWorkOrderDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender5" runat="server" CssClass="cal_Theme1" TargetControlID="txtWorkOrderDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblWorkOrderCopy" runat="server" Text="Work Order Copy" CssClass="form-label"></asp:Label>
+                                                            <asp:FileUpload ID="fuWorkOrderCopy" runat="server" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <br />
+                                                            <button class="btn btn-outline-success" onclick="return downloadWorkOrderCopy(this);" title="Download Order Copy File" runat="server" id="aOrderCopyFile">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"></path>
+                                                                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"></path>
+                                                                </svg>
+                                                            Download Order Copy
+                                                            </button>                                                                                                                                
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Contractor Detail</h4>
+                                        </div>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblContractorName" runat="server" Text="Contractor Name*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtContractorName" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+
+                                                        <div>
+                                                            <asp:Label ID="lblContactPerson" runat="server" Text="Contact Person*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtContactPerson" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+
+                                                        <div>
+                                                            <asp:Label ID="lblContactNo" runat="server" Text="Contact Number*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtContactNo" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblEmailId" runat="server" Text="Email Id" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtEmailId" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblContractorAddress" runat="server" Text="Contractor Address" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtContractorAddress" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row" style="display:none">
                                 <div class="col-lg-12">
                                     <div class="card">
@@ -309,10 +478,10 @@
 
                             </div>
                         </div>
-
-                        
                         <asp:HiddenField ID="hf_ProjectWorkPkg_Id" runat="server" Value="0" />
-                        <asp:HiddenField ID="hf_GO_Path" runat="server" Value="0" />
+                        <asp:HiddenField ID="hf_GO_Path" runat="server" Value="" />
+                        <asp:HiddenField ID="hfTenderFileUploadPath" runat="server" Value="" />
+                        <asp:HiddenField ID="hfWorkOrderCopyPath" runat="server" Value="" />
                     </ContentTemplate>
                     <Triggers>
                         <asp:PostBackTrigger ControlID="btnSave" />
@@ -334,6 +503,32 @@
     <script type="text/javascript">
         function downloadGO(obj) {
             var path = document.getElementById('ctl00_ContentPlaceHolder1_hf_GO_Path').value;
+            if (path.trim() == "") {
+                obj.href = '#';
+                alert('File Not Found');
+                return false;
+            }
+            else {
+                window.open(location.origin + path, "_blank", "", false);
+                //location.href = window.location.origin + GO_FilePath;
+                return false;
+            }
+        }
+        function downloadTenderFile(obj) {
+            var path = document.getElementById('ctl00_ContentPlaceHolder1_hfTenderFileUploadPath').value;
+            if (path.trim() == "") {
+                obj.href = '#';
+                alert('File Not Found');
+                return false;
+            }
+            else {
+                window.open(location.origin + path, "_blank", "", false);
+                //location.href = window.location.origin + GO_FilePath;
+                return false;
+            }
+        } 
+        function downloadWorkOrderCopy(obj) {
+            var path = document.getElementById('ctl00_ContentPlaceHolder1_hfWorkOrderCopyPath').value;
             if (path.trim() == "") {
                 obj.href = '#';
                 alert('File Not Found');
