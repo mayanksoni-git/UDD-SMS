@@ -169,7 +169,83 @@
                                                 </div>
                                             </div>
                                             <div class="row gy-4 mt-0">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:Label ID="lblUCofAnganwadiCentre" runat="server" Text="UC of Anganwadi Centre" CssClass="form-label"></asp:Label>
+                                                    <asp:FileUpload ID="fileUCofAnganwadiCentre" runat="server" CssClass="form-control" />
+                                                    
+                                                    <asp:RegularExpressionValidator ID="revFileUpload" runat="server"
+                                                        ControlToValidate="fileUCofAnganwadiCentre"
+                                                        ErrorMessage="Only PDF files are allowed."
+                                                        CssClass="text-danger"
+                                                        ValidationExpression="^.*\.(pdf)$">
+                                                    </asp:RegularExpressionValidator>
+                                                    <asp:CustomValidator ID="cvFileSize" runat="server"
+                                                        ControlToValidate="fileUCofAnganwadiCentre"
+                                                        ErrorMessage="File size cannot exceed 5MB."
+                                                        CssClass="text-danger"
+                                                        OnServerValidate="cvFileSize_ServerValidate">
+                                                    </asp:CustomValidator>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:HyperLink ID="hypUCofAnganwadiCentre" runat="server" Target="_blank" Text="Click To View UC of Anganwadi Centre" Visible="false">
+                                                        <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                    </asp:HyperLink>
+                                                    <asp:HiddenField ID="hfPDFUrl" runat="server" />
+                                                </div>
+                                            </div> 
+                                            <div class="row gy-4 mt-0">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:Label ID="lblUCofAdditionalClassroom" runat="server" Text="UC of Additional Classroom" CssClass="form-label"></asp:Label>
+                                                    <asp:FileUpload ID="fileUCofAdditionalClassroom" runat="server" CssClass="form-control" />
+                                                    
+                                                    <asp:RegularExpressionValidator ID="revFileUpload2" runat="server"
+                                                        ControlToValidate="fileUCofAdditionalClassroom"
+                                                        ErrorMessage="Only PDF files are allowed."
+                                                        CssClass="text-danger"
+                                                        ValidationExpression="^.*\.(pdf)$">
+                                                    </asp:RegularExpressionValidator>
+                                                    <asp:CustomValidator ID="cvFileSize2" runat="server"
+                                                        ControlToValidate="fileUCofAdditionalClassroom"
+                                                        ErrorMessage="File size cannot exceed 5 MB."
+                                                        CssClass="text-danger"
+                                                        OnServerValidate="cvFileSize_ServerValidate2">
+                                                    </asp:CustomValidator>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:HyperLink ID="hypUCofAdditionalClassroom" runat="server" Target="_blank" Text="Click To View UC of Additional Classroom" Visible="false">
+                                                        <asp:Image ID="imgViewPDF2" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                    </asp:HyperLink>
+                                                    <asp:HiddenField ID="hfPDFUrl2" runat="server" />
+                                                </div>
+                                            </div> 
+                                            <div class="row gy-4 mt-0">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:Label ID="lblUCofSmartClassroom" runat="server" Text="UC of of Smart Classroom" CssClass="form-label"></asp:Label>
+                                                    <asp:FileUpload ID="fileUCofSmartClassroom" runat="server" CssClass="form-control" />
+                                                    
+                                                    <asp:RegularExpressionValidator ID="revFileUpload3" runat="server"
+                                                        ControlToValidate="fileUCofSmartClassroom"
+                                                        ErrorMessage="Only PDF files are allowed."
+                                                        CssClass="text-danger"
+                                                        ValidationExpression="^.*\.(pdf)$">
+                                                    </asp:RegularExpressionValidator>
+                                                    <asp:CustomValidator ID="cvFileSize3" runat="server"
+                                                        ControlToValidate="fileUCofSmartClassroom"
+                                                        ErrorMessage="File size cannot exceed 5MB."
+                                                        CssClass="text-danger"
+                                                        OnServerValidate="cvFileSize_ServerValidate3">
+                                                    </asp:CustomValidator>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:HyperLink ID="hypUCofSmartClassroom" runat="server" Target="_blank" Text="Click To View UC of Smart Classroom" Visible="false">
+                                                        <asp:Image ID="imgViewPDF3" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                    </asp:HyperLink>
+                                                    <asp:HiddenField ID="hfPDFUrl3" runat="server" />
+                                                </div>
+                                            </div>
 
+
+                                            <div class="row gy-4 mt-0">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divTotalAmount" runat="server">
                                                         <asp:Label ID="lblTotalAmount" runat="server" Text="Total Amount" CssClass="form-label fw-bold me-1"></asp:Label>

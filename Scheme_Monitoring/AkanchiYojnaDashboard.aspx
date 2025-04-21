@@ -167,10 +167,27 @@
                                                     <asp:BoundField HeaderText="Anganwadi Construction Work Progress" DataField="AnganwadiConstructionWP" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Smart Class+Furniture Work Progress" DataField="SmartClassFurnitureWP" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Additional Class Room Work Progress" DataField="AdditionalClassRoomWP" ItemStyle-CssClass="right-align" />
-
-
-
-
+                                                    <asp:TemplateField HeaderText="UC of Anganwadi Center">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="hypUCofAnganwadiCenter" runat="server" Target="_blank" NavigateUrl='<%# Eval("UCofAnganwadiCentrePath") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("UCofAnganwadiCentrePath").ToString()) %>'>
+                                                                <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                            </asp:HyperLink>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField> 
+                                                    <asp:TemplateField HeaderText="UC of Additional Classroom">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="hypUCofAdditionalClassroom" runat="server" Target="_blank" NavigateUrl='<%# Eval("UCofAdditionalClassroomPath") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("UCofAdditionalClassroomPath").ToString()) %>'>
+                                                                <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                            </asp:HyperLink>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>   
+                                                    <asp:TemplateField HeaderText="UC of Smart Classroom">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="hypUCofSmartClassroom" runat="server" Target="_blank" NavigateUrl='<%# Eval("UCofSmartClassroomPath") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("UCofSmartClassroomPath").ToString()) %>'>
+                                                                <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                            </asp:HyperLink>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                 </Columns>
                                                 <EmptyDataTemplate>
                                                     <tr>

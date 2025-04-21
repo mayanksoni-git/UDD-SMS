@@ -963,7 +963,7 @@ public class Loan
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[20];
+            SqlParameter[] param = new SqlParameter[23];
 
             param[0] = new SqlParameter("@AddedBy", obj_AkanshiYojna.AddedBy);
             param[1] = new SqlParameter("@FY", obj_AkanshiYojna.FY);
@@ -991,6 +991,10 @@ public class Loan
             param[18] = new SqlParameter("@TotalAmountTransferred", obj_AkanshiYojna.TotalAmountTransferred);
 
             param[19] = new SqlParameter("@AkanshiYojnaId", AkanshiYojnaId);
+
+            param[20] = new SqlParameter("@UCofAnganwadiCentrePath", obj_AkanshiYojna.UCofAnganwadiCentrePath);
+            param[21] = new SqlParameter("@UCofAdditionalClassroomPath", obj_AkanshiYojna.UCofAdditionalClassroomPath);
+            param[22] = new SqlParameter("@UCofSmartClassroomPath", obj_AkanshiYojna.UCofSmartClassroomPath);
 
             return objDAL.ExecuteProcedure("sp_UpdateAkanshiYojnaData", param);
         }

@@ -76,6 +76,27 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
             
             txtTotalAmountTransferred.Text= dt.Rows[0]["TotalAmountTransferred"].ToString();
 
+            hfPDFUrl.Value = dt.Rows[0]["UCofAnganwadiCentrePath"].ToString();
+            if (!string.IsNullOrEmpty(hfPDFUrl.Value.ToString()))
+            {
+                hypUCofAnganwadiCentre.Visible = true;
+                hypUCofAnganwadiCentre.NavigateUrl = dt.Rows[0]["UCofAnganwadiCentrePath"].ToString();
+            }
+
+            hfPDFUrl2.Value = dt.Rows[0]["UCofAdditionalClassroomPath"].ToString();
+            if (!string.IsNullOrEmpty(hfPDFUrl2.Value.ToString()))
+            {
+                hypUCofAdditionalClassroom.Visible = true;
+                hypUCofAdditionalClassroom.NavigateUrl = dt.Rows[0]["UCofAdditionalClassroomPath"].ToString();
+            }
+
+            hfPDFUrl3.Value = dt.Rows[0]["UCofSmartClassroomPath"].ToString();
+            if (!string.IsNullOrEmpty(hfPDFUrl3.Value.ToString()))
+            {
+                hypUCofSmartClassroom.Visible = true;
+                hypUCofSmartClassroom.NavigateUrl = dt.Rows[0]["UCofSmartClassroomPath"].ToString();
+            }
+
             CalculateTotalAmount(null, EventArgs.Empty);
 
             btnUpdate.Visible = true;
@@ -371,6 +392,72 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
         return IsValid;
     }
 
+
+    private string UploadPDFUCofAnganwadiCentrePath()
+    {
+        int MaxPdfSize = 10 * 1024 * 1024;
+        string PdfDirectory = "~/PDFs/UCAnganwadiCentre/";
+        if (fileUCofAnganwadiCentre.HasFile)
+        {
+            string errorMessage;
+            string pdfLocation = PDFUploader.UploadPDFWithSizeAndPath(fileUCofAnganwadiCentre.PostedFile, PdfDirectory, MaxPdfSize, out errorMessage);
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                MessageBox.Show("Error: " + errorMessage);
+                return null;
+            }
+
+            return pdfLocation;
+        }
+
+        return null;
+    }
+
+    private string UploadPDFUCofAdditionalClassroomPath()
+    {
+        int MaxPdfSize = 10 * 1024 * 1024;
+        string PdfDirectory = "~/PDFs/UCAdditionalClassroom/";
+        if (fileUCofAdditionalClassroom.HasFile)
+        {
+            string errorMessage;
+            string pdfLocation = PDFUploader.UploadPDFWithSizeAndPath(fileUCofAdditionalClassroom.PostedFile, PdfDirectory, MaxPdfSize, out errorMessage);
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                MessageBox.Show("Error: " + errorMessage);
+                return null;
+            }
+
+            return pdfLocation;
+        }
+
+        return null;
+    }
+
+    private string UploadPDFUCofSmartClassroomPath()
+    {
+        int MaxPdfSize = 10 * 1024 * 1024;
+        string PdfDirectory = "~/PDFs/UCSmartClassroom/";
+        if (fileUCofSmartClassroom.HasFile)
+        {
+            string errorMessage;
+            string pdfLocation = PDFUploader.UploadPDFWithSizeAndPath(fileUCofSmartClassroom.PostedFile, PdfDirectory, MaxPdfSize, out errorMessage);
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                MessageBox.Show("Error: " + errorMessage);
+                return null;
+            }
+
+            return pdfLocation;
+        }
+
+        return null;
+    }
+
+
+
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
         if (!ValidateFields())
@@ -379,6 +466,48 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
         }
 
         tbl_AkanshiYojna obj_AkanshiYojna = CreateAkanshiYojnaObject();
+
+        string pdfLocation = UploadPDFUCofAnganwadiCentrePath();
+        if (string.IsNullOrEmpty(pdfLocation))
+        {
+            pdfLocation = hfPDFUrl.Value;
+        }
+        else
+        {
+            if (!PDFUploader.DeletePDF(hfPDFUrl.Value))
+            {
+                MessageBox.Show("While updating this data, a new UC of Anganwadi Centre was uploaded but failed to delete the existing UC.");
+            }
+        }
+        obj_AkanshiYojna.UCofAnganwadiCentrePath = pdfLocation; 
+        
+        pdfLocation = UploadPDFUCofAdditionalClassroomPath();
+        if (string.IsNullOrEmpty(pdfLocation))
+        {
+            pdfLocation = hfPDFUrl2.Value;
+        }
+        else
+        {
+            if (!PDFUploader.DeletePDF(hfPDFUrl2.Value))
+            {
+                MessageBox.Show("While updating this data, a new UC of Additional Classroom was uploaded but failed to delete the existing UC.");
+            }
+        }
+        obj_AkanshiYojna.UCofAdditionalClassroomPath = pdfLocation;   
+        
+        pdfLocation = UploadPDFUCofSmartClassroomPath();
+        if (string.IsNullOrEmpty(pdfLocation))
+        {
+            pdfLocation = hfPDFUrl3.Value;
+        }
+        else
+        {
+            if (!PDFUploader.DeletePDF(hfPDFUrl3.Value))
+            {
+                MessageBox.Show("While updating this data, a new UC of Smart Classroom was uploaded but failed to delete the existing UC.");
+            }
+        }
+        obj_AkanshiYojna.UCofSmartClassroomPath = pdfLocation;
 
         try
         {
@@ -463,5 +592,69 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
             AddedBy = personId,
             UpdatedBy = personId
         };
+    }
+
+    protected void cvFileSize_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        if (fileUCofAnganwadiCentre.HasFile)
+        {
+            // Check the file size (5MB = 5 * 1024 * 1024 bytes)
+            if (fileUCofAnganwadiCentre.PostedFile.ContentLength > 5 * 1024 * 1024)
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+        else
+        {
+            // If no file is uploaded, validation passes (depending on your requirements)
+            args.IsValid = true;
+        }
+    }
+    
+    protected void cvFileSize_ServerValidate2(object source, ServerValidateEventArgs args)
+    {
+        if (fileUCofAdditionalClassroom.HasFile)
+        {
+            // Check the file size (5MB = 5 * 1024 * 1024 bytes)
+            if (fileUCofAdditionalClassroom.PostedFile.ContentLength > 5 * 1024 * 1024)
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+        else
+        {
+            // If no file is uploaded, validation passes (depending on your requirements)
+            args.IsValid = true;
+        }
+    }
+
+
+    protected void cvFileSize_ServerValidate3(object source, ServerValidateEventArgs args)
+    {
+        if (fileUCofSmartClassroom.HasFile)
+        {
+            // Check the file size (5MB = 5 * 1024 * 1024 bytes)
+            if (fileUCofSmartClassroom.PostedFile.ContentLength > 5 * 1024 * 1024)
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+        else
+        {
+            // If no file is uploaded, validation passes (depending on your requirements)
+            args.IsValid = true;
+        }
     }
 }
