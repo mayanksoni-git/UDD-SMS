@@ -102,6 +102,7 @@
                                                         <asp:ListItem Value="SUIC 1">SUIC 1</asp:ListItem>
                                                         <asp:ListItem Value="SUIC 2">SUIC 2</asp:ListItem>
                                                         <asp:ListItem Value="SUIC 3">SUIC 3</asp:ListItem>
+                                                        <asp:ListItem Value="SUIC 4">SUIC 4</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
@@ -152,8 +153,7 @@
 
                                             <div class="col-xxl-1 col-md-6 text-center">
                                                 <label class="d-block">&nbsp;</label>
-                                                <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-
+                                                <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" Visible="false" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                             </div>
                                         </div>
                                         <!--end row-->

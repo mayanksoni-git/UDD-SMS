@@ -47,6 +47,11 @@ public partial class AkanchiYojnaDashboard : System.Web.UI.Page
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
 
+    protected string EncryptSrNo(string srNo)
+    {
+        return Server.UrlEncode(CryptoHelper.Encrypt(srNo));
+    }
+
 
     private void get_tbl_Zone()
     {

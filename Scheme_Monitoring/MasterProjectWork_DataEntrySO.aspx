@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="MasterProjectWork_DataEntrySO.aspx.cs" Inherits="MasterProjectWork_DataEntrySO" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -121,8 +122,8 @@
                                                             <asp:Label ID="Label1" runat="server" Text="GO Date*" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Style="display: none;" autocomplete="off" data-provider="flatpickr" data-date-format="d/m/Y"></asp:TextBox>
                                                             <asp:TextBox ID="txtGODate2" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
-                                                            
-                                                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" TargetControlID="txtGODate2" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
+
+                                                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" TargetControlID="txtGODate2" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -165,7 +166,7 @@
                                 <!--end col-->
                             </div>
 
-                            <div class="row" style="display:none">
+                            <div class="row" style="display: none">
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-header align-items-center d-flex">
@@ -214,6 +215,151 @@
                                 <!--end col-->
                             </div>
 
+                            
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Tender Detail</h4>
+                                        </div>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblTenderAppDate" runat="server" Text="Tender Approval Date*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtTenderAppDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" CssClass="cal_Theme1" TargetControlID="txtTenderAppDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblTenderIssueDate" runat="server" Text="Tender Issue Date*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtTenderIssueDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender3" runat="server" CssClass="cal_Theme1" TargetControlID="txtTenderIssueDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblTenderEndDate" runat="server" Text="Tender End Date*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtTenderEndDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender4" runat="server" CssClass="cal_Theme1" TargetControlID="txtTenderEndDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblBidSecurityAmount" runat="server" Text="Bid Security Amount (In Lakhs)*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtBidSecurityAmount" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblTenderFileUpload" runat="server" Text="Upload Tender File" CssClass="form-label"></asp:Label>
+                                                            <asp:FileUpload ID="fuTenderFileUpload" runat="server" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Work Order Detail</h4>
+                                        </div>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblWorkOrderNo" runat="server" Text="Work Order No*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtWorkOrderNo" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblWorkOrderDate" runat="server" Text="Work Order Date*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtWorkOrderDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="CalendarExtender5" runat="server" CssClass="cal_Theme1" TargetControlID="txtWorkOrderDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblWorkOrderCopy" runat="server" Text="Work Order Copy" CssClass="form-label"></asp:Label>
+                                                            <asp:FileUpload ID="fuWorkOrderCopy" runat="server" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Contractor Detail</h4>
+                                        </div>
+                                        <!-- end card header -->
+                                        <div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblContractorName" runat="server" Text="Contractor Name*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtContractorName" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+
+                                                        <div>
+                                                            <asp:Label ID="lblContactPerson" runat="server" Text="Contact Person*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtContactPerson" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+
+                                                        <div>
+                                                            <asp:Label ID="lblContactNo" runat="server" Text="Contact Number*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtContactNo" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblEmailId" runat="server" Text="Email Id" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtEmailId" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="lblContractorAddress" runat="server" Text="Contractor Address" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtContractorAddress" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card">
@@ -241,7 +387,7 @@
                                                                     <asp:TemplateField HeaderText="GO Date">
                                                                         <ItemTemplate>
                                                                             <asp:TextBox ID="txtFinancialTrans_GO_Date" runat="server" CssClass="form-control" autocomplete="off" Text='<%# Eval("ProjectWorkGO_GO_Date") %>'></asp:TextBox>
-                                                                            <cc1:CalendarExtender ID="CalendarExtender11" runat="server" CssClass="cal_Theme1" TargetControlID="txtFinancialTrans_GO_Date" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
+                                                                            <cc1:CalendarExtender ID="CalendarExtender11" runat="server" CssClass="cal_Theme1" TargetControlID="txtFinancialTrans_GO_Date" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="GO Number">

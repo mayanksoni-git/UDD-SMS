@@ -63,6 +63,8 @@
                                                         <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row gy-4 mt-0">
 
                                                 <div class="col-xxl-2 col-md-6">
                                                     <div id="divCMFellowName" runat="server">
@@ -70,11 +72,19 @@
                                                         <asp:TextBox ID="txtCMFellowName" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row gy-4 mt-0">
 
                                                 <div class="col-xxl-2 col-md-6">
                                                     <div id="divCMAbhyudaySchool" runat="server">
                                                         <asp:Label ID="lblCMAbhyudaySchool" runat="server" Text="CM Abhyuday School" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="txtCMAbhyudaySchool" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="CalculateTotalAmount" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divCMAbhyudaySchoolWP" runat="server">
+                                                        <asp:Label ID="lblCMAbhyudaySchoolWP" runat="server" Text="CM Abhyuday School Work Progress" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtCMAbhyudaySchoolWP" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
 
@@ -85,6 +95,9 @@
                                                     </div>
                                                 </div>
 
+                                            </div>
+                                            <div class="row gy-4 mt-0">
+
                                                 <div class="col-xxl-2 col-md-6">
                                                     <div id="divAnganwadiConstructionOnRent" runat="server">
                                                         <asp:Label ID="lblAnganwadiConstructionOnRent" runat="server" Text="Anganwadi Construction(On Rent)" CssClass="form-label"></asp:Label>
@@ -92,10 +105,16 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xxl-2 col-md-6">
+                                                <div class="col-xxl-3 col-md-6">
                                                     <div id="divAnganwadiConstructionOnOtherPlace" runat="server">
                                                         <asp:Label ID="lblAnganwadiConstructionOnOtherPlace" runat="server" Text="Anganwadi Construction (On Other place)" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="txtAnganwadiConstructionOnOtherPlace" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="CalculateTotalAmount" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divAnganwadiConstructionWP" runat="server">
+                                                        <asp:Label ID="lblAnganwadiConstructionWP" runat="server" Text="Anganwadi Construction Work Progress" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtAnganwadiConstructionWP" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="CalculateTotalAmount" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
 
@@ -105,11 +124,18 @@
                                                         <asp:TextBox ID="txtTotalAnganwadiCost" runat="server" placeholder="31.89" CssClass="form-control" Enabled="false"></asp:TextBox>
                                                     </div>
                                                 </div>
-
+                                            </div>
+                                            <div class="row gy-4 align-items-end mt-0">
                                                 <div class="col-xxl-2 col-md-6">
                                                     <div id="divSmartClassFurniture" runat="server">
                                                         <asp:Label ID="lblSmartClassFurniture" runat="server" Text="Smart Class + Furniture" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="txtSmartClassFurniture" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="CalculateTotalAmount" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divSmartClassFurnitureWP" runat="server">
+                                                        <asp:Label ID="lblSmartClassFurnitureWP" runat="server" Text="Smart Class + Furniture  Work Progress" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtSmartClassFurnitureWP" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="CalculateTotalAmount" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
 
@@ -119,11 +145,19 @@
                                                         <asp:TextBox ID="txtTotalSmartClassCost" runat="server" placeholder="31.89" CssClass="form-control" Enabled="false"></asp:TextBox>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row gy-4 mt-0">
 
                                                 <div class="col-xxl-2 col-md-6">
                                                     <div id="divAdditionalClassRoom" runat="server">
                                                         <asp:Label ID="lblAdditionalClassRoom" runat="server" Text="Additional Class Room" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="txtAdditionalClassRoom" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="CalculateTotalAmount" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div id="divAdditionalClassRoomWP" runat="server">
+                                                        <asp:Label ID="lblAdditionalClassRoomWP" runat="server" Text="Additional Class Room  Work Progress" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtAdditionalClassRoomWP" runat="server" CssClass="form-control" AutoPostBack="true" OnTextChanged="CalculateTotalAmount" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
 
@@ -133,7 +167,85 @@
                                                         <asp:TextBox ID="txtAdditionalClassRoomCost" runat="server" placeholder="31.89" CssClass="form-control" Enabled="false"></asp:TextBox>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row gy-4 mt-0">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:Label ID="lblUCofAnganwadiCentre" runat="server" Text="UC of Anganwadi Centre" CssClass="form-label"></asp:Label>
+                                                    <asp:FileUpload ID="fileUCofAnganwadiCentre" runat="server" CssClass="form-control" />
+                                                    
+                                                    <asp:RegularExpressionValidator ID="revFileUpload" runat="server"
+                                                        ControlToValidate="fileUCofAnganwadiCentre"
+                                                        ErrorMessage="Only PDF files are allowed."
+                                                        CssClass="text-danger"
+                                                        ValidationExpression="^.*\.(pdf)$">
+                                                    </asp:RegularExpressionValidator>
+                                                    <asp:CustomValidator ID="cvFileSize" runat="server"
+                                                        ControlToValidate="fileUCofAnganwadiCentre"
+                                                        ErrorMessage="File size cannot exceed 5MB."
+                                                        CssClass="text-danger"
+                                                        OnServerValidate="cvFileSize_ServerValidate">
+                                                    </asp:CustomValidator>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:HyperLink ID="hypUCofAnganwadiCentre" runat="server" Target="_blank" Text="Click To View UC of Anganwadi Centre" Visible="false">
+                                                        <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                    </asp:HyperLink>
+                                                    <asp:HiddenField ID="hfPDFUrl" runat="server" />
+                                                </div>
+                                            </div> 
+                                            <div class="row gy-4 mt-0">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:Label ID="lblUCofAdditionalClassroom" runat="server" Text="UC of Additional Classroom" CssClass="form-label"></asp:Label>
+                                                    <asp:FileUpload ID="fileUCofAdditionalClassroom" runat="server" CssClass="form-control" />
+                                                    
+                                                    <asp:RegularExpressionValidator ID="revFileUpload2" runat="server"
+                                                        ControlToValidate="fileUCofAdditionalClassroom"
+                                                        ErrorMessage="Only PDF files are allowed."
+                                                        CssClass="text-danger"
+                                                        ValidationExpression="^.*\.(pdf)$">
+                                                    </asp:RegularExpressionValidator>
+                                                    <asp:CustomValidator ID="cvFileSize2" runat="server"
+                                                        ControlToValidate="fileUCofAdditionalClassroom"
+                                                        ErrorMessage="File size cannot exceed 5 MB."
+                                                        CssClass="text-danger"
+                                                        OnServerValidate="cvFileSize_ServerValidate2">
+                                                    </asp:CustomValidator>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:HyperLink ID="hypUCofAdditionalClassroom" runat="server" Target="_blank" Text="Click To View UC of Additional Classroom" Visible="false">
+                                                        <asp:Image ID="imgViewPDF2" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                    </asp:HyperLink>
+                                                    <asp:HiddenField ID="hfPDFUrl2" runat="server" />
+                                                </div>
+                                            </div> 
+                                            <div class="row gy-4 mt-0">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:Label ID="lblUCofSmartClassroom" runat="server" Text="UC of of Smart Classroom" CssClass="form-label"></asp:Label>
+                                                    <asp:FileUpload ID="fileUCofSmartClassroom" runat="server" CssClass="form-control" />
+                                                    
+                                                    <asp:RegularExpressionValidator ID="revFileUpload3" runat="server"
+                                                        ControlToValidate="fileUCofSmartClassroom"
+                                                        ErrorMessage="Only PDF files are allowed."
+                                                        CssClass="text-danger"
+                                                        ValidationExpression="^.*\.(pdf)$">
+                                                    </asp:RegularExpressionValidator>
+                                                    <asp:CustomValidator ID="cvFileSize3" runat="server"
+                                                        ControlToValidate="fileUCofSmartClassroom"
+                                                        ErrorMessage="File size cannot exceed 5MB."
+                                                        CssClass="text-danger"
+                                                        OnServerValidate="cvFileSize_ServerValidate3">
+                                                    </asp:CustomValidator>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:HyperLink ID="hypUCofSmartClassroom" runat="server" Target="_blank" Text="Click To View UC of Smart Classroom" Visible="false">
+                                                        <asp:Image ID="imgViewPDF3" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                    </asp:HyperLink>
+                                                    <asp:HiddenField ID="hfPDFUrl3" runat="server" />
+                                                </div>
+                                            </div>
 
+
+                                            <div class="row gy-4 mt-0">
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divTotalAmount" runat="server">
                                                         <asp:Label ID="lblTotalAmount" runat="server" Text="Total Amount" CssClass="form-label fw-bold me-1"></asp:Label>
@@ -147,7 +259,7 @@
                                                         <asp:TextBox ID="txtTotalAmountTransferred" runat="server" placeholder="311.89" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-12 col-md-6 text-center">
+                                                <div class="col-xxl-12 col-md-6 text-center">
                                                     <div>
                                                         <asp:Button ID="btnSave" Text="Save" OnClick="btnSave_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="btnUpdate" Text="Update" Visible="false" OnClick="btnUpdate_Click" runat="server" CssClass="btn bg-warning text-white"></asp:Button>
@@ -157,13 +269,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                         
-                                            <!--end row-->
-                                        </div>
+
+                                        <!--end row-->
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </ContentTemplate>
                 <Triggers>

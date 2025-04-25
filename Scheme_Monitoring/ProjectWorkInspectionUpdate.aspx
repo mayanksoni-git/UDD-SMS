@@ -33,29 +33,29 @@
                                                     <div>
                                                         <%--<label class="control-label no-padding-right">Scheme </label>--%>
                                                         <asp:Label ID="lblScheme" runat="server" Text="Scheme" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlSearchScheme" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div>
                                                         <asp:Label ID="lblZoneH" runat="server" Text="Zone" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlZone" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged"></asp:DropDownList>
 
                                                         <asp:Label ID="lblULB" runat="server" Text="ULB" CssClass="control-label no-padding-right" Visible="false"></asp:Label>
-                                                        <asp:DropDownList ID="ddlULB" runat="server" CssClass="form-control" Visible="false"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlULB" runat="server" CssClass="form-select" Visible="false"></asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6" id="divCircle" runat="server">
                                                     <div>
                                                         <asp:Label ID="lblCircleH" runat="server" Text="Circle" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlCircle" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCircle_SelectedIndexChanged"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6" id="divDivision" runat="server">
                                                     <div>
                                                         <asp:Label ID="lblDivisionH" runat="server" Text="Division" CssClass="control-label no-padding-right"></asp:Label>
-                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
@@ -185,7 +185,7 @@
                                                                 <asp:TemplateField HeaderText="Answers">
                                                                     <ItemTemplate>
                                                                         <asp:TextBox ID="txtQuestionnaireAnswer" runat="server" CssClass="form-control"></asp:TextBox>
-                                                                        <asp:DropDownList ID="ddlQuestionnaireAnswer" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                                        <asp:DropDownList ID="ddlQuestionnaireAnswer" runat="server" CssClass="form-select"></asp:DropDownList>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>

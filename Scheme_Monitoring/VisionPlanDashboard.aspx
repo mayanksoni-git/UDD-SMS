@@ -42,6 +42,41 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div runat="server" id="div3" class="tblheader">
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <div class="card">
+                                        <div class="card-header align-items-center d-flex">
+                                            <h4 class="card-title mb-0 flex-grow-1">Vision Plan and DPR Dashboard</h4>
+                                        </div>
+                                        <%--<div class="card-body">
+                                            <div class="live-preview">
+                                                <div class="row gy-12">
+                                                    <div class="card-body">
+
+                                                        <div class="tab-content text-muted">
+                                                            <div class="tab-pane active" id="VisionPlan" role="tabpanel">
+                                                                <div id="div4" runat="server" visible="true">
+                                                                    <div class="page-body">
+                                                                        <div class="row">
+                                                                            <iframe title="CMVNY-Master Dashboard" width="1500" height="750" src="https://app.powerbi.com/reportEmbed?reportId=fa1f9409-1eab-42e3-8b0b-daa7d6289f9a&autoAuth=true&embeddedDemo=true" frameborder="0" allowFullScreen="true"></iframe>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>--%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div runat="server" id="divData" class="tblheader">
                             <div class="row">
                                 <div class="col-lg-12">

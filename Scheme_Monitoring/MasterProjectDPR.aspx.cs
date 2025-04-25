@@ -20,6 +20,22 @@ public partial class MasterProjectDPR : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
+        if (Session["Division_Type"].ToString().Trim() == "NN")
+        {
+            btnSave.Visible = true;
+        }
+
+        var allowedDivisionIds = new HashSet<string> { "175", "429", "400", "494", "149", "321", "557", "312", "47", "48", "694", "148", "439", "731", "661", "659", "539" };
+
+        // Check if the session value is in the allowed list
+        if (allowedDivisionIds.Contains(Session["PersonJuridiction_DivisionId"].ToString()))
+        {
+            btnSave.Visible = true;
+        }
+        //if (Session["PersonJuridiction_DivisionId"].ToString() == "175" || Session["PersonJuridiction_DivisionId"].ToString() == "429" || Session["PersonJuridiction_DivisionId"].ToString() == "400")
+        //{
+        //    btnSave.Visible = true;
+        //}
         if (!IsPostBack)
         {
             lblZoneH.Text = Session["Default_Zone"].ToString();

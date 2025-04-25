@@ -14760,9 +14760,58 @@ public partial class DataLayer : Page, IRequiresSessionState
                         }
                         else
                         {
-                            obj_tbl_ProjectWork.ProjectWork_GO_Path = "";
+                            //obj_tbl_ProjectWork.ProjectWork_GO_Path = "";
                         }
                     }
+
+
+                    if (!Directory.Exists(Server.MapPath(".") + "\\Downloads\\TenderFile\\"))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(".") + "\\Downloads\\TenderFile\\");
+                    }
+                    if (obj_tbl_ProjectWork.TenderFileUploadPath_Bytes != null && obj_tbl_ProjectWork.TenderFileUploadPath_Bytes.Length > 0)
+                    {
+                        fileName = DateTime.Now.Ticks.ToString("x") + "." + obj_tbl_ProjectWork.extTenderFile;
+                        obj_tbl_ProjectWork.TenderFileUploadPath = "\\Downloads\\TenderFile\\" + fileName;
+                        File.WriteAllBytes(Server.MapPath(".") + "\\Downloads\\TenderFile\\" + fileName, obj_tbl_ProjectWork.TenderFileUploadPath_Bytes);
+                    }
+                    else
+                    {
+                        if (obj_tbl_ProjectWork.extTenderFile == "-1")
+                        {
+
+                        }
+                        else
+                        {
+                            //obj_tbl_ProjectWork.TenderFileUploadPath = "";
+                        }
+                    }
+
+
+
+
+                    if (!Directory.Exists(Server.MapPath(".") + "\\Downloads\\WorkOrderCopy\\"))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(".") + "\\Downloads\\WorkOrderCopy\\");
+                    }
+                    if (obj_tbl_ProjectWork.WorkOrderCopyPath_Bytes != null && obj_tbl_ProjectWork.WorkOrderCopyPath_Bytes.Length > 0)
+                    {
+                        fileName = DateTime.Now.Ticks.ToString("x") + "." + obj_tbl_ProjectWork.extWorkOrderCopy;
+                        obj_tbl_ProjectWork.WorkOrderCopyPath = "\\Downloads\\WorkOrderCopy\\" + fileName;
+                        File.WriteAllBytes(Server.MapPath(".") + "\\Downloads\\WorkOrderCopy\\" + fileName, obj_tbl_ProjectWork.WorkOrderCopyPath_Bytes);
+                    }
+                    else
+                    {
+                        if (obj_tbl_ProjectWork.extWorkOrderCopy == "-1")
+                        {
+
+                        }
+                        else
+                        {
+                            //obj_tbl_ProjectWork.WorkOrderCopyPath = "";
+                        }
+                    }
+
                     if (obj_tbl_ProjectWork.ProjectWork_Id == 0)
                     {
                         obj_tbl_ProjectWork.ProjectWork_Id = Insert_tbl_ProjectWork(obj_tbl_ProjectWork, trans, cn);
@@ -18486,7 +18535,8 @@ public partial class DataLayer : Page, IRequiresSessionState
         }
         if (Zone_Id > 0 && Division_Id == 0)
         {
-            strQuery = strQuery.Replace("Zone_IdCond", "and Circle_ZoneId = '" + Zone_Id + "'");
+            //strQuery = strQuery.Replace("Zone_IdCond", "and Circle_ZoneId = '" + Zone_Id + "'");
+            strQuery = strQuery.Replace("Zone_IdCond", "");
         }
         else
         {
@@ -18762,7 +18812,8 @@ public partial class DataLayer : Page, IRequiresSessionState
         }
         if (Zone_Id != 0)
         {
-            strQuery = strQuery.Replace("Zone_IdCond", " and Circle_ZoneId = '" + Zone_Id + "'");
+            //strQuery = strQuery.Replace("Zone_IdCond", " and Circle_ZoneId = '" + Zone_Id + "'");
+            strQuery = strQuery.Replace("Zone_IdCond", "");
         }
         else
         {

@@ -23,7 +23,9 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
         {
             if (Request.QueryString.Count > 0)
             {
-                hfAkanshiYoujnaId.Value = Request.QueryString["AkanshiID"].ToString();
+                //hfAkanshiYoujnaId.Value = Request.QueryString["AkanshiID"].ToString();
+                string encryptedId = Request.QueryString["AkanshiID"];
+                hfAkanshiYoujnaId.Value = CryptoHelper.Decrypt(Server.UrlDecode(encryptedId));
                 GetGetAkanshiDataById(Convert.ToInt32(hfAkanshiYoujnaId.Value));
             }
 
@@ -52,11 +54,19 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
             ddlFY.SelectedValue = dt.Rows[0]["FinancialYear_Id"].ToString();
 
             txtCMFellowName.Text = dt.Rows[0]["CMFellowName"].ToString();
+
             txtCMAbhyudaySchool.Text = dt.Rows[0]["CMAbhyudaySchool"].ToString();
+            txtCMAbhyudaySchoolWP.Text = dt.Rows[0]["CMAbhyudaySchoolWP"].ToString();
+
             txtAnganwadiConstructionOnRent.Text = dt.Rows[0]["AnganwadiConstructionOnRent"].ToString();
             txtAnganwadiConstructionOnOtherPlace.Text = dt.Rows[0]["AnganwadiConstructionOnOtherPlace"].ToString();
+            txtAnganwadiConstructionWP.Text = dt.Rows[0]["AnganwadiConstructionWP"].ToString();
+
             txtSmartClassFurniture.Text = dt.Rows[0]["SmartClassFurniture"].ToString();
+            txtSmartClassFurnitureWP.Text = dt.Rows[0]["SmartClassFurnitureWP"].ToString(); 
+
             txtAdditionalClassRoom.Text = dt.Rows[0]["AdditionalClassRoom"].ToString();
+            txtAdditionalClassRoomWP.Text = dt.Rows[0]["AdditionalClassRoomWP"].ToString();
 
             //txtTotalCMAbhyudaySchoolCost.Text = dt.Rows[0]["TotalCMAbhyudayCost"].ToString();
             //txtTotalAnganwadiCost.Text = dt.Rows[0]["TotalAnganwadiCost"].ToString();
@@ -65,6 +75,27 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
             //txtTotalAmount.Text= dt.Rows[0]["CMFellowName"].ToString();
             
             txtTotalAmountTransferred.Text= dt.Rows[0]["TotalAmountTransferred"].ToString();
+
+            hfPDFUrl.Value = dt.Rows[0]["UCofAnganwadiCentrePath"].ToString();
+            if (!string.IsNullOrEmpty(hfPDFUrl.Value.ToString()))
+            {
+                hypUCofAnganwadiCentre.Visible = true;
+                hypUCofAnganwadiCentre.NavigateUrl = dt.Rows[0]["UCofAnganwadiCentrePath"].ToString();
+            }
+
+            hfPDFUrl2.Value = dt.Rows[0]["UCofAdditionalClassroomPath"].ToString();
+            if (!string.IsNullOrEmpty(hfPDFUrl2.Value.ToString()))
+            {
+                hypUCofAdditionalClassroom.Visible = true;
+                hypUCofAdditionalClassroom.NavigateUrl = dt.Rows[0]["UCofAdditionalClassroomPath"].ToString();
+            }
+
+            hfPDFUrl3.Value = dt.Rows[0]["UCofSmartClassroomPath"].ToString();
+            if (!string.IsNullOrEmpty(hfPDFUrl3.Value.ToString()))
+            {
+                hypUCofSmartClassroom.Visible = true;
+                hypUCofSmartClassroom.NavigateUrl = dt.Rows[0]["UCofSmartClassroomPath"].ToString();
+            }
 
             CalculateTotalAmount(null, EventArgs.Empty);
 
@@ -131,6 +162,14 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
                 if (divisionId > 0)
                 {
                     SetDropdownValueAndDisable(ddlDivision, divisionId);
+                    txtCMFellowName.Enabled = false;
+                    txtCMAbhyudaySchool.Enabled = false;
+                    txtAnganwadiConstructionOnRent.Enabled = false;
+                    txtAnganwadiConstructionOnOtherPlace.Enabled = false;
+                    txtSmartClassFurniture.Enabled = false;
+                    txtAdditionalClassRoom.Enabled = false;
+                    txtTotalAmountTransferred.Enabled = false;
+                    ddlFY.Enabled = false;
                 }
             }
         }
@@ -353,6 +392,72 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
         return IsValid;
     }
 
+
+    private string UploadPDFUCofAnganwadiCentrePath()
+    {
+        int MaxPdfSize = 10 * 1024 * 1024;
+        string PdfDirectory = "~/PDFs/UCAnganwadiCentre/";
+        if (fileUCofAnganwadiCentre.HasFile)
+        {
+            string errorMessage;
+            string pdfLocation = PDFUploader.UploadPDFWithSizeAndPath(fileUCofAnganwadiCentre.PostedFile, PdfDirectory, MaxPdfSize, out errorMessage);
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                MessageBox.Show("Error: " + errorMessage);
+                return null;
+            }
+
+            return pdfLocation;
+        }
+
+        return null;
+    }
+
+    private string UploadPDFUCofAdditionalClassroomPath()
+    {
+        int MaxPdfSize = 10 * 1024 * 1024;
+        string PdfDirectory = "~/PDFs/UCAdditionalClassroom/";
+        if (fileUCofAdditionalClassroom.HasFile)
+        {
+            string errorMessage;
+            string pdfLocation = PDFUploader.UploadPDFWithSizeAndPath(fileUCofAdditionalClassroom.PostedFile, PdfDirectory, MaxPdfSize, out errorMessage);
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                MessageBox.Show("Error: " + errorMessage);
+                return null;
+            }
+
+            return pdfLocation;
+        }
+
+        return null;
+    }
+
+    private string UploadPDFUCofSmartClassroomPath()
+    {
+        int MaxPdfSize = 10 * 1024 * 1024;
+        string PdfDirectory = "~/PDFs/UCSmartClassroom/";
+        if (fileUCofSmartClassroom.HasFile)
+        {
+            string errorMessage;
+            string pdfLocation = PDFUploader.UploadPDFWithSizeAndPath(fileUCofSmartClassroom.PostedFile, PdfDirectory, MaxPdfSize, out errorMessage);
+
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                MessageBox.Show("Error: " + errorMessage);
+                return null;
+            }
+
+            return pdfLocation;
+        }
+
+        return null;
+    }
+
+
+
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
         if (!ValidateFields())
@@ -361,6 +466,48 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
         }
 
         tbl_AkanshiYojna obj_AkanshiYojna = CreateAkanshiYojnaObject();
+
+        string pdfLocation = UploadPDFUCofAnganwadiCentrePath();
+        if (string.IsNullOrEmpty(pdfLocation))
+        {
+            pdfLocation = hfPDFUrl.Value;
+        }
+        else
+        {
+            if (!PDFUploader.DeletePDF(hfPDFUrl.Value))
+            {
+                MessageBox.Show("While updating this data, a new UC of Anganwadi Centre was uploaded but failed to delete the existing UC.");
+            }
+        }
+        obj_AkanshiYojna.UCofAnganwadiCentrePath = pdfLocation; 
+        
+        pdfLocation = UploadPDFUCofAdditionalClassroomPath();
+        if (string.IsNullOrEmpty(pdfLocation))
+        {
+            pdfLocation = hfPDFUrl2.Value;
+        }
+        else
+        {
+            if (!PDFUploader.DeletePDF(hfPDFUrl2.Value))
+            {
+                MessageBox.Show("While updating this data, a new UC of Additional Classroom was uploaded but failed to delete the existing UC.");
+            }
+        }
+        obj_AkanshiYojna.UCofAdditionalClassroomPath = pdfLocation;   
+        
+        pdfLocation = UploadPDFUCofSmartClassroomPath();
+        if (string.IsNullOrEmpty(pdfLocation))
+        {
+            pdfLocation = hfPDFUrl3.Value;
+        }
+        else
+        {
+            if (!PDFUploader.DeletePDF(hfPDFUrl3.Value))
+            {
+                MessageBox.Show("While updating this data, a new UC of Smart Classroom was uploaded but failed to delete the existing UC.");
+            }
+        }
+        obj_AkanshiYojna.UCofSmartClassroomPath = pdfLocation;
 
         try
         {
@@ -420,20 +567,94 @@ public partial class CreateAkanchiYojna : System.Web.UI.Page
             Zone = zone,
             Circle = circle,
             Division = division,
+
             CMFellowName = txtCMFellowName.Text.ToString(),
+
             CMAbhyudaySchool = Int32.Parse(string.IsNullOrEmpty(txtCMAbhyudaySchool.Text) ? "0" : txtCMAbhyudaySchool.Text),
+            CMAbhyudaySchoolWP = Int32.Parse(string.IsNullOrEmpty(txtCMAbhyudaySchoolWP.Text) ? "0" : txtCMAbhyudaySchoolWP.Text),
             TotalCMAbhyudaySchoolCost = double.Parse(string.IsNullOrEmpty(txtTotalCMAbhyudaySchoolCost.Text) ? "0" : txtTotalCMAbhyudaySchoolCost.Text),
+
             AnganwadiConstructionOnRent = Int32.Parse(string.IsNullOrEmpty(txtAnganwadiConstructionOnRent.Text) ? "0" : txtAnganwadiConstructionOnRent.Text),
             AnganwadiConstructionOnOtherPlace = Int32.Parse(string.IsNullOrEmpty(txtAnganwadiConstructionOnOtherPlace.Text) ? "0" : txtAnganwadiConstructionOnOtherPlace.Text),
+            AnganwadiConstructionWP = Int32.Parse(string.IsNullOrEmpty(txtAnganwadiConstructionWP.Text) ? "0" : txtAnganwadiConstructionWP.Text),
             TotalAnganwadiCost = double.Parse(string.IsNullOrEmpty(txtTotalAnganwadiCost.Text) ? "0" : txtTotalAnganwadiCost.Text),
+
             SmartClassFurniture = Int32.Parse(string.IsNullOrEmpty(txtSmartClassFurniture.Text) ? "0" : txtSmartClassFurniture.Text),
+            SmartClassFurnitureWP = Int32.Parse(string.IsNullOrEmpty(txtSmartClassFurnitureWP.Text) ? "0" : txtSmartClassFurnitureWP.Text),
             TotalSmartClassCost = double.Parse(string.IsNullOrEmpty(txtTotalSmartClassCost.Text) ? "0" : txtTotalSmartClassCost.Text),
+
             AdditionalClassRoom = Int32.Parse(string.IsNullOrEmpty(txtAdditionalClassRoom.Text) ? "0" : txtAdditionalClassRoom.Text),
+            AdditionalClassRoomWP = Int32.Parse(string.IsNullOrEmpty(txtAdditionalClassRoomWP.Text) ? "0" : txtAdditionalClassRoomWP.Text),
             AdditionalClassRoomCost = double.Parse(string.IsNullOrEmpty(txtAdditionalClassRoomCost.Text) ? "0" : txtAdditionalClassRoomCost.Text),
+
             TotalAmount = double.Parse(string.IsNullOrEmpty(txtTotalAmount.Text) ? "0" : txtTotalAmount.Text),
             TotalAmountTransferred = double.Parse(string.IsNullOrEmpty(txtTotalAmountTransferred.Text) ? "0" : txtTotalAmountTransferred.Text),
             AddedBy = personId,
             UpdatedBy = personId
         };
+    }
+
+    protected void cvFileSize_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        if (fileUCofAnganwadiCentre.HasFile)
+        {
+            // Check the file size (5MB = 5 * 1024 * 1024 bytes)
+            if (fileUCofAnganwadiCentre.PostedFile.ContentLength > 5 * 1024 * 1024)
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+        else
+        {
+            // If no file is uploaded, validation passes (depending on your requirements)
+            args.IsValid = true;
+        }
+    }
+    
+    protected void cvFileSize_ServerValidate2(object source, ServerValidateEventArgs args)
+    {
+        if (fileUCofAdditionalClassroom.HasFile)
+        {
+            // Check the file size (5MB = 5 * 1024 * 1024 bytes)
+            if (fileUCofAdditionalClassroom.PostedFile.ContentLength > 5 * 1024 * 1024)
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+        else
+        {
+            // If no file is uploaded, validation passes (depending on your requirements)
+            args.IsValid = true;
+        }
+    }
+
+
+    protected void cvFileSize_ServerValidate3(object source, ServerValidateEventArgs args)
+    {
+        if (fileUCofSmartClassroom.HasFile)
+        {
+            // Check the file size (5MB = 5 * 1024 * 1024 bytes)
+            if (fileUCofSmartClassroom.PostedFile.ContentLength > 5 * 1024 * 1024)
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+        else
+        {
+            // If no file is uploaded, validation passes (depending on your requirements)
+            args.IsValid = true;
+        }
     }
 }

@@ -50,21 +50,17 @@
                                                     <div class="col-xxl-5 col-md-6">
                                                         <div class="row">
                                                             <div class="col-md-5">
-                                                              
-
                                                             </div>
                                                             <div class="col-md-6">
-                                                               <div class="profile-images-card" style="margin-top:10px;">
+                                                                <div class="profile-images-card" style="margin-top: 10px;">
                                                                     <div class="profile-images">
-                                                                     <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" id="uploadimg" runat="server">
-
-                                                                     </div>
-                                                                  <div class="custom-file">
-                                                                        <asp:FileUpload ID="fileupload" runat="server"  /> 
-                                                                       <asp:HiddenField ID="ProfileUrl" runat="server"></asp:HiddenField>
-                                                                 </div>
-
-                                                              </div>
+                                                                        <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" id="uploadimg" runat="server">
+                                                                    </div>
+                                                                    <div class="custom-file">
+                                                                        <asp:FileUpload ID="fileupload" runat="server" />
+                                                                        <asp:HiddenField ID="ProfileUrl" runat="server"></asp:HiddenField>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="col-md-"></div>
                                                         </div>

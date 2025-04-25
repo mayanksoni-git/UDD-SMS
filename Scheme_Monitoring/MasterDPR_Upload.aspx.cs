@@ -21,6 +21,12 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
+
+        if (Session["Person_Id"].ToString() == "5298")
+        {
+            btnSave.Visible = false;
+        }
+
         if (!IsPostBack)
         {
             lblZoneH.Text = Session["Default_Zone"].ToString();
@@ -397,6 +403,10 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
 
     protected void btnEdit_Click(object sender, ImageClickEventArgs e)
     {
+        if (Session["Person_Id"].ToString() == "5298")
+        {
+            btnSave.Visible = false;
+        }
         GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
         int DPR_Id = 0;
         int ProjectType_Id = 0;
@@ -636,6 +646,11 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        if(Session["Person_Id"].ToString()== "5298")
+        {
+            MessageBox.Show("You are not allowed to change in DPR.");
+            return;
+        }
 
         //bool allAnswered = true; // Flag to check if all questions are answered.
         bool allValid = true; // Flag to check if all questions are answered.
@@ -812,6 +827,16 @@ public partial class MasterDPR_Upload : System.Web.UI.Page
             e.Row.Cells[9].Text = Session["Default_Zone"].ToString();
             e.Row.Cells[10].Text = Session["Default_Circle"].ToString();
             e.Row.Cells[11].Text = Session["Default_Division"].ToString();
+        }
+
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            ImageButton btnEdit = (ImageButton)e.Row.FindControl("btnEdit");
+
+            if (Session["Person_Id"] != null && Session["Person_Id"].ToString() == "5298")
+            {
+                btnEdit.Visible = false; // Hide the button if Person_Id is 5989
+            }
         }
     }
 

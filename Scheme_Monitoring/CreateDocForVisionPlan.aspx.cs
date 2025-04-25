@@ -21,6 +21,16 @@ public partial class CreateDocForVisionPlan : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
+        string personId = Session["Person_Id"].ToString();
+        string Designation = Session["PersonJuridiction_DesignationId"].ToString();
+        if (Designation == "1056" || personId == "3297" || personId == "2288")
+        {
+
+        }
+        else
+        {
+            Response.Redirect("UploadDocForVisionplan.aspx");
+        }
         if (!IsPostBack)
         {
             lblZoneH.Text = Session["Default_Zone"].ToString() + "*";

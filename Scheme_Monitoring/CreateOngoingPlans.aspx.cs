@@ -8,7 +8,7 @@ using System.IO;
 using System.Text;
 using System.Data;
 
-public partial class CreateOngoingPlans : System.Web.UI.Page
+public partial class CreateOngoingPlans : System.Web.UI.Page   
 {
     ULBFund objLoan = new ULBFund();
     protected void Page_PreInit(object sender, EventArgs e)

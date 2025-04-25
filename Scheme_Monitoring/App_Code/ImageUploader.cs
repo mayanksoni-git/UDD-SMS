@@ -47,6 +47,49 @@ public class ImageUploader
         return relativePath;
     }
 
+    public static string UploadImageWithSizeAndPath(HttpPostedFile file, string ImageDirectory, int MaxImageSize, out string errorMessage)
+    {
+        errorMessage = string.Empty;
+
+        // Check if the file is a Image
+        if (!IsImage(file))
+        {
+            errorMessage = "The file is not a valid Image.";
+            return null;
+        }
+
+
+        // Check if the file size exceeds 10MB
+        if (!IsValidImageSizeWithMaxImageSize(file, MaxImageSize))
+        {
+            errorMessage = "The file size exceeds the " + (MaxImageSize / 1024 / 1024).ToString() + " MB limit.";
+            return null;
+        }
+
+        // Ensure the directory exists
+        string serverPath = HttpContext.Current.Server.MapPath(ImageDirectory);
+        if (!Directory.Exists(serverPath))
+        {
+            Directory.CreateDirectory(serverPath);
+        }
+
+        // Generate a unique file name if there is a collision
+        string uniqueFileName = GenerateUniqueFileName(serverPath, Path.GetFileName(file.FileName));
+
+        // Save the file to the server
+        string filePath = Path.Combine(serverPath, uniqueFileName);
+        file.SaveAs(filePath);
+
+        // Return the relative path for database storage
+        string relativePath = Path.Combine(ImageDirectory, uniqueFileName).Replace("\\", "/");
+        return relativePath;
+    }
+
+    private static bool IsValidImageSizeWithMaxImageSize(HttpPostedFile file, int MaxImageSize)
+    {
+        return file.ContentLength <= MaxImageSize;
+    }
+
     public static bool DeleteImage(string relativePath)
     {
         try

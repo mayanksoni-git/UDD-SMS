@@ -6,8 +6,8 @@
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
     <style>
         .right-align {
-    text-align: right;
-}
+            text-align: right;
+        }
     </style>
     <div class="main-content">
         <div class="page-content">
@@ -90,10 +90,10 @@
                                                 </div>
 
                                                 <div class="col-xxl-12 col-md-12 text-center">
-                                                    
-                                                        <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                        <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
-                                                    
+
+                                                    <asp:Button ID="BtnSearch" Text="Search" OnClick="BtnSearch_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
+                                                    <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -126,15 +126,16 @@
                                             <div class="pull-right tableTools-container"></div>
                                         </div>
                                         <div style="overflow: auto">
-                                            <asp:GridView runat="server" ID="grdPost" AllowPaging="false" CssClass="display table table-bordered" 
-                                                AutoGenerateColumns="False" EmptyDataText="No Records Found"  OnPreRender="grdPost_PreRender" 
+                                            <asp:GridView runat="server" ID="grdPost" AllowPaging="false" CssClass="display table table-bordered"
+                                                AutoGenerateColumns="False" EmptyDataText="No Records Found" OnPreRender="grdPost_PreRender"
                                                 OnRowDataBound="grdPost_RowDataBound" ShowFooter="True">
                                                 <Columns>
-                                                     <asp:TemplateField HeaderText="Edit">
-                                                            <ItemTemplate>                                                               
-                                                                <a href="CreateAkanchiYojna.aspx?AkanshiID=<%# Eval("SrNo") %>" CssClass="btn btn-primary editBTN">Edit</a>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Edit">
+                                                        <ItemTemplate>
+                                                            <a href='CreateAkanchiYojna.aspx?AkanshiID=<%# EncryptSrNo(Eval("SrNo").ToString()) %>'
+                                                                cssclass="btn btn-primary editBTN">Edit</a>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Sr. No.">
                                                         <ItemTemplate>
                                                             <%# Container.DataItemIndex + 1 %>
@@ -149,14 +150,44 @@
                                                     <asp:BoundField HeaderText="CM Fellow Name " DataField="CMFellowName" />
                                                     <asp:BoundField HeaderText="CM Abhyuday School" DataField="CMAbhyudaySchool" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Total CM Abhyuday  Cost @1.42 Crore each" DataField="TotalCMAbhyudayCost" ItemStyle-CssClass="right-align" />
+
                                                     <asp:BoundField HeaderText="Anganwadi Construction(On Rent)" DataField="AnganwadiConstructionOnRent" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Anganwadi Construction (On Other place)" DataField="AnganwadiConstructionOnOtherPlace" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Total Anganwadi Cost @11.84 Lakh each" DataField="TotalAnganwadiCost" ItemStyle-CssClass="right-align" />
+
                                                     <asp:BoundField HeaderText="Smart Class+Furniture" DataField="SmartClassFurniture" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Total Smart Class Cost Smart class @2.505L &Furniture @0.7195L each" DataField="TotalSmartClassCost" ItemStyle-CssClass="right-align" />
+
                                                     <asp:BoundField HeaderText="Additional Class Room" DataField="AdditionalClassRoom" ItemStyle-CssClass="right-align" />
                                                     <asp:BoundField HeaderText="Total Additional Class Room @9.27 Lakh each" DataField="TotalAdditionalClassRoomCost" ItemStyle-CssClass="right-align" />
+
                                                     <asp:BoundField HeaderText="Total Amount Transferred" DataField="TotalAmountTransferred" ItemStyle-CssClass="right-align" />
+
+                                                    <asp:BoundField HeaderText="CM Abhyuday School Work Progress" DataField="CMAbhyudaySchoolWP" ItemStyle-CssClass="right-align" />
+                                                    <asp:BoundField HeaderText="Anganwadi Construction Work Progress" DataField="AnganwadiConstructionWP" ItemStyle-CssClass="right-align" />
+                                                    <asp:BoundField HeaderText="Smart Class+Furniture Work Progress" DataField="SmartClassFurnitureWP" ItemStyle-CssClass="right-align" />
+                                                    <asp:BoundField HeaderText="Additional Class Room Work Progress" DataField="AdditionalClassRoomWP" ItemStyle-CssClass="right-align" />
+                                                    <asp:TemplateField HeaderText="UC of Anganwadi Center">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="hypUCofAnganwadiCenter" runat="server" Target="_blank" NavigateUrl='<%# Eval("UCofAnganwadiCentrePath") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("UCofAnganwadiCentrePath").ToString()) %>'>
+                                                                <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                            </asp:HyperLink>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField> 
+                                                    <asp:TemplateField HeaderText="UC of Additional Classroom">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="hypUCofAdditionalClassroom" runat="server" Target="_blank" NavigateUrl='<%# Eval("UCofAdditionalClassroomPath") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("UCofAdditionalClassroomPath").ToString()) %>'>
+                                                                <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                            </asp:HyperLink>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>   
+                                                    <asp:TemplateField HeaderText="UC of Smart Classroom">
+                                                        <ItemTemplate>
+                                                            <asp:HyperLink ID="hypUCofSmartClassroom" runat="server" Target="_blank" NavigateUrl='<%# Eval("UCofSmartClassroomPath") %>' Text="Click To View" Visible='<%# !string.IsNullOrEmpty(Eval("UCofSmartClassroomPath").ToString()) %>'>
+                                                                <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
+                                                            </asp:HyperLink>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                 </Columns>
                                                 <EmptyDataTemplate>
                                                     <tr>

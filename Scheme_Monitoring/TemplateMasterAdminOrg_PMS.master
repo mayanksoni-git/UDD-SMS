@@ -249,12 +249,13 @@
                                             {
                                         %>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx" class="nav-link" data-key="t-grid-js">Create/Update Project (Legacy Data)</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=SO" class="nav-link" data-key="t-grid-js">Create/Update New Project</a> </li>
                                         <%
                                             }
                                         %>
+
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=G" class="nav-link" data-key="t-grid-js">View Project Gallery</a> </li>
                                         <li class="nav-item"><a href="ProjectWorkInspectionUpdate.aspx" class="nav-link" data-key="t-grid-js">Fill Site Visit / Inspection</a> </li>
-                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx" class="nav-link" data-key="t-grid-js">Create/Update Project (Legacy Data)</a> </li>
                                         
                                     </ul>
                                 </div>
@@ -319,6 +320,7 @@
                                         <li class="nav-item"><a href="Report_DPR_Status_Report.aspx" class="nav-link" data-key="t-list-js">DPR Status Report</a> </li>--%>
                                         <li class="nav-item"><a href="VisionPlanActionFirst.aspx" class="nav-link" data-key="t-list-js">Action on Vision Plan</a> </li>
                                         <li class="nav-item"><a href="VisionPlanDashboard.aspx" class="nav-link" data-key="t-grid-js">Vision Plan Dashboard</a> </li>
+                                        <li class="nav-item"><a href="VisionPlanLog.aspx" class="nav-link" data-key="t-grid-js">Logs</a> </li>
                                         <li class="nav-item">
                                             <a href="PDFs/Annexures/Annexure4.xlsx"
                                                 download="Annexure4.xlsx"

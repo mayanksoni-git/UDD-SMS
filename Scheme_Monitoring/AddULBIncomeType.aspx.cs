@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 
 public partial class AddULBIncomeType : System.Web.UI.Page
 {
-    ULBFund objLoan = new ULBFund();
+    ULBFund objLoan = new ULBFund(); 
     string ConStr = ConfigurationManager.AppSettings.Get("conn");
     int totalRow = 0;
     protected void Page_PreInit(object sender, EventArgs e)

@@ -18,6 +18,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
+        
         if (!IsPostBack)
         {
             lblZoneH.Text = Session["Default_Zone"].ToString() + "*";
