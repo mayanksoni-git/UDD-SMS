@@ -20,6 +20,14 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
+        if (Session["Person_Id"].ToString() == "5298")
+        {
+            btnSave.Visible = false;
+        }
+        else
+        {
+            btnSave.Visible = true;
+        }
         if (!IsPostBack)
         {
             lblZoneH.Text = Session["Default_Zone"].ToString();
@@ -198,6 +206,18 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        if (!flUploadGO.HasFile && hf_GO_Path.Value=="")                   
+        {
+            MessageBox.Show("Please Choose Budget Sanctioned GO.");
+            flUploadGO.Focus();
+            return;
+        }
+        if (!fuTenderFileUpload.HasFile && hfTenderFileUploadPath.Value=="")
+        {
+            MessageBox.Show("Please Choose Tender File.");
+            fuTenderFileUpload.Focus();
+            return;
+        }
         if (txtProjectWorkName.Text.Trim() == "")
         {
             MessageBox.Show("Please Provide Project Name");
