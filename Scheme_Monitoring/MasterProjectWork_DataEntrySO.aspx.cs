@@ -378,8 +378,42 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
         //New Fields Starts
 
         obj_tbl_ProjectWork.TenderAppDate = txtTenderAppDate.Text.Trim();
+        //obj_tbl_ProjectWork.TenderIssueDate = txtTenderIssueDate.Text.Trim();
+
+        if (string.IsNullOrWhiteSpace(txtTenderIssueDate.Text))
+        {
+            MessageBox.Show("Please enter Tender Issue Date.");
+            txtTenderIssueDate.Focus();
+            return;
+        }
+
+        //DateTime tenderIssueDate;
+        //if (!DateTime.TryParse(txtTenderIssueDate.Text.Trim(), out tenderIssueDate))
+        //{
+        //    MessageBox.Show("Please enter a valid date for Tender Issue Date.");
+        //    txtTenderIssueDate.Focus();
+        //    return;
+        //}
         obj_tbl_ProjectWork.TenderIssueDate = txtTenderIssueDate.Text.Trim();
+
+
+
+        if (string.IsNullOrWhiteSpace(txtTenderEndDate.Text))
+        {
+            MessageBox.Show("Please enter Tender End Date.");
+            txtTenderEndDate.Focus();
+            return;
+        }
+
+        //DateTime tenderEndDate;
+        //if (!DateTime.TryParse(txtTenderEndDate.Text.Trim(), out tenderEndDate))
+        //{
+        //    MessageBox.Show("Please enter a valid date for Tender Issue Date.");
+        //    txtTenderEndDate.Focus();
+        //    return;
+        //}
         obj_tbl_ProjectWork.TenderEndDate = txtTenderEndDate.Text.Trim();
+      
         try
         {
             obj_tbl_ProjectWork.BidSecurityAmount = Convert.ToDecimal(txtBidSecurityAmount.Text.Trim());

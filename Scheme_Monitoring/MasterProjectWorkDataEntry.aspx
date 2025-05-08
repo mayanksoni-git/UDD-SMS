@@ -432,18 +432,24 @@
                                                                         <asp:ImageButton ID="btnEdit" Width="20px" Height="20px" OnClick="btnEdit_Click" ImageUrl="~/assets/images/edit_btn.png" runat="server" />
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
-                                                                <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />
-                                                                <asp:BoundField HeaderText="Circle" DataField="Circle_Name" />
-                                                                <asp:BoundField HeaderText="Division" DataField="Division_Name" />
-                                                                <asp:BoundField HeaderText="Work" DataField="ProjectWork_Name" />
+                                                                <asp:BoundField HeaderText="State" DataField="Zone_Name" />
+                                                                <asp:BoundField HeaderText="District" DataField="Circle_Name" />
+                                                                <asp:BoundField HeaderText="ULB" DataField="Division_Name" />
+                                                                <asp:BoundField HeaderText="Project" DataField="ProjectWork_Name" />
+                                                                <asp:BoundField HeaderText="Implementing Agency" DataField="ImplAgency" />
                                                                 <asp:BoundField HeaderText="Sanctioned Cost (In Lakhs)" DataField="ProjectWork_Budget" />
                                                                 <asp:BoundField HeaderText="Agreement Cost (In Lakhs)" DataField="tender_cost" />
                                                                 <asp:BoundField HeaderText="Released Amount (In Lakhs)" DataField="Total_Release" />
                                                                 <asp:BoundField HeaderText="Total Expenditure (In Lakhs)" DataField="Total_Expenditure" />
                                                                 <asp:BoundField HeaderText="Physical Progress" DataField="Physical_Progress" />
                                                                 <asp:BoundField HeaderText="Financial Progress" DataField="Financial_Progress" />
-                                                                <asp:BoundField HeaderText="Start Date As Per Agreement" DataField="ProjectWorkPkg_Agreement_Date" />
-                                                                <asp:BoundField HeaderText="End Date As Per Agreement" DataField="ProjectWorkPkg_Due_Date" />
+                                                                <asp:BoundField HeaderText="NIT Date" DataField="TenderAppDate" DataFormatString="{0:dd-MMM-yyyy}" HtmlEncode="false" />
+                                                                <asp:BoundField HeaderText="Tender Issue Date" DataField="TenderIssueDate" DataFormatString="{0:dd-MMM-yyyy}" HtmlEncode="false" />
+                                                                <asp:BoundField HeaderText="Tender End Date" DataField="TenderEndDate" DataFormatString="{0:dd-MMM-yyyy}" HtmlEncode="false" />
+                                                                <asp:BoundField HeaderText="EMD (In Lakhs)" DataField="BidSecurityAmount" />
+
+                                                                <asp:BoundField HeaderText="Start Date As Per Agreement" DataField="ProjectWorkPkg_Agreement_Date" DataFormatString="{0:dd-MMM-yyyy}" HtmlEncode="false" />
+                                                                <asp:BoundField HeaderText="End Date As Per Agreement" DataField="ProjectWorkPkg_Due_Date" DataFormatString="{0:dd-MMM-yyyy}" HtmlEncode="false" />
                                                                 <asp:BoundField HeaderText="Issue" DataField="Issue" />
                                                                 <asp:TemplateField HeaderText="Importent Timeline (Specific To This Project)">
                                                                     <ItemTemplate>

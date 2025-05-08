@@ -228,7 +228,7 @@
                                                 <div class="row gy-4">
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <asp:Label ID="lblTenderAppDate" runat="server" Text="Tender Approval Date*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblTenderAppDate" runat="server" Text="NIT Date" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtTenderAppDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
                                                             <cc1:CalendarExtender ID="CalendarExtender2" runat="server" CssClass="cal_Theme1" TargetControlID="txtTenderAppDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                                         </div>
@@ -253,14 +253,14 @@
 
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <asp:Label ID="lblBidSecurityAmount" runat="server" Text="Bid Security Amount (In Lakhs)*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblBidSecurityAmount" runat="server" Text="EMD(In Lakhs)*" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtBidSecurityAmount" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <asp:Label ID="lblTenderFileUpload" runat="server" Text="Upload Tender File" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblTenderFileUpload" runat="server" Text="Upload Tender File *" CssClass="form-label"></asp:Label>
                                                             <asp:FileUpload ID="fuTenderFileUpload" runat="server" />
                                                         </div>
                                                     </div>
@@ -282,14 +282,14 @@
                                                 <div class="row gy-4">
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <asp:Label ID="lblWorkOrderNo" runat="server" Text="Work Order No*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblWorkOrderNo" runat="server" Text="Work Order No" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtWorkOrderNo" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <asp:Label ID="lblWorkOrderDate" runat="server" Text="Work Order Date*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblWorkOrderDate" runat="server" Text="Work Order Date" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtWorkOrderDate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
                                                             <cc1:CalendarExtender ID="CalendarExtender5" runat="server" CssClass="cal_Theme1" TargetControlID="txtWorkOrderDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                                         </div>
@@ -319,14 +319,14 @@
                                                 <div class="row gy-4">
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
-                                                            <asp:Label ID="lblContractorName" runat="server" Text="Contractor Name*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblContractorName" runat="server" Text="Contractor Name" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtContractorName" runat="server" CssClass="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div class="col-xxl-3 col-md-6">
 
                                                         <div>
-                                                            <asp:Label ID="lblContactPerson" runat="server" Text="Contact Person*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblContactPerson" runat="server" Text="Contact Person" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtContactPerson" runat="server" CssClass="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
@@ -334,7 +334,7 @@
                                                     <div class="col-xxl-3 col-md-6">
 
                                                         <div>
-                                                            <asp:Label ID="lblContactNo" runat="server" Text="Contact Number*" CssClass="form-label"></asp:Label>
+                                                            <asp:Label ID="lblContactNo" runat="server" Text="Contact Number" CssClass="form-label"></asp:Label>
                                                             <asp:TextBox ID="txtContactNo" runat="server" CssClass="form-control"></asp:TextBox>
                                                         </div>
                                                     </div>
