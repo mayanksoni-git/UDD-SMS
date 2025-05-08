@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true" CodeFile="MasterProjectWorkDataEntry.aspx.cs" Inherits="MasterProjectWorkDataEntry" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="main-content">
         <div class="page-content">
@@ -367,18 +366,6 @@
                                 <!--end col-->
                             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="card">
@@ -435,6 +422,7 @@
                                                                 <asp:BoundField HeaderText="State" DataField="Zone_Name" />
                                                                 <asp:BoundField HeaderText="District" DataField="Circle_Name" />
                                                                 <asp:BoundField HeaderText="ULB" DataField="Division_Name" />
+                                                                <asp:BoundField HeaderText="ULB Type" DataField="Division_Type" />
                                                                 <asp:BoundField HeaderText="Project" DataField="ProjectWork_Name" />
                                                                 <asp:BoundField HeaderText="Implementing Agency" DataField="ImplAgency" />
                                                                 <asp:BoundField HeaderText="Sanctioned Cost (In Lakhs)" DataField="ProjectWork_Budget" />
@@ -447,7 +435,6 @@
                                                                 <asp:BoundField HeaderText="Tender Issue Date" DataField="TenderIssueDate" DataFormatString="{0:dd-MMM-yyyy}" HtmlEncode="false" />
                                                                 <asp:BoundField HeaderText="Tender End Date" DataField="TenderEndDate" DataFormatString="{0:dd-MMM-yyyy}" HtmlEncode="false" />
                                                                 <asp:BoundField HeaderText="EMD (In Lakhs)" DataField="BidSecurityAmount" />
-
                                                                 <asp:BoundField HeaderText="Start Date As Per Agreement" DataField="ProjectWorkPkg_Agreement_Date" DataFormatString="{0:dd-MMM-yyyy}" HtmlEncode="false" />
                                                                 <asp:BoundField HeaderText="End Date As Per Agreement" DataField="ProjectWorkPkg_Due_Date" DataFormatString="{0:dd-MMM-yyyy}" HtmlEncode="false" />
                                                                 <asp:BoundField HeaderText="Issue" DataField="Issue" />
@@ -465,6 +452,13 @@
                                                                     <HeaderStyle Width="200" />
                                                                     <ItemStyle Width="200" />
                                                                     <FooterStyle Width="200" />
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Delete">
+                                                                    <ItemTemplate>
+                                                                        <asp:ImageButton ID="btnDelete" Width="20px" Height="20px" OnClick="btnDelete_Click"
+                                                                            ImageUrl="~/assets/images/delete.png" runat="server"
+                                                                            OnClientClick="return confirm('Are you sure you want to delete this project?');" />
+                                                                    </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>
                                                         </asp:GridView>
@@ -492,10 +486,4 @@
             </asp:UpdateProgress>
         </div>
     </div>
-
-
-
 </asp:Content>
-
-
-

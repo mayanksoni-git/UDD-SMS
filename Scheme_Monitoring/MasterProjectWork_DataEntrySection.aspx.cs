@@ -382,6 +382,8 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
             obj_tbl_ProjectWork.ProjectWork_ProjectType_Id = 0;
         }
 
+        obj_tbl_ProjectWork.ProjectWork_ImplAgency = ddlImplAgency.SelectedItem.Value.ToString();
+
 
 
         //New Fields Starts
@@ -730,6 +732,7 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
             {
                 ddlProjectType.SelectedValue = "0";
             }
+            ddlImplAgency.SelectedItem.Value = ds.Tables[0].Rows[0]["ImplAgency"].ToString();
             txtProjectWorkName.Text = ds.Tables[0].Rows[0]["ProjectWork_Name"].ToString();
             txtBudget.Text = ds.Tables[0].Rows[0]["ProjectWork_Budget"].ToString();
             txtGONo.Text = ds.Tables[0].Rows[0]["ProjectWork_GO_No"].ToString();

@@ -155,6 +155,18 @@
                                                             <asp:Label ID="Label18" runat="server" Text="Project Type*" CssClass="form-label"></asp:Label>
                                                             <asp:DropDownList ID="ddlProjectType" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         </div>
+                                                    </div>   
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label19" runat="server" Text="Implementing Agency" CssClass="form-label"></asp:Label>
+                                                            <asp:DropDownList ID="ddlImplAgency" runat="server" CssClass="form-select">
+                                                               <asp:ListItem Value="" Text="-- Select Implementing Agency --" Selected="True"></asp:ListItem>
+                                                                <asp:ListItem Value="C&DS">C&DS</asp:ListItem>
+                                                                <asp:ListItem Value="ULB">ULB</asp:ListItem>
+                                                                <asp:ListItem Value="Directorate">Directorate</asp:ListItem>
+                                                                <asp:ListItem Value="Secretariat">Secretariat</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </div>
                                                     </div>
                                                     <!--end col-->
                                                 </div>
@@ -395,12 +407,12 @@
                                                                             <asp:TextBox ID="txtFinancialTrans_GO_Number" runat="server" CssClass="form-control " Text='<%# Eval("ProjectWorkGO_GO_Number") %>'></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Central Share (In Lakhs)">
+                                                                    <asp:TemplateField HeaderText="Project Fund (In Lakhs)">
                                                                         <ItemTemplate>
                                                                             <asp:TextBox ID="txtCentralShare" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkGO_CentralShare") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="State Share (In Lakhs)">
+                                                                    <asp:TemplateField HeaderText="A&OE Fund (In Lakhs)">
                                                                         <ItemTemplate>
                                                                             <asp:TextBox ID="txtStateShare" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkGO_StateShare") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
                                                                         </ItemTemplate>
@@ -410,7 +422,7 @@
                                                                             <asp:TextBox ID="txtCentage" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkGO_Centage") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="ULB / Other Share Released (In Lakhs)">
+                                                                    <asp:TemplateField HeaderText="ULB / Other Share Released (In Lakhs)" Visible="false">
                                                                         <ItemTemplate>
                                                                             <asp:TextBox ID="txtULBShare" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkGO_ULBShare") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
                                                                         </ItemTemplate>

@@ -573,4 +573,51 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
     {
 
     }
+
+    protected void btnDelete_Click(object sender, ImageClickEventArgs e)
+    {
+        if (Session["Person_Id"] == null || Session["Person_Id"].ToString() != "2288")
+        {
+            MessageBox.Show("You are not authorized to perform this action.");
+            return;
+        }
+        try
+        {
+            GridViewRow gr = (sender as ImageButton).Parent.Parent as GridViewRow;
+            int ProjectWork_Id = Convert.ToInt32(gr.Cells[0].Text.Trim());
+
+            // Update the record status to 0 (soft delete)
+            bool result = (new DataLayer()).Update_ProjectWork_Status(ProjectWork_Id, 0);
+
+            if (result)
+            {
+                MessageBox.Show("Project deleted successfully.");
+                // Rebind the grid to reflect changes
+                btnSearch_Click(btnSearch, EventArgs.Empty);
+            }
+            else
+            {
+                MessageBox.Show("Error deleting project.");
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error: " + ex.Message);
+        }
+    }
+
+    //protected void grdPost_RowDataBound(object sender, GridViewRowEventArgs e)
+    //{
+    //    if (e.Row.RowType == DataControlRowType.DataRow)
+    //    {
+    //        // Find the delete button in the row
+    //        ImageButton btnDelete = (ImageButton)e.Row.FindControl("btnDelete");
+
+    //        if (btnDelete != null)
+    //        {
+    //            // Show delete button only for Person_Id 2288
+    //            btnDelete.Visible = (Session["Person_Id"] != null && Session["Person_Id"].ToString() == "2288");
+    //        }
+    //    }
+    //}
 }
