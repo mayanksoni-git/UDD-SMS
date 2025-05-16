@@ -732,7 +732,8 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
             {
                 ddlProjectType.SelectedValue = "0";
             }
-            ddlImplAgency.SelectedItem.Value = ds.Tables[0].Rows[0]["ImplAgency"].ToString();
+            //ddlImplAgency.SelectedItem.Value = ds.Tables[0].Rows[0]["ImplAgency"].ToString();
+            ddlImplAgency.SelectedValue = ds.Tables[0].Rows[0]["ImplAgency"].ToString();
             txtProjectWorkName.Text = ds.Tables[0].Rows[0]["ProjectWork_Name"].ToString();
             txtBudget.Text = ds.Tables[0].Rows[0]["ProjectWork_Budget"].ToString();
             txtGONo.Text = ds.Tables[0].Rows[0]["ProjectWork_GO_No"].ToString();

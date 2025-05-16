@@ -374,7 +374,7 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
             obj_tbl_ProjectWork.ProjectWork_ProjectType_Id = 0;
         }
 
-        obj_tbl_ProjectWork.ProjectWork_ImplAgency = ddlProjectType.SelectedItem.Value;
+        obj_tbl_ProjectWork.ProjectWork_ImplAgency = ddlImplAgency.SelectedItem.Value;
 
 
 

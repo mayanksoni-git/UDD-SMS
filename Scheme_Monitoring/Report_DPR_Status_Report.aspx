@@ -295,6 +295,7 @@
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <%--<asp:BoundField HeaderText="District" DataField="Jurisdiction_Name_Eng" />--%>
+                                                                    <asp:BoundField HeaderText="Id" DataField="ProjectDPR_Id" />
                                                                     <asp:BoundField HeaderText="Zone" DataField="Zone_Name" />
                                                                     <asp:BoundField HeaderText="District" DataField="Circle_Name" />
                                                                     <asp:BoundField HeaderText="ULB" DataField="Division_Name" />

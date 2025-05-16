@@ -143,9 +143,10 @@
                                                             <asp:DropDownList ID="ddlImplAgency" runat="server" CssClass="form-select">
                                                                 <asp:ListItem Value="" Text="-- Select Implementing Agency --" Selected="True"></asp:ListItem>
                                                                 <asp:ListItem Value="C&DS">C&DS</asp:ListItem>
-                                                                <asp:ListItem Value="ULB">ULB</asp:ListItem>
-                                                                <asp:ListItem Value="Directorate">Directorate</asp:ListItem>
-                                                                <asp:ListItem Value="Secretariat">Secretariat</asp:ListItem>
+                                                                <asp:ListItem Value="Irrigation Department">Irrigation Department</asp:ListItem>
+                                                                <asp:ListItem Value="NN">NN</asp:ListItem>
+                                                                <asp:ListItem Value="NP">NP</asp:ListItem>
+                                                                <asp:ListItem Value="NPP">NPP</asp:ListItem>
                                                             </asp:DropDownList>
                                                         </div>
                                                     </div>
