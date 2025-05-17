@@ -1,27 +1,39 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="CreateVisionPlan.aspx.cs" Inherits="CreateVisionPlan" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-     <asp:HiddenField ID="VisionPlanID" runat="server" />
+    <asp:HiddenField ID="VisionPlanID" runat="server" />
     <asp:HiddenField ID="ULBID" runat="server" />
     <asp:HiddenField ID="FYID" runat="server" />
-   
-   
-
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
+    <style>
+        .filter-btn {
+            display: flex;
+            padding: 8px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #ffffff;
+            background-color: #f85420;
+            width: 137px;
+            border: 0;
+            background: -webkit-gradient(linear, left top, right top, from(#FF5722), to(#D84315));
+            background: linear-gradient(88deg, #FF5722 0%, #D84315);
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            height: 39px;
+            line-height: 22px;
+            transition: all .35s ease-Out;
+        }
+    </style>
     <div class="main-content">
         <div class="page-content">
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
-                    
                     <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
                     </cc1:ToolkitScriptManager>
-                   
-
                     <div class="container-fluid">
-
-                         <div class="row">
+                        <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                     <h4 class="mb-sm-0" id="HeadingSec" runat="server">Create Vision Plan</h4>
@@ -37,16 +49,15 @@
                             <!--end col-->
                         </div>
 
-                          <div class="row">
+                        <div class="row">
                             <div class="col-lg-12">
                                 <div class="card" id="sectionFilter" runat="server">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Create Vision Plan</h4>
-                                         <a href="VisionPlan.aspx"  class="filter-btn" style="float:right;width:155px"><i class="icon-download"></i> Vision Plan List</a>
-                                        
+                                        <a href="VisionPlan.aspx" class="filter-btn" style="float: right; width: 155px"><i class="icon-download"></i>Vision Plan List</a>
                                     </div>
                                     <!-- end card header -->
-                                     <div class="card-body">
+                                    <div class="card-body">
                                         <div class="live-preview">
                                             <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6">
@@ -66,70 +77,87 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divDivision" runat="server">
                                                         <asp:Label ID="lblDivisionH" runat="server" Text="ULB*" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlDivision" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged1" CssClass="form-select"></asp:DropDownList>
-                                                        <%--<asp:DropDownList ID="ddlDivision" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged"></asp:DropDownList>--%>
+                                                        <asp:DropDownList ID="ddlDivision" runat="server" AutoPostBack="true"  CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divFY" runat="server">
                                                         <asp:Label ID="lblFY" runat="server" Text=" Financial Year*" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlFY_SelectedIndexChanged" ></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlFY" runat="server" CssClass="form-select" AutoPostBack="true"></asp:DropDownList>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
-                                                    <div id="div8" runat="server">
-                                                        <asp:Label ID="lblpop" runat="server" Text="Population*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="TxtPopulation" runat="server" CssClass="form-control"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                                 <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-3 col-md-6">
                                                     <div id="divProj" runat="server">
                                                         <asp:Label ID="lblProj" runat="server" Text="Project type*" CssClass="form-label"></asp:Label>
-                                                        <%--<asp:DropDownList ID="DDLProj" runat="server" CssClass="form-select" ></asp:DropDownList>--%>
                                                         <asp:DropDownList ID="DDLProj" runat="server" CssClass="form-select"></asp:DropDownList>
                                                         <asp:HiddenField ID="hfScalarValue" runat="server" />
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 " id="" <%--style="display:none"--%>>
+                                                <div class="col-xxl-3 col-md-6 " id="">
                                                     <div id="div9" runat="server">
                                                         <asp:Label ID="Label11" runat="server" Text="Project Name" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="TxtProject" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-3 col-md-6">
                                                     <div id="div10" runat="server">
                                                         <asp:Label ID="lblProjectCost" runat="server" Text="Project Cost(In Lakhs)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"  TextMode="Number"></asp:TextBox>
+                                                        <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator
+                                                            ID="rfvProjectCost"
+                                                            runat="server"
+                                                            ControlToValidate="txtProjectCost"
+                                                            ErrorMessage="Project Cost is required."
+                                                            CssClass="text-danger"
+                                                            Display="Dynamic"
+                                                            SetFocusOnError="true" />
+                                                        <asp:RangeValidator
+                                                            ID="rvProjectCost"
+                                                            runat="server"
+                                                            ControlToValidate="txtProjectCost"
+                                                            MinimumValue="0.01"
+                                                            MaximumValue="1000.00"
+                                                            Type="Double"
+                                                            ErrorMessage="Project Cost must be between 0.01 and 1000.00 Lakhs."
+                                                            CssClass="text-danger"
+                                                            Display="Dynamic"
+                                                            SetFocusOnError="true" />
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-3 col-md-6">
                                                     <div id="div11" runat="server">
                                                         <asp:Label ID="lblQuantity" runat="server" Text="Quantity/Capacity(Only Number)*" CssClass="form-label"></asp:Label>
                                                         <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-3 col-md-6">
                                                     <div id="div12" runat="server">
                                                         <asp:Label ID="lblSiteArea" runat="server" Text="Site Area(In Square Meter)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtSiteArea" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"  TextMode="Number"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSiteArea" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server" >
+                                                <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server">
                                                     <div id="div6" runat="server">
                                                         <asp:Label ID="Label9" runat="server" Text="Location (Ward Name)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="Location" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                        <asp:TextBox ID="Location" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                <asp:TextBox ID="txtApprovedProjCost" runat="server" Text="0" Enabled="false"></asp:TextBox>
-
-                                                
+                                                <div class="col-xxl-3 col-md-6 d-none" id="Div13" runat="server">
+                                                    <div id="div14" runat="server">
+                                                        <asp:Label ID="Label12" runat="server" Text="Location (Ward Name)*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="txtApprovedProjCost" runat="server" Visible="false" Text="0" Enabled="false"></asp:TextBox>
+                                                    </div>
+                                                </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div runat="server" id="NewConstruction">
-                                                        <asp:Label ID="Label1" runat="server" Text="Is Constructed ?*" CssClass="form-label"></asp:Label>
-                                                        <asp:RadioButton ID="RadioButton1" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Constructed " Value="1"  />
-                                                        <asp:RadioButton ID="RadioButton2" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Construction " Value="2"  />
-                                                        <asp:RadioButton ID="RadioButton3" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Sanction " Value="3"  />
+                                                        <asp:Label ID="Label1" runat="server" Text="Is Heritage Building ?*" CssClass="form-label"></asp:Label>
+                                                        <asp:RadioButton ID="RadioButton1" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Yes " Value="1" />
+                                                        <asp:RadioButton ID="RadioButton2" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="No" Value="2" />
+                                                        <asp:RadioButton ID="RadioButton3" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Sanction " Value="3" Visible="false" />    
+                                                        <%--<asp:RadioButton ID="RadioButton1" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Constructed " Value="1" />
+                                                        <asp:RadioButton ID="RadioButton2" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Construction " Value="2" />
+                                                        <asp:RadioButton ID="RadioButton3" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Sanction " Value="3" />--%>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6 validsec" id="sectionyear" runat="server">
@@ -138,7 +166,7 @@
                                                         <asp:TextBox ID="TxtYear" placeholder="yyyy" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                              <div class="col-xxl-3 col-md-6 validsec" id="sectionCond" runat="server">
+                                                <div class="col-xxl-3 col-md-6 validsec" id="sectionCond" runat="server">
                                                     <div id="condition" runat="server">
                                                         <asp:Label ID="Label3" runat="server" Text="Condition *" CssClass="form-label"></asp:Label>
                                                         <asp:RadioButton ID="RadioButton4" runat="server" GroupName="Condition" Text="Good " Value="1" />
@@ -146,41 +174,38 @@
                                                         <asp:RadioButton ID="RadioButton6" runat="server" GroupName="Condition" Text="Need Redevelopement" Value="3" />
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 validsec" id="secUser" runat="server">
+                                                <div class="col-xxl-3 col-md-6 validsec" id="secUser" runat="server">
                                                     <div id="UserCharge" runat="server">
                                                         <asp:Label ID="Label4" runat="server" Text="User Charge *" CssClass="form-label"></asp:Label>
                                                         <asp:RadioButton ID="RadioButton7" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="usercharge" Text="Yes " Value="1" />
                                                         <asp:RadioButton ID="RadioButton8" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="usercharge" Text="No" Value="0" /><br />
-                                                       
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 validsec" runat="server" id="sectionusercharge" >
+                                                <div class="col-xxl-3 col-md-6 validsec" runat="server" id="sectionusercharge">
                                                     <div id="div1" runat="server">
-                                                        <asp:Label ID="Label5" runat="server" Text="Amount(in rupees)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="Amounts" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                        <asp:Label ID="Label5" runat="server" Text="Amount of User Charge(in rupees)*" CssClass="form-label"></asp:Label>
+                                                        <asp:TextBox ID="Amounts" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 validsec" runat="server" id="sectionuOwner">
+                                                <div class="col-xxl-3 col-md-6 validsec" runat="server" id="sectionuOwner">
                                                     <div id="Div3" runat="server">
                                                         <asp:Label ID="Label6" runat="server" Text="Is Owner Nagar Nigam or ULB *" CssClass="form-label"></asp:Label>
                                                         <asp:RadioButton ID="RadioButton9" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="Owner" Text="Yes " Value="1" />
                                                         <asp:RadioButton ID="RadioButton10" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="Owner" Text="No" Value="0" /><br />
-                                                       
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6 validsec" runat="server"  id="secOtherown" >
+                                                <div class="col-xxl-3 col-md-6 validsec" runat="server" id="secOtherown">
                                                     <div id="div4" runat="server">
                                                         <asp:Label ID="Label7" runat="server" Text="Owner Department*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="OtherDepartment" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                        <asp:TextBox ID="OtherDepartment" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                
-                                                
-                                                 <div class="col-xxl-3 col-md-6" id="sectionpriority"  runat="server" >
+
+                                                <div class="col-xxl-3 col-md-6" id="sectionpriority" runat="server">
                                                     <div id="div7" runat="server">
                                                         <asp:Label ID="Label10" runat="server" Text="Self-Priority (5 is the highest, 1 is the lowest)" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-select" >
-                                                            <asp:ListItem value="0">--Select--</asp:ListItem>
+                                                        <asp:DropDownList ID="DdlPriority" runat="server" CssClass="form-select">
+                                                            <asp:ListItem Value="0">--Select--</asp:ListItem>
                                                             <asp:ListItem Value="1">1 - Very Low Priority</asp:ListItem>
                                                             <asp:ListItem Value="2">2 - Low Priority</asp:ListItem>
                                                             <asp:ListItem Value="3">3 - Medium Priority</asp:ListItem>
@@ -189,21 +214,20 @@
                                                         </asp:DropDownList>
                                                     </div>
                                                 </div>
-                                                 <div class="col-xxl-3 col-md-6" id="sectionSimilar" runat="server" >
+
+                                                <div class="col-xxl-3 col-md-6" id="sectionSimilar" runat="server">
                                                     <div id="div5" runat="server">
                                                         <asp:Label ID="Label8" runat="server" Text="Number Of Similar Existing Projects in City*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="similarProj" runat="server" CssClass="form-control" ></asp:TextBox>
+                                                        <asp:TextBox ID="similarProj" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-xxl-10  col-md-10">
                                                     <div>
-                                                        <%--<asp:Button ID="BtnSearch" Text="Save" OnClick="BtnSearch_Click" runat="server" Style="float: right" CssClass="btn bg-success text-white"></asp:Button>--%>
                                                         <asp:Button ID="BtnSave" Text="Submit" OnClick="BtnSave_Click" runat="server" Style="float: right" CssClass="btn bg-success text-white"></asp:Button>
                                                         <asp:Button ID="BtnUpdate" Text="Update" Visible="false" OnClick="BtnUpdate_Click" runat="server" Style="float: right" CssClass="btn bg-success text-white"></asp:Button>
-
                                                     </div>
                                                 </div>
-                                              
                                             </div>
                                             <!--end row-->
                                         </div>
@@ -211,11 +235,7 @@
                                 </div>
                             </div>
                         </div>
-                        
-
-
-                       
-                    </ContentTemplate>
+                </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="ddlCircle" />
                     <asp:PostBackTrigger ControlID="ddlDivision" />
@@ -233,14 +253,10 @@
                     <asp:PostBackTrigger ControlID="RadioButton9" />
                     <asp:PostBackTrigger ControlID="RadioButton10" />
                 </Triggers>
-
-                </asp:UpdatePanel>
-          
-            
-            </div>
+            </asp:UpdatePanel>
         </div>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#<%= DDLProj.ClientID %>').change(function () {
@@ -254,10 +270,10 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-                        var parsedResponse = JSON.parse(response.d);  
+                        var parsedResponse = JSON.parse(response.d);
                         var scalarValue = parsedResponse.scalarValue;
                         $('#modalContent').html(scalarValue);
-                        $('#ProjectTypeText').text('Guide Lines to fill form for Project Type: '+selectedText);
+                        $('#ProjectTypeText').text('Guide Lines to fill form for Project Type: ' + selectedText);
                         // Update modal content
                         // Show the modal
                         $('#myModal').modal('show');
@@ -268,9 +284,6 @@
                 });
             });
         });
-
-
-
     </script>
 
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -280,13 +293,12 @@
                     <h5 id="ProjectTypeText"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" >
-                    <p id="modalContent"></p>.
-                    <a href="PDFs/GuideLines/Cost%20Estimate.pdf" target="_blank" class="btn btn-sm bg-success text-white"> Click here</a> to See Full Guidelines
-                    <%--<img src="assets/images/Cost-Estimate-2.jpg" class="img-fluid"/>--%>
+                <div class="modal-body">
+                    <p id="modalContent"></p>
+                    .
+                    <a href="PDFs/GuideLines/Cost%20Estimate.pdf" target="_blank" class="btn btn-sm bg-success text-white">Click here</a> to See Full Guidelines
                 </div>
                 <div>
-                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -294,28 +306,4 @@
             </div>
         </div>
     </div>
-        <style>
-           
-
-        .filter-btn {
-    display: flex;
-    padding: 8px 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #ffffff;
-    background-color: #f85420;
-    width: 137px;
-    border: 0;
-    background: -webkit-gradient(linear, left top, right top, from(#FF5722), to(#D84315));
-    background: linear-gradient(88deg, #FF5722 0%, #D84315);
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    height: 39px;
-    line-height: 22px;
-    transition: all .35s ease-Out;
-}
-    </style>
-    
-    </asp:Content>
+</asp:Content>

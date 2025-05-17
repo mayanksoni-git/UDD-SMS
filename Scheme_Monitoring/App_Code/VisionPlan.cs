@@ -185,13 +185,14 @@ public class VisionPlan
         }
     }
 
-    public int IsQualifiedForVisionPlan(int Division_Id)
+    public int IsQualifiedForVisionPlan(int Division_Id, int FYID)
     {
         try
         {
-            SqlParameter[] param = new SqlParameter[1];
+            SqlParameter[] param = new SqlParameter[2];
 
             param[0] = new SqlParameter("@Division", Division_Id);
+            param[2] = new SqlParameter("@FYID", FYID);
 
             return objDAL.ExecuteScalarProcedure("sp_CheckULBQualificationForVisionPlan", param);
         }
