@@ -1041,7 +1041,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
     public DataTable InsertVisionPlan(string actions, int? CMVNYId, int? ULBID, int? TaskId, int? stateid, string IsConstructed, int? circleId, int? FY,
         string constructedYear, string Conditionof, string IsUserCharger, int? personId, string IsOwnerNagarNigamOrULB, decimal AmountOfUserCharge,
         string OtherOwner, string selfPriority, string NoOfSameProjInCity, string Loactions, string Population, string project, decimal ProjectCost,
-        int VisionStatus, int AkanshiULB, int Quantity, decimal SiteArea, decimal? ApprovedProjCost)
+        int VisionStatus, int AkanshiULB, int Quantity, decimal SiteArea, decimal? ApprovedProjCost, string IsHeritage)
     {
         if (!ApprovedProjCost.HasValue)
         {
@@ -1051,7 +1051,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
         try
         {
             DataTable dt = new DataTable();
-            SqlParameter[] param = new SqlParameter[26];
+            SqlParameter[] param = new SqlParameter[27];
             param[0] = new SqlParameter("@action", actions);
             param[1] = new SqlParameter("@taskId", TaskId);
             param[2] = new SqlParameter("@CMVNYId", CMVNYId);
@@ -1078,6 +1078,7 @@ INNER JOIN tbl_ULBIncomeType ex on a.HeadID=ex.ULBIncomeType_Id
             param[23] = new SqlParameter("@Quantity", Quantity);
             param[24] = new SqlParameter("@SiteArea", SiteArea);
             param[25] = new SqlParameter("@ApprovedProjCost", ApprovedProjCost.HasValue ? (object)ApprovedProjCost.Value : DBNull.Value);
+            param[26] = new SqlParameter("@IsHeritage", IsHeritage);
 
 
 

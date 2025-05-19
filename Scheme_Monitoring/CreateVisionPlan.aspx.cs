@@ -70,10 +70,15 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 MessageBox.Show("Project Cost is required.");
                 return;
             }
-            if (!double.TryParse(costText, out projectCost) || projectCost <= 0 || projectCost > 1000.00)
+            if (!double.TryParse(costText, out projectCost) || projectCost <= 0 || projectCost > 10000.00)
             {
-                MessageBox.Show("Project Cost must be a number between 0.01 and 1000.00 Lakhs.");
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Project Cost must be a number between 0.01 and 1000.00.');", true);
+                MessageBox.Show("Project Cost must be a number between 0.01 and 10000.00 Lakhs.");
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Project Cost must be a number between 0.01 and 10000.00.');", true);
+                return;
+            }
+            if (Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()) >= 100000)
+            {
+                MessageBox.Show("Please enter project cost in Lakhs not in Rupees.");
                 return;
             }
 
@@ -87,6 +92,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 return;
             }
             var constructed = "";
+            var isHeritage = "";
             var constructedyear = "";
             var condition = "";
             var UserCharg = "";
@@ -137,6 +143,17 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                     RadioButton7.Focus();
                     return;
                 }
+
+                if (RadioButton11.Checked)
+                    isHeritage = "1";
+                else if (RadioButton12.Checked)
+                    isHeritage = "0";
+                else
+                {
+                    MessageBox.Show("Please Select Building is Heritage?");
+                    RadioButton7.Focus();
+                    return;
+                }
                 //---- Check That OwnerShip Radion Button Checked or Not-----
 
                 constructed = "1";
@@ -155,6 +172,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 RadioButton1.Focus();
                 return;
             }
+
 
             if (RadioButton9.Checked)
             {
@@ -211,11 +229,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 return;
             }
 
-            if (Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()) >= 100000)
-            {
-                MessageBox.Show("Please enter project cost in Lakhs not in Rupees.");
-                return;
-            }
+            
 
             int Quantity;
 
@@ -268,7 +282,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             DataTable dt = new DataTable();
             decimal approvedProjCost = 0;
             dt = objLoan.InsertVisionPlan("insert", cmvny, ULB, 0, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location, "0", TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()), 0, -1, Quantity, Convert.ToDecimal(SiteArea), approvedProjCost);
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location, "0", TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()), 0, -1, Quantity, Convert.ToDecimal(SiteArea), approvedProjCost, isHeritage);
 
             if (dt.Rows.Count > 0)
             {
@@ -321,6 +335,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 secUser.Visible = true;
                 sectionuOwner.Visible = true;
                 RadioButton1.Checked = true;
+                divIsHeritage.Visible = true;
 
                 TxtYear.Text = dt.Rows[0]["constructedYear"].ToString();
                 if (dt.Rows[0]["Conditionof"].ToString() == "1")
@@ -346,6 +361,15 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                     RadioButton8.Checked = true;
                     sectionusercharge.Visible = false;
                 }
+                if (dt.Rows[0]["IsHeritage"].ToString() == "True")
+                {
+                    RadioButton11.Checked = true;
+                }
+                else
+                {
+                    RadioButton12.Checked = true;
+                }
+
             }
             else if (dt.Rows[0]["IsConstructed"].ToString() == "2")
             {
@@ -356,6 +380,10 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 sectionusercharge.Visible = false;
                 secOtherown.Visible = false;
                 sectionuOwner.Visible = true;
+                divIsHeritage.Visible = false;
+
+
+
             }
             else
             {
@@ -364,6 +392,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 sectionCond.Visible = false;
                 secUser.Visible = false;
                 sectionusercharge.Visible = false;
+                divIsHeritage.Visible = false;
             }
 
             if (dt.Rows[0]["IsOwnerNagarNigamOrULB"].ToString() == "True")
@@ -416,7 +445,28 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 MessageBox.Show("All Fields required");
                 return;
             }
+            double projectCost;
+            string costText = txtProjectCost.Text.Trim();
+
+            // Server-side validation
+            if (string.IsNullOrEmpty(costText))
+            {
+                MessageBox.Show("Project Cost is required.");
+                return;
+            }
+            if (!double.TryParse(costText, out projectCost) || projectCost <= 0 || projectCost > 10000.00)
+            {
+                MessageBox.Show("Project Cost must be a number between 0.01 and 10000.00 Lakhs.");
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Project Cost must be a number between 0.01 and 10000.00.');", true);
+                return;
+            }
+            if (Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()) >= 100000)
+            {
+                MessageBox.Show("Please enter project cost in Lakhs not in Rupees.");
+                return;
+            }
             var constructed = "";
+            var isHeritage = "";
             var constructedyear = "";
             var condition = "";
             var UserCharg = "";
@@ -470,6 +520,16 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 //---- Check That OwnerShip Radion Button Checked or Not-----
                
                 constructedyear = TxtYear.Text;
+                if (RadioButton11.Checked)
+                    isHeritage = "1";
+                else if (RadioButton12.Checked)
+                    isHeritage = "2";
+                else
+                {
+                    MessageBox.Show("Please Select building Is Heritage ?");
+                    RadioButton7.Focus();
+                    return;
+                }
                 constructed = "1";
             }
             else if (RadioButton2.Checked)
@@ -536,11 +596,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 MessageBox.Show("Please select  priority");
                 return;
             }
-            if (Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()) >= 100000)
-            {
-                MessageBox.Show("Please enter project cost in Lakhs not in Rupees.");
-                return;
-            }
+            
 
             var SiteArea = 0.00;
             var Quantity = 0;
@@ -559,7 +615,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             DataTable dt = new DataTable();
             //decimal approvedProjCost = 0;
             dt = objLoan.InsertVisionPlan("update", cmvny, ULB, pk, State, constructed, Dis, Fy, constructedyear, condition, UserCharg, Person_Id, IsOwnerShip,
-                Amount, owner, DdlPriority.SelectedValue, SameProj, location, "0",TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()),0,-1, Quantity, Convert.ToDecimal(SiteArea),Convert.ToInt32(txtApprovedProjCost.Text.Trim()));
+                Amount, owner, DdlPriority.SelectedValue, SameProj, location, "0",TxtProject.Text, Convert.ToDecimal(txtProjectCost.Text.Trim().ToString()),0,-1, Quantity, Convert.ToDecimal(SiteArea),Convert.ToInt32(txtApprovedProjCost.Text.Trim()), isHeritage);
             
             if (dt.Rows.Count > 0)
             {
@@ -594,9 +650,11 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             if (txt == "Constructed ")
             {
                 sectionyear.Visible = true;
+
                 sectionCond.Visible = true;
                 secUser.Visible = true;
                 sectionusercharge.Visible = true;
+                divIsHeritage.Visible = true;
 
                 sectionuOwner.Visible = true;
                 RadioButton1.Checked = true;
@@ -605,20 +663,32 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             }
             else if (txt == "Under Construction " || txt == "Under Sanction ")
             {
+                RadioButton11.Checked = false;
+                RadioButton12.Checked = true;
+                RadioButton8.Checked = true;
+                RadioButton7.Checked = false;
+                RadioButton4.Checked = false;
+                RadioButton5.Checked = false;
+                RadioButton6.Checked = false;
+                Amounts.Text = "";
+                TxtYear.Text = "";
                 sectionyear.Visible = false;
                 sectionCond.Visible = false;
                 secUser.Visible = false;
                 sectionusercharge.Visible = false;
+                divIsHeritage.Visible = false;
                 sectionuOwner.Visible = true;
                 secOtherown.Visible = false;
             }
             if (RadioButton7.Checked == true)
             {
                 sectionusercharge.Visible = true;
+
             }
             else
             {
                 sectionusercharge.Visible = false;
+                Amounts.Text = "";
             }
             if (RadioButton10.Checked == true)
             {
@@ -852,14 +922,6 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 SetDropdownValueAndDisable(ddlCircle, circleId);
                 if (divisionId > 0)
                 {
-                    VisionPlan vp = new VisionPlan();
-                    int IsQualified = vp.IsQualifiedForVisionPlan(divisionId, fyid);
-                    if (IsQualified == 0)
-                    {
-                        MessageBox.Show("Your ULB is not qualified to send Vision Plan for CM-VNY Scheme. Do not fill form.");
-                        ddlDivision.Enabled = false;
-                        return;
-                    }
                     SetDropdownValueAndDisable(ddlDivision, divisionId);
                 }
             }

@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="CreateVisionPlan.aspx.cs" Inherits="CreateVisionPlan" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:HiddenField ID="VisionPlanID" runat="server" />
@@ -77,7 +78,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="divDivision" runat="server">
                                                         <asp:Label ID="lblDivisionH" runat="server" Text="ULB*" CssClass="form-label"></asp:Label>
-                                                        <asp:DropDownList ID="ddlDivision" runat="server" AutoPostBack="true"  CssClass="form-select"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlDivision" runat="server" AutoPostBack="true" CssClass="form-select"></asp:DropDownList>
                                                     </div>
                                                 </div>
 
@@ -103,7 +104,7 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div10" runat="server">
                                                         <asp:Label ID="lblProjectCost" runat="server" Text="Project Cost(In Lakhs)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
+                                                        <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeypress="return isNumberKey(event, true);" TextMode="Number"></asp:TextBox>
                                                         <asp:RequiredFieldValidator
                                                             ID="rfvProjectCost"
                                                             runat="server"
@@ -117,9 +118,9 @@
                                                             runat="server"
                                                             ControlToValidate="txtProjectCost"
                                                             MinimumValue="0.01"
-                                                            MaximumValue="1000.00"
+                                                            MaximumValue="10000.00"
                                                             Type="Double"
-                                                            ErrorMessage="Project Cost must be between 0.01 and 1000.00 Lakhs."
+                                                            ErrorMessage="Project Cost must be between 0.01 and 10000.00 Lakhs."
                                                             CssClass="text-danger"
                                                             Display="Dynamic"
                                                             SetFocusOnError="true" />
@@ -128,13 +129,13 @@
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div11" runat="server">
                                                         <asp:Label ID="lblQuantity" runat="server" Text="Quantity/Capacity(Only Number)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
+                                                        <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" onkeypress="return isNumberKey(event, false);" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
                                                     <div id="div12" runat="server">
                                                         <asp:Label ID="lblSiteArea" runat="server" Text="Site Area(In Square Meter)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtSiteArea" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" TextMode="Number"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSiteArea" runat="server" CssClass="form-control" onkeypress="return isNumberKey(event, false);" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server">
@@ -146,24 +147,39 @@
                                                 <div class="col-xxl-3 col-md-6 d-none" id="Div13" runat="server">
                                                     <div id="div14" runat="server">
                                                         <asp:Label ID="Label12" runat="server" Text="Location (Ward Name)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtApprovedProjCost" runat="server" Visible="false" Text="0" Enabled="false"></asp:TextBox>
+                                                        <asp:TextBox ID="txtApprovedProjCost" runat="server" onkeypress="return isNumberKey(event, false);" Visible="false" Text="0" Enabled="false"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row gy-4">
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <div runat="server" id="NewConstruction">
+                                                        <asp:Label ID="Label1" runat="server" Text="Is Constructed ?*" CssClass="form-label"></asp:Label>
+                                                       <asp:RadioButton ID="RadioButton1" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Constructed " Value="1" />
+                                                        <asp:RadioButton ID="RadioButton2" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Construction " Value="2" />
+                                                        <asp:RadioButton ID="RadioButton3" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Sanction " Value="3" />
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
-                                                    <div runat="server" id="NewConstruction">
-                                                        <asp:Label ID="Label1" runat="server" Text="Is Heritage Building ?*" CssClass="form-label"></asp:Label>
-                                                        <asp:RadioButton ID="RadioButton1" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Yes " Value="1" />
-                                                        <asp:RadioButton ID="RadioButton2" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="No" Value="2" />
-                                                        <asp:RadioButton ID="RadioButton3" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Sanction " Value="3" Visible="false" />    
-                                                        <%--<asp:RadioButton ID="RadioButton1" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Constructed " Value="1" />
-                                                        <asp:RadioButton ID="RadioButton2" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Construction " Value="2" />
-                                                        <asp:RadioButton ID="RadioButton3" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsConstructed" Text="Under Sanction " Value="3" />--%>
+                                                    <div runat="server" id="divIsHeritage" visible="false">
+                                                        <asp:Label ID="Label13" runat="server" Text="Is Heritage Building ?*" CssClass="form-label"></asp:Label>
+                                                        <asp:RadioButton ID="RadioButton11" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsHeritage" Text="Yes" Value="1" />
+                                                        <asp:RadioButton ID="RadioButton12" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsHeritage" Text="No" Value="0" />
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6 validsec" id="sectionyear" runat="server">
                                                     <div id="div2" runat="server">
                                                         <asp:Label ID="Label2" runat="server" Text="Enter year*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="TxtYear" placeholder="yyyy" runat="server" CssClass="form-control"></asp:TextBox>
+                                                        <asp:TextBox ID="TxtYear" placeholder="yyyy" runat="server" CssClass="form-control" maxlength="4" onkeypress="return isYearKey(event);" onblur="validateYear(this);"></asp:TextBox>
+                                                        <asp:RegularExpressionValidator
+                                                            ID="revYear"
+                                                            runat="server"
+                                                            ControlToValidate="TxtYear"
+                                                            ValidationExpression="^\d{4}$"
+                                                            ErrorMessage="Enter a valid year in YYYY format."
+                                                            CssClass="text-danger"
+                                                            Display="Dynamic"
+                                                            SetFocusOnError="true" />
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6 validsec" id="sectionCond" runat="server">
@@ -177,7 +193,7 @@
                                                 <div class="col-xxl-3 col-md-6 validsec" id="secUser" runat="server">
                                                     <div id="UserCharge" runat="server">
                                                         <asp:Label ID="Label4" runat="server" Text="User Charge *" CssClass="form-label"></asp:Label>
-                                                        <asp:RadioButton ID="RadioButton7" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="usercharge" Text="Yes " Value="1" />
+                                                        <asp:RadioButton ID="RadioButton7" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="usercharge" Text="Yes" Value="1" />
                                                         <asp:RadioButton ID="RadioButton8" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="usercharge" Text="No" Value="0" /><br />
                                                     </div>
                                                 </div>
@@ -187,6 +203,8 @@
                                                         <asp:TextBox ID="Amounts" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row gy-4">
                                                 <div class="col-xxl-3 col-md-6 validsec" runat="server" id="sectionuOwner">
                                                     <div id="Div3" runat="server">
                                                         <asp:Label ID="Label6" runat="server" Text="Is Owner Nagar Nigam or ULB *" CssClass="form-label"></asp:Label>
@@ -200,6 +218,8 @@
                                                         <asp:TextBox ID="OtherDepartment" runat="server" CssClass="form-control"></asp:TextBox>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row gy-4">
 
                                                 <div class="col-xxl-3 col-md-6" id="sectionpriority" runat="server">
                                                     <div id="div7" runat="server">
@@ -285,6 +305,46 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        // Allow only numbers (and optionally one decimal point)
+        function isNumberKey(evt, allowDecimal) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            // Allow backspace, tab, delete, arrows
+            if (charCode == 8 || charCode == 9 || charCode == 46 || (charCode >= 37 && charCode <= 40))
+                return true;
+            // Allow numbers
+            if (charCode >= 48 && charCode <= 57)
+                return true;
+            // Allow one decimal point if allowed
+            if (allowDecimal && charCode == 46) {
+                var input = evt.target.value;
+                if (input.indexOf('.') === -1) return true;
+            }
+            return false;
+        }
+
+        // Allow only numbers, max 4 digits for year
+        function isYearKey(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            // Allow backspace, tab, delete, arrows
+            if (charCode == 8 || charCode == 9 || charCode == 46 || (charCode >= 37 && charCode <= 40))
+                return true;
+            // Allow numbers only
+            if (charCode >= 48 && charCode <= 57)
+                return true;
+            return false;
+        }
+
+        // Validate year on blur
+        function validateYear(input) {
+            var year = input.value;
+            if (!/^\d{4}$/.test(year)) {
+                alert('Please enter a valid year in YYYY format.');
+                input.value = '';
+                input.focus();
+            }
+        }
+</script>
 
     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">

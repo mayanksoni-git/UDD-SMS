@@ -13,9 +13,18 @@ public partial class QualifiedULBManagement : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        string personId = Session["Person_Id"].ToString();
         if (Session["Person_Id"] == null || Session["Login_Id"] == null)
         {
             Response.Redirect("Index.aspx");
+        }
+        if (personId == "3297" || personId == "2288")
+        {
+            btnSave.Visible = true;
+        }
+        else
+        {
+            btnSave.Visible = false;
         }
         if (!IsPostBack)
         {

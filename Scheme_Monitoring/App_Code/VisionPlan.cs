@@ -192,7 +192,7 @@ public class VisionPlan
             SqlParameter[] param = new SqlParameter[2];
 
             param[0] = new SqlParameter("@Division", Division_Id);
-            param[2] = new SqlParameter("@FYID", FYID);
+            param[1] = new SqlParameter("@FYID", FYID);
 
             return objDAL.ExecuteScalarProcedure("sp_CheckULBQualificationForVisionPlan", param);
         }

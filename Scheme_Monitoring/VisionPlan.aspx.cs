@@ -415,6 +415,10 @@ public partial class VisionPlan : System.Web.UI.Page
                 if (btnDelete != null) btnDelete.Visible = false;
                 if (BtnAction != null) BtnAction.Visible = false;
             }
+            if (Designation == "1056")
+            {
+                if (BtnAction != null) BtnAction.Visible = false;
+            }
         }
     }
 

@@ -23,14 +23,14 @@ public partial class CreateDocForVisionPlan : System.Web.UI.Page
         }
         string personId = Session["Person_Id"].ToString();
         string Designation = Session["PersonJuridiction_DesignationId"].ToString();
-        if (Designation == "1056" || personId == "3297" || personId == "2288")
-        {
+        //if (Designation == "1056" || personId == "3297" || personId == "2288")
+        //{
 
-        }
-        else
-        {
-            Response.Redirect("UploadDocForVisionplan.aspx");
-        }
+        //}
+        //else
+        //{
+        //    Response.Redirect("UploadDocForVisionplan.aspx");
+        //}
         if (!IsPostBack)
         {
             lblZoneH.Text = Session["Default_Zone"].ToString() + "*";
@@ -121,12 +121,41 @@ public partial class CreateDocForVisionPlan : System.Web.UI.Page
 
 
 
-    private void get_tbl_FinancialYear()
+    private void get_tbl_FinancialYearOld()
     {
         DataSet ds = (new DataLayer()).get_tbl_FinancialYear();
         FillDropDown(ds, ddlFY, "FinancialYear_Comments", "FinancialYear_Id");
-        //FillDropDown(ds, ddlFY1, "FinancialYear_Comments", "FinancialYear_Id");
-        //FillDropDown(ds, ddlFY2, "FinancialYear_Comments", "FinancialYear_Id");
+    }
+    private void get_tbl_FinancialYear()
+    {
+        DataSet ds = new DataSet();
+        ds = (new DataLayer()).get_tbl_FinancialYear();
+        if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+        {
+            // Filter only the record with FinancialYear_Id = 21
+            DataRow[] rows = ds.Tables[0].Select("FinancialYear_Id = 21");
+
+            if (rows.Length > 0)
+            {
+                DataTable filteredTable = rows.CopyToDataTable();
+                ddlFY.DataSource = filteredTable;
+                ddlFY.DataTextField = "FinancialYear_Comments";
+                ddlFY.DataValueField = "FinancialYear_Id";
+                ddlFY.DataBind();
+
+                // Optionally add a default selection item at the top
+                ddlFY.Items.Insert(0, new ListItem("-- Select Financial Year --", "0"));
+
+                // Set the default selection to 21
+                ddlFY.SelectedValue = "21";
+            }
+            else
+            {
+                // No matching FY found; clear and show only default option
+                ddlFY.Items.Clear();
+                ddlFY.Items.Insert(0, new ListItem("-- Select Financial Year --", "0"));
+            }
+        }
     }
 
     private void FillDropDown(DataSet ds, DropDownList ddl, string textField, string valueField)
@@ -277,7 +306,26 @@ public partial class CreateDocForVisionPlan : System.Web.UI.Page
         }
         var doc = "";
         var pathProfile = "";
-        if (fileupload.HasFile)
+
+
+
+
+
+        VisionPlan vp = new VisionPlan();
+        int fyid = ddlFY.SelectedValue == "0" ? 0 : Convert.ToInt32(ddlFY.SelectedValue);
+        int IsQualified = vp.IsQualifiedForVisionPlan(Convert.ToInt32(ddlDivision.SelectedValue), fyid);
+        if (IsQualified == 0)
+        {
+            MessageBox.Show("This ULB does not qualify to submit a Vision Plan under the CM-VNY Scheme for the financial year 2025–2026.");
+            ddlDivision.Focus();
+            return;
+        }
+
+
+
+
+
+            if (fileupload.HasFile)
         {
             string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
             if (fileExtension != ".pdf")
