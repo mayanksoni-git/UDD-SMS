@@ -130,13 +130,13 @@ public partial class QualifiedULBManagement : System.Web.UI.Page
 
         if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
         {
-            rptQualifiedULBs.DataSource = ds.Tables[0];
-            rptQualifiedULBs.DataBind();
+            grdPost.DataSource = ds.Tables[0];
+            grdPost.DataBind();
         }
         else
         {
-            rptQualifiedULBs.DataSource = null;
-            rptQualifiedULBs.DataBind();
+            grdPost.DataSource = null;
+            grdPost.DataBind();
         }
     }
 

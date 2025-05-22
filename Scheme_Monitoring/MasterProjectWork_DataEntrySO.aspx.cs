@@ -235,10 +235,16 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
             txtGODate2.Focus();
             return;
         }
-        if (txtBudget.Text.Trim() == "" || txtBudget.Text.Trim() == "0")
+        if (txtProjectCost.Text.Trim() == "" || txtProjectCost.Text.Trim() == "0")
         {
-            MessageBox.Show("Please Provide Project Sanctioned Cost");
-            txtBudget.Focus();
+            MessageBox.Show("Please Provide Project Cost");
+            txtProjectCost.Focus();
+            return;
+        }   
+        if (txtAAndOE.Text.Trim() == "" || txtAAndOE.Text.Trim() == "0")
+        {
+            MessageBox.Show("Please Provide A&OE Cost");
+            txtAAndOE.Focus();
             return;
         }
         
@@ -253,6 +259,22 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
         catch
         {
             obj_tbl_ProjectWork.ProjectWork_Budget = 0;
+        }
+        try
+        {
+            obj_tbl_ProjectWork.ProjectWork_ProjectCost = Convert.ToDecimal(txtProjectCost.Text.Trim());
+        }
+        catch
+        {
+            obj_tbl_ProjectWork.ProjectWork_ProjectCost = 0;
+        }
+        try
+        {
+            obj_tbl_ProjectWork.ProjectWork_AAndOE = Convert.ToDecimal(txtAAndOE.Text.Trim());
+        }
+        catch
+        {
+            obj_tbl_ProjectWork.ProjectWork_AAndOE = 0;
         }
         
         string Client = ConfigurationManager.AppSettings.Get("Client");
@@ -1047,5 +1069,21 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
         {
             gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
+    }
+
+    protected void txtProjectCost_TextChanged(object sender, EventArgs e)
+    {
+        decimal projectCost = string.IsNullOrEmpty(txtProjectCost.Text.Trim()) ? 0 : Convert.ToDecimal(txtProjectCost.Text.Trim());
+        decimal aAndOE = string.IsNullOrEmpty(txtAAndOE.Text.Trim()) ? 0 : Convert.ToDecimal(txtAAndOE.Text.Trim());
+
+        txtBudget.Text = ((projectCost * 100000 + aAndOE) / 100000).ToString();
+    }
+
+    protected void txtAAndOE_TextChanged(object sender, EventArgs e)
+    {
+        decimal projectCost = string.IsNullOrEmpty(txtProjectCost.Text.Trim()) ? 0 : Convert.ToDecimal(txtProjectCost.Text.Trim());
+        decimal aAndOE = string.IsNullOrEmpty(txtAAndOE.Text.Trim()) ? 0 : Convert.ToDecimal(txtAAndOE.Text.Trim());
+
+        txtBudget.Text = ((projectCost * 100000 + aAndOE) / 100000).ToString();
     }
 }

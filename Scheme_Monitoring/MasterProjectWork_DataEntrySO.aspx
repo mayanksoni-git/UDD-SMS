@@ -104,8 +104,21 @@
 
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
+                                                            <asp:Label ID="Label4" runat="server" Text="Project Cost (In Lakhs)*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);" OnTextChanged="txtProjectCost_TextChanged"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label5" runat="server" Text="A&OE (In Rupees)*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtAAndOE" runat="server" CssClass="form-control" AutoPostBack="true" onkeyup="isNumericVal(this);" OnTextChanged="txtAAndOE_TextChanged"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
                                                             <asp:Label ID="Label2" runat="server" Text="Sanctioned Cost (In Lakhs)*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtBudget" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                            <asp:TextBox ID="txtBudget" runat="server" Enabled="false" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -408,12 +421,12 @@
                                                                             <asp:TextBox ID="txtFinancialTrans_GO_Number" runat="server" CssClass="form-control " Text='<%# Eval("ProjectWorkGO_GO_Number") %>'></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Project Fund (In Lakhs)">
+                                                                    <asp:TemplateField HeaderText="Central Share (In Lakhs)">
                                                                         <ItemTemplate>
                                                                             <asp:TextBox ID="txtCentralShare" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkGO_CentralShare") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="A&OE Fund (In Lakhs)">
+                                                                    <asp:TemplateField HeaderText="State Share (In Lakhs)">
                                                                         <ItemTemplate>
                                                                             <asp:TextBox ID="txtStateShare" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkGO_StateShare") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
                                                                         </ItemTemplate>

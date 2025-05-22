@@ -221,8 +221,8 @@
                                 <a class="nav-link menu-link" href="#sidebarCMVNY" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarFund"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">CMVNY Scheme</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarCMVNY">
                                     <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item"><a href="VisionPlan.aspx" class="nav-link" data-key="t-grid-js">Vision Plan</a> </li>
-                                        <li class="nav-item"><a href="UploadDocForVisionplan.aspx" class="nav-link" data-key="t-grid-js">Upload Document For Vision Plan</a> </li>
+                                        <li class="nav-item"><a href="VisionPlan.aspx" class="nav-link" data-key="t-grid-js">Karya Yojna(कार्य योजना)</a> </li>
+                                        <li class="nav-item"><a href="UploadDocForVisionplan.aspx" class="nav-link" data-key="t-grid-js">Upload Document For Karya Yojna(कार्य योजना)</a> </li>
                                          <li class="nav-item">
                                             <a href="PDFs/Annexures/Annexure4.xlsx"
                                                 download="Annexure4.xlsx"
@@ -235,8 +235,8 @@
                                         <li class="nav-item"><a href="PDFs/ULB%20Eligibility/NPP%20Greater%201%20Lac.pdf" target="_blank" class="nav-link" data-key="t-list-js">Qualifying Nagar Palika Parishad Greater Than 1 Lac</a> </li>
                                         <li class="nav-item"><a href="PDFs/ULB%20Eligibility/NPP%20Less%201%20Lac.pdf" target="_blank" class="nav-link" data-key="t-list-js">Qualifying Nagar Palika Parishad Less Than 1 Lac</a> </li>
                                         <li class="nav-item"><a href="PDFs/ULB%20Eligibility/qualifying%20NP_V2.pdf" target="_blank" class="nav-link" data-key="t-list-js">Qualifying Nagar Panchayat</a> </li>
-                                        <li class="nav-item"><a href="PDFs/SUIC%20-1%20MOM.pdf" target="_blank" class="nav-link" data-key="t-list-js">SUIC-1 G.Os</a> </li>
-                                        <li class="nav-item"><a href="PDFs/SUIC-2%20MOM.pdf" target="_blank" class="nav-link" data-key="t-list-js">SUIC-2 G.Os</a> </li>
+                                        <%--<li class="nav-item"><a href="PDFs/SUIC%20-1%20MOM.pdf" target="_blank" class="nav-link" data-key="t-list-js">SUIC-1 G.Os</a> </li>
+                                        <li class="nav-item"><a href="PDFs/SUIC-2%20MOM.pdf" target="_blank" class="nav-link" data-key="t-list-js">SUIC-2 G.Os</a> </li>--%>
                                         <%--<li class="nav-item"><a href="PDFs/SUIC-3%20MOM.pdf" target="_blank" class="nav-link" data-key="t-list-js">SUIC-3 G.Os</a> </li>--%>
                                     </ul>
                                 </div>

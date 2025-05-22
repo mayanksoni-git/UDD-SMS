@@ -324,7 +324,6 @@ public partial class VisionPlanActionFirst : System.Web.UI.Page
                 //var pk = Convert.ToInt16(e.CommandArgument.ToString());
                 Response.Redirect("ActionOnVisionPlan.aspx?id=" + PlanID + "&&Dist=" + Distid + "&&ULBID=" + ULBID + "&&FYID=" + FYID + "");
 
-
             }
 
         }

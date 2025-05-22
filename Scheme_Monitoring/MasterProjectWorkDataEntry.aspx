@@ -425,6 +425,8 @@
                                                                 <asp:BoundField HeaderText="ULB Type" DataField="Division_Type" />
                                                                 <asp:BoundField HeaderText="Project" DataField="ProjectWork_Name" />
                                                                 <asp:BoundField HeaderText="Implementing Agency" DataField="ImplAgency" />
+                                                                <asp:BoundField HeaderText="Project Cost(In Lakhs)" DataField="ProjectCost" />
+                                                                <asp:BoundField HeaderText="A&OE (In Rupees)" DataField="AAndOE" />
                                                                 <asp:BoundField HeaderText="Sanctioned Cost (In Lakhs)" DataField="ProjectWork_Budget" />
                                                                 <asp:BoundField HeaderText="Agreement Cost (In Lakhs)" DataField="tender_cost" />
                                                                 <asp:BoundField HeaderText="Released Amount (In Lakhs)" DataField="Total_Release" />

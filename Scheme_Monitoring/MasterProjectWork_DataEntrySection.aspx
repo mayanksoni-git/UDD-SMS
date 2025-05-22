@@ -88,8 +88,21 @@
 
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
+                                                            <asp:Label ID="Label4" runat="server" Text="Project Cost (In Lakhs)*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtProjectCost" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" AutoPostBack="true" OnTextChanged="txtProjectCost_TextChanged"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label5" runat="server" Text="A&OE (In Rupees)*" CssClass="form-label"></asp:Label>
+                                                            <asp:TextBox ID="txtAAndOE" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" AutoPostBack="true" OnTextChanged="txtAAndOE_TextChanged"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
                                                             <asp:Label ID="Label2" runat="server" Text="Sanctioned Cost (In Lakhs)*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtBudget" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                            <asp:TextBox ID="txtBudget" runat="server" CssClass="form-control" Enabled="false" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->

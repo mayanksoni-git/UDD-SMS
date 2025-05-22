@@ -230,6 +230,18 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
             txtGODate2.Focus();
             return;
         }
+        if (txtProjectCost.Text.Trim() == "" || txtProjectCost.Text.Trim() == "0")
+        {
+            MessageBox.Show("Please Provide Project Cost");
+            txtProjectCost.Focus();
+            return;
+        }
+        if (txtAAndOE.Text.Trim() == "" || txtAAndOE.Text.Trim() == "0")
+        {
+            MessageBox.Show("Please Provide A&OE Cost");
+            txtAAndOE.Focus();
+            return;
+        }
         if (txtBudget.Text.Trim() == "" || txtBudget.Text.Trim() == "0")
         {
             MessageBox.Show("Please Provide Project Sanctioned Cost");
@@ -253,6 +265,22 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
         catch
         {
             obj_tbl_ProjectWork.ProjectWork_Budget = 0;
+        }
+        try
+        {
+            obj_tbl_ProjectWork.ProjectWork_ProjectCost = Convert.ToDecimal(txtProjectCost.Text.Trim());
+        }
+        catch
+        {
+            obj_tbl_ProjectWork.ProjectWork_ProjectCost = 0;
+        }
+        try
+        {
+            obj_tbl_ProjectWork.ProjectWork_AAndOE = Convert.ToDecimal(txtAAndOE.Text.Trim());
+        }
+        catch
+        {
+            obj_tbl_ProjectWork.ProjectWork_AAndOE = 0;
         }
         if (physicalTarget > 100)
         {
@@ -736,6 +764,8 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
             ddlImplAgency.SelectedValue = ds.Tables[0].Rows[0]["ImplAgency"].ToString();
             txtProjectWorkName.Text = ds.Tables[0].Rows[0]["ProjectWork_Name"].ToString();
             txtBudget.Text = ds.Tables[0].Rows[0]["ProjectWork_Budget"].ToString();
+            txtAAndOE.Text = ds.Tables[0].Rows[0]["AAndOE"].ToString();
+            txtProjectCost.Text = ds.Tables[0].Rows[0]["ProjectCost"].ToString();
             txtGONo.Text = ds.Tables[0].Rows[0]["ProjectWork_GO_No"].ToString();
             txtGODate2.Text = ds.Tables[0].Rows[0]["ProjectWork_GO_Date"].ToString();
             hf_GO_Path.Value = ds.Tables[0].Rows[0]["ProjectWork_GO_Path"].ToString();
@@ -1073,5 +1103,21 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
         {
             gv.FooterRow.TableSection = TableRowSection.TableFooter;
         }
+    }
+
+    protected void txtProjectCost_TextChanged(object sender, EventArgs e)
+    {
+        decimal projectCost = string.IsNullOrEmpty(txtProjectCost.Text.Trim()) ? 0 : Convert.ToDecimal(txtProjectCost.Text.Trim());
+        decimal aAndOE = string.IsNullOrEmpty(txtAAndOE.Text.Trim()) ? 0 : Convert.ToDecimal(txtAAndOE.Text.Trim());
+
+        txtBudget.Text = ((projectCost * 100000 + aAndOE) / 100000).ToString();
+    }
+
+    protected void txtAAndOE_TextChanged(object sender, EventArgs e)
+    {
+        decimal projectCost = string.IsNullOrEmpty(txtProjectCost.Text.Trim()) ? 0 : Convert.ToDecimal(txtProjectCost.Text.Trim());
+        decimal aAndOE = string.IsNullOrEmpty(txtAAndOE.Text.Trim()) ? 0 : Convert.ToDecimal(txtAAndOE.Text.Trim());
+
+        txtBudget.Text = ((projectCost * 100000 + aAndOE) / 100000).ToString();
     }
 }

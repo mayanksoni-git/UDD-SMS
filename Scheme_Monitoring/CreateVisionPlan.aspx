@@ -37,12 +37,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0" id="HeadingSec" runat="server">Create Vision Plan</h4>
+                                    <h4 class="mb-sm-0" id="HeadingSec" runat="server">Add Karya Yojna(कार्य योजना)</h4>
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
                                             <li class="breadcrumb-item">CMVNY Scheme</li>
-                                            <li class="breadcrumb-item active">Create Vision Plan</li>
+                                            <li class="breadcrumb-item active">Add Karya Yojna(कार्य योजना)</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -54,8 +54,8 @@
                             <div class="col-lg-12">
                                 <div class="card" id="sectionFilter" runat="server">
                                     <div class="card-header align-items-center d-flex">
-                                        <h4 class="card-title mb-0 flex-grow-1">Create Vision Plan</h4>
-                                        <a href="VisionPlan.aspx" class="filter-btn" style="float: right; width: 155px"><i class="icon-download"></i>Vision Plan List</a>
+                                        <h4 class="card-title mb-0 flex-grow-1">Add Karya Yojna(कार्य योजना)</h4>
+                                        <a href="VisionPlan.aspx" class="filter-btn" style="float: right; width: 155px"><i class="icon-download"></i>Karya Yojna(कार्य योजना) List</a>
                                     </div>
                                     <!-- end card header -->
                                     <div class="card-body">
@@ -126,16 +126,16 @@
                                                             SetFocusOnError="true" />
                                                     </div>
                                                 </div>
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-3 col-md-6 d-none">
                                                     <div id="div11" runat="server">
                                                         <asp:Label ID="lblQuantity" runat="server" Text="Quantity/Capacity(Only Number)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" onkeypress="return isNumberKey(event, false);" TextMode="Number"></asp:TextBox>
+                                                        <asp:TextBox ID="txtQuantity" Text="0" runat="server" CssClass="form-control" onkeypress="return isNumberKey(event, false);" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                <div class="col-xxl-3 col-md-6">
+                                                <div class="col-xxl-3 col-md-6 d-none">
                                                     <div id="div12" runat="server">
                                                         <asp:Label ID="lblSiteArea" runat="server" Text="Site Area(In Square Meter)*" CssClass="form-label"></asp:Label>
-                                                        <asp:TextBox ID="txtSiteArea" runat="server" CssClass="form-control" onkeypress="return isNumberKey(event, false);" TextMode="Number"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSiteArea" Text="0" runat="server" CssClass="form-control" onkeypress="return isNumberKey(event, false);" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6" id="sectionLocation" runat="server">
@@ -161,7 +161,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
-                                                    <div runat="server" id="divIsHeritage" visible="false">
+                                                    <div runat="server" id="divIsHeritage">
                                                         <asp:Label ID="Label13" runat="server" Text="Is Heritage Building ?*" CssClass="form-label"></asp:Label>
                                                         <asp:RadioButton ID="RadioButton11" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsHeritage" Text="Yes" Value="1" />
                                                         <asp:RadioButton ID="RadioButton12" AutoPostBack="true" OnCheckedChanged="RadioButton_CheckedChanged" runat="server" GroupName="IsHeritage" Text="No" Value="0" />

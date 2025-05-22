@@ -34,6 +34,7 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             sectionuOwner.Visible = true;
             secOtherown.Visible = false;
             sectionusercharge.Visible = false;
+
             if (Request.QueryString.Count > 0)
             {
                 ULBID.Value = Request.QueryString["ULBID"].ToString();
@@ -207,12 +208,12 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 Location.Focus();
                 return;
             }
-            if (txtQuantity.Text == "")
-            {
-                MessageBox.Show("Please Enter Quantity/Capacity.");
-                Location.Focus();
-                return;
-            }
+            //if (txtQuantity.Text == "")
+            //{
+            //    MessageBox.Show("Please Enter Quantity/Capacity.");
+            //    Location.Focus();
+            //    return;
+            //}
             var cmvny = Convert.ToInt32(DDLProj.SelectedValue);
             var ULB = Convert.ToInt32(ddlDivision.SelectedValue);
             var State = Convert.ToInt32(ddlZone.SelectedValue);
@@ -231,51 +232,51 @@ public partial class CreateVisionPlan: System.Web.UI.Page
 
             
 
-            int Quantity;
+            int Quantity=0;
 
-            if (!string.IsNullOrEmpty(txtQuantity.Text))
-            {
-                // Validate the input
-                if (int.TryParse(txtQuantity.Text, out Quantity))
-                {
+            //if (!string.IsNullOrEmpty(txtQuantity.Text))
+            //{
+            //    // Validate the input
+            //    if (int.TryParse(txtQuantity.Text, out Quantity))
+            //    {
 
-                }
-                else
-                {
-                    MessageBox.Show("Please enter only number in the Quantity.");
-                    txtQuantity.Text = string.Empty; // Optionally clear the invalid input
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Quantity cannot be empty.");
-                txtQuantity.Text = string.Empty; // Optionally clear the invalid input
-                return;
-            }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Please enter only number in the Quantity.");
+            //        txtQuantity.Text = string.Empty; // Optionally clear the invalid input
+            //        return;
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Quantity cannot be empty.");
+            //    txtQuantity.Text = string.Empty; // Optionally clear the invalid input
+            //    return;
+            //}
 
-            Decimal SiteArea;
+            Decimal SiteArea=0;
 
-            if (!string.IsNullOrEmpty(txtSiteArea.Text))
-            {
-                // Validate the input
-                if (decimal.TryParse(txtSiteArea.Text, out SiteArea))
-                {
+            //if (!string.IsNullOrEmpty(txtSiteArea.Text))
+            //{
+            //    // Validate the input
+            //    if (decimal.TryParse(txtSiteArea.Text, out SiteArea))
+            //    {
 
-                }
-                else
-                {
-                    MessageBox.Show("Please enter only decimal value in the Site Area.");
-                    txtSiteArea.Text = string.Empty; // Optionally clear the invalid input
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Site Area cannot be empty.");
-                txtSiteArea.Text = string.Empty; // Optionally clear the invalid input
-                return;
-            }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Please enter only decimal value in the Site Area.");
+            //        txtSiteArea.Text = string.Empty; // Optionally clear the invalid input
+            //        return;
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Site Area cannot be empty.");
+            //    txtSiteArea.Text = string.Empty; // Optionally clear the invalid input
+            //    return;
+            //}
 
 
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
@@ -420,12 +421,13 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             }
             if(!String.IsNullOrWhiteSpace(dt.Rows[0]["Quantity"].ToString()))
             {
-                txtQuantity.Text = dt.Rows[0]["Quantity"].ToString();
+                //txtQuantity.Text = dt.Rows[0]["Quantity"].ToString();
+                txtQuantity.Text = "0";
             }
-            if(!String.IsNullOrWhiteSpace(dt.Rows[0]["SiteArea"].ToString()))
-            {
-                txtSiteArea.Text = dt.Rows[0]["SiteArea"].ToString();
-            }
+            //if(!String.IsNullOrWhiteSpace(dt.Rows[0]["SiteArea"].ToString()))
+            //{
+            //    txtSiteArea.Text = dt.Rows[0]["SiteArea"].ToString();
+            //}
             BtnSave.Visible = false;
             BtnUpdate.Visible = true;
         }
@@ -576,12 +578,12 @@ public partial class CreateVisionPlan: System.Web.UI.Page
                 return;
             }
 
-            if (txtQuantity.Text == "")
-            {
-                MessageBox.Show("Please Enter Quantity/Capacity.");
-                Location.Focus();
-                return;
-            }
+            //if (txtQuantity.Text == "")
+            //{
+            //    MessageBox.Show("Please Enter Quantity/Capacity.");
+            //    Location.Focus();
+            //    return;
+            //}
             var pk = Convert.ToInt32(VisionPlanID.Value);
             var cmvny = Convert.ToInt32(DDLProj.SelectedValue);
             var ULB = Convert.ToInt32(ddlDivision.SelectedValue);
@@ -600,15 +602,15 @@ public partial class CreateVisionPlan: System.Web.UI.Page
 
             var SiteArea = 0.00;
             var Quantity = 0;
-            if (!string.IsNullOrEmpty(txtQuantity.Text))
-            {
-                Quantity = Convert.ToInt16(txtQuantity.Text.ToString());
-            }
+            //if (!string.IsNullOrEmpty(txtQuantity.Text))
+            //{
+            //    Quantity = Convert.ToInt16(txtQuantity.Text.ToString());
+            //}
 
-            if (!string.IsNullOrEmpty(txtSiteArea.Text))
-            {
-                SiteArea = Convert.ToDouble(txtSiteArea.Text.ToString());
-            }
+            //if (!string.IsNullOrEmpty(txtSiteArea.Text))
+            //{
+            //    SiteArea = Convert.ToDouble(txtSiteArea.Text.ToString());
+            //}
 
             // var person=Convert.ToInt32(se)
             var Person_Id = Convert.ToInt32(Session["Person_Id"].ToString());
@@ -683,7 +685,6 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             if (RadioButton7.Checked == true)
             {
                 sectionusercharge.Visible = true;
-
             }
             else
             {
@@ -786,12 +787,12 @@ public partial class CreateVisionPlan: System.Web.UI.Page
             txtProjectCost.Focus();
             return false;
         }
-        if (txtQuantity.Text == "" || txtQuantity.Text == null)
-        {
-            MessageBox.Show("Please Enter Quantity/Capacity. ");
-            txtQuantity.Focus();
-            return false;
-        }
+        //if (txtQuantity.Text == "" || txtQuantity.Text == null)
+        //{
+        //    MessageBox.Show("Please Enter Quantity/Capacity. ");
+        //    txtQuantity.Focus();
+        //    return false;
+        //}
         else
         {
             return true;

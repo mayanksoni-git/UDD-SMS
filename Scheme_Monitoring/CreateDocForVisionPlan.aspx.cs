@@ -320,12 +320,7 @@ public partial class CreateDocForVisionPlan : System.Web.UI.Page
             ddlDivision.Focus();
             return;
         }
-
-
-
-
-
-            if (fileupload.HasFile)
+        if (fileupload.HasFile)
         {
             string fileExtension = System.IO.Path.GetExtension(fileupload.FileName).ToLower();
             if (fileExtension != ".pdf")
@@ -382,7 +377,6 @@ public partial class CreateDocForVisionPlan : System.Web.UI.Page
                     reset();
                 }
                 MessageBox.Show(dt.Rows[0]["remark"].ToString());
-
             }
            
 

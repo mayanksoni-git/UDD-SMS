@@ -59,11 +59,12 @@
                                 <div class="row mt-3">
                                     <div class="col-md-12">
                                         <div class="table-responsive">
-                                            <asp:Repeater ID="rptQualifiedULBs" runat="server" OnItemCommand="rptQualifiedULBs_ItemCommand">
+                                            <asp:Repeater ID="grdPost" runat="server" OnItemCommand="rptQualifiedULBs_ItemCommand">
                                                 <HeaderTemplate>
                                                     <table class="table table-bordered table-striped">
                                                         <thead>
                                                             <tr>
+                                                                <th>Sr.No.</th>
                                                                 <th>Financial Year</th>
                                                                 <th>District</th>
                                                                 <th>ULB</th>
@@ -75,6 +76,7 @@
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
                                                     <tr>
+                                                         <td class="text-center"><%# Container.ItemIndex + 1 %></td> 
                                                         <td><%# Eval("FinancialYear_Comments") %></td>
                                                         <td><%# Eval("Circle_Name") %></td>
                                                         <td><%# Eval("Division_Name") %></td>
