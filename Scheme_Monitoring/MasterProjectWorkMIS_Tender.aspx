@@ -1,19 +1,24 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/TemplateMasterAdmin.master" AutoEventWireup="true"
-    CodeFile="MasterProjectWorkMIS_Tender.aspx.cs" Inherits="MasterProjectWorkMIS_Tender" MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
+    CodeFile="MasterProjectWorkMIS_Tender.aspx.cs" Inherits="MasterProjectWorkMIS_Tender" 
+    MaintainScrollPositionOnPostback="true" EnableEventValidation="false" ValidateRequest="false" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
     <div class="main-content">
         <div class="page-content">
-            <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
+            <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" 
+                EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
             </cc1:ToolkitScriptManager>
             <asp:UpdatePanel ID="up" runat="server">
                 <ContentTemplate>
                     <div class="container-fluid">
-                        <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="btnShowPopup"
-                            CancelControlID="btnclose" BackgroundCssClass="modalBackground1">
+                        <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" 
+                            TargetControlID="btnShowPopup" CancelControlID="btnclose" 
+                            BackgroundCssClass="modalBackground1">
                         </cc1:ModalPopupExtender>
-                        <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;"></asp:Button>
+                        <asp:Button ID="btnShowPopup" Text="Show" runat="server" Style="display: none;" />
+                        
                         <div class="row">
                             <div class="col-12 mb-3">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -27,62 +32,73 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Tender Details</h4>
                                     </div>
-                                    <!-- end card header -->
+                                    
                                     <div class="card-body">
                                         <div class="live-preview">
                                             <div class="row gy-12">
                                                 <div class="col-xxl-12 col-md-12">
                                                     <div class="table-responsive">
-                                                        <asp:GridView ID="grdTenderDetails" runat="server" CssClass="display table table-bordered" AutoGenerateColumns="false" EmptyDataText="No Records Found" ShowFooter="true" OnPreRender="grdTenderDetails_PreRender" OnRowDataBound="grdTenderDetails_RowDataBound">
+                                                        <asp:GridView ID="grdTenderDetails" runat="server" 
+                                                            CssClass="display table table-bordered" AutoGenerateColumns="false" 
+                                                            EmptyDataText="No Records Found" ShowFooter="true" 
+                                                            OnRowDataBound="grdTenderDetails_RowDataBound"
+                                                            OnRowCommand="grdTenderDetails_RowCommand">
                                                             <Columns>
-                                                                <asp:BoundField DataField="ProjectTender_Id" HeaderText="ProjectTender_Id">
-                                                                    <HeaderStyle CssClass="displayStyle" />
-                                                                    <ItemStyle CssClass="displayStyle" />
-                                                                    <FooterStyle CssClass="displayStyle" />
-                                                                </asp:BoundField>
-                                                                <asp:BoundField DataField="ProjectTender_Document" HeaderText="ProjectTender_Document">
-                                                                    <HeaderStyle CssClass="displayStyle" />
-                                                                    <ItemStyle CssClass="displayStyle" />
-                                                                    <FooterStyle CssClass="displayStyle" />
-                                                                </asp:BoundField>
                                                                 <asp:TemplateField HeaderText="S No.">
                                                                     <ItemTemplate>
                                                                         <%# Container.DataItemIndex + 1 %>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                
                                                                 <asp:TemplateField HeaderText="NIT Date">
                                                                     <ItemTemplate>
-                                                                        <asp:TextBox ID="txtNITDate" runat="server" CssClass="form-control date-picker" autocomplete="off" Text='<%# Eval("ProjectTender_NITDate") %>'></asp:TextBox>
-                                                                        <cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" TargetControlID="txtNITDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                                        <asp:TextBox ID="txtNITDate" runat="server" CssClass="form-control date-picker"
+                                                                            autocomplete="off" Text='<%# Eval("ProjectTender_NITDate") %>'></asp:TextBox>
+                                                                        <cc1:CalendarExtender ID="ceNITDate" runat="server" CssClass="cal_Theme1"
+                                                                            TargetControlID="txtNITDate" Format="dd/MM/yyyy">
+                                                                        </cc1:CalendarExtender>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+
                                                                 <asp:TemplateField HeaderText="Tender Issue Date*">
                                                                     <ItemTemplate>
-                                                                        <asp:TextBox ID="txtTenderIssueDate" runat="server" CssClass="form-control date-picker" autocomplete="off" Text='<%# Eval("ProjectTender_IssueDate") %>'></asp:TextBox>
-                                                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" CssClass="cal_Theme1" TargetControlID="txtTenderIssueDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                                        <asp:TextBox ID="txtTenderIssueDate" runat="server" CssClass="form-control date-picker" 
+                                                                            autocomplete="off" Text='<%# Eval("ProjectTender_IssueDate") %>'></asp:TextBox>
+                                                                        <cc1:CalendarExtender ID="ceIssueDate" runat="server" CssClass="cal_Theme1" 
+                                                                            TargetControlID="txtTenderIssueDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                
                                                                 <asp:TemplateField HeaderText="Tender End Date*">
                                                                     <ItemTemplate>
-                                                                        <asp:TextBox ID="txtTenderEndDate" runat="server" CssClass="form-control date-picker" autocomplete="off" Text='<%# Eval("ProjectTender_EndDate") %>'></asp:TextBox>
-                                                                        <cc1:CalendarExtender ID="CalendarExtender3" runat="server" CssClass="cal_Theme1" TargetControlID="txtTenderEndDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                                                        <asp:TextBox ID="txtTenderEndDate" runat="server" CssClass="form-control date-picker" 
+                                                                            autocomplete="off" Text='<%# Eval("ProjectTender_EndDate") %>'></asp:TextBox>
+                                                                        <cc1:CalendarExtender ID="ceEndDate" runat="server" CssClass="cal_Theme1" 
+                                                                            TargetControlID="txtTenderEndDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                
                                                                 <asp:TemplateField HeaderText="EMD (In Lakhs)*">
                                                                     <ItemTemplate>
-                                                                        <asp:TextBox ID="txtEMD" runat="server" CssClass="form-control" onkeyup="isNumericVal(this);" Text='<%# Eval("ProjectTender_EMD") %>'></asp:TextBox>
+                                                                        <asp:TextBox ID="txtEMD" runat="server" CssClass="form-control" 
+                                                                            onkeypress="return isDecimalNumber(event)" 
+                                                                            Text='<%# Eval("ProjectTender_EMD") %>'></asp:TextBox>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                
                                                                 <asp:TemplateField HeaderText="Remarks">
                                                                     <ItemTemplate>
-                                                                        <asp:TextBox ID="txtRemarks" runat="server" CssClass="form-control" Text='<%# Eval("ProjectTender_Remarks") %>'></asp:TextBox>
+                                                                        <asp:TextBox ID="txtRemarks" runat="server" CssClass="form-control" 
+                                                                            Text='<%# Eval("ProjectTender_Remarks") %>'></asp:TextBox>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                
                                                                 <asp:TemplateField HeaderText="Tender Status">
                                                                     <ItemTemplate>
                                                                         <asp:DropDownList ID="ddlTenderStatus" runat="server" CssClass="form-select">
@@ -92,6 +108,7 @@
                                                                         </asp:DropDownList>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                
                                                                 <asp:TemplateField HeaderText="Failure Reason">
                                                                     <ItemTemplate>
                                                                         <asp:DropDownList ID="ddlFailureReason" runat="server" CssClass="form-select">
@@ -105,116 +122,79 @@
                                                                         </asp:DropDownList>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                
                                                                 <asp:TemplateField HeaderText="Upload Tender File*">
                                                                     <ItemTemplate>
                                                                         <asp:FileUpload ID="fuTenderFile" runat="server" />
+                                                                        <asp:HiddenField ID="hfFilePath" runat="server" Value='<%# Eval("ProjectTender_FilePath") %>' />
+                                                                        <asp:HiddenField ID="hfFileName" runat="server" Value='<%# Eval("ProjectTender_FileName") %>' />
                                                                     </ItemTemplate>
                                                                     <FooterTemplate>
-                                                                        <asp:ImageButton ID="btnAddTender" OnClick="btnAddTender_Click" runat="server" ImageUrl="~/assets/images/add-icon.png" Width="30px" Height="30px" />
-                                                                        <asp:ImageButton ID="imgDeleteTender" CssClass="pull-right" runat="server" ImageUrl="~/assets/images/minus-icon.png" OnClick="imgDeleteTender_Click" Width="30px" Height="30px" />
+                                                                        <asp:LinkButton ID="btnAddTender" runat="server" CommandName="AddNew" 
+                                                                            CssClass="btn btn-primary btn-sm">
+                                                                            <i class="fa fa-plus"></i> Add
+                                                                        </asp:LinkButton>
                                                                     </FooterTemplate>
                                                                 </asp:TemplateField>
+
                                                                 <asp:TemplateField HeaderText="Tender Document">
                                                                     <ItemTemplate>
-                                                                        <asp:LinkButton ID="lnkTenderDoc" runat="server" Text="Download" Tender_FilePath='<%#Eval("ProjectTender_Document") %>' OnClientClick="return downloadTenderDoc(this);"></asp:LinkButton>
+                                                                        <asp:HyperLink ID="lnkDownload" runat="server" 
+                                                                            NavigateUrl='<%# Eval("ProjectTender_FilePath") %>' 
+                                                                            Target="_blank" Text='<%# Eval("ProjectTender_FileName") %>'
+                                                                            Visible='<%# !string.IsNullOrEmpty(Eval("ProjectTender_FilePath").ToString()) %>'>
+                                                                        </asp:HyperLink>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+
                                                                 <asp:TemplateField HeaderText="Action">
                                                                     <ItemTemplate>
-                                                                        <asp:ImageButton ID="btnAction" OnClick="btnAction_Click" runat="server" ToolTip="Click to edit" ImageUrl="~/assets/images/edit.png" Width="25px" Height="25px" />
+                                                                        <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditTender" 
+                                                                            CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-sm btn-info">
+                                                                            <i class="fa fa-edit"></i>
+                                                                        </asp:LinkButton>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                
                                                                 <asp:TemplateField HeaderText="Delete">
                                                                     <ItemTemplate>
-                                                                        <asp:ImageButton ID="btnDeleteTender" OnClick="btnDeleteTender_Click" runat="server" ImageUrl="~/assets/images/delete.png" Width="25px" Height="25px" />
+                                                                        <asp:LinkButton ID="btnDelete" runat="server" CommandName="DeleteTender" 
+                                                                            CommandArgument='<%# Eval("ProjectTender_Id") %>' CssClass="btn btn-sm btn-danger"
+                                                                            OnClientClick="return confirm('Are you sure you want to delete this tender?');">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </asp:LinkButton>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>
                                                         </asp:GridView>
                                                     </div>
                                                 </div>
-                                                <!--end col-->
                                             </div>
-                                            <!--end row-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--end col-->
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xxl-12 col-md-12 text-center">
-                                <div>
-                                    <asp:Button ID="btnSave" Text="Save Tender Details" OnClick="btnSave_Click" runat="server" CssClass="btn btn-info"></asp:Button>
+                            
+                            <div class="row">
+                                <div class="col-xxl-12 col-md-12 text-center">
+                                    <div>
+                                        <asp:Button ID="btnSave" Text="Save Tender Details" OnClick="btnSave_Click" 
+                                            runat="server" CssClass="btn btn-info"></asp:Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <asp:Panel ID="Panel1" runat="server" CssClass="modalPopup1" Style="display: none; width: 1000px; height: 500px; margin-left: -32px" ScrollBars="Auto">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-header align-items-center d-flex">
-                                            <h4 class="card-title mb-0 flex-grow-1">Action On Tender</h4>
-                                        </div>
-                                        <!-- end card header -->
-                                        <div class="card-body">
-                                            <div class="live-preview">
-                                                <div class="row gy-4">
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Label ID="Label5" runat="server" Text="Action*" CssClass="form-label"></asp:Label>
-                                                            <asp:DropDownList CssClass="form-select" ID="ddlAction" runat="server">
-                                                                <asp:ListItem Text="---Select---" Value="0" Selected="True"></asp:ListItem>
-                                                                <asp:ListItem Text="Approved" Value="A"></asp:ListItem>
-                                                                <asp:ListItem Text="Rejected" Value="R"></asp:ListItem>
-                                                            </asp:DropDownList>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <asp:Label ID="Label19" runat="server" Text="Comments*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtComments" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                    <div class="col-xxl-3 col-md-6">
-                                                        <div>
-                                                            <br />
-                                                            <asp:Button ID="btnUpdateAction" Text="Update" OnClick="btnUpdateAction_Click" runat="server" CssClass="btn bg-success text-white"></asp:Button>
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                </div>
-                                                <!--end row-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end col-->
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <button id="btnclose" runat="server" text="Close" cssclass="btn btn-warning" style="display: none"></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </asp:Panel>
+                        <asp:HiddenField ID="hf_ProjectWork_Id" runat="server" Value="0" />
+                        <asp:HiddenField ID="hf_Scheme_Id" runat="server" Value="0" />
+                        <asp:HiddenField ID="hf_SelectedTenderId" runat="server" Value="0" />
                     </div>
-                    <asp:HiddenField ID="hf_ProjectWork_Id" runat="server" Value="0" />
-                    <asp:HiddenField ID="hf_Scheme_Id" runat="server" Value="0" />
-                    <asp:HiddenField ID="hf_Sr_No" runat="server" Value="0" />
                 </ContentTemplate>
                 <Triggers>
                     <asp:PostBackTrigger ControlID="btnSave" />
                 </Triggers>
             </asp:UpdatePanel>
+            
             <asp:UpdateProgress ID="UpdateProgress1" DynamicLayout="true" runat="server" AssociatedUpdatePanelID="up">
                 <ProgressTemplate>
                     <div style="position: fixed; z-index: 999; height: 100%; width: 100%; top: 0; background-color: Black; filter: alpha(opacity=60); opacity: 0.6; -moz-opacity: 0.8; cursor: not-allowed;">
@@ -225,31 +205,19 @@
                 </ProgressTemplate>
             </asp:UpdateProgress>
         </div>
-        <!-- /.main-content -->
     </div>
-    <script>
-        function downloadTenderDoc(obj) {
-            var Tender_FilePath;
-            Tender_FilePath = obj.attributes.Tender_FilePath.nodeValue;
-            if (Tender_FilePath.trim() == "") {
-                alert('File Not Found');
+    
+    <script type="text/javascript">
+        function isDecimalNumber(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
                 return false;
-            }
-            else {
-                window.open(location.origin + Tender_FilePath, "_blank", "", false);
-                return false;
-            }
+            return true;
         }
-    </script>
-
-    <script>
-        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
-            jQuery(function ($) {
-                $('.modalBackground1').click(function () {
-                    var id = $(this).attr('id').replace('_backgroundElement', '');
-                    $find(id).hide();
-                });
-            })
-        });
+        
+        function showModal() {
+            $find('<%= mp1.ClientID %>').show();
+            return false;
+        }
     </script>
 </asp:Content>
