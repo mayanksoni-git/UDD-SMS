@@ -14812,6 +14812,84 @@ public partial class DataLayer : Page, IRequiresSessionState
                         }
                     }
 
+
+                    if (!Directory.Exists(Server.MapPath(".") + "\\Downloads\\RFP\\"))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(".") + "\\Downloads\\RFP\\");
+                    }
+                    if (obj_tbl_ProjectWork.RFPPath_Bytes != null && obj_tbl_ProjectWork.RFPPath_Bytes.Length > 0)
+                    {
+                        fileName = DateTime.Now.Ticks.ToString("x") + "." + obj_tbl_ProjectWork.extRFP;
+                        obj_tbl_ProjectWork.RFPPath = "\\Downloads\\RFP\\" + fileName;
+                        File.WriteAllBytes(Server.MapPath(".") + "\\Downloads\\RFP\\" + fileName, obj_tbl_ProjectWork.RFPPath_Bytes);
+                    }
+                    else
+                    {
+                        if (obj_tbl_ProjectWork.extRFP == "-1")
+                        {
+
+                        }
+                        else
+                        {
+                            //obj_tbl_ProjectWork.RFPPath = "";
+                        }
+                    }
+
+
+
+
+
+                    if (!Directory.Exists(Server.MapPath(".") + "\\Downloads\\TechnicalBid\\"))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(".") + "\\Downloads\\TechnicalBid\\");
+                    }
+                    if (obj_tbl_ProjectWork.TechnicalBidPath_Bytes != null && obj_tbl_ProjectWork.TechnicalBidPath_Bytes.Length > 0)
+                    {
+                        fileName = DateTime.Now.Ticks.ToString("x") + "." + obj_tbl_ProjectWork.extTechnicalBid;
+                        obj_tbl_ProjectWork.TechnicalBidPath = "\\Downloads\\TechnicalBid\\" + fileName;
+                        File.WriteAllBytes(Server.MapPath(".") + "\\Downloads\\TechnicalBid\\" + fileName, obj_tbl_ProjectWork.TechnicalBidPath_Bytes);
+                    }
+                    else
+                    {
+                        if (obj_tbl_ProjectWork.extTechnicalBid == "-1")
+                        {
+
+                        }
+                        else
+                        {
+                            //obj_tbl_ProjectWork.TechnicalBidPath = "";
+                        }
+                    }
+
+
+
+
+
+
+                    if (!Directory.Exists(Server.MapPath(".") + "\\Downloads\\FinancialBid\\"))
+                    {
+                        Directory.CreateDirectory(Server.MapPath(".") + "\\Downloads\\FinancialBid\\");
+                    }
+                    if (obj_tbl_ProjectWork.FinancialBidPath_Bytes != null && obj_tbl_ProjectWork.FinancialBidPath_Bytes.Length > 0)
+                    {
+                        fileName = DateTime.Now.Ticks.ToString("x") + "." + obj_tbl_ProjectWork.extFinancialBid;
+                        obj_tbl_ProjectWork.FinancialBidPath = "\\Downloads\\FinancialBid\\" + fileName;
+                        File.WriteAllBytes(Server.MapPath(".") + "\\Downloads\\FinancialBid\\" + fileName, obj_tbl_ProjectWork.FinancialBidPath_Bytes);
+                    }
+                    else
+                    {
+                        if (obj_tbl_ProjectWork.extFinancialBid == "-1")
+                        {
+
+                        }
+                        else
+                        {
+                            //obj_tbl_ProjectWork.FinancialBidPath = "";
+                        }
+                    }
+
+
+
                     if (obj_tbl_ProjectWork.ProjectWork_Id == 0)
                     {
                         obj_tbl_ProjectWork.ProjectWork_Id = Insert_tbl_ProjectWork(obj_tbl_ProjectWork, trans, cn);

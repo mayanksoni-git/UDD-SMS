@@ -118,7 +118,7 @@
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>
                                                             <asp:Label ID="Label2" runat="server" Text="Sanctioned Cost (In Lakhs)*" CssClass="form-label"></asp:Label>
-                                                            <asp:TextBox ID="txtBudget" runat="server" Enabled="false" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
+                                                            <asp:TextBox ID="txtBudget" ToolTip="यह मान स्वतः गणना किया जाता है। Sanctioned Cost=Project Cost + A&OE" runat="server" Enabled="false" CssClass="form-control" onkeyup="isNumericVal(this);"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <!--end col-->
@@ -305,6 +305,69 @@
                                         <!-- end card header -->
                                         <div class="card-body">
                                             <div class="live-preview">
+                                                <div class="row gy-4">
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label6" runat="server" Text="RFP Document" CssClass="form-label"></asp:Label>
+                                                            <asp:FileUpload ID="fuRFPDoc" runat="server" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <br />
+                                                            <button class="btn btn-outline-success" onclick="return downloadRFPDocument(this);" title="Download RFP Document" runat="server" id="Button1">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"></path>
+                                                                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"></path>
+                                                                </svg>
+                                                            Download RFP Document
+                                                            </button>                                                                                                                                
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label7" runat="server" Text="Technical Bid Evaluation" CssClass="form-label"></asp:Label>
+                                                            <asp:FileUpload ID="fuTechnicalBid" runat="server" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <br />
+                                                            <button class="btn btn-outline-success" onclick="return downloadTechnicalBid(this);" title="Download Technical Bid Evaluation File" runat="server" id="Button2">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"></path>
+                                                                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"></path>
+                                                                </svg>
+                                                                Download Technical Bid Evaluation
+                                                            </button>                                                                                                                                
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <asp:Label ID="Label8" runat="server" Text="Financial Bid Evaluation" CssClass="form-label"></asp:Label>
+                                                            <asp:FileUpload ID="fuFinancialBid" runat="server" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xxl-3 col-md-6">
+                                                        <div>
+                                                            <br />
+                                                            <button class="btn btn-outline-success" onclick="return downloadFinancialBid(this);" title="Download Financial Bid Evaluation File" runat="server" id="Button3">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"></path>
+                                                                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"></path>
+                                                                </svg>
+                                                            Download Financial Bid Evaluation
+                                                            </button>                                                                                                                                
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row gy-4">
                                                     <div class="col-xxl-3 col-md-6">
                                                         <div>

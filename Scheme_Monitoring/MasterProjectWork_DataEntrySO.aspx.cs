@@ -458,6 +458,7 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
         obj_tbl_ProjectWork.WorkOrderNo = txtWorkOrderNo.Text.Trim();
         obj_tbl_ProjectWork.WorkOrderDate = txtWorkOrderDate.Text.Trim();
 
+
         obj_tbl_ProjectWork.WorkOrderCopyPath = "";
         if (fuWorkOrderCopy.HasFile)
         {
@@ -465,6 +466,31 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
             string[] _fname = fuWorkOrderCopy.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
             obj_tbl_ProjectWork.extWorkOrderCopy = _fname[_fname.Length - 1];
         }
+
+        obj_tbl_ProjectWork.RFPPath = "";
+        if (fuRFPDoc.HasFile)
+        {
+            obj_tbl_ProjectWork.RFPPath_Bytes = fuRFPDoc.FileBytes;
+            string[] _fname = fuRFPDoc.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            obj_tbl_ProjectWork.extRFP = _fname[_fname.Length - 1];
+        } 
+
+        obj_tbl_ProjectWork.TechnicalBidPath = "";
+        if (fuTechnicalBid.HasFile)
+        {
+            obj_tbl_ProjectWork.TechnicalBidPath_Bytes = fuTechnicalBid.FileBytes;
+            string[] _fname = fuTechnicalBid.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            obj_tbl_ProjectWork.extTechnicalBid = _fname[_fname.Length - 1];
+        } 
+
+        obj_tbl_ProjectWork.FinancialBidPath = "";
+        if (fuFinancialBid.HasFile)
+        {
+            obj_tbl_ProjectWork.FinancialBidPath_Bytes = fuFinancialBid.FileBytes;
+            string[] _fname = fuFinancialBid.FileName.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            obj_tbl_ProjectWork.extFinancialBid = _fname[_fname.Length - 1];
+        }
+
         obj_tbl_ProjectWork.ContractorName = txtContractorName.Text.Trim();
         obj_tbl_ProjectWork.ContactPerson = txtContactPerson.Text.Trim();
         obj_tbl_ProjectWork.ContactNo = txtContactNo.Text.Trim();
