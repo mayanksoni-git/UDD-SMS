@@ -441,6 +441,10 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
                 {
                     Response.Redirect("MasterProjectWorkMIS_6.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
                 }
+                else if (Mode == "Tender")
+                {
+                    Response.Redirect("MasterProjectWorkMIS_Tender.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
+                }
                 else if (Mode == "Issue")
                 {
                     Response.Redirect("MasterProjectWorkMIS_8.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
