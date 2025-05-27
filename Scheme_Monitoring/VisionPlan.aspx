@@ -1,12 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="VisionPlan.aspx.cs" Inherits="VisionPlan" EnableEventValidation="false" %>
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
     <asp:HiddenField ID="ULBFundId" runat="server" />
     <asp:HiddenField ID="ULBID" runat="server" />
     <asp:HiddenField ID="FYID" runat="server" />
-
     <link href="assets/css/CalendarStyle.css" rel="stylesheet" />
     <div class="main-content">
         <div class="page-content">
