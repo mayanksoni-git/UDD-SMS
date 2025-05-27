@@ -5,6 +5,8 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Configuration;
 using System.Web.UI.HtmlControls;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public partial class AdvancedDashboard : System.Web.UI.Page
 {
@@ -32,6 +34,7 @@ public partial class AdvancedDashboard : System.Web.UI.Page
             get_tbl_Zone();
             get_tbl_FinancialYear();
             SetDropdownsBasedOnUserType();
+            LoadDashboardData();
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
@@ -61,7 +64,279 @@ public partial class AdvancedDashboard : System.Web.UI.Page
         {
             return;
         }
+
+        LoadDashboardData();
     }
+    private void LoadDashboardData()
+    {
+        int schemeId = 0;
+        int fyId = 0;
+
+        // Safely parse scheme ID
+        if (!int.TryParse(ddlScheme.SelectedValue, out schemeId))
+        {
+            lblMessage.Text = "Please select a valid Scheme.";
+            lblMessage.ForeColor = System.Drawing.Color.Red;
+            return;
+        }
+
+        // Safely parse financial year ID
+        if (!int.TryParse(ddlFY.SelectedValue, out fyId))
+        {
+            lblMessage.Text = "Please select a valid Financial Year.";
+            lblMessage.ForeColor = System.Drawing.Color.Red;
+            return;
+        }
+
+        // Safely parse division ID
+        int divisionId = 0;
+        if (!string.IsNullOrEmpty(ddlDivision.SelectedValue) && ddlDivision.SelectedValue != "0")
+        {
+            if (!int.TryParse(ddlDivision.SelectedValue, out divisionId))
+            {
+                lblMessage.Text = "Invalid Division selected.";
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+        }
+
+        // Safely parse circle ID
+        int circleId = 0;
+        if (!string.IsNullOrEmpty(ddlCircle.SelectedValue) && ddlCircle.SelectedValue != "0")
+        {
+            if (!int.TryParse(ddlCircle.SelectedValue, out circleId))
+            {
+                lblMessage.Text = "Invalid District selected.";
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+        }
+
+        // Safely parse zone ID
+        int zoneId = 0;
+        if (!string.IsNullOrEmpty(ddlZone.SelectedValue) && ddlZone.SelectedValue != "0")
+        {
+            if (!int.TryParse(ddlZone.SelectedValue, out zoneId))
+            {
+                lblMessage.Text = "Invalid State selected.";
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+        }
+
+        string implAgency = ddlImplAgency.SelectedValue;
+
+        // Load tile data
+        DataSet dsTiles = (new DataLayer()).GetDashboardTileData(schemeId, fyId, zoneId, circleId, divisionId, implAgency);
+        if (dsTiles != null && dsTiles.Tables.Count > 0 && dsTiles.Tables[0].Rows.Count > 0)
+        {
+            DataTable dtTiles = dsTiles.Tables[0];
+            divDivisionCount.InnerText = dtTiles.Rows[0]["DivisionCount"].ToString();
+            divDistrictCount.InnerText = dtTiles.Rows[0]["DistrictCount"].ToString();
+            divULBCount.InnerText = dtTiles.Rows[0]["ULBCount"].ToString();
+            divProjectCount.InnerText = dtTiles.Rows[0]["ProjectCount"].ToString();
+            divSanctionedCost.InnerText = "₹" + Convert.ToDecimal(dtTiles.Rows[0]["SanctionedCost"]).ToString("N2");
+            divReleaseAmount.InnerText = "₹" + Convert.ToDecimal(dtTiles.Rows[0]["ReleaseAmount"]).ToString("N2");
+        }
+
+        // Load chart data
+        DataSet dsCharts = (new DataLayer()).GetDashboardChartData(schemeId, fyId, zoneId, circleId, divisionId, implAgency);
+        if (dsCharts != null && dsCharts.Tables.Count > 0)
+        {
+            // Prepare chart data object
+            var chartData = new
+            {
+                DivisionProjects = GetChartData(dsCharts.Tables[0], "DivisionName", "ProjectCount"),
+                DivisionCost = GetChartData(dsCharts.Tables[0], "DivisionName", "ProjectCost"),
+                DivisionULBs = GetChartData(dsCharts.Tables[1], "DivisionName", "ULBCount"),
+                ULBType = GetChartData(dsCharts.Tables[2], "ULBType", "ULBCount"),
+                ULBTypeCost = GetChartData(dsCharts.Tables[2], "ULBType", "ProjectCost"),
+                ImplAgencyProjects = GetChartData(dsCharts.Tables[3], "ImplAgency", "ProjectCount"),
+                ImplAgencyCost = GetChartData(dsCharts.Tables[3], "ImplAgency", "ProjectCost"),
+                DistrictSummary = new
+                {
+                    labels = GetColumnValues(dsCharts.Tables[4], "DistrictName"),
+                    projectCounts = GetColumnValues(dsCharts.Tables[4], "ProjectCount", true),
+                    projectCosts = GetColumnValues(dsCharts.Tables[4], "ProjectCost", true)
+                }
+            };
+
+            // Register startup script to initialize charts
+            //string script = $"initializeCharts({JsonConvert.SerializeObject(chartData)});";
+            string script = "initializeCharts(" + JsonConvert.SerializeObject(chartData) + ");";
+            ScriptManager.RegisterStartupScript(this, GetType(), "InitializeCharts", script, true);
+        }
+    }
+
+    private void LoadDashboardDataOLD()
+    {
+        int schemeId = Convert.ToInt32(ddlScheme.SelectedValue);
+        int fyId = Convert.ToInt32(ddlFY.SelectedValue);
+        //int divisionId = ddlDivision.SelectedValue == "0" ? 0 : Convert.ToInt32(ddlDivision.SelectedValue);
+        int divisionId = 0;
+
+        if (!string.IsNullOrWhiteSpace(ddlDivision.SelectedValue) && ddlDivision.SelectedValue != "0")
+        {
+            int.TryParse(ddlDivision.SelectedValue, out divisionId);
+        }
+        int circleId = ddlCircle.SelectedValue == "0" ? 0 : Convert.ToInt32(ddlCircle.SelectedValue);
+        int zoneId = ddlZone.SelectedValue == "0" ? 0 : Convert.ToInt32(ddlZone.SelectedValue);
+        string implAgency = ddlImplAgency.SelectedValue;
+
+        // Load tile data
+        DataSet dsTiles = (new DataLayer()).GetDashboardTileData(schemeId, fyId, zoneId, circleId, divisionId, implAgency);
+        if (dsTiles != null && dsTiles.Tables.Count > 0)
+        {
+            DataTable dtTiles = dsTiles.Tables[0];
+            if (dtTiles.Rows.Count > 0)
+            {
+                divDivisionCount.InnerText = dtTiles.Rows[0]["DivisionCount"].ToString();
+                divDistrictCount.InnerText = dtTiles.Rows[0]["DistrictCount"].ToString();
+                divULBCount.InnerText = dtTiles.Rows[0]["ULBCount"].ToString();
+                divProjectCount.InnerText = dtTiles.Rows[0]["ProjectCount"].ToString();
+                divSanctionedCost.InnerText = "₹" + Convert.ToDecimal(dtTiles.Rows[0]["SanctionedCost"]).ToString("N2");
+                divReleaseAmount.InnerText = "₹" + Convert.ToDecimal(dtTiles.Rows[0]["ReleaseAmount"]).ToString("N2");
+            }
+        }
+
+        // Load chart data
+        DataSet dsCharts = (new DataLayer()).GetDashboardChartData(schemeId, fyId, zoneId, circleId, divisionId, implAgency);
+        if (dsCharts != null && dsCharts.Tables.Count > 0)
+        {
+            // Prepare chart data object
+            var chartData = new
+            {
+                DivisionProjects = GetChartData(dsCharts.Tables[0], "DivisionName", "ProjectCount"),
+                DivisionCost = GetChartData(dsCharts.Tables[0], "DivisionName", "ProjectCost"),
+                DivisionULBs = GetChartData(dsCharts.Tables[1], "DivisionName", "ULBCount"),
+                ULBType = GetChartData(dsCharts.Tables[2], "ULBType", "ULBCount"),
+                ULBTypeCost = GetChartData(dsCharts.Tables[2], "ULBType", "ProjectCost"),
+                ImplAgencyProjects = GetChartData(dsCharts.Tables[3], "ImplAgency", "ProjectCount"),
+                ImplAgencyCost = GetChartData(dsCharts.Tables[3], "ImplAgency", "ProjectCost"),
+                DistrictSummary = new
+                {
+                    labels = GetColumnValues(dsCharts.Tables[4], "DistrictName"),
+                    projectCounts = GetColumnValues(dsCharts.Tables[4], "ProjectCount", true),
+                    projectCosts = GetColumnValues(dsCharts.Tables[4], "ProjectCost", true)
+                }
+            };
+
+            // Register startup script to initialize charts
+           
+            string script = "initializeCharts(" + JsonConvert.SerializeObject(chartData) + ");";
+            ScriptManager.RegisterStartupScript(this, GetType(), "InitializeCharts", script, true);
+        }
+    }
+
+    private object GetChartData(DataTable dt, string labelColumn, string dataColumn)
+    {
+        return new
+        {
+            labels = GetColumnValues(dt, labelColumn),
+            data = GetColumnValues(dt, dataColumn, true)
+        };
+    }
+
+    private string[] GetColumnValues(DataTable dt, string columnName, bool isNumeric = false)
+    {
+        List<string> values = new List<string>();
+        foreach (DataRow row in dt.Rows)
+        {
+            if (isNumeric)
+            {
+                values.Add(row[columnName].ToString());
+            }
+            else
+            {
+                values.Add(row[columnName].ToString());
+            }
+        }
+        return values.ToArray();
+    }
+
+
+    protected void btnKnowMoreDivisions_Click(object sender, EventArgs e)
+    {
+        int schemeId = Convert.ToInt32(ddlScheme.SelectedValue);
+        int fyId = Convert.ToInt32(ddlFY.SelectedValue);
+
+        DataTable dt = (new DataLayer()).GetDivisionDrillDownData(schemeId, fyId);
+        gvDrillDown.DataSource = dt;
+        gvDrillDown.DataBind();
+
+        knowMoreModalLabel.InnerText = "Division-wise Project Details";
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+    }
+
+    protected void btnKnowMoreDistricts_Click(object sender, EventArgs e)
+    {
+        int schemeId = Convert.ToInt32(ddlScheme.SelectedValue);
+        int fyId = Convert.ToInt32(ddlFY.SelectedValue);
+
+        DataTable dt = (new DataLayer()).GetDistrictDrillDownData(schemeId, fyId);
+        gvDrillDown.DataSource = dt;
+        gvDrillDown.DataBind();
+
+        knowMoreModalLabel.InnerText = "District-wise Project Details";
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+    }
+
+    protected void btnKnowMoreULBs_Click(object sender, EventArgs e)
+    {
+        int schemeId = Convert.ToInt32(ddlScheme.SelectedValue);
+        int fyId = Convert.ToInt32(ddlFY.SelectedValue);
+
+        DataTable dt = (new DataLayer()).GetULBDrillDownData(schemeId, fyId);
+        gvDrillDown.DataSource = dt;
+        gvDrillDown.DataBind();
+
+        knowMoreModalLabel.InnerText = "ULB-wise Project Details";
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+    }
+
+    protected void btnKnowMoreProjects_Click(object sender, EventArgs e)
+    {
+        int schemeId = Convert.ToInt32(ddlScheme.SelectedValue);
+        int fyId = Convert.ToInt32(ddlFY.SelectedValue);
+
+        DataTable dt = (new DataLayer()).GetProjectDrillDownData(schemeId, fyId);
+        gvDrillDown.DataSource = dt;
+        gvDrillDown.DataBind();
+
+        knowMoreModalLabel.InnerText = "Project Details";
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+    }
+
+    protected void btnKnowMoreSanctionedCost_Click(object sender, EventArgs e)
+    {
+        int schemeId = Convert.ToInt32(ddlScheme.SelectedValue);
+        int fyId = Convert.ToInt32(ddlFY.SelectedValue);
+
+        DataTable dt = (new DataLayer()).GetSanctionedCostDrillDownData(schemeId, fyId);
+        gvDrillDown.DataSource = dt;
+        gvDrillDown.DataBind();
+
+        knowMoreModalLabel.InnerText = "Sanctioned Cost Details";
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+    }
+
+    protected void btnKnowMoreRelease_Click(object sender, EventArgs e)
+    {
+        int schemeId = Convert.ToInt32(ddlScheme.SelectedValue);
+        int fyId = Convert.ToInt32(ddlFY.SelectedValue);
+
+        DataTable dt = (new DataLayer()).GetReleaseAmountDrillDownData(schemeId, fyId);
+        gvDrillDown.DataSource = dt;
+        gvDrillDown.DataBind();
+
+        knowMoreModalLabel.InnerText = "Release Amount Details";
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+    }
+
+
+
+
+
 
     #region Bind Drop Down List
     private void get_tbl_Project()
