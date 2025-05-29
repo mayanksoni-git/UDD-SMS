@@ -152,7 +152,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title">Divisions Reported</h6>
                                                 <div class="card-value" id="divDivisionCount" runat="server">0</div>
-                                                <asp:Button ID="btnKnowMoreDivisions" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreDivisions_Click" />
+                                                <asp:Button ID="btnKnowMoreDivisions" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreDivisions_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -162,7 +162,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title">Districts Reported</h6>
                                                 <div class="card-value" id="divDistrictCount" runat="server">0</div>
-                                                <asp:Button ID="btnKnowMoreDistricts" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreDistricts_Click" />
+                                                <asp:Button ID="btnKnowMoreDistricts" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreDistricts_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -172,7 +172,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title">ULBs Reported</h6>
                                                 <div class="card-value" id="divULBCount" runat="server">0</div>
-                                                <asp:Button ID="btnKnowMoreULBs" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreULBs_Click" />
+                                                <asp:Button ID="btnKnowMoreULBs" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreULBs_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title">Total Projects</h6>
                                                 <div class="card-value" id="divProjectCount" runat="server">0</div>
-                                                <asp:Button ID="btnKnowMoreProjects" runat="server" Text="Know More" CssClass="btn btn-sm btn-dark know-more-btn" OnClick="btnKnowMoreProjects_Click" />
+                                                <asp:Button ID="btnKnowMoreProjects" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-dark know-more-btn" OnClick="btnKnowMoreProjects_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title">Sanctioned Cost</h6>
                                                 <div class="card-value" id="divSanctionedCost" runat="server">₹0</div>
-                                                <asp:Button ID="btnKnowMoreSanctionedCost" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreSanctionedCost_Click" />
+                                                <asp:Button ID="btnKnowMoreSanctionedCost" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreSanctionedCost_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -202,7 +202,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title">Total Release</h6>
                                                 <div class="card-value" id="divReleaseAmount" runat="server">₹0</div>
-                                                <asp:Button ID="btnKnowMoreRelease" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreRelease_Click" />
+                                                <asp:Button ID="btnKnowMoreRelease" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreRelease_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -253,7 +253,7 @@
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5 class="card-title">ULB Type Distribution</h5>
+                                                <h5 class="card-title">ULB Type vs No of Projects Distribution</h5>
                                             </div>
                                             <div class="card-body">
                                                 <div class="chart-container">
@@ -313,7 +313,39 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="chart-container">
-                                                    <canvas id="chartDistrictSummary" height="300"></canvas>
+                                                    <canvas id="chartDistrictSummary" height="600"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Charts Row 5 -->
+                                <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">District-wise Project Summary</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <canvas id="chartDistrictProject" height="600"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+
+                                <!-- Charts Row 6 -->
+                                <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">District-wise Project Cost Summary</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <canvas id="chartDistrictProjectCost" height="600"></canvas>
                                                 </div>
                                             </div>
                                         </div>
@@ -364,34 +396,40 @@
 
     <script type="text/javascript">
         function initializeCharts(data) {
-            // Division vs No of Projects
+            // Pie charts
             createPieChart('chartDivisionProjects', data.DivisionProjects.labels, data.DivisionProjects.data, 'Number of Projects');
-
-            // Division vs Project Cost
             createPieChart('chartDivisionCost', data.DivisionCost.labels, data.DivisionCost.data, 'Project Cost (₹)');
-
-            // Division vs No of ULBs
             createPieChart('chartDivisionULBs', data.DivisionULBs.labels, data.DivisionULBs.data, 'Number of ULBs');
-
-            // ULB Type Distribution
             createPieChart('chartULBType', data.ULBType.labels, data.ULBType.data, 'Number of ULBs');
-
-            // ULB Type vs Project Cost
             createPieChart('chartULBTypeCost', data.ULBTypeCost.labels, data.ULBTypeCost.data, 'Project Cost (₹)');
 
-            // Projects by Implementing Agency
-            createBarChart('chartImplAgencyProjects', data.ImplAgencyProjects.labels, data.ImplAgencyProjects.data, 'Number of Projects');
+            // Bar charts
+            createBarChart('chartImplAgencyProjects', data.ImplAgencyProjects.labels, [{
+                label: 'Number of Projects',
+                data: data.ImplAgencyProjects.data,
+                backgroundColor: 'rgba(75, 192, 192, 0.7)'
+            }]);
 
-            // Project Cost by Implementing Agency
-            createBarChart('chartImplAgencyCost', data.ImplAgencyCost.labels, data.ImplAgencyCost.data, 'Project Cost (₹)');
+            createBarChart('chartImplAgencyCost', data.ImplAgencyCost.labels, [{
+                label: 'Project Cost (₹)',
+                data: data.ImplAgencyCost.data,
+                backgroundColor: 'rgba(153, 102, 255, 0.7)'
+            }]);
 
-            // District-wise Project Summary
-            createBarChart('chartDistrictSummary', data.DistrictSummary.labels, 
-                [
-                    { label: 'Number of Projects', data: data.DistrictSummary.projectCounts, backgroundColor: 'rgba(54, 162, 235, 0.7)' },
-                    { label: 'Project Cost (₹)', data: data.DistrictSummary.projectCosts, backgroundColor: 'rgba(255, 99, 132, 0.7)' }
-                ], 
-                'Comparison');
+            createBarChart('chartDistrictProject', data.DistrictProject.labels, [{
+                label: 'No of Projects',
+                data: data.DistrictProject.data,
+                backgroundColor: 'rgba(200, 102, 255, 0.7)'
+            }]);
+
+            createBarChart('chartDistrictProjectCost', data.DistrictProjectCost.labels, [{
+                label: 'Project Cost (₹)',
+                data: data.DistrictProjectCost.data,
+                backgroundColor: 'rgba(153, 102, 255, 0.7)'
+            }]);
+
+            // District summary chart (grouped bar chart)
+            createBarChart('chartDistrictSummary', data.DistrictSummary.labels, data.DistrictSummary.datasets);
         }
 
         function createPieChart(canvasId, labels, data, label) {
@@ -437,20 +475,8 @@
             });
         }
 
-        function createBarChart(canvasId, labels, datasets, label) {
+        function createBarChart(canvasId, labels, datasets) {
             var ctx = document.getElementById(canvasId).getContext('2d');
-            
-            // If datasets is not an array (single dataset case), convert it to array format
-            if (!Array.isArray(datasets)) {
-                datasets = [{
-                    label: label,
-                    data: datasets,
-                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }];
-            }
-
             new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -464,7 +490,7 @@
                         y: {
                             beginAtZero: true,
                             ticks: {
-                                callback: function(value) {
+                                callback: function (value) {
                                     if (canvasId.includes('Cost') || canvasId.includes('cost')) {
                                         return '₹' + value.toLocaleString('en-IN');
                                     }
@@ -476,7 +502,7 @@
                     plugins: {
                         tooltip: {
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     var label = context.dataset.label || '';
                                     if (label) {
                                         label += ': ';

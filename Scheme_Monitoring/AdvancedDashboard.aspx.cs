@@ -34,7 +34,7 @@ public partial class AdvancedDashboard : System.Web.UI.Page
             get_tbl_Zone();
             get_tbl_FinancialYear();
             SetDropdownsBasedOnUserType();
-            LoadDashboardData();
+            //LoadDashboardData();
         }
         Page.Form.Attributes.Add("enctype", "multipart/form-data");
     }
@@ -151,19 +151,50 @@ public partial class AdvancedDashboard : System.Web.UI.Page
                 DivisionULBs = GetChartData(dsCharts.Tables[1], "DivisionName", "ULBCount"),
                 ULBType = GetChartData(dsCharts.Tables[2], "ULBType", "ULBCount"),
                 ULBTypeCost = GetChartData(dsCharts.Tables[2], "ULBType", "ProjectCost"),
-                ImplAgencyProjects = GetChartData(dsCharts.Tables[3], "ImplAgency", "ProjectCount"),
-                ImplAgencyCost = GetChartData(dsCharts.Tables[3], "ImplAgency", "ProjectCost"),
+                ImplAgencyProjects = new
+                {
+                    labels = GetColumnValues(dsCharts.Tables[3], "ImplAgency"),
+                    data = GetColumnValues(dsCharts.Tables[3], "ProjectCount", true)
+                },
+                ImplAgencyCost = new
+                {
+                    labels = GetColumnValues(dsCharts.Tables[3], "ImplAgency"),
+                    data = GetColumnValues(dsCharts.Tables[3], "ProjectCost", true)
+                },
+
+                DistrictProjectCost = new
+                {
+                    labels = GetColumnValues(dsCharts.Tables[4], "DistrictName"),
+                    data = GetColumnValues(dsCharts.Tables[4], "ProjectCost", true)
+                },
+                DistrictProject= new
+                {
+                    labels = GetColumnValues(dsCharts.Tables[4], "DistrictName"),
+                    data = GetColumnValues(dsCharts.Tables[4], "ProjectCount", true)
+                },
                 DistrictSummary = new
                 {
                     labels = GetColumnValues(dsCharts.Tables[4], "DistrictName"),
-                    projectCounts = GetColumnValues(dsCharts.Tables[4], "ProjectCount", true),
-                    projectCosts = GetColumnValues(dsCharts.Tables[4], "ProjectCost", true)
+                    datasets = new[] {
+                new {
+                    label = "Number of Projects",
+                    data = GetColumnValues(dsCharts.Tables[4], "ProjectCount", true),
+                    backgroundColor = "rgba(54, 162, 235, 0.7)"
+                },
+                new {
+                    label = "Project Cost",
+                    data = GetColumnValues(dsCharts.Tables[4], "ProjectCost", true),
+                    backgroundColor = "rgba(255, 99, 132, 0.7)"
+                }
+            }
                 }
             };
 
             // Register startup script to initialize charts
-            //string script = $"initializeCharts({JsonConvert.SerializeObject(chartData)});";
-            string script = "initializeCharts(" + JsonConvert.SerializeObject(chartData) + ");";
+            string script = "initializeCharts(" + JsonConvert.SerializeObject(chartData, new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            }) + ");";
             ScriptManager.RegisterStartupScript(this, GetType(), "InitializeCharts", script, true);
         }
     }

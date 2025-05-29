@@ -167,6 +167,10 @@
                                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                                 <span data-key="t-widgets">Dashboard</span> </a></li>
 
+                            <li class="nav-item"><a class="nav-link menu-link" href="AdvancedDashboard.aspx">
+                                <img src="assets/images/left-menu-icon/dashboard.svg" class="img-fluid" />
+                                <span data-key="t-widgets">Advanced Dashboard</span> </a></li>
+
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="#sidebarProject" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProject"><i data-feather="database" class="icon-dual"></i><span data-key="t-tables">Project Inspection</span> </a>
                                 <div class="collapse menu-dropdown" id="sidebarProject">

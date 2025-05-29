@@ -49,13 +49,18 @@
                                                         <div class="col-xxl-3 col-md-6">
                                                             <div>
                                                                 <asp:Label ID="lblProject" runat="server" Text="Scheme*" CssClass="control-label no-padding-right"></asp:Label>
-                                                                <asp:TextBox ID="txtProject" runat="server" CssClass="form-control"></asp:TextBox>
+                                                                <asp:TextBox ID="txtProject" runat="server" CssClass="form-control"
+                                                                    MaxLength="100"
+                                                                    placeholder="अधिकतम 100 अक्षर दर्ज करें">
+                                                                </asp:TextBox>
                                                             </div>
                                                         </div>
                                                         <div class="col-xxl-3 col-md-6">
                                                             <div>
                                                                 <asp:Label ID="lblShortName" runat="server" Text="Short Name*" CssClass="control-label no-padding-right"></asp:Label>
-                                                                <asp:TextBox ID="txtShortName" runat="server" CssClass="form-control"></asp:TextBox>
+                                                                <asp:TextBox ID="txtShortName" runat="server" CssClass="form-control"
+                                                                    MaxLength="50"
+                                                                    placeholder="अधिकतम 50 अक्षर दर्ज करें"></asp:TextBox>
                                                             </div>
                                                         </div>
                                                         <div class="col-xxl-3 col-md-6">

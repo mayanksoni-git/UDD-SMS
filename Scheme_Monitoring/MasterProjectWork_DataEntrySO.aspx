@@ -489,7 +489,7 @@
                                                                             <asp:TextBox ID="txtCentralShare" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkGO_CentralShare") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="State Share (In Lakhs)">
+                                                                    <asp:TemplateField HeaderText="Released Amount (In Lakhs)">
                                                                         <ItemTemplate>
                                                                             <asp:TextBox ID="txtStateShare" runat="server" CssClass="form-control" Text='<%# Eval("ProjectWorkGO_StateShare") %>' onkeyup="isNumericVal(this);"></asp:TextBox>
                                                                         </ItemTemplate>
