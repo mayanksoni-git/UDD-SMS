@@ -253,7 +253,7 @@
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5 class="card-title">ULB Type vs No of Projects Distribution</h5>
+                                                <h5 class="card-title">ULB Type vs No of ULBs</h5>
                                             </div>
                                             <div class="card-body">
                                                 <div class="chart-container">
@@ -277,19 +277,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5 class="card-title">Projects by Implementing Agency</h5>
+                                                <h5 class="card-title">ULB Type vs Project Count</h5>
                                             </div>
                                             <div class="card-body">
                                                 <div class="chart-container">
-                                                    <canvas id="chartImplAgencyProjects" height="300"></canvas>
+                                                    <canvas id="chartULBTypeCount" height="300"></canvas>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
 
                                 <!-- Charts Row 4 -->
@@ -307,6 +308,18 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Projects by Implementing Agency</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <canvas id="chartImplAgencyProjects" height="300"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 d-none">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">District-wise Project Summary</h5>
@@ -402,6 +415,7 @@
             createPieChart('chartDivisionULBs', data.DivisionULBs.labels, data.DivisionULBs.data, 'Number of ULBs');
             createPieChart('chartULBType', data.ULBType.labels, data.ULBType.data, 'Number of ULBs');
             createPieChart('chartULBTypeCost', data.ULBTypeCost.labels, data.ULBTypeCost.data, 'Project Cost (₹)');
+            createPieChart('chartULBTypeCount', data.ULBTypeCount.labels, data.ULBTypeCount.data, 'Project Count');
 
             // Bar charts
             createBarChart('chartImplAgencyProjects', data.ImplAgencyProjects.labels, [{

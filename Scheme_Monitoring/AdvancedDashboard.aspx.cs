@@ -151,6 +151,7 @@ public partial class AdvancedDashboard : System.Web.UI.Page
                 DivisionULBs = GetChartData(dsCharts.Tables[1], "DivisionName", "ULBCount"),
                 ULBType = GetChartData(dsCharts.Tables[2], "ULBType", "ULBCount"),
                 ULBTypeCost = GetChartData(dsCharts.Tables[2], "ULBType", "ProjectCost"),
+                ULBTypeCount = GetChartData(dsCharts.Tables[2], "ULBType", "ProjectCount"),
                 ImplAgencyProjects = new
                 {
                     labels = GetColumnValues(dsCharts.Tables[3], "ImplAgency"),
