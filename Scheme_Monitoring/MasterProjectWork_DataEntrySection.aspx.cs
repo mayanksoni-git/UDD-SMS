@@ -212,12 +212,12 @@ public partial class MasterProjectWork_DataEntrySection : System.Web.UI.Page
             flUploadGO.Focus();
             return;
         }
-        if (!fuTenderFileUpload.HasFile && hfTenderFileUploadPath.Value=="")
-        {
-            MessageBox.Show("Please Choose Tender File.");
-            fuTenderFileUpload.Focus();
-            return;
-        }
+        //if (!fuTenderFileUpload.HasFile && hfTenderFileUploadPath.Value=="")
+        //{
+        //    MessageBox.Show("Please Choose Tender File.");
+        //    fuTenderFileUpload.Focus();
+        //    return;
+        //}
         if (txtProjectWorkName.Text.Trim() == "")
         {
             MessageBox.Show("Please Provide Project Name");

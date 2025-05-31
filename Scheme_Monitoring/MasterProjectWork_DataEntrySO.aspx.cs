@@ -217,12 +217,12 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
             flUploadGO.Focus();
             return;
         } 
-        if (!fuTenderFileUpload.HasFile)
-        {
-            MessageBox.Show("Please Choose Tender File.");
-            fuTenderFileUpload.Focus();
-            return;
-        }
+        //if (!fuTenderFileUpload.HasFile)
+        //{
+        //    MessageBox.Show("Please Choose Tender File.");
+        //    fuTenderFileUpload.Focus();
+        //    return;
+        //}
         if (txtProjectWorkName.Text.Trim() == "")
         {
             MessageBox.Show("Please Provide Project Name");
@@ -406,12 +406,12 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
         obj_tbl_ProjectWork.TenderAppDate = txtTenderAppDate.Text.Trim();
         //obj_tbl_ProjectWork.TenderIssueDate = txtTenderIssueDate.Text.Trim();
 
-        if (string.IsNullOrWhiteSpace(txtTenderIssueDate.Text))
-        {
-            MessageBox.Show("Please enter Tender Issue Date.");
-            txtTenderIssueDate.Focus();
-            return;
-        }
+        //if (string.IsNullOrWhiteSpace(txtTenderIssueDate.Text))
+        //{
+        //    MessageBox.Show("Please enter Tender Issue Date.");
+        //    txtTenderIssueDate.Focus();
+        //    return;
+        //}
 
         //DateTime tenderIssueDate;
         //if (!DateTime.TryParse(txtTenderIssueDate.Text.Trim(), out tenderIssueDate))
@@ -424,12 +424,12 @@ public partial class MasterProjectWork_DataEntrySO : System.Web.UI.Page
 
 
 
-        if (string.IsNullOrWhiteSpace(txtTenderEndDate.Text))
-        {
-            MessageBox.Show("Please enter Tender End Date.");
-            txtTenderEndDate.Focus();
-            return;
-        }
+        //if (string.IsNullOrWhiteSpace(txtTenderEndDate.Text))
+        //{
+        //    MessageBox.Show("Please enter Tender End Date.");
+        //    txtTenderEndDate.Focus();
+        //    return;
+        //}
 
         //DateTime tenderEndDate;
         //if (!DateTime.TryParse(txtTenderEndDate.Text.Trim(), out tenderEndDate))

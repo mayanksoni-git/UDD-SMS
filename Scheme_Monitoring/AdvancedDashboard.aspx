@@ -210,6 +210,19 @@
 
                                 <!-- Charts Row 1 -->
                                 <div class="row mt-4">
+                                    
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Division vs Project Cost(In Lakhs)</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <canvas id="chartDivisionCost" height="300"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header">
@@ -218,18 +231,6 @@
                                             <div class="card-body">
                                                 <div class="chart-container">
                                                     <canvas id="chartDivisionProjects" height="300"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">Division vs Project Cost</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="chart-container">
-                                                    <canvas id="chartDivisionCost" height="300"></canvas>
                                                 </div>
                                             </div>
                                         </div>
@@ -266,19 +267,7 @@
 
                                 <!-- Charts Row 3 -->
                                 <div class="row mt-4">
-                                    <div class="col-md-6">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">ULB Type vs Project Cost</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="chart-container">
-                                                    <canvas id="chartULBTypeCost" height="300"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                    <div class="col-md-6">
+                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title">ULB Type vs Project Count</h5>
@@ -290,23 +279,25 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">ULB Type vs Project Cost(In Lakhs)</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <canvas id="chartULBTypeCost" height="300"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                   
                                     
                                 </div>
 
                                 <!-- Charts Row 4 -->
                                 <div class="row mt-4">
-                                    <div class="col-md-6">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">Project Cost by Implementing Agency</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="chart-container">
-                                                    <canvas id="chartImplAgencyCost" height="300"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header">
@@ -315,6 +306,18 @@
                                             <div class="card-body">
                                                 <div class="chart-container">
                                                     <canvas id="chartImplAgencyProjects" height="300"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Project Cost(In Lakhs) by Implementing Agency</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <canvas id="chartImplAgencyCost" height="300"></canvas>
                                                 </div>
                                             </div>
                                         </div>
@@ -354,7 +357,7 @@
                                     <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5 class="card-title">District-wise Project Cost Summary</h5>
+                                                <h5 class="card-title">District-wise Project Cost(In Lakhs) Summary</h5>
                                             </div>
                                             <div class="card-body">
                                                 <div class="chart-container">
@@ -406,15 +409,16 @@
             </asp:UpdatePanel>
         </div>
     </div>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <script type="text/javascript">
         function initializeCharts(data) {
             // Pie charts
-            createPieChart('chartDivisionProjects', data.DivisionProjects.labels, data.DivisionProjects.data, 'Number of Projects');
-            createPieChart('chartDivisionCost', data.DivisionCost.labels, data.DivisionCost.data, 'Project Cost (₹)');
-            createPieChart('chartDivisionULBs', data.DivisionULBs.labels, data.DivisionULBs.data, 'Number of ULBs');
+            createPieChartold('chartDivisionProjects', data.DivisionProjects.labels, data.DivisionProjects.data, 'Number of Projects');
+            createPieChartold('chartDivisionCost', data.DivisionCost.labels, data.DivisionCost.data, 'Project Cost(In Lakhs) (₹)');
+            createPieChartold('chartDivisionULBs', data.DivisionULBs.labels, data.DivisionULBs.data, 'Number of ULBs');
             createPieChart('chartULBType', data.ULBType.labels, data.ULBType.data, 'Number of ULBs');
-            createPieChart('chartULBTypeCost', data.ULBTypeCost.labels, data.ULBTypeCost.data, 'Project Cost (₹)');
+            createPieChart('chartULBTypeCost', data.ULBTypeCost.labels, data.ULBTypeCost.data, 'Project Cost(In Lakhs) (₹)');
             createPieChart('chartULBTypeCount', data.ULBTypeCount.labels, data.ULBTypeCount.data, 'Project Count');
 
             // Bar charts
@@ -425,7 +429,7 @@
             }]);
 
             createBarChart('chartImplAgencyCost', data.ImplAgencyCost.labels, [{
-                label: 'Project Cost (₹)',
+                label: 'Project Cost(In Lakhs) (₹)',
                 data: data.ImplAgencyCost.data,
                 backgroundColor: 'rgba(153, 102, 255, 0.7)'
             }]);
@@ -436,17 +440,225 @@
                 backgroundColor: 'rgba(200, 102, 255, 0.7)'
             }]);
 
-            createBarChart('chartDistrictProjectCost', data.DistrictProjectCost.labels, [{
-                label: 'Project Cost (₹)',
+            createBarChart2('chartDistrictProjectCost', data.DistrictProjectCost.labels, [{
+                label: 'Project Cost(In Lakhs) (₹)',
                 data: data.DistrictProjectCost.data,
-                backgroundColor: 'rgba(153, 102, 255, 0.7)'
+                backgroundColor: 'rgba(50, 102, 255, 0.7)'
             }]);
 
             // District summary chart (grouped bar chart)
             createBarChart('chartDistrictSummary', data.DistrictSummary.labels, data.DistrictSummary.datasets);
         }
+        function getRandomColors(count) {
+            const colors = [
+                '#4dc9f6', '#f67019', '#f53794', '#537bc4',
+                '#acc236', '#166a8f', '#00a950', '#58595b',
+                '#8549ba', '#e6194b', '#3cb44b', '#ffe119'
+            ];
+            return Array.from({ length: count }, (_, i) => colors[i % colors.length]);
+        }
 
         function createPieChart(canvasId, labels, data, label) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        backgroundColor: getRandomColors(labels.length),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        datalabels: {
+                            color: '#000',
+                            formatter: function (value, context) {
+                                let percentage = ((value / context.chart._metasets[0].total) * 100).toFixed(1);
+                                return value > 0 ? `${value} (${percentage}%)` : '';
+                            },
+                            anchor: 'end',
+                            align: function (context) {
+                                const angle = context.chart.getDatasetMeta(0).data[context.dataIndex].startAngle;
+                                const size = context.chart.getDatasetMeta(0).data[context.dataIndex].outerRadius;
+                                const value = context.chart.data.datasets[0].data[context.dataIndex];
+                                return value > 10 ? 'center' : 'end'; // Adjust threshold as needed
+                            },
+                            offset: 10,
+                            clamp: true
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    const label = context.label || '';
+                                    const val = context.parsed;
+                                    if (canvasId.includes('Cost')) {
+                                        return `${label}: ₹${val.toLocaleString('en-IN')}`;
+                                    }
+                                    return `${label}: ${val}`;
+                                }
+                            }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+        }
+
+
+        function createBarChart(canvasId, labels, datasets) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value) {
+                                    if (canvasId.toLowerCase().includes('cost')) {
+                                        return '₹' + value.toLocaleString('en-IN');
+                                    }
+                                    return value;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            color: '#000',
+                            formatter: function (value, context) {
+                                if (canvasId.toLowerCase().includes('cost')) {
+                                    return '₹' + value.toLocaleString('en-IN');
+                                }
+                                return value;
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) label += ': ';
+                                    const val = context.parsed.y;
+                                    if (canvasId.toLowerCase().includes('cost')) {
+                                        label += '₹' + val.toLocaleString('en-IN');
+                                    } else {
+                                        label += val;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+        }
+
+        function createBarChart2(canvasId, labels, datasets) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value) {
+                                    if (canvasId.toLowerCase().includes('cost')) {
+                                        return '₹' + value.toLocaleString('en-IN');
+                                    }
+                                    return value;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            color: '#000',
+                            rotation: -90, // Rotates label vertically
+                            textAlign: 'center',
+                            font: {
+                                size: 10,
+                                weight: 'bold'
+                            },
+                            formatter: function (value, context) {
+                                if (canvasId.toLowerCase().includes('cost')) {
+                                    return '₹' + value.toLocaleString('en-IN');
+                                }
+                                return value;
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) label += ': ';
+                                    const val = context.parsed.y;
+                                    if (canvasId.toLowerCase().includes('cost')) {
+                                        label += '₹' + val.toLocaleString('en-IN');
+                                    } else {
+                                        label += val;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function createPieChartold(canvasId, labels, data, label) {
             var ctx = document.getElementById(canvasId).getContext('2d');
             new Chart(ctx, {
                 type: 'pie',
@@ -488,8 +700,7 @@
                 }
             });
         }
-
-        function createBarChart(canvasId, labels, datasets) {
+        function createBarChartold(canvasId, labels, datasets) {
             var ctx = document.getElementById(canvasId).getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
@@ -536,7 +747,6 @@
                 }
             });
         }
-
         function getRandomColors(count) {
             var colors = [];
             for (var i = 0; i < count; i++) {
@@ -547,7 +757,6 @@
             }
             return colors;
         }
-
         function showModal() {
             $('#knowMoreModal').modal('show');
         }

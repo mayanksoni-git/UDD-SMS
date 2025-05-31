@@ -180,7 +180,7 @@
                                 <!--end col-->
                             </div>
 
-                            <div class="row">
+                            <div class="row d-none">
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-header align-items-center d-flex">

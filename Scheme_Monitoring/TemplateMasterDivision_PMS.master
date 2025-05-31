@@ -215,6 +215,7 @@
                                     <ul class="nav nav-sm flex-column">
                                         <%--<li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx" class="nav-link" data-key="t-grid-js">Create/Update Project (Legacy Data)</a> </li>--%>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=SO" class="nav-link" data-key="t-grid-js">Create/Update New Project</a> </li>
+                                        <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=Tender" class="nav-link" data-key="t-grid-js">Create/Update Project Tender</a> </li>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=UC" class="nav-link" data-key="t-grid-js">Update/Approve UC</a> </li>
                                         <li class="nav-item"><a href="MasterProjectWorkDataEntry.aspx?M=Comp" class="nav-link" data-key="t-grid-js">Update Physical & Financial Progress</a> </li>
 

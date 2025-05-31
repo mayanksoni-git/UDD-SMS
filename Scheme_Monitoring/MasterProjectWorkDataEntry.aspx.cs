@@ -443,7 +443,7 @@ public partial class MasterProjectWorkDataEntry : System.Web.UI.Page
                 }
                 else if (Mode == "Tender")
                 {
-                    Response.Redirect("MasterProjectWorkMIS_Tender.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
+                    Response.Redirect("MasterProjectWorkMIS_Tender2.aspx?ProjectWork_Id=" + ProjectWork_Id.ToString() + "&Id=" + Project_Id.ToString());
                 }
                 else if (Mode == "Issue")
                 {
