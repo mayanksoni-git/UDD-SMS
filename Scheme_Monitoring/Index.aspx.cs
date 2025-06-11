@@ -468,6 +468,7 @@ public partial class Index : System.Web.UI.Page
         Session["PersonJuridiction_Project_Id"] = ds.Tables[0].Rows[0]["PersonJuridiction_Project_Id"].ToString();
         Session["Department_Name"] = ds.Tables[0].Rows[0]["Department_Name"].ToString();
         Session["Division_Type"] = ds.Tables[0].Rows[0]["Division_Type"].ToString();
+        string ULBTypeName = Session["Division_Type"].ToString().Trim();
         if (obj_tbl_PersonAdditionalArea == null)
         {
             Session["PersonJuridiction_DesignationId"] = ds.Tables[0].Rows[0]["PersonJuridiction_DesignationId"].ToString();

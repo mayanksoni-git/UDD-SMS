@@ -235,16 +235,15 @@
                                                                  <asp:HyperLink ID="hlDocument" runat="server" NavigateUrl='<%# Eval("Documents") %>' Text="Doc" Visible='<%# !string.IsNullOrEmpty(Eval("Documents") as string) %>' Target="_blank"></asp:HyperLink>
                                                              </ItemTemplate>
                                                          </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Edit">
+                                                        <asp:TemplateField HeaderText="Edit"  >
                                                             <ItemTemplate>
                                                                 <asp:Button ID="btnEdit" runat="server" Text='Edit' CommandName="EditAnnualAction" OnCommand="Edit_Command" CommandArgument='<%# Eval("DocId") %>' CssClass="btn btn-primary drill_btn" />
                                                             </ItemTemplate>                                                             
                                                         </asp:TemplateField>
                                                        <asp:TemplateField HeaderText="Delete">
                                                         <ItemTemplate>
-                                                             <asp:Button ID="btnDelete" OnClientClick="return confirm('Are You Sure !!!')" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("DocId") %>' CssClass="btn btn-danger drill_btn" />
+                                                             <asp:Button ID="btnDelete"  OnClientClick="return confirm('Are You Sure !!!')" runat="server" Text='Delete' CommandName="DeleteAnnualAction" OnCommand="btnDelete_Command" CommandArgument='<%# Eval("DocId") %>' CssClass="btn btn-danger drill_btn" />
                                                          </ItemTemplate>
-
                                                         </asp:TemplateField>
                                                     </Columns>
                                                     <EmptyDataTemplate>

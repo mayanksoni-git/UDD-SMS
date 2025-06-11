@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Linq;
 
 public partial class AdvancedDashboard : System.Web.UI.Page
 {
@@ -168,26 +169,41 @@ public partial class AdvancedDashboard : System.Web.UI.Page
                     labels = GetColumnValues(dsCharts.Tables[4], "DistrictName"),
                     data = GetColumnValues(dsCharts.Tables[4], "ProjectCost", true)
                 },
+
                 DistrictProject= new
                 {
                     labels = GetColumnValues(dsCharts.Tables[4], "DistrictName"),
                     data = GetColumnValues(dsCharts.Tables[4], "ProjectCount", true)
                 },
+
                 DistrictSummary = new
                 {
                     labels = GetColumnValues(dsCharts.Tables[4], "DistrictName"),
                     datasets = new[] {
-                new {
-                    label = "Number of Projects",
-                    data = GetColumnValues(dsCharts.Tables[4], "ProjectCount", true),
-                    backgroundColor = "rgba(54, 162, 235, 0.7)"
+                        new {
+                            label = "Number of Projects",
+                            data = GetColumnValues(dsCharts.Tables[4], "ProjectCount", true),
+                            backgroundColor = "rgba(54, 162, 235, 0.7)"
+                        },
+                        new {
+                            label = "Project Cost",
+                            data = GetColumnValues(dsCharts.Tables[4], "ProjectCost", true),
+                            backgroundColor = "rgba(255, 99, 132, 0.7)"
+                        }
+                    }
                 },
-                new {
-                    label = "Project Cost",
-                    data = GetColumnValues(dsCharts.Tables[4], "ProjectCost", true),
-                    backgroundColor = "rgba(255, 99, 132, 0.7)"
-                }
-            }
+
+                TenderStatusProjects = new
+                {
+                    labels = GetColumnValues(dsCharts.Tables[5], "TenderStatus"),
+                    data = GetColumnValues(dsCharts.Tables[5], "ProjectCount", true),
+                    centerText = dsCharts.Tables[5].AsEnumerable().Sum(row => row.Field<int>("ProjectCount")) + " Projects"
+                },
+                WorkOrderStatusProjects = new
+                {
+                    labels = GetColumnValues(dsCharts.Tables[6], "WorkOrderStatus"),
+                    data = GetColumnValues(dsCharts.Tables[6], "ProjectCount", true),
+                    centerText = dsCharts.Tables[6].AsEnumerable().Sum(row => row.Field<int>("ProjectCount")) + " Projects"
                 }
             };
 

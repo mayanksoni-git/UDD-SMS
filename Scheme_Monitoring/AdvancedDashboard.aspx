@@ -150,7 +150,7 @@
                                     <div class="col-md-4 col-lg-2">
                                         <div class="card dashboard-card bg-primary text-white">
                                             <div class="card-body">
-                                                <h6 class="card-title">Divisions Reported</h6>
+                                                <h6 class="card-title" style="color:white">Divisions Reported</h6>
                                                 <div class="card-value" id="divDivisionCount" runat="server">0</div>
                                                 <asp:Button ID="btnKnowMoreDivisions" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreDivisions_Click" />
                                             </div>
@@ -160,7 +160,7 @@
                                     <div class="col-md-4 col-lg-2">
                                         <div class="card dashboard-card bg-info text-white">
                                             <div class="card-body">
-                                                <h6 class="card-title">Districts Reported</h6>
+                                                <h6 class="card-title" style="color:white">Districts Reported</h6>
                                                 <div class="card-value" id="divDistrictCount" runat="server">0</div>
                                                 <asp:Button ID="btnKnowMoreDistricts" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreDistricts_Click" />
                                             </div>
@@ -170,7 +170,7 @@
                                     <div class="col-md-4 col-lg-2">
                                         <div class="card dashboard-card bg-success text-white">
                                             <div class="card-body">
-                                                <h6 class="card-title">ULBs Reported</h6>
+                                                <h6 class="card-title" style="color:white">ULBs Reported</h6>
                                                 <div class="card-value" id="divULBCount" runat="server">0</div>
                                                 <asp:Button ID="btnKnowMoreULBs" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreULBs_Click" />
                                             </div>
@@ -180,7 +180,7 @@
                                     <div class="col-md-4 col-lg-2">
                                         <div class="card dashboard-card bg-warning text-dark">
                                             <div class="card-body">
-                                                <h6 class="card-title">Total Projects</h6>
+                                                <h6 class="card-title" style="color:white">Total Projects</h6>
                                                 <div class="card-value" id="divProjectCount" runat="server">0</div>
                                                 <asp:Button ID="btnKnowMoreProjects" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-dark know-more-btn" OnClick="btnKnowMoreProjects_Click" />
                                             </div>
@@ -190,7 +190,7 @@
                                     <div class="col-md-4 col-lg-2">
                                         <div class="card dashboard-card bg-danger text-white">
                                             <div class="card-body">
-                                                <h6 class="card-title">Sanctioned Cost</h6>
+                                                <h6 class="card-title" style="color:white">Sanctioned Cost</h6>
                                                 <div class="card-value" id="divSanctionedCost" runat="server">₹0</div>
                                                 <asp:Button ID="btnKnowMoreSanctionedCost" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreSanctionedCost_Click" />
                                             </div>
@@ -200,7 +200,7 @@
                                     <div class="col-md-4 col-lg-2">
                                         <div class="card dashboard-card bg-secondary text-white">
                                             <div class="card-body">
-                                                <h6 class="card-title">Total Release</h6>
+                                                <h6 class="card-title" style="color:white">Total Release</h6>
                                                 <div class="card-value" id="divReleaseAmount" runat="server">₹0</div>
                                                 <asp:Button ID="btnKnowMoreRelease" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreRelease_Click" />
                                             </div>
@@ -291,8 +291,33 @@
                                             </div>
                                         </div>
                                     </div> 
-                                   
-                                    
+                                </div>  
+                                <!-- Charts Row 3 -->
+                                <div class="row mt-4">
+                                     <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Tender Status and Count</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <canvas id="donutChartTender" height="300"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title">Work Order Status and Count</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <canvas id="donutChartWorkOrder" height="300"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Charts Row 4 -->
@@ -448,6 +473,12 @@
 
             // District summary chart (grouped bar chart)
             createBarChart('chartDistrictSummary', data.DistrictSummary.labels, data.DistrictSummary.datasets);
+
+
+            // DonutChart
+            createDonutChart('donutChartTender', data.TenderStatusProjects.labels, data.TenderStatusProjects.data, data.TenderStatusProjects.centerText);
+            createDonutChart('donutChartWorkOrder', data.WorkOrderStatusProjects.labels, data.WorkOrderStatusProjects.data, data.WorkOrderStatusProjects.centerText);
+
         }
         function getRandomColors(count) {
             const colors = [
@@ -511,8 +542,6 @@
                 plugins: [ChartDataLabels]
             });
         }
-
-
         function createBarChart(canvasId, labels, datasets) {
             const ctx = document.getElementById(canvasId).getContext('2d');
             new Chart(ctx, {
@@ -569,7 +598,6 @@
                 plugins: [ChartDataLabels]
             });
         }
-
         function createBarChart2(canvasId, labels, datasets) {
             const ctx = document.getElementById(canvasId).getContext('2d');
             new Chart(ctx, {
@@ -633,29 +661,137 @@
             });
         }
 
+        function createDonutChart(canvasId, labels, data, centerText) {
+            const total = data.reduce((a, b) => a + b, 0);
+            const ctx = document.getElementById(canvasId).getContext('2d');
 
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: getRandomColors2(labels.length),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    const val = context.parsed;
+                                    const label = context.label;
+                                    return `${label}: ${val} (${((val / total) * 100).toFixed(1)}%)`;
+                                }
+                            }
+                        },
+                        datalabels: {
+                            color: '#fff',
+                            font: {
+                                weight: 'bold'
+                            },
+                            formatter: function (value, context) {
+                                const label = context.chart.data.labels[context.dataIndex];
+                                return `(${value})`;
+                            }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels, {
+                    id: 'centerTextPlugin',
+                    beforeDraw: function (chart) {
+                        const width = chart.width,
+                            height = chart.height,
+                            ctx = chart.ctx;
+                        ctx.restore();
+                        const fontSize = (height / 140).toFixed(2);
+                        ctx.font = fontSize + "em sans-serif";
+                        ctx.textBaseline = "middle";
+                        ctx.fillStyle = "#000";
 
+                        const text = `${centerText}`,
+                            textX = Math.round((width - ctx.measureText(text).width) / 2),
+                            textY = height / 2;
 
+                        ctx.fillText(text, textX, textY);
+                        ctx.save();
+                    }
+                }]
+            });
+        }
 
+        function createDonutChartnew(canvasId, labels, data, centerText) {
+            const total = data.reduce((a, b) => a + b, 0);
+            const ctx = document.getElementById(canvasId).getContext('2d');
 
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: ['#36A2EB', '#FF6384'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    const val = context.parsed;
+                                    const label = context.label;
+                                    return `${label}: ${val} (${((val / total) * 100).toFixed(1)}%)`;
+                                }
+                            }
+                        },
+                        datalabels: {
+                            color: '#fff',
+                            font: {
+                                weight: 'bold'
+                            },
+                            formatter: function (value, context) {
+                                const label = context.chart.data.labels[context.dataIndex];
+                                return `${label} (${value})`;
+                            }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels, {
+                    id: 'centerTextPlugin',
+                    beforeDraw: function (chart) {
+                        const width = chart.width,
+                            height = chart.height,
+                            ctx = chart.ctx;
+                        ctx.restore();
+                        const fontSize = (height / 140).toFixed(2);
+                        ctx.font = fontSize + "em sans-serif";
+                        ctx.textBaseline = "middle";
+                        ctx.fillStyle = "#000";
 
+                        const text = centerText,
+                            textX = Math.round((width - ctx.measureText(text).width) / 2),
+                            textY = height / 2;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        ctx.fillText(text, textX, textY);
+                        ctx.save();
+                    }
+                }]
+            });
+        }
 
 
         function createPieChartold(canvasId, labels, data, label) {
@@ -757,8 +893,15 @@
             }
             return colors;
         }
+
         function showModal() {
             $('#knowMoreModal').modal('show');
         }
+  
+        function getRandomColors2(count) {
+            const colors = ['#4dc9f6', '#f67019', '#00a950', '#f53794'];
+            return colors.slice(0, count);
+        }
     </script>
+
 </asp:Content>

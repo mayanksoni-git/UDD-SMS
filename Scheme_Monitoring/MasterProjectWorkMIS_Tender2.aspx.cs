@@ -122,6 +122,13 @@ public partial class MasterProjectWorkMIS_Tender2 : System.Web.UI.Page
             return;
         }
 
+        // Check if there's already an active tender
+        if (ddlTenderStatus.SelectedValue == "A" && new DataLayer().HasActiveTender(Convert.ToInt32(hfProjectWorkId.Value), Convert.ToInt32(hfTenderId.Value)))
+        {
+            MessageBox.Show("There is already an active tender for this project. Please update the previous tender to 'Failed' or 'Completed' before adding a new active tender.");
+            return;
+        }
+
         string filePath = hfTenderId.Value == "0" ? UploadTenderFile() : null;
         if (filePath == "error" && hfTenderId.Value == "0")
         {

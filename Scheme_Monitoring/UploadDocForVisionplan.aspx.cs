@@ -59,7 +59,7 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
     }
     private void get_tbl_Division(int circleId, string ULBType)
     {
-        DataSet ds = (new DataLayer3()).get_tbl_DivisionByULBTypeForVisionPlan(circleId, ULBType);
+        DataSet ds = (new DataLayer()).get_tbl_DivisionByULBType(circleId, ULBType);
         FillDropDown(ds, ddlDivision, "Division_Name", "Division_Id");
     }
     private void get_tbl_FinancialYear()
@@ -103,6 +103,11 @@ public partial class UploadDocForVisionplan : System.Web.UI.Page
         }
         else
         {
+            string divisionType = Session["Division_Type"].ToString().Trim();
+            if (ddlULBType.Items.FindByValue(divisionType) != null)
+            {
+                ddlULBType.SelectedValue = divisionType;
+            }
             get_tbl_Division(Convert.ToInt32(ddlCircle.SelectedValue), ddlULBType.SelectedValue.ToString());
         }
     }
