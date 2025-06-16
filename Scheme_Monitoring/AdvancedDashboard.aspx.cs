@@ -303,7 +303,7 @@ public partial class AdvancedDashboard : System.Web.UI.Page
     }
 
 
-    protected void btnKnowMoreDivisions_Click(object sender, EventArgs e)
+    protected void btnKnowMoreDivisions_ClickOld(object sender, EventArgs e)
     {
         int schemeId = Convert.ToInt32(ddlScheme.SelectedValue);
         int fyId = Convert.ToInt32(ddlFY.SelectedValue);
@@ -312,8 +312,22 @@ public partial class AdvancedDashboard : System.Web.UI.Page
         gvDrillDown.DataSource = dt;
         gvDrillDown.DataBind();
 
-        knowMoreModalLabel.InnerText = "Division-wise Project Details";
+        //knowMoreModalLabel.InnerText = "Division-wise Project Details";
         ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+    }
+    protected void btnKnowMoreDivisions_Click(object sender, EventArgs e)
+    {
+        int schemeId = Convert.ToInt32(ddlScheme.SelectedValue);
+        int fyId = Convert.ToInt32(ddlFY.SelectedValue);
+
+        DataTable dt = (new DataLayer()).GetDivisionDrillDownData(schemeId, fyId);
+        gvDrillDown.DataSource = dt;
+        gvDrillDown.DataBind();
+        modalTitle.Text = "Division-wise Project Details";
+
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal",
+            "$('#knowMoreModal').modal('show');", true);
+        upModal.Update();
     }
 
     protected void btnKnowMoreDistricts_Click(object sender, EventArgs e)
@@ -325,8 +339,10 @@ public partial class AdvancedDashboard : System.Web.UI.Page
         gvDrillDown.DataSource = dt;
         gvDrillDown.DataBind();
 
-        knowMoreModalLabel.InnerText = "District-wise Project Details";
-        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+        modalTitle.Text = "District-wise Project Details";
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal",
+           "$('#knowMoreModal').modal('show');", true);
+        upModal.Update();
     }
 
     protected void btnKnowMoreULBs_Click(object sender, EventArgs e)
@@ -338,8 +354,10 @@ public partial class AdvancedDashboard : System.Web.UI.Page
         gvDrillDown.DataSource = dt;
         gvDrillDown.DataBind();
 
-        knowMoreModalLabel.InnerText = "ULB-wise Project Details";
-        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+        modalTitle.Text = "ULB-wise Project Details";
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal",
+           "$('#knowMoreModal').modal('show');", true);
+        upModal.Update();
     }
 
     protected void btnKnowMoreProjects_Click(object sender, EventArgs e)
@@ -351,8 +369,10 @@ public partial class AdvancedDashboard : System.Web.UI.Page
         gvDrillDown.DataSource = dt;
         gvDrillDown.DataBind();
 
-        knowMoreModalLabel.InnerText = "Project Details";
-        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+        modalTitle.Text = "Project Details";
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal",
+            "$('#knowMoreModal').modal('show');", true);
+        upModal.Update();
     }
 
     protected void btnKnowMoreSanctionedCost_Click(object sender, EventArgs e)
@@ -364,8 +384,10 @@ public partial class AdvancedDashboard : System.Web.UI.Page
         gvDrillDown.DataSource = dt;
         gvDrillDown.DataBind();
 
-        knowMoreModalLabel.InnerText = "Sanctioned Cost Details";
-        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+        modalTitle.Text = "Sanctioned Cost Details";
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal",
+            "$('#knowMoreModal').modal('show');", true);
+        upModal.Update();
     }
 
     protected void btnKnowMoreRelease_Click(object sender, EventArgs e)
@@ -377,8 +399,10 @@ public partial class AdvancedDashboard : System.Web.UI.Page
         gvDrillDown.DataSource = dt;
         gvDrillDown.DataBind();
 
-        knowMoreModalLabel.InnerText = "Release Amount Details";
-        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "showModal();", true);
+        modalTitle.Text = "Release Amount Details";
+        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal",
+           "$('#knowMoreModal').modal('show');", true);
+        upModal.Update();
     }
 
 

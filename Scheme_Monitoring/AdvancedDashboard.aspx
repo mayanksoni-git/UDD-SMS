@@ -38,13 +38,31 @@
             right: 10px;
             font-size: 12px;
         }
+
+        /* Add 3D shadow effect to charts */
+        .card canvas {
+            filter: drop-shadow(0px 3px 5px rgba(0,0,0,0.2));
+        }
+
+        /* Enhance the 3D look */
+        .chart-container {
+            perspective: 1000px;
+        }
+
+        /* Add depth to cards */
+        .dashboard-card {
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
     </style>
     <div class="main-content">
         <div class="page-content">
-            <asp:UpdatePanel ID="up" runat="server">
-                <ContentTemplate>
-                    <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
-                    </cc1:ToolkitScriptManager>
+            
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
@@ -64,6 +82,11 @@
 
                         <div class="row">
                             <div class="col-lg-12">
+                                <asp:UpdatePanel ID="up" runat="server">
+                <ContentTemplate>
+                    <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
+                    </cc1:ToolkitScriptManager>
+
                                 <div class="card" id="sectionFilter" runat="server">
                                     <div class="card-header align-items-center d-flex">
                                         <h4 class="card-title mb-0 flex-grow-1">Filter :</h4>
@@ -152,7 +175,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title" style="color:white">Divisions Reported</h6>
                                                 <div class="card-value" id="divDivisionCount" runat="server">0</div>
-                                                <asp:Button ID="btnKnowMoreDivisions" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreDivisions_Click" />
+                                                <asp:Button ID="btnKnowMoreDivisions" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreDivisions_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -162,7 +185,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title" style="color:white">Districts Reported</h6>
                                                 <div class="card-value" id="divDistrictCount" runat="server">0</div>
-                                                <asp:Button ID="btnKnowMoreDistricts" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreDistricts_Click" />
+                                                <asp:Button ID="btnKnowMoreDistricts" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreDistricts_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -172,7 +195,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title" style="color:white">ULBs Reported</h6>
                                                 <div class="card-value" id="divULBCount" runat="server">0</div>
-                                                <asp:Button ID="btnKnowMoreULBs" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreULBs_Click" />
+                                                <asp:Button ID="btnKnowMoreULBs" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreULBs_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +205,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title" style="color:white">Total Projects</h6>
                                                 <div class="card-value" id="divProjectCount" runat="server">0</div>
-                                                <asp:Button ID="btnKnowMoreProjects" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-dark know-more-btn" OnClick="btnKnowMoreProjects_Click" />
+                                                <asp:Button ID="btnKnowMoreProjects" runat="server" Text="Know More" CssClass="btn btn-sm btn-dark know-more-btn" OnClick="btnKnowMoreProjects_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -192,7 +215,7 @@
                                             <div class="card-body">
                                                 <h6 class="card-title" style="color:white">Sanctioned Cost</h6>
                                                 <div class="card-value" id="divSanctionedCost" runat="server">₹0</div>
-                                                <asp:Button ID="btnKnowMoreSanctionedCost" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreSanctionedCost_Click" />
+                                                <asp:Button ID="btnKnowMoreSanctionedCost" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreSanctionedCost_Click" />
                                             </div>
                                         </div>
                                     </div>
@@ -202,12 +225,23 @@
                                             <div class="card-body">
                                                 <h6 class="card-title" style="color:white">Total Release</h6>
                                                 <div class="card-value" id="divReleaseAmount" runat="server">₹0</div>
-                                                <asp:Button ID="btnKnowMoreRelease" Visible="false" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreRelease_Click" />
+                                                <asp:Button ID="btnKnowMoreRelease" runat="server" Text="Know More" CssClass="btn btn-sm btn-light know-more-btn" OnClick="btnKnowMoreRelease_Click" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
+                                
+                    </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="BtnSearch" />
+                    <asp:PostBackTrigger ControlID="ddlScheme" />
+                    <asp:PostBackTrigger ControlID="ddlCircle" />
+                    <asp:PostBackTrigger ControlID="ddlFY" />
+                    <asp:PostBackTrigger ControlID="ddlDivision" />
+                    
+                </Triggers>
+            </asp:UpdatePanel>
                                 <!-- Charts Row 1 -->
                                 <div class="row mt-4">
                                     
@@ -291,8 +325,9 @@
                                             </div>
                                         </div>
                                     </div> 
-                                </div>  
-                                <!-- Charts Row 3 -->
+                                </div> 
+                                
+                                <!-- Charts Row 4 -->
                                 <div class="row mt-4">
                                      <div class="col-md-6">
                                         <div class="card">
@@ -320,7 +355,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Charts Row 4 -->
+                                <!-- Charts Row 5 -->
                                 <div class="row mt-4">
                                     
                                     <div class="col-md-6">
@@ -361,7 +396,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Charts Row 5 -->
+                                <!-- Charts Row 6 -->
                                 <div class="row mt-4">
                                     <div class="col-md-12">
                                         <div class="card">
@@ -377,7 +412,7 @@
                                     </div>
                                 </div> 
 
-                                <!-- Charts Row 6 -->
+                                <!-- Charts Row 7 -->
                                 <div class="row mt-4">
                                     <div class="col-md-12">
                                         <div class="card">
@@ -392,20 +427,37 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                
 
-                                <!-- Modal for Know More -->
-                                <div class="modal fade" runat="server" id="knowMoreModal" tabindex="-1" role="dialog" aria-labelledby="knowMoreModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg" role="document">
+            <!-- Modal for Know More -->
+                                <div class="modal fade" id="knowMoreModal" tabindex="-1" role="dialog" aria-labelledby="knowMoreModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="knowMoreModalLabel" runat="server">Detailed Information</h5>
+                                                <h5 class="modal-title" id="knowMoreModalLabel">
+                                                    <asp:Literal ID="modalTitle" runat="server"></asp:Literal></h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <asp:GridView ID="gvDrillDown" runat="server" CssClass="table table-bordered table-striped" AutoGenerateColumns="true">
-                                                </asp:GridView>
+                                                <asp:UpdatePanel ID="upModal" runat="server" UpdateMode="Conditional">
+                                                    <ContentTemplate>
+                                                        <asp:GridView ID="gvDrillDown" runat="server" CssClass="table table-bordered table-striped" AutoGenerateColumns="true">
+                                                        </asp:GridView>
+                                                    </ContentTemplate>
+                                                    <Triggers>
+                                                        <asp:AsyncPostBackTrigger ControlID="btnKnowMoreDivisions" EventName="Click" />
+                                                        <asp:AsyncPostBackTrigger ControlID="btnKnowMoreDistricts" EventName="Click" />
+                                                        <asp:AsyncPostBackTrigger ControlID="btnKnowMoreULBs" EventName="Click" />
+                                                        <asp:AsyncPostBackTrigger ControlID="btnKnowMoreProjects" EventName="Click" />
+                                                        <asp:AsyncPostBackTrigger ControlID="btnKnowMoreSanctionedCost" EventName="Click" />
+                                                        <asp:AsyncPostBackTrigger ControlID="btnKnowMoreRelease" EventName="Click" />
+                                                    </Triggers>
+                                                </asp:UpdatePanel>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -413,25 +465,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </ContentTemplate>
-                <Triggers>
-                    <asp:PostBackTrigger ControlID="BtnSearch" />
-                    <asp:PostBackTrigger ControlID="ddlScheme" />
-                    <asp:PostBackTrigger ControlID="ddlCircle" />
-                    <asp:PostBackTrigger ControlID="ddlFY" />
-                    <asp:PostBackTrigger ControlID="ddlDivision" />
-                    <asp:PostBackTrigger ControlID="btnKnowMoreDivisions" />
-                    <asp:PostBackTrigger ControlID="btnKnowMoreDistricts" />
-                    <asp:PostBackTrigger ControlID="btnKnowMoreULBs" />
-                    <asp:PostBackTrigger ControlID="btnKnowMoreProjects" />
-                    <asp:PostBackTrigger ControlID="btnKnowMoreSanctionedCost" />
-                    <asp:PostBackTrigger ControlID="btnKnowMoreRelease" />
-                </Triggers>
-            </asp:UpdatePanel>
         </div>
     </div>
     
@@ -452,19 +485,16 @@
                 data: data.ImplAgencyProjects.data,
                 backgroundColor: 'rgba(75, 192, 192, 0.7)'
             }]);
-
             createBarChart('chartImplAgencyCost', data.ImplAgencyCost.labels, [{
                 label: 'Project Cost(In Lakhs) (₹)',
                 data: data.ImplAgencyCost.data,
                 backgroundColor: 'rgba(153, 102, 255, 0.7)'
             }]);
-
             createBarChart('chartDistrictProject', data.DistrictProject.labels, [{
                 label: 'No of Projects',
                 data: data.DistrictProject.data,
                 backgroundColor: 'rgba(200, 102, 255, 0.7)'
             }]);
-
             createBarChart2('chartDistrictProjectCost', data.DistrictProjectCost.labels, [{
                 label: 'Project Cost(In Lakhs) (₹)',
                 data: data.DistrictProjectCost.data,
@@ -474,19 +504,9 @@
             // District summary chart (grouped bar chart)
             createBarChart('chartDistrictSummary', data.DistrictSummary.labels, data.DistrictSummary.datasets);
 
-
             // DonutChart
             createDonutChart('donutChartTender', data.TenderStatusProjects.labels, data.TenderStatusProjects.data, data.TenderStatusProjects.centerText);
             createDonutChart('donutChartWorkOrder', data.WorkOrderStatusProjects.labels, data.WorkOrderStatusProjects.data, data.WorkOrderStatusProjects.centerText);
-
-        }
-        function getRandomColors(count) {
-            const colors = [
-                '#4dc9f6', '#f67019', '#f53794', '#537bc4',
-                '#acc236', '#166a8f', '#00a950', '#58595b',
-                '#8549ba', '#e6194b', '#3cb44b', '#ffe119'
-            ];
-            return Array.from({ length: count }, (_, i) => colors[i % colors.length]);
         }
 
         function createPieChart(canvasId, labels, data, label) {
@@ -540,6 +560,48 @@
                     }
                 },
                 plugins: [ChartDataLabels]
+            });
+        }
+        function createPieChartold(canvasId, labels, data, label) {
+            var ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        backgroundColor: getRandomColors(labels.length),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    var label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        if (canvasId.includes('Cost')) {
+                                            label += '₹' + context.parsed.toLocaleString('en-IN');
+                                        } else {
+                                            label += context.parsed;
+                                        }
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
             });
         }
         function createBarChart(canvasId, labels, datasets) {
@@ -660,7 +722,6 @@
                 plugins: [ChartDataLabels]
             });
         }
-
         function createDonutChart(canvasId, labels, data, centerText) {
             const total = data.reduce((a, b) => a + b, 0);
             const ctx = document.getElementById(canvasId).getContext('2d');
@@ -726,182 +787,32 @@
                 }]
             });
         }
-
-        function createDonutChartnew(canvasId, labels, data, centerText) {
-            const total = data.reduce((a, b) => a + b, 0);
-            const ctx = document.getElementById(canvasId).getContext('2d');
-
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: data,
-                        backgroundColor: ['#36A2EB', '#FF6384'],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '70%',
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    const val = context.parsed;
-                                    const label = context.label;
-                                    return `${label}: ${val} (${((val / total) * 100).toFixed(1)}%)`;
-                                }
-                            }
-                        },
-                        datalabels: {
-                            color: '#fff',
-                            font: {
-                                weight: 'bold'
-                            },
-                            formatter: function (value, context) {
-                                const label = context.chart.data.labels[context.dataIndex];
-                                return `${label} (${value})`;
-                            }
-                        }
-                    }
-                },
-                plugins: [ChartDataLabels, {
-                    id: 'centerTextPlugin',
-                    beforeDraw: function (chart) {
-                        const width = chart.width,
-                            height = chart.height,
-                            ctx = chart.ctx;
-                        ctx.restore();
-                        const fontSize = (height / 140).toFixed(2);
-                        ctx.font = fontSize + "em sans-serif";
-                        ctx.textBaseline = "middle";
-                        ctx.fillStyle = "#000";
-
-                        const text = centerText,
-                            textX = Math.round((width - ctx.measureText(text).width) / 2),
-                            textY = height / 2;
-
-                        ctx.fillText(text, textX, textY);
-                        ctx.save();
-                    }
-                }]
-            });
-        }
-
-
-        function createPieChartold(canvasId, labels, data, label) {
-            var ctx = document.getElementById(canvasId).getContext('2d');
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: label,
-                        data: data,
-                        backgroundColor: getRandomColors(labels.length),
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    var label = context.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed !== null) {
-                                        if (canvasId.includes('Cost')) {
-                                            label += '₹' + context.parsed.toLocaleString('en-IN');
-                                        } else {
-                                            label += context.parsed;
-                                        }
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-        function createBarChartold(canvasId, labels, datasets) {
-            var ctx = document.getElementById(canvasId).getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: datasets
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function (value) {
-                                    if (canvasId.includes('Cost') || canvasId.includes('cost')) {
-                                        return '₹' + value.toLocaleString('en-IN');
-                                    }
-                                    return value;
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    var label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.y !== null) {
-                                        if (canvasId.includes('Cost') || canvasId.includes('cost')) {
-                                            label += '₹' + context.parsed.y.toLocaleString('en-IN');
-                                        } else {
-                                            label += context.parsed.y;
-                                        }
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
+        
         function getRandomColors(count) {
-            var colors = [];
-            for (var i = 0; i < count; i++) {
-                colors.push('rgba(' + 
-                    Math.floor(Math.random() * 256) + ',' + 
-                    Math.floor(Math.random() * 256) + ',' + 
-                    Math.floor(Math.random() * 256) + ',0.7)');
-            }
-            return colors;
+            const colors = [
+                '#4dc9f6', '#f67019', '#f53794', '#537bc4',
+                '#acc236', '#166a8f', '#00a950', '#58595b',
+                '#8549ba', '#e6194b', '#3cb44b', '#ffe119'
+            ];
+            return Array.from({ length: count }, (_, i) => colors[i % colors.length]);
         }
 
         function showModal() {
             $('#knowMoreModal').modal('show');
         }
-  
+
         function getRandomColors2(count) {
             const colors = ['#4dc9f6', '#f67019', '#00a950', '#f53794'];
             return colors.slice(0, count);
         }
+
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        prm.add_endRequest(function () {
+            // Reinitialize charts after partial postback
+            if (typeof initializeCharts === 'function') {
+                initializeCharts(chartData);
+            }
+        });
     </script>
 
 </asp:Content>
