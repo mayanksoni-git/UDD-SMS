@@ -457,6 +457,12 @@ public partial class FormForApproval : System.Web.UI.Page
             ddlDivision.Focus();
             IsValid = false;
         }
+        if (rblApprovedVP.SelectedValue != "1")
+        {
+            MessageBox.Show("Please Upload only committee-approved Proposal Letter.");
+            rblApprovedVP.Focus();
+            return false;
+        }
         //if (txtZoneOfULB.Text.Trim() == "")
         //{
         //    MessageBox.Show("Please enter the names of the zones where the project will be built or implemented.");

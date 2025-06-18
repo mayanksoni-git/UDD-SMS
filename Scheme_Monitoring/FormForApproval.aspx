@@ -205,7 +205,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-3 col-md-6">
-                                                    <asp:Label ID="lblRecommendationLetter" runat="server" Text="Upload Recommendation Letter" CssClass="form-label"></asp:Label>
+                                                    <div id="div1" runat="server">
+                                                        <asp:Label ID="lblApprovedVP" runat="server" Text="Have you uploaded the committee-approved Proposal Letter?*" CssClass="form-label"></asp:Label>
+                                                        <asp:RadioButtonList ID="rblApprovedVP" CssClass="form-control" runat="server" RepeatDirection="Horizontal">
+                                                            <asp:ListItem Value="1">Yes</asp:ListItem>
+                                                            <%--<asp:ListItem Value="0" Selected="True">NO</asp:ListItem>--%>
+                                                        </asp:RadioButtonList>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xxl-3 col-md-6">
+                                                    <asp:Label ID="lblRecommendationLetter" runat="server" Text="Upload Proposal Letter" CssClass="form-label"></asp:Label>
                                                     <asp:FileUpload ID="fileUploadRecommendationLetter" runat="server" CssClass="form-control" />
                                                     <asp:HyperLink ID="hypRecommendationLetterEdit" runat="server" Target="_blank" Text="Click To View" Visible="false">
                                                         <asp:Image ID="imgViewPDF" runat="server" ImageUrl="~/assets/images/ViewPdf.png" AlternateText="View PDF" Height="30" Width="30" />
