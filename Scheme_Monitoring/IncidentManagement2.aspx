@@ -1,5 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="IncidentManagement.aspx.cs" Inherits="IncidentManagement" EnableEventValidation="false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/TemplateMasterAdmin_PMS.master" CodeFile="IncidentManagement2.aspx.cs" Inherits="IncidentManagement2" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
         .incident-form {
@@ -8,27 +9,39 @@
             padding: 20px;
             margin-bottom: 20px;
         }
+
         .party-table {
             margin-top: 20px;
         }
+
         .hidden {
             display: none;
         }
     </style>
-
     <div class="main-content">
         <div class="page-content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 mb-3">
-                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Incident Management</h4>
+            <asp:UpdatePanel ID="up" runat="server">
+                <ContentTemplate>
+                    <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnablePageMethods="true" AsyncPostBackTimeout="6000">
+                    </cc1:ToolkitScriptManager>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Incident Management</h4>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
+                                            <li class="breadcrumb-item">Incident Management</li>
+                                            <li class="breadcrumb-item active">Add Incident</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
                         </div>
-                    </div>
-                </div>
 
-                <asp:UpdatePanel ID="upIncident" runat="server">
-                    <ContentTemplate>
+
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
@@ -41,7 +54,7 @@
                                                 <div class="col-md-4">
                                                     <div class="mb-3">
                                                         <label class="form-label">District *</label>
-                                                        <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-select" 
+                                                        <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-select"
                                                             AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
                                                         </asp:DropDownList>
                                                     </div>
@@ -97,7 +110,7 @@
                                                 <div class="col-md-4">
                                                     <div class="mb-3">
                                                         <label class="form-label">&nbsp;</label>
-                                                        <asp:Button ID="btnAddParty" runat="server" Text="Add Party" 
+                                                        <asp:Button ID="btnAddParty" runat="server" Text="Add Party"
                                                             CssClass="btn btn-primary" OnClick="btnAddParty_Click" />
                                                     </div>
                                                 </div>
@@ -106,7 +119,7 @@
                                             <div class="row mt-3">
                                                 <div class="col-12">
                                                     <div class="table-responsive party-table">
-                                                        <asp:GridView ID="gvParties" runat="server" CssClass="table table-bordered" 
+                                                        <asp:GridView ID="gvParties" runat="server" CssClass="table table-bordered"
                                                             AutoGenerateColumns="false" EmptyDataText="No parties added yet"
                                                             OnRowCommand="gvParties_RowCommand">
                                                             <Columns>
@@ -114,9 +127,9 @@
                                                                 <asp:BoundField DataField="PartyName" HeaderText="Name" />
                                                                 <asp:TemplateField HeaderText="Action">
                                                                     <ItemTemplate>
-                                                                        <asp:LinkButton ID="btnRemoveParty" runat="server" CommandName="RemoveParty" 
+                                                                        <asp:LinkButton ID="btnRemoveParty" runat="server" CommandName="RemoveParty"
                                                                             CommandArgument='<%# Container.DataItemIndex %>' CssClass="btn btn-sm btn-danger">
-                                                                            Remove
+                                                            Remove
                                                                         </asp:LinkButton>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
@@ -128,11 +141,11 @@
 
                                             <div class="row mt-3">
                                                 <div class="col-12 text-center">
-                                                    <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-success me-2" 
+                                                    <asp:Button ID="btnSave" runat="server" Text="Save" CssClass="btn btn-success me-2"
                                                         OnClick="btnSave_Click" />
-                                                    <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-primary me-2" 
+                                                    <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-primary me-2"
                                                         Visible="false" OnClick="btnUpdate_Click" />
-                                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary" 
+                                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn btn-secondary"
                                                         OnClick="btnCancel_Click" />
                                                 </div>
                                             </div>
@@ -146,7 +159,7 @@
                                                     </div>
                                                     <div class="card-body">
                                                         <div class="table-responsive">
-                                                            <asp:GridView ID="gvIncidents" runat="server" CssClass="table table-bordered" 
+                                                            <asp:GridView ID="gvIncidents" runat="server" CssClass="table table-bordered"
                                                                 AutoGenerateColumns="false" EmptyDataText="No incidents found"
                                                                 OnRowCommand="gvIncidents_RowCommand" DataKeyNames="Incident_Id">
                                                                 <Columns>
@@ -157,9 +170,9 @@
                                                                     <asp:BoundField DataField="CreatedOn" HeaderText="Created On" DataFormatString="{0:dd/MM/yyyy}" />
                                                                     <asp:TemplateField HeaderText="Action">
                                                                         <ItemTemplate>
-                                                                            <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditIncident" 
+                                                                            <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditIncident"
                                                                                 CommandArgument='<%# Eval("Incident_Id") %>' CssClass="btn btn-sm btn-primary">
-                                                                                Edit
+                                                                Edit
                                                                             </asp:LinkButton>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
@@ -174,11 +187,13 @@
                                 </div>
                             </div>
                         </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-
-                <asp:HiddenField ID="hfIncidentId" runat="server" Value="0" />
-            </div>
+                        <asp:HiddenField ID="hfIncidentId" runat="server" Value="0" />
+                    </div>
+                </ContentTemplate>
+                <Triggers>
+                      
+                </Triggers>
+            </asp:UpdatePanel>
         </div>
     </div>
 </asp:Content>

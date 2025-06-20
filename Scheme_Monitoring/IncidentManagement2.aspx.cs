@@ -1,16 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
+using System.Text;
 using System.Data;
-using System.Configuration;
-using System.Web.UI.HtmlControls;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using System.Linq;
 using System.Data.SqlClient;
+using System.Configuration;
 
-public partial class IncidentManagement : System.Web.UI.Page
+public partial class IncidentManagement2 : System.Web.UI.Page
 {
     ULBFund objLoan = new ULBFund();
     string connectionString = ConfigurationManager.AppSettings.Get("conn");
@@ -20,6 +20,10 @@ public partial class IncidentManagement : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["Person_Id"] == null || Session["Login_Id"] == null)
+        {
+            Response.Redirect("Index.aspx");
+        }
         if (!IsPostBack)
         {
             BindDistricts();
@@ -67,7 +71,7 @@ public partial class IncidentManagement : System.Web.UI.Page
 
                 // Filter ULBs by selected district
                 DataView dv = dt.DefaultView;
-                dv.RowFilter = "DistrictId = "+districtId;
+                dv.RowFilter = "DistrictId = " + districtId;
                 DataTable filteredULBs = dv.ToTable(true, "ULBId", "ULBName");
 
                 ddlULB.DataSource = filteredULBs;
@@ -85,23 +89,31 @@ public partial class IncidentManagement : System.Web.UI.Page
 
     protected void btnAddParty_Click(object sender, EventArgs e)
     {
-        if (ddlDesignation.SelectedIndex == 0 || string.IsNullOrEmpty(txtPartyName.Text))
+        try
         {
-            ShowMessage("Please select designation and enter party name");
-            return;
+            if (string.IsNullOrEmpty(txtPartyName.Text))
+            {
+                ShowMessage("Please select designation and enter party name");
+                return;
+            }
+
+            List<IncidentParty> parties = ViewState["IncidentParties"] as List<IncidentParty> ?? new List<IncidentParty>();
+
+            parties.Add(new IncidentParty
+            {
+                Designation = ddlDesignation.SelectedValue,
+                PartyName = txtPartyName.Text
+            });
+
+            ViewState["IncidentParties"] = parties;
+            BindPartiesGrid();
+            ClearPartyForm();
         }
-
-        List<IncidentParty> parties = ViewState["IncidentParties"] as List<IncidentParty> ?? new List<IncidentParty>();
-
-        parties.Add(new IncidentParty
+        catch (Exception ex)
         {
-            Designation = ddlDesignation.SelectedValue,
-            PartyName = txtPartyName.Text
-        });
-
-        ViewState["IncidentParties"] = parties;
-        BindPartiesGrid();
-        ClearPartyForm();
+            System.Diagnostics.Debug.WriteLine("AddParty Error: " + ex.ToString());
+            ShowMessage("Failed to add party. Please try again.");
+        }
     }
 
     protected void gvParties_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -129,7 +141,7 @@ public partial class IncidentManagement : System.Web.UI.Page
 
     private void ClearPartyForm()
     {
-        ddlDesignation.SelectedIndex = 0;
+        ddlDesignation.SelectedIndex = 1;
         txtPartyName.Text = "";
     }
 
@@ -378,15 +390,7 @@ public partial class IncidentManagement : System.Web.UI.Page
 
     private void ShowMessage(string message, bool isSuccess = false)
     {
-        string script = "alert('"+message+"');";
+        string script = "alert('" + message + "');";
         ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", script, true);
     }
-
-}
-
-
-public class IncidentParty
-{
-    public string Designation { get; set; }
-    public string PartyName { get; set; }
 }
