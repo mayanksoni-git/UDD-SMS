@@ -1,0 +1,151 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\UDD SMS\\Scheme_Monitoring\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{64894128-D236-4850-B05F-0F0F7D2FEEFA}|D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring|d:\\projects\\udd sms\\scheme_monitoring\\scheme_monitoring\\advanceddashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64894128-D236-4850-B05F-0F0F7D2FEEFA}|D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring|solutionrelative:scheme_monitoring\\advanceddashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64894128-D236-4850-B05F-0F0F7D2FEEFA}|D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring|d:\\projects\\udd sms\\scheme_monitoring\\scheme_monitoring\\app_code\\datalayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{64894128-D236-4850-B05F-0F0F7D2FEEFA}|D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring|solutionrelative:scheme_monitoring\\app_code\\datalayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{64894128-D236-4850-B05F-0F0F7D2FEEFA}|D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring|d:\\projects\\udd sms\\scheme_monitoring\\scheme_monitoring\\advanceddashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{64894128-D236-4850-B05F-0F0F7D2FEEFA}|D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring|solutionrelative:scheme_monitoring\\advanceddashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 283,
+          "SelectedChildIndex": 21,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DataLayer.cs",
+              "DocumentMoniker": "D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring\\App_Code\\DataLayer.cs",
+              "RelativeDocumentMoniker": "Scheme_Monitoring\\App_Code\\DataLayer.cs",
+              "ToolTip": "D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring\\App_Code\\DataLayer.cs",
+              "RelativeToolTip": "Scheme_Monitoring\\App_Code\\DataLayer.cs",
+              "ViewState": "AgIAANYNAQAAAAAAAAAxwOoNAQATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T10:47:28.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:142:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:144:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:145:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:146:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:143:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:138:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:139:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:140:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:141:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:147:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:148:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:149:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:150:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:151:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:152:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:153:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdvancedDashboard.aspx.cs",
+              "DocumentMoniker": "D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring\\AdvancedDashboard.aspx.cs",
+              "RelativeDocumentMoniker": "Scheme_Monitoring\\AdvancedDashboard.aspx.cs",
+              "ToolTip": "D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring\\AdvancedDashboard.aspx.cs",
+              "RelativeToolTip": "Scheme_Monitoring\\AdvancedDashboard.aspx.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAYwHEAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T10:45:58.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AdvancedDashboard.aspx",
+              "DocumentMoniker": "D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring\\AdvancedDashboard.aspx",
+              "RelativeDocumentMoniker": "Scheme_Monitoring\\AdvancedDashboard.aspx",
+              "ToolTip": "D:\\Projects\\UDD SMS\\Scheme_Monitoring\\Scheme_Monitoring\\AdvancedDashboard.aspx",
+              "RelativeToolTip": "Scheme_Monitoring\\AdvancedDashboard.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-05-27T10:45:56.926Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
